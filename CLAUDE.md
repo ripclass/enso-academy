@@ -25,22 +25,26 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 
 ## Current state
 
-- Foundation scaffold initialized
-- Next.js 16 + React 19 + TypeScript + Tailwind + shadcn/ui (pending install)
+- Foundation scaffold + Supabase wiring complete
+- Next.js 16 + React 19 + TypeScript + Tailwind (shadcn/ui still pending install)
+- Supabase wired: lib/supabase/ has browser (client.ts), server (server.ts), session-refresh helper (middleware.ts), and service-role admin (admin.ts) clients
+- Root proxy.ts (Next.js 16 successor to the deprecated middleware.ts) refreshes the auth session on every request
+- pgvector enabled on the Singapore project (enso-academy-dev / yffwnyuodulbfjjobhmf) via migration 20260520160138
+- OAuth callback route at /auth/callback; auth-error page at /auth/auth-error
+- Google OAuth pending Google Cloud Console setup (see docs/SETUP-google-oauth.md)
+- No database schema yet beyond the pgvector extension; no payments wired
 - Folder structure matches docs/ARCHITECTURE.md
 - Landing page is minimal placeholder
-- No database, no auth, no payments wired yet
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Set up Supabase project and wire client (Prompt 2)
-2. Write database schema migrations (Prompt 3)
-3. Add Anthropic SDK and Claude client wrapper (Prompt 4)
-4. Build authentication flow (Prompt 5)
-5. Build lesson player skeleton (Prompt 6)
-6. Wire Stripe (Prompt 7)
-7. Build mock exam engine (Prompt 8)
+1. Write the full database schema migrations — courses, modules, lessons, students, enrollments, mock exams, student knowledge state, classmate interventions, examiner data, commercial tables (Prompt 3)
+2. Add Anthropic SDK and Claude client wrapper (Prompt 4)
+3. Build authentication flow / UI (Prompt 5)
+4. Build lesson player skeleton (Prompt 6)
+5. Wire Stripe (Prompt 7)
+6. Build mock exam engine (Prompt 8)
 
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
 
@@ -95,9 +99,12 @@ If asked to do work without updating memory at the end, remind the user and ask 
 
 - Anthropic account is personal (rc.thesnapper@gmail.com) until migrated to company workspace
 - Stripe account is pending Stripe Atlas approval — use test keys until live keys are issued
-- Supabase project is named "enso-academy-dev" for development; production project TBD
+- Supabase project is named "enso-academy-dev" for development; production project TBD. Project ref yffwnyuodulbfjjobhmf, Singapore region. Linked locally; migrations live in supabase/migrations/ and are applied with `supabase db push`.
 - Domain enso.academy is owned but not pointed to Vercel yet
 - Repo is public during development for MCP tool access; will be made private before launch
+- Next.js 16 deprecated the `middleware.ts` file convention — request interception uses `proxy.ts` at the project root (see ADR 0002). The Supabase session-refresh helper keeps the name lib/supabase/middleware.ts (a plain module, not a convention file).
+- Infrastructure stack (decided between Prompt 1 and Prompt 2): Vercel hosts the Next.js app (frontend, API routes, Server Actions); durable background jobs will use Inngest or Trigger.dev (choice deferred to Prompt 5) for Opus batch course generation, TTS pre-generation, mock grading, and OCR pipelines; cache + rate limiting will use Upstash Redis (added in Prompt 5 or 6 when the lesson player needs it); dedicated worker hosts (Render, Railway) are deferred — Inngest + Vercel + Upstash cover v1 needs.
+- Google OAuth setup pending — see docs/SETUP-google-oauth.md for the manual steps Ripon needs to complete in Google Cloud Console.
 
 ## Who is Ripon
 
