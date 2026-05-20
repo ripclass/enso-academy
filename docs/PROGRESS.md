@@ -4,6 +4,17 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-20 — Database advisor hardening
+
+Ran `supabase db advisors` on the v1 schema (after upgrading the Supabase CLI to v2.100.1) and remediated every WARN-level finding via two migrations — 20260520174114_advisor_hardening and 20260520174501_fix_subscriptions_rls_initplan:
+
+- Security: pinned `search_path` on `set_updated_at` and `create_student_profile_on_signup`; revoked EXECUTE on both trigger functions so they are off the REST surface.
+- Performance: wrapped `auth.uid()` in `(select ...)` across 19 student RLS policies (auth_rls_initplan); scoped 31 service-role policies `TO service_role` (multiple_permissive_policies); added 24 covering indexes for unindexed foreign keys.
+
+Advisor result: 4 security + 71 performance WARNs -> 0 WARN/ERROR. Remaining findings are INFO only (unused_index — expected on an empty database — and one connection-config note). RLS posture unchanged in effect: service_role has rolbypassrls = true, so service-role policies are belt-and-suspenders. Convention recorded in CLAUDE.md gotchas.
+
+---
+
 ## 2026-05-20 — Full v1 database schema applied
 
 Six migrations applied to Singapore Supabase project (yffwnyuodulbfjjobhmf):

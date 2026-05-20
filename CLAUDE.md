@@ -29,7 +29,7 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Next.js 16 + React 19 + TypeScript + Tailwind (shadcn/ui still pending install)
 - Supabase wired: lib/supabase/ has browser (client.ts), server (server.ts), session-refresh helper (middleware.ts), and service-role admin (admin.ts) clients
 - Root proxy.ts (Next.js 16 successor to the deprecated middleware.ts) refreshes the auth session on every request
-- Full v1 schema applied to the Singapore project (enso-academy-dev / yffwnyuodulbfjjobhmf) — seven migrations: pgvector + six domain migrations (content, students, mocks, intelligence, Bangladesh, commercial), ~40 tables, all RLS-enabled
+- Full v1 schema applied to the Singapore project (enso-academy-dev / yffwnyuodulbfjjobhmf) — nine migrations: pgvector + six domain migrations (content, students, mocks, intelligence, Bangladesh, commercial) + two advisor-hardening migrations, ~40 tables, all RLS-enabled and advisor-clean (0 WARN/ERROR)
 - TypeScript types in lib/supabase/database.types.ts reflect the full schema
 - OAuth callback route at /auth/callback; auth-error page at /auth/auth-error
 - Google OAuth pending Google Cloud Console setup (see docs/SETUP-google-oauth.md)
@@ -106,6 +106,7 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Google OAuth setup pending — see docs/SETUP-google-oauth.md for the manual steps Ripon needs to complete in Google Cloud Console.
 - Process hygiene: when stopping a backgrounded pnpm dev, kill by port (not by process group) to ensure the detached next dev child also dies. Stale dev servers on port 3000 will silently serve stale code.
 - pgvector is installed in the `extensions` schema, not `public`. Any migration that references the `vector` type or `vector_cosine_ops` must `SET search_path = public, extensions;` at the top; functions using the `<=>` operator need the same as a function attribute. See migrations 20260520163212 / ...163214 / ...163217 for the pattern.
+- RLS / function conventions enforced by `supabase db advisors` (run advisors after schema changes): wrap `auth.uid()` / `auth.role()` in a scalar subquery — `(select auth.uid())` — in policy expressions so they evaluate once per query, not per row; scope service-role policies with `TO service_role` so they are not also evaluated for authenticated/anon; add a covering index for every foreign key. Functions need a pinned `search_path`; trigger / SECURITY DEFINER functions should have EXECUTE revoked from anon/authenticated unless they are meant to be a REST RPC. See migration 20260520174114_advisor_hardening.
 
 ## Who is Ripon
 
