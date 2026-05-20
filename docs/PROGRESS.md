@@ -4,6 +4,24 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-20 — Full v1 database schema applied
+
+Six migrations applied to Singapore Supabase project (yffwnyuodulbfjjobhmf):
+- content_schema: courses, modules, lessons, content_library_elements, primary_source_citations, question_bank, glossary, case_studies, course_versions
+- students_schema: student_profiles, enrollments, sessions, student_knowledge_state, student_memory, student_preferences, modality_state, session_events, portfolio_artifacts
+- mocks_schema: mock_exam_templates, mock_exam_attempts, student_readiness, signoff_events, real_exam_outcomes
+- intelligence_schema: cached_qa (with match_cached_qa RPC), escalations, classmates, classmate_interventions
+- bangladesh_schema: examiners, examiner_graded_papers, grading_rubrics, ai_grader_evaluations, examiner_review_passes, real_exam_papers, ocr_extractions
+- commercial_schema: stripe_customers, course_purchases, subscriptions, sme_reviewers, content_reviews, audit_log
+
+All tables have RLS enabled with appropriate policies. Updated_at triggers in place. pgvector indexes (ivfflat) on all embedding columns. Auto-creation trigger for student_profiles + student_preferences on auth.users insert.
+
+TypeScript types regenerated in lib/supabase/database.types.ts (183 -> 2766 lines).
+
+Note: first push failed because the `vector` type lives in the `extensions` schema (not on the apply-time search_path). Fixed by adding `SET search_path = public, extensions` to the three vector-using migrations (content, students, intelligence) and to the match_cached_qa function. See docs/decisions/0003-schema-design-principles.md.
+
+---
+
 ## 2026-05-20 — Supabase wiring and auth foundation
 
 - Installed @supabase/supabase-js and @supabase/ssr

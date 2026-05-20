@@ -17,3 +17,9 @@ No partial work. No open threads.
 ## [2026-05-20 22:15] — Supabase + auth done, schema next
 
 Supabase wiring complete. pgvector enabled on the Singapore project. Note: Prompt 2 specified `middleware.ts` but Next.js 16 deprecated that convention — migrated to `proxy.ts` (Ripon approved); ADR 0002 reflects this. Google OAuth credentials still need to be created in Google Cloud Console (see docs/SETUP-google-oauth.md). Database is empty of user tables — Prompt 3 will write the full schema (courses, modules, lessons, students, enrollments, mock exams, student knowledge state, classmate interventions, examiner data, commercial tables). No partial work or open threads from this prompt.
+
+---
+
+## [2026-05-20 22:45] — Schema applied, ready for Anthropic SDK
+
+Six migrations applied cleanly. ~40 tables across six domains. RLS policies in place. pgvector cache table (cached_qa) ready with similarity-search RPC. One hiccup: the first `db push` failed because the `vector` type sits in the `extensions` schema and was not on the apply-time search_path — fixed with `SET search_path = public, extensions` in the three vector-using migrations + the match_cached_qa function, then re-pushed cleanly (ADR 0003 records the pattern). Next: wire Anthropic SDK and Claude client (Prompt 4). No partial work, no open threads.
