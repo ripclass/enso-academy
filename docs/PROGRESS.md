@@ -4,6 +4,12 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-21 — Fix: render markdown in AI lecturer answers
+
+The lecturer's answers contain markdown (bold, lists, paragraphs); the Q&A panel rendered them as plain text, so `**bold**` showed literally. Added react-markdown — lecturer messages now render as proper markdown; student messages stay plain text. Verified locally + in production.
+
+---
+
 ## 2026-05-21 — First working product surface: lesson player live
 
 - Seeded CDCS dev course in Supabase: 1 course, 1 module, 3 lessons, 16 content elements (hand-drafted placeholder, not Opus-generated)

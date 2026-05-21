@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
 import { Wordmark } from '@/components/brand/wordmark'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -211,7 +212,13 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
                           : 'max-w-[90%] bg-muted rounded-md px-3 py-2 text-sm space-y-1'
                       }
                     >
-                      <div className="whitespace-pre-wrap leading-relaxed">{msg.content}</div>
+                      {msg.role === 'student' ? (
+                        <div className="whitespace-pre-wrap leading-relaxed">{msg.content}</div>
+                      ) : (
+                        <div className="leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_em]:italic [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-4 [&_li]:mb-1 [&_code]:rounded [&_code]:bg-background/60 [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-xs">
+                          <ReactMarkdown>{msg.content}</ReactMarkdown>
+                        </div>
+                      )}
                       {msg.role === 'lecturer' && msg.fromCache && (
                         <div className="text-xs text-muted-foreground opacity-70">cached</div>
                       )}
