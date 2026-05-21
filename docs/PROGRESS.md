@@ -4,6 +4,23 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-21 — Claude client wrapper (three-tier routing, via OpenRouter)
+
+- Installed the `openai` SDK (used as the OpenRouter client); `@anthropic-ai/sdk` removed
+- lib/ai/client.ts: OpenRouter client (OpenAI-protocol), model tier constants, cost estimation
+- lib/ai/completions.ts: complete() and completeStreaming() helpers
+- lib/ai/routing.ts: tier-specific callOpus / callHaiku / callSonnet (+ streaming variants)
+- lib/ai/embeddings.ts: text-embedding-3-small via OpenRouter (1536-dim, matches pgvector schema)
+- lib/ai/prompts/: prompt management system with three v0.1 prompts (lecturer system, classmate gap question, escalation classifier)
+- lib/ai/cost-tracking.ts: logAiCall() writing to escalations or audit_log
+- app/api/ai/smoke-test/route.ts: protected endpoint — smoke test confirms Haiku, Sonnet, and embeddings all alive via OpenRouter (total ~0.02 cents)
+- ADR 0004: server-side content fetching via service role
+- ADR 0005: LLM access via the OpenRouter gateway
+
+Deviation from Prompt 4: it assumed the direct Anthropic SDK. Direct Anthropic/OpenAI API billing is not workable from Bangladesh, so all LLM + embedding traffic goes through OpenRouter (OpenAI-protocol, single OPENROUTER_API_KEY); the wrapper uses the `openai` SDK with a custom base URL. ARCHITECTURE.md updated accordingly. Known consequence: OpenRouter does not expose the Anthropic Batch API, so Layer 1 course generation will cost ~2x the architecture estimate — see ADR 0005 open questions.
+
+---
+
 ## 2026-05-20 — Database advisor hardening
 
 Ran `supabase db advisors` on the v1 schema (after upgrading the Supabase CLI to v2.100.1) and remediated every WARN-level finding via two migrations — 20260520174114_advisor_hardening and 20260520174501_fix_subscriptions_rls_initplan:

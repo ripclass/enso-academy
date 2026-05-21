@@ -28,4 +28,10 @@ Six migrations applied cleanly. ~40 tables across six domains. RLS policies in p
 
 ## [2026-05-20 23:00] — Schema hardened against Supabase advisors
 
-Ran the Supabase advisor lint (via the /supabase:supabase skill). Upgraded the Supabase CLI 2.53.6 -> 2.100.1 (scoop) to get `db advisors`. Two follow-up migrations (advisor_hardening + fix_subscriptions_rls_initplan) cleared all 4 security + 71 performance WARNs; advisors now report 0 WARN/ERROR. Effective access is unchanged (service_role bypasses RLS) — policies were just scoped and rewritten for performance. Still open from Prompt 3: the enrollment-gated content-read RLS policies were never added (content tables remain service-role-only) — fold into a later prompt. Next: wire Anthropic SDK and Claude client (Prompt 4).
+Ran the Supabase advisor lint (via the /supabase:supabase skill). Upgraded the Supabase CLI 2.53.6 -> 2.100.1 (scoop) to get `db advisors`. Two follow-up migrations (advisor_hardening + fix_subscriptions_rls_initplan) cleared all 4 security + 71 performance WARNs; advisors now report 0 WARN/ERROR. Effective access is unchanged (service_role bypasses RLS) — policies were just scoped and rewritten for performance. The enrollment-gated content-read RLS policies were resolved by ADR 0004 (content stays service-role-only; reads go through the admin client) rather than added as policies. Next: wire Anthropic SDK and Claude client (Prompt 4).
+
+---
+
+## [2026-05-21 00:30] — AI plumbing done (via OpenRouter); auth UI next
+
+Claude client wrapper complete. Smoke test confirms Haiku ("Haiku alive"), Sonnet ("Sonnet alive"), and embeddings (1536-dim) all alive through OpenRouter — total ~0.02 cents. Major deviation: Prompt 4 was written for the direct Anthropic SDK, but Bangladeshi cards cannot fund Anthropic/OpenAI API billing — so the wrapper was reworked onto OpenRouter (OpenAI-protocol; `openai` SDK + custom baseURL; ADR 0005), and `@anthropic-ai/sdk` was removed. ARCHITECTURE.md was updated to match. Prompts are placeholder v0.1. Open items: OpenRouter has no Batch API, so Layer 1 course-generation cost is ~2x the estimate (ADR 0005 open questions); Whisper ASR needs a separate provider path. No partial work. Next: auth UI (Prompt 5).

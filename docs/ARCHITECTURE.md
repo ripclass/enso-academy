@@ -3,7 +3,7 @@
 **Status:** Foundation
 **Owner:** Ripon Chowdhury
 **Company:** Enso Intelligence Inc.
-**Last updated:** 2026-05-20
+**Last updated:** 2026-05-21
 
 ---
 
@@ -154,13 +154,13 @@ By the time a student passes the real exam, they have 20+ portfolio pieces demon
 - **Database**: Supabase (PostgreSQL 15+ with pgvector extension)
 - **Authentication**: Supabase Auth (email + Google OAuth)
 - **Payments**: Stripe (one-time course purchases at $199 USD, monthly subscriptions at $39 USD)
-- **LLM**: Anthropic Claude
-  - Opus for offline course generation (one-time per course)
-  - Haiku-class lecturer with Opus-tuned orchestration prompt for real-time student interaction
-  - Sonnet for escalation on novel cases, classmate gap-question generation, and written-answer grading
+- **LLM**: Anthropic Claude, accessed via the OpenRouter gateway (OpenAI-protocol) — see ADR 0005
+  - Opus (`anthropic/claude-opus-4.7`) for offline course generation (one-time per course)
+  - Haiku (`anthropic/claude-haiku-4.5`) lecturer with Opus-tuned orchestration prompt for real-time student interaction
+  - Sonnet (`anthropic/claude-sonnet-4.6`) for escalation on novel cases, classmate gap-question generation, and written-answer grading
 - **TTS**: Google Cloud Text-to-Speech (Wavenet voices, English; Studio for premium courses)
-- **ASR**: OpenAI Whisper API (for student voice input)
-- **Embeddings**: OpenAI text-embedding-3-small (for pgvector cache)
+- **ASR**: OpenAI Whisper API (for student voice input) — note: OpenRouter does not proxy audio transcription; ASR needs a separate provider path, decided at the ASR prompt
+- **Embeddings**: OpenAI text-embedding-3-small via OpenRouter (1536-dim, for pgvector cache)
 - **Email**: Resend (transactional emails)
 - **Error tracking**: Sentry
 - **Hosting**: Vercel (production) + Vercel Preview (development)
@@ -169,7 +169,7 @@ By the time a student passes the real exam, they have 20+ portfolio pieces demon
 
 - **Next.js 16 + React 19**: matches the architecture we explored in OpenMAIC reconnaissance, modern enough that Claude generates good code for it, has Server Actions which simplify backend.
 - **Supabase**: pgvector for our Q&A cache and student knowledge embeddings is native, Auth is included, RLS gives us tenant isolation by default, generous free tier for dev.
-- **Anthropic Claude**: superior to alternatives for pedagogical reasoning, multi-step explanations, and structured rubric-based grading. Tiered pricing matches our cost model.
+- **Anthropic Claude (via OpenRouter)**: superior to alternatives for pedagogical reasoning, multi-step explanations, and structured rubric-based grading. Tiered pricing matches our cost model. Accessed through the OpenRouter gateway because direct Anthropic API billing is not workable from Bangladesh; see ADR 0005.
 - **Tailwind + shadcn/ui**: fast UI development, consistent design system, no design debt.
 - **Stripe**: standard for global SaaS payments, supports both one-time and subscription.
 
@@ -186,9 +186,9 @@ We do not copy OpenMAIC source files. We do not import OpenMAIC modules. We do n
 This is the cost-control architecture that makes the unit economics work.
 
 **Layer 1 — Course generation (offline, Opus, one-time per course)**
-- Runs in Anthropic Batch API for cost efficiency.
+- Designed to run in the Anthropic Batch API for cost efficiency (50% discount). NOTE: the OpenRouter gateway (ADR 0005) does not expose the Batch API, so generation via OpenRouter costs roughly 2x the estimate below. Revisit when the course generator is built.
 - Generates the full course content library from primary sources.
-- Approximately $1,500-3,000 per course at launch. One-time spend.
+- Approximately $1,500-3,000 per course at launch (Batch API pricing). One-time spend.
 
 **Layer 2 — Real-time student interaction (always-on, tiered)**
 - 60-70% of student queries served from pre-computed Q&A cache (zero new API cost).

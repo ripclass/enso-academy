@@ -1,7 +1,7 @@
 # CLAUDE.md — Enso Academy Project Memory
 
-**Last updated:** 2026-05-20
-**Current milestone:** Foundation scaffold
+**Last updated:** 2026-05-21
+**Current milestone:** Backend foundation — scaffold, Supabase, schema, AI client wrapper
 **Status:** In progress
 
 ## Read this first, every session
@@ -33,17 +33,17 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - TypeScript types in lib/supabase/database.types.ts reflect the full schema
 - OAuth callback route at /auth/callback; auth-error page at /auth/auth-error
 - Google OAuth pending Google Cloud Console setup (see docs/SETUP-google-oauth.md)
+- AI client wrapper in lib/ai/ — OpenRouter-backed (OpenAI-protocol; ADR 0005), three-tier routing (callOpus/callHaiku/callSonnet + streaming), embeddings (text-embedding-3-small, 1536-dim), versioned prompts, cost tracking; smoke test passing
 - No application UI beyond the placeholder landing page; no payments wired
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Add Anthropic SDK and Claude client wrapper with three-tier model routing (Prompt 4)
-2. Build authentication flow / UI (Prompt 5)
-3. Build lesson player skeleton (Prompt 6)
-4. Wire Stripe (Prompt 7)
-5. Build mock exam engine (Prompt 8)
+1. Build authentication flow / UI — login, signup, Google OAuth (Prompt 5)
+2. Build lesson player skeleton (Prompt 6)
+3. Wire Stripe (Prompt 7)
+4. Build mock exam engine (Prompt 8)
 
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
 
@@ -96,7 +96,7 @@ If asked to do work without updating memory at the end, remind the user and ask 
 
 ## Gotchas and notes
 
-- Anthropic account is personal (rc.thesnapper@gmail.com) until migrated to company workspace
+- LLM + embeddings go through the OpenRouter gateway (ADR 0005), not direct Anthropic/OpenAI APIs — direct API billing is not workable from Bangladeshi cards. One key: OPENROUTER_API_KEY. The lib/ai/ wrapper uses the `openai` SDK against OpenRouter's base URL. A direct Anthropic account (for Batch API on Layer 1 course generation) is a future option once Enso Intelligence Inc. has a workable payment method — until then Layer 1 generation via OpenRouter costs ~2x the architecture estimate.
 - Stripe account is pending Stripe Atlas approval — use test keys until live keys are issued
 - Supabase project is named "enso-academy-dev" for development; production project TBD. Project ref yffwnyuodulbfjjobhmf, Singapore region. Linked locally; migrations live in supabase/migrations/ and are applied with `supabase db push`.
 - Domain enso.academy is owned but not pointed to Vercel yet
@@ -107,6 +107,9 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Process hygiene: when stopping a backgrounded pnpm dev, kill by port (not by process group) to ensure the detached next dev child also dies. Stale dev servers on port 3000 will silently serve stale code.
 - pgvector is installed in the `extensions` schema, not `public`. Any migration that references the `vector` type or `vector_cosine_ops` must `SET search_path = public, extensions;` at the top; functions using the `<=>` operator need the same as a function attribute. See migrations 20260520163212 / ...163214 / ...163217 for the pattern.
 - RLS / function conventions enforced by `supabase db advisors` (run advisors after schema changes): wrap `auth.uid()` / `auth.role()` in a scalar subquery — `(select auth.uid())` — in policy expressions so they evaluate once per query, not per row; scope service-role policies with `TO service_role` so they are not also evaluated for authenticated/anon; add a covering index for every foreign key. Functions need a pinned `search_path`; trigger / SECURITY DEFINER functions should have EXECUTE revoked from anon/authenticated unless they are meant to be a REST RPC. See migration 20260520174114_advisor_hardening.
+- The AI client (lib/ai/*) is server-only — never import it from Client Components. Call it from Server Actions or API routes.
+- Smoke-test endpoint at /api/ai/smoke-test requires an `Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY` header. Remove or harden it before launch.
+- All course-content reads go through Server Actions / API routes using the service-role admin client (lib/supabase/admin.ts); content tables are service-role-only by RLS. See ADR 0004.
 
 ## Who is Ripon
 
