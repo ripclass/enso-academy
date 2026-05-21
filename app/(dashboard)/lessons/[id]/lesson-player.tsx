@@ -1,0 +1,249 @@
+'use client'
+
+import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { Wordmark } from '@/components/brand/wordmark'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { askLecturer, completeLesson } from '@/lib/lesson/actions'
+import { toast } from 'sonner'
+
+type Element = {
+  id: string
+  element_type: string
+  title: string | null
+  body: string
+  estimated_seconds: number | null
+}
+
+type Lesson = {
+  id: string
+  name: string
+  description: string | null
+  learning_objectives: string[]
+  estimated_minutes: number | null
+  module: {
+    name: string
+    course: { slug: string; short_name: string }
+  }
+}
+
+type Message = {
+  role: 'student' | 'lecturer'
+  content: string
+  fromCache?: boolean
+}
+
+type Props = {
+  sessionId: string
+  lesson: Lesson
+  elements: Element[]
+  courseId: string
+  courseSlug: string
+}
+
+export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug }: Props) {
+  const router = useRouter()
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [messages, setMessages] = useState<Message[]>([])
+  const [questionInput, setQuestionInput] = useState('')
+  const [askingQuestion, setAskingQuestion] = useState(false)
+  const [completing, setCompleting] = useState(false)
+  const conversationRef = useRef<HTMLDivElement>(null)
+
+  const currentElement = elements[currentIndex]
+  const isLast = currentIndex === elements.length - 1
+
+  // Auto-scroll the conversation when new messages arrive
+  useEffect(() => {
+    if (conversationRef.current) {
+      conversationRef.current.scrollTop = conversationRef.current.scrollHeight
+    }
+  }, [messages])
+
+  function goNext() {
+    if (currentIndex < elements.length - 1) {
+      setCurrentIndex(currentIndex + 1)
+    }
+  }
+
+  function goPrev() {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1)
+    }
+  }
+
+  async function handleAskQuestion(e: React.FormEvent) {
+    e.preventDefault()
+    if (!questionInput.trim() || askingQuestion) return
+
+    const question = questionInput.trim()
+    setQuestionInput('')
+    setMessages(prev => [...prev, { role: 'student', content: question }])
+    setAskingQuestion(true)
+
+    try {
+      // Build lesson context: combine the current element + a couple surrounding
+      const contextElements = elements.slice(Math.max(0, currentIndex - 1), Math.min(elements.length, currentIndex + 2))
+      const lessonContext = contextElements
+        .map(el => `[${el.element_type}] ${el.title ?? ''}\n${el.body}`)
+        .join('\n\n---\n\n')
+
+      const result = await askLecturer({
+        sessionId,
+        lessonId: lesson.id,
+        courseId,
+        question,
+        lessonContext,
+      })
+
+      setMessages(prev => [...prev, {
+        role: 'lecturer',
+        content: result.answer,
+        fromCache: result.fromCache,
+      }])
+    } catch (err) {
+      toast.error('Could not reach the lecturer. Try again.')
+      console.error(err)
+    } finally {
+      setAskingQuestion(false)
+    }
+  }
+
+  async function handleComplete() {
+    setCompleting(true)
+    try {
+      await completeLesson(sessionId, lesson.id)
+      toast.success('Lesson complete')
+      router.push(`/courses/${courseSlug}`)
+    } catch (err) {
+      toast.error('Could not save lesson completion.')
+      console.error(err)
+      setCompleting(false)
+    }
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-muted">
+      <header className="border-b border-border bg-background">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <Wordmark />
+            <div className="text-sm text-muted-foreground">
+              <Link href={`/courses/${courseSlug}`} className="hover:text-foreground">
+                {lesson.module.course.short_name}
+              </Link>
+              <span className="mx-2">·</span>
+              {lesson.module.name}
+            </div>
+          </div>
+          <Link href={`/courses/${courseSlug}`} className="text-sm text-muted-foreground hover:text-foreground">
+            Exit lesson
+          </Link>
+        </div>
+      </header>
+
+      <div className="flex-1 max-w-7xl mx-auto px-6 py-8 w-full grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8">
+        {/* Lesson content */}
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <div className="text-xs text-muted-foreground uppercase tracking-wide">Lesson</div>
+            <h1 className="text-2xl font-medium tracking-tight">{lesson.name}</h1>
+            {lesson.description && <p className="text-sm text-muted-foreground">{lesson.description}</p>}
+          </div>
+
+          <Card>
+            <CardContent className="p-8 space-y-4">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
+                <span className="uppercase tracking-wide">{currentElement?.element_type?.replace('_', ' ')}</span>
+                <span>{currentIndex + 1} of {elements.length}</span>
+              </div>
+              {currentElement?.title && (
+                <h2 className="text-lg font-medium">{currentElement.title}</h2>
+              )}
+              <div className="prose prose-sm max-w-none whitespace-pre-wrap leading-relaxed text-foreground">
+                {currentElement?.body}
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="flex items-center justify-between">
+            <Button variant="outline" onClick={goPrev} disabled={currentIndex === 0}>
+              Previous
+            </Button>
+            {isLast ? (
+              <Button onClick={handleComplete} disabled={completing}>
+                {completing ? 'Saving…' : 'Complete lesson'}
+              </Button>
+            ) : (
+              <Button onClick={goNext}>
+                Next
+              </Button>
+            )}
+          </div>
+        </div>
+
+        {/* Lecturer Q&A panel */}
+        <div className="space-y-4">
+          <div className="space-y-1">
+            <div className="text-xs text-muted-foreground uppercase tracking-wide">Ask the lecturer</div>
+            <p className="text-xs text-muted-foreground">Questions about the current section or anything you want clarified.</p>
+          </div>
+
+          <Card className="flex flex-col h-[600px]">
+            <CardContent className="flex-1 overflow-y-auto p-4 space-y-3" ref={conversationRef}>
+              {messages.length === 0 ? (
+                <p className="text-sm text-muted-foreground text-center py-8">
+                  Ask anything about what you just read.
+                </p>
+              ) : (
+                messages.map((msg, i) => (
+                  <div
+                    key={i}
+                    className={msg.role === 'student' ? 'flex justify-end' : 'flex justify-start'}
+                  >
+                    <div
+                      className={
+                        msg.role === 'student'
+                          ? 'max-w-[85%] bg-primary text-primary-foreground rounded-md px-3 py-2 text-sm'
+                          : 'max-w-[90%] bg-muted rounded-md px-3 py-2 text-sm space-y-1'
+                      }
+                    >
+                      <div className="whitespace-pre-wrap leading-relaxed">{msg.content}</div>
+                      {msg.role === 'lecturer' && msg.fromCache && (
+                        <div className="text-xs text-muted-foreground opacity-70">cached</div>
+                      )}
+                    </div>
+                  </div>
+                ))
+              )}
+              {askingQuestion && (
+                <div className="flex justify-start">
+                  <div className="bg-muted rounded-md px-3 py-2 text-sm text-muted-foreground">
+                    Thinking…
+                  </div>
+                </div>
+              )}
+            </CardContent>
+
+            <form onSubmit={handleAskQuestion} className="border-t border-border p-3 flex gap-2">
+              <Input
+                type="text"
+                placeholder="Type your question…"
+                value={questionInput}
+                onChange={(e) => setQuestionInput(e.target.value)}
+                disabled={askingQuestion}
+                className="flex-1"
+              />
+              <Button type="submit" size="sm" disabled={askingQuestion || !questionInput.trim()}>
+                Ask
+              </Button>
+            </form>
+          </Card>
+        </div>
+      </div>
+    </div>
+  )
+}

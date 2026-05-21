@@ -1,0 +1,253 @@
+'use server'
+
+import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
+import { callHaikuStreaming } from '@/lib/ai/routing'
+import { embed } from '@/lib/ai/embeddings'
+import { logAiCall } from '@/lib/ai/cost-tracking'
+
+type AskQuestionResult = {
+  answer: string
+  fromCache: boolean
+  cachedQaId?: string
+  sessionEventId?: string
+}
+
+/**
+ * Start a lesson session. Creates a sessions row and returns the session ID.
+ */
+export async function startLessonSession(lessonId: string): Promise<string> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+
+  const admin = createAdminClient()
+
+  // Find the lesson and its course
+  const { data: lesson } = await admin
+    .from('lessons')
+    .select('id, module:modules!inner (course_id)')
+    .eq('id', lessonId)
+    .single()
+
+  if (!lesson) throw new Error('Lesson not found')
+
+  const courseId = (lesson.module as any).course_id
+
+  // Find the enrollment
+  const { data: enrollment } = await admin
+    .from('enrollments')
+    .select('id')
+    .eq('student_id', user.id)
+    .eq('course_id', courseId)
+    .eq('status', 'active')
+    .single()
+
+  if (!enrollment) throw new Error('Not enrolled in this course')
+
+  const { data: session, error } = await admin
+    .from('sessions')
+    .insert({
+      student_id: user.id,
+      course_id: courseId,
+      enrollment_id: enrollment.id,
+      session_type: 'lesson',
+      modality: 'standard',
+      lesson_id: lessonId,
+    })
+    .select('id')
+    .single()
+
+  if (error || !session) throw new Error('Failed to create session: ' + (error?.message ?? 'unknown'))
+
+  // Log a session_started event
+  await admin.from('session_events').insert({
+    session_id: session.id,
+    student_id: user.id,
+    event_type: 'lesson_started',
+    payload: { lesson_id: lessonId },
+  })
+
+  return session.id
+}
+
+/**
+ * Fetch the lesson content elements in order for a given lesson.
+ */
+export async function getLessonContent(lessonId: string) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+
+  const admin = createAdminClient()
+
+  const { data: elements, error } = await admin
+    .from('content_library_elements')
+    .select('id, element_type, title, body, body_format, estimated_seconds, concept_tags, teaches_concepts, difficulty, metadata')
+    .eq('lesson_id', lessonId)
+    .order('created_at', { ascending: true })
+
+  if (error) throw new Error('Failed to fetch lesson content: ' + error.message)
+
+  // Sort by metadata.order if present
+  const sorted = (elements ?? []).sort((a, b) => {
+    const ao = (a.metadata as any)?.order ?? 999
+    const bo = (b.metadata as any)?.order ?? 999
+    return ao - bo
+  })
+
+  return sorted
+}
+
+/**
+ * Ask a question of the AI lecturer. Cache-first; falls back to Haiku.
+ */
+export async function askLecturer(opts: {
+  sessionId: string
+  lessonId: string
+  courseId: string
+  question: string
+  lessonContext: string  // condensed lesson content for grounding
+}): Promise<AskQuestionResult> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+
+  const admin = createAdminClient()
+
+  // Step 1: Embed the question
+  const embedding = await embed(opts.question)
+
+  // Step 2: Try cache hit via the match_cached_qa RPC
+  const { data: matches } = await admin.rpc('match_cached_qa', {
+    p_course_id: opts.courseId,
+    p_query_embedding: embedding.vector as any,
+    p_match_threshold: 0.85,
+    p_match_count: 1,
+  })
+
+  if (matches && matches.length > 0) {
+    const hit = matches[0]
+    // Increment hit count
+    await admin
+      .from('cached_qa')
+      .update({
+        hit_count: (hit.hit_count ?? 0) + 1,
+        last_hit_at: new Date().toISOString(),
+      })
+      .eq('id', hit.id)
+
+    // Log the cache-hit event
+    await admin.from('session_events').insert({
+      session_id: opts.sessionId,
+      student_id: user.id,
+      event_type: 'question_asked',
+      payload: {
+        question: opts.question,
+        from_cache: true,
+        cached_qa_id: hit.id,
+        similarity: hit.similarity,
+      },
+    })
+
+    return {
+      answer: hit.answer_text,
+      fromCache: true,
+      cachedQaId: hit.id,
+    }
+  }
+
+  // Step 3: Cache miss — call Haiku with grounding
+  const system = `You are the AI lecturer for Enso Academy. The student is studying the following lesson content. Answer their question grounded in this content. If the question is outside the lesson's scope, say so clearly and briefly. Be concise — 2-4 paragraphs at most.
+
+LESSON CONTENT:
+${opts.lessonContext}`
+
+  const startMs = Date.now()
+  const result = await callHaikuStreaming({
+    system,
+    messages: [{ role: 'user', content: opts.question }],
+    maxTokens: 600,
+    temperature: 0.7,
+  })
+  const latencyMs = Date.now() - startMs
+
+  // Cache the answer
+  const { data: cached } = await admin
+    .from('cached_qa')
+    .insert({
+      course_id: opts.courseId,
+      lesson_id: opts.lessonId,
+      question_text: opts.question,
+      answer_text: result.text,
+      origin: 'student_asked',
+      answered_by_model: 'haiku',
+      embedding: embedding.vector as any,
+      hit_count: 1,
+      last_hit_at: new Date().toISOString(),
+    })
+    .select('id')
+    .single()
+
+  // Log the cache-miss event
+  await admin.from('session_events').insert({
+    session_id: opts.sessionId,
+    student_id: user.id,
+    event_type: 'question_asked',
+    payload: {
+      question: opts.question,
+      from_cache: false,
+      cached_qa_id: cached?.id,
+      cost_cents: result.costCents,
+      latency_ms: latencyMs,
+    },
+  })
+
+  // Log the cost
+  await logAiCall({
+    context: {
+      studentId: user.id,
+      courseId: opts.courseId,
+      sessionId: opts.sessionId,
+      lessonId: opts.lessonId,
+      purpose: 'lecturer',
+    },
+    model: 'haiku',
+    inputTokens: result.inputTokens,
+    outputTokens: result.outputTokens,
+    costCents: result.costCents,
+    latencyMs,
+  })
+
+  return {
+    answer: result.text,
+    fromCache: false,
+    cachedQaId: cached?.id,
+  }
+}
+
+/**
+ * Mark a lesson as complete for the student. Updates session and logs event.
+ */
+export async function completeLesson(sessionId: string, lessonId: string) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+
+  const admin = createAdminClient()
+
+  await admin
+    .from('sessions')
+    .update({
+      ended_at: new Date().toISOString(),
+      summary: 'Lesson completed',
+    })
+    .eq('id', sessionId)
+
+  await admin.from('session_events').insert({
+    session_id: sessionId,
+    student_id: user.id,
+    event_type: 'lesson_completed',
+    payload: { lesson_id: lessonId },
+  })
+}

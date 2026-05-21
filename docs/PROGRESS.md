@@ -4,6 +4,28 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-21 — First working product surface: lesson player live
+
+- Seeded CDCS dev course in Supabase: 1 course, 1 module, 3 lessons, 16 content elements (hand-drafted placeholder, not Opus-generated)
+- /courses listing page with auto-enrollment for authenticated users (dev mode)
+- /courses/[slug] course detail page with module + lesson navigation
+- /lessons/[id] full lesson player:
+  - Sequential navigation through content elements (prev/next)
+  - Side panel for student questions to the AI lecturer
+  - Cache-first lookup via the match_cached_qa RPC (0.85 similarity threshold)
+  - Haiku fallback for cache misses, answer cached for future students
+  - Session tracking via sessions + session_events
+  - Lesson completion logging
+- lib/lesson/actions.ts: server actions — startLessonSession, getLessonContent, askLecturer, completeLesson
+- Dashboard updated to direct users to /courses
+- ADR 0008: lesson player architecture v1
+
+Verified locally end-to-end (Playwright): login -> /courses (auto-enrolled in CDCS) -> /courses/cdcs -> lesson player -> asked the lecturer a grounded question (Haiku) -> re-asked, got the cached answer with the "cached" badge. DB confirmed: cached_qa 1, lesson session 1, session_events 3.
+
+This is the inflection point: infrastructure -> product.
+
+---
+
 ## 2026-05-21 — Auth UI shipped: design system v1
 
 - Installed shadcn/ui (Base UI variant — the current CLI's default preset; not classic Radix)

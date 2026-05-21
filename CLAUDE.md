@@ -45,15 +45,16 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Production live at https://www.ensoacademy.ai — Vercel auto-deploy from main; env vars synced to Vercel Production + Preview; SSL active; both production smoke tests (/api/health/supabase, /api/ai/smoke-test) passing
 - Auth UI live: design system v1 (Geist, teal #0F3D3E / coral #E07856, light mode only — ADR 0007); /login, /signup, /reset-password, /auth/update-password pages; protected /dashboard with intent-preserving redirect (?next=); sign-out wired; Google sign-in button is a placeholder (toast)
 - Supabase Auth configured as code in supabase/config.toml (email signup + confirmations on, Site URL + redirect URLs), applied via `supabase config push`
-- No payments wired; no course content yet
+- Lesson player live: CDCS dev-seed course (1 module, 3 lessons, 16 content elements — hand-drafted placeholder, not Opus-generated); /courses (auto-enrollment in dev), /courses/[slug], /lessons/[id]; AI lecturer Q&A grounded in lesson context (cache-first via match_cached_qa RPC, Haiku fallback); session + session_events tracking; lesson completion
+- No payments wired (auto-enrollment is dev-only); Stripe not integrated
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Course catalog + enrollment flow, OR lesson player skeleton — confirm priority (Prompt 6)
-2. Wire Stripe (Prompt 7)
-3. Build mock exam engine (Prompt 8)
+1. Prompt 7 — TTS audio narration (Google Cloud TTS), mock exam engine, or classmate gap-detection; confirm priority with Ripon
+2. Stripe / payments (gate enrollment behind payment)
+3. Opus course-generation pipeline (real content replacing the CDCS dev seed)
 
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
 
@@ -125,6 +126,9 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Design system v1 is locked (ADR 0007): Geist typography, teal primary #0F3D3E, coral accent #E07856, generous spacing, light mode only. Tokens live in app/globals.css. Do not add dark mode or `dark:` variants in v1.
 - shadcn/ui is the Base UI variant (the current CLI's default preset), not classic Radix. Components use Base UI's `render` prop, not `asChild`; for a link styled as a button use `buttonVariants()` on the Link. globals.css needs the `@layer base { * { @apply border-border } }` rule or bare `border` classes render black.
 - Supabase Auth config is code in supabase/config.toml, applied to the remote project with `supabase config push`. Caveat: `config push` pushes the entire [auth] block — keep config.toml reconciled with the remote, and note its `[Y/n]` confirm defaults to YES on EOF (a non-interactive/piped run applies, it does not just preview).
+- The CDCS course is a hand-seeded dev placeholder (migration 20260521064039), not Opus-generated. The Opus course-generation pipeline (a later prompt) will regenerate or replace it.
+- Auto-enrollment is active for the dev course (app/(dashboard)/courses/page.tsx) — any authenticated user is enrolled on first visit to /courses. No Stripe yet; when commerce is wired, gate enrollment behind successful payment.
+- Cache hit threshold is 0.85 cosine similarity, set in lib/lesson/actions.ts askLecturer(). Tune based on observed false positives/negatives as cached_qa fills.
 
 ## Who is Ripon
 

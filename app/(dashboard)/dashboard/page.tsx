@@ -2,6 +2,8 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { SignOutButton } from './sign-out-button'
 import { Wordmark } from '@/components/brand/wordmark'
+import { buttonVariants } from '@/components/ui/button'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Dashboard — Enso Academy',
@@ -32,14 +34,14 @@ export default async function DashboardPage() {
           <div>
             <h1 className="text-3xl font-medium tracking-tight">Welcome to Enso Academy</h1>
             <p className="text-muted-foreground mt-2">
-              Your dashboard. Courses, lessons, and mock exams will appear here as you enroll.
+              Continue studying, or browse your active courses.
             </p>
           </div>
 
-          <div className="border border-border rounded-md p-8 bg-muted">
-            <p className="text-sm text-muted-foreground">
-              The course catalog is being prepared. Check back soon — we're building something good.
-            </p>
+          <div className="flex gap-3">
+            <Link href="/courses" className={buttonVariants()}>
+              Go to your courses
+            </Link>
           </div>
         </div>
       </main>
