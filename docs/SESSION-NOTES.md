@@ -35,3 +35,9 @@ Ran the Supabase advisor lint (via the /supabase:supabase skill). Upgraded the S
 ## [2026-05-21 00:30] — AI plumbing done (via OpenRouter); auth UI next
 
 Claude client wrapper complete. Smoke test confirms Haiku ("Haiku alive"), Sonnet ("Sonnet alive"), and embeddings (1536-dim) all alive through OpenRouter — total ~0.02 cents. Major deviation: Prompt 4 was written for the direct Anthropic SDK, but Bangladeshi cards cannot fund Anthropic/OpenAI API billing — so the wrapper was reworked onto OpenRouter (OpenAI-protocol; `openai` SDK + custom baseURL; ADR 0005), and `@anthropic-ai/sdk` was removed. ARCHITECTURE.md was updated to match. Prompts are placeholder v0.1. Open items: OpenRouter has no Batch API, so Layer 1 course-generation cost is ~2x the estimate (ADR 0005 open questions); Whisper ASR needs a separate provider path. No partial work. Next: auth UI (Prompt 5).
+
+---
+
+## [2026-05-21 11:00] — Production live; auth UI next
+
+www.ensoacademy.ai is the canonical production URL from now on (the apex ensoacademy.ai 308-redirects to www — Ripon's choice; Vercel set up manually). Every commit to main auto-deploys via Vercel. Localhost stays the iteration environment but smoke tests run against production (ADR 0006). Added /api/health/supabase. Both production smoke tests green: Supabase health (ok:true, 0 courses) and AI/OpenRouter (Haiku + Sonnet + 1536-dim embedding, ~0.02 cents). No env-var mismatches between Vercel and the code. Next: Prompt 5 — auth UI with Google OAuth (Playwright-driven GCP Console setup).

@@ -4,6 +4,23 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-21 — Production live at www.ensoacademy.ai
+
+- Vercel project enso-academy created (manual setup via dashboard import from GitHub)
+- Custom domain ensoacademy.ai configured via Hostinger DNS -> Vercel; www.ensoacademy.ai is the canonical primary domain (the apex 308-redirects to www)
+- SSL auto-provisioned
+- Env vars synced to Vercel Production and Preview environments
+- Auto-deploy from main branch active
+- /api/health/supabase health check endpoint added
+- Production smoke tests passing:
+  - Landing page: HTTP 200 at https://www.ensoacademy.ai
+  - Supabase: https://www.ensoacademy.ai/api/health/supabase returns ok:true (courses_count 0)
+  - AI client (OpenRouter): /api/ai/smoke-test returns ok:true with Haiku + Sonnet + embeddings (~0.02 cents)
+- No env-var mismatches between Vercel and the code
+- Working pattern shifted: every prompt's smoke test from now on runs against production (ADR 0006)
+
+---
+
 ## 2026-05-21 — Claude client wrapper (three-tier routing, via OpenRouter)
 
 - Installed the `openai` SDK (used as the OpenRouter client); `@anthropic-ai/sdk` removed

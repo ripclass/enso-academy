@@ -4,6 +4,14 @@
 **Current milestone:** Backend foundation — scaffold, Supabase, schema, AI client wrapper
 **Status:** In progress
 
+## Active deployments
+
+- Production: https://www.ensoacademy.ai (canonical; the apex ensoacademy.ai 308-redirects to www). Auto-deploys from the main branch.
+- GitHub: github.com/ripclass/enso-academy (public during dev)
+- Supabase: project yffwnyuodulbfjjobhmf (Singapore region, Southeast Asia)
+- Vercel project: enso-academy (Ripon's personal scope; will move to an Enso Intelligence Inc. team account later)
+- Domain registrar: Hostinger (ensoacademy.ai, 2-year term, renews 2028-05-21). DNS managed manually via hpanel.hostinger.com.
+
 ## Read this first, every session
 
 Before doing ANY work on this project, read in this order:
@@ -34,13 +42,14 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - OAuth callback route at /auth/callback; auth-error page at /auth/auth-error
 - Google OAuth pending Google Cloud Console setup (see docs/SETUP-google-oauth.md)
 - AI client wrapper in lib/ai/ — OpenRouter-backed (OpenAI-protocol; ADR 0005), three-tier routing (callOpus/callHaiku/callSonnet + streaming), embeddings (text-embedding-3-small, 1536-dim), versioned prompts, cost tracking; smoke test passing
+- Production live at https://www.ensoacademy.ai — Vercel auto-deploy from main; env vars synced to Vercel Production + Preview; SSL active; both production smoke tests (/api/health/supabase, /api/ai/smoke-test) passing
 - No application UI beyond the placeholder landing page; no payments wired
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Build authentication flow / UI — login, signup, Google OAuth (Prompt 5)
+1. Build authentication flow / UI — login, signup, password reset, Google OAuth (Playwright-driven GCP Console setup) (Prompt 5)
 2. Build lesson player skeleton (Prompt 6)
 3. Wire Stripe (Prompt 7)
 4. Build mock exam engine (Prompt 8)
@@ -99,7 +108,6 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - LLM + embeddings go through the OpenRouter gateway (ADR 0005), not direct Anthropic/OpenAI APIs — direct API billing is not workable from Bangladeshi cards. One key: OPENROUTER_API_KEY. The lib/ai/ wrapper uses the `openai` SDK against OpenRouter's base URL. A direct Anthropic account (for Batch API on Layer 1 course generation) is a future option once Enso Intelligence Inc. has a workable payment method — until then Layer 1 generation via OpenRouter costs ~2x the architecture estimate.
 - Stripe account is pending Stripe Atlas approval — use test keys until live keys are issued
 - Supabase project is named "enso-academy-dev" for development; production project TBD. Project ref yffwnyuodulbfjjobhmf, Singapore region. Linked locally; migrations live in supabase/migrations/ and are applied with `supabase db push`.
-- Domain enso.academy is owned but not pointed to Vercel yet
 - Repo is public during development for MCP tool access; will be made private before launch
 - Next.js 16 deprecated the `middleware.ts` file convention — request interception uses `proxy.ts` at the project root (see ADR 0002). The Supabase session-refresh helper keeps the name lib/supabase/middleware.ts (a plain module, not a convention file).
 - Infrastructure stack (decided between Prompt 1 and Prompt 2): Vercel hosts the Next.js app (frontend, API routes, Server Actions); durable background jobs will use Inngest or Trigger.dev (choice deferred to Prompt 5) for Opus batch course generation, TTS pre-generation, mock grading, and OCR pipelines; cache + rate limiting will use Upstash Redis (added in Prompt 5 or 6 when the lesson player needs it); dedicated worker hosts (Render, Railway) are deferred — Inngest + Vercel + Upstash cover v1 needs.
@@ -110,6 +118,9 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - The AI client (lib/ai/*) is server-only — never import it from Client Components. Call it from Server Actions or API routes.
 - Smoke-test endpoint at /api/ai/smoke-test requires an `Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY` header. Remove or harden it before launch.
 - All course-content reads go through Server Actions / API routes using the service-role admin client (lib/supabase/admin.ts); content tables are service-role-only by RLS. See ADR 0004.
+- Production smoke tests are the canonical verification path (see ADR 0006). Localhost is for iteration/debugging only.
+- Vercel env vars must stay in sync with the variable names expected by lib/supabase/* and lib/ai/*. Renaming a variable in code means renaming it in the Vercel dashboard too.
+- Hostinger DNS for ensoacademy.ai is configured manually by Ripon. If DNS needs changing, do it via hpanel.hostinger.com.
 
 ## Who is Ripon
 
