@@ -4,6 +4,24 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-21 — Mock exam engine live
+
+- Seeded 32 CDCS questions across 4 domains (parties_to_credit 8, ucp_600_articles 14, standby_vs_commercial 5, trade_finance_compliance 5)
+- Seeded CDCS Mock 1 template: 20 questions, 40 minutes, 75% pass threshold
+- lib/mock/actions.ts: startMockExam, submitMockExam, updateReadiness, getAttemptResults
+- Mock launch page at /courses/[slug]/mock
+- Full mock-taking UI: no-pause timer (auto-submit at zero), 20-question grid navigation, flag-for-review, focus/blur tracking, beforeunload guard, two-step submit confirmation
+- Results page: score, by-domain breakdown, per-question review with explanations and correct/incorrect markings
+- student_readiness populated on every submission; signoff_events logged on status transitions
+- Course page shows a readiness indicator and Take Mock CTA
+- ADR 0010: mock exam engine v1
+
+Verified locally end-to-end (Playwright): started a mock, answered all 20, two-step submit, results rendered (15%, by-domain, per-question review); student_readiness upserted (not_ready, 1 mock, avg 15), signoff_event written.
+
+Product is structurally complete: study (lesson player) + assess (mock engine).
+
+---
+
 ## 2026-05-21 — Fix: render markdown in AI lecturer answers
 
 The lecturer's answers contain markdown (bold, lists, paragraphs); the Q&A panel rendered them as plain text, so `**bold**` showed literally. Added react-markdown — lecturer messages now render as proper markdown; student messages stay plain text. Verified locally + in production.

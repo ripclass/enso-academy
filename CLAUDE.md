@@ -46,15 +46,17 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Auth UI live: design system v1 (Geist, teal #0F3D3E / coral #E07856, light mode only — ADR 0007); /login, /signup, /reset-password, /auth/update-password pages; protected /dashboard with intent-preserving redirect (?next=); sign-out wired; Google sign-in button is a placeholder (toast)
 - Supabase Auth configured as code in supabase/config.toml (email signup + confirmations on, Site URL + redirect URLs), applied via `supabase config push`
 - Lesson player live: CDCS dev-seed course (1 module, 3 lessons, 16 content elements — hand-drafted placeholder, not Opus-generated); /courses (auto-enrollment in dev), /courses/[slug], /lessons/[id]; AI lecturer Q&A grounded in lesson context (cache-first via match_cached_qa RPC, Haiku fallback); session + session_events tracking; lesson completion
+- Mock exam engine live: 32-question CDCS bank (4 domains), CDCS Mock 1 template (20 q / 40 min / 75% pass); lib/mock/actions.ts (startMockExam, submitMockExam, getAttemptResults, updateReadiness); timed mock-taker UI (no-pause timer, auto-submit, question grid, flag, focus/blur tracking, two-step submit); results page (score, by-domain, per-question review); student_readiness + signoff_events wired on submission
 - No payments wired (auto-enrollment is dev-only); Stripe not integrated
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Prompt 7 — TTS audio narration (Google Cloud TTS), mock exam engine, or classmate gap-detection; confirm priority with Ripon
-2. Stripe / payments (gate enrollment behind payment)
-3. Opus course-generation pipeline (real content replacing the CDCS dev seed)
+1. Prompt 8 — TTS audio narration (Google Cloud TTS)
+2. Prompt 9 — classmate gap-detection
+3. Stripe / payments (gate enrollment behind payment)
+4. Opus course-generation pipeline (real content replacing the CDCS dev seed + question bank)
 
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
 
@@ -129,6 +131,9 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - The CDCS course is a hand-seeded dev placeholder (migration 20260521064039), not Opus-generated. The Opus course-generation pipeline (a later prompt) will regenerate or replace it.
 - Auto-enrollment is active for the dev course (app/(dashboard)/courses/page.tsx) — any authenticated user is enrolled on first visit to /courses. No Stripe yet; when commerce is wired, gate enrollment behind successful payment.
 - Cache hit threshold is 0.85 cosine similarity, set in lib/lesson/actions.ts askLecturer(). Tune based on observed false positives/negatives as cached_qa fills.
+- Mock readiness needs 5 submitted attempts to reach 'ready' status (v1 thresholds in lib/mock/actions.ts updateReadiness: ready = count>=5/avg>=80/min>=70/weakest>=65; approaching = count>=3/avg>=70). The evaluator handles incomplete data gracefully.
+- v1 mock has a no-pause timer + focus/blur tracking but no full lockdown (no copy-paste prevention, no right-click block). Add in a follow-up if needed.
+- The CDCS question bank is hand-seeded placeholder content (migration 20260521073624, 32 questions). Mock option order is not shuffled per attempt in v1. Opus generation will augment/replace the bank later.
 
 ## Who is Ripon
 

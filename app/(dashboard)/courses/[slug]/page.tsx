@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Wordmark } from '@/components/brand/wordmark'
 import { SignOutButton } from '../../dashboard/sign-out-button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -48,6 +48,14 @@ export default async function CourseDetailPage({ params }: Props) {
     .eq('course_id', course.id)
     .order('sort_order')
 
+  // Fetch mock-exam readiness for this student + course
+  const { data: readiness } = await admin
+    .from('student_readiness')
+    .select('status, mock_count, average_score')
+    .eq('student_id', user.id)
+    .eq('course_id', course.id)
+    .maybeSingle()
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-border">
@@ -71,6 +79,34 @@ export default async function CourseDetailPage({ params }: Props) {
           <p className="text-muted-foreground leading-relaxed max-w-2xl">{course.description}</p>
           <p className="text-sm text-muted-foreground pt-2">Certifying body: {course.certifying_body}</p>
         </div>
+
+        <Card className="mb-6">
+          <CardContent className="p-6 flex items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <h2 className="text-lg font-medium">Mock exams</h2>
+                {readiness?.status === 'ready' && (
+                  <span className="text-xs font-medium rounded-md px-2 py-0.5 bg-success/10 text-success">
+                    Exam-ready
+                  </span>
+                )}
+                {readiness?.status === 'approaching' && (
+                  <span className="text-xs font-medium rounded-md px-2 py-0.5 bg-accent/10 text-accent">
+                    Approaching readiness
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-muted-foreground">
+                {readiness
+                  ? `You've completed ${readiness.mock_count} mock${readiness.mock_count === 1 ? '' : 's'}. Your average is ${Number(readiness.average_score ?? 0)}%.`
+                  : "Take a mock exam when you're ready to test your readiness."}
+              </p>
+            </div>
+            <Link href={`/courses/${course.slug}/mock`} className={buttonVariants()}>
+              Take a mock
+            </Link>
+          </CardContent>
+        </Card>
 
         <div className="space-y-6">
           {modules?.map(mod => {
