@@ -9,7 +9,7 @@
 - Production: https://www.ensoacademy.ai (canonical; the apex ensoacademy.ai 308-redirects to www). Auto-deploys from the main branch.
 - GitHub: github.com/ripclass/enso-academy (public during dev)
 - Supabase: project yffwnyuodulbfjjobhmf (Singapore region, Southeast Asia)
-- Vercel project: enso-academy (Ripon's personal scope; will move to an Enso Intelligence Inc. team account later)
+- Vercel project: enso-academy, under the "Enso intelligence" Vercel team (team_gWktEQbgrP1MAxNRDQTjZo1M)
 - Domain registrar: Hostinger (ensoacademy.ai, 2-year term, renews 2028-05-21). DNS managed manually via hpanel.hostinger.com.
 
 ## Read this first, every session
