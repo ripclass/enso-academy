@@ -41,3 +41,9 @@ Claude client wrapper complete. Smoke test confirms Haiku ("Haiku alive"), Sonne
 ## [2026-05-21 11:00] — Production live; auth UI next
 
 www.ensoacademy.ai is the canonical production URL from now on (the apex ensoacademy.ai 308-redirects to www — Ripon's choice; Vercel set up manually). Every commit to main auto-deploys via Vercel. Localhost stays the iteration environment but smoke tests run against production (ADR 0006). Added /api/health/supabase. Both production smoke tests green: Supabase health (ok:true, 0 courses) and AI/OpenRouter (Haiku + Sonnet + 1536-dim embedding, ~0.02 cents). No env-var mismatches between Vercel and the code. Next: Prompt 5 — auth UI with Google OAuth (Playwright-driven GCP Console setup).
+
+---
+
+## [2026-05-21 12:00] — Auth UI live; design system v1
+
+shadcn/ui installed — Base UI variant (the current CLI's default; not classic Radix — `render` prop, not `asChild`). Design system v1 locked: Geist, teal #0F3D3E, coral #E07856, light mode only (ADR 0007). Auth pages (/login, /signup, /reset-password, /auth/update-password) + protected /dashboard built; production build clean; Playwright screenshots of /login and / confirm the teal/Geist design renders correctly. Google OAuth button is a placeholder toast. Supabase Auth configured via `supabase config push` (config-as-code in supabase/config.toml). Gotcha learned: a piped/non-interactive `config push` applies on EOF (the `[Y/n]` defaults to Yes) — it briefly disabled MFA TOTP and changed OTP settings; caught and restored by reconciling config.toml to the remote. Next: Prompt 6 — course catalog + enrollment, or lesson player skeleton (confirm priority).

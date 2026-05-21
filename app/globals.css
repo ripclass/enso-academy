@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-background: #FFFFFF;
+  --color-foreground: #0A0A0A;
+
+  --color-primary: #0F3D3E;
+  --color-primary-hover: #155A5C;
+  --color-primary-foreground: #FFFFFF;
+
+  --color-accent: #E07856;
+  --color-accent-foreground: #FFFFFF;
+
+  --color-muted: #FAFAFA;
+  --color-muted-foreground: #6B7280;
+
+  --color-border: #E5E7EB;
+  --color-input: #E5E7EB;
+  --color-ring: #0F3D3E;
+
+  --color-destructive: #DC2626;
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-success: #059669;
+  --color-success-foreground: #FFFFFF;
+
+  --color-card: #FFFFFF;
+  --color-card-foreground: #0A0A0A;
+
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #0A0A0A;
+
+  --color-secondary: #FAFAFA;
+  --color-secondary-foreground: #0A0A0A;
+
+  --radius: 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* shadcn/ui base layer — without this, Tailwind v4 renders a bare `border`
+   class as currentColor (black). Pins the default border + focus-ring colors
+   to our tokens so shadcn components (e.g. Card) render correctly. */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Tighten the wordmark spacing slightly */
+.wordmark {
+  letter-spacing: -0.025em;
+  font-weight: 500;
 }

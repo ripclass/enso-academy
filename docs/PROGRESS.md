@@ -4,6 +4,24 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-21 — Auth UI shipped: design system v1
+
+- Installed shadcn/ui (Base UI variant — the current CLI's default preset; not classic Radix)
+- shadcn components: button, input, label, card, separator, alert, sonner
+- Design system v1: Geist typography, deep teal primary (#0F3D3E), warm coral accent (#E07856), light mode only, generous spacing — tokens in app/globals.css (ADR 0007)
+- Wordmark component (text-only "Enso Academy")
+- Landing page refreshed with the new design language
+- Auth route group app/(auth)/ with shared layout: /login, /signup, /reset-password
+- /auth/update-password page (landed on from the reset email link)
+- Protected app/(dashboard)/dashboard/ — redirects unauthenticated users to /login?next=/dashboard; sign-out wired
+- Google sign-in button is a placeholder (toast); real OAuth deferred
+- Supabase Auth configured as code in supabase/config.toml (email signup + confirmations, Site URL https://www.ensoacademy.ai, 4 redirect URLs) and applied via `supabase config push`
+- ADR 0007: design system v1
+
+Deviations from Prompt 5: the shadcn CLI changed — it installed Base UI components, not classic Radix (one `asChild` usage adapted to `buttonVariants()`); `<LoginForm/>` wrapped in `<Suspense>` for Next.js's useSearchParams requirement; a `@layer base` rule added to globals.css so shadcn borders render correctly. All auth routes build clean and were verified locally with Playwright screenshots; production smoke test runs post-deploy.
+
+---
+
 ## 2026-05-21 — Production live at www.ensoacademy.ai
 
 - Vercel project enso-academy created (manual setup via dashboard import from GitHub)

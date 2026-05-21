@@ -1,7 +1,7 @@
 # CLAUDE.md — Enso Academy Project Memory
 
 **Last updated:** 2026-05-21
-**Current milestone:** Backend foundation — scaffold, Supabase, schema, AI client wrapper
+**Current milestone:** Auth UI + design system v1
 **Status:** In progress
 
 ## Active deployments
@@ -34,7 +34,7 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 ## Current state
 
 - Foundation scaffold + Supabase wiring + full v1 database schema complete
-- Next.js 16 + React 19 + TypeScript + Tailwind (shadcn/ui still pending install)
+- Next.js 16 + React 19 + TypeScript + Tailwind v4 + shadcn/ui (Base UI variant — see gotchas)
 - Supabase wired: lib/supabase/ has browser (client.ts), server (server.ts), session-refresh helper (middleware.ts), and service-role admin (admin.ts) clients
 - Root proxy.ts (Next.js 16 successor to the deprecated middleware.ts) refreshes the auth session on every request
 - Full v1 schema applied to the Singapore project (enso-academy-dev / yffwnyuodulbfjjobhmf) — nine migrations: pgvector + six domain migrations (content, students, mocks, intelligence, Bangladesh, commercial) + two advisor-hardening migrations, ~40 tables, all RLS-enabled and advisor-clean (0 WARN/ERROR)
@@ -43,16 +43,17 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Google OAuth pending Google Cloud Console setup (see docs/SETUP-google-oauth.md)
 - AI client wrapper in lib/ai/ — OpenRouter-backed (OpenAI-protocol; ADR 0005), three-tier routing (callOpus/callHaiku/callSonnet + streaming), embeddings (text-embedding-3-small, 1536-dim), versioned prompts, cost tracking; smoke test passing
 - Production live at https://www.ensoacademy.ai — Vercel auto-deploy from main; env vars synced to Vercel Production + Preview; SSL active; both production smoke tests (/api/health/supabase, /api/ai/smoke-test) passing
-- No application UI beyond the placeholder landing page; no payments wired
+- Auth UI live: design system v1 (Geist, teal #0F3D3E / coral #E07856, light mode only — ADR 0007); /login, /signup, /reset-password, /auth/update-password pages; protected /dashboard with intent-preserving redirect (?next=); sign-out wired; Google sign-in button is a placeholder (toast)
+- Supabase Auth configured as code in supabase/config.toml (email signup + confirmations on, Site URL + redirect URLs), applied via `supabase config push`
+- No payments wired; no course content yet
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Build authentication flow / UI — login, signup, password reset, Google OAuth (Playwright-driven GCP Console setup) (Prompt 5)
-2. Build lesson player skeleton (Prompt 6)
-3. Wire Stripe (Prompt 7)
-4. Build mock exam engine (Prompt 8)
+1. Course catalog + enrollment flow, OR lesson player skeleton — confirm priority (Prompt 6)
+2. Wire Stripe (Prompt 7)
+3. Build mock exam engine (Prompt 8)
 
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
 
@@ -111,7 +112,7 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Repo is public during development for MCP tool access; will be made private before launch
 - Next.js 16 deprecated the `middleware.ts` file convention — request interception uses `proxy.ts` at the project root (see ADR 0002). The Supabase session-refresh helper keeps the name lib/supabase/middleware.ts (a plain module, not a convention file).
 - Infrastructure stack (decided between Prompt 1 and Prompt 2): Vercel hosts the Next.js app (frontend, API routes, Server Actions); durable background jobs will use Inngest or Trigger.dev (choice deferred to Prompt 5) for Opus batch course generation, TTS pre-generation, mock grading, and OCR pipelines; cache + rate limiting will use Upstash Redis (added in Prompt 5 or 6 when the lesson player needs it); dedicated worker hosts (Render, Railway) are deferred — Inngest + Vercel + Upstash cover v1 needs.
-- Google OAuth setup pending — see docs/SETUP-google-oauth.md for the manual steps Ripon needs to complete in Google Cloud Console.
+- Google OAuth not wired yet — the "Continue with Google" buttons on /login and /signup are placeholders that toast "use email/password". Real wiring needs the GCP Console steps in docs/SETUP-google-oauth.md.
 - Process hygiene: when stopping a backgrounded pnpm dev, kill by port (not by process group) to ensure the detached next dev child also dies. Stale dev servers on port 3000 will silently serve stale code.
 - pgvector is installed in the `extensions` schema, not `public`. Any migration that references the `vector` type or `vector_cosine_ops` must `SET search_path = public, extensions;` at the top; functions using the `<=>` operator need the same as a function attribute. See migrations 20260520163212 / ...163214 / ...163217 for the pattern.
 - RLS / function conventions enforced by `supabase db advisors` (run advisors after schema changes): wrap `auth.uid()` / `auth.role()` in a scalar subquery — `(select auth.uid())` — in policy expressions so they evaluate once per query, not per row; scope service-role policies with `TO service_role` so they are not also evaluated for authenticated/anon; add a covering index for every foreign key. Functions need a pinned `search_path`; trigger / SECURITY DEFINER functions should have EXECUTE revoked from anon/authenticated unless they are meant to be a REST RPC. See migration 20260520174114_advisor_hardening.
@@ -121,6 +122,9 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Production smoke tests are the canonical verification path (see ADR 0006). Localhost is for iteration/debugging only.
 - Vercel env vars must stay in sync with the variable names expected by lib/supabase/* and lib/ai/*. Renaming a variable in code means renaming it in the Vercel dashboard too.
 - Hostinger DNS for ensoacademy.ai is configured manually by Ripon. If DNS needs changing, do it via hpanel.hostinger.com.
+- Design system v1 is locked (ADR 0007): Geist typography, teal primary #0F3D3E, coral accent #E07856, generous spacing, light mode only. Tokens live in app/globals.css. Do not add dark mode or `dark:` variants in v1.
+- shadcn/ui is the Base UI variant (the current CLI's default preset), not classic Radix. Components use Base UI's `render` prop, not `asChild`; for a link styled as a button use `buttonVariants()` on the Link. globals.css needs the `@layer base { * { @apply border-border } }` rule or bare `border` classes render black.
+- Supabase Auth config is code in supabase/config.toml, applied to the remote project with `supabase config push`. Caveat: `config push` pushes the entire [auth] block — keep config.toml reconciled with the remote, and note its `[Y/n]` confirm defaults to YES on EOF (a non-interactive/piped run applies, it does not just preview).
 
 ## Who is Ripon
 
