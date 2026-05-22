@@ -115,13 +115,12 @@ Two tracks run in parallel and converge at launch.
 
 Runs **in parallel with Prompts 9–11.** Independent of the spine — a different bottleneck (Opus cost + SME review time, not engineering).
 
-#### Prompt 13 — Content Pipeline + First Real Course
+#### Prompt 13 — Content Pipeline — ✅ shipped 2026-05-22
 
-- **Goal:** replace the hand-seeded CDCS placeholder with a real course generated from primary sources.
-- **Builds:**
-  - `lib/ai/generator/` — the Opus course-generation pipeline. The methodology is committed at `docs/COURSE-GENERATION-PROMPT.md` (ADR 0015); the pipeline emits **scene-based** courses against the `lib/lesson/scenes.ts` contract (ADR 0016).
-  - Generation of **one real course** — **CAMS** recommended (abundant free primary sources; the methodology's own worked example) — from primary regulatory sources (FATF, Basel, Wolfsberg, OFAC, etc.). Never from competitor study guides.
-  - SME review pass.
+- **Goal:** build the pipeline that generates a real course from primary sources.
+- **Built:** `lib/ai/generator/` — a staged Opus pipeline (outline → per-lesson scenes → per-module assessment) emitting the `lib/lesson/scenes.ts` contract; `scripts/generate-course.ts` (operator CLI); ADR 0017; `docs/RUNBOOK-course-generation.md`.
+- **Trial-validated** for $3.52: the CAMS outline (9 modules / 40 lessons) + one lesson; written as a draft course; verified rendering.
+- **Still to do (operator/content work, not engineering):** the full CAMS generation (~hours, ~$hundreds) + SME review pass, then publish. CAMS — abundant free primary sources (FATF, Basel, Wolfsberg, OFAC); never competitor study guides.
 - **Cost reality:** ~$3,000–6,000 of Opus per course via OpenRouter (no Batch API), plus SME review time. Weeks, not days.
 - **Why it is the launch gate:** there is no product to sell without real content. **Start this now** — do not let the engineering track finish with nothing to teach.
 

@@ -57,3 +57,6 @@ next-env.d.ts
 .secrets/
 *.tts-key.json
 
+
+# Course-generation artifacts (Prompt 13)
+generated/

@@ -1,7 +1,7 @@
 # CLAUDE.md — Enso Academy Project Memory
 
 **Last updated:** 2026-05-22
-**Current milestone:** Scene-based lesson delivery (lesson player v2)
+**Current milestone:** Content pipeline (Opus course generation) — built and trial-validated
 **Status:** In progress
 
 ## Active deployments
@@ -54,16 +54,17 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Student knowledge model live (4.0 spine): lib/student-model/knowledge.ts — per-concept mastery in student_knowledge_state, Bayesian-flavored update (lr=1/(observations+4)); written by mock submissions (per question) + lesson completion; read by askLecturer as a system-prompt preamble that shapes the answer; "Your knowledge" card on the course page (strong / to-review concepts)
 - Lecturer memory live (5.0 spine): lib/student-model/memory.ts — student_memory holds durable relational facts (goal / context / struggle / preference) distilled by a Sonnet summarization job at lesson completion (scheduled via Next.js after()); read by askLecturer as a memory preamble and by getLecturerOpening, which generates a continuity greeting shown as the opening lecturer message; dashboard shows "Welcome back" for returning students
 - The classmate live (6.0 moat): lib/classmate/actions.ts — checkClassmateGap runs on lesson element advance; gap detection (grounded in the student model — fires only on an evidenced weak concept the element taught) → a Sonnet-generated in-character question from the per-course classmate (classmates table) + a Haiku lecturer answer, rendered in the Q&A panel; logged to classmate_interventions; seeds cached_qa with origin 'classmate_asked' (moat 4). Fires at most once per lesson session (tunable)
+- Content pipeline live (Prompt 13, ADR 0017): lib/ai/generator/ — a staged Claude Opus pipeline that generates a course from primary sources per the methodology (docs/COURSE-GENERATION-PROMPT.md, the verbatim system prompt) and emits the lib/lesson/scenes.ts scene contract. Stages: outline → per-lesson scenes → per-module assessment. Operator CLI: scripts/generate-course.ts (outline / lesson / assessment / full / write). Artifacts persist under generated/ (gitignored, resumable). The writer creates the course as a DRAFT. Trial-validated: a CAMS draft course exists (slug 'cams', 9 modules / 40 lessons, lesson 1.1 fully generated — 11 scenes — for $3.52). The full CAMS generation + SME review is pending operator work. See docs/RUNBOOK-course-generation.md
 - No payments wired (auto-enrollment is dev-only); Stripe not integrated
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Prompt 13 — content pipeline: Opus course generation + first real course (the launch gate). The v1.0 methodology is committed at docs/COURSE-GENERATION-PROMPT.md (ADR 0015); it now emits SCENE-based courses against the lib/lesson/scenes.ts contract. CAMS is the recommended first real course (abundant free primary sources; the methodology's own worked example) — CDCS is the methodology's hardest IP case.
+1. Run the full CAMS generation + SME review — operator/content work, not engineering. The pipeline is built; follow docs/RUNBOOK-course-generation.md. This is the launch gate.
 2. Prompt 14 — Stripe / payments
 
-The 6.0 pedagogical spine (student model + memory + classmate) is complete, and lessons are now scene-based (Prompt 12). What remains before launch is content and commerce.
+The 6.0 pedagogical spine (student model + memory + classmate) is complete, lessons are scene-based (Prompt 12), and the content pipeline is built and trial-validated (Prompt 13). What remains before launch is the full content run + commerce.
 
 See docs/ROADMAP.md for the full re-sequenced plan (launch cut, deferred items, the OpenMAIC legal stance).
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
@@ -157,6 +158,8 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Scene model (Prompt 12, ADR 0016): a lesson is an ordered list of typed scenes. content_library_elements gained `scene_type` (enum: reading/slide/quiz/interactive/pbl) + `scene_data` jsonb. lib/lesson/scenes.ts is the canonical contract (the discriminated Scene union + parseScene) — it is ALSO the structured output contract the content-pipeline prompt hands to Opus; do not change it casually. Renderers in components/lesson/scenes/. v1 renders reading/slide/quiz richly; interactive/pbl render as a placeholder. A content row with empty scene_data falls back to a `reading` scene from `body` (backward compatible) — getLessonContent still orders by `metadata.order`.
 - Quiz scenes are FORMATIVE and feed the student knowledge model (recordQuizEvidence → recordEvidence). They are NOT the faithful mock exam — the mock engine (lib/mock/) is separate and untouched.
 - NOT built in v1 (deliberate, ADR 0016): whiteboard, multi-agent playback director, canvas slide renderer, PPTX export. A later bet, not a launch dependency.
+- Content pipeline (Prompt 13, ADR 0017): lib/ai/generator/ + scripts/generate-course.ts. Run via `pnpm tsx scripts/generate-course.ts <mode>`. The script loads .env.local with dotenv then DYNAMIC-imports the generator — because lib/ai/client.ts throws at module load if OPENROUTER_API_KEY is unset. Generation costs real Opus money; the full run is hours and ~$hundreds — it is operator-supervised, never run unattended. Artifacts persist under generated/ (gitignored); runs are resumable. Generated courses are DRAFTS (course_status 'draft') — the methodology mandates SME review before publishing. See docs/RUNBOOK-course-generation.md.
+- A CAMS draft course exists (slug 'cams', status 'draft') with only lesson 1.1 generated — it is a trial artifact, hidden from /courses (which filters status='published'). The demo account has a verification enrollment in it. Do not publish CAMS until the full generation + SME review is done.
 
 ## Who is Ripon
 

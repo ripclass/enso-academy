@@ -4,6 +4,23 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-22 — Content pipeline built and trial-validated (the launch gate)
+
+The pipeline that turns the committed methodology into a generated course.
+
+- lib/ai/generator/ — a staged Claude Opus pipeline: outline → per-lesson scenes → per-module assessment. The methodology (docs/COURSE-GENERATION-PROMPT.md) is the verbatim Opus system prompt; output is strict JSON parsed defensively; each stage persists a gitignored artifact under generated/ so runs are resumable and reviewable.
+- scripts/generate-course.ts — the operator CLI (outline / lesson / assessment / full / write). `full` is resumable; `write` is always a deliberate separate step.
+- writer.ts writes the course as a DRAFT (course_status 'draft' — hidden from /courses, not enrollable). The methodology mandates SME review before publishing.
+- ADR 0017 records the design; docs/RUNBOOK-course-generation.md is the operator procedure for the full run.
+
+Trial-validated for $3.52 (real Opus spend): generated the CAMS course outline (9 modules, 40 lessons, 37 primary sources — $2.55) and one full lesson's 11 scenes ($0.97); wrote a CAMS draft course; verified the generated content renders in the scene-based lesson player. The generated content is methodology-compliant — primary-source citations (US BSA, UK POCA, Bangladesh MLPA), public enforcement cases (Danske Bank), nominative course naming, no competitor materials.
+
+This prompt did NOT run the full course generation — that is hours of operator-supervised work, ~$hundreds, followed by SME review. The pipeline is the launch-gate tool; running it + SME review is what remains.
+
+Next: the full CAMS generation + SME review (content track), then Prompt 14 — payments.
+
+---
+
 ## 2026-05-22 — Scene-based lesson delivery (lesson player v2)
 
 A lesson is now an ordered list of typed SCENES, not a wall of text. Decided after reviewing OpenMAIC's delivery layer; lands before the content pipeline so Opus generation targets the right output shape.
