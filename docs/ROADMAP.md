@@ -33,7 +33,7 @@ Mapped against the framework's five-generation ladder (`docs/FRAMEWORK.md`):
 | 5.0 | Lecturer memory | ✅ **Built** — Prompt 10 (2026-05-22); `lib/student-model/memory.ts`, Sonnet summary at session end, read as preamble + a continuity greeting |
 | 6.0 | Mock fidelity | ✅ Built — Prompt 7, genuinely strong |
 | 6.0 | Signoff mechanism | ✅ Built — `student_readiness` + `signoff_events` |
-| 6.0 | The classmate | ❌ Not built — `classmates` / `classmate_interventions` empty |
+| 6.0 | The classmate | ✅ **Built** — Prompt 11 (2026-05-22); `lib/classmate/actions.ts`, model-grounded gap detection, fires once/session, seeds cached_qa (moat 4) |
 | 6.0 | Evidence portfolio | ❌ Not built — `portfolio_artifacts` empty |
 | — | Multi-modality | ◑ Partial — standard + audio (Listen mode) done; dialogue + drill not built |
 | — | Primary-source content | ◑ Pipeline not built — CDCS course is a hand-seeded placeholder, not Opus-generated |
@@ -93,7 +93,7 @@ Two tracks run in parallel and converge at launch.
 - **Depends on:** Prompt 9 (shares the preamble-injection pattern; cheap once the student model exists).
 - **Done when:** a returning student is greeted with a specific reference to a previous session, not a generic welcome.
 
-#### Prompt 11 — The Classmate
+#### Prompt 11 — The Classmate — ✅ shipped 2026-05-22
 
 - **Goal:** the classmate as the student's externalized blind spot. Framework capability 4 — the headline moat.
 - **Builds:**

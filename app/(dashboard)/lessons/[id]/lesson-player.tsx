@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { askLecturer, completeLesson, updateListenModePreference } from '@/lib/lesson/actions'
+import { checkClassmateGap } from '@/lib/classmate/actions'
 import { toast } from 'sonner'
 
 type Element = {
@@ -35,10 +36,11 @@ type Lesson = {
 }
 
 type Message = {
-  role: 'student' | 'lecturer'
+  role: 'student' | 'lecturer' | 'classmate'
   content: string
   fromCache?: boolean
   audioUrl?: string
+  classmateName?: string
 }
 
 type Props = {
@@ -68,6 +70,10 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
   // Tracks what the audio element is currently playing, so that a finished
   // Q&A answer does not auto-advance the lesson like a finished narration does.
   const audioSource = useRef<'element' | 'qa'>('element')
+  // The classmate fires at most once per session; this guards the client side
+  // (the checkClassmateGap action also enforces the cap server-side).
+  const classmateFired = useRef(false)
+  const [classmatePending, setClassmatePending] = useState(false)
 
   const currentElement = elements[currentIndex]
   const isLast = currentIndex === elements.length - 1
@@ -106,9 +112,54 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
     return () => clearTimeout(timeoutId)
   }, [listenMode])
 
+  // After the student advances past an element, give the classmate a chance to
+  // raise a hand about a concept that element taught and the student is weak on.
+  async function runClassmateCheck(taughtIndex: number) {
+    if (classmateFired.current) return
+    const taught = elements[taughtIndex]
+    if (!taught) return
+    const taughtConceptTags = [...new Set([
+      ...(taught.concept_tags ?? []),
+      ...(taught.teaches_concepts ?? []),
+    ])]
+    if (taughtConceptTags.length === 0) return
+
+    const ctx = elements.slice(Math.max(0, taughtIndex - 1), Math.min(elements.length, taughtIndex + 2))
+    const lessonContext = ctx
+      .map(el => `[${el.element_type}] ${el.title ?? ''}\n${el.body}`)
+      .join('\n\n---\n\n')
+    const askedQuestions = messages.filter(m => m.role === 'student').map(m => m.content)
+
+    setClassmatePending(true)
+    try {
+      const result = await checkClassmateGap({
+        sessionId,
+        lessonId: lesson.id,
+        courseId,
+        taughtConceptTags,
+        lessonContext,
+        askedQuestions,
+      })
+      if (result.fired && result.question && result.answer) {
+        classmateFired.current = true
+        setMessages(prev => [
+          ...prev,
+          { role: 'classmate', content: result.question!, classmateName: result.classmateName },
+          { role: 'lecturer', content: result.answer! },
+        ])
+      }
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setClassmatePending(false)
+    }
+  }
+
   function goNext() {
     if (currentIndex < elements.length - 1) {
+      const taughtIndex = currentIndex
       setCurrentIndex(currentIndex + 1)
+      void runClassmateCheck(taughtIndex)
     }
   }
 
@@ -341,15 +392,22 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
                       className={
                         msg.role === 'student'
                           ? 'max-w-[85%] bg-primary text-primary-foreground rounded-md px-3 py-2 text-sm'
-                          : 'max-w-[90%] bg-muted rounded-md px-3 py-2 text-sm space-y-1'
+                          : msg.role === 'classmate'
+                            ? 'max-w-[90%] bg-accent/10 border border-accent/30 rounded-md px-3 py-2 text-sm space-y-1'
+                            : 'max-w-[90%] bg-muted rounded-md px-3 py-2 text-sm space-y-1'
                       }
                     >
-                      {msg.role === 'student' ? (
-                        <div className="whitespace-pre-wrap leading-relaxed">{msg.content}</div>
-                      ) : (
+                      {msg.role === 'classmate' && (
+                        <div className="text-xs font-medium text-accent">
+                          ✋ {msg.classmateName ?? 'A classmate'} raised their hand
+                        </div>
+                      )}
+                      {msg.role === 'lecturer' ? (
                         <div className="leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_em]:italic [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-4 [&_li]:mb-1 [&_code]:rounded [&_code]:bg-background/60 [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-xs">
                           <ReactMarkdown>{msg.content}</ReactMarkdown>
                         </div>
+                      ) : (
+                        <div className="whitespace-pre-wrap leading-relaxed">{msg.content}</div>
                       )}
                       {msg.role === 'lecturer' && (msg.fromCache || msg.audioUrl) && (
                         <div className="text-xs text-muted-foreground opacity-70 flex gap-2">
@@ -365,6 +423,13 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
                 <div className="flex justify-start">
                   <div className="bg-muted rounded-md px-3 py-2 text-sm text-muted-foreground">
                     Thinking…
+                  </div>
+                </div>
+              )}
+              {classmatePending && (
+                <div className="flex justify-start">
+                  <div className="bg-accent/10 border border-accent/30 rounded-md px-3 py-2 text-xs text-accent">
+                    ✋ A classmate is raising their hand…
                   </div>
                 </div>
               )}

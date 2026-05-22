@@ -1,7 +1,7 @@
 # CLAUDE.md — Enso Academy Project Memory
 
 **Last updated:** 2026-05-22
-**Current milestone:** Lecturer memory (5.0 spine)
+**Current milestone:** The classmate (6.0 moat) — pedagogical spine complete
 **Status:** In progress
 
 ## Active deployments
@@ -53,15 +53,17 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - TTS audio narration live: Google Cloud Text-to-Speech (en-US-Wavenet-D Wavenet voice); lib/audio/ (tts.ts wrapper, pregenerate.ts pipeline); Supabase Storage bucket 'lesson-audio' (public read, service-role write); content_library_elements.audio_url; 16 CDCS dev-course MP3s pre-generated (~$0.23); lesson player Listen mode (auto-queue narration between elements, status indicator); real-time TTS for AI lecturer Q&A; /api/admin/pregenerate-audio endpoint
 - Student knowledge model live (4.0 spine): lib/student-model/knowledge.ts — per-concept mastery in student_knowledge_state, Bayesian-flavored update (lr=1/(observations+4)); written by mock submissions (per question) + lesson completion; read by askLecturer as a system-prompt preamble that shapes the answer; "Your knowledge" card on the course page (strong / to-review concepts)
 - Lecturer memory live (5.0 spine): lib/student-model/memory.ts — student_memory holds durable relational facts (goal / context / struggle / preference) distilled by a Sonnet summarization job at lesson completion (scheduled via Next.js after()); read by askLecturer as a memory preamble and by getLecturerOpening, which generates a continuity greeting shown as the opening lecturer message; dashboard shows "Welcome back" for returning students
+- The classmate live (6.0 moat): lib/classmate/actions.ts — checkClassmateGap runs on lesson element advance; gap detection (grounded in the student model — fires only on an evidenced weak concept the element taught) → a Sonnet-generated in-character question from the per-course classmate (classmates table) + a Haiku lecturer answer, rendered in the Q&A panel; logged to classmate_interventions; seeds cached_qa with origin 'classmate_asked' (moat 4). Fires at most once per lesson session (tunable)
 - No payments wired (auto-enrollment is dev-only); Stripe not integrated
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Prompt 11 — the classmate (gap-detection on the student model + memory; the moat feature)
-2. Content pipeline — Opus course generation + first real course (parallel track; the launch gate)
-3. Prompt 12 — Stripe / payments
+1. Content pipeline — Opus course generation + first real course (the launch gate; docs/COURSE-GENERATION-PROMPT.md)
+2. Prompt 12 — Stripe / payments
+
+The 6.0 pedagogical spine (student model + memory + classmate) is complete. What remains before launch is content and commerce.
 
 See docs/ROADMAP.md for the full re-sequenced plan (launch cut, deferred items, the OpenMAIC legal stance).
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
@@ -148,6 +150,7 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Student knowledge model (Prompt 9, ADR 0012): a "concept" is a `concept_tag` string from content/question_bank; mastery is `student_knowledge_state.mastery_probability` in [0,1]. v1 update: lr = 1/(observation_count + 4); targets correct 1.0 / incorrect 0.0 / lesson_completed 0.7; a new concept seeds at 0.5. lib/student-model/knowledge.ts — recordEvidence (writer) + getMasterySummary (reader/preamble). It is Bayesian-flavored, not full Bayesian Knowledge Tracing.
 - The Q&A cache (cached_qa) is course-level; askLecturer answers are now lightly shaped by the per-student knowledge model, so a cached answer served to a different student is slightly off — an accepted v1 tradeoff. Revisit the cache strategy after Prompts 10-11 if personalization gets strong enough that shared cached answers feel wrong.
 - Lecturer memory (Prompt 10, ADR 0013): lib/student-model/memory.ts. student_memory is an editorial layer of durable relational facts (goal/context/struggle/preference) — NOT a transcript, NOT concept mastery (that's the knowledge model). Writer: a Sonnet summarization at completeLesson, scheduled via Next.js `after()` (from 'next/server') so it runs post-response and "Complete lesson" stays fast. Readers: getMemoryPreamble (askLecturer) + getLecturerOpening (the lesson-open continuity greeting, Haiku). No re-summarization/compaction in v1 — the reader caps at the recent ~10 facts.
+- The classmate (Prompt 11, ADR 0014): lib/classmate/actions.ts — checkClassmateGap. It is MODEL-GROUNDED: it fires only on an evidenced gap (a concept the just-taught element covers with student_knowledge_state mastery < 0.45 AND observation_count > 0). No model evidence → no fire (so a never-assessed student rarely sees it — by design). MAX_INTERVENTIONS_PER_SESSION = 1 (tunable constant; classmate calibration is an open question). classmates is per-COURSE (one shared character, e.g. "Lena"). Every classmate Q&A seeds cached_qa with origin 'classmate_asked' — keep that tag (framework moat 4).
 
 ## Who is Ripon
 

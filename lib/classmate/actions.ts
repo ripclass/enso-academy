@@ -1,0 +1,237 @@
+'use server'
+
+// lib/classmate/actions.ts
+// The classmate — a consistent character in every lesson who raises a hand and
+// asks the question the student should be asking but isn't. Gap detection is
+// grounded in the student knowledge model (knowledge.ts / ADR 0012): the
+// classmate fires ONLY on an evidenced gap. See ADR 0014.
+
+import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
+import { callSonnet, callHaiku } from '@/lib/ai/routing'
+import { embed } from '@/lib/ai/embeddings'
+import { logAiCall } from '@/lib/ai/cost-tracking'
+
+// v1 fires conservatively — one classmate intervention per lesson session.
+// The framework flags classmate calibration as an open question; tune later.
+const MAX_INTERVENTIONS_PER_SESSION = 1
+// A concept counts as an evidenced gap below this mastery, given observations.
+const WEAK_THRESHOLD = 0.45
+
+const CLASSMATE_NAMES = ['Priya', 'Marcus', 'Aisha', 'Daniel', 'Lena', 'Omar', 'Sofia', 'Rahul']
+const CLASSMATE_PERSONA =
+  'a diligent fellow student in the same certification cohort who asks honest, clarifying questions when something is glossed over, occasionally unsure of themselves, and never showing off'
+
+const titleize = (s: string) => s.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+
+type CheckResult = {
+  fired: boolean
+  classmateName?: string
+  question?: string
+  answer?: string
+}
+
+type Gap = { conceptTag: string; mastery: number; observations: number }
+
+/**
+ * The classmate is a per-course character. Returns the course's classmate,
+ * creating it on first need.
+ */
+async function getOrCreateClassmate(
+  courseId: string,
+  admin: ReturnType<typeof createAdminClient>,
+): Promise<{ id: string; name: string } | null> {
+  const { data: existing } = await admin
+    .from('classmates')
+    .select('id, name')
+    .eq('course_id', courseId)
+    .eq('is_active', true)
+    .order('created_at', { ascending: true })
+    .limit(1)
+    .maybeSingle()
+  if (existing) return existing
+
+  const name = CLASSMATE_NAMES[Math.floor(Math.random() * CLASSMATE_NAMES.length)]
+  const { data: created } = await admin
+    .from('classmates')
+    .insert({ course_id: courseId, name, persona_description: CLASSMATE_PERSONA })
+    .select('id, name')
+    .single()
+  return created ?? null
+}
+
+/**
+ * Find the single weakest EVIDENCED gap among the concepts a lesson element
+ * just taught — a concept with mastery below the weak threshold AND at least
+ * one observation. Returns null if there is no evidenced gap.
+ */
+async function detectGap(
+  studentId: string,
+  courseId: string,
+  taughtConceptTags: string[],
+  admin: ReturnType<typeof createAdminClient>,
+): Promise<Gap | null> {
+  const tags = [...new Set(taughtConceptTags.filter(Boolean))]
+  if (tags.length === 0) return null
+
+  const { data } = await admin
+    .from('student_knowledge_state')
+    .select('concept_tag, mastery_probability, observation_count')
+    .eq('student_id', studentId)
+    .eq('course_id', courseId)
+    .in('concept_tag', tags)
+
+  const weak = ((data ?? []) as { concept_tag: string; mastery_probability: number; observation_count: number }[])
+    .filter((r) => r.observation_count > 0 && Number(r.mastery_probability) < WEAK_THRESHOLD)
+    .sort((a, b) => Number(a.mastery_probability) - Number(b.mastery_probability))
+
+  if (weak.length === 0) return null
+  const w = weak[0]
+  return { conceptTag: w.concept_tag, mastery: Number(w.mastery_probability), observations: w.observation_count }
+}
+
+/**
+ * Called when the student advances past a lesson element. If the element just
+ * taught a concept the student is evidenced-weak on, the classmate raises a
+ * hand: it generates a question, the lecturer answers, the exchange is logged
+ * and seeds the Q&A cache (tagged classmate_asked — framework moat 4).
+ * Never throws to the client — on any failure returns { fired: false }.
+ */
+export async function checkClassmateGap(opts: {
+  sessionId: string
+  lessonId: string
+  courseId: string
+  taughtConceptTags: string[]
+  lessonContext: string
+  askedQuestions: string[]
+}): Promise<CheckResult> {
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return { fired: false }
+
+    const admin = createAdminClient()
+
+    // Cap: one classmate intervention per lesson session (server-authoritative).
+    const { count } = await admin
+      .from('classmate_interventions')
+      .select('id', { count: 'exact', head: true })
+      .eq('session_id', opts.sessionId)
+    if ((count ?? 0) >= MAX_INTERVENTIONS_PER_SESSION) return { fired: false }
+
+    // Gap detection — grounded in the student model. No evidence, no fire.
+    const gap = await detectGap(user.id, opts.courseId, opts.taughtConceptTags, admin)
+    if (!gap) return { fired: false }
+
+    const classmate = await getOrCreateClassmate(opts.courseId, admin)
+    if (!classmate) return { fired: false }
+
+    const concept = titleize(gap.conceptTag)
+
+    // Generate the classmate's question (Sonnet, in character).
+    const questionSystem = `You are ${classmate.name}, ${CLASSMATE_PERSONA}. You are sitting in a professional certification lesson alongside another student.
+
+The lesson just covered the material below. The other student has shown weakness on the concept "${concept}" but has not asked about it. Raise your hand and ask ONE question — the question a slightly-unsure student genuinely would ask to get clarity on ${concept}.
+
+Rules:
+- First person, natural, conversational — a real student, not a teacher.
+- ONE question, one or two sentences. Do not preface it with "I have a question".
+- It is fine to sound a little unsure. Never show off.
+- Do not ask anything the student has already asked (listed below).
+- Output only the question itself.`
+    const questionUser = `LESSON MATERIAL:\n${opts.lessonContext}\n\nThe student has already asked:\n${
+      opts.askedQuestions.length ? opts.askedQuestions.map((q) => `- ${q}`).join('\n') : '(nothing yet)'
+    }`
+
+    let qStart = Date.now()
+    const qResult = await callSonnet({
+      system: questionSystem,
+      messages: [{ role: 'user', content: questionUser }],
+      maxTokens: 160,
+      temperature: 0.8,
+    })
+    await logAiCall({
+      context: { studentId: user.id, courseId: opts.courseId, sessionId: opts.sessionId, purpose: 'classmate_gap' },
+      model: 'sonnet',
+      inputTokens: qResult.inputTokens,
+      outputTokens: qResult.outputTokens,
+      costCents: qResult.costCents,
+      latencyMs: Date.now() - qStart,
+    })
+    const question = qResult.text.trim()
+    if (!question) return { fired: false }
+
+    // Generate the lecturer's answer to the classmate's question (Haiku, grounded).
+    const answerSystem = `You are the AI lecturer for Enso Academy. A student in the class just asked the question below. Answer it grounded in the lesson content. Be concise — 2-3 paragraphs at most.
+
+LESSON CONTENT:
+${opts.lessonContext}`
+    const aStart = Date.now()
+    const aResult = await callHaiku({
+      system: answerSystem,
+      messages: [{ role: 'user', content: question }],
+      maxTokens: 500,
+      temperature: 0.7,
+    })
+    await logAiCall({
+      context: {
+        studentId: user.id,
+        courseId: opts.courseId,
+        sessionId: opts.sessionId,
+        lessonId: opts.lessonId,
+        purpose: 'classmate_gap',
+      },
+      model: 'haiku',
+      inputTokens: aResult.inputTokens,
+      outputTokens: aResult.outputTokens,
+      costCents: aResult.costCents,
+      latencyMs: Date.now() - aStart,
+    })
+    const answer = aResult.text.trim()
+
+    // Seed the Q&A cache, tagged classmate_asked (framework moat 4 — the
+    // classmate-discovered blind-spot dataset).
+    let cachedQaId: string | null = null
+    try {
+      const embedding = await embed(question)
+      const { data: cached } = await admin
+        .from('cached_qa')
+        .insert({
+          course_id: opts.courseId,
+          lesson_id: opts.lessonId,
+          question_text: question,
+          answer_text: answer,
+          origin: 'classmate_asked',
+          concept_tags: [gap.conceptTag],
+          answered_by_model: 'haiku',
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          embedding: embedding.vector as any,
+        })
+        .select('id')
+        .single()
+      cachedQaId = cached?.id ?? null
+    } catch (err) {
+      console.error('classmate cached_qa seed failed:', err)
+    }
+
+    // Log the intervention.
+    await admin.from('classmate_interventions').insert({
+      student_id: user.id,
+      course_id: opts.courseId,
+      session_id: opts.sessionId,
+      lesson_id: opts.lessonId,
+      classmate_id: classmate.id,
+      triggering_concept: gap.conceptTag,
+      gap_evidence: { mastery: gap.mastery, observations: gap.observations, weak_threshold: WEAK_THRESHOLD },
+      question_asked: question,
+      lecturer_response: answer,
+      cached_qa_id: cachedQaId,
+      suppressed: false,
+    })
+
+    return { fired: true, classmateName: classmate.name, question, answer }
+  } catch (err) {
+    console.error('checkClassmateGap failed:', err)
+    return { fired: false }
+  }
+}

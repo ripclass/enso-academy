@@ -4,6 +4,24 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-22 — The classmate live (the 6.0 moat) — pedagogical spine complete
+
+Third prompt of the re-sequenced roadmap, and the one the re-sequencing existed for. The classmate raises a hand and asks the question the student should be asking but isn't.
+
+- lib/classmate/actions.ts: checkClassmateGap — runs when the student advances past a lesson element.
+- Model-grounded gap detection: fires only on an evidenced gap — a concept the element taught with student_knowledge_state mastery < 0.45 AND observation_count > 0. No model evidence → no fire.
+- The classmate is a per-course character (classmates table; getOrCreateClassmate). Fires at most once per lesson session (MAX_INTERVENTIONS_PER_SESSION = 1, tunable).
+- On a gap: Sonnet generates an in-character question, Haiku generates the lecturer's grounded answer; both render in the lesson Q&A panel (a 'classmate' message + a 'lecturer' message).
+- Logged to classmate_interventions with gap_evidence; seeds cached_qa with origin 'classmate_asked' — framework moat 4, the classmate-discovered blind-spot dataset.
+- classmate_interventions / classmates already had the right shape — no migration. The qa_origin enum already had 'classmate_asked'.
+- ADR 0014 records the design (model-grounded, conservative firing, per-course character, the moat-4 tag).
+
+Verified locally: the classmate "Lena" fired on independence_principle (the demo account's weakest concept, mastery 0.30) with a natural, in-character question — "Oh, sorry — can I just ask… does that mean the bank is never allowed to look into the shipment, or just not required to?" — followed by the lecturer's answer. Fired exactly once across four element transitions. classmate_interventions + a classmate_asked cached_qa row written.
+
+The 6.0 pedagogical spine is complete: the lecturer knows what the student knows (Prompt 9), who they are (Prompt 10), and what they're missing (Prompt 11). What remains before launch is content and commerce.
+
+---
+
 ## 2026-05-22 — Lecturer memory live (the 5.0 spine)
 
 Second prompt of the re-sequenced roadmap. The lecturer now remembers who the student is across sessions.
