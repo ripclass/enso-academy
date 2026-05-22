@@ -56,6 +56,28 @@ export default async function CourseDetailPage({ params }: Props) {
     .eq('course_id', course.id)
     .maybeSingle()
 
+  // Fetch the student knowledge model for this course
+  const { data: knowledge } = await admin
+    .from('student_knowledge_state')
+    .select('concept_tag, mastery_probability, observation_count')
+    .eq('student_id', user.id)
+    .eq('course_id', course.id)
+
+  const titleize = (s: string) => s.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const knowledgeRows = ((knowledge ?? []) as any[]).filter((k) => k.observation_count > 0)
+  const strongConcepts = knowledgeRows
+    .filter((k) => Number(k.mastery_probability) >= 0.75)
+    .sort((a, b) => Number(b.mastery_probability) - Number(a.mastery_probability))
+    .slice(0, 6)
+    .map((k) => titleize(k.concept_tag))
+  const reviewConcepts = knowledgeRows
+    .filter((k) => Number(k.mastery_probability) < 0.6)
+    .sort((a, b) => Number(a.mastery_probability) - Number(b.mastery_probability))
+    .slice(0, 6)
+    .map((k) => titleize(k.concept_tag))
+  const showKnowledge = strongConcepts.length > 0 || reviewConcepts.length > 0
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-border">
@@ -107,6 +129,29 @@ export default async function CourseDetailPage({ params }: Props) {
             </Link>
           </CardContent>
         </Card>
+
+        {showKnowledge && (
+          <Card className="mb-6">
+            <CardContent className="p-6 space-y-3">
+              <h2 className="text-lg font-medium">Your knowledge</h2>
+              {strongConcepts.length > 0 && (
+                <div className="flex items-start gap-3 text-sm">
+                  <span className="text-success font-medium shrink-0 w-20">Strong</span>
+                  <span className="text-muted-foreground">{strongConcepts.join(' · ')}</span>
+                </div>
+              )}
+              {reviewConcepts.length > 0 && (
+                <div className="flex items-start gap-3 text-sm">
+                  <span className="text-accent font-medium shrink-0 w-20">To review</span>
+                  <span className="text-muted-foreground">{reviewConcepts.join(' · ')}</span>
+                </div>
+              )}
+              <p className="text-xs text-muted-foreground pt-1">
+                Updated as you take mocks and complete lessons. Your lecturer uses this to focus its answers.
+              </p>
+            </CardContent>
+          </Card>
+        )}
 
         <div className="space-y-6">
           {modules?.map(mod => {

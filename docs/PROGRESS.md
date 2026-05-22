@@ -4,6 +4,23 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-22 — Student knowledge model live (the 4.0 spine)
+
+First prompt of the re-sequenced roadmap (docs/ROADMAP.md). The student model — framework capability one, "the foundation" — was empty schema; this makes it live.
+
+- lib/student-model/knowledge.ts: recordEvidence (writer) + getMasterySummary (reader). v1 update rule — lr = 1/(observation_count+4), targets correct 1.0 / incorrect 0.0 / lesson_completed 0.7, new concept seeds 0.5. Bayesian-flavored, not full BKT.
+- student_knowledge_state already had the right shape (concept_tag, mastery_probability, observation_count, correct/incorrect counts) — no migration needed.
+- Writers wired: submitMockExam records one observation per answered question; completeLesson records mild-positive evidence for the lesson's taught concepts.
+- Reader wired: askLecturer injects a natural-language mastery preamble into the Haiku system prompt (cache-miss path); the lesson player passes the in-context concept tags.
+- "Your knowledge" card on the course detail page — strong / to-review concepts.
+- ADR 0012 records the update rule and the cache/personalization tradeoff.
+
+Verified locally: a 20-question CDCS mock populated 30 concept rows with a correct spread (update math matches the rule exactly); the lecturer answers through the new reader path; the "Your knowledge" card renders.
+
+The AI lecturer now knows what the student knows. Next: Prompt 10 — lecturer memory.
+
+---
+
 ## 2026-05-22 — TTS audio narration live (Listen mode)
 
 - Google Cloud Text-to-Speech wired via service account (en-US-Wavenet-D Wavenet voice)

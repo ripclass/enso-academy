@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { recordEvidence } from '@/lib/student-model/knowledge'
 
 // A question as seen by the student — never includes the correct answer.
 export type MockQuestion = {
@@ -171,15 +172,17 @@ export async function submitMockExam(opts: SubmitMockOptions): Promise<SubmitMoc
 
   const { data: qbankRows } = await admin
     .from('question_bank')
-    .select('id, correct_answer, domain')
+    .select('id, correct_answer, domain, concept_tags')
     .in('id', questionIds)
 
   const correctMap = new Map<string, string>()
   const domainMap = new Map<string, string>()
+  const conceptMap = new Map<string, string[]>()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   for (const row of (qbankRows ?? []) as any[]) {
     correctMap.set(row.id, row.correct_answer as string)
     domainMap.set(row.id, row.domain)
+    conceptMap.set(row.id, (row.concept_tags as string[]) ?? [])
   }
 
   let correctCount = 0
@@ -245,6 +248,20 @@ export async function submitMockExam(opts: SubmitMockOptions): Promise<SubmitMoc
     .eq('id', attempt.id)
 
   await updateReadiness(user.id, attempt.course_id, admin, attempt.id)
+
+  // Feed the student knowledge model: one observation per answered question.
+  for (const q of snapshot) {
+    const studentAnswer = opts.answers[q.id]
+    if (studentAnswer === undefined || studentAnswer === null || studentAnswer === '') continue
+    const conceptTags = conceptMap.get(q.id) ?? []
+    if (conceptTags.length === 0) continue
+    await recordEvidence({
+      studentId: user.id,
+      courseId: attempt.course_id,
+      conceptTags,
+      evidence: studentAnswer === correctMap.get(q.id) ? 'correct' : 'incorrect',
+    })
+  }
 
   return {
     scorePercent,

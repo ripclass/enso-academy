@@ -1,7 +1,7 @@
 # CLAUDE.md — Enso Academy Project Memory
 
 **Last updated:** 2026-05-22
-**Current milestone:** TTS audio narration (Listen mode)
+**Current milestone:** Student knowledge model (4.0 spine)
 **Status:** In progress
 
 ## Active deployments
@@ -18,11 +18,13 @@
 Before doing ANY work on this project, read in this order:
 
 1. This file (CLAUDE.md) — current state and active priorities
-2. docs/ARCHITECTURE.md — canonical design document, do not deviate
-3. docs/PROGRESS.md — what's been done, milestone by milestone
-4. docs/SESSION-NOTES.md — running notes from previous sessions, partial work, observations
-5. docs/decisions/ — ADRs for significant architectural decisions
-6. docs/COURSE-GENERATION-PROMPT.md (when working on lib/ai/generator/)
+2. docs/FRAMEWORK.md — the product vision (the what and why); read before ARCHITECTURE
+3. docs/ARCHITECTURE.md — canonical technical design, do not deviate
+4. docs/ROADMAP.md — the execution sequence (what to build next, and in what order)
+5. docs/PROGRESS.md — what's been done, milestone by milestone
+6. docs/SESSION-NOTES.md — running notes from previous sessions, partial work, observations
+7. docs/decisions/ — ADRs for significant architectural decisions
+8. docs/COURSE-GENERATION-PROMPT.md (when working on lib/ai/generator/)
 
 Then ask the user what they want to work on. Do not assume from prior context that may be stale.
 
@@ -49,16 +51,19 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Lesson player live: CDCS dev-seed course (1 module, 3 lessons, 16 content elements — hand-drafted placeholder, not Opus-generated); /courses (auto-enrollment in dev), /courses/[slug], /lessons/[id]; AI lecturer Q&A grounded in lesson context (cache-first via match_cached_qa RPC, Haiku fallback); session + session_events tracking; lesson completion
 - Mock exam engine live: 32-question CDCS bank (4 domains), CDCS Mock 1 template (20 q / 40 min / 75% pass); lib/mock/actions.ts (startMockExam, submitMockExam, getAttemptResults, updateReadiness); timed mock-taker UI (no-pause timer, auto-submit, question grid, flag, focus/blur tracking, two-step submit); results page (score, by-domain, per-question review); student_readiness + signoff_events wired on submission
 - TTS audio narration live: Google Cloud Text-to-Speech (en-US-Wavenet-D Wavenet voice); lib/audio/ (tts.ts wrapper, pregenerate.ts pipeline); Supabase Storage bucket 'lesson-audio' (public read, service-role write); content_library_elements.audio_url; 16 CDCS dev-course MP3s pre-generated (~$0.23); lesson player Listen mode (auto-queue narration between elements, status indicator); real-time TTS for AI lecturer Q&A; /api/admin/pregenerate-audio endpoint
+- Student knowledge model live (4.0 spine): lib/student-model/knowledge.ts — per-concept mastery in student_knowledge_state, Bayesian-flavored update (lr=1/(observations+4)); written by mock submissions (per question) + lesson completion; read by askLecturer as a system-prompt preamble that shapes the answer; "Your knowledge" card on the course page (strong / to-review concepts)
 - No payments wired (auto-enrollment is dev-only); Stripe not integrated
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Prompt 9 — classmate gap-detection (ARCHITECTURE.md commitment #5)
-2. Stripe / payments (gate enrollment behind payment)
-3. Opus course-generation pipeline (real content replacing the CDCS dev seed + question bank)
+1. Prompt 10 — lecturer memory (the 5.0 spine; student_memory written by a Sonnet summarization job, read as preamble)
+2. Prompt 11 — the classmate (gap-detection on the student model)
+3. Content pipeline — Opus course generation + first real course (parallel track; the launch gate)
+4. Prompt 12 — Stripe / payments
 
+See docs/ROADMAP.md for the full re-sequenced plan (launch cut, deferred items, the OpenMAIC legal stance).
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
 
 ## Active design commitments (non-negotiable)
@@ -140,6 +145,8 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Pre-generated lesson audio lives in the Supabase Storage bucket 'lesson-audio' (public read, service-role write). Element narration at {courseId}/{elementId}.mp3; Q&A audio at qa-audio/. URLs stored in content_library_elements.audio_url.
 - Listen mode preference persists to student_preferences.preferred_modality ('audio' | 'standard'). Lesson player Listen mode auto-queues narration between elements; audio status is derived from media events with onTimeUpdate as the reliable catch-all for 'playing'.
 - .env.local has inline `# ...` comments after some values (e.g. SUPABASE_SERVICE_ROLE_KEY). dotenv strips them for the app, but a manual `cut -d=` extraction grabs the comment too — extract the first whitespace-delimited field.
+- Student knowledge model (Prompt 9, ADR 0012): a "concept" is a `concept_tag` string from content/question_bank; mastery is `student_knowledge_state.mastery_probability` in [0,1]. v1 update: lr = 1/(observation_count + 4); targets correct 1.0 / incorrect 0.0 / lesson_completed 0.7; a new concept seeds at 0.5. lib/student-model/knowledge.ts — recordEvidence (writer) + getMasterySummary (reader/preamble). It is Bayesian-flavored, not full Bayesian Knowledge Tracing.
+- The Q&A cache (cached_qa) is course-level; askLecturer answers are now lightly shaped by the per-student knowledge model, so a cached answer served to a different student is slightly off — an accepted v1 tradeoff. Revisit the cache strategy after Prompts 10-11 if personalization gets strong enough that shared cached answers feel wrong.
 
 ## Who is Ripon
 

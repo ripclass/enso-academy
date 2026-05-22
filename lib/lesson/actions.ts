@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server'
 import { callHaikuStreaming } from '@/lib/ai/routing'
 import { embed } from '@/lib/ai/embeddings'
 import { logAiCall } from '@/lib/ai/cost-tracking'
+import { getMasterySummary, recordEvidence } from '@/lib/student-model/knowledge'
 
 type AskQuestionResult = {
   answer: string
@@ -110,6 +111,7 @@ export async function askLecturer(opts: {
   question: string
   lessonContext: string  // condensed lesson content for grounding
   listenMode?: boolean   // when true, synthesize TTS audio for the answer
+  conceptTags?: string[] // concepts in the current lesson context, for the student model
 }): Promise<AskQuestionResult> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -160,9 +162,16 @@ export async function askLecturer(opts: {
     }
   }
 
-  // Step 3: Cache miss — call Haiku with grounding
+  // Step 3: Cache miss — call Haiku with grounding + the student knowledge model.
+  // The mastery preamble lightly shapes the answer; the cache lookup above is
+  // course-level (shared across students), so cached answers stay generic —
+  // an accepted v1 tradeoff (see docs/decisions/0012-student-knowledge-model-v1.md).
+  const mastery = await getMasterySummary(user.id, opts.courseId, opts.conceptTags ?? [])
+  const masteryBlock = mastery.preamble
+    ? `\n${mastery.preamble}\nUse this to shape your answer — explain weak concepts more thoroughly and don't over-explain strong ones. Never mention or recite the knowledge model to the student; it shapes the answer, it is not part of it.\n`
+    : ''
   const system = `You are the AI lecturer for Enso Academy. The student is studying the following lesson content. Answer their question grounded in this content. If the question is outside the lesson's scope, say so clearly and briefly. Be concise — 2-4 paragraphs at most.
-
+${masteryBlock}
 LESSON CONTENT:
 ${opts.lessonContext}`
 
@@ -254,6 +263,26 @@ export async function completeLesson(sessionId: string, lessonId: string) {
     event_type: 'lesson_completed',
     payload: { lesson_id: lessonId },
   })
+
+  // Feed the student knowledge model: completing a lesson is mild positive
+  // evidence for the concepts its content elements teach.
+  const { data: elements } = await admin
+    .from('content_library_elements')
+    .select('course_id, teaches_concepts')
+    .eq('lesson_id', lessonId)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const elementRows = (elements ?? []) as any[]
+  if (elementRows.length > 0) {
+    const conceptTags = [
+      ...new Set(elementRows.flatMap((r) => (r.teaches_concepts as string[]) ?? [])),
+    ]
+    await recordEvidence({
+      studentId: user.id,
+      courseId: elementRows[0].course_id,
+      conceptTags,
+      evidence: 'lesson_completed',
+    })
+  }
 }
 
 /**

@@ -18,6 +18,8 @@ type Element = {
   body: string
   estimated_seconds: number | null
   audio_url: string | null
+  concept_tags: string[] | null
+  teaches_concepts: string[] | null
 }
 
 type Lesson = {
@@ -136,6 +138,10 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
       const lessonContext = contextElements
         .map(el => `[${el.element_type}] ${el.title ?? ''}\n${el.body}`)
         .join('\n\n---\n\n')
+      const conceptTags = [...new Set(contextElements.flatMap(el => [
+        ...(el.concept_tags ?? []),
+        ...(el.teaches_concepts ?? []),
+      ]))]
 
       const result = await askLecturer({
         sessionId,
@@ -143,6 +149,7 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
         courseId,
         question,
         lessonContext,
+        conceptTags,
         listenMode,
       })
 
