@@ -60,7 +60,7 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 
 ## What's next (priority order)
 
-1. Content pipeline — Opus course generation + first real course (the launch gate; docs/COURSE-GENERATION-PROMPT.md)
+1. Content pipeline — Opus course generation + first real course (the launch gate). The v1.0 methodology is committed at docs/COURSE-GENERATION-PROMPT.md (ADR 0015). CAMS is the recommended first real course (abundant free primary sources; the methodology's own worked example) — CDCS is the methodology's hardest IP case.
 2. Prompt 12 — Stripe / payments
 
 The 6.0 pedagogical spine (student model + memory + classmate) is complete. What remains before launch is content and commerce.
@@ -151,6 +151,9 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - The Q&A cache (cached_qa) is course-level; askLecturer answers are now lightly shaped by the per-student knowledge model, so a cached answer served to a different student is slightly off — an accepted v1 tradeoff. Revisit the cache strategy after Prompts 10-11 if personalization gets strong enough that shared cached answers feel wrong.
 - Lecturer memory (Prompt 10, ADR 0013): lib/student-model/memory.ts. student_memory is an editorial layer of durable relational facts (goal/context/struggle/preference) — NOT a transcript, NOT concept mastery (that's the knowledge model). Writer: a Sonnet summarization at completeLesson, scheduled via Next.js `after()` (from 'next/server') so it runs post-response and "Complete lesson" stays fast. Readers: getMemoryPreamble (askLecturer) + getLecturerOpening (the lesson-open continuity greeting, Haiku). No re-summarization/compaction in v1 — the reader caps at the recent ~10 facts.
 - The classmate (Prompt 11, ADR 0014): lib/classmate/actions.ts — checkClassmateGap. It is MODEL-GROUNDED: it fires only on an evidenced gap (a concept the just-taught element covers with student_knowledge_state mastery < 0.45 AND observation_count > 0). No model evidence → no fire (so a never-assessed student rarely sees it — by design). MAX_INTERVENTIONS_PER_SESSION = 1 (tunable constant; classmate calibration is an open question). classmates is per-COURSE (one shared character, e.g. "Lena"). Every classmate Q&A seeds cached_qa with origin 'classmate_asked' — keep that tag (framework moat 4).
+- docs/COURSE-GENERATION-PROMPT.md is the canonical v1.0 course-generation methodology (ADR 0015). Any change requires a versioned revision (v1.1, v1.2, …) and an ADR — do not edit it silently.
+- The methodology's "What you should produce" section describes WHAT content to generate (prose), not a machine output format. The content-pipeline prompt must define the structured output contract that maps to the DB schema (content_library_elements, question_bank, glossary, case_studies, primary_source_citations, course_versions).
+- The methodology PROHIBITS building lessons from copyrighted ICC rule text (UCP 600, ISBP, ISP98, URDG, URC) — reference by name/section only; teach from underlying commercial practice + public regulatory/court interpretations. The hand-seeded CDCS dev course + 32-question bank predate the methodology and teach directly from UCP 600 articles — they are placeholders to be replaced by methodology-compliant generated content.
 
 ## Who is Ripon
 

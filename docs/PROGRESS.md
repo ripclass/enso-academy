@@ -4,6 +4,19 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-22 — Course generation methodology committed (v1.0)
+
+- docs/COURSE-GENERATION-PROMPT.md placeholder replaced with the real v1.0 methodology (~29.7KB), authored by the project owner.
+- Defines the IP-defensible, primary-source-only approach: the allowed source hierarchy (primary regulatory texts, standard-setter publications, public enforcement actions, open-access academic work, news as pointer-only, original analysis, RulHub) and the prohibited sources — ACAMS/ACFE/GARP study guides, Wiley/Kaplan/Schweser/ICA commercial prep, and copyrighted ICC rule text (UCP 600 etc.) as substantive content.
+- Specifies the construction method (map the discipline from primary sources, not a certification's published syllabus), citation discipline, quiz design, nominative-fair-use course naming + disclaimers, QA requirements, and a prose description of generation output.
+- ADR 0015 records it as canonical v1.0.
+- Delivered via an adapted PROMPT-08.5 — the original prompt predated the roadmap re-sequencing (it referenced "Prompt 9 = content pipeline" and "ADR 0012", both stale); corrected to ADR 0015 with no stale Prompt-9 references.
+- Concern recorded: the methodology prohibits building lessons from ICC rule text, but the hand-seeded CDCS dev course teaches from UCP 600 articles — a placeholder to be replaced. CAMS is the cleaner first real course.
+
+The content-generation pipeline (a later prompt) will be designed around this methodology.
+
+---
+
 ## 2026-05-22 — The classmate live (the 6.0 moat) — pedagogical spine complete
 
 Third prompt of the re-sequenced roadmap, and the one the re-sequencing existed for. The classmate raises a hand and asks the question the student should be asking but isn't.
