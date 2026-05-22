@@ -61,10 +61,12 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 
 ## What's next (priority order)
 
-1. Run the full CAMS generation + SME review — operator/content work, not engineering. The pipeline is built; follow docs/RUNBOOK-course-generation.md. This is the launch gate.
-2. Prompt 14 — Stripe / payments
+1. Prompt 14 — UX/UI flow + branding pass: audit and tighten the end-to-end student journey, and lock proper branding, before commerce. Ripon's direction: design before payments. Confirm exact scope with Ripon before drafting (landing page / brand identity / journey audit).
+2. Prompt 15 — Stripe / payments.
 
-The 6.0 pedagogical spine (student model + memory + classmate) is complete, lessons are scene-based (Prompt 12), and the content pipeline is built and trial-validated (Prompt 13). What remains before launch is the full content run + commerce.
+Parallel content track (the launch gate — operator work, not engineering): run the full CAMS generation + SME review via the content pipeline (docs/RUNBOOK-course-generation.md).
+
+The 6.0 pedagogical spine (student model + memory + classmate) is complete, lessons are scene-based (Prompt 12), and the content pipeline is built and trial-validated (Prompt 13). The launch engineering is essentially complete — what remains is design polish, commerce, and the operator-run content generation.
 
 See docs/ROADMAP.md for the full re-sequenced plan (launch cut, deferred items, the OpenMAIC legal stance).
 Priorities shift based on Ripon's instructions. Always confirm before deviating.

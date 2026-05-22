@@ -124,9 +124,15 @@ Runs **in parallel with Prompts 9–11.** Independent of the spine — a differe
 - **Cost reality:** ~$3,000–6,000 of Opus per course via OpenRouter (no Batch API), plus SME review time. Weeks, not days.
 - **Why it is the launch gate:** there is no product to sell without real content. **Start this now** — do not let the engineering track finish with nothing to teach.
 
-### Then — monetization
+### Then — design polish, then monetization
 
-#### Prompt 14 — Stripe / Payments
+#### Prompt 14 — UX/UI flow + branding pass
+
+- **Goal:** tighten the end-to-end student journey and lock proper branding before commerce. Ripon's direction: design before payments.
+- **Likely scope (confirm with Ripon before drafting):** an audit of the whole journey (marketing/landing → signup/login → /courses → /courses/[slug] → lesson player → mock-taker → results/signoff → dashboard); a real landing/marketing surface; wordmark and brand-identity polish; consistent voice and visual rhythm. The design system is locked at v1 (ADR 0007 — Geist, teal #0F3D3E / coral #E07856, light mode); "proper branding" extends it outward to the public surface.
+- **Done when:** the journey is coherent and the brand is launch-ready.
+
+#### Prompt 15 — Stripe / Payments
 
 - **Goal:** gate enrollment behind payment. Replace dev auto-enrollment with a paid flow.
 - **Builds:** Stripe checkout, `course_purchases` / `subscriptions` wiring, enrollment gated on successful payment.

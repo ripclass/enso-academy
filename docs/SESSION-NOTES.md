@@ -105,3 +105,23 @@ After driving the OpenMAIC live demo, the call was made (Claude's, delegated by 
 ## [2026-05-22 16:00] — Content pipeline built and trial-validated
 
 Prompt 13. lib/ai/generator/ — a staged Opus pipeline (outline → per-lesson scenes → per-module assessment) + scripts/generate-course.ts (the operator CLI). The methodology is the verbatim system prompt; output is the lib/lesson/scenes.ts contract; artifacts persist under generated/ (gitignored, resumable). No migration — all target tables existed; courses.status defaults to 'draft', /courses filters status='published' so a draft is auto-hidden. The script loads .env.local via dotenv then DYNAMIC-imports the generator (lib/ai/client.ts throws at module load without OPENROUTER_API_KEY). Trial run for $3.52 of real Opus: CAMS outline (9 modules / 40 lessons) + lesson 1.1 (11 scenes) → written as a 'cams' draft course → verified rendering in the scene player. The generated content is genuinely methodology-compliant (primary-source citations, public cases, nominative naming). The full CAMS generation was NOT run — it is hours of operator work + SME review (docs/RUNBOOK-course-generation.md). A CAMS draft course now exists in the DB (slug 'cams', only lesson 1.1 has content); the demo account has a verification enrollment. NEXT: the full CAMS generation + SME review is the launch gate (operator/content work); then Prompt 14 — Stripe/payments. The engineering for launch is essentially complete.
+
+---
+
+## [2026-05-22 16:30] — HANDOFF: next session starts with UX/UI + branding
+
+**State of the build.** The launch engineering is essentially complete and live in production:
+- The 6.0 pedagogical spine — student knowledge model (Prompt 9), lecturer memory (10), the model-grounded classmate (11).
+- Scene-based lesson delivery — lessons are typed scenes (reading/slide/quiz rendered; interactive/pbl placeholdered); Prompt 12.
+- The mock engine + readiness signoff (Prompts 7) — untouched and working.
+- The content pipeline — lib/ai/generator/ + scripts/generate-course.ts; Prompt 13. A CAMS draft course is trial-generated (1 of 40 lessons; slug 'cams', status 'draft', hidden).
+
+**Ripon's direction for the next session: do a UX/UI flow + proper branding pass FIRST, then payments.** The numbering shifts — UX/UI is Prompt 14, payments Prompt 15.
+
+**START HERE next session:**
+1. Read CLAUDE.md + docs (FRAMEWORK, ARCHITECTURE, ROADMAP, PROGRESS, these notes), as always.
+2. Ask Ripon what specifically he wants in the UX/UI + branding pass before drafting Prompt 14. Likely candidates — a real marketing/landing page; a brand-identity/wordmark polish; an end-to-end journey audit (landing → signup → /courses → /courses/[slug] → lesson player → mock → results/signoff → dashboard). It may be all three; let him scope it.
+3. Draft Prompt 14 (UX/UI + branding) per his answer; then Prompt 15 (Stripe / payments).
+4. The design system is locked at v1 (ADR 0007 — Geist, teal #0F3D3E / coral #E07856, light mode only, no dark mode). "Proper branding" extends that outward to the public surface; do not silently redo the token system — if a branding change touches ADR 0007, raise it.
+
+**Parallel, operator-run (not an engineering prompt):** the full CAMS generation + SME review — docs/RUNBOOK-course-generation.md. That is the real content launch gate.
