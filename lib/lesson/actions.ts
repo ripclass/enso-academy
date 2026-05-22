@@ -11,6 +11,7 @@ type AskQuestionResult = {
   fromCache: boolean
   cachedQaId?: string
   sessionEventId?: string
+  audioUrl?: string // present if listen mode requested and TTS succeeded
 }
 
 /**
@@ -83,7 +84,7 @@ export async function getLessonContent(lessonId: string) {
 
   const { data: elements, error } = await admin
     .from('content_library_elements')
-    .select('id, element_type, title, body, body_format, estimated_seconds, concept_tags, teaches_concepts, difficulty, metadata')
+    .select('id, element_type, title, body, body_format, estimated_seconds, concept_tags, teaches_concepts, difficulty, audio_url, audio_duration_seconds, metadata')
     .eq('lesson_id', lessonId)
     .order('created_at', { ascending: true })
 
@@ -108,6 +109,7 @@ export async function askLecturer(opts: {
   courseId: string
   question: string
   lessonContext: string  // condensed lesson content for grounding
+  listenMode?: boolean   // when true, synthesize TTS audio for the answer
 }): Promise<AskQuestionResult> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -154,6 +156,7 @@ export async function askLecturer(opts: {
       answer: hit.answer_text,
       fromCache: true,
       cachedQaId: hit.id,
+      audioUrl: await synthesizeQaAudio(hit.answer_text, opts.sessionId, opts.listenMode, admin),
     }
   }
 
@@ -223,6 +226,7 @@ ${opts.lessonContext}`
     answer: result.text,
     fromCache: false,
     cachedQaId: cached?.id,
+    audioUrl: await synthesizeQaAudio(result.text, opts.sessionId, opts.listenMode, admin),
   }
 }
 
@@ -250,4 +254,51 @@ export async function completeLesson(sessionId: string, lessonId: string) {
     event_type: 'lesson_completed',
     payload: { lesson_id: lessonId },
   })
+}
+
+/**
+ * Persist the student's Listen-mode preference to student_preferences.
+ * Non-critical — callers swallow failures.
+ */
+export async function updateListenModePreference(enabled: boolean) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return
+
+  const admin = createAdminClient()
+
+  await admin
+    .from('student_preferences')
+    .upsert(
+      { student_id: user.id, preferred_modality: enabled ? 'audio' : 'standard' },
+      { onConflict: 'student_id' },
+    )
+}
+
+/**
+ * Synthesize TTS audio for a Q&A answer and upload it to Supabase Storage.
+ * Returns the public URL, or undefined if listen mode is off or TTS fails.
+ * Audio is an enhancement — this never throws.
+ */
+async function synthesizeQaAudio(
+  text: string,
+  sessionId: string,
+  listenMode: boolean | undefined,
+  admin: ReturnType<typeof createAdminClient>,
+): Promise<string | undefined> {
+  if (!listenMode) return undefined
+  try {
+    const { synthesizeSpeech } = await import('@/lib/audio/tts')
+    const { audioBuffer } = await synthesizeSpeech({ text })
+    const fileName = `qa-audio/${sessionId}-${Date.now()}.mp3`
+    const { error: uploadError } = await admin.storage
+      .from('lesson-audio')
+      .upload(fileName, audioBuffer, { contentType: 'audio/mpeg', upsert: true })
+    if (uploadError) return undefined
+    const { data: pub } = admin.storage.from('lesson-audio').getPublicUrl(fileName)
+    return pub.publicUrl
+  } catch (err) {
+    console.error('Q&A TTS failed:', err)
+    return undefined
+  }
 }

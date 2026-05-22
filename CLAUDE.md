@@ -1,7 +1,7 @@
 # CLAUDE.md — Enso Academy Project Memory
 
-**Last updated:** 2026-05-21
-**Current milestone:** Auth UI + design system v1
+**Last updated:** 2026-05-22
+**Current milestone:** TTS audio narration (Listen mode)
 **Status:** In progress
 
 ## Active deployments
@@ -11,6 +11,7 @@
 - Supabase: project yffwnyuodulbfjjobhmf (Singapore region, Southeast Asia)
 - Vercel project: enso-academy, under the "Enso intelligence" Vercel team (team_gWktEQbgrP1MAxNRDQTjZo1M)
 - Domain registrar: Hostinger (ensoacademy.ai, 2-year term, renews 2028-05-21). DNS managed manually via hpanel.hostinger.com.
+- Google Cloud TTS: service account enso-academy-tts in GCP project enso-academy (billing linked, Text-to-Speech API enabled). Key at .secrets/gcp-tts-service-account.json locally; GOOGLE_APPLICATION_CREDENTIALS_JSON env var in Vercel.
 
 ## Read this first, every session
 
@@ -47,16 +48,16 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Supabase Auth configured as code in supabase/config.toml (email signup + confirmations on, Site URL + redirect URLs), applied via `supabase config push`
 - Lesson player live: CDCS dev-seed course (1 module, 3 lessons, 16 content elements — hand-drafted placeholder, not Opus-generated); /courses (auto-enrollment in dev), /courses/[slug], /lessons/[id]; AI lecturer Q&A grounded in lesson context (cache-first via match_cached_qa RPC, Haiku fallback); session + session_events tracking; lesson completion
 - Mock exam engine live: 32-question CDCS bank (4 domains), CDCS Mock 1 template (20 q / 40 min / 75% pass); lib/mock/actions.ts (startMockExam, submitMockExam, getAttemptResults, updateReadiness); timed mock-taker UI (no-pause timer, auto-submit, question grid, flag, focus/blur tracking, two-step submit); results page (score, by-domain, per-question review); student_readiness + signoff_events wired on submission
+- TTS audio narration live: Google Cloud Text-to-Speech (en-US-Wavenet-D Wavenet voice); lib/audio/ (tts.ts wrapper, pregenerate.ts pipeline); Supabase Storage bucket 'lesson-audio' (public read, service-role write); content_library_elements.audio_url; 16 CDCS dev-course MP3s pre-generated (~$0.23); lesson player Listen mode (auto-queue narration between elements, status indicator); real-time TTS for AI lecturer Q&A; /api/admin/pregenerate-audio endpoint
 - No payments wired (auto-enrollment is dev-only); Stripe not integrated
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Prompt 8 — TTS audio narration (Google Cloud TTS)
-2. Prompt 9 — classmate gap-detection
-3. Stripe / payments (gate enrollment behind payment)
-4. Opus course-generation pipeline (real content replacing the CDCS dev seed + question bank)
+1. Prompt 9 — classmate gap-detection (ARCHITECTURE.md commitment #5)
+2. Stripe / payments (gate enrollment behind payment)
+3. Opus course-generation pipeline (real content replacing the CDCS dev seed + question bank)
 
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
 
@@ -134,6 +135,11 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Mock readiness needs 5 submitted attempts to reach 'ready' status (v1 thresholds in lib/mock/actions.ts updateReadiness: ready = count>=5/avg>=80/min>=70/weakest>=65; approaching = count>=3/avg>=70). The evaluator handles incomplete data gracefully.
 - v1 mock has a no-pause timer + focus/blur tracking but no full lockdown (no copy-paste prevention, no right-click block). Add in a follow-up if needed.
 - The CDCS question bank is hand-seeded placeholder content (migration 20260521073624, 32 questions). Mock option order is not shuffled per attempt in v1. Opus generation will augment/replace the bank later.
+- Funding context: Ripon can fund Google Cloud, OpenAI, Vercel, Render, Supabase, Higgsfield directly via BD card. Anthropic API direct billing fails despite working everywhere else — that's why OpenRouter is the LLM proxy. The Anthropic-specific issue does NOT extend to other providers; Google Cloud TTS is funded directly via Ripon's GCP account.
+- GCP service account key is at .secrets/gcp-tts-service-account.json locally (.secrets/ is gitignored — NEVER commit). Vercel uses the GOOGLE_APPLICATION_CREDENTIALS_JSON env var with the inline JSON. lib/audio/tts.ts loads whichever is present.
+- Pre-generated lesson audio lives in the Supabase Storage bucket 'lesson-audio' (public read, service-role write). Element narration at {courseId}/{elementId}.mp3; Q&A audio at qa-audio/. URLs stored in content_library_elements.audio_url.
+- Listen mode preference persists to student_preferences.preferred_modality ('audio' | 'standard'). Lesson player Listen mode auto-queues narration between elements; audio status is derived from media events with onTimeUpdate as the reliable catch-all for 'playing'.
+- .env.local has inline `# ...` comments after some values (e.g. SUPABASE_SERVICE_ROLE_KEY). dotenv strips them for the app, but a manual `cut -d=` extraction grabs the comment too — extract the first whitespace-delimited field.
 
 ## Who is Ripon
 

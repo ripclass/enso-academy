@@ -447,6 +447,9 @@ export type Database = {
       }
       content_library_elements: {
         Row: {
+          audio_duration_seconds: number | null
+          audio_generated_at: string | null
+          audio_url: string | null
           body: string
           body_format: string
           concept_tags: string[]
@@ -466,6 +469,9 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          audio_duration_seconds?: number | null
+          audio_generated_at?: string | null
+          audio_url?: string | null
           body: string
           body_format?: string
           concept_tags?: string[]
@@ -485,6 +491,9 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          audio_duration_seconds?: number | null
+          audio_generated_at?: string | null
+          audio_url?: string | null
           body?: string
           body_format?: string
           concept_tags?: string[]

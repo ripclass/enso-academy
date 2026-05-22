@@ -8,7 +8,7 @@ import { Wordmark } from '@/components/brand/wordmark'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { askLecturer, completeLesson } from '@/lib/lesson/actions'
+import { askLecturer, completeLesson, updateListenModePreference } from '@/lib/lesson/actions'
 import { toast } from 'sonner'
 
 type Element = {
@@ -17,6 +17,7 @@ type Element = {
   title: string | null
   body: string
   estimated_seconds: number | null
+  audio_url: string | null
 }
 
 type Lesson = {
@@ -35,6 +36,7 @@ type Message = {
   role: 'student' | 'lecturer'
   content: string
   fromCache?: boolean
+  audioUrl?: string
 }
 
 type Props = {
@@ -45,6 +47,8 @@ type Props = {
   courseSlug: string
 }
 
+type AudioStatus = 'idle' | 'loading' | 'playing' | 'paused' | 'ended' | 'error'
+
 export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug }: Props) {
   const router = useRouter()
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -52,7 +56,13 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
   const [questionInput, setQuestionInput] = useState('')
   const [askingQuestion, setAskingQuestion] = useState(false)
   const [completing, setCompleting] = useState(false)
+  const [listenMode, setListenMode] = useState(false)
+  const [audioStatus, setAudioStatus] = useState<AudioStatus>('idle')
   const conversationRef = useRef<HTMLDivElement>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  // Tracks what the audio element is currently playing, so that a finished
+  // Q&A answer does not auto-advance the lesson like a finished narration does.
+  const audioSource = useRef<'element' | 'qa'>('element')
 
   const currentElement = elements[currentIndex]
   const isLast = currentIndex === elements.length - 1
@@ -64,6 +74,33 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
     }
   }, [messages])
 
+  // Listen mode: load + play the current element's narration when the
+  // element changes, or when listen mode is switched on.
+  useEffect(() => {
+    if (!listenMode) return
+    const audio = audioRef.current
+    if (!audio) return
+    const url = currentElement?.audio_url
+    if (!url) {
+      setAudioStatus('idle')
+      return
+    }
+    audioSource.current = 'element'
+    audio.src = url
+    audio.play().catch((err) => {
+      console.error('Audio play failed:', err)
+      setAudioStatus('error')
+    })
+  }, [currentIndex, listenMode, currentElement])
+
+  // Persist the Listen-mode preference (debounced; non-critical).
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      void updateListenModePreference(listenMode).catch(() => {})
+    }, 1000)
+    return () => clearTimeout(timeoutId)
+  }, [listenMode])
+
   function goNext() {
     if (currentIndex < elements.length - 1) {
       setCurrentIndex(currentIndex + 1)
@@ -73,6 +110,14 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
   function goPrev() {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1)
+    }
+  }
+
+  function toggleListenMode() {
+    const newMode = !listenMode
+    setListenMode(newMode)
+    if (!newMode && audioRef.current) {
+      audioRef.current.pause()
     }
   }
 
@@ -98,13 +143,22 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
         courseId,
         question,
         lessonContext,
+        listenMode,
       })
 
       setMessages(prev => [...prev, {
         role: 'lecturer',
         content: result.answer,
         fromCache: result.fromCache,
+        audioUrl: result.audioUrl,
       }])
+
+      // Speak the lecturer's answer if listen mode produced audio.
+      if (result.audioUrl && audioRef.current) {
+        audioSource.current = 'qa'
+        audioRef.current.src = result.audioUrl
+        audioRef.current.play().catch(() => {})
+      }
     } catch (err) {
       toast.error('Could not reach the lecturer. Try again.')
       console.error(err)
@@ -128,6 +182,30 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
 
   return (
     <div className="min-h-screen flex flex-col bg-muted">
+      {/* Hidden audio element — drives both narration and Q&A playback. */}
+      <audio
+        ref={audioRef}
+        onPlay={() => setAudioStatus('playing')}
+        onPlaying={() => setAudioStatus('playing')}
+        onTimeUpdate={() => {
+          // Catch-all: once playback is actually progressing, the status is
+          // 'playing' — reliable even if a discrete play/playing event is missed.
+          if (audioRef.current && !audioRef.current.paused) {
+            setAudioStatus((s) => (s === 'playing' ? s : 'playing'))
+          }
+        }}
+        onPause={() => setAudioStatus('paused')}
+        onEnded={() => {
+          setAudioStatus('ended')
+          // Auto-advance only when narration (not a Q&A answer) finishes.
+          if (audioSource.current === 'element' && listenMode && currentIndex < elements.length - 1) {
+            setCurrentIndex(currentIndex + 1)
+          }
+        }}
+        onError={() => setAudioStatus('error')}
+        onLoadStart={() => setAudioStatus('loading')}
+      />
+
       <header className="border-b border-border bg-background">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-6">
@@ -140,9 +218,22 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
               {lesson.module.name}
             </div>
           </div>
-          <Link href={`/courses/${courseSlug}`} className="text-sm text-muted-foreground hover:text-foreground">
-            Exit lesson
-          </Link>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={toggleListenMode}
+              className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm transition-colors ${
+                listenMode
+                  ? 'bg-primary text-primary-foreground'
+                  : 'border border-border text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {listenMode ? '🔊 Listen mode on' : '🔇 Listen mode off'}
+            </button>
+            <Link href={`/courses/${courseSlug}`} className="text-sm text-muted-foreground hover:text-foreground">
+              Exit lesson
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -167,6 +258,37 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
               <div className="prose prose-sm max-w-none whitespace-pre-wrap leading-relaxed text-foreground">
                 {currentElement?.body}
               </div>
+
+              {listenMode && (
+                <div className="flex items-center gap-3 text-xs text-muted-foreground pt-2 border-t border-border">
+                  <span>
+                    {audioStatus === 'loading' && 'Loading audio…'}
+                    {audioStatus === 'playing' && '▶ Playing'}
+                    {audioStatus === 'paused' && '⏸ Paused'}
+                    {audioStatus === 'ended' && '✓ Finished'}
+                    {audioStatus === 'error' && '⚠ Audio unavailable for this section'}
+                    {audioStatus === 'idle' && 'Ready'}
+                  </span>
+                  {audioStatus === 'playing' && (
+                    <button
+                      type="button"
+                      onClick={() => audioRef.current?.pause()}
+                      className="hover:text-foreground"
+                    >
+                      Pause
+                    </button>
+                  )}
+                  {audioStatus === 'paused' && (
+                    <button
+                      type="button"
+                      onClick={() => audioRef.current?.play()}
+                      className="hover:text-foreground"
+                    >
+                      Resume
+                    </button>
+                  )}
+                </div>
+              )}
             </CardContent>
           </Card>
 
@@ -219,8 +341,11 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
                           <ReactMarkdown>{msg.content}</ReactMarkdown>
                         </div>
                       )}
-                      {msg.role === 'lecturer' && msg.fromCache && (
-                        <div className="text-xs text-muted-foreground opacity-70">cached</div>
+                      {msg.role === 'lecturer' && (msg.fromCache || msg.audioUrl) && (
+                        <div className="text-xs text-muted-foreground opacity-70 flex gap-2">
+                          {msg.fromCache && <span>cached</span>}
+                          {msg.audioUrl && <span>🔊 spoken</span>}
+                        </div>
                       )}
                     </div>
                   </div>

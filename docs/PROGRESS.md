@@ -4,6 +4,27 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-22 — TTS audio narration live (Listen mode)
+
+- Google Cloud Text-to-Speech wired via service account (en-US-Wavenet-D Wavenet voice)
+- GCP project enso-academy created, Text-to-Speech API enabled, service account enso-academy-tts — setup driven live through the GCP Console via Playwright (Ripon logged in; Claude clicked through project / API / service account / key)
+- Credentials: .secrets/gcp-tts-service-account.json locally (gitignored), GOOGLE_APPLICATION_CREDENTIALS_JSON inline JSON in Vercel
+- lib/audio/tts.ts: synthesizeSpeech / synthesizeStreaming wrappers (file-path or inline-JSON credentials)
+- lib/audio/pregenerate.ts: pre-generation pipeline for course content_library_elements
+- Supabase Storage bucket 'lesson-audio' created (public read / service-role write)
+- Schema: added audio_url, audio_generated_at, audio_duration_seconds to content_library_elements
+- /api/admin/pregenerate-audio endpoint (service-role gated)
+- Pre-generated 16 MP3s for the full CDCS dev course (cost ~$0.23)
+- Lesson player: Listen mode toggle, auto-queue audio between content elements, status indicator
+- Listen mode preference persists to student_preferences.preferred_modality
+- Real-time TTS for AI lecturer Q&A responses when Listen mode is on
+- scripts/setup-gcp-tts.ts: reproducible GCP service account setup utility
+- ADR 0011: TTS architecture
+
+The product now has voice. Multi-modality commitment partially fulfilled (audio mode live; dialogue and drill modes deferred to v2).
+
+---
+
 ## 2026-05-21 — Mock exam engine live
 
 - Seeded 32 CDCS questions across 4 domains (parties_to_credit 8, ucp_600_articles 14, standby_vs_commercial 5, trade_finance_compliance 5)
