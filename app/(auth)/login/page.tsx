@@ -3,7 +3,7 @@ import { LoginForm } from './login-form'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Sign in — Enso Academy',
+  title: 'Sign in',
   description: 'Sign in to your Enso Academy account.',
 }
 

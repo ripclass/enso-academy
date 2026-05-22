@@ -126,11 +126,12 @@ Runs **in parallel with Prompts 9–11.** Independent of the spine — a differe
 
 ### Then — design polish, then monetization
 
-#### Prompt 14 — UX/UI flow + branding pass
+#### Prompt 14 — UX/UI flow + branding pass — ✅ shipped 2026-05-22
 
 - **Goal:** tighten the end-to-end student journey and lock proper branding before commerce. Ripon's direction: design before payments.
 - **Likely scope (confirm with Ripon before drafting):** an audit of the whole journey (marketing/landing → signup/login → /courses → /courses/[slug] → lesson player → mock-taker → results/signoff → dashboard); a real landing/marketing surface; wordmark and brand-identity polish; consistent voice and visual rhythm. The design system is locked at v1 (ADR 0007 — Geist, teal #0F3D3E / coral #E07856, light mode); "proper branding" extends it outward to the public surface.
 - **Done when:** the journey is coherent and the brand is launch-ready.
+- **Shipped:** brand identity v2 (ADR 0018) — the "Auditable Editorial / Cold Fidelity" design language, the ensō Logo + the Enso Guide mascot, `docs/BRAND.md`; the public landing page at `/`; the in-app journey re-skinned. Built by integrating a Gemini-assisted first cut. The journey audit was skipped (owner's call — post-deploy review). **Deferred to post-launch:** an interactive concept node-graph visualizer, the portfolio / evidence hub, reactive/animated mascot states.
 
 #### Prompt 15 — Stripe / Payments
 

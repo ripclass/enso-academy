@@ -2,7 +2,7 @@ import { SignupForm } from './signup-form'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Create your account — Enso Academy',
+  title: 'Create your account',
   description: 'Create your Enso Academy account.',
 }
 

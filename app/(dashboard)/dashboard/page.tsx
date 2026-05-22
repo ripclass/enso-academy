@@ -1,13 +1,12 @@
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect } from 'next/navigation'
-import { SignOutButton } from './sign-out-button'
-import { Wordmark } from '@/components/brand/wordmark'
-import { buttonVariants } from '@/components/ui/button'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { AppHeader } from '@/components/in-app/app-header'
 
 export const metadata = {
-  title: 'Dashboard — Enso Academy',
+  title: 'Dashboard',
 }
 
 export default async function DashboardPage() {
@@ -30,35 +29,29 @@ export default async function DashboardPage() {
   const returning = !!recentMemory
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Wordmark />
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">{user.email}</span>
-            <SignOutButton />
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen flex flex-col bg-neutral-50">
+      <AppHeader email={user.email} />
 
-      <main className="flex-1 max-w-6xl mx-auto px-6 py-12 w-full">
-        <div className="space-y-6">
-          <div>
-            <h1 className="text-3xl font-medium tracking-tight">
-              {returning ? 'Welcome back' : 'Welcome to Enso Academy'}
-            </h1>
-            <p className="text-muted-foreground mt-2">
-              {returning
-                ? 'Pick up where you left off — your lecturer remembers where you are.'
-                : 'Continue studying, or browse your active courses.'}
-            </p>
-          </div>
-
-          <div className="flex gap-3">
-            <Link href="/courses" className={buttonVariants()}>
-              Go to your courses
-            </Link>
-          </div>
+      <main className="flex-1 mx-auto max-w-5xl px-6 py-12 w-full">
+        <div className="rounded-lg border border-neutral-200 bg-white p-8 md:p-12">
+          <span className="text-2xs font-semibold uppercase tracking-wider text-accent">
+            {returning ? 'Welcome back' : 'Welcome'}
+          </span>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900">
+            {returning ? 'Pick up where you left off.' : 'Welcome to Enso Academy.'}
+          </h1>
+          <p className="mt-3 max-w-xl text-neutral-600 leading-relaxed">
+            {returning
+              ? 'Your lecturer remembers where you are — your goal, what you struggled with, and the pace that worked.'
+              : 'Open a course to start studying. Your knowledge model and readiness build as you go.'}
+          </p>
+          <Link
+            href="/courses"
+            className="mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-6 text-sm font-semibold text-white hover:bg-primary-hover transition-colors"
+          >
+            Go to your courses
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </main>
     </div>

@@ -125,3 +125,22 @@ Prompt 13. lib/ai/generator/ — a staged Opus pipeline (outline → per-lesson 
 4. The design system is locked at v1 (ADR 0007 — Geist, teal #0F3D3E / coral #E07856, light mode only, no dark mode). "Proper branding" extends that outward to the public surface; do not silently redo the token system — if a branding change touches ADR 0007, raise it.
 
 **Parallel, operator-run (not an engineering prompt):** the full CAMS generation + SME review — docs/RUNBOOK-course-generation.md. That is the real content launch gate.
+
+---
+
+## [2026-05-22 ~17:30] — Prompt 14 shipped: landing page + brand v2 + journey re-skin
+
+Ran Prompt 14 in a continuing session (not a fresh one — the session already held the drafted prompt and the reviewed Gemini cuts, which helped). The journey audit (the original Step 2/3) was skipped by Ripon's choice — visual review happens post-deploy instead.
+
+Brand identity v2 integrated from two Gemini first-cut artifacts (docs/prompts/gemini-output.md round 1 = brand foundation + landing page; gemini-output-2.md round 2 = in-app surfaces). Shipped as two commits: the landing milestone first (3768d18), then the journey re-skin.
+
+Notes for next time:
+- The design tokens now cascade app-wide. `--font-sans` is Outfit (both display and body); if dense in-app text ever reads poorly, splitting body back to Geist Sans is the lever.
+- `tw-animate-css` was installed but never imported — globals.css now `@import`s it (needed for the `animate-in` utilities). `text-2xs` is a custom `@theme` token. `@keyframes float` lives in globals.css for the hero mascot.
+- The mock taker uses a deliberate off-palette cold slate theme ("Cold Fidelity") — do NOT "fix" it to teal/coral.
+- Landing CourseLineup availability: CDCS = "Available now", CAMS/CCAS = "Coming soon" — placeholder, matches the current DB (CDCS published, CAMS draft). Revisit when CAMS is generated + published.
+- OG image: metadata is set but no custom OG image was generated (Higgsfield was available; deferred). Add a real OG image before launch.
+- The in-app re-skin is build-verified only — there was no authenticated Playwright walk (no test credentials this session). Worth a real visual pass on production post-deploy.
+- `components/brand/wordmark.tsx` and the old `app/(dashboard)/dashboard/sign-out-button.tsx` were deleted (superseded by `<Logo>` and `components/in-app/sign-out-button.tsx`).
+
+Next: Prompt 15 — payments (and the real /terms + /privacy pages).

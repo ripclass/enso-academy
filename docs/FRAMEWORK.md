@@ -165,7 +165,7 @@ Worth being explicit about what we are deliberately not building, because the ab
 
 **Not video lectures.** No pre-recorded talking heads, no studio-produced video courses. The AI lecturer renders in real time with voice and whiteboard. Video lectures are 2010s edtech; we're not making more of them.
 
-**Not gamification.** No streaks, no badges of accomplishment for showing up, no leaderboards, no cartoon mascots, no Duolingo-style anxiety mechanics. Compliance professionals are not children and the product respects that. The signoff is the reward; the certification is the goal.
+**Not gamification.** No streaks, no badges of accomplishment for showing up, no leaderboards, no Duolingo-style anxiety mechanics. Compliance professionals are not children and the product respects that. The signoff is the reward; the certification is the goal. *(Amended 2026-05-22, ADR 0018: the brand does include a mascot — the "Enso Guide" — but a calm, mature, ensō-derived one, not a cartoon. What is rejected here is childish, gamified mascots, not a restrained brand character.)*
 
 **Not a discussion forum.** No community features in v1, probably not in v2 either. Discussion forums consume engineering attention forever and rarely produce learning outcomes. If students want a community, they can join the existing ACAMS or LIBF member networks.
 

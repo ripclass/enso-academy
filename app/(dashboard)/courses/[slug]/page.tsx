@@ -2,10 +2,9 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Wordmark } from '@/components/brand/wordmark'
-import { SignOutButton } from '../../dashboard/sign-out-button'
-import { Card, CardContent } from '@/components/ui/card'
-import { buttonVariants } from '@/components/ui/button'
+import { ArrowLeft, ArrowRight, FileText } from 'lucide-react'
+import { AppHeader } from '@/components/in-app/app-header'
+import { SectionHeader, StatusBadge, ConceptMasteryRow } from '@/components/in-app/ui-kit'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -70,121 +69,164 @@ export default async function CourseDetailPage({ params }: Props) {
     .filter((k) => Number(k.mastery_probability) >= 0.75)
     .sort((a, b) => Number(b.mastery_probability) - Number(a.mastery_probability))
     .slice(0, 6)
-    .map((k) => titleize(k.concept_tag))
+    .map((k) => ({ name: titleize(k.concept_tag), score: Number(k.mastery_probability) * 100 }))
   const reviewConcepts = knowledgeRows
     .filter((k) => Number(k.mastery_probability) < 0.6)
     .sort((a, b) => Number(a.mastery_probability) - Number(b.mastery_probability))
     .slice(0, 6)
-    .map((k) => titleize(k.concept_tag))
+    .map((k) => ({ name: titleize(k.concept_tag), score: Number(k.mastery_probability) * 100 }))
   const showKnowledge = strongConcepts.length > 0 || reviewConcepts.length > 0
 
+  const readinessBadge =
+    readiness?.status === 'ready'
+      ? ('ready' as const)
+      : readiness?.status === 'approaching'
+        ? ('approaching' as const)
+        : null
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Wordmark />
-          <div className="flex items-center gap-6">
-            <Link href="/courses" className="text-sm text-muted-foreground hover:text-foreground">Courses</Link>
-            <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">Dashboard</Link>
-            <SignOutButton />
-          </div>
+    <div className="min-h-screen flex flex-col bg-neutral-50">
+      <AppHeader context={course.short_name} />
+
+      <main className="flex-1 mx-auto max-w-5xl px-6 py-12 w-full">
+        <Link
+          href="/courses"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-primary transition-colors"
+        >
+          <ArrowLeft className="h-3 w-3" /> Your courses
+        </Link>
+
+        <div className="mt-6 mb-10">
+          <span className="text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
+            {course.short_name}
+          </span>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900">{course.name}</h1>
+          <p className="mt-3 text-neutral-600 leading-relaxed max-w-2xl">{course.description}</p>
+          <p className="mt-3 text-2xs font-mono text-neutral-400 uppercase tracking-wider">
+            Certifying body: {course.certifying_body}
+          </p>
         </div>
-      </header>
 
-      <main className="flex-1 max-w-4xl mx-auto px-6 py-12 w-full">
-        <div className="space-y-2 mb-2">
-          <Link href="/courses" className="text-sm text-muted-foreground hover:text-foreground">← Your courses</Link>
-        </div>
-        <div className="space-y-3 mb-10">
-          <div className="text-xs text-muted-foreground uppercase tracking-wide">{course.short_name}</div>
-          <h1 className="text-3xl font-medium tracking-tight">{course.name}</h1>
-          <p className="text-muted-foreground leading-relaxed max-w-2xl">{course.description}</p>
-          <p className="text-sm text-muted-foreground pt-2">Certifying body: {course.certifying_body}</p>
-        </div>
-
-        <Card className="mb-6">
-          <CardContent className="p-6 flex items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <h2 className="text-lg font-medium">Mock exams</h2>
-                {readiness?.status === 'ready' && (
-                  <span className="text-xs font-medium rounded-md px-2 py-0.5 bg-success/10 text-success">
-                    Exam-ready
-                  </span>
-                )}
-                {readiness?.status === 'approaching' && (
-                  <span className="text-xs font-medium rounded-md px-2 py-0.5 bg-accent/10 text-accent">
-                    Approaching readiness
-                  </span>
-                )}
-              </div>
-              <p className="text-sm text-muted-foreground">
-                {readiness
-                  ? `You've completed ${readiness.mock_count} mock${readiness.mock_count === 1 ? '' : 's'}. Your average is ${Number(readiness.average_score ?? 0)}%.`
-                  : "Take a mock exam when you're ready to test your readiness."}
-              </p>
-            </div>
-            <Link href={`/courses/${course.slug}/mock`} className={buttonVariants()}>
-              Take a mock
-            </Link>
-          </CardContent>
-        </Card>
-
-        {showKnowledge && (
-          <Card className="mb-6">
-            <CardContent className="p-6 space-y-3">
-              <h2 className="text-lg font-medium">Your knowledge</h2>
-              {strongConcepts.length > 0 && (
-                <div className="flex items-start gap-3 text-sm">
-                  <span className="text-success font-medium shrink-0 w-20">Strong</span>
-                  <span className="text-muted-foreground">{strongConcepts.join(' · ')}</span>
-                </div>
-              )}
-              {reviewConcepts.length > 0 && (
-                <div className="flex items-start gap-3 text-sm">
-                  <span className="text-accent font-medium shrink-0 w-20">To review</span>
-                  <span className="text-muted-foreground">{reviewConcepts.join(' · ')}</span>
-                </div>
-              )}
-              <p className="text-xs text-muted-foreground pt-1">
-                Updated as you take mocks and complete lessons. Your lecturer uses this to focus its answers.
-              </p>
-            </CardContent>
-          </Card>
-        )}
-
-        <div className="space-y-6">
-          {modules?.map(mod => {
-            const lessons = ((mod.lessons as any[]) ?? []).sort((a, b) => a.sort_order - b.sort_order)
-            return (
-              <Card key={mod.id}>
-                <CardContent className="p-6 space-y-4">
-                  <div>
-                    <h2 className="text-lg font-medium">{mod.name}</h2>
-                    <p className="text-sm text-muted-foreground mt-1">{mod.description}</p>
+        <div className="grid gap-8 lg:grid-cols-12">
+          {/* Left: modules */}
+          <div className="lg:col-span-8 space-y-6">
+            {/* Mock exams card */}
+            <div className="rounded-lg border-2 border-neutral-900 bg-white p-6">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2.5">
+                    <h2 className="text-lg font-bold text-neutral-900">Mock exams</h2>
+                    {readinessBadge && <StatusBadge status={readinessBadge} />}
                   </div>
-                  <div className="border-t border-border pt-4 space-y-2">
+                  <p className="mt-1.5 text-sm text-neutral-600">
+                    {readiness
+                      ? `${readiness.mock_count} mock${readiness.mock_count === 1 ? '' : 's'} completed. Average score ${Number(readiness.average_score ?? 0)}%.`
+                      : 'Take a mock exam when you are ready to test your readiness.'}
+                  </p>
+                </div>
+                <Link
+                  href={`/courses/${course.slug}/mock`}
+                  className="inline-flex h-10 items-center justify-center gap-1.5 rounded-md bg-primary px-5 text-sm font-semibold text-white hover:bg-primary-hover transition-colors shrink-0"
+                >
+                  <FileText className="h-4 w-4" /> Take a mock
+                </Link>
+              </div>
+            </div>
+
+            <SectionHeader title="Course modules" />
+
+            {modules?.map((mod, modIndex) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const lessons = ((mod.lessons as any[]) ?? []).sort((a, b) => a.sort_order - b.sort_order)
+              return (
+                <div key={mod.id} className="rounded-lg border border-neutral-200 bg-white overflow-hidden">
+                  <div className="bg-neutral-50 border-b border-neutral-200 px-6 py-4">
+                    <span className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono">
+                      Module {modIndex + 1}
+                    </span>
+                    <h3 className="mt-0.5 text-base font-bold text-neutral-900">{mod.name}</h3>
+                    {mod.description && (
+                      <p className="mt-1 text-sm text-neutral-500">{mod.description}</p>
+                    )}
+                  </div>
+                  <div className="divide-y divide-neutral-100">
                     {lessons.map((lesson, idx) => (
                       <Link
                         key={lesson.id}
                         href={`/lessons/${lesson.id}`}
-                        className="flex items-center justify-between py-3 px-3 -mx-3 rounded-md hover:bg-muted transition-colors"
+                        className="flex items-center justify-between gap-4 px-6 py-4 hover:bg-neutral-50/60 transition-colors"
                       >
-                        <div className="flex items-start gap-3">
-                          <span className="text-xs text-muted-foreground tabular-nums mt-1">{(idx + 1).toString().padStart(2, '0')}</span>
-                          <div>
-                            <div className="text-sm font-medium">{lesson.name}</div>
-                            <div className="text-xs text-muted-foreground mt-1">{lesson.description}</div>
+                        <div className="flex items-start gap-3 min-w-0">
+                          <span className="text-2xs font-mono text-neutral-400 mt-1 tabular-nums">
+                            {(idx + 1).toString().padStart(2, '0')}
+                          </span>
+                          <div className="min-w-0">
+                            <div className="text-sm font-semibold text-neutral-800">{lesson.name}</div>
+                            {lesson.description && (
+                              <div className="mt-0.5 text-xs text-neutral-500">{lesson.description}</div>
+                            )}
                           </div>
                         </div>
-                        <span className="text-xs text-muted-foreground whitespace-nowrap ml-4">{lesson.estimated_minutes} min</span>
+                        <span className="text-2xs font-mono text-neutral-400 whitespace-nowrap shrink-0">
+                          {lesson.estimated_minutes} min
+                        </span>
                       </Link>
                     ))}
                   </div>
-                </CardContent>
-              </Card>
-            )
-          })}
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Right: knowledge model */}
+          <div className="lg:col-span-4">
+            {showKnowledge ? (
+              <div className="rounded-lg border border-neutral-200 bg-white p-6 lg:sticky lg:top-6">
+                <h2 className="text-base font-bold text-neutral-900">Your knowledge state</h2>
+                <p className="mt-1 text-xs text-neutral-400">
+                  Adaptive mastery tracking across key exam concepts.
+                </p>
+
+                <div className="mt-6 space-y-6">
+                  {reviewConcepts.length > 0 && (
+                    <div>
+                      <span className="block mb-2 text-2xs font-semibold uppercase tracking-wider text-accent font-mono">
+                        Focus needed ({reviewConcepts.length})
+                      </span>
+                      <div>
+                        {reviewConcepts.map((c) => (
+                          <ConceptMasteryRow key={c.name} concept={c.name} score={c.score} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {strongConcepts.length > 0 && (
+                    <div>
+                      <span className="block mb-2 text-2xs font-semibold uppercase tracking-wider text-primary font-mono">
+                        Mastered ({strongConcepts.length})
+                      </span>
+                      <div>
+                        {strongConcepts.map((c) => (
+                          <ConceptMasteryRow key={c.name} concept={c.name} score={c.score} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <p className="mt-6 text-2xs text-neutral-400 leading-relaxed">
+                  Updated as you take mocks and complete lessons. Your lecturer uses this to focus its answers.
+                </p>
+              </div>
+            ) : (
+              <div className="rounded-lg border border-dashed border-neutral-200 bg-white p-6 lg:sticky lg:top-6">
+                <h2 className="text-base font-bold text-neutral-900">Your knowledge state</h2>
+                <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
+                  As you complete lessons and take mocks, your per-concept mastery model builds here.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </main>
     </div>

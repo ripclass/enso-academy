@@ -4,10 +4,9 @@ import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
-import { Wordmark } from '@/components/brand/wordmark'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { Volume2, VolumeX, Hand, ArrowLeft, ArrowRight, CornerDownLeft } from 'lucide-react'
+import { Logo } from '@/components/brand/logo'
+import { Mascot } from '@/components/brand/mascot'
 import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
@@ -250,8 +249,17 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     }
   }
 
+  const audioStatusLabel: Record<AudioStatus, string> = {
+    idle: 'Ready',
+    loading: 'Loading audio…',
+    playing: 'Playing',
+    paused: 'Paused',
+    ended: 'Finished',
+    error: 'Audio unavailable for this section',
+  }
+
   return (
-    <div className="min-h-screen flex flex-col bg-muted">
+    <div className="min-h-screen flex flex-col bg-neutral-50">
       {/* Hidden audio element — drives both narration and Q&A playback. */}
       <audio
         ref={audioRef}
@@ -276,32 +284,39 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         onLoadStart={() => setAudioStatus('loading')}
       />
 
-      <header className="border-b border-border bg-background">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <Wordmark />
-            <div className="text-sm text-muted-foreground">
-              <Link href={`/courses/${courseSlug}`} className="hover:text-foreground">
+      {/* Header */}
+      <header className="border-b border-neutral-200 bg-white">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-5 min-w-0">
+            <Link href="/dashboard" aria-label="Enso Academy">
+              <Logo variant="mark-only" />
+            </Link>
+            <div className="text-sm text-neutral-500 truncate">
+              <Link href={`/courses/${courseSlug}`} className="font-medium hover:text-primary transition-colors">
                 {lesson.module.course.short_name}
               </Link>
-              <span className="mx-2">·</span>
+              <span className="mx-2 text-neutral-300">/</span>
               {lesson.module.name}
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 shrink-0">
             <button
               type="button"
               onClick={toggleListenMode}
-              className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm transition-colors ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
                 listenMode
-                  ? 'bg-primary text-primary-foreground'
-                  : 'border border-border text-muted-foreground hover:text-foreground'
+                  ? 'bg-primary text-white'
+                  : 'border border-neutral-200 text-neutral-600 hover:text-primary'
               }`}
             >
-              {listenMode ? '🔊 Listen mode on' : '🔇 Listen mode off'}
+              {listenMode ? <Volume2 className="h-3.5 w-3.5" /> : <VolumeX className="h-3.5 w-3.5" />}
+              {listenMode ? 'Listen on' : 'Listen off'}
             </button>
-            <Link href={`/courses/${courseSlug}`} className="text-sm text-muted-foreground hover:text-foreground">
-              Exit lesson
+            <Link
+              href={`/courses/${courseSlug}`}
+              className="text-sm font-medium text-neutral-500 hover:text-primary transition-colors"
+            >
+              Exit
             </Link>
           </div>
         </div>
@@ -310,156 +325,178 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
       <div className="flex-1 max-w-7xl mx-auto px-6 py-8 w-full grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8">
         {/* Lesson content */}
         <div className="space-y-6">
-          <div className="space-y-2">
-            <div className="text-xs text-muted-foreground uppercase tracking-wide">Lesson</div>
-            <h1 className="text-2xl font-medium tracking-tight">{lesson.name}</h1>
-            {lesson.description && <p className="text-sm text-muted-foreground">{lesson.description}</p>}
+          <div>
+            <span className="text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
+              Lesson
+            </span>
+            <h1 className="mt-1 text-2xl font-bold tracking-tight text-neutral-900">{lesson.name}</h1>
+            {lesson.description && (
+              <p className="mt-1.5 text-sm text-neutral-500">{lesson.description}</p>
+            )}
           </div>
 
-          <Card>
-            <CardContent className="p-8 space-y-4">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span className="uppercase tracking-wide">
-                  {currentScene ? SCENE_LABEL[currentScene.sceneType] : ''}
-                </span>
-                <span>{currentIndex + 1} of {scenes.length}</span>
-              </div>
-
+          <div className="rounded-lg border border-neutral-200 bg-white">
+            <div className="flex items-center justify-between border-b border-neutral-100 px-6 py-3">
+              <span className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono">
+                {currentScene ? SCENE_LABEL[currentScene.sceneType] : ''}
+              </span>
+              <span className="text-2xs font-mono text-neutral-400 tabular-nums">
+                {currentIndex + 1} / {scenes.length}
+              </span>
+            </div>
+            <div className="p-6 md:p-8 space-y-4">
               {currentScene ? (
                 <SceneRenderer scene={currentScene} onQuizAnswer={handleQuizAnswer} />
               ) : (
-                <p className="text-sm text-muted-foreground">This lesson has no content yet.</p>
+                <p className="text-sm text-neutral-500">This lesson has no content yet.</p>
               )}
 
               {listenMode && (
-                <div className="flex items-center gap-3 text-xs text-muted-foreground pt-2 border-t border-border">
-                  <span>
-                    {audioStatus === 'loading' && 'Loading audio…'}
-                    {audioStatus === 'playing' && '▶ Playing'}
-                    {audioStatus === 'paused' && '⏸ Paused'}
-                    {audioStatus === 'ended' && '✓ Finished'}
-                    {audioStatus === 'error' && '⚠ Audio unavailable for this section'}
-                    {audioStatus === 'idle' && 'Ready'}
-                  </span>
+                <div className="flex items-center gap-3 text-2xs font-mono text-neutral-400 pt-3 border-t border-neutral-100">
+                  <span>{audioStatusLabel[audioStatus]}</span>
                   {audioStatus === 'playing' && (
-                    <button
-                      type="button"
-                      onClick={() => audioRef.current?.pause()}
-                      className="hover:text-foreground"
-                    >
+                    <button type="button" onClick={() => audioRef.current?.pause()} className="hover:text-primary">
                       Pause
                     </button>
                   )}
                   {audioStatus === 'paused' && (
-                    <button
-                      type="button"
-                      onClick={() => audioRef.current?.play()}
-                      className="hover:text-foreground"
-                    >
+                    <button type="button" onClick={() => audioRef.current?.play()} className="hover:text-primary">
                       Resume
                     </button>
                   )}
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           <div className="flex items-center justify-between">
-            <Button variant="outline" onClick={goPrev} disabled={currentIndex === 0}>
-              Previous
-            </Button>
+            <button
+              type="button"
+              onClick={goPrev}
+              disabled={currentIndex === 0}
+              className="inline-flex h-10 items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-4 text-sm font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <ArrowLeft className="h-4 w-4" /> Previous
+            </button>
             {isLast ? (
-              <Button onClick={handleComplete} disabled={completing}>
+              <button
+                type="button"
+                onClick={handleComplete}
+                disabled={completing}
+                className="inline-flex h-10 items-center rounded-md bg-primary px-5 text-sm font-semibold text-white hover:bg-primary-hover transition-colors disabled:opacity-60"
+              >
                 {completing ? 'Saving…' : 'Complete lesson'}
-              </Button>
+              </button>
             ) : (
-              <Button onClick={goNext}>
-                Next
-              </Button>
+              <button
+                type="button"
+                onClick={goNext}
+                className="inline-flex h-10 items-center gap-1.5 rounded-md bg-primary px-5 text-sm font-semibold text-white hover:bg-primary-hover transition-colors"
+              >
+                Next <ArrowRight className="h-4 w-4" />
+              </button>
             )}
           </div>
         </div>
 
         {/* Lecturer Q&A panel */}
-        <div className="space-y-4">
-          <div className="space-y-1">
-            <div className="text-xs text-muted-foreground uppercase tracking-wide">Ask the lecturer</div>
-            <p className="text-xs text-muted-foreground">Questions about the current section or anything you want clarified.</p>
-          </div>
+        <div className="lg:sticky lg:top-8 self-start">
+          <div className="rounded-lg border border-neutral-200 bg-white flex flex-col h-[640px] overflow-hidden">
+            {/* Panel header — the Enso Guide */}
+            <div className="flex items-center gap-3 border-b border-neutral-200 px-5 py-4 shrink-0">
+              <Mascot variant="default" size={40} className="shrink-0" />
+              <div>
+                <h2 className="text-sm font-bold text-neutral-900">Enso Guide</h2>
+                <p className="text-2xs font-mono text-neutral-400">Personalized AI lecturer</p>
+              </div>
+            </div>
 
-          <Card className="flex flex-col h-[600px]">
-            <CardContent className="flex-1 overflow-y-auto p-4 space-y-3" ref={conversationRef}>
+            {/* Socratic transcript */}
+            <div ref={conversationRef} className="flex-1 overflow-y-auto p-5 space-y-5">
               {messages.length === 0 ? (
-                <p className="text-sm text-muted-foreground text-center py-8">
+                <p className="text-sm text-neutral-400 text-center py-8">
                   Ask anything about what you just read.
                 </p>
               ) : (
-                messages.map((msg, i) => (
-                  <div
-                    key={i}
-                    className={msg.role === 'student' ? 'flex justify-end' : 'flex justify-start'}
-                  >
-                    <div
-                      className={
-                        msg.role === 'student'
-                          ? 'max-w-[85%] bg-primary text-primary-foreground rounded-md px-3 py-2 text-sm'
-                          : msg.role === 'classmate'
-                            ? 'max-w-[90%] bg-accent/10 border border-accent/30 rounded-md px-3 py-2 text-sm space-y-1'
-                            : 'max-w-[90%] bg-muted rounded-md px-3 py-2 text-sm space-y-1'
-                      }
-                    >
-                      {msg.role === 'classmate' && (
-                        <div className="text-xs font-medium text-accent">
-                          ✋ {msg.classmateName ?? 'A classmate'} raised their hand
-                        </div>
-                      )}
-                      {msg.role === 'lecturer' ? (
-                        <div className="leading-relaxed [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_em]:italic [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-4 [&_li]:mb-1 [&_code]:rounded [&_code]:bg-background/60 [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-xs">
+                messages.map((msg, i) => {
+                  const isClassmate = msg.role === 'classmate'
+                  const isLecturer = msg.role === 'lecturer'
+                  const label =
+                    msg.role === 'student'
+                      ? 'You'
+                      : isClassmate
+                        ? msg.classmateName ?? 'Classmate'
+                        : 'Lecturer'
+                  const labelColor = isClassmate
+                    ? 'text-accent'
+                    : isLecturer
+                      ? 'text-primary'
+                      : 'text-neutral-500'
+                  return (
+                    <div key={i} className="space-y-1.5">
+                      <div className="flex items-center gap-1.5">
+                        {isClassmate && <Hand className="h-3 w-3 text-accent" />}
+                        <span
+                          className={`text-2xs font-bold uppercase tracking-widest font-mono ${labelColor}`}
+                        >
+                          {label}
+                        </span>
+                      </div>
+                      {isLecturer ? (
+                        <div className="text-sm leading-relaxed text-neutral-800 [&_p]:mb-2 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_em]:italic [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-4 [&_li]:mb-1 [&_code]:rounded [&_code]:bg-neutral-100 [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-xs">
                           <ReactMarkdown>{msg.content}</ReactMarkdown>
                         </div>
                       ) : (
-                        <div className="whitespace-pre-wrap leading-relaxed">{msg.content}</div>
+                        <p
+                          className={`text-sm leading-relaxed whitespace-pre-wrap ${
+                            isClassmate ? 'italic text-neutral-700' : 'text-neutral-800'
+                          }`}
+                        >
+                          {msg.content}
+                        </p>
                       )}
-                      {msg.role === 'lecturer' && (msg.fromCache || msg.audioUrl) && (
-                        <div className="text-xs text-muted-foreground opacity-70 flex gap-2">
+                      {isLecturer && (msg.fromCache || msg.audioUrl) && (
+                        <div className="flex gap-2 text-2xs font-mono text-neutral-400">
                           {msg.fromCache && <span>cached</span>}
-                          {msg.audioUrl && <span>🔊 spoken</span>}
+                          {msg.audioUrl && <span>spoken</span>}
                         </div>
                       )}
                     </div>
-                  </div>
-                ))
+                  )
+                })
               )}
               {askingQuestion && (
-                <div className="flex justify-start">
-                  <div className="bg-muted rounded-md px-3 py-2 text-sm text-muted-foreground">
-                    Thinking…
-                  </div>
-                </div>
+                <p className="text-2xs font-mono text-neutral-400">Lecturer is thinking…</p>
               )}
               {classmatePending && (
-                <div className="flex justify-start">
-                  <div className="bg-accent/10 border border-accent/30 rounded-md px-3 py-2 text-xs text-accent">
-                    ✋ A classmate is raising their hand…
-                  </div>
-                </div>
+                <p className="flex items-center gap-1.5 text-2xs font-mono text-accent">
+                  <Hand className="h-3 w-3" /> A classmate is raising their hand…
+                </p>
               )}
-            </CardContent>
+            </div>
 
-            <form onSubmit={handleAskQuestion} className="border-t border-border p-3 flex gap-2">
-              <Input
-                type="text"
-                placeholder="Type your question…"
-                value={questionInput}
-                onChange={(e) => setQuestionInput(e.target.value)}
-                disabled={askingQuestion}
-                className="flex-1"
-              />
-              <Button type="submit" size="sm" disabled={askingQuestion || !questionInput.trim()}>
-                Ask
-              </Button>
+            {/* Input */}
+            <form onSubmit={handleAskQuestion} className="border-t border-neutral-200 p-3 shrink-0">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Ask the Enso Guide a question…"
+                  value={questionInput}
+                  onChange={(e) => setQuestionInput(e.target.value)}
+                  disabled={askingQuestion}
+                  className="w-full rounded-md border border-neutral-200 bg-white py-2.5 pl-3 pr-11 text-sm text-neutral-800 placeholder-neutral-400 focus:border-primary focus:outline-none disabled:opacity-60"
+                />
+                <button
+                  type="submit"
+                  disabled={askingQuestion || !questionInput.trim()}
+                  aria-label="Ask"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded bg-primary text-white hover:bg-primary-hover transition-colors disabled:opacity-40"
+                >
+                  <CornerDownLeft className="h-3.5 w-3.5" />
+                </button>
+              </div>
             </form>
-          </Card>
+          </div>
         </div>
       </div>
     </div>

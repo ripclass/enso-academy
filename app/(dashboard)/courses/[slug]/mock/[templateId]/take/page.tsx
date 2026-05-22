@@ -5,7 +5,7 @@ import { MockTaker } from './mock-taker'
 
 type Props = { params: Promise<{ slug: string; templateId: string }> }
 
-export const metadata = { title: 'Mock exam — Enso Academy' }
+export const metadata = { title: 'Mock exam' }
 
 export default async function MockTakePage({ params }: Props) {
   const { slug, templateId } = await params

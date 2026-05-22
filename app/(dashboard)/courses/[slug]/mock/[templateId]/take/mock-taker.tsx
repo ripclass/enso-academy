@@ -2,10 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { Wordmark } from '@/components/brand/wordmark'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Flag, ChevronLeft, ChevronRight, AlertTriangle } from 'lucide-react'
 import { submitMockExam, type MockQuestion } from '@/lib/mock/actions'
 import { toast } from 'sonner'
 
@@ -19,9 +16,10 @@ type Props = {
 
 function formatTime(totalSeconds: number): string {
   const s = Math.max(0, totalSeconds)
-  const m = Math.floor(s / 60)
+  const h = Math.floor(s / 3600)
+  const m = Math.floor((s % 3600) / 60)
   const sec = s % 60
-  return `${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`
+  return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`
 }
 
 export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes, courseSlug }: Props) {
@@ -134,144 +132,173 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
     void doSubmit()
   }
 
+  // "Cold Fidelity" — a sterile testing-centre palette, deliberately
+  // off-brand from the editorial surfaces.
   const timerColor =
     secondsRemaining < 300
-      ? 'text-destructive'
+      ? 'text-red-400'
       : secondsRemaining < 600
-        ? 'text-accent'
-        : 'text-foreground'
+        ? 'text-amber-400'
+        : 'text-slate-100'
 
   const flaggedCurrent = !!current && flagged.has(current.id)
+  const unansweredCount = total - answeredCount
 
   return (
-    <div className="min-h-screen flex flex-col bg-muted">
-      <header className="sticky top-0 z-10 border-b border-border bg-background">
+    <div className="min-h-screen flex flex-col bg-[#F0F2F5] text-slate-800 select-none">
+      {/* Sterile exam header */}
+      <header className="sticky top-0 z-10 bg-[#1E293B] border-b border-slate-700">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <Wordmark />
-            <span className="text-sm text-muted-foreground hidden sm:inline">{templateName}</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className={`text-lg font-medium tabular-nums ${timerColor}`}>
-              {formatTime(secondsRemaining)}
+          <div>
+            <span className="text-2xs font-semibold uppercase tracking-widest text-slate-400 font-mono">
+              Enso Academy &middot; Mock exam engine
             </span>
-            <Button size="sm" onClick={handleSubmitClick} disabled={submitting}>
+            <h1 className="text-sm font-bold text-slate-100">{templateName}</h1>
+          </div>
+          <div className="flex items-center gap-5">
+            <div className="text-right">
+              <span className="block text-2xs font-mono uppercase tracking-wider text-slate-400">
+                Time remaining
+              </span>
+              <span className={`text-lg font-bold font-mono tracking-wider tabular-nums ${timerColor}`}>
+                {formatTime(secondsRemaining)}
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={handleSubmitClick}
+              disabled={submitting}
+              className="rounded border border-red-800 bg-red-700 px-5 py-2.5 text-xs font-bold uppercase tracking-wider font-mono text-white hover:bg-red-600 transition-colors disabled:opacity-60"
+            >
               {submitting ? 'Submitting…' : confirmSubmit ? 'Confirm submit' : 'Submit mock'}
-            </Button>
+            </button>
           </div>
         </div>
       </header>
 
-      <div className="flex-1 max-w-7xl mx-auto px-6 py-8 w-full grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
-        {/* question area */}
-        <div className="space-y-6">
+      <div className="flex-1 max-w-7xl mx-auto px-6 py-8 w-full grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
+        {/* Question area */}
+        <div className="space-y-5">
           {confirmSubmit && !submitting && (
-            <Alert>
-              <AlertDescription>
-                {answeredCount} of {total} answered. Click <strong>Confirm submit</strong> in the header to
-                finalise — this cannot be undone.
-              </AlertDescription>
-            </Alert>
+            <div className="flex items-start gap-3 rounded border border-amber-300 bg-amber-50 px-4 py-3 text-xs font-mono text-amber-800">
+              <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5" />
+              <span>
+                {answeredCount} of {total} answered
+                {unansweredCount > 0 && ` — ${unansweredCount} unanswered question(s) will be graded as incorrect`}
+                . Click <strong>Confirm submit</strong> in the header to finalise. This cannot be undone.
+              </span>
+            </div>
           )}
 
-          <Card>
-            <CardContent className="p-8 space-y-5">
-              <div className="flex items-start justify-between gap-4">
-                <div className="text-xs text-muted-foreground uppercase tracking-wide">
-                  Question {currentIndex + 1} of {total}
-                </div>
-                <button
-                  type="button"
-                  onClick={toggleFlag}
-                  className={`text-xs flex items-center gap-1 transition-colors ${
-                    flaggedCurrent ? 'text-accent font-medium' : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  <span aria-hidden>{flaggedCurrent ? '★' : '☆'}</span>
-                  {flaggedCurrent ? 'Flagged' : 'Flag for review'}
-                </button>
-              </div>
+          <div className="rounded border border-slate-300 bg-white p-8 shadow-sm">
+            <div className="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
+              <span className="text-2xs font-semibold uppercase tracking-wider text-slate-400 font-mono">
+                Question {currentIndex + 1} of {total}
+              </span>
+              <button
+                type="button"
+                onClick={toggleFlag}
+                className={`inline-flex items-center gap-1.5 rounded border px-3 py-1.5 text-2xs font-semibold uppercase tracking-wider font-mono transition-colors ${
+                  flaggedCurrent
+                    ? 'border-amber-400 bg-amber-50 text-amber-800'
+                    : 'border-slate-200 bg-white text-slate-500 hover:text-slate-700'
+                }`}
+              >
+                <Flag className="h-3.5 w-3.5" />
+                {flaggedCurrent ? 'Flagged' : 'Flag'}
+              </button>
+            </div>
 
-              <h1 className="text-lg font-medium leading-relaxed">{current?.question_text}</h1>
+            <h2 className="mt-5 text-base font-semibold leading-relaxed text-slate-800">
+              {current?.question_text}
+            </h2>
 
-              <div className="space-y-2">
-                {current?.options.map((opt) => {
-                  const selected = answers[current.id] === opt
-                  return (
-                    <button
-                      key={opt}
-                      type="button"
-                      onClick={() => selectAnswer(opt)}
-                      className={`w-full text-left text-sm rounded-md border px-4 py-3 transition-colors ${
-                        selected
-                          ? 'border-primary bg-primary/5 text-foreground'
-                          : 'border-border hover:bg-muted'
-                      }`}
-                    >
-                      {opt}
-                    </button>
-                  )
-                })}
-              </div>
-            </CardContent>
-          </Card>
+            <div className="mt-5 space-y-2.5">
+              {current?.options.map((opt) => {
+                const selected = answers[current.id] === opt
+                return (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => selectAnswer(opt)}
+                    className={`w-full text-left text-sm rounded border px-4 py-3 transition-colors ${
+                      selected
+                        ? 'border-slate-600 bg-slate-100 text-slate-900'
+                        : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
 
           <div className="flex items-center justify-between">
-            <Button variant="outline" onClick={() => goTo(currentIndex - 1)} disabled={currentIndex === 0}>
-              Previous
-            </Button>
-            <Button variant="outline" onClick={() => goTo(currentIndex + 1)} disabled={currentIndex === total - 1}>
-              Next
-            </Button>
+            <button
+              type="button"
+              onClick={() => goTo(currentIndex - 1)}
+              disabled={currentIndex === 0}
+              className="inline-flex h-9 items-center gap-1 rounded border border-slate-300 bg-white px-4 text-xs font-semibold font-mono text-slate-600 hover:bg-slate-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="h-4 w-4" /> Previous
+            </button>
+            <button
+              type="button"
+              onClick={() => goTo(currentIndex + 1)}
+              disabled={currentIndex === total - 1}
+              className="inline-flex h-9 items-center gap-1 rounded border border-slate-300 bg-white px-4 text-xs font-semibold font-mono text-slate-600 hover:bg-slate-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Next <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
         </div>
 
-        {/* question grid panel */}
+        {/* Question navigator */}
         <div className="lg:sticky lg:top-20 self-start">
-          <Card>
-            <CardContent className="p-4 space-y-4">
-              <div className="text-xs text-muted-foreground uppercase tracking-wide">
-                {answeredCount} of {total} answered
+          <div className="rounded border border-slate-300 bg-white p-4">
+            <h2 className="text-2xs font-bold uppercase tracking-wider text-slate-400 font-mono mb-3">
+              Question navigator
+            </h2>
+            <div className="grid grid-cols-6 gap-1.5">
+              {questions.map((q, i) => {
+                const isAnswered = answers[q.id] !== undefined
+                const isFlagged = flagged.has(q.id)
+                const isCurrent = i === currentIndex
+                let cls = 'bg-slate-50 border-slate-200 text-slate-600'
+                if (isCurrent) cls = 'bg-blue-900 border-blue-900 text-white'
+                else if (isFlagged) cls = 'bg-amber-100 border-amber-300 text-amber-800'
+                else if (isAnswered) cls = 'bg-slate-200 border-slate-300 text-slate-800'
+                return (
+                  <button
+                    key={q.id}
+                    type="button"
+                    onClick={() => goTo(i)}
+                    className={`relative h-9 rounded border text-xs font-bold font-mono tabular-nums transition-colors ${cls}`}
+                  >
+                    {i + 1}
+                    {isFlagged && (
+                      <span className="absolute top-0.5 right-0.5 h-1.5 w-1.5 rounded-full bg-amber-500" />
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+            <div className="mt-4 space-y-1.5 border-t border-slate-200 pt-3 text-2xs font-mono text-slate-500">
+              <div className="flex justify-between">
+                <span>ANSWERED</span>
+                <span className="font-bold text-slate-700">{answeredCount}</span>
               </div>
-              <div className="grid grid-cols-6 gap-1.5">
-                {questions.map((q, i) => {
-                  const isAnswered = answers[q.id] !== undefined
-                  const isFlagged = flagged.has(q.id)
-                  const isCurrent = i === currentIndex
-                  return (
-                    <button
-                      key={q.id}
-                      type="button"
-                      onClick={() => goTo(i)}
-                      className={`relative h-9 w-9 rounded-md text-xs tabular-nums transition-colors ${
-                        isAnswered
-                          ? 'bg-primary text-primary-foreground'
-                          : 'border border-border text-muted-foreground hover:bg-muted'
-                      } ${isCurrent ? 'ring-2 ring-ring ring-offset-1' : ''}`}
-                    >
-                      {i + 1}
-                      {isFlagged && (
-                        <span className="absolute -top-1.5 -right-1 text-accent text-xs leading-none" aria-hidden>
-                          ★
-                        </span>
-                      )}
-                    </button>
-                  )
-                })}
+              <div className="flex justify-between">
+                <span>UNANSWERED</span>
+                <span className="font-bold text-slate-700">{unansweredCount}</span>
               </div>
-              <div className="space-y-1.5 text-xs text-muted-foreground border-t border-border pt-3">
-                <div className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-sm bg-primary inline-block" /> Answered
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-sm border border-border inline-block" /> Unanswered
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-accent">★</span> Flagged for review
-                </div>
+              <div className="flex justify-between">
+                <span>FLAGGED</span>
+                <span className="font-bold text-amber-700">{flagged.size}</span>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     </div>

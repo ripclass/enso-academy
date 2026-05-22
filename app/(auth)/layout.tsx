@@ -1,11 +1,14 @@
-import { Wordmark } from '@/components/brand/wordmark'
+import Link from 'next/link'
+import { Logo } from '@/components/brand/logo'
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-muted">
       <header className="border-b border-border bg-background">
         <div className="max-w-6xl mx-auto px-6 py-4">
-          <Wordmark />
+          <Link href="/" aria-label="Enso Academy">
+            <Logo />
+          </Link>
         </div>
       </header>
 

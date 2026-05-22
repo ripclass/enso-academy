@@ -4,6 +4,26 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-22 — UX/UI + branding pass: public landing page + brand identity v2 (Prompt 14)
+
+The product gets a public face and one coherent design language, before commerce.
+
+**Brand identity v2 (ADR 0018, supersedes ADR 0007)** — the "Auditable Editorial / Cold Fidelity" design language, documented in docs/BRAND.md. Teal/coral retained; `Outfit` becomes the display typeface, `Geist Mono` carries all data (stats, concepts, timers). A real ensō `<Logo>` replaces the text wordmark; a `<Mascot>` — the "Enso Guide" — is introduced (calm, mature, ensō-derived; built from separable SVG paths to animate later). This reverses FRAMEWORK.md's "no cartoon mascots" — FRAMEWORK.md amended to record the decision.
+
+**Public landing page at `/`** — hero, the "it sells readiness" pitch, the six capabilities, course lineup, pricing preview, FAQ, footer. SEO + OG metadata, a branded favicon (app/icon.svg), `/terms` + `/privacy` stubs (real legal pages land with payments).
+
+**The in-app journey re-skinned** — dashboard, /courses, course detail, the lesson player (Socratic Q&A panel anchored by the Mascot), the mock taker ("Cold Fidelity" — a deliberate sterile slate theme), mock results — all in the new language via a shared `AppHeader` + `ui-kit` (components/in-app/). All spine wiring preserved untouched.
+
+**Workflow** — built by integrating a Gemini-assisted first cut: Gemini produced presentational components from a reference design + the framework; this session reviewed, fixed, and integrated. Honesty fixes applied to the Gemini copy — no "guaranteed to pass", no "registered trademark" claim, the signoff is not called a certificate. Relay artifacts committed under docs/prompts/.
+
+Deferred to post-launch (captured, not built): an interactive concept node-graph visualizer, a portfolio/evidence hub, reactive/animated mascot states.
+
+Verified: `pnpm build` clean (18 routes, TypeScript clean); the landing page renders desktop + mobile with zero console errors; the auth pages render with the new Logo. The in-app re-skin is build-verified — visual review happens post-deploy.
+
+Next: Prompt 15 — Stripe / payments.
+
+---
+
 ## 2026-05-22 — Content pipeline built and trial-validated (the launch gate)
 
 The pipeline that turns the committed methodology into a generated course.

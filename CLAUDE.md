@@ -1,7 +1,7 @@
 # CLAUDE.md — Enso Academy Project Memory
 
 **Last updated:** 2026-05-22
-**Current milestone:** Content pipeline (Opus course generation) — built and trial-validated
+**Current milestone:** UX/UI + branding pass (Prompt 14) — public landing page + brand identity v2 + journey re-skin
 **Status:** In progress
 
 ## Active deployments
@@ -55,18 +55,19 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Lecturer memory live (5.0 spine): lib/student-model/memory.ts — student_memory holds durable relational facts (goal / context / struggle / preference) distilled by a Sonnet summarization job at lesson completion (scheduled via Next.js after()); read by askLecturer as a memory preamble and by getLecturerOpening, which generates a continuity greeting shown as the opening lecturer message; dashboard shows "Welcome back" for returning students
 - The classmate live (6.0 moat): lib/classmate/actions.ts — checkClassmateGap runs on lesson element advance; gap detection (grounded in the student model — fires only on an evidenced weak concept the element taught) → a Sonnet-generated in-character question from the per-course classmate (classmates table) + a Haiku lecturer answer, rendered in the Q&A panel; logged to classmate_interventions; seeds cached_qa with origin 'classmate_asked' (moat 4). Fires at most once per lesson session (tunable)
 - Content pipeline live (Prompt 13, ADR 0017): lib/ai/generator/ — a staged Claude Opus pipeline that generates a course from primary sources per the methodology (docs/COURSE-GENERATION-PROMPT.md, the verbatim system prompt) and emits the lib/lesson/scenes.ts scene contract. Stages: outline → per-lesson scenes → per-module assessment. Operator CLI: scripts/generate-course.ts (outline / lesson / assessment / full / write). Artifacts persist under generated/ (gitignored, resumable). The writer creates the course as a DRAFT. Trial-validated: a CAMS draft course exists (slug 'cams', 9 modules / 40 lessons, lesson 1.1 fully generated — 11 scenes — for $3.52). The full CAMS generation + SME review is pending operator work. See docs/RUNBOOK-course-generation.md
+- Public landing page + brand identity v2 live (Prompt 14, ADR 0018): the "Auditable Editorial / Cold Fidelity" design language — `Outfit` display type + `Geist Mono` for data, the ensō `<Logo>` and the Enso Guide `<Mascot>` (components/brand/), merged design tokens (teal/coral retained). Public landing at `/` (hero, pitch, six capabilities, course lineup, pricing preview, FAQ, footer), SEO/OG metadata, branded favicon (app/icon.svg), `/terms` + `/privacy` stubs. The in-app journey (dashboard, courses, course detail, lesson player, mock taker, mock results) is re-skinned in the same language via a shared `AppHeader` + UI kit (components/in-app/). Brand guide: docs/BRAND.md. Built by integrating a Gemini-assisted first cut (see docs/prompts/)
 - No payments wired (auto-enrollment is dev-only); Stripe not integrated
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 
 ## What's next (priority order)
 
-1. Prompt 14 — UX/UI flow + branding pass: audit and tighten the end-to-end student journey, and lock proper branding, before commerce. Ripon's direction: design before payments. Confirm exact scope with Ripon before drafting (landing page / brand identity / journey audit).
-2. Prompt 15 — Stripe / payments.
+1. Prompt 15 — Stripe / payments: gate enrollment behind payment, replace dev auto-enrollment, add the real Terms/Privacy pages (the landing footer currently links `/terms` + `/privacy` stubs).
+2. Post-launch deepening (deferred from Prompt 14, see docs/ROADMAP.md): an interactive concept node-graph visualizer, the portfolio / evidence hub, reactive/animated mascot states.
 
 Parallel content track (the launch gate — operator work, not engineering): run the full CAMS generation + SME review via the content pipeline (docs/RUNBOOK-course-generation.md).
 
-The 6.0 pedagogical spine (student model + memory + classmate) is complete, lessons are scene-based (Prompt 12), and the content pipeline is built and trial-validated (Prompt 13). The launch engineering is essentially complete — what remains is design polish, commerce, and the operator-run content generation.
+The 6.0 pedagogical spine (student model + memory + classmate) is complete, lessons are scene-based (Prompt 12), the content pipeline is built and trial-validated (Prompt 13), and the product now has a public face + one coherent design language (Prompt 14). The launch engineering is essentially complete — what remains is commerce (payments) and the operator-run content generation.
 
 See docs/ROADMAP.md for the full re-sequenced plan (launch cut, deferred items, the OpenMAIC legal stance).
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
@@ -136,7 +137,7 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Production smoke tests are the canonical verification path (see ADR 0006). Localhost is for iteration/debugging only.
 - Vercel env vars must stay in sync with the variable names expected by lib/supabase/* and lib/ai/*. Renaming a variable in code means renaming it in the Vercel dashboard too.
 - Hostinger DNS for ensoacademy.ai is configured manually by Ripon. If DNS needs changing, do it via hpanel.hostinger.com.
-- Design system v1 is locked (ADR 0007): Geist typography, teal primary #0F3D3E, coral accent #E07856, generous spacing, light mode only. Tokens live in app/globals.css. Do not add dark mode or `dark:` variants in v1.
+- Brand identity v2 is current (ADR 0018, supersedes ADR 0007): the "Auditable Editorial / Cold Fidelity" design language. `Outfit` display type (wired in app/layout.tsx via next/font) + `Geist Mono` for all data; teal #0F3D3E / coral #E07856 retained with tints/hovers. Tokens + `@keyframes float` in app/globals.css; globals.css `@import "tw-animate-css"` enables the `animate-in` utilities. docs/BRAND.md is the brand reference. `<Logo>` + `<Mascot>` in components/brand/; shared in-app chrome (`AppHeader`, `ui-kit`, `sign-out-button`) in components/in-app/. Still light mode only — no dark mode / `dark:` variants. The mock exam uses a deliberate off-palette cold slate theme ("Cold Fidelity") — intentional, do not "correct" it to teal/coral. The mascot is a brand/lecturer anchor — NOT the per-course classmate character.
 - shadcn/ui is the Base UI variant (the current CLI's default preset), not classic Radix. Components use Base UI's `render` prop, not `asChild`; for a link styled as a button use `buttonVariants()` on the Link. globals.css needs the `@layer base { * { @apply border-border } }` rule or bare `border` classes render black.
 - Supabase Auth config is code in supabase/config.toml, applied to the remote project with `supabase config push`. Caveat: `config push` pushes the entire [auth] block — keep config.toml reconciled with the remote, and note its `[Y/n]` confirm defaults to YES on EOF (a non-interactive/piped run applies, it does not just preview).
 - The CDCS course is a hand-seeded dev placeholder (migration 20260521064039), not Opus-generated. The Opus course-generation pipeline (a later prompt) will regenerate or replace it.

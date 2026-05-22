@@ -2,7 +2,7 @@ import { ResetPasswordForm } from './reset-password-form'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Reset your password — Enso Academy',
+  title: 'Reset your password',
 }
 
 export default function ResetPasswordPage() {

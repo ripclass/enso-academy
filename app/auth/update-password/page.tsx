@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Wordmark } from '@/components/brand/wordmark'
+import Link from 'next/link'
+import { Logo } from '@/components/brand/logo'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -53,7 +54,9 @@ export default function UpdatePasswordPage() {
     <div className="min-h-screen flex flex-col bg-muted">
       <header className="border-b border-border bg-background">
         <div className="max-w-6xl mx-auto px-6 py-4">
-          <Wordmark />
+          <Link href="/" aria-label="Enso Academy">
+            <Logo />
+          </Link>
         </div>
       </header>
 

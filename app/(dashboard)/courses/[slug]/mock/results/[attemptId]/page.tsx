@@ -1,14 +1,14 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { Wordmark } from '@/components/brand/wordmark'
-import { Card, CardContent } from '@/components/ui/card'
-import { buttonVariants } from '@/components/ui/button'
+import { ArrowLeft, CheckCircle2, XCircle, MinusCircle } from 'lucide-react'
+import { AppHeader } from '@/components/in-app/app-header'
+import { SectionHeader } from '@/components/in-app/ui-kit'
 import { getAttemptResults } from '@/lib/mock/actions'
 
 type Props = { params: Promise<{ slug: string; attemptId: string }> }
 
-export const metadata = { title: 'Mock results — Enso Academy' }
+export const metadata = { title: 'Mock results' }
 
 function titleize(s: string): string {
   return s.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
@@ -32,101 +32,117 @@ export default async function MockResultsPage({ params }: Props) {
     (attempt.by_domain_scores as any) ?? {}
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b border-border">
-        <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Wordmark />
-          <Link href={`/courses/${slug}`} className="text-sm text-muted-foreground hover:text-foreground">
-            Back to course
-          </Link>
-        </div>
-      </header>
+    <div className="min-h-screen flex flex-col bg-neutral-50">
+      <AppHeader context="Mock result" />
 
-      <main className="flex-1 max-w-3xl mx-auto px-6 py-12 w-full space-y-8">
-        {/* hero */}
-        <div className="text-center space-y-3">
-          <div className="text-xs text-muted-foreground uppercase tracking-wide">Mock exam result</div>
-          <div className={`text-5xl font-medium tabular-nums ${passed ? 'text-success' : 'text-foreground'}`}>
+      <main className="flex-1 mx-auto max-w-3xl px-6 py-12 w-full space-y-10">
+        <Link
+          href={`/courses/${slug}`}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-primary transition-colors"
+        >
+          <ArrowLeft className="h-3 w-3" /> Back to course
+        </Link>
+
+        {/* Score */}
+        <div className="rounded-lg border-2 border-neutral-900 bg-white p-8 text-center">
+          <div className="text-2xs font-semibold uppercase tracking-widest text-neutral-400 font-mono">
+            Mock exam result
+          </div>
+          <div
+            className={`mt-3 text-6xl font-extrabold font-mono ${passed ? 'text-primary' : 'text-accent'}`}
+          >
             {score}%
           </div>
-          <p className="text-muted-foreground">{correct} of {total} correct</p>
-          <div>
+          <p className="mt-2 text-2xs font-mono text-neutral-500 uppercase tracking-wider">
+            {correct} / {total} correct
+          </p>
+          <div className="mt-4">
             <span
-              className={`inline-block text-xs font-medium rounded-md px-2.5 py-1 ${
-                passed ? 'bg-success/10 text-success' : 'bg-destructive/10 text-destructive'
+              className={`inline-flex items-center rounded border px-2.5 py-1 text-2xs font-semibold uppercase tracking-wider font-mono ${
+                passed
+                  ? 'bg-primary-light text-primary border-primary/20'
+                  : 'bg-accent-light text-accent border-accent/20'
               }`}
             >
-              {passed ? 'Passed' : 'Not yet passed'} · {passScorePercent}% to pass
+              {passed ? 'Target met' : 'Target not met'} &middot; {passScorePercent}% to pass
             </span>
           </div>
         </div>
 
-        {/* by-domain */}
+        {/* By domain */}
         {Object.keys(byDomain).length > 0 && (
-          <Card>
-            <CardContent className="p-6 space-y-4">
-              <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">By domain</h2>
-              <div className="space-y-3">
-                {Object.entries(byDomain).map(([domain, d]) => (
-                  <div key={domain} className="space-y-1">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-foreground">{titleize(domain)}</span>
-                      <span className="text-muted-foreground tabular-nums">
-                        {d.correct} / {d.total} · {d.percent}%
-                      </span>
+          <div>
+            <SectionHeader title="Performance by domain" />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {Object.entries(byDomain).map(([domain, d]) => {
+                const strong = d.percent >= 80
+                const weak = d.percent < 65
+                const barColor = strong ? 'bg-primary' : weak ? 'bg-accent' : 'bg-neutral-400'
+                const textColor = strong ? 'text-primary' : weak ? 'text-accent' : 'text-neutral-600'
+                return (
+                  <div key={domain} className="rounded-lg border border-neutral-200 bg-white p-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="text-xs font-bold text-neutral-800">{titleize(domain)}</span>
+                      <span className={`text-xs font-bold font-mono ${textColor}`}>{d.percent}%</span>
                     </div>
-                    <div className="h-2 rounded-full bg-border overflow-hidden">
-                      <div className="h-full bg-primary rounded-full" style={{ width: `${d.percent}%` }} />
+                    <div className="mt-3 h-1.5 rounded-full bg-neutral-100 overflow-hidden">
+                      <div className={`h-full ${barColor}`} style={{ width: `${d.percent}%` }} />
+                    </div>
+                    <div className="mt-2 text-2xs font-mono text-neutral-400">
+                      {d.correct} / {d.total} correct
                     </div>
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                )
+              })}
+            </div>
+          </div>
         )}
 
-        {/* per-question review */}
-        <div className="space-y-4">
-          <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Question review</h2>
-          {questions.map((q, i) => {
-            const qb = qbankMap[q.id]
-            const studentAnswer = answers[q.id]
-            const correctAnswer = qb?.correct_answer
-            const skipped = studentAnswer === undefined || studentAnswer === ''
-            const isCorrect = !skipped && studentAnswer === correctAnswer
-            const badge = skipped
-              ? { label: 'Skipped', cls: 'bg-muted text-muted-foreground' }
-              : isCorrect
-                ? { label: 'Correct', cls: 'bg-success/10 text-success' }
-                : { label: 'Incorrect', cls: 'bg-destructive/10 text-destructive' }
-            return (
-              <Card key={q.id}>
-                <CardContent className="p-6 space-y-4">
+        {/* Per-question review */}
+        <div>
+          <SectionHeader title="Question review" />
+          <div className="space-y-4">
+            {questions.map((q, i) => {
+              const qb = qbankMap[q.id]
+              const studentAnswer = answers[q.id]
+              const correctAnswer = qb?.correct_answer
+              const skipped = studentAnswer === undefined || studentAnswer === ''
+              const isCorrect = !skipped && studentAnswer === correctAnswer
+              return (
+                <div key={q.id} className="rounded-lg border border-neutral-200 bg-white p-6">
                   <div className="flex items-start justify-between gap-4">
-                    <div className="text-sm font-medium leading-relaxed">
-                      <span className="text-muted-foreground tabular-nums mr-2">{i + 1}.</span>
+                    <div className="text-sm font-semibold leading-relaxed text-neutral-800">
+                      <span className="text-2xs font-mono text-neutral-400 mr-2 tabular-nums">
+                        Q{i + 1}
+                      </span>
                       {q.question_text}
                     </div>
-                    <span className={`shrink-0 text-xs font-medium rounded-md px-2 py-0.5 ${badge.cls}`}>
-                      {badge.label}
+                    <span className="shrink-0">
+                      {skipped ? (
+                        <MinusCircle className="h-5 w-5 text-neutral-400" />
+                      ) : isCorrect ? (
+                        <CheckCircle2 className="h-5 w-5 text-primary" />
+                      ) : (
+                        <XCircle className="h-5 w-5 text-accent" />
+                      )}
                     </span>
                   </div>
-                  <div className="space-y-2">
+                  <div className="mt-4 space-y-2">
                     {q.options.map((opt) => {
                       const isCorrectOpt = opt === correctAnswer
                       const isStudentWrong = opt === studentAnswer && !isCorrectOpt
                       return (
                         <div
                           key={opt}
-                          className={`text-sm rounded-md border px-3 py-2 flex items-start gap-2 ${
+                          className={`text-sm rounded border px-3 py-2 flex items-start gap-2 ${
                             isCorrectOpt
-                              ? 'border-success bg-success/5'
+                              ? 'border-primary/30 bg-primary-light/40 text-neutral-900'
                               : isStudentWrong
-                                ? 'border-destructive bg-destructive/5'
-                                : 'border-border'
+                                ? 'border-accent/30 bg-accent-light/40 text-neutral-900'
+                                : 'border-neutral-200 text-neutral-600'
                           }`}
                         >
-                          <span className="shrink-0 w-4 text-center" aria-hidden>
+                          <span className="shrink-0 w-4 text-center font-mono text-xs" aria-hidden>
                             {isCorrectOpt ? '✓' : isStudentWrong ? '✗' : ''}
                           </span>
                           <span>{opt}</span>
@@ -135,18 +151,21 @@ export default async function MockResultsPage({ params }: Props) {
                     })}
                   </div>
                   {qb?.explanation && (
-                    <p className="text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">
+                    <p className="mt-4 border-t border-neutral-100 pt-3 text-sm text-neutral-600 leading-relaxed">
                       {qb.explanation}
                     </p>
                   )}
-                </CardContent>
-              </Card>
-            )
-          })}
+                </div>
+              )
+            })}
+          </div>
         </div>
 
-        <div className="flex justify-center pt-2">
-          <Link href={`/courses/${slug}`} className={buttonVariants()}>
+        <div className="flex justify-center">
+          <Link
+            href={`/courses/${slug}`}
+            className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-semibold text-white hover:bg-primary-hover transition-colors"
+          >
             Back to course
           </Link>
         </div>
