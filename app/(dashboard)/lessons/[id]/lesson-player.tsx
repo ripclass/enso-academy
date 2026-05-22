@@ -8,20 +8,11 @@ import { Wordmark } from '@/components/brand/wordmark'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { askLecturer, completeLesson, updateListenModePreference } from '@/lib/lesson/actions'
+import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
+import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
+import { sceneContext, type Scene, type SceneType, type QuizQuestion } from '@/lib/lesson/scenes'
 import { toast } from 'sonner'
-
-type Element = {
-  id: string
-  element_type: string
-  title: string | null
-  body: string
-  estimated_seconds: number | null
-  audio_url: string | null
-  concept_tags: string[] | null
-  teaches_concepts: string[] | null
-}
 
 type Lesson = {
   id: string
@@ -46,7 +37,7 @@ type Message = {
 type Props = {
   sessionId: string
   lesson: Lesson
-  elements: Element[]
+  scenes: Scene[]
   courseId: string
   courseSlug: string
   lecturerOpening?: string | null
@@ -54,7 +45,15 @@ type Props = {
 
 type AudioStatus = 'idle' | 'loading' | 'playing' | 'paused' | 'ended' | 'error'
 
-export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug, lecturerOpening }: Props) {
+const SCENE_LABEL: Record<SceneType, string> = {
+  reading: 'Reading',
+  slide: 'Slide',
+  quiz: 'Knowledge check',
+  interactive: 'Interactive',
+  pbl: 'Project',
+}
+
+export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, lecturerOpening }: Props) {
   const router = useRouter()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [messages, setMessages] = useState<Message[]>(
@@ -69,14 +68,14 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
   const audioRef = useRef<HTMLAudioElement | null>(null)
   // Tracks what the audio element is currently playing, so that a finished
   // Q&A answer does not auto-advance the lesson like a finished narration does.
-  const audioSource = useRef<'element' | 'qa'>('element')
+  const audioSource = useRef<'scene' | 'qa'>('scene')
   // The classmate fires at most once per session; this guards the client side
   // (the checkClassmateGap action also enforces the cap server-side).
   const classmateFired = useRef(false)
   const [classmatePending, setClassmatePending] = useState(false)
 
-  const currentElement = elements[currentIndex]
-  const isLast = currentIndex === elements.length - 1
+  const currentScene = scenes[currentIndex]
+  const isLast = currentIndex === scenes.length - 1
 
   // Auto-scroll the conversation when new messages arrive
   useEffect(() => {
@@ -85,24 +84,24 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
     }
   }, [messages])
 
-  // Listen mode: load + play the current element's narration when the
-  // element changes, or when listen mode is switched on.
+  // Listen mode: load + play the current scene's narration when the scene
+  // changes, or when listen mode is switched on.
   useEffect(() => {
     if (!listenMode) return
     const audio = audioRef.current
     if (!audio) return
-    const url = currentElement?.audio_url
+    const url = currentScene?.audioUrl
     if (!url) {
       setAudioStatus('idle')
       return
     }
-    audioSource.current = 'element'
+    audioSource.current = 'scene'
     audio.src = url
     audio.play().catch((err) => {
       console.error('Audio play failed:', err)
       setAudioStatus('error')
     })
-  }, [currentIndex, listenMode, currentElement])
+  }, [currentIndex, listenMode, currentScene])
 
   // Persist the Listen-mode preference (debounced; non-critical).
   useEffect(() => {
@@ -112,23 +111,28 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
     return () => clearTimeout(timeoutId)
   }, [listenMode])
 
-  // After the student advances past an element, give the classmate a chance to
-  // raise a hand about a concept that element taught and the student is weak on.
+  // Lesson context for grounding the lecturer / classmate — the current scene
+  // plus its immediate neighbours, as plain text.
+  function buildContext(centerIndex: number) {
+    const window = scenes.slice(Math.max(0, centerIndex - 1), Math.min(scenes.length, centerIndex + 2))
+    const lessonContext = window.map((s) => sceneContext(s)).join('\n\n---\n\n')
+    const conceptTags = [
+      ...new Set(window.flatMap((s) => [...s.conceptTags, ...s.teachesConcepts])),
+    ]
+    return { lessonContext, conceptTags }
+  }
+
+  // After the student advances past a scene, give the classmate a chance to
+  // raise a hand about a concept that scene taught and the student is weak on.
   async function runClassmateCheck(taughtIndex: number) {
     if (classmateFired.current) return
-    const taught = elements[taughtIndex]
+    const taught = scenes[taughtIndex]
     if (!taught) return
-    const taughtConceptTags = [...new Set([
-      ...(taught.concept_tags ?? []),
-      ...(taught.teaches_concepts ?? []),
-    ])]
+    const taughtConceptTags = [...new Set([...taught.conceptTags, ...taught.teachesConcepts])]
     if (taughtConceptTags.length === 0) return
 
-    const ctx = elements.slice(Math.max(0, taughtIndex - 1), Math.min(elements.length, taughtIndex + 2))
-    const lessonContext = ctx
-      .map(el => `[${el.element_type}] ${el.title ?? ''}\n${el.body}`)
-      .join('\n\n---\n\n')
-    const askedQuestions = messages.filter(m => m.role === 'student').map(m => m.content)
+    const { lessonContext } = buildContext(taughtIndex)
+    const askedQuestions = messages.filter((m) => m.role === 'student').map((m) => m.content)
 
     setClassmatePending(true)
     try {
@@ -142,7 +146,7 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
       })
       if (result.fired && result.question && result.answer) {
         classmateFired.current = true
-        setMessages(prev => [
+        setMessages((prev) => [
           ...prev,
           { role: 'classmate', content: result.question!, classmateName: result.classmateName },
           { role: 'lecturer', content: result.answer! },
@@ -156,7 +160,7 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
   }
 
   function goNext() {
-    if (currentIndex < elements.length - 1) {
+    if (currentIndex < scenes.length - 1) {
       const taughtIndex = currentIndex
       setCurrentIndex(currentIndex + 1)
       void runClassmateCheck(taughtIndex)
@@ -177,25 +181,27 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
     }
   }
 
+  // A quiz-scene answer feeds the student knowledge model (same model the mock
+  // engine writes to). Fire-and-forget — never blocks the UI.
+  function handleQuizAnswer(question: QuizQuestion, _selectedOptionId: string, correct: boolean) {
+    void recordQuizEvidence({
+      courseId,
+      conceptTags: question.conceptTags ?? [],
+      correct,
+    }).catch(() => {})
+  }
+
   async function handleAskQuestion(e: React.FormEvent) {
     e.preventDefault()
     if (!questionInput.trim() || askingQuestion) return
 
     const question = questionInput.trim()
     setQuestionInput('')
-    setMessages(prev => [...prev, { role: 'student', content: question }])
+    setMessages((prev) => [...prev, { role: 'student', content: question }])
     setAskingQuestion(true)
 
     try {
-      // Build lesson context: combine the current element + a couple surrounding
-      const contextElements = elements.slice(Math.max(0, currentIndex - 1), Math.min(elements.length, currentIndex + 2))
-      const lessonContext = contextElements
-        .map(el => `[${el.element_type}] ${el.title ?? ''}\n${el.body}`)
-        .join('\n\n---\n\n')
-      const conceptTags = [...new Set(contextElements.flatMap(el => [
-        ...(el.concept_tags ?? []),
-        ...(el.teaches_concepts ?? []),
-      ]))]
+      const { lessonContext, conceptTags } = buildContext(currentIndex)
 
       const result = await askLecturer({
         sessionId,
@@ -207,12 +213,15 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
         listenMode,
       })
 
-      setMessages(prev => [...prev, {
-        role: 'lecturer',
-        content: result.answer,
-        fromCache: result.fromCache,
-        audioUrl: result.audioUrl,
-      }])
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'lecturer',
+          content: result.answer,
+          fromCache: result.fromCache,
+          audioUrl: result.audioUrl,
+        },
+      ])
 
       // Speak the lecturer's answer if listen mode produced audio.
       if (result.audioUrl && audioRef.current) {
@@ -259,7 +268,7 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
         onEnded={() => {
           setAudioStatus('ended')
           // Auto-advance only when narration (not a Q&A answer) finishes.
-          if (audioSource.current === 'element' && listenMode && currentIndex < elements.length - 1) {
+          if (audioSource.current === 'scene' && listenMode && currentIndex < scenes.length - 1) {
             setCurrentIndex(currentIndex + 1)
           }
         }}
@@ -310,15 +319,17 @@ export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug
           <Card>
             <CardContent className="p-8 space-y-4">
               <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span className="uppercase tracking-wide">{currentElement?.element_type?.replace('_', ' ')}</span>
-                <span>{currentIndex + 1} of {elements.length}</span>
+                <span className="uppercase tracking-wide">
+                  {currentScene ? SCENE_LABEL[currentScene.sceneType] : ''}
+                </span>
+                <span>{currentIndex + 1} of {scenes.length}</span>
               </div>
-              {currentElement?.title && (
-                <h2 className="text-lg font-medium">{currentElement.title}</h2>
+
+              {currentScene ? (
+                <SceneRenderer scene={currentScene} onQuizAnswer={handleQuizAnswer} />
+              ) : (
+                <p className="text-sm text-muted-foreground">This lesson has no content yet.</p>
               )}
-              <div className="prose prose-sm max-w-none whitespace-pre-wrap leading-relaxed text-foreground">
-                {currentElement?.body}
-              </div>
 
               {listenMode && (
                 <div className="flex items-center gap-3 text-xs text-muted-foreground pt-2 border-t border-border">

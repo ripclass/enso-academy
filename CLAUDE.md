@@ -1,7 +1,7 @@
 # CLAUDE.md — Enso Academy Project Memory
 
 **Last updated:** 2026-05-22
-**Current milestone:** The classmate (6.0 moat) — pedagogical spine complete
+**Current milestone:** Scene-based lesson delivery (lesson player v2)
 **Status:** In progress
 
 ## Active deployments
@@ -48,7 +48,7 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Production live at https://www.ensoacademy.ai — Vercel auto-deploy from main; env vars synced to Vercel Production + Preview; SSL active; both production smoke tests (/api/health/supabase, /api/ai/smoke-test) passing
 - Auth UI live: design system v1 (Geist, teal #0F3D3E / coral #E07856, light mode only — ADR 0007); /login, /signup, /reset-password, /auth/update-password pages; protected /dashboard with intent-preserving redirect (?next=); sign-out wired; Google sign-in button is a placeholder (toast)
 - Supabase Auth configured as code in supabase/config.toml (email signup + confirmations on, Site URL + redirect URLs), applied via `supabase config push`
-- Lesson player live: CDCS dev-seed course (1 module, 3 lessons, 16 content elements — hand-drafted placeholder, not Opus-generated); /courses (auto-enrollment in dev), /courses/[slug], /lessons/[id]; AI lecturer Q&A grounded in lesson context (cache-first via match_cached_qa RPC, Haiku fallback); session + session_events tracking; lesson completion
+- Lesson player live (v2 — scene-based): a lesson is an ordered list of typed SCENES (content_library_elements.scene_type + scene_data jsonb). v1 renders `reading`, `slide` (4 templates: key-points / definition / comparison / callout), `quiz` (inline formative MC, feeds the knowledge model); `interactive` / `pbl` are in the contract but render as a placeholder. Contract: lib/lesson/scenes.ts; renderers: components/lesson/scenes/. /courses (auto-enrollment in dev), /courses/[slug], /lessons/[id]; AI lecturer Q&A grounded in scene context (cache-first via match_cached_qa RPC, Haiku fallback); session + session_events tracking; lesson completion. CDCS lesson 1 re-seeded into scene format; lessons 2-3 render as reading scenes via backward compat
 - Mock exam engine live: 32-question CDCS bank (4 domains), CDCS Mock 1 template (20 q / 40 min / 75% pass); lib/mock/actions.ts (startMockExam, submitMockExam, getAttemptResults, updateReadiness); timed mock-taker UI (no-pause timer, auto-submit, question grid, flag, focus/blur tracking, two-step submit); results page (score, by-domain, per-question review); student_readiness + signoff_events wired on submission
 - TTS audio narration live: Google Cloud Text-to-Speech (en-US-Wavenet-D Wavenet voice); lib/audio/ (tts.ts wrapper, pregenerate.ts pipeline); Supabase Storage bucket 'lesson-audio' (public read, service-role write); content_library_elements.audio_url; 16 CDCS dev-course MP3s pre-generated (~$0.23); lesson player Listen mode (auto-queue narration between elements, status indicator); real-time TTS for AI lecturer Q&A; /api/admin/pregenerate-audio endpoint
 - Student knowledge model live (4.0 spine): lib/student-model/knowledge.ts — per-concept mastery in student_knowledge_state, Bayesian-flavored update (lr=1/(observations+4)); written by mock submissions (per question) + lesson completion; read by askLecturer as a system-prompt preamble that shapes the answer; "Your knowledge" card on the course page (strong / to-review concepts)
@@ -60,10 +60,10 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 
 ## What's next (priority order)
 
-1. Content pipeline — Opus course generation + first real course (the launch gate). The v1.0 methodology is committed at docs/COURSE-GENERATION-PROMPT.md (ADR 0015). CAMS is the recommended first real course (abundant free primary sources; the methodology's own worked example) — CDCS is the methodology's hardest IP case.
-2. Prompt 12 — Stripe / payments
+1. Prompt 13 — content pipeline: Opus course generation + first real course (the launch gate). The v1.0 methodology is committed at docs/COURSE-GENERATION-PROMPT.md (ADR 0015); it now emits SCENE-based courses against the lib/lesson/scenes.ts contract. CAMS is the recommended first real course (abundant free primary sources; the methodology's own worked example) — CDCS is the methodology's hardest IP case.
+2. Prompt 14 — Stripe / payments
 
-The 6.0 pedagogical spine (student model + memory + classmate) is complete. What remains before launch is content and commerce.
+The 6.0 pedagogical spine (student model + memory + classmate) is complete, and lessons are now scene-based (Prompt 12). What remains before launch is content and commerce.
 
 See docs/ROADMAP.md for the full re-sequenced plan (launch cut, deferred items, the OpenMAIC legal stance).
 Priorities shift based on Ripon's instructions. Always confirm before deviating.
@@ -154,6 +154,9 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - docs/COURSE-GENERATION-PROMPT.md is the canonical v1.0 course-generation methodology (ADR 0015). Any change requires a versioned revision (v1.1, v1.2, …) and an ADR — do not edit it silently.
 - The methodology's "What you should produce" section describes WHAT content to generate (prose), not a machine output format. The content-pipeline prompt must define the structured output contract that maps to the DB schema (content_library_elements, question_bank, glossary, case_studies, primary_source_citations, course_versions).
 - The methodology PROHIBITS building lessons from copyrighted ICC rule text (UCP 600, ISBP, ISP98, URDG, URC) — reference by name/section only; teach from underlying commercial practice + public regulatory/court interpretations. The hand-seeded CDCS dev course + 32-question bank predate the methodology and teach directly from UCP 600 articles — they are placeholders to be replaced by methodology-compliant generated content.
+- Scene model (Prompt 12, ADR 0016): a lesson is an ordered list of typed scenes. content_library_elements gained `scene_type` (enum: reading/slide/quiz/interactive/pbl) + `scene_data` jsonb. lib/lesson/scenes.ts is the canonical contract (the discriminated Scene union + parseScene) — it is ALSO the structured output contract the content-pipeline prompt hands to Opus; do not change it casually. Renderers in components/lesson/scenes/. v1 renders reading/slide/quiz richly; interactive/pbl render as a placeholder. A content row with empty scene_data falls back to a `reading` scene from `body` (backward compatible) — getLessonContent still orders by `metadata.order`.
+- Quiz scenes are FORMATIVE and feed the student knowledge model (recordQuizEvidence → recordEvidence). They are NOT the faithful mock exam — the mock engine (lib/mock/) is separate and untouched.
+- NOT built in v1 (deliberate, ADR 0016): whiteboard, multi-agent playback director, canvas slide renderer, PPTX export. A later bet, not a launch dependency.
 
 ## Who is Ripon
 

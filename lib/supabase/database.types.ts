@@ -464,6 +464,8 @@ export type Database = {
           metadata: Json
           module_id: string | null
           prerequisite_concepts: string[]
+          scene_data: Json
+          scene_type: Database["public"]["Enums"]["scene_type"]
           teaches_concepts: string[]
           title: string | null
           updated_at: string
@@ -486,6 +488,8 @@ export type Database = {
           metadata?: Json
           module_id?: string | null
           prerequisite_concepts?: string[]
+          scene_data?: Json
+          scene_type?: Database["public"]["Enums"]["scene_type"]
           teaches_concepts?: string[]
           title?: string | null
           updated_at?: string
@@ -508,6 +512,8 @@ export type Database = {
           metadata?: Json
           module_id?: string | null
           prerequisite_concepts?: string[]
+          scene_data?: Json
+          scene_type?: Database["public"]["Enums"]["scene_type"]
           teaches_concepts?: string[]
           title?: string | null
           updated_at?: string
@@ -2556,6 +2562,7 @@ export type Database = {
         | "matching"
       real_exam_result: "pass" | "fail" | "pending" | "not_taken"
       review_status: "pending" | "approved" | "changes_requested" | "rejected"
+      scene_type: "reading" | "slide" | "quiz" | "interactive" | "pbl"
       session_type: "lesson" | "mock_exam" | "quiz" | "review" | "free_chat"
       signoff_status: "not_ready" | "approaching" | "ready" | "stale"
       subscription_status:
@@ -2761,6 +2768,7 @@ export const Constants = {
       ],
       real_exam_result: ["pass", "fail", "pending", "not_taken"],
       review_status: ["pending", "approved", "changes_requested", "rejected"],
+      scene_type: ["reading", "slide", "quiz", "interactive", "pbl"],
       session_type: ["lesson", "mock_exam", "quiz", "review", "free_chat"],
       signoff_status: ["not_ready", "approaching", "ready", "stale"],
       subscription_status: [

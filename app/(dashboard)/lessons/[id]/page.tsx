@@ -4,6 +4,7 @@ import { redirect, notFound } from 'next/navigation'
 import { LessonPlayer } from './lesson-player'
 import { startLessonSession, getLessonContent } from '@/lib/lesson/actions'
 import { getLecturerOpening } from '@/lib/student-model/memory'
+import { parseScene, type ContentRow } from '@/lib/lesson/scenes'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -44,8 +45,9 @@ export default async function LessonPage({ params }: Props) {
 
   if (!enrollment) redirect('/courses')
 
-  // Fetch content elements
+  // Fetch content elements and parse them into typed scenes
   const elements = await getLessonContent(id)
+  const scenes = elements.map((row) => parseScene(row as unknown as ContentRow))
 
   // Start session
   const sessionId = await startLessonSession(id)
@@ -57,7 +59,7 @@ export default async function LessonPage({ params }: Props) {
     <LessonPlayer
       sessionId={sessionId}
       lesson={lesson as any}
-      elements={elements as any}
+      scenes={scenes}
       courseId={courseId}
       courseSlug={courseSlug}
       lecturerOpening={lecturerOpening}

@@ -1,0 +1,185 @@
+// lib/lesson/scenes.ts
+// The scene-data contract — Prompt 12 / ADR 0016.
+//
+// A lesson is an ordered list of typed SCENES. Each content_library_elements
+// row carries a `scene_type` discriminator and a `scene_data` jsonb payload.
+// This file is the canonical contract: the scene renderers (components/lesson/
+// scenes/) consume it, and the Opus course-generation pipeline emits it.
+// Keep it explicit and bounded — no free-form layout.
+
+// ── Slide templates ─────────────────────────────────────────────────────────
+// A bounded set the renderer and the generator both target. This is NOT an
+// arbitrary-layout engine — the generator picks one of these per slide.
+export type SlideTemplate = 'key-points' | 'definition' | 'comparison' | 'callout'
+
+export type SlideItem = {
+  /** Optional leading emoji or short glyph. */
+  icon?: string
+  /** Optional bold lead-in — a term, a step label, a column heading. */
+  label?: string
+  /** The item's text. */
+  text: string
+}
+
+// ── Per-scene-type payloads (the shape of scene_data) ───────────────────────
+
+/** `reading` — prose taught from primary sources, with visible citations. */
+export type ReadingSceneData = {
+  body: string // markdown
+  citations?: { label: string; url?: string }[]
+}
+
+/**
+ * `slide` — a designed slide. `template` selects the layout; `items` carries
+ * the points / rows; `narration` is the spoken script for TTS.
+ *  - key-points : heading + a list of point cards (icon / label / text)
+ *  - definition : heading is the term; items[0].text is the definition
+ *  - comparison : two columns; items split by `label` (the column heading)
+ *  - callout    : a single emphasised statement (items[0].text)
+ */
+export type SlideSceneData = {
+  template: SlideTemplate
+  heading: string
+  subheading?: string
+  items?: SlideItem[]
+  narration: string
+}
+
+/** A single inline quiz question. */
+export type QuizQuestion = {
+  prompt: string
+  options: { id: string; text: string }[]
+  correctOptionId: string
+  explanation: string
+  /** Concepts this question assesses — feeds the student knowledge model. */
+  conceptTags: string[]
+  points?: number
+}
+
+/**
+ * `quiz` — an inline, formative knowledge check. This is NOT the faithful mock
+ * exam (that is the mock engine, untouched). Answers feed recordEvidence.
+ */
+export type QuizSceneData = {
+  intro?: string
+  questions: QuizQuestion[]
+}
+
+/**
+ * `interactive` / `pbl` — defined in the contract now so the pipeline can emit
+ * them with no future regeneration. v1 renders a placeholder from title +
+ * summary; `spec` carries the (future, renderer-version-specific) build data.
+ */
+export type PlaceholderSceneData = {
+  title: string
+  summary: string
+  spec?: unknown
+}
+
+// ── The discriminated Scene union ───────────────────────────────────────────
+
+/** Fields every scene carries regardless of type (from the content row). */
+export type SceneBase = {
+  id: string
+  /** Display title (the content row's `title`). */
+  title: string | null
+  /** Concepts — read by the classmate gap-detection and the knowledge model. */
+  conceptTags: string[]
+  teachesConcepts: string[]
+  /** Pre-generated narration audio, if any. */
+  audioUrl: string | null
+  estimatedSeconds: number | null
+}
+
+export type Scene = SceneBase & (
+  | { sceneType: 'reading'; data: ReadingSceneData }
+  | { sceneType: 'slide'; data: SlideSceneData }
+  | { sceneType: 'quiz'; data: QuizSceneData }
+  | { sceneType: 'interactive'; data: PlaceholderSceneData }
+  | { sceneType: 'pbl'; data: PlaceholderSceneData }
+)
+
+export type SceneType = Scene['sceneType']
+
+// ── Parsing a content row into a typed Scene ────────────────────────────────
+
+/** The shape getLessonContent returns per content_library_elements row. */
+export type ContentRow = {
+  id: string
+  scene_type: string | null
+  scene_data: unknown
+  title: string | null
+  body: string
+  concept_tags: string[] | null
+  teaches_concepts: string[] | null
+  audio_url: string | null
+  estimated_seconds: number | null
+}
+
+/**
+ * Read a content row into a typed Scene. A row with no scene_type, or any row
+ * with an empty payload, falls back to a `reading` scene built from `body` —
+ * so pre-scene content is never orphaned (backward compatible).
+ */
+export function parseScene(row: ContentRow): Scene {
+  const base: SceneBase = {
+    id: row.id,
+    title: row.title,
+    conceptTags: row.concept_tags ?? [],
+    teachesConcepts: row.teaches_concepts ?? [],
+    audioUrl: row.audio_url,
+    estimatedSeconds: row.estimated_seconds,
+  }
+  const type = (row.scene_type ?? 'reading') as SceneType
+  const data = (row.scene_data && typeof row.scene_data === 'object'
+    ? (row.scene_data as Record<string, unknown>)
+    : {})
+  const hasPayload = Object.keys(data).length > 0
+
+  if (hasPayload) {
+    switch (type) {
+      case 'slide':
+        return { ...base, sceneType: 'slide', data: data as unknown as SlideSceneData }
+      case 'quiz':
+        return { ...base, sceneType: 'quiz', data: data as unknown as QuizSceneData }
+      case 'interactive':
+        return { ...base, sceneType: 'interactive', data: data as unknown as PlaceholderSceneData }
+      case 'pbl':
+        return { ...base, sceneType: 'pbl', data: data as unknown as PlaceholderSceneData }
+      case 'reading':
+        return { ...base, sceneType: 'reading', data: data as unknown as ReadingSceneData }
+    }
+  }
+  // No payload (or unknown type) → a reading scene from the row's `body`.
+  return { ...base, sceneType: 'reading', data: { body: row.body } }
+}
+
+/** The narration text for a scene — what TTS speaks. */
+export function sceneNarration(scene: Scene): string {
+  switch (scene.sceneType) {
+    case 'reading': return scene.data.body
+    case 'slide': return scene.data.narration
+    case 'quiz': return scene.data.intro ?? ''
+    case 'interactive':
+    case 'pbl': return scene.data.summary
+  }
+}
+
+/** Plain-text context for a scene — fed to the lecturer Q&A and classmate prompts. */
+export function sceneContext(scene: Scene): string {
+  const t = scene.title ? `${scene.title}\n` : ''
+  switch (scene.sceneType) {
+    case 'reading':
+      return t + scene.data.body
+    case 'slide':
+      return t + scene.data.heading + '\n' +
+        (scene.data.items ?? []).map((i) => `- ${i.label ? i.label + ': ' : ''}${i.text}`).join('\n') +
+        '\n' + scene.data.narration
+    case 'quiz':
+      return t + (scene.data.intro ?? '') + '\n' +
+        scene.data.questions.map((q) => q.prompt).join('\n')
+    case 'interactive':
+    case 'pbl':
+      return t + scene.data.summary
+  }
+}

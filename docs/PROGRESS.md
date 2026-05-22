@@ -4,6 +4,23 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-22 — Scene-based lesson delivery (lesson player v2)
+
+A lesson is now an ordered list of typed SCENES, not a wall of text. Decided after reviewing OpenMAIC's delivery layer; lands before the content pipeline so Opus generation targets the right output shape.
+
+- Migration: `content_library_elements` gained `scene_type` (enum: reading/slide/quiz/interactive/pbl) + `scene_data` jsonb. Existing rows default to reading/{} — backward compatible.
+- lib/lesson/scenes.ts — the canonical scene-data contract (discriminated Scene union + parseScene). Consumed by the renderers AND the output contract the content pipeline will hand to Opus.
+- components/lesson/scenes/ — renderers: ReadingScene (markdown + citations), SlideScene (4 templates: key-points / definition / comparison / callout), QuizScene (inline formative MC with feedback), PlaceholderScene (interactive/pbl), SceneRenderer.
+- Lesson player v2: renders scenes via SceneRenderer; the spine carries over untouched (Q&A panel, continuity greeting, classmate gap-check on advance, completion + memory, Listen-mode TTS). New: quiz scenes feed the student knowledge model via recordQuizEvidence.
+- CDCS lesson 1 re-seeded into scene format (slide ×4 templates, reading, quiz); lessons 2-3 render as reading scenes via backward compatibility.
+- ADR 0016 records the design and what was deliberately cut (whiteboard, playback director, canvas renderer, PPTX export — a later bet, not a launch dependency).
+
+Verified locally: all scene types render; a quiz answer fed the knowledge model (independence_principle 0.30→0.457 from a correct answer, issuing_bank registered an incorrect); the classmate still fired on scene advance; completion ran; un-migrated lesson 2 rendered as reading scenes.
+
+Next: Prompt 13 — the content pipeline, emitting scene-based CAMS content against this contract.
+
+---
+
 ## 2026-05-22 — Course generation methodology committed (v1.0)
 
 - docs/COURSE-GENERATION-PROMPT.md placeholder replaced with the real v1.0 methodology (~29.7KB), authored by the project owner.

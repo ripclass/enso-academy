@@ -104,23 +104,30 @@ Two tracks run in parallel and converge at launch.
 - **Depends on:** Prompt 9 (gap detection is a function of the student model — it cannot be built before it).
 - **Done when:** in a lesson where the student skips a critical concept, the classmate raises a hand with a question that is specific to that gap and not pre-scripted.
 
+#### Prompt 12 — Scene Model + Lesson Player v2 — ✅ shipped 2026-05-22
+
+- **Inserted after the OpenMAIC review** (a decision made post-roadmap). A lesson became an ordered list of typed **scenes** — `reading` / `slide` / `quiz` rendered richly, `interactive` / `pbl` defined in the contract but placeholdered.
+- **Builds:** `content_library_elements.scene_type` + `scene_data`; `lib/lesson/scenes.ts` (the scene-data contract — also the content pipeline's Opus output contract); scene renderers; lesson player v2. Quiz scenes feed the knowledge model.
+- **Deliberately cut:** whiteboard, multi-agent playback director, canvas renderer, PPTX export — a later bet (ADR 0016).
+- **Why before the content pipeline:** Opus generation is ~$1–3k/course; the contract had to be settled first so the run targets the right shape.
+
 ### Track B — the content critical path (the launch gate)
 
 Runs **in parallel with Prompts 9–11.** Independent of the spine — a different bottleneck (Opus cost + SME review time, not engineering).
 
-#### Content Pipeline + First Real Course
+#### Prompt 13 — Content Pipeline + First Real Course
 
 - **Goal:** replace the hand-seeded CDCS placeholder with a real course generated from primary sources.
 - **Builds:**
-  - `lib/ai/generator/` — the Opus course-generation pipeline. Its spec already exists at `docs/COURSE-GENERATION-PROMPT.md`; it has not been built.
-  - Generation of **one real course** — CDCS (already the dev course) or CAMS (the flagship) — from primary regulatory sources (FATF, Basel, Wolfsberg, UCP 600, OFAC, etc.). Never from competitor study guides.
+  - `lib/ai/generator/` — the Opus course-generation pipeline. The methodology is committed at `docs/COURSE-GENERATION-PROMPT.md` (ADR 0015); the pipeline emits **scene-based** courses against the `lib/lesson/scenes.ts` contract (ADR 0016).
+  - Generation of **one real course** — **CAMS** recommended (abundant free primary sources; the methodology's own worked example) — from primary regulatory sources (FATF, Basel, Wolfsberg, OFAC, etc.). Never from competitor study guides.
   - SME review pass.
 - **Cost reality:** ~$3,000–6,000 of Opus per course via OpenRouter (no Batch API), plus SME review time. Weeks, not days.
 - **Why it is the launch gate:** there is no product to sell without real content. **Start this now** — do not let the engineering track finish with nothing to teach.
 
 ### Then — monetization
 
-#### Prompt 12 — Stripe / Payments
+#### Prompt 14 — Stripe / Payments
 
 - **Goal:** gate enrollment behind payment. Replace dev auto-enrollment with a paid flow.
 - **Builds:** Stripe checkout, `course_purchases` / `subscriptions` wiring, enrollment gated on successful payment.

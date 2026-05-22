@@ -87,7 +87,7 @@ export async function getLessonContent(lessonId: string) {
 
   const { data: elements, error } = await admin
     .from('content_library_elements')
-    .select('id, element_type, title, body, body_format, estimated_seconds, concept_tags, teaches_concepts, difficulty, audio_url, audio_duration_seconds, metadata')
+    .select('id, element_type, scene_type, scene_data, title, body, body_format, estimated_seconds, concept_tags, teaches_concepts, difficulty, audio_url, audio_duration_seconds, metadata')
     .eq('lesson_id', lessonId)
     .order('created_at', { ascending: true })
 
@@ -240,6 +240,32 @@ ${opts.lessonContext}`
     fromCache: false,
     cachedQaId: cached?.id,
     audioUrl: await synthesizeQaAudio(result.text, opts.sessionId, opts.listenMode, admin),
+  }
+}
+
+/**
+ * Record a formative quiz-scene answer as evidence for the student knowledge
+ * model. Inline lesson quizzes feed the same model as the mock engine.
+ * Resilient — a failed write never blocks the lesson UI.
+ */
+export async function recordQuizEvidence(opts: {
+  courseId: string
+  conceptTags: string[]
+  correct: boolean
+}): Promise<void> {
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+    if (opts.conceptTags.length === 0) return
+    await recordEvidence({
+      studentId: user.id,
+      courseId: opts.courseId,
+      conceptTags: opts.conceptTags,
+      evidence: opts.correct ? 'correct' : 'incorrect',
+    })
+  } catch (err) {
+    console.error('recordQuizEvidence failed:', err)
   }
 }
 
