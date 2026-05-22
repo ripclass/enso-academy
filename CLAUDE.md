@@ -159,7 +159,7 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - Quiz scenes are FORMATIVE and feed the student knowledge model (recordQuizEvidence → recordEvidence). They are NOT the faithful mock exam — the mock engine (lib/mock/) is separate and untouched.
 - NOT built in v1 (deliberate, ADR 0016): whiteboard, multi-agent playback director, canvas slide renderer, PPTX export. A later bet, not a launch dependency.
 - Content pipeline (Prompt 13, ADR 0017): lib/ai/generator/ + scripts/generate-course.ts. Run via `pnpm tsx scripts/generate-course.ts <mode>`. The script loads .env.local with dotenv then DYNAMIC-imports the generator — because lib/ai/client.ts throws at module load if OPENROUTER_API_KEY is unset. Generation costs real Opus money; the full run is hours and ~$hundreds — it is operator-supervised, never run unattended. Artifacts persist under generated/ (gitignored); runs are resumable. Generated courses are DRAFTS (course_status 'draft') — the methodology mandates SME review before publishing. See docs/RUNBOOK-course-generation.md.
-- A CAMS draft course exists (slug 'cams', status 'draft') with only lesson 1.1 generated — it is a trial artifact, hidden from /courses (which filters status='published'). The demo account has a verification enrollment in it. Do not publish CAMS until the full generation + SME review is done.
+- A CAMS draft course exists (slug 'cams', status 'draft') with only lesson 1.1 generated — it is a trial artifact, hidden from /courses (which filters status='published') and with no enrollments. Do not publish CAMS until the full generation + SME review is done; re-running the pipeline's `write` will overwrite this draft.
 
 ## Who is Ripon
 
