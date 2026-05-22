@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect } from 'next/navigation'
 import { SignOutButton } from './sign-out-button'
 import { Wordmark } from '@/components/brand/wordmark'
@@ -17,6 +18,17 @@ export default async function DashboardPage() {
     redirect('/login?next=/dashboard')
   }
 
+  // A returning student (one the lecturer has memory of) gets a warmer greeting.
+  const admin = createAdminClient()
+  const { data: recentMemory } = await admin
+    .from('student_memory')
+    .select('id')
+    .eq('student_id', user.id)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+  const returning = !!recentMemory
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-border">
@@ -32,9 +44,13 @@ export default async function DashboardPage() {
       <main className="flex-1 max-w-6xl mx-auto px-6 py-12 w-full">
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-medium tracking-tight">Welcome to Enso Academy</h1>
+            <h1 className="text-3xl font-medium tracking-tight">
+              {returning ? 'Welcome back' : 'Welcome to Enso Academy'}
+            </h1>
             <p className="text-muted-foreground mt-2">
-              Continue studying, or browse your active courses.
+              {returning
+                ? 'Pick up where you left off — your lecturer remembers where you are.'
+                : 'Continue studying, or browse your active courses.'}
             </p>
           </div>
 

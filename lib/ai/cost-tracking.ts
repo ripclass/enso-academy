@@ -10,7 +10,7 @@ export type LoggedCallContext = {
   courseId?: string
   sessionId?: string
   lessonId?: string
-  purpose: 'lecturer' | 'escalation' | 'grading' | 'classmate_gap' | 'classifier' | 'generation' | 'embedding' | 'other'
+  purpose: 'lecturer' | 'escalation' | 'grading' | 'classmate_gap' | 'classifier' | 'generation' | 'embedding' | 'memory_summary' | 'lecturer_greeting' | 'other'
 }
 
 export async function logAiCall(opts: {

@@ -47,14 +47,17 @@ type Props = {
   elements: Element[]
   courseId: string
   courseSlug: string
+  lecturerOpening?: string | null
 }
 
 type AudioStatus = 'idle' | 'loading' | 'playing' | 'paused' | 'ended' | 'error'
 
-export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug }: Props) {
+export function LessonPlayer({ sessionId, lesson, elements, courseId, courseSlug, lecturerOpening }: Props) {
   const router = useRouter()
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<Message[]>(
+    lecturerOpening ? [{ role: 'lecturer', content: lecturerOpening }] : [],
+  )
   const [questionInput, setQuestionInput] = useState('')
   const [askingQuestion, setAskingQuestion] = useState(false)
   const [completing, setCompleting] = useState(false)

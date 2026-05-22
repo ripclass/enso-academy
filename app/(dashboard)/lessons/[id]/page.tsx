@@ -3,6 +3,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect, notFound } from 'next/navigation'
 import { LessonPlayer } from './lesson-player'
 import { startLessonSession, getLessonContent } from '@/lib/lesson/actions'
+import { getLecturerOpening } from '@/lib/student-model/memory'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -49,6 +50,9 @@ export default async function LessonPage({ params }: Props) {
   // Start session
   const sessionId = await startLessonSession(id)
 
+  // Continuity greeting from the lecturer's memory of this student (null if none)
+  const lecturerOpening = await getLecturerOpening(user.id, courseId, (lesson as any).name)
+
   return (
     <LessonPlayer
       sessionId={sessionId}
@@ -56,6 +60,7 @@ export default async function LessonPage({ params }: Props) {
       elements={elements as any}
       courseId={courseId}
       courseSlug={courseSlug}
+      lecturerOpening={lecturerOpening}
     />
   )
 }

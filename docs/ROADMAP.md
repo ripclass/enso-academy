@@ -30,7 +30,7 @@ Mapped against the framework's five-generation ladder (`docs/FRAMEWORK.md`):
 | 3.0 | Persistent tracking | ✅ Built — `sessions`, `session_events`, enrollment, completion |
 | 4.0 | Real student model | ✅ **Built** — Prompt 9 (2026-05-22); `lib/student-model/knowledge.ts`, written by mocks + lesson completion, read by the lecturer as preamble |
 | **4.0** | **Lessons as paths through a library** | ❌ **NOT built** — content renders in fixed `metadata.order` (a linear deck) |
-| **5.0** | **Lecturer memory** | ❌ **NOT built** — `student_memory` is an empty table; the lecturer starts from zero every session |
+| 5.0 | Lecturer memory | ✅ **Built** — Prompt 10 (2026-05-22); `lib/student-model/memory.ts`, Sonnet summary at session end, read as preamble + a continuity greeting |
 | 6.0 | Mock fidelity | ✅ Built — Prompt 7, genuinely strong |
 | 6.0 | Signoff mechanism | ✅ Built — `student_readiness` + `signoff_events` |
 | 6.0 | The classmate | ❌ Not built — `classmates` / `classmate_interventions` empty |
@@ -84,7 +84,7 @@ Two tracks run in parallel and converge at launch.
 - **Depends on:** nothing new — schema and players exist.
 - **Done when:** opening a lesson and asking the lecturer produces an answer measurably shaped by the student's mastery state; mock submission visibly moves mastery for the tested concepts.
 
-#### Prompt 10 — Lecturer Memory
+#### Prompt 10 — Lecturer Memory — ✅ shipped 2026-05-22
 
 - **Goal:** make `student_memory` a live editorial layer so the lecturer remembers the student across sessions. Framework capability 3 — the 5.0 layer.
 - **Builds:**

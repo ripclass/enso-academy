@@ -4,6 +4,23 @@ Append-only log of milestones completed. Newest entries at top.
 
 ---
 
+## 2026-05-22 — Lecturer memory live (the 5.0 spine)
+
+Second prompt of the re-sequenced roadmap. The lecturer now remembers who the student is across sessions.
+
+- lib/student-model/memory.ts: summarizeSessionToMemory (writer), getMemoryPreamble + getLecturerOpening (readers).
+- student_memory already had the right shape — no migration. It is an editorial layer of durable relational facts (goal / context / struggle / preference) — not a transcript, not concept mastery.
+- Writer: a Claude Sonnet summarization at lesson completion, scheduled via Next.js `after()` so it runs post-response — "Complete lesson" stays fast.
+- Readers: askLecturer injects a memory preamble alongside the Prompt 9 mastery preamble; getLecturerOpening generates a Haiku continuity greeting shown as the opening lecturer message in the lesson Q&A panel.
+- Dashboard shows "Welcome back" for returning students.
+- ADR 0013 records the design (editorial layer, after()-scheduled writer, no v1 compaction).
+
+Verified locally: a study session with goal- and struggle-revealing questions distilled 3 correctly-typed facts; the next lesson opened with the lecturer greeting — "Welcome back! …this will help clarify the relationships behind those banking day counts we've been working through. Let's take it step by step as always." — referencing the remembered struggle and pace preference.
+
+The lecturer now knows what the student knows (Prompt 9) and who they are (Prompt 10). Next: Prompt 11 — the classmate.
+
+---
+
 ## 2026-05-22 — Student knowledge model live (the 4.0 spine)
 
 First prompt of the re-sequenced roadmap (docs/ROADMAP.md). The student model — framework capability one, "the foundation" — was empty schema; this makes it live.

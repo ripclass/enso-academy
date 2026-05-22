@@ -6,6 +6,8 @@ import { callHaikuStreaming } from '@/lib/ai/routing'
 import { embed } from '@/lib/ai/embeddings'
 import { logAiCall } from '@/lib/ai/cost-tracking'
 import { getMasterySummary, recordEvidence } from '@/lib/student-model/knowledge'
+import { getMemoryPreamble, summarizeSessionToMemory } from '@/lib/student-model/memory'
+import { after } from 'next/server'
 
 type AskQuestionResult = {
   answer: string
@@ -167,11 +169,13 @@ export async function askLecturer(opts: {
   // course-level (shared across students), so cached answers stay generic —
   // an accepted v1 tradeoff (see docs/decisions/0012-student-knowledge-model-v1.md).
   const mastery = await getMasterySummary(user.id, opts.courseId, opts.conceptTags ?? [])
+  const memoryPreamble = await getMemoryPreamble(user.id, opts.courseId)
   const masteryBlock = mastery.preamble
     ? `\n${mastery.preamble}\nUse this to shape your answer — explain weak concepts more thoroughly and don't over-explain strong ones. Never mention or recite the knowledge model to the student; it shapes the answer, it is not part of it.\n`
     : ''
+  const memoryBlock = memoryPreamble ? `\n${memoryPreamble}\n` : ''
   const system = `You are the AI lecturer for Enso Academy. The student is studying the following lesson content. Answer their question grounded in this content. If the question is outside the lesson's scope, say so clearly and briefly. Be concise — 2-4 paragraphs at most.
-${masteryBlock}
+${memoryBlock}${masteryBlock}
 LESSON CONTENT:
 ${opts.lessonContext}`
 
@@ -273,14 +277,27 @@ export async function completeLesson(sessionId: string, lessonId: string) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const elementRows = (elements ?? []) as any[]
   if (elementRows.length > 0) {
+    const courseId = elementRows[0].course_id
     const conceptTags = [
       ...new Set(elementRows.flatMap((r) => (r.teaches_concepts as string[]) ?? [])),
     ]
     await recordEvidence({
       studentId: user.id,
-      courseId: elementRows[0].course_id,
+      courseId,
       conceptTags,
       evidence: 'lesson_completed',
+    })
+
+    // Lecturer memory: distil this session into durable facts. Scheduled via
+    // after() so it runs post-response and "Complete lesson" stays fast.
+    const { data: lessonRow } = await admin
+      .from('lessons')
+      .select('name')
+      .eq('id', lessonId)
+      .single()
+    const lessonName = lessonRow?.name ?? 'this lesson'
+    after(async () => {
+      await summarizeSessionToMemory({ studentId: user.id, courseId, sessionId, lessonName })
     })
   }
 }
