@@ -1,17 +1,25 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-outfit), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: 0.875rem;
 
   --color-background: #FFFFFF;
-  --color-foreground: #0A0A0A;
+  --color-foreground: #0F1717;
 
   --color-primary: #0F3D3E;
   --color-primary-hover: #155A5C;
+  --color-primary-light: #EBF2F2;
   --color-primary-foreground: #FFFFFF;
 
   --color-accent: #E07856;
+  --color-accent-hover: #E78C6D;
+  --color-accent-light: #FDF1ED;
   --color-accent-foreground: #FFFFFF;
 
   --color-muted: #FAFAFA;
@@ -28,15 +36,21 @@
   --color-success-foreground: #FFFFFF;
 
   --color-card: #FFFFFF;
-  --color-card-foreground: #0A0A0A;
+  --color-card-foreground: #0F1717;
 
   --color-popover: #FFFFFF;
-  --color-popover-foreground: #0A0A0A;
+  --color-popover-foreground: #0F1717;
 
   --color-secondary: #FAFAFA;
-  --color-secondary-foreground: #0A0A0A;
+  --color-secondary-foreground: #0F1717;
 
   --radius: 6px;
+}
+
+/* Mascot / hero float — referenced by `animate-[float_...]`. */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 /* shadcn/ui base layer — without this, Tailwind v4 renders a bare `border`

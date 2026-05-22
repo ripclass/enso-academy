@@ -1,49 +1,47 @@
-import { Wordmark } from '@/components/brand/wordmark'
-import Link from 'next/link'
-import { buttonVariants } from '@/components/ui/button'
+import React from 'react'
+import type { Metadata } from 'next'
+import { Header } from '@/components/landing/header'
+import { Hero } from '@/components/landing/hero'
+import { Pitch } from '@/components/landing/pitch'
+import { HowItWorks } from '@/components/landing/how-it-works'
+import { CourseLineup } from '@/components/landing/course-lineup'
+import { Pricing } from '@/components/landing/pricing'
+import { FAQ } from '@/components/landing/faq'
+import { Footer } from '@/components/landing/footer'
 
-export default function HomePage() {
+export const metadata: Metadata = {
+  title: { absolute: 'Enso Academy — Know you’re ready before exam day' },
+  description:
+    'Enso Academy prepares compliance and finance professionals for CAMS, CDCS, and CCAS — with a real student knowledge model, exam-faithful mock exams, and a calibrated readiness signoff.',
+  openGraph: {
+    title: 'Enso Academy — Know you’re ready before exam day',
+    description:
+      'AI-rendered interactive classrooms with a real student knowledge model and a calibrated readiness signoff.',
+    type: 'website',
+    url: 'https://www.ensoacademy.ai',
+    siteName: 'Enso Academy',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Enso Academy — Know you’re ready before exam day',
+    description:
+      'AI-rendered interactive classrooms with a real student knowledge model and a calibrated readiness signoff.',
+  },
+}
+
+export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Wordmark />
-          <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Sign in
-            </Link>
-            <Link
-              href="/signup"
-              className={buttonVariants({ size: 'sm' })}
-            >
-              Get started
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex-1 flex items-center justify-center px-6">
-        <div className="max-w-2xl text-center space-y-6">
-          <h1 className="text-4xl md:text-5xl font-medium tracking-tight">
-            Professional certification preparation, reimagined.
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Enso Academy teaches CAMS, CDCS, CCAS, and other high-stakes certifications through AI-rendered interactive classrooms. Built from primary regulatory sources. Calibrated against real exams.
-          </p>
-          <p className="text-sm text-muted-foreground pt-4">
-            Currently in private build. Public launch soon.
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col bg-white text-neutral-900 selection:bg-primary/10 selection:text-primary">
+      <Header />
+      <main className="flex-1">
+        <Hero />
+        <Pitch />
+        <HowItWorks />
+        <CourseLineup />
+        <Pricing />
+        <FAQ />
       </main>
-
-      <footer className="border-t border-border py-6">
-        <div className="max-w-6xl mx-auto px-6 text-sm text-muted-foreground text-center">
-          An Enso Intelligence Inc. product.
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
