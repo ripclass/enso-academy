@@ -59,6 +59,7 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - No payments wired (auto-enrollment is dev-only); Stripe not integrated
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
+- Generated-content review note (2026-05-24): calibration review still has CAMS lesson 1.2 (`generated/cams/lessons/what-terrorist-financing-actually-is.json`) at launch quality. CAMS lesson 1.3 (`generated/cams/lessons/why-states-regulate-financial-institutions.json`) then went through iterative cross-checks; the latest narrow pass verified that the last round-5 residual in scene 6 narration is now fixed. The unsupported entity-count inference is gone, the narration now matches the FinCEN `SAR Stats` formulation used in item 5, and no regressions were found in the already-cleared HSBC docket / Glasser / no-Cherkasky, Travel-Rule-scope, AMLA-characterisation, scene-5 VASP-definition, scene-4 DNFBP, or scene-8 substantive-base points. Preserve that wording if the artifact is revised again.
 
 ## What's next (priority order)
 
@@ -68,6 +69,8 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 Parallel content track (the launch gate — operator work, not engineering): run the full CAMS generation + SME review via the content pipeline (docs/RUNBOOK-course-generation.md).
 
 The 6.0 pedagogical spine (student model + memory + classmate) is complete, lessons are scene-based (Prompt 12), the content pipeline is built and trial-validated (Prompt 13), and the product now has a public face + one coherent design language (Prompt 14). The launch engineering is essentially complete — what remains is commerce (payments) and the operator-run content generation.
+
+Immediate content discipline note: preserve the now-cleared CAMS lesson 1.3 wording if the artifact is revised again. Do not reintroduce the removed scene-6 entity-count inference, and keep the FinCEN Files framed as named public-record context rather than substantive authority. CAMS lesson 1.2 remains at the calibration bar.
 
 See docs/ROADMAP.md for the full re-sequenced plan (launch cut, deferred items, the OpenMAIC legal stance).
 Priorities shift based on Ripon's instructions. Always confirm before deviating.

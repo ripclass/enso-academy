@@ -1,5 +1,49 @@
 # Session Notes
 
+## [2026-05-24 22:35] - CAMS lesson 1.3 sixth cross-check: scene 6 narration residual cleared
+
+Ran a narrow verification on `generated/cams/lessons/why-states-regulate-financial-institutions.json` against the user-reported fix. The prior round-5 residual is actually gone: the scene-6 narration no longer contains the unsupported entity-count inference and now uses the same FinCEN `SAR Stats` wording as item 5 ("depository institutions filing the substantial majority of total US SAR submissions annually").
+
+Also re-checked the items the user said round 5 had already cleared and found no regressions: HSBC still correctly uses docket `1:12-cr-00763-ILG` / Judge I. Leo Glasser and does not name Cherkasky; the Travel Rule scope still distinguishes financial institutions / VASPs from DNFBPs; the AMLA sentence still limits direct supervision to selected cross-border credit/financial institutions from 2028; scene 5 still defines VASPs by activity including unlicensed operators; scene 4 still states the DNFBP perimeter correctly; scene 8 still frames the FinCEN Files as named public-record context with the regulatory substance carried by FATF / AMLA / EU primary materials.
+
+## [2026-05-24 22:10] - Comparative launch-bar scoring: CAMS 1.2 passes, CAMS 1.3 still blocked
+
+Read all three lesson artifacts directly from disk and scored lesson 1.2 and lesson 1.3 against lesson 1.1 as the calibration artifact.
+
+Result:
+- Lesson 1.2 (`what-terrorist-financing-actually-is.json`) clears the calibration bar. Structure, deep-case treatment, quiz design, and source discipline are at or above lesson 1.1.
+- Lesson 1.3 (`why-states-regulate-financial-institutions.json`) still does not clear the bar. The old scene-6 Travel-Rule error is fixed, but two new approval blockers remain:
+  1. Scene 6 ("Same architecture, asymmetric burden") makes quantitative burden claims (`FinCEN SAR Stats`, "tens of billions", "hundreds of dollars per customer") without primary-source support in the scene or adjacent reading scenes.
+  2. Scene 8 ("The structural critique: the FinCEN Files") uses ICIJ/BuzzFeed investigative reporting as substantive lesson source material instead of pointer-only context, which falls below the committed primary-source-only methodology.
+
+If lesson 1.3 is revised again, re-check scene 6 for unsupported quantitative burden language and rebuild scene 8 from primary/public-source materials (for example statutory/reform texts and public official materials) rather than journalistic reporting as the scene's core authority.
+
+## [2026-05-24 21:30] - CAMS lesson 1.3 revised artifact still blocked on scene 6 narration
+
+Ran the second cross-check on the revised `generated/cams/lessons/why-states-regulate-financial-institutions.json` artifact (hash `e1a51dbb0abad6aa62efb9f89d39bf81d8bc7522f55296bc976411c40bcd664a`).
+
+What cleared:
+- HSBC scene now correctly uses `1:12-cr-00763-ILG` / Judge I. Leo Glasser for the 11 Dec 2012 filing, with John Gleeson limited to the later 1 July 2013 memorandum/order.
+- The scene no longer names Michael Cherkasky; it stays at the source-supported “five-year independent compliance monitor.”
+- The comparison-slide bullet now correctly says R.16 / Travel Rule applies to financial institutions and is extended to VASPs by INR.15, not to DNFBPs by R.22/R.23.
+- The AMLA sentence is now directionally correct: AMLA operational in mid-2025, direct supervision for selected high-risk cross-border credit/financial institutions from 2028, DNFBPs left with national supervisors plus AMLA coordination/indirect oversight.
+
+What still blocks approval:
+- Scene 6 narration still says FATF Recommendations 10, 11, 16, 20, and 21 are “the same words on the page” for a bank, DNFBP, and VASP, and explicitly includes the Travel Rule in the common obligations. That reintroduces the same substantive error the corrected bullet fixed. R.22 extends 10/11/12/15/17 to DNFBPs and R.23 extends 18/19/20/21; DNFBPs are not brought under R.16.
+
+If this lesson is revised again, re-check both the comparison slide items and the narration/script separately; the structured bullet was fixed but the spoken narration was not.
+
+## [2026-05-24 20:30] - CAMS lesson 1.3 review blocked approval
+
+Independent second-opinion review of `generated/cams/lessons/why-states-regulate-financial-institutions.json` returned `SPLIT`, with approval-blocking citation/content defects concentrated in the HSBC and regulated-sector scenes. The lesson's 11-scene structure is correct and the FinCEN Files scene stays distinct from the HSBC deep case, but four specific fixes are required before approval:
+
+1. HSBC scene: "filed before Judge John Gleeson" is wrong for the 11 Dec 2012 filing. The filed docket materials are `1:12-cr-00763-ILG` (Judge I. Leo Glasser). Gleeson appears on the later July 2013 memorandum/order.
+2. HSBC scene: Michael Cherkasky is named as the five-year monitor without a supporting cited primary source in the scene's citation list.
+3. Comparison slide: wrongly extends the Travel Rule to DNFBPs. FATF R.16 applies to financial institutions and INR.15 extends the equivalent obligation to VASPs; DNFBPs get R.10/11/12/15/17 via R.22 and R.18/19/20/21 via R.23, not R.16.
+4. DNFBP scene: overstates the EU AMLA framework by saying AMLA will directly supervise the largest cross-border DNFBPs from 2025 onward. Direct supervision under the 2024 AMLA framework is for selected credit/financial institutions, not DNFBPs.
+
+If the content pipeline or SME-review workflow is tightened later, add checks for: docket-judge mismatches in enforcement scenes, monitor-name sourcing, and FATF-scope comparisons that collapse FI / DNFBP / VASP obligations into a single bucket.
+
 Running notes between Claude Code sessions. Append observations, partial work, things to remember next time. Cleared and archived periodically by the owner.
 
 Format: ## [YYYY-MM-DD HH:MM] — short title
