@@ -10,6 +10,46 @@ export { generateAssessment } from './assessment'
 export { writeCourse, type WriteResult } from './writer'
 export { saveArtifact, loadArtifact, artifactExists, listArtifacts } from './artifacts'
 export { METHODOLOGY_VERSION } from './methodology'
+export {
+  runGates,
+  gateSchema,
+  gateCitation,
+  gateIp,
+  gatePedagogy,
+  gateQuizAlignment,
+  gateMethodology,
+  type GateOutcome,
+  type GateResult,
+  type ValidationReport,
+} from './validate_gates'
+export {
+  gateCitationBind,
+  runCitationBind,
+  extractClaims,
+  bindClaim,
+  type ExtractedClaim,
+  type BindHit,
+  type ClaimKind,
+  type CitationBindReport,
+} from './citation_bind'
+export {
+  dispatchCodex,
+  parseVerdict,
+  parallelCrossCheck,
+  dispatchCodexWithCap,
+  countPriorCrossChecks,
+  MAX_CODEX_ITERATIONS_PER_LESSON,
+  makeReviewEvent,
+  appendReviewEvent,
+  type CodexVerdict,
+  type CodexDecision,
+  type DispatchOptions,
+  type ParallelCrossCheckArgs,
+  type ParallelCrossCheckResult,
+  type CappedDispatchResult,
+  type ReviewEvent,
+  type ReviewEventInput,
+} from './codex_dispatch'
 export type {
   OutlineArtifact,
   OutlineModule,

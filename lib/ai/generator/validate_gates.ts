@@ -7,8 +7,9 @@
 // specified in cams-session-brief.md so the Path-1 self-check artifacts
 // migrate forward without rework.
 //
-// Gates (the 5 from the Path-1 brief + the 6th surfaced by the CAMS 1.3 LQB
-// iteration — methodology audit needs to run alongside factual-fidelity,
+// Gates (the 5 from the Path-1 brief + 6 surfaced by the CAMS 1.3 LQB
+// iteration + 7 added in Path-2 cycle 2 to bind structured factual
+// references — methodology audit needs to run alongside factual-fidelity,
 // not in series after):
 //   1. schema           (hard) — scene shape against lib/lesson/scenes.ts
 //   2. citation         (hard for absence; soft for outline resolution)
@@ -17,6 +18,10 @@
 //   5. quiz_alignment   (soft) — question conceptTags ⊆ lesson; correctOptionId valid
 //   6. methodology      (soft) — news-as-pointer not substance; item↔narration
 //                                consistency; numeric claims sourced
+//   7. citation_bind    (soft) — every structured factual reference (statute,
+//                                case, EO, named publication) anchored by
+//                                substring in same-scene-or-adjacent-reading
+//                                citation
 //
 // All gates are pure functions over the artifact (+ optional outline for
 // citation resolution). No DB, no LLM, no I/O. Server-only by convention
@@ -24,6 +29,7 @@
 // (future scripts/validate-lesson.ts) or an inline session before save.
 
 import type { LessonArtifact, GeneratedScene, OutlineArtifact } from './types'
+import { gateCitationBind } from './citation_bind'
 
 // ── Public types — match the .validation.json schema in cams-session-brief.md ──
 
@@ -46,6 +52,7 @@ export type ValidationReport = {
     pedagogy: GateResult
     quiz_alignment: GateResult
     methodology: GateResult
+    citation_bind: GateResult
   }
   /** any 'fail' → fail; else any 'flag' → flag; else pass. */
   overall: GateOutcome
@@ -274,9 +281,17 @@ export function gateCitation(
     return fail(`${missing.length} reading scene(s) missing citations`, { missing })
   }
 
-  // 2b (soft): citation labels resolvable to outline.sources[]. Lenient
-  // bidirectional substring match (the outline source list is known to be
-  // underspecified — Path-1 CAMS 1.3 ran at 16/36 outline-match rate).
+  // 2b (informational): citation labels' resolution rate against outline.sources[].
+  //
+  // SOURCE REGISTRY SEMANTICS (Path-2 cycle 5, ADR 0019): outline.sources[] is
+  // ADVISORY, not authoritative. The bind step (gateCitationBind) accepts any
+  // verifiable primary source — the methodology gate (gateIp) bans commercial
+  // study-guide sources and the methodology gate (6a) bans news-as-substance.
+  // Anti-fabrication is enforced by those gates plus the structural-reference
+  // bind, not by outline-substring matching. The resolution rate here is a
+  // diagnostic for whether the outline is keeping up with the lessons; a low
+  // rate means the outline is underspecified relative to what lessons need,
+  // which is acceptable per the advisory-registry decision. Default: pass.
   if (!outline?.sources?.length) {
     return pass('every reading scene carries citations (outline resolution skipped — no outline supplied)', {
       readingSceneCount: readingScenes.length,
@@ -311,17 +326,26 @@ export function gateCitation(
   }
 
   const resolutionRate = total > 0 ? (total - unresolved.length) / total : 1
-  if (resolutionRate < 0.5) {
+  // Per the advisory-registry decision: outline mismatch is informational. We
+  // flag only when ALL citations fail to resolve, which would suggest the
+  // outline is completely disjoint from the lesson (likely a wrong-course
+  // outline supplied to the validator) rather than the usual underspecified-
+  // outline case.
+  if (total > 0 && resolutionRate === 0) {
     return flag(
-      `only ${Math.round(resolutionRate * 100)}% of citations resolve to outline.sources (${unresolved.length} unresolved of ${total})`,
+      `none of ${total} citations resolve to outline.sources — likely the wrong outline supplied for this lesson`,
       { unresolvedSample: unresolved.slice(0, 10), totalCitations: total, resolutionRate },
     )
   }
-  return pass('every reading scene carries citations; outline resolution within tolerance', {
-    readingSceneCount: readingScenes.length,
-    totalCitations: total,
-    resolutionRate,
-  })
+  return pass(
+    `every reading scene carries citations; outline-source resolution ${Math.round(resolutionRate * 100)}% (advisory)`,
+    {
+      readingSceneCount: readingScenes.length,
+      totalCitations: total,
+      resolutionRate,
+      unresolvedCount: unresolved.length,
+    },
+  )
 }
 
 // ── Gate 3: IP (hard) ─────────────────────────────────────────────────────
@@ -567,6 +591,7 @@ export function runGates(
     pedagogy: gatePedagogy(artifact),
     quiz_alignment: gateQuizAlignment(artifact),
     methodology: gateMethodology(artifact),
+    citation_bind: gateCitationBind(artifact),
   } as const
 
   const outcomes = Object.values(gates).map((g) => g.outcome)

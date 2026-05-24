@@ -1,5 +1,23 @@
 # Session Notes
 
+## [2026-05-24 EOD] - Path 2 build complete; SME track started in parallel
+
+Built all five Path 2 cycles in priority order (ADR 0019). Summary:
+
+- Cycle 1 (CLI runner for the gate seed): `scripts/validate-lesson.ts <course-slug> [--all | <lesson-slug>]`. Exit codes 0/1/2/3 = pass/flag/fail/invocation-error. Validates each of the three CAMS fixtures end-to-end.
+- Cycle 2 (`citation_bind.ts`): substring-verified bind for structured factual references with lesson-wide candidate scope (calibration decision against Path-1 fixtures), multi-bindKey alias expansion (UK/BD statute abbreviations, FATF R variations, UNSCR forms), and range / `et seq.` expansion in candidate labels. Integrated as gate 7 in `runGates`. Catches real gaps in the Path-1 artifacts that the prior Codex per-artifact rounds missed (1.2's UNSCR 1373 / FATF R.5 unanchored, 1.3's BD ATA 2009 / MLPA 2012 unanchored in scene 6, 1.1's § 5324 unanchored in quiz).
+- Cycle 3 (`lesson_review_events` migration + backfill script): table matches the Path-1 JSONL 1:1; service-role writes, authenticated reads; indexes for timeline-per-lesson and content-addressable lookup. Migration **NOT yet applied** — Ripon runs `supabase db push` when ready, then `pnpm tsx scripts/backfill-review-events.ts cams` to ingest the 18 Path-1 events.
+- Cycle 4 (`codex_dispatch.ts`): `dispatchCodex` always pipes brief via temp file + stdin (closes the codex-rescue self-attribution failure mode at the infrastructure level); `parseVerdict` is line-based (robust across Codex's line-break variations); `parallelCrossCheck` runs methodology + factual-fidelity in parallel (collapses two iterations into one per the LQB lesson). `appendReviewEvent` writes JSONL always + DB best-effort.
+- Cycle 5 (source registry semantics + iteration cap): `outline.sources[]` is ADVISORY per Ripon's instinct; the citation gate's outline-resolution rate is informational, the only FAIL condition is total disjoint (likely wrong outline). `MAX_CODEX_ITERATIONS_PER_LESSON = 3` validated against Path-1 history: 1.1 = 0 events (calibration), 1.2 = 3 (at cap), 1.3 = 6 (over cap — vindicates the 3-iteration threshold as the right operational signal). `countPriorCrossChecks` reads the JSONL so the cap works without the DB.
+
+Key Path 2 gotchas to preserve:
+
+- The validate_gates.ts and the new modules type-check cleanly (`pnpm tsc --noEmit` exits 0). Treat the 7 gates as the contract; don't tighten thresholds without re-validating against the Path-1 fixtures.
+- The methodology gate 6b (item↔narration ref consistency) is over-sensitive on equivalent reference forms (e.g. `UNSCR 1373` in item vs `UN Security Council Resolution 1373` in narration). It produces FLAG, not FAIL. A refinement to normalise reference forms is in the follow-up backlog.
+- The citation_bind regex for FATF Recommendations doesn't yet handle comma-separated lists ("Recommendations 20, 26–29" — matches "20" but misses "26–29"). One outstanding unbound claim in 1.3 (`FATF R.26`) traces to this. Refinement in the follow-up backlog.
+- `codex-rescue` subagent has a one-time-observed self-attribution failure mode (claimed shell-arg-size limits, produced Claude-written verdict). For new code, use `dispatchCodex` directly — that's the whole point of cycle 4. Treat the subagent as a last-resort fallback if `codex_dispatch` can't be invoked for some reason.
+- Per-course `review_events.jsonl` remains the source of truth even after the DB migration is applied. `appendReviewEvent` writes JSONL synchronously (no fallback path) and the DB best-effort. If the DB write fails (table missing, env missing, network), the JSONL append still succeeds and the workflow continues. This is graceful by design.
+
 ## [2026-05-24 22:35] - CAMS lesson 1.3 sixth cross-check: scene 6 narration residual cleared
 
 Ran a narrow verification on `generated/cams/lessons/why-states-regulate-financial-institutions.json` against the user-reported fix. The prior round-5 residual is actually gone: the scene-6 narration no longer contains the unsupported entity-count inference and now uses the same FinCEN `SAR Stats` wording as item 5 ("depository institutions filing the substantial majority of total US SAR submissions annually").

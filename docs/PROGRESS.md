@@ -1,5 +1,17 @@
 # Enso Academy Progress Log
 
+## 2026-05-24 — Path 2 infrastructure (ADR 0019): deterministic gates + Codex orchestration shipped
+
+Built the five Path-2 components per the priority order Ripon set after the Launch Quality Bar evaluation. All five cycles implemented and tested against the Path-1 fixtures.
+
+- **Cycle 1 — `scripts/validate-lesson.ts`**: CLI runner for `validate_gates.ts` (the gate runner was committed pre-this-ADR as a seed). `pnpm tsx scripts/validate-lesson.ts <course-slug> [--all | <lesson-slug>]`. Writes `<lesson-slug>.validation.json` sibling, exits 0/1/2 for pass/flag/fail. Wired into `lib/ai/generator/index.ts` exports.
+- **Cycle 2 — `lib/ai/generator/citation_bind.ts`**: substring-verified bind for structured factual references (statutes / cases / EOs / named publications) with lesson-wide candidate scope, multi-bindKey alias expansion (UK/BD abbreviations, FATF R variations, UNSCR forms), and range / `et seq.` expansion in candidate labels. Integrated as gate 7 in `runGates`. Catches real gaps in the Path-1 fixtures (1.2 UNSCR 1373 / FATF R.5 unanchored; 1.3 scene 6 BD ATA 2009 / MLPA 2012 unanchored) that Codex's per-artifact rounds missed.
+- **Cycle 3 — `supabase/migrations/20260524161116_path2_lesson_review_events.sql`**: append-only `lesson_review_events` table matching the 18-event Path-1 JSONL shape 1:1. RLS-enabled, service-role writes, authenticated read. Indexes for timeline-per-lesson and content-addressable lookup. `scripts/backfill-review-events.ts <course-slug>` ingests the JSONL. Migration NOT applied — Ripon runs `supabase db push` when ready.
+- **Cycle 4 — `lib/ai/generator/codex_dispatch.ts`**: `dispatchCodex({ brief })` always pipes via file-to-stdin (closes the self-attribution failure mode); `parseVerdict(raw)` line-based parser robust across Codex's line-break variations; `parallelCrossCheck` dispatches methodology + factual-fidelity in parallel (collapses two iterations to one per the LQB lesson); `makeReviewEvent` / `appendReviewEvent` persist to JSONL always + DB best-effort.
+- **Cycle 5 — source-registry semantics + iteration cap**: `outline.sources[]` is now ADVISORY (citation gate is informational; only the all-disjoint case FLAGs — likely wrong outline). `MAX_CODEX_ITERATIONS_PER_LESSON = 3` + `countPriorCrossChecks(courseSlug, lessonSlug)`. Validated against Path-1 history: 1.1 = 0 events (calibration), 1.2 = 3 (at cap — final AGREE on round 3), 1.3 = 6 (over cap — vindicates the 3-iteration threshold as the right operational signal).
+
+All seven gates pass type-checking (`pnpm tsc --noEmit`). The CLI runner validates all three CAMS lessons end-to-end. The `parseVerdict` smoke-test confirms parsing across SPLIT-inline-bullets / AGREE-empty / SPLIT-multi-line-bullets shapes from real Path-1 Codex outputs.
+
 ## 2026-05-24 — CAMS lesson 1.3 sixth cross-check clears the last round-5 residual
 
 Ran a narrow verification pass on `generated/cams/lessons/why-states-regulate-financial-institutions.json` focused on the single scene-6 narration residual left by round 5.

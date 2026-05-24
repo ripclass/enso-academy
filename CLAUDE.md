@@ -1,8 +1,8 @@
 # CLAUDE.md — Enso Academy Project Memory
 
-**Last updated:** 2026-05-22
-**Current milestone:** UX/UI + branding pass (Prompt 14) — public landing page + brand identity v2 + journey re-skin
-**Status:** Complete
+**Last updated:** 2026-05-24
+**Current milestone:** M13-Academy Path 2 infrastructure (ADR 0019) — deterministic gates + Codex orchestration for course content
+**Status:** Code complete; Supabase migration pending operator apply; SME track started in parallel
 
 ## Active deployments
 
@@ -60,15 +60,18 @@ Two adjacent products: Enso Academy Global (international certs, USD pricing) an
 - Folder structure matches docs/ARCHITECTURE.md
 - GitHub repo at github.com/ripclass/enso-academy (public during dev, private at launch)
 - Generated-content review note (2026-05-24): calibration review still has CAMS lesson 1.2 (`generated/cams/lessons/what-terrorist-financing-actually-is.json`) at launch quality. CAMS lesson 1.3 (`generated/cams/lessons/why-states-regulate-financial-institutions.json`) then went through iterative cross-checks; the latest narrow pass verified that the last round-5 residual in scene 6 narration is now fixed. The unsupported entity-count inference is gone, the narration now matches the FinCEN `SAR Stats` formulation used in item 5, and no regressions were found in the already-cleared HSBC docket / Glasser / no-Cherkasky, Travel-Rule-scope, AMLA-characterisation, scene-5 VASP-definition, scene-4 DNFBP, or scene-8 substantive-base points. Preserve that wording if the artifact is revised again.
+- M13-Academy Path 2 infrastructure live (ADR 0019): `lib/ai/generator/` extended with `validate_gates.ts` (7 deterministic gates incl. methodology + citation_bind), `citation_bind.ts` (substring-verified bind for structured factual references with lesson-wide scope + alias / range / et-seq expansion), `codex_dispatch.ts` (`dispatchCodex` always file-to-stdin, `parseVerdict` line-based, `parallelCrossCheck` for methodology+fidelity in parallel, `dispatchCodexWithCap` enforcing `MAX_CODEX_ITERATIONS_PER_LESSON = 3`, `appendReviewEvent` JSONL-always + DB-best-effort). Operator CLI: `scripts/validate-lesson.ts <course-slug> [--all | <lesson-slug>]`. Supabase migration `supabase/migrations/20260524161116_path2_lesson_review_events.sql` defines the append-only `lesson_review_events` table matching the Path-1 JSONL 1:1 — NOT yet applied (Ripon runs `supabase db push`); `scripts/backfill-review-events.ts <course-slug>` ingests the JSONL once the migration is live. Source-registry decision: `outline.sources[]` is advisory; the citation gate is informational; anti-fabrication is enforced by gateIp + gateMethodology + gateCitationBind. Cap validated against Path-1 history (1.2 at cap with 3 events; 1.3 over cap with 6 — vindicates the threshold).
 
 ## What's next (priority order)
 
-1. Prompt 15 — Stripe / payments: gate enrollment behind payment, replace dev auto-enrollment, add the real Terms/Privacy pages (the landing footer currently links `/terms` + `/privacy` stubs).
-2. Post-launch deepening (deferred from Prompt 14, see docs/ROADMAP.md): an interactive concept node-graph visualizer, the portfolio / evidence hub, reactive/animated mascot states.
+1. Apply Path 2's Supabase migration (`supabase db push`) + run backfill (`pnpm tsx scripts/backfill-review-events.ts cams`) + regenerate `lib/supabase/database.types.ts`. Operator step; not engineering.
+2. Path 2 follow-ups: integrate `runGates` into `scripts/generate-course.ts` so the Opus generation flow validates before `saveArtifact`; calibrate the methodology gate 6b (item↔narration ref consistency) to normalise equivalent reference forms (e.g. `UNSCR 1373` ↔ `UN Security Council Resolution 1373`); refine `citation_bind` regex for comma-separated FATF Recommendation lists ("Recommendations 20, 26–29").
+3. Prompt 15 — Stripe / payments: gate enrollment behind payment, replace dev auto-enrollment, add the real Terms/Privacy pages (the landing footer currently links `/terms` + `/privacy` stubs).
+4. Post-launch deepening (deferred from Prompt 14, see docs/ROADMAP.md): an interactive concept node-graph visualizer, the portfolio / evidence hub, reactive/animated mascot states.
 
-Parallel content track (the launch gate — operator work, not engineering): run the full CAMS generation + SME review via the content pipeline (docs/RUNBOOK-course-generation.md).
+Parallel content track (the launch gate — operator work, not engineering): run the full CAMS generation + SME review via the content pipeline (docs/RUNBOOK-course-generation.md). SME track started in parallel with Path 2 build per Ripon's directive.
 
-The 6.0 pedagogical spine (student model + memory + classmate) is complete, lessons are scene-based (Prompt 12), the content pipeline is built and trial-validated (Prompt 13), and the product now has a public face + one coherent design language (Prompt 14). The launch engineering is essentially complete — what remains is commerce (payments) and the operator-run content generation.
+The 6.0 pedagogical spine (student model + memory + classmate) is complete, lessons are scene-based (Prompt 12), the content pipeline is built and trial-validated (Prompt 13), the product has a public face + one coherent design language (Prompt 14), and Path 2 deterministic-validation + Codex-orchestration infrastructure is in place (ADR 0019). The launch engineering is essentially complete — what remains is commerce (payments), the operator-run content generation, and the SME review of generated drafts.
 
 Immediate content discipline note: preserve the now-cleared CAMS lesson 1.3 wording if the artifact is revised again. Do not reintroduce the removed scene-6 entity-count inference, and keep the FinCEN Files framed as named public-record context rather than substantive authority. CAMS lesson 1.2 remains at the calibration bar.
 
@@ -166,6 +169,10 @@ If asked to do work without updating memory at the end, remind the user and ask 
 - NOT built in v1 (deliberate, ADR 0016): whiteboard, multi-agent playback director, canvas slide renderer, PPTX export. A later bet, not a launch dependency.
 - Content pipeline (Prompt 13, ADR 0017): lib/ai/generator/ + scripts/generate-course.ts. Run via `pnpm tsx scripts/generate-course.ts <mode>`. The script loads .env.local with dotenv then DYNAMIC-imports the generator — because lib/ai/client.ts throws at module load if OPENROUTER_API_KEY is unset. Generation costs real Opus money; the full run is hours and ~$hundreds — it is operator-supervised, never run unattended. Artifacts persist under generated/ (gitignored); runs are resumable. Generated courses are DRAFTS (course_status 'draft') — the methodology mandates SME review before publishing. See docs/RUNBOOK-course-generation.md.
 - A CAMS draft course exists (slug 'cams', status 'draft') with only lesson 1.1 generated — it is a trial artifact, hidden from /courses (which filters status='published') and with no enrollments. Do not publish CAMS until the full generation + SME review is done; re-running the pipeline's `write` will overwrite this draft.
+- Path 2 infrastructure (ADR 0019): `lib/ai/generator/codex_dispatch.ts` is the single point of Codex invocation. Always call `dispatchCodex` or `dispatchCodexWithCap` directly from server actions / scripts rather than via the `codex-rescue` subagent (which has a one-time-observed self-attribution failure mode where it claimed shell-arg-size limits and produced a Claude-written verdict). `dispatchCodex` always pipes the brief via file-to-stdin to remove that failure mode at the infrastructure level. `dispatchCodexWithCap` enforces `MAX_CODEX_ITERATIONS_PER_LESSON = 3` by reading the JSONL — if you need to dispatch beyond the cap for debugging, call `dispatchCodex` directly.
+- Path 2 `validate-lesson.ts` exit codes: 0/1/2 = pass/flag/fail (per gate-runner overall outcome); 3 = invocation error (missing args / artifact not found). Useful for CI.
+- Path 2 `citation_bind` deliberately uses LESSON-WIDE candidate scope for structured factual references (statutes, cases, EOs, named publications) — calibrated against Path-1 fixtures where the strict same-or-adjacent rule produced false positives on the "introduced in slide, cited in later reading" pattern. Strict same-or-adjacent scope STAYS the rule for numeric claims via `gateMethodology` 6c. Don't change citation_bind's scope without re-validating against the Path-1 fixtures.
+- Path 2 `appendReviewEvent` writes JSONL ALWAYS and DB best-effort. JSONL is the source of truth (ships with the artifact bundle; works offline). The `lesson_review_events` table is a query-friendly mirror. The migration is gitted but NOT yet applied to the remote project — `appendReviewEvent` silently falls back to JSONL-only until Ripon runs `supabase db push` + `scripts/backfill-review-events.ts cams`. This is graceful, not broken.
 
 ## Who is Ripon
 
