@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { Plus } from 'lucide-react'
 
 const faqs = [
   {
@@ -33,52 +33,46 @@ const faqs = [
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
-  const toggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
-
   return (
-    <section id="faq" className="py-24 md:py-32 bg-neutral-50 border-t border-neutral-200">
-      <div className="mx-auto max-w-4xl px-6 md:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">
-            FAQ
-          </h2>
-          <p className="text-3xl font-bold tracking-tight text-neutral-900 md:text-5xl">
-            Frequently asked questions
-          </p>
-        </div>
+    <section id="faq" className="bg-background border-b border-foreground">
+      <div className="mx-auto max-w-3xl px-6 py-20 md:px-8 md:py-28">
+        <span className="block text-2xs font-bold uppercase tracking-[0.22em] text-foreground/50">
+          FAQ
+        </span>
+        <h2 className="mt-3 text-2xl font-extrabold uppercase leading-tight tracking-tight text-foreground md:text-4xl">
+          Frequently asked questions.
+        </h2>
 
-        <div className="space-y-4">
+        <div className="mt-10 border-t border-foreground">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index
             return (
-              <div
-                key={faq.question}
-                className="rounded-lg border border-neutral-200 bg-white overflow-hidden transition-all duration-200"
-              >
+              <div key={faq.question} className="border-b border-foreground">
                 <button
                   type="button"
-                  onClick={() => toggle(index)}
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between p-6 text-left font-bold text-neutral-900 hover:text-primary transition-colors focus:outline-none"
+                  className="flex w-full items-center justify-between gap-6 py-5 text-left"
                 >
-                  <span className="text-lg">{faq.question}</span>
-                  <ChevronDown
-                    className={`h-5 w-5 text-neutral-500 transition-transform duration-300 shrink-0 ${
-                      isOpen ? 'rotate-180 text-primary' : ''
+                  <span className="text-base font-bold text-foreground md:text-lg">
+                    {faq.question}
+                  </span>
+                  <Plus
+                    className={`h-5 w-5 shrink-0 text-foreground transition-transform duration-300 ${
+                      isOpen ? 'rotate-45' : ''
                     }`}
                   />
                 </button>
-
                 <div
-                  className={`transition-all duration-300 ease-in-out ${
-                    isOpen ? 'max-h-48 border-t border-neutral-100' : 'max-h-0'
-                  } overflow-hidden`}
+                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
+                    isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                  }`}
                 >
-                  <p className="p-6 text-sm text-neutral-600 leading-relaxed bg-neutral-50/50">
-                    {faq.answer}
-                  </p>
+                  <div className="min-h-0">
+                    <p className="max-w-2xl pb-6 text-sm leading-relaxed text-foreground/70">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
               </div>
             )

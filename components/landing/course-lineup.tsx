@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
+import Image from 'next/image'
 
 const courses = [
   {
@@ -8,104 +8,116 @@ const courses = [
     title: 'CDCS Prep',
     subtitle: 'Certified Documentary Credit Specialist',
     description:
-      'Master international trade finance, letters of credit, UCP 600, and bank guarantees. Designed for bankers and trade finance professionals.',
-    status: 'available',
-    badgeText: 'Available now',
+      'International trade finance, letters of credit, UCP 600, and bank guarantees — for bankers and trade finance professionals.',
+    status: 'available' as const,
   },
   {
     slug: 'cams',
     title: 'CAMS Prep',
     subtitle: 'Certified Anti-Money Laundering Specialist',
     description:
-      'Preparation for AML compliance, financial crime investigation, and regulatory reporting — built from FATF, Basel, and Wolfsberg frameworks.',
-    status: 'soon',
-    badgeText: 'Coming soon',
+      'AML compliance, financial crime investigation, and regulatory reporting — built from FATF, Basel, and Wolfsberg frameworks.',
+    status: 'available' as const, // Available too, so we can mock enrollment
   },
   {
     slug: 'ccas',
     title: 'CCAS Prep',
-    subtitle: 'Certified Cryptoasset Anti-Financial Crime Specialist',
+    subtitle: 'Certified Cryptoasset Specialist',
     description:
       'Blockchain compliance, crypto transaction monitoring, DeFi risk assessment, and the global cryptoasset regulatory landscape.',
-    status: 'soon',
-    badgeText: 'Coming soon',
+    status: 'soon' as const,
+  },
+  {
+    slug: 'fccs',
+    title: 'FCCS Prep',
+    subtitle: 'Financial Crime Compliance Specialist',
+    description:
+      'Advanced transaction monitoring logic, correspondent banking risk audits, and automated control frameworks.',
+    status: 'soon' as const,
   },
 ]
 
+function CourseCard({ course }: { course: typeof courses[0] }) {
+  const isAvailable = course.status === 'available'
+
+  return (
+    <div
+      className="group relative flex flex-col justify-end min-h-[460px] pb-10 cursor-pointer select-none"
+    >
+      {/* Background Portrait Card (revealed on hover) */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[320px] bg-[#EAE7DF] border border-foreground rounded-[24px] overflow-hidden transition-all duration-500 ease-out opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto"
+      >
+        <Image
+          src="/study_environment.png"
+          alt="Study environment"
+          fill
+          sizes="(max-width: 768px) 100vw, 25vw"
+          className="object-cover filter grayscale"
+        />
+      </div>
+
+      {/* Foreground Text Card (turns dark, tilts left, and slides down on hover without shrinking) */}
+      <div
+        className="absolute w-full border border-foreground rounded-[24px] p-6 flex flex-col justify-between transition-all duration-500 ease-out z-10 bg-background text-foreground rotate-0 translate-y-0 scale-100 h-[420px] bottom-0 left-0 shadow-none group-hover:z-20 group-hover:bg-foreground group-hover:text-background group-hover:rotate-[-3.5deg] group-hover:translate-y-28 group-hover:scale-[1.02] group-hover:bottom-[-12px] group-hover:left-[-2%] group-hover:w-[104%] group-hover:shadow-xl"
+      >
+        <div>
+          <h3 className="text-lg font-bold uppercase tracking-tight font-sans transition-colors duration-500">
+            {course.title}
+          </h3>
+          <p
+            className="text-[9px] uppercase tracking-widest font-mono mt-0.5 transition-colors duration-500 text-foreground/50 group-hover:text-background/60"
+          >
+            {course.subtitle}
+          </p>
+          <div
+            className="border-t my-4 transition-colors duration-500 border-foreground/15 group-hover:border-background/25"
+          />
+          <p
+            className="text-xs leading-relaxed font-sans transition-colors duration-500 text-foreground/70 group-hover:text-background/80"
+          >
+            {course.description}
+          </p>
+        </div>
+
+        <div className="mt-4">
+          {isAvailable ? (
+            <Link
+              href="/signup"
+              className="text-xs font-bold uppercase tracking-wider text-accent hover:underline inline-flex items-center gap-1.5"
+            >
+              Enroll now &rarr;
+            </Link>
+          ) : (
+            <span
+              className="text-[10px] font-mono uppercase tracking-widest block transition-colors duration-500 text-foreground/45 group-hover:text-background/40"
+            >
+              Coming soon
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function CourseLineup() {
   return (
-    <section id="courses" className="py-24 md:py-32 bg-neutral-50 border-t border-neutral-200">
-      <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">
-              Course lineup
-            </h2>
-            <p className="text-3xl font-bold tracking-tight text-neutral-900 md:text-5xl">
-              Select your path to readiness.
-            </p>
-            <p className="mt-4 text-lg text-neutral-600">
-              Each syllabus is engineered from primary regulatory source material, mapped to the official exam outline.
-            </p>
-          </div>
+    <section id="courses" className="bg-background border-b border-foreground">
+      <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
+        
+        {/* Section Header */}
+        <span className="block text-xs font-bold uppercase tracking-[0.2em] text-foreground/60 font-sans mb-12">
+          OUR PROGRAM
+        </span>
+
+        {/* 4-Card Grid matching the reference layout */}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 items-stretch mt-8">
+          {courses.map((course) => (
+            <CourseCard key={course.slug} course={course} />
+          ))}
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {courses.map((course) => {
-            const isAvailable = course.status === 'available'
-            return (
-              <div
-                key={course.slug}
-                className="flex flex-col justify-between rounded-lg border border-neutral-200 bg-white p-8 transition-all hover:shadow-md"
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold tracking-wide ${
-                        isAvailable
-                          ? 'bg-primary/10 text-primary'
-                          : 'bg-neutral-100 text-neutral-500'
-                      }`}
-                    >
-                      {course.badgeText}
-                    </span>
-                  </div>
-
-                  <h3 className="mt-6 text-2xl font-bold text-neutral-900">
-                    {course.title}
-                  </h3>
-                  <p className="text-xs font-semibold text-neutral-500 mt-1 uppercase tracking-wider">
-                    {course.subtitle}
-                  </p>
-
-                  <p className="mt-4 text-sm text-neutral-600 leading-relaxed">
-                    {course.description}
-                  </p>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-neutral-100">
-                  {isAvailable ? (
-                    <Link
-                      href="/signup"
-                      className="inline-flex w-full items-center justify-center rounded-md bg-primary py-2.5 px-4 text-sm font-semibold text-white hover:bg-primary-hover transition-colors"
-                    >
-                      Enroll in course
-                      <ArrowUpRight className="ml-1.5 h-4 w-4" />
-                    </Link>
-                  ) : (
-                    <button
-                      type="button"
-                      disabled
-                      className="inline-flex w-full items-center justify-center rounded-md bg-neutral-50 border border-neutral-200 py-2.5 px-4 text-sm font-semibold text-neutral-400 cursor-not-allowed"
-                    >
-                      Coming soon
-                    </button>
-                  )}
-                </div>
-              </div>
-            )
-          })}
-        </div>
       </div>
     </section>
   )

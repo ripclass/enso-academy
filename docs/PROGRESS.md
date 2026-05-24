@@ -2,6 +2,17 @@
 
 Append-only log of milestones completed. Newest entries at top.
 
+## 2026-05-22 — Visual Layout Refinement (Reference Matching)
+
+Completed a visual overhaul of the landing page to exactly match the design reference.
+
+- **Theme & Typeface**: Replaced Bricolage display font with Outfit display font in root layout and CSS. Set light cream paper background (`#FAF7F2`) and charcoal (`#1E1E1E`) as primary colors. Fixed page.tsx background override bug.
+- **Header & Navigation**: Styled primary actions as hollow outline pill buttons, aligning with the reference's minimalist posture.
+- **Hero Grid**: Aligned layout with reference image grid, showcasing the tracking-tight, uppercase headline on the left (col-span-8), supporting paragraph pairs on the right (col-span-4), and the grayscale study environment image underneath.
+- **Capabilities list ("HOW WE WORK")**: Stacked elements flush using a shared border overlap (`mt-[-1px]`) and tight padding (`py-4`) so headers sit closely together without overlapping text. Implemented click-driven accordion behavior (clicking a tab expands it and collapses others; flat bottom border without bottom rounded corners for the last item).
+- **Course Lineup**: Styled all cards straight by default. Added hover triggers so mouseover on any card transitions it into the layered collage layout (grayscale workspace image fading in with the text card tilting left `rotate-[-3.5deg]` and sliding downwards `translate-y-28` to overlap the bottom edge while maintaining its fixed height `h-[420px]` so it never shrinks).
+- **Validation**: Compiled successfully under Turbopack (`pnpm run build`), TypeScript clean, zero errors.
+
 ---
 
 ## 2026-05-22 — UX/UI + branding pass: public landing page + brand identity v2 (Prompt 14)

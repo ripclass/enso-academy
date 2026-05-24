@@ -1,11 +1,10 @@
-import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Outfit } from 'next/font/google'
 import type { Metadata } from 'next'
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
 
-// Outfit — the editorial display typeface (brand identity v2, ADR 0018).
+// Outfit — the clean display/UI typeface to match the design reference.
 const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-outfit',
@@ -28,14 +27,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${outfit.variable}`}
-    >
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${outfit.variable} ${GeistMono.variable}`}>
+      <body className="font-sans antialiased bg-background text-foreground">
         {children}
         <Toaster />
       </body>
     </html>
   )
 }
+

@@ -1,83 +1,108 @@
-import React from 'react'
-import { UserCheck, Clock, HelpCircle, FileText, CheckCircle2, Bookmark } from 'lucide-react'
+'use client'
+
+import React, { useState } from 'react'
 
 const capabilities = [
   {
-    icon: UserCheck,
-    title: 'A tutor that actually knows you',
+    num: '01',
+    word: 'MODELING',
     description:
       'Enso builds a live model of what you know, concept by concept, from every question you answer — and the AI lecturer adapts to your gaps instead of replaying a script.',
   },
   {
-    icon: Clock,
-    title: 'It remembers you',
+    num: '02',
+    word: 'MEMORY',
     description:
       'Come back after a week and the lecturer picks up where you left off — your goal, what you struggled with, the pace that worked.',
   },
   {
-    icon: HelpCircle,
-    title: 'A classmate that catches your blind spots',
+    num: '03',
+    word: 'GAPS',
     description:
       'A consistent AI study companion raises its hand and asks the question you didn’t know you needed answered.',
   },
   {
-    icon: FileText,
-    title: 'Mock exams that feel like the real thing',
+    num: '04',
+    word: 'MOCKS',
     description:
       'Same question count, same time limit, same pressure. The timer doesn’t pause — you learn to manage the clock before exam day, not during it.',
   },
   {
-    icon: CheckCircle2,
-    title: 'A signoff you can trust',
+    num: '05',
+    word: 'SIGNOFF',
     description:
       'Enso tells you when you’re genuinely ready, on a bar set deliberately stricter than the real exam. It would rather tell you to study one more week than let you walk in and fail.',
   },
   {
-    icon: Bookmark,
-    title: 'Built from the source',
+    num: '06',
+    word: 'SOURCES',
     description:
       'Every lesson is generated from primary regulatory material — FATF, Basel, Wolfsberg, OFAC — never from competitor study guides. You learn the actual reasoning.',
   },
 ]
 
 export function HowItWorks() {
-  return (
-    <section id="features" className="py-24 md:py-32 bg-white">
-      <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="max-w-3xl">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">
-            How it works
-          </h2>
-          <p className="text-3xl font-bold tracking-tight text-neutral-900 md:text-5xl">
-            Built for professionals who cannot afford to waste time.
-          </p>
-          <p className="mt-4 text-lg text-neutral-600">
-            A study platform engineered around active retrieval, precision feedback, and empirical readiness.
-          </p>
-        </div>
+  const [activeIdx, setActiveIdx] = useState<number | null>(null)
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((item) => {
-            const Icon = item.icon
+  return (
+    <section id="features" className="bg-background border-b border-foreground">
+      <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
+        
+        {/* Section Header */}
+        <span className="mb-10 block text-xs font-bold uppercase tracking-[0.2em] text-foreground/60 font-sans">
+          HOW WE WORK
+        </span>
+
+        {/* Stacked Cards (Matches reference folder-tab layout exactly) */}
+        <div className="flex flex-col select-none">
+          {capabilities.map((item, idx) => {
+            const isExpanded = activeIdx === idx
             return (
               <div
-                key={item.title}
-                className="group relative rounded-lg border border-neutral-200 bg-white p-8 transition-all hover:border-primary/40 hover:shadow-md"
+                key={item.num}
+                onClick={() => setActiveIdx(activeIdx === idx ? null : idx)}
+                style={{
+                  marginTop: idx > 0 ? '-1px' : '0px',
+                  zIndex: idx + 10,
+                }}
+                className="border-t border-x border-foreground last:border-b rounded-t-[32px] bg-background relative transition-all duration-300 ease-out cursor-pointer"
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-md bg-neutral-100 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <Icon className="h-6 w-6" />
+                <div className="pt-4 pb-3 px-6 md:px-8 flex flex-col md:flex-row md:items-start justify-between gap-4">
+                  
+                  {/* Left Side: Number & Giant Uppercase Word */}
+                  <div className="flex items-baseline gap-4 md:gap-6 shrink-0 md:w-1/2">
+                    <span className="font-mono text-xs font-bold text-accent shrink-0">
+                      {item.num}.
+                    </span>
+                    <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-foreground font-sans leading-none">
+                      {item.word}
+                    </span>
+                  </div>
+
+                  {/* Right Side: Description paragraph (expands on click) */}
+                  <div className="md:w-1/2">
+                    <div
+                      className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                        isExpanded ? 'max-h-[200px] opacity-100 mt-2' : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div className="min-h-0">
+                        <p className="text-xs md:text-sm leading-relaxed text-foreground/80 font-sans max-w-xl pb-2">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-                <h3 className="mt-6 text-xl font-bold text-neutral-900">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm text-neutral-600 leading-relaxed">
-                  {item.description}
-                </p>
               </div>
             )
           })}
         </div>
+
       </div>
     </section>
   )
 }
+
+

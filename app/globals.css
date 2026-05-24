@@ -2,60 +2,59 @@
 @import "tw-animate-css";
 
 @theme {
-  --font-sans: var(--font-outfit), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-outfit), var(--font-geist-sans), sans-serif;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), ui-sans-serif, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   --text-2xs: 0.625rem;
   --text-2xs--line-height: 0.875rem;
 
-  --color-background: #FFFFFF;
-  --color-foreground: #0F1717;
+  /* Premium editorial colors: warm light cream paper & charcoal */
+  --color-background: #FAF7F2;
+  --color-foreground: #1E1E1E;
 
-  --color-primary: #0F3D3E;
+  --color-primary: #0F3D3E; /* Deep Slate Teal */
   --color-primary-hover: #155A5C;
   --color-primary-light: #EBF2F2;
   --color-primary-foreground: #FFFFFF;
 
-  --color-accent: #E07856;
+  --color-accent: #E07856; /* Warm Coral */
   --color-accent-hover: #E78C6D;
   --color-accent-light: #FDF1ED;
   --color-accent-foreground: #FFFFFF;
 
-  --color-muted: #FAFAFA;
-  --color-muted-foreground: #6B7280;
+  --color-muted: #F5F2EB; /* Warm paper gray */
+  --color-muted-foreground: #6B6860;
 
-  --color-border: #E5E7EB;
-  --color-input: #E5E7EB;
+  --color-border: #1E1E1E; /* Borders are solid charcoal, thin */
+  --color-input: #E5E2DA;
   --color-ring: #0F3D3E;
 
-  --color-destructive: #DC2626;
+  --color-destructive: #B3261E;
   --color-destructive-foreground: #FFFFFF;
-
-  --color-success: #059669;
+  --color-success: #0F3D3E;
   --color-success-foreground: #FFFFFF;
 
   --color-card: #FFFFFF;
-  --color-card-foreground: #0F1717;
-
+  --color-card-foreground: #1E1E1E;
   --color-popover: #FFFFFF;
-  --color-popover-foreground: #0F1717;
+  --color-popover-foreground: #1E1E1E;
+  --color-secondary: #F5F2EB;
+  --color-secondary-foreground: #1E1E1E;
 
-  --color-secondary: #FAFAFA;
-  --color-secondary-foreground: #0F1717;
-
-  --radius: 6px;
+  --radius: 8px;
 }
 
-/* Mascot / hero float — referenced by `animate-[float_...]`. */
+/* Editorial tilt and drift for CDCS highlighted card */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-4px) rotate(-1deg); }
 }
 
-/* shadcn/ui base layer — without this, Tailwind v4 renders a bare `border`
-   class as currentColor (black). Pins the default border + focus-ring colors
-   to our tokens so shadcn components (e.g. Card) render correctly. */
+.animate-editorial-float {
+  animation: float 6s ease-in-out infinite;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -67,8 +66,3 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 
-/* Tighten the wordmark spacing slightly */
-.wordmark {
-  letter-spacing: -0.025em;
-  font-weight: 500;
-}

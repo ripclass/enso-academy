@@ -2,111 +2,83 @@ import React from 'react'
 import Link from 'next/link'
 import { Check } from 'lucide-react'
 
+const plans = [
+  {
+    name: 'Single course access',
+    blurb: 'Focus on one certification.',
+    price: '$199',
+    cadence: '/ one-time',
+    features: [
+      'Full access to your chosen certification prep (6 months)',
+      'Personalized Socratic AI lecturer with long-term memory',
+      'Full mock exam engine with detailed review',
+      'Calibrated readiness signoff',
+    ],
+  },
+  {
+    name: 'All-access subscription',
+    blurb: 'Every certification, all the time.',
+    price: '$39',
+    cadence: '/ month',
+    features: [
+      'All courses included (CDCS, CAMS, CCAS)',
+      'Personalized Socratic AI lecturer with long-term memory',
+      'Unlimited mock exams and updates',
+      'Calibrated readiness signoff for every certification',
+    ],
+  },
+]
+
 export function Pricing() {
   return (
-    <section id="pricing" className="py-24 md:py-32 bg-white">
-      <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">
+    <section id="pricing" className="bg-background border-b border-foreground">
+      <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
+        <div className="text-center">
+          <span className="block text-2xs font-bold uppercase tracking-[0.22em] text-foreground/50">
             Pricing
+          </span>
+          <h2 className="mt-3 text-2xl font-extrabold uppercase leading-tight tracking-tight text-foreground md:text-4xl">
+            Choose your path to readiness.
           </h2>
-          <p className="text-3xl font-bold tracking-tight text-neutral-900 md:text-5xl">
-            Flexible options built for your career.
-          </p>
-          <p className="mt-4 text-lg text-neutral-600">
-            Choose the plan that fits your study timeline.
-          </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-2">
-          {/* Option 1: Per Course */}
-          <div className="flex flex-col justify-between rounded-lg border border-neutral-200 bg-white p-8 md:p-10 hover:border-primary/40 hover:shadow-md transition-all">
-            <div>
-              <h3 className="text-xl font-bold text-neutral-900">Single course access</h3>
-              <p className="mt-2 text-sm text-neutral-500">Focus on one certification.</p>
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-5xl font-extrabold text-neutral-900">$199</span>
-                <span className="text-sm font-semibold text-neutral-500">/ one-time</span>
+        <div className="mx-auto mt-14 grid max-w-4xl gap-8 md:grid-cols-2">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className="flex flex-col justify-between rounded-2xl border border-foreground bg-background p-8 transition-colors hover:bg-muted"
+            >
+              <div>
+                <h3 className="text-lg font-bold text-foreground">{plan.name}</h3>
+                <p className="mt-1 text-xs text-foreground/55">{plan.blurb}</p>
+                <div className="mt-6 flex items-baseline gap-1.5">
+                  <span className="font-mono text-4xl font-extrabold text-foreground">{plan.price}</span>
+                  <span className="text-2xs font-bold uppercase tracking-wider text-foreground/45 font-mono">
+                    {plan.cadence}
+                  </span>
+                </div>
+                <ul className="mt-8 space-y-3.5 text-sm text-foreground/75">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-3">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="mt-2 text-xs text-neutral-400">Includes 6 months of full access</p>
-
-              <ul className="mt-8 space-y-4 text-sm text-neutral-600">
-                <li className="flex items-center gap-3">
-                  <Check className="h-4 w-4 text-primary shrink-0" />
-                  <span>Full access to your chosen certification prep</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="h-4 w-4 text-primary shrink-0" />
-                  <span>Personalized AI lecturer with long-term memory</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="h-4 w-4 text-primary shrink-0" />
-                  <span>Full mock exam engine with detailed reviews</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="h-4 w-4 text-primary shrink-0" />
-                  <span>Calibrated readiness signoff</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-neutral-100">
-              <Link
-                href="/signup"
-                className="inline-flex w-full items-center justify-center rounded-md bg-neutral-900 py-3 px-4 text-sm font-semibold text-white hover:bg-neutral-800 transition-colors shadow-sm"
-              >
-                Get started with a single course
-              </Link>
-            </div>
-          </div>
-
-          {/* Option 2: All Access */}
-          <div className="relative flex flex-col justify-between rounded-lg border-2 border-primary bg-white p-8 md:p-10 shadow-md">
-            <div className="absolute top-0 right-6 -translate-y-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
-              Most flexible
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-neutral-900">All-access subscription</h3>
-              <p className="mt-2 text-sm text-neutral-500">Every certification, all the time.</p>
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-5xl font-extrabold text-neutral-900">$39</span>
-                <span className="text-sm font-semibold text-neutral-500">/ month</span>
+              <div className="mt-8 pt-6 border-t border-foreground/15">
+                <Link
+                  href="/signup"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-foreground bg-foreground py-3 px-4 text-2xs font-bold uppercase tracking-[0.18em] text-background hover:bg-background hover:text-foreground transition-all"
+                >
+                  Get started
+                </Link>
               </div>
-              <p className="mt-2 text-xs text-neutral-400">Monthly billing &mdash; cancel anytime</p>
-
-              <ul className="mt-8 space-y-4 text-sm text-neutral-600">
-                <li className="flex items-center gap-3">
-                  <Check className="h-4 w-4 text-primary shrink-0" />
-                  <span className="font-semibold text-neutral-900">All courses included (CDCS, CAMS, CCAS)</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="h-4 w-4 text-primary shrink-0" />
-                  <span>Personalized AI lecturer with long-term memory</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="h-4 w-4 text-primary shrink-0" />
-                  <span>Unlimited mock exams and updates</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="h-4 w-4 text-primary shrink-0" />
-                  <span>Calibrated readiness signoff for every certification</span>
-                </li>
-              </ul>
             </div>
-
-            <div className="mt-8 pt-6 border-t border-neutral-100">
-              <Link
-                href="/signup"
-                className="inline-flex w-full items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white hover:bg-primary-hover transition-colors shadow-sm"
-              >
-                Get started with all-access
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
 
-        <p className="mx-auto mt-8 max-w-2xl text-center text-xs text-neutral-400">
+        <p className="mx-auto mt-8 max-w-2xl text-center text-2xs text-foreground/40">
           Pricing shown for planning. Checkout opens at launch.
         </p>
       </div>
