@@ -1,5 +1,92 @@
 # Session Notes
 
+## [2026-05-29] - KEY FINDING: Codex was overfitting on citation mechanics; fixed the division of labor
+
+After the recalibration runs kept capping lesson 0.3 on "citation discipline," ran the project's OWN deterministic gates on all four lessons (gold standard included). Decisive result:
+
+| lesson | overall | pedagogy | citation_bind unbound |
+|---|---|---|---|
+| 1.1 GOLD (AGREE'd) | flag | FLAG (dup tags) | 1/12 |
+| 1.2 (AGREE'd) | flag | pass | **39/72** |
+| 1.3 (AGREE'd) | flag | FLAG (dup tags) | 2/68 |
+| 0.3 REJECTED | flag | **PASS** | 2/21 |
+
+The rejected 0.3 is at/above the AGREE'd baseline on every deterministic axis — it PASSES pedagogy where 1.1 FLAGs, and its citation_bind (2/21) is far cleaner than 1.2's (39/72), which Codex AGREE'd. So Codex never held the baseline to the citation-granularity bar it kept imposing on 0.3 three runs running. **Overfitting confirmed by data.**
+
+Fix (committed): the Codex methodology brief now DEFERS citation mechanics (granularity, lesson-pool locatability) to the deterministic citation_bind gate, which is calibrated against the fixtures. Codex keeps source-discipline, IP, prohibited-sources, deep-case, register — and citation FACTUAL ACCURACY stays in the fidelity pass (anti-fabrication preserved). This unblocks breadth/overview lessons that legitimately reference many instruments.
+
+BUT the cap wasn't all phantom: the fidelity pass also caught two GENUINE supervisory-scope errors (US: "FinCEN directly examines MSBs" — it's the IRS; UK: "FCA supervises major DNFBPs" — MLR 2017 reg 7 splits it across FCA/HMRC/Gambling Commission/PBSs). Both added to the facts pack as generic facts.
+
+Also fixed this session: lesson generation output cap 16k→32k (the new citation-pooling requirement pushed a methodology-compliant lesson past 16k and truncated the JSON mid-string; added a stopReason==='length' guard). Commits this session: d53ef8b (recalibration), b005ce0 (32k cap), d0db878 (citation division of labor), f844ec6 (US/UK supervisor facts).
+
+Validation re-run of lesson 0.3 in flight with all fixes — outcome TBD (this is the genuine test of whether the systemic fixes converge the lesson, not a blind re-run).
+
+## [2026-05-29] - Latest factual-fidelity audit of the current Bangladesh-trajectory JSON: prior methodology/Bangladesh-rating fixes hold, but the supervisor map is still wrong
+
+Re-audited the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` with the operator-maintained facts pack and current public-source supervisory materials. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The specific disagreement from the immediately prior factual-fidelity review is resolved. `The mutual evaluation process: technical compliance and effectiveness` now uses the corrected 2022 FATF Methodology paragraph pins (`39-45`, `68-72`) and the corrected IO.3/IO.4 mapping, while `Deep case: Bangladesh's mutual evaluation trajectory (2016 MER and 2020 4th Follow-Up Report)` now uses the right 2016 MER ratings (`R.6 = Compliant`, `IO.4 = Low`).
+- The current blocker has shifted to supervisory-scope accuracy. `National supervisors and FATF Recommendations 26-28` and `Three jurisdictions, three supervisory maps` still say `MSBs and other non-bank financial institutions: FinCEN directly`, but FinCEN says it does not itself examine financial institutions and IRS has delegated BSA examination authority for certain institutions including MSBs.
+- The same pair also still overstates the UK FCA's AML perimeter by saying the FCA supervises financial institutions and major DNFBPs under the MLRs 2017. The statutory MLR supervisory map is split across the FCA, HMRC, the Gambling Commission, and professional body supervisors; the current wording collapses that structure and is materially inaccurate on DNFBP scope.
+- If the lesson is revised again, preserve the now-fixed FATF/APG/methodology/Bangladesh-rating bundle and rewrite only the U.S./UK supervisory mapping language.
+
+## [2026-05-29] - Latest methodology re-audit of the current global-architecture JSON: still blocked on citation discipline, but no new blocker class
+
+Reviewed the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against methodology v1.1 again. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The prior disagreement is still not resolved, but it is still the same class of problem rather than a new one. The mutual-evaluation scene and the Bangladesh-trajectory deep-case now look materially improved; no fresh deep-case, IP, quiz-format, or distinct-`teachesConcepts` blocker appeared.
+- `Why a global architecture exists at all` is now one of the clearest reading-scene citation gaps. It introduces Egmont / FIU / supervisor architecture claims, but its citation array only covers FATF / FSRB materials and does not anchor those claims scene-locally.
+- `The Financial Action Task Force: origin, mandate, composition` still leaves the Global Network / APG-evaluation / listing-cadence bundle under-anchored. The scene cites FATF history, members, mandate, and list pages, but not a clean name+section source for the Global Network / methodology / cadence assertions it makes.
+- `The Egmont Group: secure FIU-to-FIU information exchange` still does not cleanly pin the membership / ESW-access consequences. The page/document-level labels and generic `documents/` links are not enough for the non-member / suspension / access points.
+- Bangladesh authority-mapping locatability is still incomplete. `Mapping a question to the right authority - Bangladesh` introduces a `relevant BFIU master circular` with no matching lesson-pool citation, and `National supervisors and FATF Recommendations 26-28` still leans on generic BFIU / BSEC / IDRA pages instead of pinpoint statutory or official-functional citations.
+- If this lesson is revised again, preserve the now-improved mutual-evaluation / Bangladesh-deep-case work and fix the citation layer directly rather than reopening the deep-case or quiz structure.
+
+## [2026-05-29] - Latest factual-fidelity audit of the Bangladesh-trajectory variant: the old authority-mapping bundle is fixed, but the lesson still fails on FATF-methodology pin-cites and Bangladesh MER ratings
+
+Re-audited the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against FATF and APG primary/public materials. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The earlier concrete disagreement is resolved in this variant. The lesson no longer treats APG/FATF mutual evaluations as reviews of private institutions, no longer routes MLA through Recommendation 40, and no longer overstates FinCEN as the direct examiner of U.S. MSBs.
+- `The mutual evaluation process: technical compliance and effectiveness` now has a different high-value accuracy problem. Its paragraph pins for the 2022 FATF Methodology are wrong: technical compliance / compliance ratings are not in paragraphs `6-13`, and effectiveness / effectiveness ratings are not in paragraphs `14-43`. In the 2022 Methodology, the technical-compliance section and rating scale begin at paragraphs `39-45`, while the effectiveness-rating discussion sits later (`68-72`).
+- The same mutual-evaluation reading scene also uses an outdated Immediate Outcome mapping by saying `IO.4` covers whether financial institutions and DNFBPs apply preventive measures proportionate to risk. Under the 2022 Methodology, `IO.3` is the financial-sector / VASP supervision-and-preventive-measures chapter and `IO.4` is the non-financial-sector chapter.
+- `Deep case: Bangladesh's mutual evaluation trajectory (2016 MER and 2020 4th Follow-Up Report)` misstates the 2016 MER's ratings. The APG ratings table shows Bangladesh had `R.6 = Compliant` and `IO.4 = Low`; the lesson says R.6 was below `Largely Compliant` and that `IO.4` was `Moderate`.
+- If this lesson is revised again, preserve the now-fixed FATF/APG/R.40/FinCEN bundle and correct the methodology pin-cites plus the Bangladesh MER rating descriptions directly.
+
+## [2026-05-29] - Latest methodology re-audit of the Bangladesh-trajectory variant: still blocked, but the remaining issue is narrower than before
+
+Reviewed the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against methodology v1.1 again. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The earlier mutual-evaluation and Bangladesh-deep-case citation complaints now look materially improved. In this variant, the disagreement is no longer about missing deep case, quiz format, or repeated `teachesConcepts`.
+- `The Financial Action Task Force: origin, mandate, composition` is still below the reading-scene name+section bar. Its FATF-structure / mutual-evaluation / public-listing assertions still lean on broad website/document labels rather than clean pinpoint support in the scene citation array.
+- `The Egmont Group: secure FIU-to-FIU information exchange` still leaves the Egmont-membership / ESW-access point under-anchored. The lesson citation pool does not clearly locate the BFIU / FinCEN / UK FIU / AUSTRAC membership examples the scene uses.
+- `Mapping a question to the right authority — Bangladesh` and the Bangladesh rows in `National supervisors — three jurisdictions compared` still introduce BFIU master-circular / Bangladesh institutional-routing references without full lesson-pool citation anchors.
+- No new blocker class surfaced. If this lesson is revised again, keep the now-cleared deep-case / distinct-scene-teaching / non-IP strengths and fix the citation layer directly.
+
+## [2026-05-29] - Factual-fidelity audit of the Bangladesh-trajectory variant: narrower than earlier rounds, but still blocked on who evaluates whom and which authority does what
+
+Re-audited the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against FATF, APG, MONEYVAL, FinCEN/FFIEC, and Bangladesh public materials. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The earlier correction bundle appears to be holding in this variant. The lesson now keeps the FATF 40-members framing straight, uses the corrected Bangladesh 2016 MER / 2020 follow-up chronology, keeps the R.6/R.7 and R.15/R.16 scoping fixes, and no longer mislabels ATA section 15 as the terrorist-financing offence provision.
+- `FATF-Style Regional Bodies` now has a cleaner but still material architecture error: the narration says a Bangladeshi or French `institution` is what APG/FATF evaluates. Mutual evaluations are of jurisdictions, not private institutions, so the object of review is wrong.
+- `Mapping a question to the right authority — Bangladesh` now carries the highest-value recommendation-number defect in the artifact. It says mutual legal assistance for evidence usable in court flows through separate channels under FATF Recommendation 40, but MLA belongs to Recommendations 37-39; R.40 is the `other forms of international cooperation` bucket. The same item also blurs a foreign correspondent-bank query with official FIU-to-FIU or supervisor-to-supervisor cooperation.
+- `National supervisors and Recommendations 26–28` is still too loose on the U.S. perimeter. FinCEN's own materials say it does not itself examine financial institutions, and that IRS has delegated examination authority over certain financial institutions including money services businesses, so the lesson should not say FinCEN itself supervises MSBs in a direct-examination sense.
+- If this lesson is revised again, preserve the now-correct FATF/APG/Egmont/Bangladesh-ATA bundle and tighten the authority-mapping language instead of reopening already-fixed currency points.
+
+## [2026-05-29] - Methodology audit of the Bangladesh-trajectory variant: citation discipline is still the blocker
+
+Reviewed the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against methodology v1.1. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- This variant is not failing on the broad source/IP/register categories. No commercial-prep leakage stood out, no ICC-rule-text issue appeared, the quiz stayed scenario-based, and the tone remained adult-professional.
+- The repeated topical `conceptTags` are not the right blocker in this artifact. Judged by `teachesConcepts`, the scenes are making distinct substantive teaching moves; do not carry forward an auto-fail theory based only on shared topic tags.
+- The real remaining problem is citation discipline. `The Financial Action Task Force`, `The mutual evaluation process: technical compliance and effectiveness`, and `Deep case: Bangladesh's mutual evaluation trajectory (2016 MER and 2020 4th Follow-Up Report)` are still claim-heavy with document-level citations instead of name+section support.
+- The slide pool is still under-anchored. `FATF-Style Regional Bodies`, `Consequences of FATF listing`, `The Egmont Group`, `Mapping a question to the right authority — Bangladesh`, and `Synthesis — the layered architecture` all introduce structured references that are not fully locatable in the lesson citation pool.
+- If this lesson is revised again, keep the non-citation strengths and fix the citation layer directly rather than reworking concept tags or the quiz format.
+
 ## [2026-05-29] - Current factual-fidelity audit: prior disagreement narrowed again, but the lesson still fails on methodology date / Bangladesh ATA / Danske metadata
 
 Re-audited the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against FATF, APG, BFIU / the Anti-Terrorism Act 2009, DOJ, and SEC materials. Verdict stayed `DISAGREE`.
