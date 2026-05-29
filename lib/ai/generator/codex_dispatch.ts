@@ -56,10 +56,12 @@ export type CodexVerdict = {
 export type DispatchOptions = {
   /** Override codex CLI binary; defaults to `codex`. */
   codexBinary?: string
-  /** Timeout for the codex exec call, in milliseconds. Default 10 minutes. */
+  /** Timeout for the codex exec call, in milliseconds. Default 20 minutes. */
   timeoutMs?: number
   /** Extra args to pass to `codex exec` — appended after the defaults. */
   extraArgs?: string[]
+  /** Total dispatch attempts on transient failure (empty output / spawn error). Default 2 (1 retry). */
+  maxAttempts?: number
 }
 
 // ── Core dispatch ─────────────────────────────────────────────────────────
@@ -79,23 +81,19 @@ const DEFAULT_CODEX_BINARY = process.platform === 'win32' ? 'codex.cmd' : 'codex
  *  Always pipes the brief through a temp file — never command-line arg —
  *  to remove the shell-argument-size failure mode end-to-end. */
 export async function dispatchCodex(args: { brief: string } & DispatchOptions): Promise<CodexVerdict> {
-  const { brief, codexBinary = DEFAULT_CODEX_BINARY, timeoutMs = DEFAULT_TIMEOUT_MS, extraArgs = [] } = args
+  const {
+    brief,
+    codexBinary = DEFAULT_CODEX_BINARY,
+    timeoutMs = DEFAULT_TIMEOUT_MS,
+    extraArgs = [],
+    maxAttempts = 2,
+  } = args
 
   const workDir = mkdtempSync(join(tmpdir(), 'codex-dispatch-'))
   const briefPath = join(workDir, 'brief.txt')
-  const outputPath = join(workDir, 'output.txt')
 
   try {
     writeFileSync(briefPath, brief, 'utf8')
-
-    const cliArgs = [
-      'exec',
-      '--skip-git-repo-check',
-      '--output-last-message',
-      outputPath,
-      ...extraArgs,
-    ]
-
     // Pipe the brief via stdin — never as a command-line argument.
     const stdinContents = readFileSync(briefPath, 'utf8')
 
@@ -103,36 +101,53 @@ export async function dispatchCodex(args: { brief: string } & DispatchOptions): 
     // `shell: true` (CVE-2024-27980). Pass through the shell and pre-quote
     // any arg that might contain a space (the temp outputPath in particular).
     const isWindows = process.platform === 'win32'
-    const finalCliArgs = isWindows
-      ? cliArgs.map((a) => (/\s/.test(a) ? `"${a.replace(/"/g, '\\"')}"` : a))
-      : cliArgs
-    const result = spawnSync(codexBinary, finalCliArgs, {
-      input: stdinContents,
-      encoding: 'utf8',
-      timeout: timeoutMs,
-      maxBuffer: 50 * 1024 * 1024, // 50MB — codex output can be large
-      shell: isWindows,
-      windowsHide: true,
-    })
 
-    if (result.error) {
-      throw new Error(`codex exec failed to spawn: ${result.error.message}`)
+    // Retry transient failures (empty output / spawn error). Codex (gpt-5.4)
+    // intermittently exits 1 with no last-message after reading the prompt —
+    // a single flake among the ~100+ dispatches of a full course run must not
+    // abort the run. A genuine DISAGREE is NOT an error and never retries.
+    let lastError: Error | null = null
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      // Per-attempt output file so a prior attempt's file can't be misread.
+      const outputPath = join(workDir, `output.${attempt}.txt`)
+      const cliArgs = ['exec', '--skip-git-repo-check', '--output-last-message', outputPath, ...extraArgs]
+      const finalCliArgs = isWindows
+        ? cliArgs.map((a) => (/\s/.test(a) ? `"${a.replace(/"/g, '\\"')}"` : a))
+        : cliArgs
+      const result = spawnSync(codexBinary, finalCliArgs, {
+        input: stdinContents,
+        encoding: 'utf8',
+        timeout: timeoutMs,
+        maxBuffer: 50 * 1024 * 1024, // 50MB — codex output can be large
+        shell: isWindows,
+        windowsHide: true,
+      })
+
+      if (result.error) {
+        lastError = new Error(`codex exec failed to spawn: ${result.error.message}`)
+      } else {
+        // Prefer the --output-last-message file; fall back to stdout if file is missing.
+        let raw = ''
+        try {
+          raw = readFileSync(outputPath, 'utf8').trim()
+        } catch {
+          raw = (result.stdout ?? '').toString().trim()
+        }
+        if (raw) return parseVerdict(raw, result.status ?? 0)
+        lastError = new Error(
+          `codex exec produced no output (exit ${result.status ?? '?'}, stderr: ${(result.stderr ?? '').toString().slice(0, 500)})`,
+        )
+      }
+
+      if (attempt < maxAttempts) {
+        process.stderr.write(
+          `  [codex retry] attempt ${attempt}/${maxAttempts} failed (${lastError.message.slice(0, 140)}…); retrying in 3s\n`,
+        )
+        await new Promise((r) => setTimeout(r, 3000))
+      }
     }
 
-    // Prefer the --output-last-message file; fall back to stdout if file is missing.
-    let raw = ''
-    try {
-      raw = readFileSync(outputPath, 'utf8').trim()
-    } catch {
-      raw = (result.stdout ?? '').toString().trim()
-    }
-    if (!raw) {
-      throw new Error(
-        `codex exec produced no output (exit ${result.status ?? '?'}, stderr: ${(result.stderr ?? '').toString().slice(0, 500)})`,
-      )
-    }
-
-    return parseVerdict(raw, result.status ?? 0)
+    throw lastError ?? new Error('codex exec failed (no attempts ran)')
   } finally {
     // Best-effort cleanup; ignore errors so we don't shadow the original failure.
     try {
