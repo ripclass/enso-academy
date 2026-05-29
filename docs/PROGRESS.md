@@ -1,5 +1,64 @@
 # Enso Academy Progress Log
 
+## 2026-05-29 — Lesson 0.3 re-run capped; currency facts-pack + generation tuning shipped (gates left alone)
+
+Re-ran CAMS lesson 0.3 through the integrated spine; it capped at 3× Codex DISAGREE (run paused). The feedback loop converged substance — added an ABLV Bank 2018 deep-case, fixed the APG/methodology/ATA defects — but capped on currency/FATF-structure fidelity errors plus two methodology rules (distinct-concepts-per-scene, citation granularity).
+
+Proposed promoting those two rules to deterministic gate FAILs, then measured the Path-1 fixtures and abandoned it: gold-standard 1.1 reuses one concept tag across 10/11 scenes (7 identical-set duplicate scenes) and its Danske deep-case has no enforcement-disposition vocabulary, yet Codex AGREEd — so a tag-count / keyword gate would block the gold standard. Those rules stay Codex's substantive judgment; the fix is at generation.
+
+Shipped (typecheck clean): `lib/ai/generator/facts_pack.ts` (`CURRENT_FACTS_PACK`, primary-source-verified this session, injected into the generation system prompt + both Codex briefs); two generation-prompt reinforcements in `lesson.ts` (substantively-distinct per-scene concepts; deep-case = a specific named matter, not a process walkthrough); and rejected-artifact persistence in `generate-course.ts` (`<slug>.rejected.json` at both caps). Deterministic gates unchanged. Re-running lesson 0.3 to validate before considering `full`.
+
+## 2026-05-29 - Latest methodology re-audit narrows the global-architecture lesson blockers, but still does not clear them
+
+Reviewed the latest re-generated user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+- Verdict: `DISAGREE`; still not publishable under methodology v1.1.
+- Confirmed fixed in this draft: the missing deep-case blocker is now resolved by the ABLV Bank 2018 scene, which is a real public enforcement matter with year + substantive analysis.
+- Remaining blocking issue 1: citation discipline is still below the v1.1 bar. `Why architecture matters before doctrine` and `Synthesis: holding the architecture in mind` remain claim-heavy without clean name+section support for every factual assertion.
+- Remaining blocking issue 2: slide-level citation locatability is still incomplete. `The Egmont Group: how FIUs actually share` and `Supervisors and the national mapping: three jurisdictions` introduce structured references that are not fully locatable in the lesson citation pool.
+- Remaining blocking issue 3: the distinct-concepts-per-scene rule is still not met; scene-level concept tags are still reused across content scenes, including `mutual_evaluation` and `fiu`.
+- No new methodology blocker class surfaced in this pass.
+
+## 2026-05-29 - Latest factual-fidelity re-audit narrows the global-architecture lesson blockers again, but does not clear them
+
+Reviewed the latest user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against current APG, FATF, Bangladesh Bank/BFIU, NCA, FinCEN, and Egmont public/primary materials.
+
+- Verdict: `DISAGREE`; still not publishable.
+- Confirmed fixed in this draft: the earlier FATF Recommendation 26 defect, the overstatement of FATF call-for-action consequences, the Toronto/Ottawa Egmont error, and the stale FATF Recommendations / Egmont-Principles dating issues.
+- Remaining blocking issue 1: `The mutual evaluation: technical compliance and effectiveness` and the related synthesis citation still treat Bangladesh's 2020 APG document as the country's third-round Mutual Evaluation Report. APG's third-round MER for Bangladesh was adopted in 2016; the 2020 document is a follow-up report.
+- Remaining blocking issue 2: the methodology citation is still citation-imprecise. The lesson labels the 2013 FATF methodology as amended in December 2025, but FATF's current methodology page says the 2013 methodology was last updated in June 2023 and the December 2025 amendment applies to the 2022 methodology.
+- Remaining blocking issue 3: `Supervisors and the national mapping: three jurisdictions` misstates Bangladesh Anti-Terrorism Act 2009 section 15 as the terrorist-financing offence/penalty provision. Bangladesh Bank/BFIU guidance treats section 15 as BFIU/reporting-agency powers; the terrorist-financing offence and punishment sit in section 7.
+
+## 2026-05-29 - Re-generated global-architecture lesson still fails methodology v1.1
+
+Reviewed the latest user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+- Verdict: `DISAGREE`; the earlier methodology disagreement is not resolved.
+- Confirmed blocker 1: the lesson still has no deep-case scene grounded in a named public enforcement action with year + substantive analysis.
+- Confirmed blocker 2: citation discipline is still below the v1.1 bar. The opening architecture reading, the supervisor-mapping slide, and the synthesis reading still rely on broad or unpooled references rather than claim-traceable name+section citations and lesson-pool locatability.
+- Confirmed blocker 3: the duplicate-tag problem is reduced but not eliminated; `aml_architecture` is still reused across the opening reading and the follow-on architecture slide.
+- No new methodology blocker class surfaced in this pass.
+
+## 2026-05-29 - Fresh factual-fidelity re-audit still blocks the user-supplied global-architecture lesson
+
+Reviewed the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against current FATF, APG, Egmont, BFIU, NCA, and FinCEN primary/public materials.
+
+- Verdict: `DISAGREE`; still not publishable.
+- Confirmed blocking issue 1: `FATF and the Forty Recommendations` misstates FATF Recommendation 26 by giving it Recommendation 27's inspection / compel-information / sanction powers.
+- Confirmed blocking issue 2: `The mutual evaluation: technical compliance and effectiveness` overstates the FATF "black list" consequences; FATF's current call-for-action statement applies enhanced due diligence to all listed high-risk jurisdictions and countermeasures only in the most serious cases.
+- Confirmed blocking issue 3: `Financial intelligence units and the Egmont Group` says the Egmont Group is headquartered in Toronto, while current Egmont Secretariat documents place it in Ottawa.
+- Confirmed blocking issue 4: several citation labels are stale, including the FATF Recommendations ("updated 2023"), the FATF methodology ("updated 2022"), and the Egmont Principles ("2013") despite current official versions now being later.
+
+## 2026-05-29 - Re-audit confirms methodology blockers still stand on the user-supplied global-architecture lesson
+
+Reviewed the user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against methodology v1.1 again.
+
+- Verdict: `DISAGREE`; still not publishable.
+- Confirmed no new methodology defect class: the same three blockers from the 2026-05-25 methodology audit remain open.
+- Blocking issue 1: still no deep-case scene grounded in a real public enforcement action with named entity + year + substantive analysis.
+- Blocking issue 2: citation discipline is still below the name+section bar; several reading/jurisdiction scenes rely on free-text or non-granular citation labels for claim-heavy passages.
+- Blocking issue 3: duplicate core concept tags still recur across scenes, so the lesson still violates the distinct-concepts-per-scene rule.
+
 ## 2026-05-29 — Path 2 follow-up: AI verification spine integrated into the generation flow (closes What's-next item 2)
 
 Wired the deterministic gates + parallel Codex cross-check directly into `scripts/generate-course.ts`. Every lesson (`lesson` and `full` modes) now runs through `generateLessonWithFullSpine`:
@@ -428,3 +487,14 @@ Ran a source-level factual-fidelity audit of the generated CAMS lesson artifact 
 - Publish-blocking issue 1: the lesson repeatedly says APG adopted Bangladesh’s “most recent Mutual Evaluation Report” in October 2020. APG’s Bangladesh page and Bangladesh’s 4th Follow-Up Report say the MER was adopted in September 2016; the 2020 document is a Follow-Up Report, not a new MER.
 - Publish-blocking issue 2: the lesson overstates FATF Recommendation 19 by implying that FATF grey-listing (`Jurisdictions under Increased Monitoring`) triggers mandatory enhanced due diligence by counterparties globally. FATF’s own increased-monitoring statements expressly say FATF does not call for EDD on grey-listed jurisdictions; the mandatory R.19 call is tied to high-risk/call-for-action treatment.
 - Additional fidelity issue: the lesson’s FATF document dating is stale. It repeatedly cites the Recommendations as “updated November 2023” and the Methodology as “updated 2023,” but FATF now publishes a February 2025 Recommendations edition and a current 2022/2013 methodology page updated in 2026.
+## 2026-05-29 - Current factual-fidelity audit clears the earlier APG/methodology/ATA bundle but finds new source-level blockers
+
+Reviewed the latest user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against current FATF, APG, Egmont, MONEYVAL, ECB, and BFIU/Bangladesh Bank public materials.
+
+- Verdict: `DISAGREE`; still not publishable.
+- Confirmed fixed in this draft: the earlier Bangladesh APG chronology defect (2016 MER / 2020 follow-up), the FATF methodology-labeling defect (2013 methodology last updated June 2023), and the Bangladesh ATA section-15 offence/penalty misdescription.
+- New/current blocking issue 1: the opening architecture reading and companion slide still use stale FATF Recommendations dating (`updated November 2023`) even though FATF's Recommendations page now says the text was last updated in October 2025.
+- New/current blocking issue 2: those same scenes misattribute VASP supervision to FATF Recommendations 26-28; FATF places VASP regulation/supervision under Recommendation 15 and INR.15.
+- New/current blocking issue 3: `The mutual evaluation: technical compliance and effectiveness` still overstates the FATF call-for-action list by treating black-listing as a countermeasures consequence as such; FATF's current statement applies enhanced due diligence to all high-risk jurisdictions and countermeasures only in the most serious cases.
+- New/current blocking issue 4: `The Egmont Group: how FIUs actually share` wrongly says INR.40 expressly directs FIUs to use Egmont channels and also cites the Egmont Principles with stale 2013 dating despite the current revision.
+- New/current blocking issue 5: the lesson still characterises MONEYVAL as essentially the body for "Europe outside the EU," which is inaccurate because MONEYVAL evaluates numerous EU member states as well.

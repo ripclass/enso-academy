@@ -132,6 +132,11 @@ async function generateLessonWithFullSpine(
       process.stderr.write(`    (see ${result.validationPath})\n`)
 
       if (gateAttempt === g.MAX_GATE_VALIDATION_ATTEMPTS - 1) {
+        // Persist the final rejected artifact so a near-miss survives for
+        // hand-finishing instead of evaporating (it is never written to the
+        // canonical <slug>.json because gates never cleared).
+        const rejectedPath = g.saveArtifact(COURSE.slug, `lessons/${lesson.slug}.rejected.json`, a)
+        process.stderr.write(`    [rejected artifact saved] ${rejectedPath}\n`)
         throw new g.GateValidationCapExceededError(
           lesson.slug,
           gateAttempt + 1,
@@ -193,6 +198,12 @@ async function generateLessonWithFullSpine(
     process.stderr.write(`    (see ${codex.codexArtifactPath})\n`)
 
     if (codexIter === g.MAX_CODEX_REVIEW_ITERATIONS - 1) {
+      // Persist the final gate-cleared, Codex-rejected artifact. This is the
+      // best near-miss draft (it cleared every deterministic gate); saving it
+      // lets the operator hand-finish the residual Codex issues rather than
+      // regenerate from scratch. The .codex.<n>.txt verdicts name the fixes.
+      const rejectedPath = g.saveArtifact(COURSE.slug, `lessons/${lesson.slug}.rejected.json`, artifact)
+      process.stderr.write(`    [rejected artifact saved for hand-finishing] ${rejectedPath}\n`)
       throw new g.CodexIterationCapExceededError(
         lesson.slug,
         g.MAX_CODEX_REVIEW_ITERATIONS,

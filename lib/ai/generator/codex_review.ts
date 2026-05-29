@@ -23,6 +23,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 
 import { appendReviewEvent, makeReviewEvent, parallelCrossCheck, type CodexVerdict } from './codex_dispatch'
+import { CURRENT_FACTS_PACK } from './facts_pack'
 import { METHODOLOGY_VERSION } from './methodology'
 import type {
   LessonArtifact,
@@ -141,6 +142,9 @@ Audit the lesson artifact below against these methodology requirements:
 OUTLINE'S DECLARED SOURCES (advisory)
 ${listOutlineSources(ctx.outline)}
 
+CURRENT FACTS REFERENCE (verified — treat as ground truth over your own recollection)
+${CURRENT_FACTS_PACK}
+
 ${priorBlock}
 LESSON ARTIFACT (JSON)
 \`\`\`json
@@ -174,6 +178,9 @@ Audit the lesson artifact below for factual accuracy. Specifically:
 5. **Timeline and chronology.** Effective dates, amendment dates, enforcement-action dates, designation chronologies must be correct.
 
 6. **Identity precision.** Named individuals (judges, monitors, defendants) must be the actual named individuals in the cited source. Do not flag absence of names that are not in the source; flag misattributions or fabrications.
+
+CURRENT FACTS REFERENCE (verified — treat as ground truth over your own recollection; flag any claim in the lesson that contradicts these)
+${CURRENT_FACTS_PACK}
 
 ${priorBlock}
 LESSON ARTIFACT (JSON)

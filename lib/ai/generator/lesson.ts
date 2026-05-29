@@ -6,6 +6,7 @@
 import { callOpus } from '@/lib/ai/routing'
 import { logAiCall } from '@/lib/ai/cost-tracking'
 import { loadMethodology } from './methodology'
+import { CURRENT_FACTS_PACK } from './facts_pack'
 import { parseJson } from './parse'
 import type { LessonArtifact, OutlineArtifact, OutlineModule, OutlineLesson } from './types'
 
@@ -43,7 +44,10 @@ export async function generateLessonScenes(opts: {
   retryFeedback?: string
 }): Promise<{ artifact: LessonArtifact; costCents: number }> {
   const { outline, module, lesson, retryFeedback } = opts
-  const system = loadMethodology()
+  // System = the verbatim methodology + the operator-maintained current-facts
+  // reference. The facts pack overrides training-stale regulatory facts at
+  // system-prompt authority (ADR 0020 currency residual-gap stopgap).
+  const system = `${loadMethodology()}\n\n${CURRENT_FACTS_PACK}`
   const retryPreamble = retryFeedback
     ? `A prior attempt at this lesson failed the deterministic gate validator. Address every issue below before regenerating. Do not change content that was not flagged; only correct the cited problems.
 
@@ -65,6 +69,10 @@ Concept tags: ${lesson.conceptTags.join(', ')}
 Scene brief: ${lesson.sceneBrief}
 
 Follow the methodology above. Produce an ordered list of scenes that teach this lesson — typically an opening, the core concept(s) taught from primary sources with visible citations, one or two worked examples, a formative knowledge check, and a synthesis. Use scene types reading / slide / quiz. Every factual claim must be citable: reading scenes carry a citations array; cite primary sources by name and section. Quizzes are formative — scenario-based questions with per-question conceptTags. Professional tone for an adult practitioner; no marketing register.
+
+TWO REQUIREMENTS THE CROSS-CHECK ENFORCES STRICTLY — satisfy them up front:
+1. DISTINCT CONCEPTS PER SCENE. Each scene must make a substantively distinct contribution. Do not produce two scenes whose teachesConcepts merely restate the same concept. Where scenes legitimately share a tag, each must add a genuinely new facet, mechanism, edge case, or application — not re-teach the same point under a different title.
+2. A REAL DEEP-CASE SCENE. Include at least one deep-case scene built on a SPECIFIC, NAMED, REAL-WORLD MATTER — a named enforcement action, prosecution, or well-documented public scandal — with a named entity, a year, and concrete facts you analyse in depth (what happened, why it matters, what the practitioner learns). A generic process description (e.g. how a mutual-evaluation, peer-review, or supervisory process works in the abstract) does NOT satisfy this: the deep case must be a particular matter, not a process walkthrough.
 
 Output ONLY a single JSON object — no prose, no code fences:
 { "lessonSlug": "${lesson.slug}", "scenes": [ ...scenes... ] }

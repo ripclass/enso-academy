@@ -1,5 +1,83 @@
 # Session Notes
 
+## [2026-05-29] - Lesson 0.3 re-run capped; pivot to facts-pack + generation tuning (gates left alone)
+
+Re-ran `lesson 0 3` through the integrated spine. It **capped** (3× Codex DISAGREE → `CodexIterationCapExceededError`, run paused, exit 1), but the loop made real progress: by iter 3 it had added an **ABLV Bank 2018** enforcement deep-case and fixed the APG-chronology / FATF-methodology-label / BD-ATA-§15 fidelity defects. It still capped on (a) currency + FATF-structure fidelity errors and (b) two methodology rules — distinct-concepts-per-scene and citation granularity.
+
+Proposed to harden those two methodology rules into deterministic gates (cheaper than the Codex loop) — then **measured the Path-1 fixtures first and the data killed it:**
+- Gold-standard 1.1 tags `money_laundering_definition` on **10 of 11 scenes** and has **7 identical-set duplicate scenes**; 1.2 reuses its top tag across 9. All are the AGREE baseline. → a tag-count FAIL blocks the gold standard.
+- 1.1's Danske deep-case is a **typology narrative with zero enforcement-disposition vocabulary**, yet Codex called it gold. → an enforcement-keyword FAIL blocks the gold standard.
+- Conclusion: "distinct concepts" and "real enforcement deep-case" are substantive Codex judgments, not mechanically reducible without false-positiving the baseline. Surfaced this to Ripon; he green-lit the pivot.
+
+Shipped instead (typecheck clean):
+- `lib/ai/generator/facts_pack.ts` — `CURRENT_FACTS_PACK`, verified against primary sources this session (FATF 40 = 38+2; Recommendations Oct-2025; R.6 terror/R.7 prolif; R.15/INR.15 VASPs not R.26-28; R.26-28 supervision; R.29 FIUs; R.40/INR.40 ≠ Egmont channels; Egmont Principles July-2025; MONEYVAL incl. EU states; US IA delay to 1 Jan 2028; BD MER-2016/2020-FUR). Injected into the generation system prompt AND both Codex briefs, framed to override training knowledge.
+- `lesson.ts` — two generation reinforcements: substantively-distinct per-scene concepts; deep-case must be a specific named matter (enforcement action / prosecution / documented scandal), never a process walkthrough.
+- `generate-course.ts` — `<slug>.rejected.json` persisted at both caps so a near-miss survives for hand-finishing (the prior cap lost a close iter-3 draft).
+- Deterministic gates deliberately UNCHANGED.
+
+Re-running `lesson 0 3` now to validate whether these close the gap before touching `full`.
+
+## [2026-05-29] - Latest methodology re-audit: deep case fixed, but the lesson still fails v1.1
+
+Re-audited the latest re-generated user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against methodology v1.1. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The missing deep-case blocker is now fixed. The ABLV Bank 2018 scene is a real public enforcement matter with named entity, year, and substantive analysis.
+- Citation discipline is still below the v1.1 bar. `Why architecture matters before doctrine` and `Synthesis: holding the architecture in mind` still make multiple factual assertions without a clean name+section trail for each one.
+- Slide-level citation-pool locatability is still incomplete. `The Egmont Group: how FIUs actually share` and `Supervisors and the national mapping: three jurisdictions` introduce structured references that are not fully anchored in the lesson citation pool.
+- The duplicate-tag blocker narrowed but did not clear. `aml_architecture` is no longer duplicated, but scene-level concepts still repeat across content scenes, including `mutual_evaluation` and `fiu`.
+- No new methodology blocker class emerged; this is still a citation-discipline + distinct-concepts-per-scene failure, not a new type of defect.
+
+If lesson 0.3 is regenerated again, preserve the now-cleared deep-case fix and reprompt specifically against the remaining citation-discipline and duplicate-tag bundle.
+
+## [2026-05-29] - Latest factual-fidelity re-audit: earlier fixes stuck, but three residual source-level blockers remain
+
+Re-audited the latest user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against current FATF, APG, Egmont, BFIU/Bangladesh Bank, NCA, and FinCEN materials. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The earlier 2026-05-29 blocker bundle appears fixed in the current draft: FATF Recommendation 26 is now separated from Recommendation 27 powers; the call-for-action consequences are now framed at the correct EDD/countermeasure level; Ottawa replaces Toronto for the Egmont Secretariat; and the FATF Recommendations / Egmont Principles dating is now current.
+- The Bangladesh APG chronology defect is still present in a narrower form: the lesson still treats Bangladesh's 2020 APG document as the third-round MER, but APG's Bangladesh MER was adopted in 2016 and the 2020 document is a follow-up report.
+- The methodology citation is still not citation-precise: the lesson says the 2013 FATF methodology is amended most recently in December 2025, but FATF's current methodology page says the 2013 methodology was last updated in June 2023 and the December 2025 amendment belongs to the 2022 methodology.
+- The Bangladesh comparison slide now carries the highest-value new scope defect: it says ATA 2009 sections 7 and 15 are the "offence and penalty" provisions for terrorist financing, but Bangladesh Bank/BFIU guidance uses section 15 for BFIU/reporting-agency powers (freezing, supervision, directions, reporting support). Section 7 carries the TF offence/punishment.
+
+If lesson 0.3 is regenerated again, preserve the now-fixed earlier bundle and reprompt specifically against this residual set, otherwise the lesson risks regressing on issues already cleared.
+
+## [2026-05-29] - Re-generated methodology audit: disagreement still not resolved
+
+Re-audited the latest user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against methodology v1.1. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- No new methodology blocker class emerged; this is still the same repair bundle as the earlier 2026-05-29 methodology note.
+- The lesson still has no deep-case scene grounded in a real public enforcement action with named entity + year + substantive analysis.
+- Citation discipline is still short of the name+section / lesson-pool-locatability standard. The opening architecture reading, the supervisor-mapping slide, and the synthesis reading still depend on broad or unpooled references.
+- The duplicate-tag problem narrowed but did not clear: `aml_architecture` is still reused across `Why architecture matters before doctrine` and `The four layers of AML/CFT architecture`.
+
+If lesson 0.3 is regenerated again, keep this methodology bundle explicitly in the reprompt; the artifact is not just waiting on currency-sensitive factual cleanup.
+
+## [2026-05-29] - Factual-fidelity re-audit: current user-supplied global-architecture lesson still blocked
+
+Re-checked the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against live FATF, APG, Egmont, BFIU, NCA, and FinCEN materials. Verdict stayed `DISAGREE`.
+
+What this pass newly/independently confirmed:
+- `FATF and the Forty Recommendations` misstates Recommendation 26 by assigning it the supervisor powers that belong to Recommendation 27.
+- `The mutual evaluation: technical compliance and effectiveness` still overstates the FATF call-for-action list by saying the "black list" signals countermeasures. FATF's current statement applies enhanced due diligence to all listed high-risk jurisdictions and countermeasures only in the most serious cases.
+- `Financial intelligence units and the Egmont Group` says the Egmont Group is headquartered in Toronto, but current Egmont Secretariat documents place it in Ottawa.
+- Several citation labels are stale again: FATF Recommendations are currently updated October 2025; the FATF methodology page now distinguishes the 2022 methodology (amended December 2025) from the 2013 methodology (last updated June 2023); and the Egmont Principles citation should not still be pegged to 2013.
+
+Keep these fixes bundled with the still-open methodology defects (deep-case absence, citation-discipline/name+section granularity, duplicate core concept tags) before any new re-review.
+
+## [2026-05-29] - Methodology re-audit: user-supplied global-architecture lesson still blocked
+
+Re-reviewed the user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against methodology v1.1. Verdict stayed `DISAGREE`.
+
+What this re-check confirmed:
+- No new methodology blocker surfaced; this is not a different failure mode from the 2026-05-25 methodology audit.
+- The lesson still lacks a real enforcement deep-case scene; the APG/Bangladesh material is institutional/process analysis, not a named public enforcement action.
+- Citation discipline is still below the v1.1 bar. Multiple reading scenes use broad citation labels rather than claim-traceable name+section references, and the jurisdictional/scaffold slides depend on legal/institutional references that are not cleanly section-anchored in the lesson pool.
+- Duplicate core concept tags still recur across scenes, so the lesson still fails the distinct-concepts-per-scene rule.
+
+Reminder for the next lesson-0.3 regeneration pass: the currency-sensitive factual blockers are not the whole story. Keep the methodology repair bundle (deep case + citation granularity + duplicate-tag cleanup) in scope too.
+
 ## [2026-05-29] - Resumed the interrupted doer session; spine integration committed; consolidated to one session
 
 Picked up the interrupted "doer" session (it had been running in parallel with a "consultant" audit session on 05-25). Reconstructed state: the doer had built the Path-2 follow-up (spine wired into `generate-course.ts`, two new modules, gate refinements), left it type-clean but uncommitted, and a first live full-spine run on CAMS lesson 0.3 (`the-global-architecture-fatf-fius-supervisors`) was interrupted at Codex iteration 2/3 — both DISAGREE, no saved artifact.
@@ -257,3 +335,16 @@ Notes for next time:
 - `components/brand/wordmark.tsx` and the old `app/(dashboard)/dashboard/sign-out-button.tsx` were deleted (superseded by `<Logo>` and `components/in-app/sign-out-button.tsx`).
 
 Next: Prompt 15 — payments (and the real /terms + /privacy pages).
+## [2026-05-29] - Current factual-fidelity audit: earlier APG/methodology/ATA fixes hold, but a different FATF/Egmont bundle now blocks publication
+
+Re-audited the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against FATF, APG, Egmont, MONEYVAL, ECB, and BFIU/Bangladesh Bank materials. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The prior Bangladesh-specific residual bundle appears fixed in this draft: Bangladesh's APG chronology is now 2016 MER plus 2020 follow-up, the FATF methodology label is back to `2013, last updated June 2023`, and ATA section 15 is no longer described as the TF offence/penalty provision.
+- A different source-level bundle still blocks publication. The opening architecture reading and slide still cite the FATF Recommendations with stale `updated November 2023` dating, even though FATF's current Recommendations page says the text was last updated in October 2025.
+- Those same architecture scenes still misattribute VASP supervision to FATF Recommendations 26-28. FATF's own VASP materials place AML/CFT regulation and supervision of VASPs under Recommendation 15 / INR.15.
+- `The mutual evaluation: technical compliance and effectiveness` still overstates the call-for-action list by treating black-listing as a countermeasures consequence as such. FATF's current high-risk statement applies enhanced due diligence to all high-risk jurisdictions and countermeasures only in the most serious cases.
+- `The Egmont Group: how FIUs actually share` introduces two fresh defects: INR.40 does not expressly direct FIUs to use Egmont channels, and the cited Egmont Principles are no longer just a 2013 document because the current Egmont revision is later.
+- The lesson still teaches MONEYVAL as effectively the body for `Europe outside the EU`, which is inaccurate because MONEYVAL evaluates many EU member states as well.
+
+If lesson 0.3 is regenerated again, preserve the now-cleared APG/methodology/ATA fixes and reprompt specifically against this FATF/Egmont/MONEYVAL bundle.
