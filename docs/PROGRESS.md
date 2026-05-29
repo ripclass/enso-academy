@@ -1,5 +1,73 @@
 # Enso Academy Progress Log
 
+## 2026-05-29 - Current factual-fidelity audit: earlier Myanmar / SEC / OPA / R.10-R.12 issues are fixed, but a different source-level bundle still blocks publication
+
+Reviewed the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against current FATF, APG, BFIU / ATA, DOJ, and SEC primary/public materials.
+
+- Verdict: `DISAGREE`; still not publishable.
+- Confirmed fixed in this draft: the earlier `Myanmar` omission from the FATF call-for-action list is resolved; the SEC disposition now correctly separates the `USD 178.6 million` civil penalty from the approximately `USD 413 million` total SEC settlement; DOJ OPA release `22-1342` is now correctly cited; and the deep-case body no longer misapplies FATF Recommendation 12 to the general high-risk-customer point.
+- Current blocking issue 1: `Mutual Evaluations: Technical Compliance and Effectiveness` cites the FATF 2022 methodology as an `October 2025 edition`, but FATF's official methodology page now says the 2022 methodology is `as amended in December 2025`.
+- Current blocking issue 2: the same scene's APG citation date is wrong. The Bangladesh `4th Enhanced Follow-Up Report` PDF is dated `November 2020` (updated September 2021), not `October 2020`.
+- Current blocking issue 3: `National Supervisors Across Three Jurisdictions` misstates Bangladesh ATA 2009 sections `7` and `8` as `financing offences and reporting`. The official Act shows section `7` is the terrorist-financing offence/punishment provision, while section `8` concerns membership of a proscribed organisation.
+- Current blocking issue 4: `Deep Case - Danske Bank Estonia (2007-2015, resolved 2022)` misstates the U.S. case metadata. The official Information is in the Southern District of New York, not `D. Conn.`, and charges conspiracy to commit bank fraud under `18 U.S.C. § 1349` with object bank fraud under `18 U.S.C. § 1344(2)`, not `§ 371 / § 1344`.
+- Current blocking issue 5: the same Danske scene attributes the DOJ's approximately `USD 160 billion` figure to the wrong period. The cited Statement of Facts says the transactions for NRP customers through U.S. banks ran between `2007 and 2016`, not `2008 and 2015`.
+- Current blocking issue 6: `Architecture in Practice` repeats the wrong Danske statutory framing in the final quiz explanation by using `18 U.S.C. § 371` instead of the actual `18 U.S.C. § 1349` conspiracy charge.
+
+## 2026-05-29 - Current methodology audit says the disagreement is not resolved
+
+Reviewed the latest user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+- Verdict: `DISAGREE`; still not publishable under methodology v1.1.
+- Confirmed fixed in this draft: the deep-case scene still clears the real-enforcement requirement, the Egmont Charter citation is now pinned to Article 4, and the old Danske R.10/R.12 / 2014-reference issue no longer appears in the artifact.
+- Current blocking issue 1: `Why an Architecture, Not Just a Rule` is still below the reading-scene name+section bar. Its FATF-structure claims remain partly page/document-level, and its closing Bangladesh/APG/BFIU chain introduces structured references not anchored in the scene citation array.
+- Current blocking issue 2: slide-level citation-pool locatability is still incomplete. `The Four Layers of the Architecture` introduces APG / MONEYVAL / GAFILAT coverage claims without locatable support in the lesson pool, and `Navigation: Which Authority, Which Law?` adds unpooled structured references including Bank Company Act 1991, MLPA sections 9 and 24, ATA sections 20A-20B, and APG procedures.
+- Current blocking issue 3: `Financial Intelligence Units and the Egmont Group` and `Deep Case — Danske Bank Estonia (2007-2015, resolved 2022)` still fall short of full claim-traceability. The FIU-form examples / Egmont-founding claim and several supervisory-FIU-evaluation assertions in the Danske scene are not matched by claim-level citation entries.
+- Current blocking issue 4: the distinct-concepts-per-scene rule is not cleared after all. Scene-level `conceptTags` are reused across the lesson, including `fatf`, `fsrb`, `fiu`, `mutual_evaluation`, and `egmont_group`.
+- No new methodology blocker class surfaced; the lesson is still blocked by the same citation-discipline / distinct-scene-concepts bundle.
+
+## 2026-05-29 - Latest factual-fidelity audit: earlier MONEYVAL and old Danske timeline/count defects are fixed, but the lesson still does not clear publication
+
+Reviewed the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against current FATF, APG, SEC, DOJ, and FATF-Recommendations materials.
+
+- Verdict: `DISAGREE`; still not publishable.
+- Confirmed fixed in this draft: the earlier MONEYVAL overstatement is gone, and the old Danske defects about a supposed 2014 Danish FSA report and `15,000 non-resident customers` no longer appear.
+- Current blocking issue 1: `Mutual Evaluations: Technical Compliance and Effectiveness` says only DPRK and Iran are currently subject to a FATF Call for Action, but FATF's 13 February 2026 public list still includes Myanmar.
+- Current blocking issue 2: the same scene's APG citation is still numerically wrong. The 2020 Bangladesh document is APG's `4th Follow-Up Report`, not the `3rd Enhanced Follow-Up Report`.
+- Current blocking issue 3: `Deep Case - Danske Bank Estonia (2007-2015, resolved 2022)` misstates the SEC resolution by calling USD 413 million a civil penalty. The SEC says the civil penalty was USD 178.6 million; the ~USD 413 million figure is the total settlement amount.
+- Current blocking issue 4: the same Danske scene misapplies FATF Recommendation 12 to high-risk non-resident customers. Recommendation 12 is the PEP standard; the general high-risk-customer/CDD point belongs under Recommendation 10.
+
+## 2026-05-29 - Latest methodology audit narrows the global-architecture lesson blockers again, but still does not clear them
+
+Reviewed the latest user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+- Verdict: `DISAGREE`; still not publishable under methodology v1.1.
+- Confirmed fixed in this draft: the lesson now has a valid real-enforcement deep case, the scene-level `conceptTags` are distinct across scenes, and the earlier Bruun & Hjejle source-discipline issue no longer appears in the artifact.
+- Remaining blocking issue 1: `Why an Architecture, Not Just a Rule` is still below the name+section bar. Its 1989 / FATF-membership / FSRB-network / 2025-update claims are still cited at page or document level rather than with clean pinpoint support in the citations array.
+- Remaining blocking issue 2: slide-level citation-pool locatability is still incomplete. `The Four Layers of the Architecture` and `National Supervisors Across Three Jurisdictions` introduce structured references (for example the FATF Mandate, FATF Recommendations 26-29, BSA / 31 CFR / 12 U.S.C. § 1818(s), IEEPA, POCA, Terrorism Act 2000, MLR 2017, MLPA 2012, ATA 2009, and BFIU Circular No. 26) that are not locatable in the lesson citation pool.
+- Remaining blocking issue 3: `Financial Intelligence Units and the Egmont Group` and `Deep Case — Danske Bank Estonia (2007–2015, resolved 2022)` still do not fully meet the reading-scene claim-traceability bar. The Egmont Charter membership point is still document-level rather than section-specific, and the Danske scene introduces specific structured references/claims (notably FATF Recommendations 10 and 12, plus the 2014 Estonian-supervisory-work reference) without matched claim-level citation entries.
+- No new methodology blocker class surfaced in this pass; the disagreement is now a narrower citation-discipline failure.
+
+## 2026-05-29 - Latest factual-fidelity audit still blocks the current global-architecture lesson on narrower source-level issues
+
+Reviewed the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against current FATF/MONEYVAL materials and the public Danske Estonia source set (DOJ, Danish FSA, Bruun & Hjejle).
+
+- Verdict: `DISAGREE`; still not publishable.
+- Confirmed fixed in this draft: the earlier stale FATF recommendations dating, VASP/R.15 scoping, FATF call-for-action overstatement, and Egmont-dating/channel issues do not appear in the current JSON.
+- Current blocking issue 1: `The Four Layers of the Architecture` still overstates MONEYVAL by saying it covers Council of Europe states/members as such. MONEYVAL evaluates a defined subset of Council of Europe jurisdictions, not every Council of Europe member state.
+- Current blocking issue 2: `Deep Case — Danske Bank Estonia (2007–2015, resolved 2022)` says the Danish FSA produced a 2014 report. The 2014 supervisory report in the public record was the Estonian FSA draft report, alongside internal-audit / consultancy work; the Danish FSA's public Estonia-case decision came in 2018 and its explanatory supervision report in 2019.
+- Current blocking issue 3: the same Danske scene misstates the customer count. The Bruun & Hjejle report distinguishes roughly 10,000 customers in the Non-Resident Portfolio from roughly 15,000 total customers subject to investigation, but the lesson turns that into `roughly 15,000 non-resident customers`.
+
+## 2026-05-29 - Methodology audit of the current user-supplied global-architecture lesson still returns DISAGREE
+
+Reviewed the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+- Verdict: `DISAGREE`; still not publishable under methodology v1.1.
+- Confirmed fixed in this draft: the lesson now includes a real public-enforcement deep case (`Deep Case — Danske Bank Estonia (2007–2015, resolved 2022)`), so the missing-deep-case blocker is no longer the issue.
+- Remaining blocking issue 1: citation discipline is still below the v1.1 bar. `Why an Architecture, Not Just a Rule`, `Financial Intelligence Units and the Egmont Group`, and the synthesis/supervisor-mapping content still make multiple factual assertions without clean name+section support for each claim.
+- Remaining blocking issue 2: slide-level citation-pool locatability is still incomplete. `The Four Layers of the Architecture` and `National Supervisors Across Three Jurisdictions` introduce structured references and jurisdiction mappings that are not fully anchored in the lesson citation pool.
+- Remaining blocking issue 3: the distinct-concepts-per-scene rule is still not met; core scene-level concept tags still repeat across the lesson (`fatf`, `mutual_evaluation`, `fiu`, `fsrb`, `egmont_group`).
+- Remaining blocking issue 4: the Danske scene still leans substantively on the public-but-bank-commissioned Bruun & Hjejle report, which is outside the methodology's allowed source categories unless recast as secondary context rather than substantive support.
+
 ## 2026-05-29 — Lesson 0.3 re-run capped; currency facts-pack + generation tuning shipped (gates left alone)
 
 Re-ran CAMS lesson 0.3 through the integrated spine; it capped at 3× Codex DISAGREE (run paused). The feedback loop converged substance — added an ABLV Bank 2018 deep-case, fixed the APG/methodology/ATA defects — but capped on currency/FATF-structure fidelity errors plus two methodology rules (distinct-concepts-per-scene, citation granularity).
