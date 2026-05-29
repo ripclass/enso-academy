@@ -83,7 +83,10 @@ ${SCENE_SCHEMA}`
   const result = await callOpus({
     system,
     messages: [{ role: 'user', content: user }],
-    maxTokens: 16000,
+    // Methodology-compliant lessons (every slide reference pooled into a
+    // reading scene's citations[]) run ~16-20k output tokens; 16k truncated
+    // mid-JSON. 32k is Opus 4.x's standard output ceiling and gives headroom.
+    maxTokens: 32000,
     temperature: 0.7,
   })
 
@@ -95,6 +98,15 @@ ${SCENE_SCHEMA}`
     costCents: result.costCents,
     metadata: { stage: 'lesson', lessonSlug: lesson.slug },
   })
+
+  // A 'length' stop means the model hit maxTokens and the JSON is truncated —
+  // surface that clearly instead of letting parseJson throw a cryptic
+  // "Unterminated string" error.
+  if (result.stopReason === 'length') {
+    throw new Error(
+      `Lesson "${lesson.slug}" generation hit the ${32000}-token output cap (stopReason=length) — JSON is truncated. Raise maxTokens or split the lesson.`,
+    )
+  }
 
   const artifact = parseJson<LessonArtifact>(result.text)
   // Defensive: ensure the slug is right even if the model echoed something else.
