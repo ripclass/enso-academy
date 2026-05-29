@@ -1,5 +1,56 @@
 # Session Notes
 
+## [2026-05-29] - Resumed the interrupted doer session; spine integration committed; consolidated to one session
+
+Picked up the interrupted "doer" session (it had been running in parallel with a "consultant" audit session on 05-25). Reconstructed state: the doer had built the Path-2 follow-up (spine wired into `generate-course.ts`, two new modules, gate refinements), left it type-clean but uncommitted, and a first live full-spine run on CAMS lesson 0.3 (`the-global-architecture-fatf-fius-supervisors`) was interrupted at Codex iteration 2/3 — both DISAGREE, no saved artifact.
+
+Decisions this session:
+- Committed the spine-integration code + the consultant session's ADR 0020 / methodology v1.1 / doc edits as one milestone (they're one story — v1.1 decided the spine, the code implements it).
+- Consolidated to a single session going forward. The dual-session setup was a footgun: both sessions wrote the same memory files + working tree and audited/generated the same lesson with no lock. The "consultant" review role is largely subsumed by the Codex cross-check (the spine's independent factual-fidelity + methodology reviewer — the whole premise of ADR 0020).
+- Re-running lesson 0.3 cold through the integrated spine to test the currency question. The residual DISAGREE blockers are currency errors (stale FATF facts the model can't self-correct). If the spine's own Codex-feedback loop can't converge it within the cap, the next move is a lightweight current-facts injection into the generation system prompt + cross-check briefs BEFORE the full 36-lesson run — not a full currency-tracking layer (that stays post-launch per ADR 0020).
+
+Gotcha for the re-run: a fresh `lesson 0 3` run starts cold (no carried-over feedback from the dead run's JSONL — the orchestrator's loop counter is in-memory, not JSONL-derived), and it overwrites `.codex.1.txt`/`.codex.2.txt`. The prior run's verdicts survive in `review_events.jsonl`, so the audit trail is preserved.
+
+## [2026-05-25 10:30] - Supplemental factual-fidelity audit: global-architecture lesson still blocked
+
+Reviewed the user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` directly against current FATF, APG, BFIU, NCA, FCA/HMRC, and FinCEN public materials. Verdict remained `DISAGREE`.
+
+What newly/independently blocks publication in this revision:
+- The slide "`Three jurisdictions, one framework`" says the United States has no FSRB. APG’s official member page says the United States is a founding APG member (1997) and also a FATF member.
+- The US-jurisdiction scene/slide uses present-tense AML-supervisory framing for investment advisers. FinCEN delayed the investment-adviser AML rule to 1 January 2028 on 31 December 2025, so the lesson currently overstates the BSA perimeter.
+- The FATF methodology citation is stale again. FATF now publishes the Recommendations as last updated in October 2025 and splits the methodology page into the 2022 methodology (amended December 2025) and the 2013 methodology (last updated June 2023).
+- The Recommendation 19 / grey-list scope problem remains. FATF’s increased-monitoring statements expressly say the grey list does not call for enhanced due diligence measures.
+
+One nuance to preserve: this user-supplied revision no longer appears to repeat the older "Bangladesh FUR 2020 = MER" wording that an earlier audit caught. If the working-copy artifact is edited from an older branch or stale generated file, re-check that APG chronology point before re-review.
+
+## [2026-05-25 09:25] - Latest draft fixed the earlier US/R19 issues but is still blocked
+
+Fresh primary-source re-check of the latest user-supplied lesson JSON narrowed the blocker set but did not clear it.
+
+What appears fixed in this draft:
+- FATF Recommendation 19 / grey-list scope is now framed correctly: grey-listing is not itself an R.19 EDD trigger.
+- The comparative slide now correctly reflects the United States as an APG founding member.
+- The U.S. supervisory-perimeter scene now correctly notes FinCEN's 31 Dec 2025 delay of the investment-adviser AML rule to 1 Jan 2028.
+
+What still blocks publication:
+- `FSRBs and Bangladesh's place in the peer-review system` says FATF has "40 members and two regional-organisation members." FATF says it has 40 members total: 38 jurisdictions and 2 regional organisations.
+- Multiple FATF citation labels still use stale "updated November 2023" dating even though the Recommendations are currently updated October 2025.
+- `Deep case: Standard Chartered Bank and the multi-supervisor enforcement architecture` misstates the 2012 NYDFS chronology: the $340 million DFS settlement was announced in August 2012 and formalised by a 21 Sep 2012 consent order, not entered in December 2012.
+- The same deep-case scene misdescribes FATF Recommendation 6 as covering "terrorism and proliferation." Per the current FATF Recommendations, proliferation is Recommendation 7.
+
+## [2026-05-25 08:47] - Methodology audit: global-architecture lesson blocked
+
+Reviewed the CAMS lesson artifact `the-global-architecture-fatf-fius-supervisors` against methodology v1.1 and returned `DISAGREE`.
+
+What blocks publication:
+- No deep-case scene grounded in a real public enforcement action. The lesson has a Bangladesh/APG worked example, but that is a mutual-evaluation walkthrough, not a named enforcement matter with year + substantive analysis.
+- Citation discipline is below the v1.1 bar. Multiple reading scenes use free-text citation labels instead of claim-traceable name + section citations, and the jurisdictional scenes/slides rely on legal references and institutional splits that are not consistently section-anchored in the lesson citation pool.
+- The lesson also violates the "distinct concepts per scene" expectation by repeating the same core FATF / FSRB / FIU concept sets across multiple scenes.
+
+Soft-pass notes:
+- No obvious prohibited-source / commercial-guide contamination was detected from the artifact itself.
+- Tone is adult-professional and mostly free of marketing register.
+
 ## [2026-05-24 EOD] - Path 2 build complete; SME track started in parallel
 
 Built all five Path 2 cycles in priority order (ADR 0019). Summary:

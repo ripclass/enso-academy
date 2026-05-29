@@ -39,10 +39,20 @@ export async function generateLessonScenes(opts: {
   outline: OutlineArtifact
   module: OutlineModule
   lesson: OutlineLesson
+  /** Feedback from a prior failed validation run; injected into the prompt so the model can correct in place. */
+  retryFeedback?: string
 }): Promise<{ artifact: LessonArtifact; costCents: number }> {
-  const { outline, module, lesson } = opts
+  const { outline, module, lesson, retryFeedback } = opts
   const system = loadMethodology()
-  const user = `Generate the scenes for one lesson of the Enso Academy course "${outline.course.name}".
+  const retryPreamble = retryFeedback
+    ? `A prior attempt at this lesson failed the deterministic gate validator. Address every issue below before regenerating. Do not change content that was not flagged; only correct the cited problems.
+
+PRIOR-RUN FAILURES:
+${retryFeedback}
+
+`
+    : ''
+  const user = `${retryPreamble}Generate the scenes for one lesson of the Enso Academy course "${outline.course.name}".
 
 MODULE: ${module.name}
 Module objective: ${module.objective}

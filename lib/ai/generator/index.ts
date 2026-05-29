@@ -50,6 +50,26 @@ export {
   type ReviewEvent,
   type ReviewEventInput,
 } from './codex_dispatch'
+export {
+  validateAndPersistLesson,
+  summarizeFailures,
+  GateValidationCapExceededError,
+  MAX_GATE_VALIDATION_ATTEMPTS,
+  type ValidateAndPersistArgs,
+  type ValidateAndPersistResult,
+} from './generate_with_gates'
+export {
+  runCodexCrossCheck,
+  buildMethodologyBrief,
+  buildFidelityBrief,
+  synthesizeCodexFeedback,
+  formatVerdictFeedback,
+  CodexIterationCapExceededError,
+  MAX_CODEX_REVIEW_ITERATIONS,
+  type CodexCrossCheckArgs,
+  type CodexCrossCheckResult,
+  type CrossCheckOutcome,
+} from './codex_review'
 export type {
   OutlineArtifact,
   OutlineModule,

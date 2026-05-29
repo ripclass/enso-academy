@@ -46,12 +46,19 @@ pnpm tsx scripts/generate-course.ts write
 ```
 Writes the course as a **draft** — unpublished, not enrollable.
 
-**6. SME review.** A credentialed subject-matter expert reviews the draft for
-factual accuracy and hallucinated citations (a methodology QA requirement).
-This is mandatory and is not automated.
+**6. AI verification spine.** Each lesson is automatically validated by the
+seven deterministic gates (`validate_gates.ts`) plus parallel methodology +
+factual-fidelity cross-check (`codex_dispatch.ts`). FAIL blocks the artifact;
+FLAG surfaces it for operator review at module rollup. Per-lesson
+`<slug>.validation.json` siblings record the verdict; per-course
+`generated/<slug>/review_events.jsonl` is the audit trail. Methodology v1.1
+(ADR 0020) replaces the v1.0 SME-review mandate with this spine; see the
+methodology's "Residual gaps" subsection for what the spine does not close
+(currency; operational ground truth).
 
-**7. Publish.** Only after SME review: set `courses.status` to `published`
-and `courses.published_at`. (A publishing workflow is a future prompt.)
+**7. Publish.** Only after the spine clears and the operator has reviewed any
+flagged lessons: set `courses.status` to `published` and
+`courses.published_at`. (A publishing workflow is a future prompt.)
 
 ## Cost control
 

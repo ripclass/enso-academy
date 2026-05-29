@@ -1,5 +1,57 @@
 # Enso Academy Progress Log
 
+## 2026-05-29 — Path 2 follow-up: AI verification spine integrated into the generation flow (closes What's-next item 2)
+
+Wired the deterministic gates + parallel Codex cross-check directly into `scripts/generate-course.ts`. Every lesson (`lesson` and `full` modes) now runs through `generateLessonWithFullSpine`:
+
+- Inner deterministic-gate loop (`MAX_GATE_VALIDATION_ATTEMPTS = 3`): generate → `runGates` → write `.validation.json` → emit a `gate_runner` review event. PASS/FLAG proceeds to Codex; FAIL regenerates with `summarizeFailures` feedback; exhausting the cap throws `GateValidationCapExceededError` and pauses the run.
+- Outer Codex cross-check loop (`MAX_CODEX_REVIEW_ITERATIONS = 3`): `runCodexCrossCheck` dispatches the methodology + factual-fidelity briefs in parallel, writes `.codex.<n>.txt`, emits a `codex`/`cross_check` event. AGREE/SPLIT saves the lesson `.json`; DISAGREE regenerates with merged methodology+fidelity feedback; exhausting the cap throws `CodexIterationCapExceededError`.
+- The lesson artifact is written ONLY on Codex AGREE/SPLIT — never on a DISAGREE. `full` mode catches cap-exceeded errors to pause; all other per-lesson errors log + continue (resumability preserved).
+
+New modules: `lib/ai/generator/generate_with_gates.ts` and `codex_review.ts` (exported via `index.ts`). Also closed the two remaining gate follow-ups: `citation_bind` expands comma+range FATF Recommendation lists; gate 6b normalises equivalent reference forms (UNSCR ↔ UN Security Council Resolution; Recommendation N ↔ R.N; § ↔ Section) through an alias table before item↔narration comparison. `methodology.ts` → v1.1; `runGates` defaults to v1.1; `codex_dispatch.ts` gained OS-aware `codex.cmd` resolution + a 20-min timeout for Windows. Typecheck clean.
+
+First live full-spine run (CAMS lesson 0.3 `the-global-architecture-fatf-fius-supervisors`) was interrupted at Codex iteration 2/3 (both DISAGREE; no saved artifact). The deep-case + R.19/US-FSRB/investment-adviser defects were corrected across iterations, but the residual blockers are CURRENCY errors (FATF "40 + 2" vs 40 total = 38+2; "updated November 2023" vs the Oct-2025 Recommendations; R.6 terrorism / R.7 proliferation; Standard Chartered NYDFS chronology) — the residual-gap ADR 0020 names. Re-running `lesson 0 3` cold to test whether the spine's own feedback loop converges currency-sensitive content before committing Opus to the remaining ~36 lessons. Also consolidated the prior two-session (consultant + doer) workflow into a single session; the Codex cross-check is the independent reviewer the "consultant" role duplicated.
+
+## 2026-05-25 — Fresh factual-fidelity audit narrows but does not clear the global-architecture lesson blockers
+
+Reviewed the latest user-supplied JSON draft of `the-global-architecture-fatf-fius-supervisors` against current FATF, APG, FinCEN, NYDFS, DOJ, Federal Reserve, OFAC, and FCA primary/public materials.
+
+- Verdict: `DISAGREE` — still not publishable.
+- Confirmed fixed in this draft: the earlier FATF Recommendation 19 / grey-list scope defect; the false "United States — FSRB: none" claim; and the stale present-tense treatment of U.S. investment advisers after FinCEN's 31 Dec 2025 delay to 1 Jan 2028.
+- New/remaining blocking issue 1: `FSRBs and Bangladesh's place in the peer-review system` says FATF has "40 members and two regional-organisation members." FATF's own membership materials say FATF has 40 members total: 38 jurisdictions and 2 regional organisations.
+- New/remaining blocking issue 2: multiple citation labels still say the FATF Recommendations / related standards were "updated November 2023," which is stale against FATF's current October 2025 Recommendations edition.
+- New/remaining blocking issue 3: the Standard Chartered deep-case scene misstates the 2012 NYDFS chronology and citation. The $340 million NYDFS settlement was announced in August 2012 and memorialised by a 21 Sep 2012 consent order, not entered in December 2012; the current citation label also conflates the August order with the later consent order.
+- New/remaining blocking issue 4: the same deep-case scene misdescribes FATF Recommendation 6 as covering "terrorism and proliferation." FATF's October 2025 Recommendations state R.6 is targeted financial sanctions related to terrorism and terrorist financing; proliferation is Recommendation 7.
+
+## 2026-05-25 — Supplemental factual-fidelity audit blocks CAMS lesson "The Global Architecture: FATF, FIUs, and Supervisors"
+
+Ran a fresh source-level factual-fidelity audit of the user-supplied lesson JSON against current FATF, APG, BFIU, NCA, FCA/HMRC, and FinCEN public materials.
+
+- Verdict: `DISAGREE` — still not publishable.
+- Confirmed again: the lesson overstates FATF Recommendation 19 by implying that FATF listing status generally maps to mandatory enhanced due diligence; FATF’s own increased-monitoring statements say the grey list does not call for EDD.
+- New blocking issue 1: the slide "`Three jurisdictions, one framework`" says the United States has no FSRB. APG’s official member page says the United States is a founding APG member (1997) as well as a FATF member.
+- New blocking issue 2: the US-supervision scene/slide treats investment advisers as current AML/CFT-supervised entities under the BSA. FinCEN delayed the investment-adviser AML rule’s effective date from 1 January 2026 to 1 January 2028 on 31 December 2025, so that present-tense framing is stale.
+- New blocking issue 3: the methodology citation is stale. FATF now publishes the Recommendations as last updated in October 2025, and the methodology page now distinguishes the 2022 methodology (amended December 2025) from the 2013 methodology (last updated June 2023).
+
+## 2026-05-25 — Factual-fidelity audit blocks CAMS lesson "The Global Architecture: FATF, FIUs, and Supervisors"
+
+Ran a source-level factual-fidelity audit of the generated CAMS lesson artifact `the-global-architecture-fatf-fius-supervisors` against FATF, APG, BFIU, and Egmont primary/public materials.
+
+- Verdict: `DISAGREE` — not publishable yet.
+- Publish-blocking issue 1: the lesson repeatedly says APG adopted Bangladesh’s “most recent Mutual Evaluation Report” in October 2020. APG’s Bangladesh page and Bangladesh’s 4th Follow-Up Report say the MER was adopted in September 2016; the 2020 document is a Follow-Up Report, not a new MER.
+- Publish-blocking issue 2: the lesson overstates FATF Recommendation 19 by implying that FATF grey-listing (`Jurisdictions under Increased Monitoring`) triggers mandatory enhanced due diligence by counterparties globally. FATF’s own increased-monitoring statements expressly say FATF does not call for EDD on grey-listed jurisdictions; the mandatory R.19 call is tied to high-risk/call-for-action treatment.
+- Additional fidelity issue: the lesson’s FATF document dating is stale. It repeatedly cites the Recommendations as “updated November 2023” and the Methodology as “updated 2023,” but FATF now publishes a February 2025 Recommendations edition and a current 2022/2013 methodology page updated in 2026.
+
+## 2026-05-25 — Methodology audit blocks CAMS lesson "The Global Architecture: FATF, FIUs, and Supervisors"
+
+Reviewed the generated CAMS lesson artifact `the-global-architecture-fatf-fius-supervisors` against methodology v1.1.
+
+- Verdict: `DISAGREE` — not publishable yet.
+- Publish-blocking issue 1: no deep-case scene grounded in a real public enforcement action; the Bangladesh/APG worked example is a mutual-evaluation walkthrough, not an enforcement case.
+- Publish-blocking issue 2: citation discipline is below v1.1. Reading scenes use free-text citation labels rather than name+section traceability, and the jurisdictional scenes/slides introduce legal authorities and institutional splits without consistently section-anchored support in the lesson citation pool.
+- Publish-blocking issue 3: the lesson reuses the same core FATF / FSRB / FIU concept tags across multiple scenes, breaking the methodology's distinct-concepts-per-scene rule.
+- Soft pass areas: obvious IP hygiene and adult-professional register were acceptable on review.
+
 ## 2026-05-24 — Path 2 infrastructure (ADR 0019): deterministic gates + Codex orchestration shipped
 
 Built the five Path-2 components per the priority order Ripon set after the Launch Quality Bar evaluation. All five cycles implemented and tested against the Path-1 fixtures.
@@ -368,3 +420,11 @@ Infrastructure decisions captured in CLAUDE.md gotchas: Vercel for hosting, Inng
 
 Stack confirmed: Next.js 16, React 19, TypeScript strict, Tailwind v4, pnpm.
 Decision: clean-room implementation (no OpenMAIC fork) due to AGPL-3.0 incompatibility with commercial IP. See docs/decisions/0001-clean-room-no-openmaic-fork.md.
+## 2026-05-25 — Factual-fidelity audit blocks CAMS lesson "The Global Architecture: FATF, FIUs, and Supervisors"
+
+Ran a source-level factual-fidelity audit of the generated CAMS lesson artifact `the-global-architecture-fatf-fius-supervisors` against FATF, APG, BFIU, and Egmont primary/public materials.
+
+- Verdict: `DISAGREE` — not publishable yet.
+- Publish-blocking issue 1: the lesson repeatedly says APG adopted Bangladesh’s “most recent Mutual Evaluation Report” in October 2020. APG’s Bangladesh page and Bangladesh’s 4th Follow-Up Report say the MER was adopted in September 2016; the 2020 document is a Follow-Up Report, not a new MER.
+- Publish-blocking issue 2: the lesson overstates FATF Recommendation 19 by implying that FATF grey-listing (`Jurisdictions under Increased Monitoring`) triggers mandatory enhanced due diligence by counterparties globally. FATF’s own increased-monitoring statements expressly say FATF does not call for EDD on grey-listed jurisdictions; the mandatory R.19 call is tied to high-risk/call-for-action treatment.
+- Additional fidelity issue: the lesson’s FATF document dating is stale. It repeatedly cites the Recommendations as “updated November 2023” and the Methodology as “updated 2023,” but FATF now publishes a February 2025 Recommendations edition and a current 2022/2013 methodology page updated in 2026.

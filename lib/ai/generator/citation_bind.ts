@@ -329,19 +329,23 @@ export function extractClaims(artifact: LessonArtifact): ExtractedClaim[] {
  * sections within the range. We expand the candidate label set so the bind
  * doesn't over-flag claims whose anchor IS substantively present but in
  * range form rather than as a discrete entry.
+ *
+ * Path-2 follow-up: the FATF expander handles a generalised number list
+ * (singletons + ranges + "and" connectors) so that "Recommendations 20, 26–29"
+ * covers R.20, R.26, R.27, R.28, R.29 — not only the trailing range. Caught
+ * by the CAMS 1.3 unbound FATF R.26 case where the leading "20" was being
+ * lost. Same tokeniser as gate 6b's plural-list normaliser.
  */
 function expandCandidateLabel(label: string): string[] {
   const out = [label]
-  // FATF Recommendations N–M
-  const recRange = label.match(/Recommendations?\s+(\d{1,2})\s*[–-]\s*(\d{1,2})/i)
-  if (recRange) {
-    const start = parseInt(recRange[1], 10)
-    const end = parseInt(recRange[2], 10)
-    if (end > start && end - start <= 25) {
-      for (let n = start; n <= end; n++) {
-        out.push(`recommendation ${n}`)
-        out.push(`r.${n}`)
-      }
+  // FATF Recommendations — generalised list of singletons and ranges.
+  // e.g. "Recommendations 9–23", "Recommendations 20, 26–29",
+  // "Recommendations 10, 11, and 21", "FATF Recommendations 26-28 and 31".
+  const recList = label.match(/Recommendations?\s+([\d,\s\-–]+(?:and\s+\d+(?:\s*[\-–]\s*\d+)?)?)/i)
+  if (recList) {
+    for (const n of parseRecNumberList(recList[1])) {
+      out.push(`recommendation ${n}`)
+      out.push(`r.${n}`)
     }
   }
   // U.S.C. § N et seq. (open-ended; cap the expansion window)
@@ -352,6 +356,33 @@ function expandCandidateLabel(label: string): string[] {
     for (let n = start; n <= start + 40; n++) {
       out.push(`${title} u.s.c. § ${n}`)
     }
+  }
+  return out
+}
+
+/** Parse a FATF Recommendation number list (commas + ranges + "and") to a
+ *  flat array of Recommendation numbers. Range expansion is capped at 25
+ *  numbers per range; non-numeric tokens are ignored. */
+function parseRecNumberList(list: string): number[] {
+  const out: number[] = []
+  const tokens = list
+    .split(/[,\s]+(?:and\s+)?/i)
+    .map((t) => t.trim())
+    .filter(Boolean)
+  for (const token of tokens) {
+    const range = token.match(/^(\d+)\s*[\-–]\s*(\d+)$/)
+    if (range) {
+      const start = parseInt(range[1], 10)
+      const end = parseInt(range[2], 10)
+      if (Number.isFinite(start) && Number.isFinite(end) && end >= start && end - start <= 25) {
+        for (let n = start; n <= end; n++) out.push(n)
+        continue
+      }
+      if (Number.isFinite(start)) out.push(start)
+      if (Number.isFinite(end)) out.push(end)
+      continue
+    }
+    if (/^\d+$/.test(token)) out.push(parseInt(token, 10))
   }
   return out
 }

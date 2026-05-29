@@ -64,13 +64,22 @@ export type DispatchOptions = {
 
 // ── Core dispatch ─────────────────────────────────────────────────────────
 
-const DEFAULT_TIMEOUT_MS = 10 * 60 * 1000
+// Codex cross-check on a full lesson artifact + methodology context regularly
+// takes 8–15 min per dispatch on Opus-class lessons (the brief is ~25-50KB
+// and Codex reasons through every scene). Set above the worst-case observed
+// in Path-1 + Path-2 smoke runs; caller overrides via DispatchOptions.timeoutMs.
+const DEFAULT_TIMEOUT_MS = 20 * 60 * 1000
+
+/** Default codex binary, OS-aware. Windows installs codex via an npm shim
+ *  that's a `.cmd` file; Node's spawnSync needs the explicit `.cmd` extension
+ *  to find it (or `shell: true`, which has quoting hazards on Windows). */
+const DEFAULT_CODEX_BINARY = process.platform === 'win32' ? 'codex.cmd' : 'codex'
 
 /** Invoke `codex exec` non-interactively with the given brief via stdin.
  *  Always pipes the brief through a temp file — never command-line arg —
  *  to remove the shell-argument-size failure mode end-to-end. */
 export async function dispatchCodex(args: { brief: string } & DispatchOptions): Promise<CodexVerdict> {
-  const { brief, codexBinary = 'codex', timeoutMs = DEFAULT_TIMEOUT_MS, extraArgs = [] } = args
+  const { brief, codexBinary = DEFAULT_CODEX_BINARY, timeoutMs = DEFAULT_TIMEOUT_MS, extraArgs = [] } = args
 
   const workDir = mkdtempSync(join(tmpdir(), 'codex-dispatch-'))
   const briefPath = join(workDir, 'brief.txt')
@@ -89,11 +98,21 @@ export async function dispatchCodex(args: { brief: string } & DispatchOptions): 
 
     // Pipe the brief via stdin — never as a command-line argument.
     const stdinContents = readFileSync(briefPath, 'utf8')
-    const result = spawnSync(codexBinary, cliArgs, {
+
+    // Windows: Node >=18 refuses to spawn .cmd/.bat directly without
+    // `shell: true` (CVE-2024-27980). Pass through the shell and pre-quote
+    // any arg that might contain a space (the temp outputPath in particular).
+    const isWindows = process.platform === 'win32'
+    const finalCliArgs = isWindows
+      ? cliArgs.map((a) => (/\s/.test(a) ? `"${a.replace(/"/g, '\\"')}"` : a))
+      : cliArgs
+    const result = spawnSync(codexBinary, finalCliArgs, {
       input: stdinContents,
       encoding: 'utf8',
       timeout: timeoutMs,
       maxBuffer: 50 * 1024 * 1024, // 50MB — codex output can be large
+      shell: isWindows,
+      windowsHide: true,
     })
 
     if (result.error) {

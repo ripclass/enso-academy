@@ -102,6 +102,87 @@ const ICC_RULE_TEXT_BANS: RegExp[] = [
   /\b(?:UCP\s*600|ISBP\s*82\d|URDG\s*758|ISP\s*98|URC\s*522)[^\n]{0,40}\bArticle\s+\d+[a-z]?[:.]\s*[A-Z][^.]{120,}/i,
 ]
 
+/** Reference-form alias table for gate 6b (Path-2 follow-up).
+ *
+ *  Maps equivalent abbreviated / expanded forms of the same distinctive
+ *  reference to a single canonical lowercase token so that item↔narration
+ *  comparison no longer false-flags equivalent rewrites. The propagation-
+ *  failure pattern (item edited, narration left stale) still trips this
+ *  gate; only the equivalent-form false positive is closed.
+ *
+ *  Order matters: more-specific patterns first (e.g. INR before bare
+ *  "Recommendation N", and the plural list form "Recommendations N, M, K"
+ *  before the singular), so chained `replace()` doesn't partially rewrite
+ *  a multi-word reference and then mis-canonicalise the residue.
+ */
+type AliasRule =
+  | { pattern: RegExp; canonical: string }
+  | { pattern: RegExp; expand: (match: string, ...groups: string[]) => string }
+
+const REFERENCE_ALIASES: ReadonlyArray<AliasRule> = [
+  // UN Security Council Resolution — UN-prefix optional for the expanded form.
+  { pattern: /\b(?:UN\s+)?Security\s+Council\s+Resolution\s+(\d+)\b/gi, canonical: 'unscr $1' },
+  { pattern: /\bUNSCR\s+(\d+)\b/gi, canonical: 'unscr $1' },
+  // FATF Interpretive Note — handled before "Recommendation N" so the longer
+  // multi-word phrase canonicalises first.
+  { pattern: /\bInterpretive\s+Note\s+to\s+Recommendation\s+(\d+)\b/gi, canonical: 'inr.$1' },
+  { pattern: /\bINR\.?\s*(\d+)\b/gi, canonical: 'inr.$1' },
+  // FATF Recommendations PLURAL form: "Recommendations 10, 11, 20, and 21"
+  // and "Recommendations 26-29" expand to individual canonical tokens.
+  // Runs before the singular pattern so the singular pattern doesn't eat
+  // the leading "Recommendations" of the plural form.
+  {
+    pattern: /\b(?:FATF\s+)?Recommendations\s+([\d,\s\-–]+(?:and\s+\d+)?)/gi,
+    expand: (_match: string, list: string) => expandRecList(list),
+  },
+  // FATF Recommendations SINGULAR: FATF-prefixed, then bare Recommendation N,
+  // then the dotted abbreviation R.N. Bare "R N" without a dot is NOT aliased —
+  // too ambiguous in the wider corpus.
+  { pattern: /\bFATF\s+R(?:ecommendation)?\.?\s*(\d+)\b/gi, canonical: 'fatf r.$1' },
+  { pattern: /\bRecommendation\s+(\d+)\b/gi, canonical: 'fatf r.$1' },
+  { pattern: /\bR\.\s*(\d+)\b/gi, canonical: 'fatf r.$1' },
+  // Section / §
+  { pattern: /\bSection\s+(\d+)/gi, canonical: '§ $1' },
+  { pattern: /§\s*(\d+)/g, canonical: '§ $1' },
+]
+
+/** Expand a Recommendation-list capture ("10, 11, 20, and 21" or "26-29") into
+ *  a whitespace-joined run of canonical fatf-r tokens. Range expansion is
+ *  bounded to 40 numbers (matches the citation_bind range window) so a
+ *  malformed range doesn't blow up. */
+function expandRecList(list: string): string {
+  const out: string[] = []
+  const tokens = list.split(/[,\s]+(?:and\s+)?/i).map((t) => t.trim()).filter(Boolean)
+  for (const token of tokens) {
+    const range = token.match(/^(\d+)\s*[\-–]\s*(\d+)$/)
+    if (range) {
+      const start = parseInt(range[1], 10)
+      const end = parseInt(range[2], 10)
+      if (Number.isFinite(start) && Number.isFinite(end) && end >= start && end - start <= 40) {
+        for (let i = start; i <= end; i++) out.push(`fatf r.${i}`)
+        continue
+      }
+      out.push(`fatf r.${range[1]}`, `fatf r.${range[2]}`)
+      continue
+    }
+    if (/^\d+$/.test(token)) out.push(`fatf r.${token}`)
+  }
+  return out.join(' ')
+}
+
+/** Lower-case a string and fold equivalent reference forms through REFERENCE_ALIASES. */
+function normalizeRefs(text: string): string {
+  let out = text
+  for (const rule of REFERENCE_ALIASES) {
+    if ('canonical' in rule) {
+      out = out.replace(rule.pattern, rule.canonical)
+    } else {
+      out = out.replace(rule.pattern, rule.expand)
+    }
+  }
+  return out.toLowerCase()
+}
+
 /** Journalism / investigative-reporting sources — allowed as pointers, flagged
  *  when a reading scene cites only journalism with no primary-source counter-balance. */
 const JOURNALISM_PATTERNS: RegExp[] = [
@@ -504,13 +585,18 @@ export function gateMethodology(artifact: LessonArtifact): GateResult {
   //     reference tokens (statute citations, FATF Rec refs, section refs)
   //     present in slide items[] must also appear in the narration.
   //     Catches the propagation-failure pattern seen twice in CAMS 1.3:
-  //     fix the bullet, leave the spoken script.
-  const REF_PATTERN = /\b(?:18\s+U\.?\s*S\.?\s*C\.?|FATF\s+R(?:ecommendation)?\.?\s*\d+|UNSCR\s+\d+|s\.?\s*\d+(?:\([a-z0-9]+\))?|§\s*\d+|Article\s+\d+[a-z]?(?:\(\d+\))?|INR\.?\s*\d+)\b/gi
+  //     fix the bullet, leave the spoken script. Both sides are folded
+  //     through REFERENCE_ALIASES so that equivalent forms compare equal
+  //     (e.g. "UNSCR 1373" in item ↔ "UN Security Council Resolution 1373"
+  //     in narration, per the brief's alias table).
+  const REF_PATTERN =
+    /\b(?:18\s+U\.?\s*S\.?\s*C\.?|FATF\s+R(?:ecommendation)?\.?\s*\d+|UN(?:SCR|\s+Security\s+Council\s+Resolution)\s+\d+|Recommendation\s+\d+|Interpretive\s+Note\s+to\s+Recommendation\s+\d+|s\.?\s*\d+(?:\([a-z0-9]+\))?|§\s*\d+|Section\s+\d+|Article\s+\d+[a-z]?(?:\(\d+\))?|INR\.?\s*\d+)\b/gi
   for (const scene of artifact.scenes) {
     if (scene.sceneType !== 'slide') continue
     const d = scene.sceneData as SlideData
-    const narration = (isStr(d.narration) ? d.narration : '').toLowerCase()
-    if (!narration) continue
+    const rawNarration = isStr(d.narration) ? d.narration : ''
+    if (!rawNarration) continue
+    const narrationNormalized = normalizeRefs(rawNarration)
     if (!isArr(d.items)) continue
     for (const item of d.items) {
       if (!isObj(item)) continue
@@ -520,7 +606,8 @@ export function gateMethodology(artifact: LessonArtifact): GateResult {
       const refs = itemText.match(REF_PATTERN) ?? []
       const missing = refs
         .map((r) => r.trim())
-        .filter((r) => r.length > 4 && !narration.includes(r.toLowerCase()))
+        .filter((r) => r.length > 4)
+        .filter((r) => !narrationNormalized.includes(normalizeRefs(r)))
       if (missing.length > 0) {
         issues.push(
           `slide "${scene.title}": narration missing distinctive item refs (${missing.slice(0, 3).join('; ')}${missing.length > 3 ? '…' : ''})`,
@@ -603,7 +690,8 @@ export function runGates(
 
   return {
     lessonSlug: artifact.lessonSlug,
-    methodologyVersion: options.methodologyVersion ?? 'v1.0',
+    // Default matches METHODOLOGY_VERSION (ADR 0020 — methodology v1.1).
+    methodologyVersion: options.methodologyVersion ?? 'v1.1',
     validatedAt: new Date().toISOString(),
     gates,
     overall,
