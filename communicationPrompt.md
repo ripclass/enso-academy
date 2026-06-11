@@ -1,57 +1,35 @@
-Pause checklist reviewed end-to-end. Green-light Task 4. Wire Option A. Go.
+Module 2 complete — 13/40 CAMS lessons cross-cleared (12 AGREE/AGREE + 1 cleared-with-flag)
 
-  Restating crisply so you can hand it to the session cleanly:
+  ┌───────────────────────────────────────────────────┬──────────────────────────────────────┬─────────────────────────┐
+  │                      Lesson                       │              Deep case               │          Codex          │
+  ├───────────────────────────────────────────────────┼──────────────────────────────────────┼─────────────────────────┤
+  │ cdd-fundamentals-identifying-the-customer         │ NatWest / Fowler Oldfield (UK, 2021) │ AGREE / SPLIT (flagged) │
+  ├───────────────────────────────────────────────────┼──────────────────────────────────────┼─────────────────────────┤
+  │ enhanced-due-diligence-when-and-how               │ Danske Bank Estonia (DK/EE/US, 2022) │ AGREE / AGREE (iter 4)  │
+  ├───────────────────────────────────────────────────┼──────────────────────────────────────┼─────────────────────────┤
+  │ beneficial-ownership-investigation                │ 1MDB / Goldman Sachs (US, 2020)      │ AGREE / AGREE (iter 1)  │
+  ├───────────────────────────────────────────────────┼──────────────────────────────────────┼─────────────────────────┤
+  │ ongoing-monitoring-and-cdd-refresh                │ Westpac / AUSTRAC (AU, 2020)         │ AGREE / AGREE (iter 2)  │
+  ├───────────────────────────────────────────────────┼──────────────────────────────────────┼─────────────────────────┤
+  │ reliance-on-third-parties-and-introduced-business │ Standard Chartered (US/UK, 2012)     │ AGREE / AGREE (iter 2)  │
+  └───────────────────────────────────────────────────┴──────────────────────────────────────┴─────────────────────────┘
 
-  Decision: Option A. Wire parallelCrossCheck per-lesson into scripts/generate-course.ts. Methodology v1.1 (4b) commits to it, the iteration cap is decorative without per-lesson  
-  Codex execution, and Path-1 proved Codex catches what gates miss (1.3 scene-8 news-as-substance was a Codex catch, not a gate catch). Cost is within projection.
+  Three things need your eye:
 
-  Codex-wiring implementation specifics:
+  1. **The CDD flag is yours to overrule or accept.** Fidelity SPLIT at the 3-iteration cap on one soft point: the U.S.
+     scenes use the Part-1020 bank rules. The artifact now frames this expressly as the bank rendering everywhere
+     (title, scoping note, slide label, narration) — iteration 3's "issue" is literally an instruction to keep doing
+     what it already does. I stopped per the cap rather than burn iteration 4 on a wording nit. If you want the AGREE
+     on paper anyway, say so and I'll re-dispatch after any substantive revision.
+  2. **The restart cost one duplicate dispatch.** The system died mid-crosscheck on reliance; the re-run found a real
+     blocker (EU Article 27: the lesson had the two timing duties swapped — 27(1) obtain information, 27(2) copies
+     immediately on request). Fixed, AGREE/AGREE on iteration 2. The fidelity pass's 100% real-error hit rate from
+     Module 1 still holds.
+  3. **Module 3 is already moving per your go:** transaction-monitoring-systems-and-rules (Westpac again, but through
+     the monitoring-coverage lens — LitePay as the unwired channel) and from-alert-to-investigation (U.S. Bancorp 2018
+     — alert caps tied to staffing; the outline pointed at FinCEN Files but that's reporting, not an enforcement
+     matter, so it stays pointer-framed context). Both 7/7 gate-PASS; cross-checks in flight/queued.
 
-  - Two independent retry caps. MAX_GATE_VALIDATION_ATTEMPTS = 3 (existing, structural retries with gate feedback) and MAX_CODEX_ITERATIONS_PER_LESSON = 3 (new, substantive       
-  retries with Codex feedback). Different failure modes, separate counters.
-  - Codex runs ONLY after gates clear (pass or flag). Don't burn Codex spend on a lesson that's going to be re-generated for a structural fail.
-  - Outcome handling:
-    - Codex supported → save + emit lesson_review_events JSONL row (reviewer_role: 'cross_check', decision: 'validated').
-    - Codex flag / weak-supported → save + emit cross_check_flagged row. Soft signal, operator inspects at module rollup.
-    - Codex unsupported → do NOT save. Retry generation with Codex's reasoning merged into the retry prompt. Increment Codex iteration count.
-  - Cap-exceeded → throw CodexIterationCapExceededError (parallel to GateValidationCapExceededError). full mode catches, pauses run, surfaces lesson + audit-trail.
-  - Codex artifacts preserved per round at generated/cams/lessons/<slug>.codex.<n>.txt (brief sent + Codex response). Audit-trail discipline; cheap.
+  Throughput: ~2 Codex iterations per lesson is holding. 25 lessons left to generate; quota remains the constraint.
 
-  Per-module sequence approved as proposed: M1 single-lesson smoke test → M2 concept-heavy → M3 widest source list → … → M9 enforcement deep-cases. Cost projection $97–227 within 
-  band.
-
-  Scope-note consistency edits all approved — METHODOLOGY_VERSION constant bump to v1.1, runGates default to v1.1, RUNBOOK step 6 rewrite, script log line cleanup. Roll into the  
-  Task 5 commit alongside the rest.
-
-  One mid-run sanity check, not a hard pause. After M2 completes (5 lessons total — M1's 1.4 + M2's 4 lessons), one-paragraph status write-back at the next session prompt: actual 
-  cost vs projected, gate flag rate, Codex iteration distribution, any cap hits. If everything looks normal, continue M3 → M9 without further check-ins until Task 5.
-
-  Go.Pause checklist reviewed end-to-end. Green-light Task 4. Wire Option A. Go.
-
-  Restating crisply so you can hand it to the session cleanly:
-
-  Decision: Option A. Wire parallelCrossCheck per-lesson into scripts/generate-course.ts. Methodology v1.1 (4b) commits to it, the iteration cap is decorative without per-lesson  
-  Codex execution, and Path-1 proved Codex catches what gates miss (1.3 scene-8 news-as-substance was a Codex catch, not a gate catch). Cost is within projection.
-
-  Codex-wiring implementation specifics:
-
-  - Two independent retry caps. MAX_GATE_VALIDATION_ATTEMPTS = 3 (existing, structural retries with gate feedback) and MAX_CODEX_ITERATIONS_PER_LESSON = 3 (new, substantive       
-  retries with Codex feedback). Different failure modes, separate counters.
-  - Codex runs ONLY after gates clear (pass or flag). Don't burn Codex spend on a lesson that's going to be re-generated for a structural fail.
-  - Outcome handling:
-    - Codex supported → save + emit lesson_review_events JSONL row (reviewer_role: 'cross_check', decision: 'validated').
-    - Codex flag / weak-supported → save + emit cross_check_flagged row. Soft signal, operator inspects at module rollup.
-    - Codex unsupported → do NOT save. Retry generation with Codex's reasoning merged into the retry prompt. Increment Codex iteration count.
-  - Cap-exceeded → throw CodexIterationCapExceededError (parallel to GateValidationCapExceededError). full mode catches, pauses run, surfaces lesson + audit-trail.
-  - Codex artifacts preserved per round at generated/cams/lessons/<slug>.codex.<n>.txt (brief sent + Codex response). Audit-trail discipline; cheap.
-
-  Per-module sequence approved as proposed: M1 single-lesson smoke test → M2 concept-heavy → M3 widest source list → … → M9 enforcement deep-cases. Cost projection $97–227 within 
-  band.
-
-  Scope-note consistency edits all approved — METHODOLOGY_VERSION constant bump to v1.1, runGates default to v1.1, RUNBOOK step 6 rewrite, script log line cleanup. Roll into the  
-  Task 5 commit alongside the rest.
-
-  One mid-run sanity check, not a hard pause. After M2 completes (5 lessons total — M1's 1.4 + M2's 4 lessons), one-paragraph status write-back at the next session prompt: actual 
-  cost vs projected, gate flag rate, Codex iteration distribution, any cap hits. If everything looks normal, continue M3 → M9 without further check-ins until Task 5.
-
-  Go.
+  All five Module 2 lessons are yours to review. Module 3 verdicts will be reported as they land. Stopping at the gate.

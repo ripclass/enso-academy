@@ -1,5 +1,422 @@
 # Session Notes
 
+## [2026-06-11] - Session notes: restart recovery, Module 2 closure decisions, Module 3 start
+
+- **Restart recovery procedure (worked, reusable):** the prior session died mid-crosscheck on `reliance-on-third-parties-and-introduced-business` — the methodology AGREE had reached the docs but no `.codex.1.txt` or JSONL cross-check event existed (the script persists both only when the parallel pair completes). Recovery = re-run the full iteration via `crosscheck-lesson.ts`; the duplicate methodology dispatch is the price of a coherent audit bundle, and the script's extra `auto_generated` JSONL row is harmless (precedent: `ongoing-monitoring` has three).
+- **Observation:** the per-verdict review entries in CLAUDE.md / PROGRESS.md / SESSION-NOTES.md are written by the Codex dispatch itself during the cross-check run (reviewer voice; encoding artifacts matching the `.codex.N.txt` files; entries for one half of the pair can land before the other half returns — which is how the orphaned reliance methodology note existed at session start). The Claude session should write only milestone/session-level entries and must expect mid-run mtime changes to these files while a dispatch is in flight (Edit-tool conflicts: re-read and retry).
+- **CDD clear-with-flag decision (2026-06-11):** iteration 3 returned methodology AGREE / fidelity SPLIT, but the residual is recursive — the reviewer cites the renamed bank-scoped scenes and instructs `keep this framed expressly as the U.S. bank rendering`, which the artifact already does (title, scoping paragraph, slide label, narration). At the 3-iteration cap, per the session brief (`SPLIT` with no hard issues meets the bar; soft disagreements go to Ripon), the lesson clears with the flag. Do not re-dispatch on this point unless the artifact changes substantively.
+- **Recurring generation rule (hit twice today):** gate 6b flags a synthesis callout whose item text names a specific instrument (FATF Recommendation 10; Article 39) that the narration does not also name. Rule for future inline generation: every distinctive instrument named in a callout item must be named in its narration too.
+- **Deep-case selection for `from-alert-to-investigation`:** the outline sceneBrief points at the FinCEN Files, which is investigative reporting and cannot satisfy the deep-case rule (named public enforcement matter). Used U.S. Bancorp (SDNY deferred prosecution agreement, 15 February 2018, USD 453M forfeiture; FinCEN USD 185M CMP — alert caps tied to analyst staffing, discontinued below-threshold testing, concealment from the OCC), which is on-point for alert governance and chains back to the transaction-monitoring lesson's calibration-by-staffing warning. FinCEN Files retained as pointer-framed context in the opening scene per the standing discipline note.
+- **Dispatch discipline held:** cross-checks ran sequentially, one lesson-pair at a time (reliance it.2 → cdd it.3 → edd it.4 → transaction-monitoring it.1 → from-alert-to-investigation it.1 queued), to avoid contention on the metered Codex account.
+
+## [2026-06-11] - Methodology audit of `transaction-monitoring-systems-and-rules`: verdict `AGREE` under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `transaction-monitoring-systems-and-rules` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF materials, primary U.S. / UK / EU / Bangladesh legal and regulatory texts, the AUSTRAC / Federal Court Westpac public-enforcement record, Egmont typology material, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: Westpac and AUSTRAC (2020) - the channel the scenarios never reached` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, and the register stays adult-professional.
+- The lesson also keeps Bangladesh as one peer implementation example inside an international-first frame rather than the centre of gravity.
+
+## [2026-06-11] - Repeat factual-fidelity re-audit of `enhanced-due-diligence-when-and-how`: verdict now moves to `AGREE`
+
+Re-reviewed the same current user-supplied JSON for `enhanced-due-diligence-when-and-how` under the explicit factual-fidelity reviewer framing used in the current prompt, against the operator-maintained current facts reference, the FATF Recommendations page plus the 13 February 2026 call-for-action statement, `31 U.S.C. § 5318(i)`, `31 CFR §§ 1010.620` / `1010.610`, the current EUR-Lex text of Directive `(EU) 2015/849`, and the DOJ's 13 December 2022 Danske press release.
+
+What this pass confirmed:
+- The earlier same-day `SPLIT` residual does not survive the literal current JSON. `How four rulebooks render EDD` now states the section-312 split accurately: correspondent accounts in the United States for foreign financial institutions, and private banking accounts in the United States for non-U.S. persons.
+- The softer shorthand concern also does not justify holding the lesson below publication on this artifact. Where the lesson uses PEP-trigger shorthand, the surrounding text still immediately preserves Recommendation `12`'s foreign-vs-domestic / international-organisation distinction.
+- Result: `AGREE`. If the lesson is revised again, preserve the now-cleared section-312 phrasing, the FATF Recommendation `12` qualification, and the Danske 2022 DOJ / SEC amount-date wording.
+
+## [2026-06-11] - Repeat methodology re-audit of `enhanced-due-diligence-when-and-how`: verdict still `AGREE`
+
+Re-reviewed the same current user-supplied JSON for `enhanced-due-diligence-when-and-how` against methodology v1.1 under the explicit cross-check reviewer framing used in the current prompt.
+
+What this pass reconfirmed:
+- No new methodology blocker surfaced.
+- The artifact still stays within allowed/public source types for this pass, every reading scene still carries a `citations[]` array, `Deep case: Danske Bank Estonia - EDD failure as an operating model` still satisfies the required named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, and the register stays adult-professional.
+- The live issue on this lesson remains the separate factual-fidelity residual already recorded today, not methodology: the U.S. section-312 citation/wraparound phrasing and the softer Recommendation 12 shorthand issue.
+
+## [2026-06-11] - Repeat factual-fidelity re-audit of `cdd-fundamentals-identifying-the-customer`: verdict still `SPLIT`
+
+Re-reviewed the same current user-supplied JSON for `cdd-fundamentals-identifying-the-customer` under the explicit factual-fidelity reviewer framing used in the current prompt.
+
+What this pass reconfirmed:
+- No new hard blocker surfaced.
+- The FATF Recommendation `10` architecture, the UK / EU trigger-and-measures mapping, the Bangladesh `MLPA 2012` section `25` / `BFIU Master Circular No. 26` teaching arc, and the NatWest / Fowler Oldfield amount-date-customer bundle remain materially sound on the reviewed source set.
+- The only live issue remains the earlier soft U.S.-scope precision point: `The US bank implementation: CIP plus the CDD Rule` and `One standard, four rulebooks` still lean on bank-specific `31 CFR §§ 1020.220` and `1020.210` as the U.S. rendering a little too generally, even though other covered institution types use parallel provisions elsewhere in `31 CFR Chapter X`.
+
+## [2026-06-11] - Repeat methodology re-audit of `cdd-fundamentals-identifying-the-customer`: verdict still `AGREE`
+
+Re-reviewed the same current user-supplied JSON for `cdd-fundamentals-identifying-the-customer` against methodology v1.1 under the explicit cross-check reviewer framing used in the current prompt.
+
+What this pass reconfirmed:
+- No new methodology blocker surfaced.
+- The artifact still stays within allowed/public source types for this pass, every reading scene still carries a `citations[]` array, `Deep case: NatWest and Fowler Oldfield (2021)` still satisfies the required named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, and the register stays adult-professional.
+- The live issue on this lesson remains the separate factual-fidelity residual already recorded today, not methodology: the U.S. scenes still use bank-specific `31 CFR §§ 1020.220` and `1020.210` a little too generically.
+
+## [2026-06-11] - Latest factual-fidelity re-audit of `reliance-on-third-parties-and-introduced-business`: verdict now moves to `AGREE`
+
+Re-reviewed the current user-supplied JSON for `reliance-on-third-parties-and-introduced-business` against the FATF October 2025 Recommendations text, the consolidated EUR-Lex text of Directive `(EU) 2015/849` Articles `25` to `29`, the UK `MLR 2017` text for regulation `39`, the FFIEC CIP manual's rendering of `31 CFR § 1020.220(a)(6)`, the Federal Register text of FinCEN's 2016 beneficial-ownership reliance rule at `31 CFR § 1010.230(j)`, and the already-reviewed Standard Chartered public-enforcement bundle reflected in project memory.
+
+What this pass confirmed:
+- The earlier same-day blocker no longer appears in the current artifact. `National renderings: UK, EU, US` now correctly states the EU split: Article `27(1)` requires the obliged entity to obtain the necessary CDD information, while Article `27(2)` is the provision that requires relevant copies of identification and verification data and other relevant documentation to be provided **immediately, upon request**.
+- No new hard contradiction surfaced in this pass. The FATF Recommendation `17` conditions, the outsourcing exclusion under INR.17 and Article `29`, the UK reliance rendering in regulation `39`, the U.S. bank CIP reliance conditions, the parallel covered-financial-institution beneficial-ownership reliance mechanism, and the Standard Chartered 2012 amount/date bundle remain materially sound on the reviewed source set.
+- Result: `AGREE`. If the lesson is revised again, preserve the current FATF / UK / EU / U.S. / Standard Chartered teaching arc and avoid regressing the now-correct EU Article `27` wording.
+
+## [2026-06-11] - Factual-fidelity audit of `reliance-on-third-parties-and-introduced-business`: verdict `DISAGREE`
+
+Reviewed the current user-supplied JSON for `reliance-on-third-parties-and-introduced-business` against the FATF October 2025 Recommendations text, the current EUR-Lex text of Directive `(EU) 2015/849` Articles `25` to `29`, the current eCFR text of `31 CFR § 1020.220`, and the Federal Register / eCFR text of FinCEN's 2016 beneficial-ownership reliance rule at `31 CFR § 1010.230(j)`.
+
+What this pass confirmed:
+- The lesson is close on its main teaching arc. The FATF Recommendation `17` conditions, the outsourcing exclusion under INR.17 and Article `29`, the U.S. bank CIP reliance conditions, the parallel covered-financial-institution beneficial-ownership reliance mechanism, and the Standard Chartered 2012 amount/date bundle are materially sound on the reviewed source set.
+- The live blocker is in `National renderings: UK, EU, US`. The lesson says Directive `(EU) 2015/849` Article `27` carries `the two timing duties (information immediately; copies on request)`, but the current directive text is narrower: Article `27(1)` requires the obliged entity to obtain the necessary information concerning the Article `13(1)(a)` to `(c)` CDD requirements, while Article `27(2)` is the clause that requires the third party to provide relevant copies of identification and verification data and other relevant documentation **immediately, upon request**.
+- Because that scene builds a comparative takeaway on the overstated Article `27` reading, the artifact should not clear publication yet on factual fidelity. Tighten the EU timing-language rather than the broader FATF / U.S. / deep-case structure.
+
+## [2026-06-11] - Methodology audit of `reliance-on-third-parties-and-introduced-business`: verdict `AGREE` under the narrowed v1.1 brief, with repeat same-day re-audits continuing to reconfirm it on the same current artifact
+
+Reviewed the current user-supplied JSON for `reliance-on-third-parties-and-introduced-business` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF materials, primary UK/EU/U.S. regulatory texts, the Standard Chartered public-enforcement record, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: Standard Chartered (2012) - when the group is the control failure` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- Repeat same-day re-audits of the same current artifact, including under the explicit v1.1 methodology-audit prompt, kept returning the same result and surfaced no new methodology defect class.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, the register stays adult-professional, and the lesson keeps an international-first frame rather than a Bangladesh-centred one.
+
+## [2026-06-11] - Latest factual-fidelity re-audit of `ongoing-monitoring-and-cdd-refresh`: verdict now moves to `AGREE`
+
+Re-reviewed the current user-supplied JSON for `ongoing-monitoring-and-cdd-refresh` against the operator-maintained current facts reference, the FATF Recommendations page/PDF (October 2025 edition), the Federal Register text of FinCEN's 2016 CDD rule, Directive `(EU) 2015/849` Article `13`, and the already-verified Federal Court / AUSTRAC Westpac public-record bundle used in the earlier same-day pass.
+
+What this pass confirmed:
+- The earlier same-day blockers no longer appear in the current artifact. `Deep case: Westpac and AUSTRAC (2020) - the known risk nobody wired in` now says the agreed facts develop an initial **12-customer** subset before extending to the court-declared **262-customer** ongoing-customer-due-diligence failure population, which matches the issue previously identified rather than repeating it.
+- The U.S. scope-compression issue is also resolved in the current wording. `The obligation across rulebooks` now explicitly frames `31 CFR § 1020.210` as the U.S. **bank** rendering and separately notes the parallel 2016 CDD-rule amendments for the other covered institution types, so it no longer presents the bank rule as if it were the entire U.S. regime without caveat.
+- No new hard contradiction surfaced on this pass. The FATF Recommendation `10` framing, the EU Article `13` rendering, the U.S. ongoing-monitoring wording, the Bangladesh monitoring / Transaction Profile framing, and the Westpac amount-date-customer bundle are now acceptable for publication on factual fidelity in the current prompt artifact.
+
+## [2026-06-11] - Repeat methodology audit of `ongoing-monitoring-and-cdd-refresh`: verdict still `AGREE`
+
+Re-reviewed the same current user-supplied JSON for `ongoing-monitoring-and-cdd-refresh` against methodology v1.1 under the explicit narrowed brief used by the Codex cross-check reviewer prompt.
+
+What this pass reconfirmed:
+- No new methodology blocker surfaced.
+- The artifact still stays within allowed/public source types for this pass, every reading scene still carries a `citations[]` array, `Deep case: Westpac and AUSTRAC (2020) - the known risk nobody wired in` still satisfies the required named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, and the register stays adult-professional.
+- The live blocker for this lesson remains the separate factual-fidelity issue already recorded in today's notes, not methodology.
+
+## [2026-06-11] - Factual-fidelity audit of `ongoing-monitoring-and-cdd-refresh`: verdict `DISAGREE`
+
+Reviewed the current user-supplied JSON for `ongoing-monitoring-and-cdd-refresh` against the operator-maintained current facts reference, the FATF Recommendations page (October 2025 edition marker), the Federal Register text of FinCEN's 2016 CDD rule, Directive `(EU) 2015/849` Article `13`, the Federal Court of Australia's Westpac penalty order dated `21 October 2020`, and AUSTRAC's lodged Statement of Agreed Facts and Admissions dated `24 September 2020`.
+
+What this pass confirmed:
+- The lesson is close on its core teaching arc. The FATF Recommendation `10` framing, the EU Article `13` rendering, and the Bangladesh monitoring / Transaction Profile framing are broadly sound on the reviewed source set.
+- The deep-case scene has a real case-fidelity defect that should block publication. `Deep case: Westpac and AUSTRAC (2020) - the known risk nobody wired in` says `twelve customers in the agreed facts`, but the Federal Court order declares Westpac's section `36(1)` ongoing-customer-due-diligence contraventions in relation to **262 customers**. Customers `1-12` are only the first named subset in the agreed-facts document; the scene should not present that `12`-customer subset as the agreed-facts universe.
+- There is also a smaller U.S. scope-compression issue. `The obligation across rulebooks` uses bank-specific `31 CFR § 1020.210` as the U.S. rendering generally, even though FinCEN's 2016 CDD rule amended the AML-program rules for all covered financial institutions. If revised, either relabel that passage as the U.S. bank implementation or widen the citation set and wording to the parallel covered-institution rules.
+
+## [2026-06-11] - Methodology audit of `ongoing-monitoring-and-cdd-refresh`: verdict `AGREE` under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `ongoing-monitoring-and-cdd-refresh` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF materials, primary U.S./UK/EU/Bangladesh regulatory texts, the AUSTRAC / Federal Court Westpac public-enforcement record, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: Westpac and AUSTRAC (2020) - the known risk nobody wired in` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, the register stays adult-professional, and the lesson keeps Bangladesh as one peer implementation example inside an international-first frame rather than the centre of gravity.
+
+## [2026-06-11] - Factual-fidelity audit of `beneficial-ownership-investigation`: verdict `AGREE`
+
+Reviewed the current user-supplied JSON for `beneficial-ownership-investigation` against the operator-maintained current facts reference and the reviewed public U.S./UK/EU/DOJ source bundle used in this pass.
+
+What this pass confirmed:
+- The lesson is publication-ready on factual fidelity. The FATF Recommendation `24` / `25` / `10` teaching arc, the `31 U.S.C. § 5336` / UK PSC / EU beneficial-ownership-register framing, and the 1MDB / Goldman Sachs 2020 amount-date-entity bundle are materially accurate on the reviewed sources.
+- The deep-case scene is the main strength of the artifact on this dimension. The Good Star control point, the Aabar lookalike-company device, and the Goldman Sachs 22 October 2020 resolution language all track the DOJ public record closely enough for publication.
+- No new hard contradiction surfaced against the current-facts reference. If the lesson is revised again, preserve the current March-2025 CTA scope wording, the PSC five-condition structure, and the DOJ-grounded 1MDB wording.
+
+## [2026-06-11] - Methodology audit of `beneficial-ownership-investigation`: verdict `AGREE` under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `beneficial-ownership-investigation` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF materials, primary U.S./UK/EU/Bangladesh legal and regulatory texts, the DOJ public record on 1MDB and the Goldman Sachs 2020 resolution, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: 1MDB - concealment at sovereign scale` satisfies the required deep-case scene because it is grounded in a named public matter with substantive analysis and public enforcement record support.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, the register stays adult-professional, and the lesson keeps Bangladesh as one peer implementation example inside an international-first frame rather than the centre of gravity.
+
+## [2026-06-11] - Re-confirmation audit of `enhanced-due-diligence-when-and-how`: verdict still `SPLIT`
+
+Re-reviewed the same current user-supplied JSON for `enhanced-due-diligence-when-and-how` against the operator-maintained current facts reference and the already-verified source bundle reflected in project memory.
+
+What this pass confirmed:
+- No new hard blocker surfaced beyond the residual issues already recorded earlier the same day.
+- The U.S. section-312 point is best described more narrowly than the earlier shorthand suggested. In the current artifact, the core body sentence in `How four rulebooks render EDD` correctly distinguishes correspondent accounts for foreign financial institutions from private banking accounts for non-U.S. persons; the remaining precision defect sits chiefly in the scene's `31 U.S.C. § 5318(i)` citation label / wraparound phrasing.
+- The smaller Recommendation 12 shorthand issue remains real but soft: some wraparound phrasing still says `PEP status` / `PEP relationships` generically even though the substantive teaching correctly states the foreign-vs-domestic / international-organisation split.
+
+## [2026-06-11] - Re-audit of `enhanced-due-diligence-when-and-how`: verdict moves from `DISAGREE` to `SPLIT`
+
+Re-reviewed the current user-supplied JSON for `enhanced-due-diligence-when-and-how` against the operator-maintained current facts reference, the FATF Recommendations page and October 2025 consolidated Recommendations PDF, and the same U.S./UK/EU/Danske primary/public source bundle used earlier the same day.
+
+What this pass confirmed:
+- The earlier hard FATF Recommendation 12 issue does not appear in the current artifact body. The opening reading, trigger slide, and toolkit scene now all preserve the foreign-vs-domestic / international-organisation split correctly, so the prior `DISAGREE` note was tied to an earlier wording state rather than the present text.
+- The lesson is still not a clean `AGREE`. `How four rulebooks render EDD` compresses `31 U.S.C. § 5318(i)` too loosely by speaking of section 312 as if it were one general U.S. EDD rendering for `correspondent accounts and private banking accounts maintained for non-US persons`; the statute is more specific about whom each branch of the rule applies to.
+- There is also a smaller precision issue in the wraparound phrasing. The opening citation label and the closing synthesis still use broad `PEP relationships` / `PEP status` shorthand without restating the Recommendation 12 qualifier, which is softer than the earlier blocker but still worth surfacing at module rollup.
+
+## [2026-06-11] - Factual-fidelity audit of `enhanced-due-diligence-when-and-how`: verdict `DISAGREE`
+
+Reviewed the current user-supplied JSON for `enhanced-due-diligence-when-and-how` against the operator-maintained current facts reference, the FATF Recommendations page and October 2025 consolidated Recommendations PDF, `31 U.S.C. § 5318(i)`, `31 CFR §§ 1010.620, 1010.610, 1010.605`, the UK `MLR 2017` text for regulations `33` and `35`, and the current EUR-Lex text of Directive `(EU) 2015/849` plus Directive `(EU) 2018/843`.
+
+What this pass confirmed:
+- The main blocker is a real FATF Recommendation 12 scope error, not a citation-mechanics issue. `More of the same is not a control` and `What triggers EDD` both teach PEP status too generally as an automatic / standing EDD trigger. FATF R.12 makes the full enhanced package automatic for **foreign PEPs**; for **domestic PEPs** and persons entrusted with a prominent public function by an international organisation, and their family members / close associates, the senior-management / source-of-wealth / source-of-funds / enhanced-monitoring package applies only where the relationship is assessed as higher-risk.
+- The lesson partially self-corrects later in `The EDD toolkit under Recommendations 10 and 12`, which states the foreign-vs-domestic distinction correctly. That means the current artifact is internally inconsistent on a core scope point rather than wholly wrong throughout, but the opening and trigger-map scenes are too central to leave that inconsistency in place.
+- No additional hard blocker surfaced in this pass. The reviewed US / UK / EU rulebook mapping holds (`31 U.S.C. § 5318(i)`; `31 CFR §§ 1010.620, 1010.610`; `MLR 2017` regs `33` / `35`; `Directive (EU) 2015/849` / `Directive (EU) 2018/843` Article `18a`), and the Danske scene's December 2022 amount/date/SEC-split bundle is acceptable against the current facts reference.
+
+## [2026-06-11] - Methodology audit of `enhanced-due-diligence-when-and-how`: verdict `AGREE` under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `enhanced-due-diligence-when-and-how` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF/Wolfsberg materials, primary U.S./UK/EU/Bangladesh regulatory texts, the DOJ/SEC/Danish-FSA/Estonian-supervisory public record on Danske Bank Estonia, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: Danske Bank Estonia — EDD failure as an operating model` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, the register stays adult-professional, and the lesson keeps the module's cross-jurisdiction framing international-first rather than Bangladesh-centred.
+
+## [2026-06-11] - Factual-fidelity audit of `cdd-fundamentals-identifying-the-customer`: verdict `SPLIT`
+
+Reviewed the current user-supplied JSON for `cdd-fundamentals-identifying-the-customer` against the operator-maintained current facts reference, the NatWest / Fowler Oldfield public record, the current EU directive text, the FATF October 2025 Recommendations text, the eCFR text of 31 CFR Parts 1020 and 1010, and primary/public UK/Bangladesh materials.
+
+What this pass confirmed:
+- The lesson is mostly sound on factual fidelity. The FATF Recommendation 10 four-pillar architecture holds; the UK/EU trigger-and-measures discussion is materially right; the Bangladesh section 25 / Transaction Profile teaching arc is acceptable on the sources reviewed; and the NatWest amount/date/customer bundle is right.
+- The residual issue is U.S. scope compression rather than a hard contradiction. `The US implementation: CIP plus the CDD Rule` and the cross-jurisdiction synthesis slide still present `31 CFR §§ 1020.220` and `1020.210` too generically even though those are Part 1020 bank rules and the scenes contain bank-rule caveats. Other covered U.S. financial institutions have parallel CIP and AML-program provisions in other parts, so the current wording should either say `U.S. banks` or widen the citation set if it wants to speak for the national regime generally.
+- Result: `SPLIT`, not `AGREE`. If the lesson is revised again, keep the FATF / UK / EU / Bangladesh / NatWest substance and tighten only the U.S. scope phrasing.
+
+## [2026-06-11] - Methodology audit of `cdd-fundamentals-identifying-the-customer`: verdict `AGREE` under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `cdd-fundamentals-identifying-the-customer` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF materials, primary U.S./UK/EU/Bangladesh regulatory texts, the FCA/NatWest public enforcement matter, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: NatWest and Fowler Oldfield (2021)` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, the register stays adult-professional, and the lesson keeps Bangladesh as one peer implementation example inside an international-first frame rather than the centre of gravity.
+
+## [2026-06-10] - Latest factual-fidelity re-audit of `customer-risk-rating-models`: verdict now moves to `AGREE`
+
+Re-reviewed the current user-supplied JSON for `customer-risk-rating-models` against the current FATF Recommendations page/PDF and Recommendation 12 text, the FCA Commerzbank AG Final Notice dated 17 June 2020, and the operator-maintained current facts reference.
+
+What this pass confirmed:
+- The verdict has moved from `DISAGREE` to `AGREE` on factual fidelity for the current artifact.
+- The earlier same-day blockers are resolved in the version reviewed here. `The risk factors in detail` now preserves FATF Recommendation 12's foreign-vs-domestic / international-organisation distinction correctly, and `Deep case: Commerzbank London and the FCA (2020)` now uses the Final Notice's exact Relevant Period of `23 October 2012 to 29 September 2017`.
+- No new factual-fidelity blocker surfaced in this pass; preserve the current FATF / EBA framing, the Bangladesh examples as currently worded, and the Commerzbank amount/entity/date bundle if the lesson is revised again.
+
+## [2026-06-10] - Factual-fidelity audit of `customer-risk-rating-models`: verdict `DISAGREE`
+
+Reviewed the current user-supplied JSON for `customer-risk-rating-models` against the current FATF Recommendations page/PDF and Recommendation 12 text, the FCA Commerzbank AG Final Notice dated 17 June 2020, and the operator-maintained current facts reference.
+
+What this pass confirmed:
+- The lesson is mostly disciplined on its sources and examples, but it is not yet publishable on factual fidelity.
+- `The risk factors in detail` contains the clearest regulatory-scope defect. Its wording implies that a customer or beneficial owner who is a PEP or close associate thereby engages Recommendation 12's enhanced-measures bundle generally, but FATF R.12 distinguishes foreign PEPs from domestic PEPs / persons entrusted with a prominent function by an international organisation. For the domestic / international-organisation category, the senior-management / source-of-wealth / enhanced-monitoring measures apply only in higher-risk business relationships, and that qualification also carries through to family members and close associates.
+- `Deep case: Commerzbank London and the FCA (2020)` contains a narrower but still blocking case-fidelity defect. The scene says the failings ran from `October 2012 to October 2017`, but the FCA Final Notice defines the Relevant Period exactly as **23 October 2012 to 29 September 2017**.
+- No broader source-level blocker surfaced in this pass. The Commerzbank entity / amount / date bundle is otherwise correct, and the lesson's FATF / EBA framing is broadly solid if those two points are tightened.
+
+## [2026-06-10] - Methodology audit of `customer-risk-rating-models`: verdict `AGREE` under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `customer-risk-rating-models` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF/EBA/Basel/BFIU materials, public enforcement actions, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: Commerzbank London and the FCA (2020)` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, and the register stays adult-professional.
+
+## [2026-05-30] - Latest factual-fidelity re-audit of `enterprise-wide-risk-assessment`: verdict now moves to `AGREE`
+
+Re-reviewed the current user-supplied JSON for `enterprise-wide-risk-assessment` against the current FATF Recommendations page/PDF, the EBA ML/TF Risk Factors Guidelines, Basel's AML/CFT risk-management guidance, the Dutch OM ING settlement/public-facts record, and official/public Bangladesh Bank/BFIU materials.
+
+What this pass confirmed:
+- The verdict has moved from `DISAGREE` to `AGREE` on factual fidelity for the current artifact.
+- The earlier same-day blockers are resolved in the version reviewed here. `Deep case: ING and the Dutch settlement (2018) — when the enterprise risk picture fails` now correctly names **ING Bank N.V.** as the settling bank, and `Worked example: scoring a mid-tier commercial bank` no longer overstates the Bangladesh source with unsupported `board-approved` wording.
+- No new factual-fidelity blocker surfaced in this pass; preserve the current FATF/Basel/EBA structure, the ING amount/date/entity bundle, and the narrower Bangladesh Circular 26 risk-assessment wording if the lesson is revised again.
+
+## [2026-05-30] - Repeat methodology audit of `enterprise-wide-risk-assessment`: verdict still `AGREE`
+
+Re-reviewed the current user-supplied JSON for `enterprise-wide-risk-assessment` against methodology v1.1 with citation mechanics still left to the deterministic `citation_bind` gate.
+
+What this pass reconfirmed:
+- No new methodology blocker surfaced.
+- The artifact remains inside the allowed-source perimeter for this audit: FATF/Basel/EBA/BFIU materials, public enforcement actions, and original analysis.
+- Every reading scene still carries a `citations[]` array, `Deep case: ING and the Dutch settlement (2018) — when the enterprise risk picture fails` still satisfies the required named public-matter deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based, and the register stays adult-professional.
+- The open publication issues remain in the separate factual-fidelity pass; this methodology pass should not drift back into citation-mechanics relitigation.
+
+## [2026-05-30] - Factual-fidelity audit of `enterprise-wide-risk-assessment`: verdict `DISAGREE`
+
+Reviewed the current user-supplied JSON for `enterprise-wide-risk-assessment` against the current FATF Recommendations page/PDF, the EBA ML/TF Risk Factors Guidelines, Basel's AML/CFT risk-management guidance, the Dutch OM ING settlement/public-facts record, and available Bangladesh Bank/BFIU public materials.
+
+What this pass confirmed:
+- The lesson remains broadly sound on the EWRA teaching arc: FATF Recommendation 1 is the right anchor, EBA/GL/2021/02 is the right guideline identifier, the inherent/control/residual structure is defensible, and the ING amount/date bundle (`€775 million`, `€675 million` fine + `€100 million` disgorgement, 4 September 2018) is right.
+- `Deep case: ING and the Dutch settlement (2018) — when the enterprise risk picture fails` contains the clearest publish-blocking error. The Dutch OM settlement statement and Houston public-facts record identify **ING Bank N.V.** / `ING NL` as the legal entity that accepted the settlement, but the lesson says **ING Groep N.V.** agreed it.
+- `Worked example: scoring a mid-tier commercial bank` also overstates the Bangladesh rulebook by saying **BFIU Master Circular No. 26** requires a `documented, board-approved risk assessment`. The public materials reviewed in this pass support the risk-assessment requirement, but not the added `board-approved` wording.
+- If the artifact is revised again, preserve the core EWRA structure and the correct ING amount/date bundle; tighten only the ING-entity naming and the BFIU-circular formulation.
+
+## [2026-05-30] - Methodology audit of `enterprise-wide-risk-assessment`: verdict `AGREE` under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `enterprise-wide-risk-assessment` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF/Basel/EBA/BFIU materials, public enforcement actions, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: ING and the Dutch settlement (2018) — when the enterprise risk picture fails` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, and the register stays adult-professional.
+
+## [2026-05-30] - Latest factual-fidelity re-audit of `risk-based-approach-as-operating-principle`: verdict now moves to `AGREE`
+
+Re-reviewed the current user-supplied JSON for `risk-based-approach-as-operating-principle` against the current FATF Recommendations page/PDF, the FATF banking-sector RBA guidance page, current eCFR Title 31 CTR provisions, AUSTRAC's current IFTI guidance, and the AUSTRAC/Federal Court Westpac public record.
+
+What this pass confirmed:
+- The verdict has moved from `DISAGREE` to `AGREE` on factual fidelity for the current artifact.
+- The earlier same-day blockers are resolved in the version reviewed here. `Deep case: Westpac and AUSTRAC (2020)` now correctly distinguishes suspicious-transaction reporting from Australia's amount-independent IFTI regime, `Risk-based versus rule-based, concretely` now pins CTR aggregation and bank exempt-person relief to the right CFR sections, and `Where the RBA comes from: Recommendation 1 and its Interpretive Note` now uses the current FATF `proportionate` wording.
+- No new factual-fidelity blocker surfaced in this pass; preserve the current Westpac / CTR / R.1 wording if the lesson is revised again.
+
+## [2026-05-30] - Codex cross-check methodology audit of `risk-based-approach-as-operating-principle`: verdict remains `AGREE`
+
+Re-audited the current user-supplied JSON for `risk-based-approach-as-operating-principle` against methodology v1.1 with citation mechanics still left to the deterministic `citation_bind` gate.
+
+What this pass confirmed:
+- No new methodology blocker surfaced.
+- The artifact remains inside the allowed-source perimeter for this audit: FATF/EBA/Basel materials, statutes/regulations, public enforcement actions, and original analysis.
+- Every reading scene still carries a `citations[]` array, `Deep case: Westpac and AUSTRAC (2020)` still satisfies the required named public-matter deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based, and the register stays adult-professional.
+- The lesson's open publication issues remain in the separate factual-fidelity pass; this methodology pass should not drift back into citation-mechanics relitigation.
+
+## [2026-05-30] - Latest factual-fidelity re-audit of `risk-based-approach-as-operating-principle`: prior `R.20` blocker is fixed, but the lesson still does not clear publication
+
+Re-reviewed the current user-supplied JSON for `risk-based-approach-as-operating-principle` against the current FATF Recommendations text, eCFR Title 31, and AUSTRAC's current IFTI guidance. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The earlier same-day Westpac/R.20 problem is gone in the current artifact. The scene now correctly says the 19.5 million filing failures were Australia's statutory transfer-reporting breaches rather than FATF Recommendation 20.
+- A different Westpac-scene defect now blocks publication. `Deep case: Westpac and AUSTRAC (2020) — risk not assessed, controls not defensible` calls the Australian IFTI regime `a national threshold-reporting obligation`, but AUSTRAC's guidance requires IFTI reporting regardless of amount and gives public examples at A$5,000 and A$2,000.
+- `Risk-based versus rule-based, concretely` is also still not section-precise on the U.S. CTR rule. The scene makes `31 CFR § 1010.311` carry the aggregation and exemption mechanics even though aggregation is in `31 CFR § 1010.313` and the bank exempt-person rule sits in `31 CFR § 1020.315`.
+- A smaller but real currency issue remains in `Where the RBA comes from: Recommendation 1 and its Interpretive Note`: the scene paraphrases R.1 using the superseded `commensurate` wording, while the current FATF Recommendation 1 text uses `proportionate` after the February 2025 amendments.
+- If this artifact is revised again, preserve the parts that already clear: the Westpac amount/date/court bundle, the corrected R.20 distinction, the R.1 teaching arc, the scenario-based quiz shape, and the methodology-cleared deep-case scene. Tighten only the IFTI-regime description, the CTR section pins, and the one-word R.1 currency update.
+
+## [2026-05-30] - Repeat methodology cross-check of `risk-based-approach-as-operating-principle`: verdict still `AGREE`
+
+Re-reviewed the current user-supplied JSON for `risk-based-approach-as-operating-principle` against methodology v1.1 with citation mechanics still left to the deterministic `citation_bind` gate.
+
+What this pass reconfirmed:
+- No new methodology blocker surfaced.
+- The artifact remains inside the allowed-source perimeter for this audit (FATF/EBA/Basel materials, statutes/regulations, public enforcement actions, and original analysis).
+- Every reading scene still carries a `citations[]` array, `Deep case: Westpac and AUSTRAC (2020)` still satisfies the required named public-matter deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based, and the register stays adult-professional.
+- The lesson's open issues remain in the separate factual-fidelity pass; this methodology pass should not drift back into citation-mechanics relitigation.
+
+## [2026-05-30] - Factual-fidelity audit of `risk-based-approach-as-operating-principle`: methodology still clears, but publication should wait for two legal-scope fixes
+
+Reviewed the current user-supplied JSON for `risk-based-approach-as-operating-principle` against current FATF, FFIEC/FinCEN, and AUSTRAC/Federal Court materials. Verdict: `DISAGREE`.
+
+What this pass confirmed:
+- The lesson remains broadly sound on the core RBA teaching arc: FATF Recommendation 1 is correctly used as the anchor, the Westpac penalty amount and court outcome are right, and no new problem surfaced on the FATF/EBA/Basel citation identifiers.
+- `Deep case: Westpac and AUSTRAC (2020) — risk not assessed, controls not defensible` contains the clearest publish-blocking error. Its framework paragraph says `Recommendation 20 required timely reporting of the transactions to the FIU`, and the quiz explanation repeats that `late reporting separately engages Recommendation 20`. FATF R.20 is the suspicious-transaction reporting rule; Westpac's 19.5 million IFTI failures were Australian Act reporting contraventions, not FATF R.20 as such.
+- `Risk-based versus rule-based, concretely` also overstates the U.S. CTR rule. `31 CFR § 1010.311` is not simply `any cash transaction exceeding US$10,000`; it is drafted around specified transactions in currency and sits with aggregation and exception/exemption mechanics. The scene works pedagogically, but its legal-scope paraphrase is too broad.
+- If the artifact is revised again, preserve the parts that already clear: the Westpac amount/date/court bundle, the risk-based-vs-rule-based teaching structure, the scenario-based quiz shape, and the methodology-cleared deep-case scene. Tighten only the R.20 mapping and the CTR-rule wording.
+
+## [2026-05-30] - Methodology audit of `risk-based-approach-as-operating-principle` clears under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `risk-based-approach-as-operating-principle` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF/EBA/Basel publications, statutes/regulations, public enforcement actions, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: Westpac and AUSTRAC (2020) — risk not assessed, controls not defensible` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` are substantively distinct even where topical tags recur, the quiz remains scenario-based and practical, and the register stays adult-professional.
+
+## [2026-05-30] - Latest factual-fidelity re-audit of `structure-of-the-40-recommendations`: verdict now moves to `AGREE`
+
+Re-reviewed the current user-supplied JSON for `structure-of-the-40-recommendations` against the operator-maintained facts pack plus current FATF and Standard Chartered public-source materials.
+
+What this pass confirmed:
+- The verdict has moved from `DISAGREE` to `AGREE` on factual fidelity for the current artifact.
+- The earlier same-day blockers are resolved in the version reviewed here. `Section D: preventive measures (R.9-23)` now correctly says not every Recommendation in that block has an Interpretive Note, the unsupported `perhaps a third of the standard` numeric claim is gone from `Where the rule actually lives`, and the Standard Chartered deep-case now correctly distinguishes OFAC's 2012 country-sanctions role from FATF Recommendations 6 and 7.
+- No new factual-fidelity blocker surfaced in this pass; the artifact is acceptable for publication on this dimension.
+
+## [2026-05-30] - Repeat methodology cross-check of `structure-of-the-40-recommendations`: verdict remains `AGREE`
+
+Re-audited the current user-supplied JSON for `structure-of-the-40-recommendations` against methodology v1.1 with citation mechanics still left to the deterministic `citation_bind` gate.
+
+What this pass confirmed:
+- The verdict is unchanged: `AGREE` on methodology.
+- No new methodology blocker surfaced beyond the already-recorded factual-fidelity issues. The artifact still uses allowed source types, every reading scene still carries a `citations[]` array, the Standard Chartered 2012 scene still qualifies as the required deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based, and the register remains adult-professional.
+
+## [2026-05-30] - Factual-fidelity audit of `structure-of-the-40-recommendations`: methodology still clears, but publication should wait for two factual fixes
+
+Reviewed the current user-supplied JSON for `structure-of-the-40-recommendations` against the operator-maintained facts pack plus current FATF and Standard Chartered public-source materials. Verdict: `DISAGREE`.
+
+What this pass confirmed:
+- The lesson is broadly aligned with the current facts pack on the big recurring failure modes: no stale FATF edition date, no R.6/R.7 reversal, no VASP-to-R.26-28 drift, and no R.40/Egmont-channel misstatement surfaced in this artifact.
+- `Section D: preventive measures (R.9-23)` contains the clearest publish-blocking error. It says each Recommendation in that block has an Interpretive Note carrying the operational detail, but FATF's current Recommendations do not include INRs for every Recommendation in R.9-23; the published text skips, for example, from INR.8 to INR.10 and from INR.18 to INR.20.
+- `Where the rule actually lives` also includes an unsupported numeric claim by saying a bank that reads only the Recommendations has read `perhaps a third of the standard`. That proportion is not anchored to a cited source, so it should be removed or replaced with sourced wording.
+- `Deep case: Standard Chartered and the architecture of competent authorities (2012)` is still usable as the lesson's public-enforcement deep case, but one framing line should be tightened if the lesson is revised again: OFAC's role in the 2012 resolution should not be pitched as a clean `R.6/R.7` targeted-financial-sanctions example because the matter concerned broader OFAC country-sanctions programs involving Iran, Sudan, Libya, and Burma.
+
+## [2026-05-30] - Methodology audit of `structure-of-the-40-recommendations` clears under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `structure-of-the-40-recommendations` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF materials, BFIU regulatory material, public enforcement actions, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: Standard Chartered and the architecture of competent authorities (2012)` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` are substantively distinct even where topical tags recur, the quiz remains scenario-based and practical, and the register stays adult-professional.
+
+## [2026-05-30] - Current factual-fidelity audit of the Danske deep-case global-architecture lesson: prior blockers are fixed, but a soft residual bundle remains
+
+Re-audited the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against the operator-maintained facts pack plus current FATF/APG/Egmont materials. Verdict moved to `SPLIT`.
+
+What this pass confirmed:
+- The earlier hard blockers appear resolved in this draft. The lesson no longer carries the prior FATF-listing-mechanics overstatement, the MONEYVAL scope problem, the FinCEN-establishment mistake, or the duplicate-FSRB list defect.
+- `Why an Architecture, Not a Single Rulebook` still over-compresses the FATF assessment architecture by saying public mutual evaluations and public listing are both administered against the `2022 assessment methodology`. FATF's own 2022 Procedures page says the ICRG/listing process runs under the Procedures read with the Methodology and Universal Procedures.
+- `Synthesis: What the Architecture Asks of You` now carries the clearest conceptual-fidelity slip in the artifact. A BFIU circular can address deficiencies reflected in an Immediate Outcome or implement measures aligned to a Recommendation, but it does not literally `implement an Immediate Outcome`, because Immediate Outcomes are effectiveness benchmarks rather than domestic legal rules.
+- `Deep Case: The Danske Bank Estonia Branch (2007-2015) and Its 2022 Resolution` still has a traceability issue even though its numbers align with the current facts pack. The scene uses the Bruun & Hjejle-derived context numerics (`EUR 200 billion`, `~10,000`, `~15,000`) but the report itself is not in the scene citation array, so the key numeric claims are not presently traced to a cited source.
+- If the lesson is revised again, preserve the now-fixed FATF/MONEYVAL/FinCEN/FSRB corrections and tighten only this softer residual bundle.
+
+## [2026-05-30] - Current methodology audit of the Danske deep-case global-architecture lesson now clears under the narrowed v1.1 brief
+
+Re-audited the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact remains within allowed source types for this pass: FATF/APG/Egmont publications, statutes/regulations, public enforcement actions, and original analysis. No commercial-prep or ICC-text issue surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep Case: The Danske Bank Estonia Branch (2007-2015) and Its 2022 Resolution` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` are substantively distinct even where topical tags recur, the quiz remains scenario-based and practical, and the register stays adult-professional.
+
+## [2026-05-30] - Current factual-fidelity audit of the Bangladesh-trajectory global-architecture lesson: narrower defects remain, but it is still not publishable
+
+Re-audited the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against the operator-maintained facts pack plus current FATF, MONEYVAL, FinCEN, and Egmont materials. Verdict stayed `DISAGREE`.
+
+What this pass confirmed:
+- The earlier APG/Bangladesh chronology, FATF-methodology / Bangladesh-rating, and U.S./UK supervisory-map defects now look corrected in the current artifact.
+- `Technical Compliance vs. Effectiveness` now carries the highest-value substantive error. Its narration says effectiveness ratings, not technical-compliance scores, drive jurisdictions onto the FATF grey/black lists, but FATF's increased-monitoring materials say the ICRG considers strategic deficiencies in both technical compliance and effectiveness.
+- `FATF and the FSRBs: Standard-Setting and Peer Review` still overstates MONEYVAL's perimeter by describing it as covering Council of Europe states generally. FATF's own MONEYVAL page distinguishes between Council of Europe member states evaluated by FATF and those evaluated by MONEYVAL.
+- `Financial Intelligence Units and the Egmont Group` misstates FinCEN's legal basis by saying the bureau was established under the BSA / 31 CFR Chapter X. FinCEN as a Treasury bureau is established by 31 U.S.C. § 310; the BSA regime is administered under delegated Treasury authority.
+- `The Four Layers of the AML/CFT Architecture` also has a simpler precision defect: the assessment-layer list repeats `GAFILAT` while claiming to enumerate nine FSRBs.
+
+## [2026-05-30] - Current methodology audit of the Bangladesh-trajectory global-architecture lesson now clears under the narrowed v1.1 brief
+
+Re-audited the current user-supplied JSON for `the-global-architecture-fatf-fius-supervisors` against methodology v1.1 with the now-set division of labor: citation mechanics belong to the deterministic `citation_bind` gate and are not re-litigated in the methodology pass.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- Source discipline is acceptable. The lesson stays on FATF/APG/Egmont/statute materials and does not lean on news reporting or commercial-prep content.
+- The Bangladesh APG trajectory scene is sufficient as the required deep case because it is a specific, named, well-documented public matter with substantive analysis rather than a generic peer-review walkthrough.
+- The scene `teachesConcepts` are substantively distinct even though topical `conceptTags` recur, which is allowed under the baseline-calibrated rule.
+- The quiz remains scenario-based and practical, not certification-format mimicry.
+- Tone remains adult-professional; no marketing-register or made-up-statistics issue surfaced.
+
 ## [2026-05-29] - KEY FINDING: Codex was overfitting on citation mechanics; fixed the division of labor
 
 After the recalibration runs kept capping lesson 0.3 on "citation discipline," ran the project's OWN deterministic gates on all four lessons (gold standard included). Decisive result:
