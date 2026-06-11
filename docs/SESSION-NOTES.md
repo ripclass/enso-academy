@@ -1,5 +1,13 @@
 # Session Notes
 
+## [2026-06-11] - Module 3 progress halted by the third Codex quota wall; state banked
+
+- **Quota wall #3** (after the two on 2026-05-29/2026-06-10): `codex exec` returns `You've hit your usage limit ... try again at 11:54 PM` — confirmed via the trivial-dispatch diagnostic from the CLAUDE.md gotcha. The `from-alert-to-investigation` iteration-2 dispatch died mid-run (exit 3, no verdict, no `.codex.2.txt`); STR-drafting and FIU-lesson iteration-1 cross-checks are queued and undispatchable until top-up or reset.
+- **Module 3 state at the stall:** all 4 lessons GENERATED and 7/7 gate-PASS. Verdicts: `transaction-monitoring-systems-and-rules` AGREE/AGREE (iteration 1); `from-alert-to-investigation` methodology-AGREE / fidelity-DISAGREE at iteration 1, all three fidelity issues FIXED in the artifact (Egmont citation replaced with the real `FIUs in Action: 100 Cases from the Egmont Group` compilation; `31 U.S.C. § 5318(g)(2)` scope stated precisely in the quiz explanation and synthesis), iteration 2 pending re-dispatch; `drafting-the-suspicious-transaction-report` and `the-life-of-a-financial-intelligence-product` awaiting iteration 1 (both received the Egmont-label and § 5318(g)(2) fixes proactively).
+- **Resume procedure:** after top-up/reset, run in order — `pnpm tsx scripts/crosscheck-lesson.ts cams from-alert-to-investigation 2`, then `... drafting-the-suspicious-transaction-report 1`, then `... the-life-of-a-financial-intelligence-product 1`; then docs+commit for the Module 3 verdicts.
+- **Outline issue to surface to Ripon (locked file — not edited):** the module source name `Egmont Group Public Bulletin on Financial Intelligence Unit Operational Typologies` is not a real publication title — Codex correctly rejected it as a citation label. Lessons now cite the real Egmont compilation; the outline entry should be corrected at the next outline revision.
+- **Two more recurring generation rules confirmed this round:** (1) gate 6c flags digit amounts AND magnitude phrases (`hundreds of millions`) in slides with no adjacent reading citations — synthesis slides must stay number-free; (2) gate 2b's advisory outline-resolution flags only at 0% — keep at least one citation label carrying a full official source title that matches the outline registry.
+
 ## [2026-06-11] - Session notes: restart recovery, Module 2 closure decisions, Module 3 start
 
 - **Restart recovery procedure (worked, reusable):** the prior session died mid-crosscheck on `reliance-on-third-parties-and-introduced-business` — the methodology AGREE had reached the docs but no `.codex.1.txt` or JSONL cross-check event existed (the script persists both only when the parallel pair completes). Recovery = re-run the full iteration via `crosscheck-lesson.ts`; the duplicate methodology dispatch is the price of a coherent audit bundle, and the script's extra `auto_generated` JSONL row is harmless (precedent: `ongoing-monitoring` has three).
@@ -8,6 +16,28 @@
 - **Recurring generation rule (hit twice today):** gate 6b flags a synthesis callout whose item text names a specific instrument (FATF Recommendation 10; Article 39) that the narration does not also name. Rule for future inline generation: every distinctive instrument named in a callout item must be named in its narration too.
 - **Deep-case selection for `from-alert-to-investigation`:** the outline sceneBrief points at the FinCEN Files, which is investigative reporting and cannot satisfy the deep-case rule (named public enforcement matter). Used U.S. Bancorp (SDNY deferred prosecution agreement, 15 February 2018, USD 453M forfeiture; FinCEN USD 185M CMP — alert caps tied to analyst staffing, discontinued below-threshold testing, concealment from the OCC), which is on-point for alert governance and chains back to the transaction-monitoring lesson's calibration-by-staffing warning. FinCEN Files retained as pointer-framed context in the opening scene per the standing discipline note.
 - **Dispatch discipline held:** cross-checks ran sequentially, one lesson-pair at a time (reliance it.2 → cdd it.3 → edd it.4 → transaction-monitoring it.1 → from-alert-to-investigation it.1 queued), to avoid contention on the metered Codex account.
+
+## [2026-06-11] - Methodology audit of `from-alert-to-investigation`: verdict `AGREE` under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `from-alert-to-investigation` against methodology v1.1 with citation mechanics left to the deterministic `citation_bind` gate, per the current review boundary.
+
+What this pass confirmed:
+- Verdict: `AGREE` on methodology.
+- The artifact stays within allowed source types for this pass: FATF materials, primary U.S. / UK / EU / Bangladesh legal and regulatory texts, the U.S. Bancorp / FinCEN public-enforcement record, Egmont typology material, and original analysis. The FinCEN Files reference stays explicitly pointer-framed context rather than the substantive base of the lesson, so no news-as-substance blocker surfaced.
+- Every reading scene carries a `citations[]` array, which is the only structural citation check left to this audit after the v1.1 narrowing.
+- `Deep case: U.S. Bancorp (2018) - managing the queue instead of working it` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, and the register stays adult-professional.
+- Repeat same-day re-audits of the unchanged artifact, including under the explicit reviewer-prompt framing, surfaced no new methodology issue class and kept the verdict at `AGREE`.
+
+## [2026-06-11] - Factual-fidelity audit of `from-alert-to-investigation`: verdict `DISAGREE`
+
+Reviewed the current user-supplied JSON for `from-alert-to-investigation` under the explicit factual-fidelity reviewer framing used in the current prompt, against the operator-maintained current facts reference, the current EUR-Lex text of Directive `(EU) 2015/849` Article `39`, the current text of `31 U.S.C. § 5318(g)(2)`, the UK `POCA 2002` tipping-off framework, and the already-used public U.S. Bancorp / FinCEN enforcement bundle reflected elsewhere in project memory.
+
+What this pass confirmed:
+- The core alert-investigation / U.S. Bancorp teaching arc is broadly intact. No new amount/date/entity contradiction surfaced in the deep-case scene on the reviewed bundle, and the UK / EU / Bangladesh framing remained materially aligned with the already-verified project facts.
+- The first live blocker is citation precision. `Worked investigation: the exporter and the new corridor` cites `Egmont Group Public Bulletin on Financial Intelligence Unit Operational Typologies` as if it were a precise named publication, but this title could not be substantiated as stated in the reviewed public source set. Treat it as an unverified source label and replace it with a verifiable public typology source before re-dispatch.
+- The second live blocker is U.S. scope precision. The quiz explanation in `Disposition and documentation` and the synthesis slide both compress the three regimes too aggressively by treating `31 U.S.C. § 5318(g)(2)` as if it named a generic `disclosed investigation` offence. The statute specifically prohibits notifying a person involved that a transaction has been reported, or otherwise revealing that it has been reported; it should not be paraphrased as the U.S. equivalent of the broader UK/EU investigation-disclosure prohibitions.
+- Follow-up instruction: do not spend the next fix cycle relitigating the U.S. Bancorp amounts or the RFI scene's UK/EU anchors. Replace the Egmont cite with a verifiable public source and narrow the U.S. shorthand everywhere it appears (`Disposition and documentation` explanation plus `What to carry forward`).
 
 ## [2026-06-11] - Methodology audit of `transaction-monitoring-systems-and-rules`: verdict `AGREE` under the narrowed v1.1 brief
 
@@ -20,6 +50,15 @@ What this pass confirmed:
 - `Deep case: Westpac and AUSTRAC (2020) - the channel the scenarios never reached` satisfies the required deep-case scene because it is grounded in a named public enforcement matter with substantive analysis.
 - The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based and practical, and the register stays adult-professional.
 - The lesson also keeps Bangladesh as one peer implementation example inside an international-first frame rather than the centre of gravity.
+
+## [2026-06-11] - Factual-fidelity audit of `transaction-monitoring-systems-and-rules`: verdict `AGREE`
+
+Reviewed the current user-supplied JSON for `transaction-monitoring-systems-and-rules` under the explicit factual-fidelity reviewer framing used in the current prompt, against the operator-maintained current facts reference, the FATF Recommendations PDF (October 2025 edition), the Federal Register text of FinCEN's 2016 CDD rule, and the already-verified Federal Court / AUSTRAC Westpac public-record bundle used in the current module.
+
+What this pass confirmed:
+- No hard blocker surfaced in the lesson's core regulatory teaching. The Recommendation `10` monitoring-duty framing, the explicitly bank-scoped `31 CFR § 1020.210` discussion with the parallel covered-institution caveat, the UK / EU renderings, and the Bangladesh `MLPA 2012` / Transaction Profile monitoring arc are materially sound on the reviewed sources.
+- The Westpac scene stays inside the public record on the points it teaches here: the `21 October 2020` penalty order, the `24 September 2020` agreed-facts document, the initial `12`-customer subset versus the `262`-customer section-`36(1)` declaration, and the LitePay / section-`45` monitoring-coverage framing did not surface a publication-blocking contradiction.
+- Result: `AGREE`. If the lesson is revised again, preserve the current U.S. bank-rendering caveat and the present Westpac amount/date/customer/channel bundle.
 
 ## [2026-06-11] - Repeat factual-fidelity re-audit of `enhanced-due-diligence-when-and-how`: verdict now moves to `AGREE`
 

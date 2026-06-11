@@ -1,11 +1,31 @@
 # Enso Academy Progress Log
 
-## 2026-06-11 - MILESTONE: Module 2 complete (13/40 cross-cleared); Module 3 generation started
+## 2026-06-11 - MILESTONE: Module 2 complete (14/40 cross-cleared after first Module 3 lesson); Module 3 generation started
 
 - **Module 2 (CDD block, 5 lessons) is generated, gate-clean, and cross-checked:** `cdd-fundamentals-identifying-the-customer` (methodology AGREE; fidelity SPLIT — soft U.S. bank-rule scope residual, cleared with a documented operator flag at the 3-iteration cap), `enhanced-due-diligence-when-and-how` (AGREE/AGREE at iteration 4, after the § 5318(i) label and PEP-shorthand fixes), `beneficial-ownership-investigation` (AGREE/AGREE first pass), `ongoing-monitoring-and-cdd-refresh` (AGREE/AGREE at iteration 2), `reliance-on-third-parties-and-introduced-business` (AGREE/AGREE at iteration 2, after the Directive (EU) 2015/849 Article 27(1)/(2) timing-duty fix).
 - A system restart killed the prior session mid-crosscheck on `reliance` (methodology verdict recorded, fidelity never returned, no `.codex.1.txt` / JSONL event). Recovered by re-running the full iteration-1 pair: methodology re-AGREE'd, fidelity DISAGREE'd on the Article 27 swap; fixed and cleared at iteration 2.
 - **Module 3 (Suspicious Activity Monitoring and Reporting) generation started:** `transaction-monitoring-systems-and-rules` (Westpac/AUSTRAC 2020 deep case via the monitoring-coverage lens — distinct angle from the ongoing-monitoring lesson's CDD lens) and `from-alert-to-investigation` (U.S. Bancorp 2018 deep case — alert caps tied to staffing) both generated inline and 7/7 deterministic gates PASS. Codex cross-checks in flight/queued at the time of this entry.
 - Running totals: **15/40 lessons generated, 13/40 cross-cleared** (12 AGREE/AGREE + 1 cleared-with-flag).
+
+- Later same day update: `transaction-monitoring-systems-and-rules` cleared factual fidelity on the current artifact; `from-alert-to-investigation` remains queued for cross-check.
+- Running totals now stand at **15/40 lessons generated, 14/40 cross-cleared** (13 AGREE/AGREE + 1 cleared-with-flag).
+
+## 2026-06-11 - Methodology audit of `from-alert-to-investigation` clears under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `from-alert-to-investigation` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 using the narrowed methodology scope already recorded in project memory.
+
+- Verdict: `AGREE`.
+- No new methodology blocker surfaced. The artifact stays within allowed/public source types for this audit, every reading scene carries a `citations[]` array, `Deep case: U.S. Bancorp (2018) - managing the queue instead of working it` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- The lesson also keeps the international-first framing already set in project memory: FATF baseline first, with U.S. / UK / EU plus Bangladesh as one implementation example rather than the centre of gravity.
+- Repeat same-day re-audits of the unchanged artifact, including under the explicit methodology-audit reviewer prompt, kept returning `AGREE` and surfaced no new methodology issue class.
+
+## 2026-06-11 - Factual-fidelity audit of `from-alert-to-investigation` does not yet clear publication
+
+Reviewed the current user-supplied JSON for `from-alert-to-investigation` against the operator-maintained current facts reference, the current EUR-Lex text of Directive `(EU) 2015/849` Article `39`, the current text of `31 U.S.C. § 5318(g)(2)`, the UK `POCA 2002` tipping-off framework, and the already-used public U.S. Bancorp / FinCEN enforcement bundle reflected in project memory.
+
+- Verdict: `DISAGREE`.
+- Blocking issue 1: `Worked investigation: the exporter and the new corridor` cites `Egmont Group Public Bulletin on Financial Intelligence Unit Operational Typologies` as if it were a precise named publication, but this title could not be substantiated as stated in the reviewed public source set. The scene should be re-cited to a verifiable public typology source rather than ship with an unverified Egmont document name.
+- Blocking issue 2: the quiz explanation in `Disposition and documentation` and the synthesis slide both overstate the U.S. rule by treating `31 U.S.C. § 5318(g)(2)` as if it were a generic `do not disclose the investigation` prohibition. The statute specifically prohibits notifying a person involved that a transaction has been reported, or otherwise revealing that it has been reported; narrow the U.S. shorthand to SAR/report confidentiality rather than investigation disclosure generally.
 
 ## 2026-06-11 - Methodology audit of `transaction-monitoring-systems-and-rules` clears under the narrowed v1.1 brief
 
@@ -14,6 +34,14 @@ Reviewed the current user-supplied JSON for `transaction-monitoring-systems-and-
 - Verdict: `AGREE`.
 - No new methodology blocker surfaced. The artifact stays within allowed/public source types for this audit, every reading scene carries a `citations[]` array, `Deep case: Westpac and AUSTRAC (2020) — the channel the scenarios never reached` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and the register remains adult-professional.
 - The lesson also stays within the international-first framing already set in project memory: FATF baseline first, with U.S. / UK / EU plus Bangladesh as one implementation example rather than the centre of gravity.
+
+## 2026-06-11 - Factual-fidelity audit of `transaction-monitoring-systems-and-rules` clears publication
+
+Reviewed the current user-supplied JSON for `transaction-monitoring-systems-and-rules` against the operator-maintained current facts reference, the FATF Recommendations PDF (October 2025 edition), the Federal Register text of FinCEN's 2016 CDD rule, and the already-verified Federal Court / AUSTRAC Westpac public-record bundle used elsewhere in Module 2.
+
+- Verdict: `AGREE`.
+- No publication-blocking contradiction surfaced in the core monitoring arc. The FATF Recommendation `10` framing, the explicitly bank-scoped U.S. `31 CFR § 1020.210` rendering with parallel covered-institution caveat, the UK / EU renderings, and the Bangladesh `MLPA 2012` / Transaction Profile teaching are materially sound on the reviewed source set.
+- The deep-case scene also stays within the verified Westpac record for the points it teaches here: the `21 October 2020` Federal Court penalty order (`AUD 1.3 billion`), the `24 September 2020` Statement of Agreed Facts and Admissions, the `12`-customer subset versus the `262`-customer section-`36(1)` declaration, and the LitePay / section-`45` monitoring-coverage framing did not surface a hard fidelity defect.
 
 ## 2026-06-11 - Repeat factual-fidelity re-audit of `enhanced-due-diligence-when-and-how` now clears publication
 
