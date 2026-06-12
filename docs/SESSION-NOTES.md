@@ -1,5 +1,30 @@
 # Session Notes
 
+## [2026-06-12] - MODE CHANGE: generation-first; Codex cross-checks deferred until the full GPT subscription arrives
+
+- Ripon's directive (2026-06-12): stop burning time on the Codex quota — generate ALL remaining lessons now, batch cross-check when he has bought the full GPT subscription (expected within a couple of days). This intentionally overrides the session brief's one-lesson-per-turn-with-cross-check rhythm for this phase; the per-lesson deterministic gates (`validate-lesson.ts`, 7 gates) still run on every lesson before save.
+- Accepted trade-off (flagged to Ripon, accepted): batch mode means a systematic defect can propagate across many lessons before the first verdict catches it (the Egmont-label/§ 5318(g)(2) pattern propagated into 3 lessons within ONE module). Mitigations: gates, facts pack, and the accumulated craft rules; batch-fixing at re-check time mirrors what already worked.
+- **Cross-check backlog at this entry (dispatch in this order when quota is live):** `drafting-the-suspicious-transaction-report` (1), `the-life-of-a-financial-intelligence-product` (1), `the-multi-regime-landscape-of-sanctions` (1), `sanctions-screening-mechanics-and-design` (1), plus every lesson generated after this note. Module 3 is otherwise closed: `transaction-monitoring` AGREE/AGREE it.1, `from-alert-to-investigation` AGREE/AGREE it.2 (Egmont title + § 5318(g)(2) fixes confirmed).
+- Generated so far in the new mode: `the-multi-regime-landscape-of-sanctions` (BNP Paribas 2014 deep case; UNSCR 2231 snapback stated as 2025-current; Blocking Regulation presented neutrally) and `sanctions-screening-mechanics-and-design` (Standard Chartered 2019 OFAC deep case + Commerzbank June 2020 contrast; 50 Percent Rule as CDD-integration; transliteration worked example) — both 7/7 gate-PASS, screening lesson first-run clean.
+
+## [2026-06-12] - Factual-fidelity re-audit of `from-alert-to-investigation`: verdict now moves to `AGREE`
+
+Reviewed the later user-supplied JSON for `from-alert-to-investigation` under the explicit factual-fidelity reviewer framing used in the current audit, against the operator-maintained current facts reference, the FATF Recommendations PDF (October 2025 edition) for Recommendation `10` / `11`, the current EUR-Lex text of Directive `(EU) 2015/849` Article `39`, the current text of `31 U.S.C. § 5318(g)(2)`, and the already-used public U.S. Bancorp / FinCEN enforcement bundle reflected elsewhere in project memory.
+
+What this pass confirmed:
+- The prior live blockers are gone on the literal current artifact. `Worked investigation: the exporter and the new corridor` now cites the real Egmont compilation title `FIUs in Action: 100 Cases from the Egmont Group`, so the earlier unverified source-label problem does not survive.
+- The U.S. confidentiality rule is also now stated precisely enough. `The RFI: asking without alerting`, the quiz explanation in `Disposition and documentation`, and `What to carry forward` keep `31 U.S.C. § 5318(g)(2)` tied to revealing that a transaction/report has been reported, rather than treating it as the U.S. equivalent of the broader UK/EU investigation-disclosure prohibitions.
+- No new amount/date/entity contradiction surfaced in the U.S. Bancorp scene on the reviewed bundle, and no new hard problem appeared in the FATF / UK / EU / Bangladesh framing. Treat this lesson as publication-ready on factual fidelity unless the artifact changes again.
+
+## [2026-06-12] - Methodology-only re-audit of `from-alert-to-investigation`: verdict still `AGREE` on the later fixed artifact
+
+Reviewed the later user-supplied JSON for `from-alert-to-investigation` against methodology v1.1 under the explicit reviewer-prompt framing used in the current audit.
+
+What this pass confirmed:
+- The lesson remains `AGREE` on methodology. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, the U.S. Bancorp 2018 scene still satisfies the deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- The literal text fixes carried after the 2026-06-11 fidelity disagreement - the real Egmont compilation title and the narrowed `31 U.S.C. § 5318(g)(2)` phrasing - do not change the methodology verdict. Treat this lesson's methodology status as settled unless the structure, sources, or pedagogy change materially.
+- This was a methodology-only pass. It does not, by itself, update the separate factual-fidelity status in project memory.
+
 ## [2026-06-11] - Module 3 progress halted by the third Codex quota wall; state banked
 
 - **Quota wall #3** (after the two on 2026-05-29/2026-06-10): `codex exec` returns `You've hit your usage limit ... try again at 11:54 PM` — confirmed via the trivial-dispatch diagnostic from the CLAUDE.md gotcha. The `from-alert-to-investigation` iteration-2 dispatch died mid-run (exit 3, no verdict, no `.codex.2.txt`); STR-drafting and FIU-lesson iteration-1 cross-checks are queued and undispatchable until top-up or reset.

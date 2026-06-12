@@ -1,5 +1,22 @@
 # Enso Academy Progress Log
 
+## 2026-06-12 - Factual-fidelity re-audit of `from-alert-to-investigation` now clears publication on the later fixed artifact
+
+Reviewed the later user-supplied JSON for `from-alert-to-investigation` against the operator-maintained current facts reference, the FATF Recommendations PDF (October 2025 edition) for Recommendation `10` / `11`, the current EUR-Lex text of Directive `(EU) 2015/849` Article `39`, the current text of `31 U.S.C. § 5318(g)(2)`, and the already-used public U.S. Bancorp / FinCEN enforcement bundle reflected in project memory.
+
+- Verdict now moves to `AGREE`.
+- The earlier live blockers are fixed in the literal current artifact. `Worked investigation: the exporter and the new corridor` no longer carries the unverified `Egmont Group Public Bulletin on Financial Intelligence Unit Operational Typologies` label and instead cites the real compilation title `FIUs in Action: 100 Cases from the Egmont Group`.
+- The U.S. confidentiality wording is also now in bounds. `The RFI: asking without alerting`, the quiz explanation in `Disposition and documentation`, and `What to carry forward` now keep `31 U.S.C. § 5318(g)(2)` inside its actual SAR/report-confidentiality scope rather than treating it as a generic prohibition on disclosing an investigation.
+- No new publication-blocking contradiction surfaced in the lesson's core FATF / UK / EU / U.S. / U.S. Bancorp teaching arc on this pass. Preserve the current Egmont title and the narrowed U.S. phrasing if the artifact is revised again.
+
+## 2026-06-12 - Methodology-only re-audit of `from-alert-to-investigation` stays `AGREE` on the later fixed artifact
+
+Reviewed the later user-supplied JSON for `from-alert-to-investigation` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the explicit methodology-audit reviewer framing.
+
+- Verdict remains `AGREE`.
+- No new methodology blocker surfaced. The artifact still stays within allowed/public source types for this pass, every reading scene still carries a `citations[]` array, `Deep case: U.S. Bancorp (2018) - managing the queue instead of working it` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and the register stays adult-professional.
+- The two text changes made after the 2026-06-11 fidelity disagreement - replacing the Egmont title with the real `FIUs in Action: 100 Cases from the Egmont Group` compilation and narrowing the `31 U.S.C. § 5318(g)(2)` wording - did not create any methodology issue. This pass did not re-open factual fidelity.
+
 ## 2026-06-11 - MILESTONE: Module 2 complete (14/40 cross-cleared after first Module 3 lesson); Module 3 generation started
 
 - **Module 2 (CDD block, 5 lessons) is generated, gate-clean, and cross-checked:** `cdd-fundamentals-identifying-the-customer` (methodology AGREE; fidelity SPLIT — soft U.S. bank-rule scope residual, cleared with a documented operator flag at the 3-iteration cap), `enhanced-due-diligence-when-and-how` (AGREE/AGREE at iteration 4, after the § 5318(i) label and PEP-shorthand fixes), `beneficial-ownership-investigation` (AGREE/AGREE first pass), `ongoing-monitoring-and-cdd-refresh` (AGREE/AGREE at iteration 2), `reliance-on-third-parties-and-introduced-business` (AGREE/AGREE at iteration 2, after the Directive (EU) 2015/849 Article 27(1)/(2) timing-duty fix).
