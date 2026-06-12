@@ -1,5 +1,13 @@
 # Enso Academy Progress Log
 
+## 2026-06-12 - 🎉 MILESTONE: CAMS COURSE GENERATION COMPLETE — 40/40 lessons, all 7/7 gate-PASS
+
+- The full CAMS course is generated: 9 modules, 40 lessons, every lesson passing all seven deterministic gates. Modules 7 (Governance, Audit and the Compliance Function) and 8 (Learning from Enforcement) were completed in the Ripon-authorized autonomous run of 2026-06-12.
+- Module 7: three-lines-of-defence (Danske 4th angle), MLRO/CCO role (Haider + Sonali UK personal-liability records), independent audit (SCB 2014 closure-validation), training-and-culture (Westpac Advisory Panel culture root-cause).
+- Module 8: the enforcement-reading methodology (Commerzbank Final Notice as worked text, with an original notice-style exercise paragraph), four capstone case studies (correspondent failures, Danske end-to-end, Westpac/LitePay with the sensitive typology handled at indicator level, 1MDB private-banking failure mode including the 2016 MAS/FINMA closures of BSI and Falcon), and the course synthesis with three original full-length exam scenarios and the ACAMS non-affiliation disclaimer.
+- Gate-iteration economics across the autonomous run: most lessons passed first-run; the handful of flags were single-edit fixes (the known 6b/6c/4b patterns). The SESSION-NOTES craft rules held throughout.
+- **Pipeline state: 15/40 cross-cleared (pre-mode-change), 25 lessons in the batch cross-check backlog awaiting the GPT subscription.** Then: fix-iterate per verdicts → Ripon's lesson-by-lesson review → `write` promote (Ripon's step). Currency-critical content for fidelity attention listed in CLAUDE.md.
+
 ## 2026-06-12 - MILESTONE: Module 6 (National Frameworks in Depth) fully generated — 30/40
 
 - All four framework lessons generated and 7/7 gate-PASS (US and EU lessons took one gate-iteration each — citation_bind enrichment and a slide numeric; UK and Bangladesh first-run clean): `the-us-framework`, `the-uk-framework`, `the-eu-framework-and-the-aml-package`, `the-bangladesh-framework`.
