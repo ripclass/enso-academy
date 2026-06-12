@@ -1,5 +1,11 @@
 # Session Notes
 
+## [2026-06-12] - Module 4 (Sanctions Compliance) fully generated in generation-first mode — 21/40
+
+- All four sanctions lessons generated and 7/7 gate-PASS: `the-multi-regime-landscape-of-sanctions` (BNP Paribas 30 June 2014 deep case; UNSCR 2231 snapback stated as invoked 2025; EU Blocking Regulation presented neutrally per the outline), `sanctions-screening-mechanics-and-design` (Standard Chartered April 2019 deep case + Commerzbank June 2020 contrast; 50 Percent Rule as CDD-integration), `sanctions-evasion-typologies` (Binance 21 November 2023 deep case; HSBC 11 Dec 2012 + SCB 2012 as named stripping records; May 2020 Global Maritime Advisory; UN DPRK Panel of Experts), `sanctions-program-governance` (OFAC Framework five components; Enforcement Guidelines/VSD halving; the OFSI-mandatory vs US-voluntary disclosure contrast; deep case = the Standard Chartered 2012–2019 governance arc incl. the 2014 USD 300M remediation-failure action).
+- **Cross-check backlog now 6** (order in CLAUDE.md status). Deep-case jurisdictions across the course now: UK, AU, NL, DE, US, DK/EE, MY/PH (Bangladesh Bank heist), FR, plus the VASP perimeter.
+- **Three more gate craft findings** (extend the inline-generation rules): (1) gate 2b registry matching breaks on punctuation — keep enforcement-document labels byte-identical to the outline `sourceNames` prefix (a comma after `plc` cost a resolution match); (2) gate 4b's deep-case heuristic requires an entity SUFFIX (Bank/Group/plc/AG/Ltd...) in the deep-case scene BODY — write the full legal name at first mention, not the colloquial short form; (3) `31 CFR Part 501` (no §) is not extracted by citation_bind — SKIP outcome is fine, not an error.
+
 ## [2026-06-12] - MODE CHANGE: generation-first; Codex cross-checks deferred until the full GPT subscription arrives
 
 - Ripon's directive (2026-06-12): stop burning time on the Codex quota — generate ALL remaining lessons now, batch cross-check when he has bought the full GPT subscription (expected within a couple of days). This intentionally overrides the session brief's one-lesson-per-turn-with-cross-check rhythm for this phase; the per-lesson deterministic gates (`validate-lesson.ts`, 7 gates) still run on every lesson before save.

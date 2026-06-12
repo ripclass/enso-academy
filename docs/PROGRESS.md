@@ -1,5 +1,11 @@
 # Enso Academy Progress Log
 
+## 2026-06-12 - MILESTONE: Module 4 (Sanctions Compliance) fully generated — 21/40 lessons generated
+
+- All four sanctions lessons generated inline in generation-first mode (Codex deferred per Ripon pending the GPT subscription) and 7/7 deterministic gates PASS: `the-multi-regime-landscape-of-sanctions`, `sanctions-screening-mechanics-and-design`, `sanctions-evasion-typologies`, `sanctions-program-governance`.
+- Deep cases: BNP Paribas (2014, ~USD 8.97B — extraterritoriality), Standard Chartered (April 2019, USD 639M OFAC — screening architecture) with Commerzbank (June 2020, £37.8M — control decay) as contrast, Binance (November 2023, ~USD 4.3B — virtual-asset perimeter), and the Standard Chartered 2012–2019 governance arc (cooperation/remediation economics) per the outline's worked-example instruction.
+- Running totals: **21/40 generated, 15/40 cross-cleared, cross-check backlog 6** (dispatch order in CLAUDE.md/SESSION-NOTES).
+
 ## 2026-06-12 - Factual-fidelity re-audit of `from-alert-to-investigation` now clears publication on the later fixed artifact
 
 Reviewed the later user-supplied JSON for `from-alert-to-investigation` against the operator-maintained current facts reference, the FATF Recommendations PDF (October 2025 edition) for Recommendation `10` / `11`, the current EUR-Lex text of Directive `(EU) 2015/849` Article `39`, the current text of `31 U.S.C. § 5318(g)(2)`, and the already-used public U.S. Bancorp / FinCEN enforcement bundle reflected in project memory.
