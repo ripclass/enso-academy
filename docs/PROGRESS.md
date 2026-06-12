@@ -1,5 +1,13 @@
 # Enso Academy Progress Log
 
+## 2026-06-12 - MILESTONE: Module 6 (National Frameworks in Depth) fully generated — 30/40
+
+- All four framework lessons generated and 7/7 gate-PASS (US and EU lessons took one gate-iteration each — citation_bind enrichment and a slide numeric; UK and Bangladesh first-run clean): `the-us-framework`, `the-uk-framework`, `the-eu-framework-and-the-aml-package`, `the-bangladesh-framework`.
+- Deep-case angles, all reusing established matters under new lenses per the outline's instructions: HSBC 2012 as a five-authority jurisdiction map (US); NatWest 2021 as the FCA's criminal-vs-civil instrument choice (UK); Danske Estonia as the supervisory-architecture failure that argued AMLA into existence (EU — third distinct angle); and Bangladesh's APG mutual-evaluation trajectory using only cleared ratings facts.
+- Currency-critical content concentrated in this module and flagged for batch-fidelity attention: the CTA's March 2025 scope, the CJEU register-access ruling, the EU AML Package application dates, AMLA's 2028 supervision start.
+- The Bangladesh lesson is BD-centric by design — the national-frameworks module is where the global directive places BD depth.
+- Running totals: **30/40 generated, 15/40 cross-cleared, cross-check backlog 15** (dispatch order in CLAUDE.md).
+
 ## 2026-06-12 - MILESTONE: Module 5 (High-Risk Categories and Typologies) fully generated — 26/40
 
 - All five lessons generated inline in generation-first mode and 7/7 deterministic gates PASS — every one on the first run (the accumulated SESSION-NOTES craft rules eliminated gate iterations entirely): `politically-exposed-persons`, `correspondent-banking-risk`, `trade-based-money-laundering`, `virtual-assets-and-vasps`, `real-estate-cash-intensive-businesses-and-luxury-goods`.
