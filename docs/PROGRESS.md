@@ -1,5 +1,12 @@
 # Enso Academy Progress Log
 
+## 2026-06-12 - MILESTONE: Module 5 (High-Risk Categories and Typologies) fully generated — 26/40
+
+- All five lessons generated inline in generation-first mode and 7/7 deterministic gates PASS — every one on the first run (the accumulated SESSION-NOTES craft rules eliminated gate iterations entirely): `politically-exposed-persons`, `correspondent-banking-risk`, `trade-based-money-laundering`, `virtual-assets-and-vasps`, `real-estate-cash-intensive-businesses-and-luxury-goods`.
+- Deep cases: 1MDB through the PEP lens (Goldman DPA 22 Oct 2020 + Najib SRC conviction — amounts kept identical to the cross-cleared beneficial-ownership bundle); HSBC 2012 via the Mexico correspondent strand with Wachovia 2010 as precursor; Lebanese Canadian Bank 2011–2013 (the used-car TBML cycle, §311); the Tornado Cash arc told to its 2025 ending (designation → Van Loon Fifth Circuit Nov 2024 → OFAC delisting March 2025 — currency-critical, flagged for fidelity attention at batch re-check); and the Obiang US/France asset-recovery record with Riggs Bank as the bank-side precursor.
+- ICC discipline held by construction in the TBML lesson (UCP 600 nominative-only; IP gate clean). Bangladesh weighted genuinely where the outline demands (TBML capital-flight framing, BFIU TBML Guidelines) and kept peripheral elsewhere.
+- Running totals: **26/40 generated, 15/40 cross-cleared, cross-check backlog 11** (dispatch order in CLAUDE.md).
+
 ## 2026-06-12 - MILESTONE: Module 4 (Sanctions Compliance) fully generated — 21/40 lessons generated
 
 - All four sanctions lessons generated inline in generation-first mode (Codex deferred per Ripon pending the GPT subscription) and 7/7 deterministic gates PASS: `the-multi-regime-landscape-of-sanctions`, `sanctions-screening-mechanics-and-design`, `sanctions-evasion-typologies`, `sanctions-program-governance`.
