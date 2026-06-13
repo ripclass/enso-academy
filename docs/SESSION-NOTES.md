@@ -1179,3 +1179,17 @@ What this pass confirmed:
 - The lesson still teaches MONEYVAL as effectively the body for `Europe outside the EU`, which is inaccurate because MONEYVAL evaluates many EU member states as well.
 
 If lesson 0.3 is regenerated again, preserve the now-cleared APG/methodology/ATA fixes and reprompt specifically against this FATF/Egmont/MONEYVAL bundle.
+
+## 2026-06-13 — Quota-wall pre-audit sweep (window closed until 11:20 AM)
+
+While quota wall #5 blocked dispatches, the session pre-audited all 21 remaining backlog lessons against the reviewer's seven demonstrated failure patterns (R-number scoping, module-internal comparatives, unsourced quantitative flourishes, ICC/UCP proximity, fabricated source titles, supervisory-authority overstatement, currency facts). Findings, all fixed and re-gated 7/7 PASS:
+
+- `trade-based-money-laundering` — four ICC-proximate sites rewritten to original principle-level wording (scene title `documents, not goods` → `the documentary boundary`; body and synthesis no longer use the UCP Art. 5-style `banks deal in documents, not goods` formulation; quiz colleague-quote no longer says `conform on their face`). Same blocker class the reviewer killed in evasion-typologies it.1.
+- `transaction-monitoring-systems-and-rules` (ALREADY CLEARED 2026-06-11 — post-clearance fix, flag for Ripon) — citation label cited the fabricated `Egmont Group Public Bulletin on Financial Intelligence Unit Operational Typologies`; replaced with the real compilation `Egmont Group, FIUs in Action: 100 Cases from the Egmont Group`. The earlier fake-title sweep missed this label.
+- `case-study-1mdb-and-the-private-banking-failure-mode` — `largest kleptocracy asset recovery on record` scoped to `the largest asset recovery in the US Department of Justice's kleptocracy-initiative record`.
+- `the-eu-framework-and-the-aml-package` — Danske framing softened from `the largest laundering scandal in European history` to `one of the largest`.
+- `the-bangladesh-framework` — the R.6/R.7 fix pattern from screening-mechanics applied pre-emptively in three sites: body now splits R.6 (terrorism-related designations) from R.7 (proliferation counterparts); citation label broadened to both Recommendations with their Interpretive Notes; MER scene now calls R.6 `the terrorism-related targeted-financial-sanctions standard`.
+
+Verified clean (no edit needed): time-scoped superlatives in both correspondent lessons (`then-largest`, `of its era`, `at the time among`); `§ 5318(g)` confidentiality scoping in the-us-framework; CTA March-2025 IFR foreign-only scope; full Tornado Cash arc (designation 8 Aug 2022 / Van Loon Nov 2024 / delisting Mar 2025 / Pertsev May 2024 / Storm Aug 2025); PEP R.12 foreign-package framing; FinCEN-examines-no-one in both the US and UK framework lessons; R.37/38/39 mapping in course-synthesis; zero unsourced proportions course-wide.
+
+Resume order at the 11:20 AM window: `sanctions-evasion-typologies` it.2, `sanctions-program-governance` it.1, then `politically-exposed-persons` onward. Both stalled dispatches completed their METHODOLOGY lanes AGREE before the wall; only fidelity verdicts are missing.
