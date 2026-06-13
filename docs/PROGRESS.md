@@ -1,5 +1,128 @@
 # Enso Academy Progress Log
 
+## 2026-06-13 - Methodology re-audit of the literal current `sanctions-evasion-typologies` artifact now clears
+
+Reviewed the literal current user-supplied JSON for `sanctions-evasion-typologies` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the explicit methodology-audit reviewer framing, and confirmed that the repo artifact at `generated/cams/lessons/sanctions-evasion-typologies.json` carries the current fixed wording.
+
+- Verdict now moves to `AGREE`.
+- The earlier same-day ICC-text blocker no longer survives the literal current artifact. Quiz `Red-flag detection`, question 3, now states the letter-of-credit distractor at an original principle level (`documentary autonomy` / payment mechanics) rather than echoing the ICC-style `documents not goods` formulation.
+- No new methodology blocker surfaced. The lesson stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, `Deep case: Binance (2023) - the perimeter as the product` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and the register stays adult-professional.
+
+## 2026-06-13 - Methodology audit of `sanctions-program-governance` clears under the narrowed v1.1 brief
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the explicit methodology-audit reviewer framing.
+
+- Verdict: `AGREE`.
+- No methodology blocker surfaced. The artifact stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, `Deep case: Standard Chartered, 2012-2019 - the governance arc` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- This was a methodology-only pass. Any follow-up on this lesson should now sit in the factual-fidelity lane unless the source base, scene pedagogy, quiz shape, or register changes materially.
+
+## 2026-06-13 - Factual-fidelity audit of `sanctions-evasion-typologies` finds two publication blockers
+
+Reviewed the literal current user-supplied JSON for `sanctions-evasion-typologies` against the operator-maintained current facts reference, the adjacent sanctions-module lesson record already reflected in repo memory, DOJ / Treasury / OFAC public Binance materials, and OFAC's published 50 Percent Rule guidance.
+
+- Verdict: `DISAGREE`.
+- Blocking issue 1: `Deep case: Binance (2023) - the perimeter as the product` opens by calling the roughly **USD 4.3 billion** Binance resolution `the largest resolution in this module's record`. That is false on the module's own public-record bundle: `the-multi-regime-landscape-of-sanctions` already teaches **BNP Paribas (2014)** at approximately **USD 8.97 billion** as the larger sanctions resolution.
+- Blocking issue 2: `Front companies: the unlisted face of a listed actor` over-narrows OFAC's **50 Percent Rule** by implying that a front not majority-owned by a single blocked person escapes the rule. OFAC's rule reaches entities owned **50 percent or more in the aggregate by one or more blocked persons**, directly or indirectly; rewrite that sentence to the aggregate-ownership standard.
+- No new hard contradiction surfaced in the lesson's Binance / HSBC / OFAC amount-date bundle on this pass. Preserve those case details if the artifact is revised again, but fix the deep-case comparison and the 50 Percent Rule scope before publication.
+
+## 2026-06-13 - Factual-fidelity re-audit of the literal current `sanctions-screening-mechanics-and-design` artifact narrows to soft numeric-discipline issues (`SPLIT`)
+
+Reviewed the literal current user-supplied JSON for `sanctions-screening-mechanics-and-design` against the operator-maintained current facts reference and the already-verified Standard Chartered / Commerzbank public-record bundle after the same-day `R.6` / `R.7` scope fix landed in the artifact.
+
+- Verdict now moves from the earlier hard `DISAGREE` to `SPLIT`.
+- The earlier publication-blocking FATF recommendation-scope defect no longer survives the literal current artifact. `List management: the unglamorous foundation` now correctly limits Recommendation `6` to terrorism-related UN designations and Recommendation `7` to proliferation-financing counterparts, and quiz `Calibration diagnosis` Q4 now carries the same narrowed scope.
+- No new hard contradiction surfaced in the Standard Chartered 2019 / Commerzbank 2020 case bundle on this pass.
+- The residual issue is numeric discipline rather than law or case fidelity. `The control that enforces the prohibition` says name-list screening is `perhaps a third of the function` without a cited source for that proportion, and `The threshold trade-off` narration uses the made-up handling-time / alert-volume flourish `the same eight seconds as its thousand escorts` without source support. Strip or source those figures on the next revision.
+
+## 2026-06-13 - Methodology audit of `sanctions-evasion-typologies` finds an ICC-text publication blocker
+
+Reviewed the literal current user-supplied JSON for `sanctions-evasion-typologies` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the explicit methodology-audit reviewer framing, and confirmed that the repo artifact at `generated/cams/lessons/sanctions-evasion-typologies.json` matches the reviewed lesson.
+
+- Verdict: `DISAGREE`.
+- The lesson is otherwise methodologically strong on the narrowed brief: it stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, `Deep case: Binance (2023) - the perimeter as the product` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based, and the register stays adult-professional.
+- Blocking issue: quiz `Red-flag detection`, question 3, option `(a)` reproduces ICC / UCP-style rule wording too closely: `Documents conform on their face, and banks deal in documents, not goods`. Under methodology v1.1's IP rule, the lesson may reference ICC rules by name/section but may not reproduce or closely paraphrase ICC rule text. Rephrase that distractor, and any explanation wording that mirrors it, at a principle level before publication.
+
+## 2026-06-13 - Methodology re-audit of the literal current `sanctions-screening-mechanics-and-design` artifact reconfirms `AGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-screening-mechanics-and-design` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact methodology-audit reviewer framing, after the same-day R.6 / R.7 scope fix landed in the lesson flow.
+
+- Verdict remains `AGREE`.
+- No methodology blocker surfaced on the fixed artifact. The lesson still stays within allowed/public source types for this pass, every reading scene still carries a `citations[]` array, the Standard Chartered 2019 deep case with the Commerzbank 2020 contrast still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and the register stays adult-professional.
+- This pass keeps the lesson's methodology status stable after the FATF-scope correction. Remaining follow-up on this lesson belongs to factual fidelity or future substantive rewrites, not citation-mechanics or source-discipline relitigation.
+
+## 2026-06-13 - Factual-fidelity audit of `sanctions-screening-mechanics-and-design` does not yet clear publication
+
+Reviewed the current user-supplied JSON for `sanctions-screening-mechanics-and-design` against the operator-maintained current facts reference and the existing verified Standard Chartered / Commerzbank public-record bundle already reflected in project memory.
+
+- Verdict: `DISAGREE`.
+- Blocking issue 1: `List management: the unglamorous foundation` overstates FATF Recommendation `6` by calling it the generic `without delay` standard for `implementing UN designations`. Under the current facts reference, Recommendation `6` is the targeted-financial-sanctions standard for **terrorism and terrorist financing**; proliferation-related UN targeted-financial-sanctions sit under Recommendation `7`. Narrow that sentence to the terrorism / TF context or rewrite it to avoid treating `R.6` as the all-UN-sanctions list-management rule.
+- Blocking issue 2: `Calibration diagnosis` repeats the same scope error in applied form. The fourth question's explanation says the `without-delay standard measures exactly this gap` for a scenario framed as Tuesday `UN and OFAC` list updates generally, again turning `R.6` into a generic sanctions-update authority instead of the narrower terrorism / TF TFS standard.
+- No new hard contradiction surfaced in the lesson's Standard Chartered 2019 / Commerzbank 2020 amount-date bundle on this pass. Preserve that deep-case bundle if the artifact is revised again, but fix the FATF recommendation-number scoping before publication.
+
+## 2026-06-13 - Factual-fidelity re-audit of `the-multi-regime-landscape-of-sanctions` now clears publication on the literal current JSON
+
+Reviewed the literal current user-supplied JSON for `the-multi-regime-landscape-of-sanctions` against the operator-maintained current facts reference, the UN Charter / Security Council sanctions materials, `31 CFR § 560.215`, `31 CFR § 560.208`, OFAC's 50 Percent Rule / FAQ `398`, the EU Blocking Regulation bundle, and the DOJ / NYDFS BNP Paribas resolution record. Confirmed that the repo artifact at `generated/cams/lessons/the-multi-regime-landscape-of-sanctions.json` matches the literal lesson JSON under review.
+
+- Verdict now moves to `AGREE`.
+- The earlier quiz-Q3 blocker no longer survives the literal current artifact. `Nexus mapping` now deliberately uses a **non-U.S.-owned** EU bank for the Blocking Regulation collision, while the explanation separately teaches that `31 CFR § 560.215` makes a U.S.-owned or controlled foreign entity's Iran exposure primary law rather than mere secondary-sanctions pressure.
+- No new publication-blocking contradiction surfaced in the lesson's UN / OFAC / EU / UK / Bangladesh / BNP bundle on this pass. Preserve the current `R.6` / `R.7`, `31 CFR § 560.215`, `Council Regulation (EC) No 2271/96`, `SAMLA 2018`, and BNP 2014 amount-date wording if the artifact is revised again.
+
+## 2026-06-13 - Methodology audit of `sanctions-screening-mechanics-and-design` clears under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `sanctions-screening-mechanics-and-design` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the explicit methodology-audit reviewer framing.
+
+- Verdict: `AGREE`.
+- No methodology blocker surfaced. The artifact stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, `Deep case: Standard Chartered (2019) - the indicators the screens never met` satisfies the named public-enforcement deep-case requirement with the Commerzbank 2020 notice used as contrast, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- This was a methodology-only pass. Any follow-up on this lesson should now sit in the factual-fidelity lane unless the source base, scene pedagogy, or quiz shape changes materially.
+
+## 2026-06-13 - Methodology re-audit of `the-multi-regime-landscape-of-sanctions` reconfirms `AGREE` on the literal current artifact
+
+Reviewed the literal current user-supplied JSON for `the-multi-regime-landscape-of-sanctions` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact methodology-audit reviewer framing and confirmed that the repo artifact at `generated/cams/lessons/the-multi-regime-landscape-of-sanctions.json` matches the reviewed lesson.
+
+- Verdict remains `AGREE`.
+- No methodology blocker surfaced on the current Q3-fixed artifact. The lesson still stays within allowed/public source types for this pass, every reading scene still carries a `citations[]` array, `Deep case: BNP Paribas (2014) - the price of borrowed jurisdiction` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` still make distinct substantive contributions, the quiz remains scenario-based rather than certification-format mimicry, and the register stays adult-professional.
+- This pass closes only the methodology question on the updated artifact. The remaining open work for this lesson is the separate factual-fidelity re-dispatch on the fixed quiz scope, not further source-discipline relitigation.
+
+## 2026-06-12 - Factual-fidelity re-audit of `drafting-the-suspicious-transaction-report` now clears publication on the literal current JSON
+
+Reviewed the literal current user-supplied JSON for `drafting-the-suspicious-transaction-report` against the operator-maintained current facts reference, the FATF Recommendations PDF (October 2025 edition), `31 U.S.C. § 5318(g)`, `31 CFR § 1020.320`, `12 CFR § 21.11`, the current EUR-Lex text of Directive `(EU) 2015/849` Articles `32`, `33`, `37`, and `39`, and FinCEN's 15 January 2021 Capital One press release plus assessment. Confirmed that the repo artifact at `generated/cams/lessons/drafting-the-suspicious-transaction-report.json` matches the literal lesson JSON under review.
+
+- Verdict now moves to `AGREE`.
+- The earlier same-day UK and Capital One blockers remain fixed, and the last U.S. bank-rule blocker no longer survives the literal current artifact. `The obligation across rulebooks` now correctly keeps the general `at least $5,000` suspicious-transaction standard plus the 30/60-day filing clock in `31 CFR § 1020.320`, while locating the bank category thresholds (`insider abuse` at any amount; `$5,000` with an identified suspect; `$25,000` regardless of suspect) in `12 CFR § 21.11` and the parallel banking-agency bank SAR rules.
+- No new publication-blocking contradiction surfaced in the lesson's FATF / UK / EU / Bangladesh / Capital One teaching arc on this pass. Preserve the current U.S. rulebook split, the `POCA` `335` / `338` mapping, the `Article 32` / `33` / `37` / `39` wording, and the narrowed Capital One wording if the artifact is revised again.
+
+## 2026-06-12 - Factual-fidelity re-audit of `the-life-of-a-financial-intelligence-product` moves the lesson from hard `DISAGREE` to soft `SPLIT`
+
+Reviewed the current user-supplied JSON for `the-life-of-a-financial-intelligence-product` against the operator-maintained current facts reference, the DOJ's 6 September 2018 Park Jin Hyok press release plus the underlying complaint, and the public Philippines AMLA / `RA 10927` / Bangladesh Bank-heist record already used elsewhere in project memory.
+
+- Verdict now moves to `SPLIT`.
+- The earlier hard blockers no longer survive the literal current artifact. `Deep case: the Bangladesh Bank heist (2016) - intelligence at the speed of money` now correctly states that the Park Jin Hyok complaint was filed in June 2018 and unsealed in September 2018; it now frames the casino gap as a covered-person / reporting-perimeter gap rather than a freezing-power gap; and the `RA 10927` citation no longer bundles the separate November 2016 **~USD 15 million** recovery event into the statute citation.
+- The residual issue is recommendation-number precision, not a broken teaching arc. `Crossing borders: the Egmont network`, `Intelligence is not evidence`, and the related citation label still compress FATF Recommendations `37` to `39` too loosely by treating the whole cluster as `mutual legal assistance`; the tight mapping is `R.37` = mutual legal assistance, `R.38` = freezing / confiscation cooperation, and `R.39` = extradition. The intelligence-vs-evidence teaching remains directionally sound, but tighten that wording on the next revision.
+
+## 2026-06-12 - Methodology re-audit of `drafting-the-suspicious-transaction-report` reconfirms `AGREE` on the literal current JSON
+
+Reviewed the literal current user-supplied JSON for `drafting-the-suspicious-transaction-report` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact methodology-audit reviewer framing and output contract used in the live cross-check.
+
+- Verdict remains `AGREE`.
+- No new methodology blocker surfaced. The lesson still stays within allowed/public source types for this pass, every reading scene still carries a `citations[]` array, the Capital One / FinCEN 2021 scene still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` still make distinct substantive contributions, the quiz remains scenario-based rather than certification-format mimicry, and the register stays adult-professional.
+- This pass again does not reopen factual fidelity or citation-pinpoint mechanics. Treat the methodology status as stable on the literal current artifact unless the source base, deep-case framing, scene pedagogy, or quiz shape changes materially.
+
+## 2026-06-12 - Methodology re-audit of `the-life-of-a-financial-intelligence-product` reconfirms `AGREE` under the explicit reviewer framing
+
+Reviewed the current user-supplied JSON for `the-life-of-a-financial-intelligence-product` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact methodology-audit reviewer prompt used in the live cross-check.
+
+- Verdict remains `AGREE`.
+- No new methodology blocker surfaced. The lesson still stays within allowed/public source types for this pass, every reading scene still carries a `citations[]` array, the Bangladesh Bank heist 2016 scene still satisfies the named public-matter / public-enforcement deep-case requirement, the scene `teachesConcepts` still make distinct substantive contributions, the quiz remains scenario-based rather than certification-format mimicry, and the register stays adult-professional.
+- This pass again does not reopen factual fidelity; the existing Bangladesh Bank chronology / perimeter / citation-split issues remain in the separate fidelity lane only.
+
+## 2026-06-12 - Factual-fidelity re-audit of `drafting-the-suspicious-transaction-report` narrows the disagreement to the U.S. bank-rule citation/scope issue
+
+Reviewed the current user-supplied JSON for `drafting-the-suspicious-transaction-report` against the operator-maintained current facts reference, the FATF Recommendations PDF (October 2025 edition), `31 U.S.C. § 5318(g)`, `31 CFR § 1020.320`, `12 CFR § 21.11`, the current EUR-Lex text of Directive `(EU) 2015/849` Articles `32`, `33`, `37`, and `39`, and FinCEN's 15 January 2021 Capital One press release plus assessment.
+
+- Verdict remains `DISAGREE`.
+- The earlier same-day blockers no longer survive the literal current artifact. `The obligation across rulebooks` now correctly separates `POCA` section `338` (authorised disclosure) from section `335` (the notice / moratorium machinery), and `Deep case: Capital One's Check Cashing Group (2021) - the reports that never existed` now accurately states the FinCEN action as willful AML-program / SAR failures plus negligent CTR failures, with untimely Pucillo SAR reporting rather than a clean no-filing claim.
+- The current hard blocker is U.S. bank-rule citation and scope precision. `The obligation across rulebooks` attributes the bank SAR category thresholds to `31 CFR § 1020.320`, but those thresholds sit in `12 CFR § 21.11` and the parallel federal banking-agency bank SAR rules; `31 CFR § 1020.320` instead carries the general `at least $5,000` suspicious-transaction standard plus the filing, confidentiality, and deadline mechanics. Fix that U.S. bank-rule mapping before publication.
+
 ## 2026-06-12 - 🎉 MILESTONE: CAMS COURSE GENERATION COMPLETE — 40/40 lessons, all 7/7 gate-PASS
 
 - The full CAMS course is generated: 9 modules, 40 lessons, every lesson passing all seven deterministic gates. Modules 7 (Governance, Audit and the Compliance Function) and 8 (Learning from Enforcement) were completed in the Ripon-authorized autonomous run of 2026-06-12.
@@ -45,6 +168,58 @@ Reviewed the later user-supplied JSON for `from-alert-to-investigation` against 
 - Verdict remains `AGREE`.
 - No new methodology blocker surfaced. The artifact still stays within allowed/public source types for this pass, every reading scene still carries a `citations[]` array, `Deep case: U.S. Bancorp (2018) - managing the queue instead of working it` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and the register stays adult-professional.
 - The two text changes made after the 2026-06-11 fidelity disagreement - replacing the Egmont title with the real `FIUs in Action: 100 Cases from the Egmont Group` compilation and narrowing the `31 U.S.C. § 5318(g)(2)` wording - did not create any methodology issue. This pass did not re-open factual fidelity.
+
+## 2026-06-12 - Methodology audit of `drafting-the-suspicious-transaction-report` clears under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `drafting-the-suspicious-transaction-report` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the explicit methodology-audit reviewer framing.
+
+- Verdict: `AGREE`.
+- No methodology blocker surfaced. The artifact stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, `Deep case: Capital One's Check Cashing Group (2021) - the reports that never existed` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- This was a methodology-only pass. It does not, by itself, move the lesson into the fully cross-cleared column or resolve factual-fidelity review.
+
+## 2026-06-12 - Factual-fidelity audit of `drafting-the-suspicious-transaction-report` does not yet clear publication
+
+Reviewed the current user-supplied JSON for `drafting-the-suspicious-transaction-report` against the operator-maintained current facts reference, the FATF Recommendations PDF (October 2025 edition), the current EUR-Lex text of Directive `(EU) 2015/849` Articles `32`, `33`, `37`, and `39`, and FinCEN's 15 January 2021 Capital One press release plus assessment.
+
+- Verdict: `DISAGREE`.
+- Blocking issue 1: `The obligation across rulebooks` cites `POCA` section `338` as if it alone carries the UK's DAML consent machinery, but the statutory notice/moratorium clock sits under section `335` (with section `338` as the authorised-disclosure provision). The UK section mapping needs tightening before publication.
+- Blocking issue 2: `Deep case: Capital One's Check Cashing Group (2021) - the reports that never existed` overstates the FinCEN record twice: the 15 January 2021 action was not solely for willful reporting violations, but for willful AML-program and SAR failures plus negligent CTR failures; and the Pucillo paragraph says Capital One filed `nothing` while the relationship ran, where FinCEN's public record supports untimely SAR filing rather than that stronger no-filing claim.
+
+## 2026-06-12 - Methodology audit of `the-life-of-a-financial-intelligence-product` clears under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `the-life-of-a-financial-intelligence-product` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the explicit methodology-audit reviewer framing.
+
+- Verdict: `AGREE`.
+- No methodology blocker surfaced. The artifact stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, `Deep case: the Bangladesh Bank heist (2016) - intelligence at the speed of money` satisfies the named public-matter / public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No prohibited/commercial-prep or ICC-text issue surfaced. The worked mosaic remains explicitly framed as an illustrative composite grounded in allowed Egmont material rather than passed off as a real case.
+- This was a methodology-only pass. It does not, by itself, move the lesson into the fully cross-cleared column or resolve factual-fidelity review.
+
+## 2026-06-12 - Methodology audit of `the-multi-regime-landscape-of-sanctions` clears under the narrowed v1.1 brief
+
+Reviewed the current user-supplied JSON for `the-multi-regime-landscape-of-sanctions` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the explicit methodology-audit reviewer framing.
+
+- Verdict: `AGREE`.
+- No methodology blocker surfaced. The artifact stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, `Deep case: BNP Paribas (2014) - the price of borrowed jurisdiction` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No prohibited/commercial-prep or ICC-text issue surfaced. The sanctions-regime teaching arc stays grounded in primary legal/regulatory texts, public enforcement actions, and original analysis rather than news reporting or certification-body structure.
+- This was a methodology-only pass. It does not, by itself, move the lesson into the fully cross-cleared column or resolve factual-fidelity review.
+
+## 2026-06-12 - Factual-fidelity audit of `the-multi-regime-landscape-of-sanctions` does not yet clear publication
+
+Reviewed the current user-supplied JSON for `the-multi-regime-landscape-of-sanctions` against the operator-maintained current facts reference, the UN Security Council sanctions materials, `31 CFR § 560.215`, OFAC's 50 Percent Rule / compliance-framework materials, the EU Blocking Regulation text, and the public BNP Paribas resolution record reflected in project memory.
+
+- Verdict: `DISAGREE`.
+- The lesson's broad UN / OFAC / EU / UK / BNP teaching arc is materially sound on the reviewed source set; the live issue is scope precision in the quiz.
+- Blocking issue 1: `Nexus mapping` question 3 misstates the U.S. side of the Iran / Blocking Regulation collision. Because the fact pattern uses the Frankfurt subsidiary of a **U.S. banking group**, the subsidiary is not facing only *secondary* sanctions pressure; `31 CFR § 560.215` directly prohibits a foreign entity owned or controlled by a U.S. person from knowingly engaging in certain Iran transactions. The prompt/explanation should either change the fact pattern to a non-U.S.-owned EU firm or teach the owned-or-controlled primary-sanctions rule explicitly instead of framing the U.S. risk solely as secondary sanctions / dollar-access pressure.
+
+## 2026-06-12 - Factual-fidelity audit of `the-life-of-a-financial-intelligence-product` does not yet clear publication
+
+Reviewed the current user-supplied JSON for `the-life-of-a-financial-intelligence-product` against the operator-maintained current facts reference, the DOJ's 6 September 2018 Park Jin Hyok press release and underlying complaint, and the public Philippines AMLA / `RA 10927` / Bangladesh Bank-heist record reflected in project memory.
+
+- Verdict: `DISAGREE`.
+- The lesson's FATF / Egmont / FIU teaching arc is broadly sound, and no hard defect surfaced in the `R.29` / `R.40` framing.
+- Blocking issue 1: `Deep case: the Bangladesh Bank heist (2016) - intelligence at the speed of money` says DOJ filed the Park Jin Hyok criminal complaint in September 2018. The DOJ press release states that the complaint was **unsealed** on 6 September 2018, while the complaint itself was **filed on 8 June 2018**. The scene should say announced / unsealed in September 2018, or filed in June 2018.
+- Blocking issue 2: the same deep-case scene overstates the casino gap by saying Philippine casinos sat beyond both the reporting and freezing machinery. The pre-`RA 10927` gap was the covered-person / reporting perimeter; that phrasing is too broad because AMLC freeze / forfeiture powers still existed and were used in the case.
+- Blocking issue 3: the `Republic Act No. 10927` citation label is citation-imprecise because it bundles a separate November 2016 **~USD 15 million** return / forfeiture event into the statute citation. Split the casino-amendment citation from the recovery-event citation before re-audit.
 
 ## 2026-06-11 - MILESTONE: Module 2 complete (14/40 cross-cleared after first Module 3 lesson); Module 3 generation started
 
