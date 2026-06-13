@@ -1,5 +1,23 @@
 # Enso Academy Progress Log
 
+## 2026-06-13 - Factual-fidelity re-audit of the literal current `sanctions-evasion-typologies` artifact now clears publication
+
+Reviewed the literal current user-supplied JSON for `sanctions-evasion-typologies` against the operator-maintained current facts reference, the 21 November 2023 DOJ Binance plea press release, Treasury / OFAC Binance materials from the same date, OFAC FAQ `398` plus the published 50 Percent Rule guidance, and the 11 December 2012 DOJ HSBC sanctions / AML resolution record.
+
+- Verdict now moves to `AGREE`.
+- The earlier same-day publication blockers no longer survive the literal current artifact. `Deep case: Binance (2023) - the perimeter as the product` now correctly distinguishes the module's larger bank resolution from Binance's status as the largest public-record resolution against a virtual-asset business, and `Front companies: the unlisted face of a listed actor` now correctly states OFAC's aggregate `50 percent or more` ownership rule for one or more blocked persons, directly or indirectly.
+- No new hard contradiction surfaced in the lesson's Binance / HSBC amount-date bundle on this pass. The current official record supports the 21 November 2023 Binance plea date, the over-`USD 4 billion` DOJ resolution framing, Treasury's same-day `USD 3.4 billion` FinCEN and `USD 968.6 million` OFAC components, and the U.S.-user / sanctioned-jurisdiction matching facts used in the deep case.
+- Treat the lesson as cross-cleared, reduce the active post-mode-change backlog to **22 lessons**, and remove `sanctions-evasion-typologies` from the pending queue. The next open sanctions fidelity item is `sanctions-program-governance`.
+
+## 2026-06-13 - Factual-fidelity audit of `sanctions-program-governance` finds a publication-blocking OFAC matrix error
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` against the operator-maintained current facts reference, the current eCFR text of Appendix A to 31 CFR Part 501, and the already-verified Standard Chartered public-record bundle reflected in project memory.
+
+- Verdict: `DISAGREE`.
+- Blocking issue: the lesson repeatedly teaches OFAC voluntary self-disclosure as if it simply `halves the base penalty` across the Appendix A matrix. That is materially over-broad. In an **egregious** case, VSD yields one-half of the applicable statutory maximum, but in a **non-egregious** case VSD yields one-half of transaction value (subject to the stated caps) while a non-VSD case uses the **applicable schedule amount**. The repeated `halves the base penalty` / `can halve a penalty` wording therefore misstates the rulebook's actual structure.
+- The defect propagates across the lesson rather than living in one line: `Programs fail at the top before they fail at the screen`, `When it breaks: containment, scoping, and the disclosure decision`, `The disclosure decision, structured`, quiz `Governance and disclosure judgment`, and `What to carry forward`, plus the associated citation labels.
+- No new hard contradiction surfaced in the Standard Chartered 2012 / 2014 / 2019 amount-date arc on this pass. Preserve that case bundle if the artifact is revised again, but rewrite the OFAC VSD economics to the actual Appendix A matrix before publication.
+
 ## 2026-06-13 - Methodology re-audit of the literal current `sanctions-evasion-typologies` artifact now clears
 
 Reviewed the literal current user-supplied JSON for `sanctions-evasion-typologies` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the explicit methodology-audit reviewer framing, and confirmed that the repo artifact at `generated/cams/lessons/sanctions-evasion-typologies.json` carries the current fixed wording.
@@ -7,6 +25,7 @@ Reviewed the literal current user-supplied JSON for `sanctions-evasion-typologie
 - Verdict now moves to `AGREE`.
 - The earlier same-day ICC-text blocker no longer survives the literal current artifact. Quiz `Red-flag detection`, question 3, now states the letter-of-credit distractor at an original principle level (`documentary autonomy` / payment mechanics) rather than echoing the ICC-style `documents not goods` formulation.
 - No new methodology blocker surfaced. The lesson stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, `Deep case: Binance (2023) - the perimeter as the product` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and the register stays adult-professional.
+- Same-day reviewer rerun against the in-repo file reconfirmed that `generated/cams/lessons/sanctions-evasion-typologies.json` still matches the literal current JSON, so this methodology judgment remains stable absent a further artifact change.
 
 ## 2026-06-13 - Methodology audit of `sanctions-program-governance` clears under the narrowed v1.1 brief
 
