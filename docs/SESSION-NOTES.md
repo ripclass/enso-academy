@@ -1,4 +1,1084 @@
+## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal pasted `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `DISAGREE`
+
+Reviewed the pasted lesson JSON again under the exact cross-check-reviewer output contract against the maintained facts reference and the already-reviewed DOJ / Goldman / MAS / FINMA source bundle before closing the user-facing audit.
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the stable Good Star / fake-Aabar / Goldman / MAS-FINMA / Najib amount-date bundle. The Goldman **USD 6.5 billion** / **USD 606 million** / **USD 1.6 billion+** figures, the **22 October 2020** DPA plus Malaysian-subsidiary guilty plea, the **July 2020** Malaysia settlement framing, and the MAS / FINMA supervisory chronology still materially hold on the literal pasted artifact.
+- The live blocker remains source-attribution overreach in the lesson's governing explanatory frame. `The institutional cast: who saw what`, `The failure analysis, module by module`, `Module by module: what would have caught what`, `The synthesis exercise`, and `What to carry forward` still present the cross-institution `same scheme presented itself institution after institution` / `every net catches` / `institutions that took the business on` story as if it is established by the cited DOJ forfeiture complaints and linked public-record bundle, while those materials visibly support flow / shell / asset reconstruction rather than that broader controlled-experiment proposition.
+- Carry-forward instruction: if `case-study-1mdb-and-the-private-banking-failure-mode` is revised again, keep the next factual-fidelity touch tightly scoped to softening or re-sourcing that unsupported cross-institution narrative only. Do not reopen the otherwise stable numeric / chronology bundle unless the artifact changes materially.
+
 # Session Notes
+## [2026-06-18] - Exact-format factual-fidelity spot-check of the literal current `case-study-the-danske-bank-estonia-affair` prompt artifact: verdict still `AGREE`
+
+Reviewed the literal prompt JSON for `case-study-the-danske-bank-estonia-affair` against the live `generated/cams/lessons/case-study-the-danske-bank-estonia-affair.json`, DOJ's **13 December 2022** Danske press release, the Danish FSA's **3 May 2018** memorandum, and the maintained facts reference before closing the user-facing audit.
+
+What this pass confirmed:
+- No new contradiction surfaced in the live case bundle. The current artifact still uses DOJ's **2008-2016** / approximately **USD 160 billion** U.S.-correspondent framing, keeps the Danish FSA's **3 May 2018** decision ahead of Thomas Borgen's **September 2018** resignation, and preserves the official `eight orders and eight reprimands` wording plus the SEC **USD 178.6 million** within **~USD 413 million** distinction.
+- Carry-forward instruction: treat any older same-day Danske factual-fidelity `DISAGREE` note as superseded on this artifact hash. Unless the lesson changes materially, keep further work on this lesson in the separate methodology/source-discipline lane only.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `case-study-the-danske-bank-estonia-affair` artifact with the explicit lesson-context brief: verdict still `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-the-danske-bank-estonia-affair`, the live `generated/cams/lessons/case-study-the-danske-bank-estonia-affair.json` file, the explicit lesson-context brief, and `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before finalizing the user-facing close-out.
+
+What this pass confirmed:
+- No methodology delta surfaced on reading-scene `citations[]`, deep-case presence, scene-distinctness, quiz shape, IP/commercial-source compliance, or adult-professional register.
+- The verdict still lands `DISAGREE` on source discipline only, and the explicit lesson-context brief is what keeps the blocker live on the current artifact: the declared learning objective still frames the control/governance reconstruction through the bank-commissioned Bruun & Hjejle report, and that same commissioned-report scaffold still carries through `The four control failures`, `The meta-lesson: control failure is governance failure`, and `What to carry forward`.
+- Carry-forward instruction: if `case-study-the-danske-bank-estonia-affair` is revised again, do not reopen reading-scene `citations[]`, deep-case presence, scene-distinctness, quiz shape, or register on the unchanged artifact. Keep the next methodology touch tightly scoped to removing Bruun & Hjejle as the scaffold itself and re-anchoring the substantive control-failure / governance teaching in the DOJ / Danish FSA / Estonian supervisory public record.
+
+## [2026-06-18] - Direct FATF R.22 scope check on the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `DISAGREE`, with one added scope-precision issue
+
+Reviewed the literal user-supplied JSON for `case-study-1mdb-and-the-private-banking-failure-mode` again under the exact factual-fidelity audit contract, line-checking the live generated lesson file and then checking the failure-analysis scene against the FATF Recommendations page/PDF (**updated October 2025**).
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the lesson's stable Good Star / fake-Aabar / Goldman / MAS-FINMA / Najib amount-date bundle. The Goldman **USD 6.5 billion** / **USD 606 million** / **USD 1.6 billion+** figures, the **22 October 2020** DPA plus Malaysian-subsidiary guilty plea, the **July 2020** Malaysia settlement framing, and the BSI / Falcon / FINMA outcome bundle still materially hold on the reviewed primary-source set.
+- The live blocker is still primarily source-overattribution in the lesson's governing explanatory frame. `The institutional cast: who saw what`, `The failure analysis, module by module`, `Module by module: what would have caught what`, `The synthesis exercise`, and `What to carry forward` still present the cross-institution `same scheme presented itself institution after institution` / `every net catches` failure-mode story as if it is supplied by the cited DOJ forfeiture complaints and linked primary-source bundle, while those complaints visibly reconstruct flows, shell vehicles, and assets rather than that broader controlled-experiment proposition.
+- This pass also confirmed a narrower scope-precision defect on the literal current wording of `The failure analysis, module by module`: `the lawyers, trustees and intermediaries ... the Recommendation 22 population` overstates FATF `R.22`. The October-2025 FATF text limits `R.22` to specified DNFBPs and trust and company service providers when carrying out specified activities; it is not a generic label for all trustees or intermediaries tied to a scheme.
+- Carry-forward instruction: if `case-study-1mdb-and-the-private-banking-failure-mode` is revised again, keep the next factual-fidelity touch tightly scoped to re-sourcing or softening the cross-institution narrative and tightening the `R.22` wording only. Do not reopen the otherwise stable numeric / chronology bundle unless the artifact changes materially.
+
+## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal current `case-study-the-danske-bank-estonia-affair` artifact against the pasted JSON: verdict still `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-the-danske-bank-estonia-affair` again against the live `generated/cams/lessons/case-study-the-danske-bank-estonia-affair.json`, the maintained facts reference, and the already-cleared same-day Danske source bundle under the exact cross-check-reviewer output contract before finalizing the user-facing close-out.
+
+What this pass confirmed:
+- The pasted artifact still matches the live stored lesson on the key chronology and numeric points that had churned earlier in same-day memory: the DOJ U.S.-correspondent figure remains `2008–2016`, the Danish FSA decision remains on **3 May 2018** ahead of Thomas Borgen's **September 2018** resignation, and the unravelling scene keeps the official `eight orders and eight reprimands` wording.
+- No new hard contradiction surfaced in the reviewed core bundle: the **13 December 2022** guilty plea, the approximate **USD 2 billion** DOJ resolution, and the SEC **USD 178.6 million** civil penalty within the approximately **USD 413 million** total settlement still align with the maintained facts reference and the reviewed public record.
+- Carry-forward instruction: keep `case-study-the-danske-bank-estonia-affair` out of further factual-fidelity relitigation unless the artifact changes materially. The only live issue on this lesson remains the separate methodology/source-discipline note about the Bruun & Hjejle scaffold.
+
+## [2026-06-18] - Exact-format methodology rerun of the literal current `case-study-the-danske-bank-estonia-affair` artifact: verdict still `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-the-danske-bank-estonia-affair`, the live `generated/cams/lessons/case-study-the-danske-bank-estonia-affair.json` file, the explicit lesson-context brief, and `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract.
+
+What this pass confirmed:
+- No methodology delta surfaced on reading-scene `citations[]`, deep-case presence, scene-distinctness, quiz shape, IP/commercial-source compliance, or adult-professional register.
+- The verdict still lands `DISAGREE` on source discipline only. The lesson objective still frames the control/governance reconstruction through the bank-commissioned Bruun & Hjejle report, and the lesson's governing failure taxonomy still runs through `The four control failures`, `The meta-lesson: control failure is governance failure`, and `What to carry forward`, which keeps that commissioned analysis functioning as pedagogical authority rather than secondary context only.
+- Carry-forward instruction: if `case-study-the-danske-bank-estonia-affair` is revised again, do not reopen reading-scene `citations[]`, deep-case presence, scene-distinctness, quiz shape, or register on the unchanged artifact. Keep the next methodology touch tightly scoped to removing Bruun & Hjejle as the scaffold itself and re-anchoring the substantive control-failure / governance teaching in the DOJ / Danish FSA / Estonian supervisory public record.
+
+## [2026-06-18] - Direct primary-source recheck of the literal current `case-study-the-danske-bank-estonia-affair` artifact: factual-fidelity verdict now `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-the-danske-bank-estonia-affair` again against the live `generated/cams/lessons/case-study-the-danske-bank-estonia-affair.json`, the maintained facts reference, and DOJ's **13 December 2022** Danske resolution under the exact cross-check-reviewer output contract before finalizing the user-facing close-out.
+
+What this pass confirmed:
+- The earlier same-day factual-fidelity `DISAGREE` notes are stale against the current artifact hash. The lesson now keeps the DOJ U.S.-correspondent figure at `2008â€“2016`, places the Danish FSA's **3 May 2018** decision before Thomas Borgen's **September 2018** resignation, and uses the official `eight orders and eight reprimands` wording in the unravelling scene.
+- No new hard contradiction surfaced in the reviewed core bundle: the **13 December 2022** guilty plea, the approximate **USD 2 billion** DOJ resolution, and the SEC **USD 178.6 million** civil penalty within the approximately **USD 413 million** total settlement still align with the public record.
+- Carry-forward instruction: keep `case-study-the-danske-bank-estonia-affair` out of further factual-fidelity relitigation unless the artifact changes materially. The only live issue on this lesson remains the separate methodology/source-discipline note about the Bruun & Hjejle scaffold.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact under the explicit methodology-only brief: verdict still `AGREE`
+
+Reviewed the pasted lesson JSON for `case-study-1mdb-and-the-private-banking-failure-mode` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract, with the methodology dimensions stated explicitly in the brief.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. Allowed/public source types still hold, every reading scene carries a `citations[]` array, the 1MDB / Goldman / MAS / FINMA public-record arc still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-1mdb-and-the-private-banking-failure-mode` out of further methodology relitigation unless the artifact changes materially. Any remaining work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `case-study-the-danske-bank-estonia-affair` artifact with the explicit lesson-context brief: verdict still `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-the-danske-bank-estonia-affair`, the live `generated/cams/lessons/case-study-the-danske-bank-estonia-affair.json` file, the explicit lesson-context brief, and `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract.
+
+What this pass confirmed:
+- No methodology delta surfaced on reading-scene `citations[]`, deep-case presence, scene-distinctness, quiz shape, IP/commercial-source compliance, or adult-professional register.
+- The verdict still lands `DISAGREE` on source discipline only, but the explicit lesson-context brief sharpens why. The lesson-level objective still frames the control/governance reconstruction through the Bruun & Hjejle report; `The four control failures` still labels the taxonomy as `the brief's failure list`; and `The meta-lesson: control failure is governance failure` still carries that same taxonomy into the lesson's governing conclusion.
+- That combination means the bank-commissioned Bruun & Hjejle report is still functioning as the pedagogical scaffold rather than secondary context only, even though the slide narration gestures back to the DOJ statement of facts and the Danish FSA decision.
+- Carry-forward instruction: if `case-study-the-danske-bank-estonia-affair` is revised again, do not reopen reading-scene `citations[]`, deep-case presence, scene-distinctness, quiz shape, or register on the unchanged artifact. Keep the next methodology touch tightly scoped to removing Bruun & Hjejle as the scaffold itself and re-anchoring the substantive failure-analysis / governance teaching in the DOJ / Danish FSA / Estonian supervisory public record.
+
+## [2026-06-18] - Exact-format factual-fidelity recheck of the literal current `case-study-the-danske-bank-estonia-affair` artifact: stale slide-ordering note removed; verdict still `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-the-danske-bank-estonia-affair` again under the exact cross-check-reviewer output contract against the live `generated/cams/lessons/case-study-the-danske-bank-estonia-affair.json`, the maintained facts reference, and DOJ's **13 December 2022** Danske resolution.
+
+What this pass confirmed:
+- The earlier same-day repo note about `The chronology` slide is stale on the current artifact hash. The slide item and narration now correctly place the Danish FSA's **3 May 2018** decision before Thomas Borgen's **September 2018** resignation.
+- The lesson still should not ship unchanged. `Act one and two: the inheritance and the engine` and `Acts four and five: unravelling and reckoning` both say the DOJ materials put the approximately **USD 160 billion** U.S.-correspondent figure over `2007–2016`, but the reviewed DOJ press release says `between 2008 and 2016`.
+- `Acts four and five: unravelling and reckoning` also still contains a chronology/wording defect in its own prose: it says the **3 May 2018** Danish FSA decision `preceded both the September resignation and the public unravelling`, even though the lesson itself already places the public unravelling across **2017–2018**; the same paragraph's `The same month` now lacks the September-2018-publication anchor that would make the sentence coherent.
+- Carry-forward instruction: if `case-study-the-danske-bank-estonia-affair` is revised again, keep the next factual-fidelity touch tightly scoped to the DOJ date-range wording and the unravelling paragraph's sequencing / missing-month anchor. Do not reopen the stable DOJ / SEC / Estonian-supervisory / identity bundle or the now-correct slide ordering. If a count is retained, keep the official `eight orders and eight reprimands`.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: stale Goldman note removed; verdict still `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-1mdb-and-the-private-banking-failure-mode`, then grep-checked the live `generated/cams/lessons/case-study-1mdb-and-the-private-banking-failure-mode.json` file against the reviewed DOJ / Goldman / MAS / FINMA public-record bundle under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- The earlier same-day carry-forward note naming a Goldman private-wealth rejection of Jho Low is stale on the current artifact hash. The live stored lesson no longer contains that wording.
+- The verdict still lands `DISAGREE`, but the blocker is now narrower. `The institutional cast: who saw what`, `The failure analysis, module by module`, `Module by module: what would have caught what`, `The synthesis exercise`, and `What to carry forward` still teach a `refusals / exits / institutions that said no` controlled-experiment narrative while attributing it to the DOJ forfeiture complaints or to a synthesis across the cited primary-source bundle, and that proposition is not visibly established by those cited sources.
+- Carry-forward instruction: if `case-study-1mdb-and-the-private-banking-failure-mode` is revised again, keep the next factual-fidelity touch tightly scoped to removing or re-sourcing that controlled-experiment / refusals-exits narrative only. Do not reopen the now-stale Goldman-rejection issue unless the artifact changes materially.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `case-study-the-danske-bank-estonia-affair` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-the-danske-bank-estonia-affair` under the exact cross-check-reviewer output contract against the live `generated/cams/lessons/case-study-the-danske-bank-estonia-affair.json`, the maintained facts reference, DOJ's **13 December 2022** Danske resolution, and the Danish FSA's official Estonia-case statement.
+
+What this pass confirmed:
+- The lesson's core case bundle is mostly sound on the reviewed source set. The **USD 2 billion** DOJ resolution, the SEC **USD 178.6 million** civil penalty within the approximately **USD 413 million** total settlement, the Thomas Borgen / Howard Wilkinson identity bundle, and the lesson's distinction between the **2014** Estonian-supervisory draft and the Danish FSA's **2018** / **2019** public record all materially hold on this hash.
+- The live blocker is the chronology scene itself. `The chronology` slide item and narration place the Danish FSA's governance decision after the **September 2018** publication of the bank's report and Thomas Borgen's resignation, but Finanstilsynet's own Estonia-case statement says the relevant decision was made on **3 May 2018**.
+- The same Danish FSA statement also gives the exact formulation for the management/governance action: the **3 May 2018** decision comprised **eight orders and eight reprimands**. If the lesson keeps a count in `Acts four and five: unravelling and reckoning`, use that official wording rather than the looser current phrase.
+- Carry-forward instruction: if `case-study-the-danske-bank-estonia-affair` is revised again, do not reopen the stable DOJ / SEC / Estonian-supervisory / identity bundle on the unchanged artifact. Keep the next factual-fidelity touch tightly scoped to correcting the 2018 sequence and the count wording.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `case-study-the-danske-bank-estonia-affair` artifact against the stored lesson file: verdict still `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-the-danske-bank-estonia-affair` again, this time checking it directly against the live `generated/cams/lessons/case-study-the-danske-bank-estonia-affair.json` file and `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No new methodology blocker surfaced on the current artifact. Every reading scene still carries a `citations[]` array, the Danske matter still supplies a valid named deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker remains source discipline only. `The four control failures` still frames its teaching as `the brief's failure list` / `the brief's four findings`, and `The meta-lesson: control failure is governance failure` still carries that same commissioned-report taxonomy into the lesson's governing conclusion, so the bank-commissioned Bruun & Hjejle report is still functioning as substantive authority rather than secondary context only.
+- Carry-forward instruction: if `case-study-the-danske-bank-estonia-affair` is revised again, keep the next methodology touch tightly scoped to re-anchoring the substantive control-failure / governance teaching in the DOJ / Danish FSA / Estonian supervisory public record and demoting Bruun & Hjejle to background only.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-1mdb-and-the-private-banking-failure-mode`, the live `generated/cams/lessons/case-study-1mdb-and-the-private-banking-failure-mode.json` file, and `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. Allowed/public source types still hold, every reading scene carries a `citations[]` array, the 1MDB / Goldman / MAS / FINMA public-record arc still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-1mdb-and-the-private-banking-failure-mode` out of further methodology relitigation unless the artifact changes materially. Any remaining work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology rerun of the literal current `course-synthesis-and-exam-preparation` artifact: verdict now `AGREE`
+
+Reviewed the literal user-supplied JSON for `course-synthesis-and-exam-preparation` again against the live `generated/cams/lessons/course-synthesis-and-exam-preparation.json`, its `.validation.json`, and `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- The earlier same-day methodology `DISAGREE` notes are stale against the current artifact hash. The live lesson now contains a true dedicated deep-case scene — `Deep case: Danske Bank Estonia - the synthesis matter` — grounded in a named public matter with year plus substantive analysis.
+- No other methodology blocker surfaced on rerun. Every reading scene still carries `citations[]`, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `course-synthesis-and-exam-preparation` out of further methodology relitigation unless the artifact changes materially. Any remaining work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology audit of the literal current `case-study-the-danske-bank-estonia-affair` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-the-danske-bank-estonia-affair` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- The lesson is otherwise methodologically sound on the narrowed brief: every reading scene carries a `citations[]` array, the Danske matter is a valid named deep case, the scene `teachesConcepts` make distinct substantive contributions, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker is source discipline only. `The most completely documented failure in the field` explicitly cites the `bank-commissioned public investigation`, and later scenes teach from `the brief's failure list` / `the brief's meta-lesson`, so the bank-commissioned Bruun & Hjejle investigation is still functioning as a substantive teaching authority rather than secondary context.
+- Carry-forward instruction: if `case-study-the-danske-bank-estonia-affair` is revised again, do not reopen reading-scene `citations[]`, deep-case presence, scene-distinctness, quiz shape, or register on the unchanged artifact. Keep the next methodology touch tightly scoped to demoting Bruun & Hjejle to secondary context only and re-anchoring the substantive chronology / control-failure / governance teaching in the DOJ / Danish FSA / Estonian supervisory public record.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `DISAGREE`, but the live blocker is now attribution only
+
+Reviewed the literal current user-supplied JSON and live `generated/cams/lessons/case-study-1mdb-and-the-private-banking-failure-mode.json` against the DOJ **20 July 2016** 1MDB forfeiture press materials / complaints, the Goldman Sachs DOJ press release and DPA dated **22 October 2020**, and FINMA's **24 May 2016** / **11 October 2016** public actions.
+
+What this pass confirmed:
+- The earlier same-day note about BSI / Falcon supervisory-outcome overstatement is stale on the current artifact. The live file now consistently says **BSI's Singapore operations** and **Falcon's Singapore branch** were shut, while **BSI** alone ended as an independent institution.
+- The lesson still should not ship unchanged. The first live issue is citation precision in `The institutional cast: who saw what`: its Goldman citation label still attributes a prior private-wealth rejection of Jho Low on source-of-wealth grounds to the `1MDB-related Goldman Sachs Deferred Prosecution Agreement and Malaysian settlement`, but the reviewed DOJ / DPA public-record bundle does not visibly supply that point.
+- The second live issue is the `institutions that said no` thread. `The institutional cast: who saw what`, `The synthesis exercise`, and `What to carry forward` still teach a controlled-experiment story of refusals / exits / reporting at some institutions and accommodation at others while citing the DOJ forfeiture complaints, but the reviewed public complaints visibly supply the flow / asset reconstruction rather than that reporting-history narrative.
+- Carry-forward instruction: if `case-study-1mdb-and-the-private-banking-failure-mode` is revised again, keep the next factual-fidelity touch tightly scoped to those two attribution issues only and do not reopen the now-fixed BSI/Falcon supervisory-outcome wording unless the artifact changes materially.
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `course-synthesis-and-exam-preparation` artifact after line-checking the stored lesson file: verdict now `SPLIT`
+
+Reviewed the literal user-supplied JSON for `course-synthesis-and-exam-preparation` again under the exact cross-check-reviewer output contract, this time checking it directly against `generated/cams/lessons/course-synthesis-and-exam-preparation.json` before finalising the user-facing verdict.
+
+What this pass confirmed:
+- The earlier same-day hard `DISAGREE` note is partly stale on the current artifact hash. `After the examination: the continuing discipline` now keeps FATF list movement distinct from sanctions screening, avoids treating `R.19` as an automatic EDD trigger for all members, and uses the corrected AMLA timeline (`2027` first selection; `2028` direct supervision).
+- The sanctions scenario's U.S. confidentiality wording is also materially narrower on the current hash. `31 U.S.C. § 5318(g)(2)` is now kept in the SAR/report-confidentiality lane rather than being taught as the rule for neutral customer communication about a sanctions hold.
+- The live reviewer-visible residual is one narrower POCA scope issue in `Three scenarios: the final assessment`. Scenario three still says `no customer or RM disclosure of the analysis`, and the explanation compresses that into `POCA section 333A discipline on every communication`. That overstates `POCA section 333A` into a blanket no-discussion rule rather than the narrower report / investigation-prejudice prohibition with exceptions.
+- Carry-forward instruction: if `course-synthesis-and-exam-preparation` is revised again, keep the next factual-fidelity touch tightly scoped to that POCA / RM-disclosure wording only and do not reopen the otherwise stable synthesis bundle unless the artifact changes materially.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `course-synthesis-and-exam-preparation` artifact against the stored lesson file plus validation report: verdict still `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `course-synthesis-and-exam-preparation`, the stored `generated/cams/lessons/course-synthesis-and-exam-preparation.json`, and `generated/cams/lessons/course-synthesis-and-exam-preparation.validation.json` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. Every reading scene still carries a `citations[]` array, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker remains pedagogical structure only. `The opening question, answered` now includes a substantive Danske synthesis paragraph, but it still functions as part of a broad synthesis opener rather than as a true dedicated deep-case scene grounded in one named public matter with year plus substantive analysis. `Three scenarios: the final assessment` remains original synthetic assessment rather than a real-matter deep case.
+- The stored deterministic validation file is not the controlling standard for this reviewer brief. It still records pedagogy `pass` with `deepCaseCount: 1`, but the stricter methodology audit still lands `DISAGREE` because the artifact lacks a true dedicated deep-case scene.
+- Carry-forward instruction: if `course-synthesis-and-exam-preparation` is revised again, keep the next methodology touch tightly scoped to adding or converting one scene into a genuine deep case and do not reopen source-discipline, reading-scene citation presence, scene-distinctness, quiz shape, or adult-register arguments unless the artifact changes materially.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `case-study-westpac-and-the-litepay-channel` artifact: verdict `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-westpac-and-the-litepay-channel` under the exact cross-check-reviewer output contract against the maintained facts reference and the already-verified Federal Court / AUSTRAC Westpac public-record bundle used elsewhere in the course.
+
+What this pass confirmed:
+- No hard contradiction surfaced in the reviewed Westpac case bundle. The artifact's `21 October 2020` Federal Court penalty order, `24 September 2020` Statement of Agreed Facts and Admissions, `19.5 million+` / `AUD 11 billion+` section-`45` IFTI strand, `12`-customer subset versus `262`-customer section-`36(1)` structure, LitePay scenario-gap-until-`2018` teaching, and the high-level **November 2019** accountability chronology all materially hold on this pass.
+- The lesson does not reintroduce the old Westpac failure modes already seen elsewhere in the repo, such as collapsing the `12`-customer subset into the full customer population or mislabeling the IFTI strand as a FATF Recommendation `20` reporting breach.
+- Carry-forward instruction: keep `case-study-westpac-and-the-litepay-channel` out of further factual-fidelity relitigation unless the artifact changes materially. Any future review effort on this lesson should focus only on a new text delta, not on the already-cleared Westpac amount/date/customer/channel bundle.
+
+## [2026-06-18] - Exact-format factual-fidelity in-turn audit of the literal current `training-and-culture` artifact: verdict still `SPLIT`
+
+Reviewed the literal user-supplied JSON for `training-and-culture` again under the exact cross-check-reviewer output contract against the live `generated/cams/lessons/training-and-culture.json`, the maintained facts reference, the FATF Recommendations page/PDF (**updated October 2025**) including Recommendation `18`, and the Basel Committee's July-2020 AML/CFT risk-management guidelines.
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the lesson's core bundle. FATF Recommendation `18`, the Basel training/governance framing, the official `BFIU Circular No. 26` title/date, and the Westpac **21 October 2020** / **AUD 1.3 billion** chronology still materially hold on the reviewed source set.
+- The current Danske whistleblower sentence is materially closer to the public record than the stale same-day notes implied and is no longer the main reviewer-visible issue on this artifact hash.
+- The actual live residual remains the narrow Westpac wording / chronology compression already emerging elsewhere in same-day memory. `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward` still merge the AUSTRAC / Federal Court conduct record, the **November 2019** leadership fallout, and the June-2020 Advisory Panel's sharper `technology shortcomings and an immature, reactive non-financial risk culture` wording more tightly than ideal.
+- Carry-forward instruction: if `training-and-culture` is revised again, keep the next factual-fidelity touch tightly scoped to that Westpac source/chronology tightening point only and do not reopen the otherwise stable FATF / Basel / BFIU / Westpac bundle unless the artifact changes materially.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-1mdb-and-the-private-banking-failure-mode` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. Allowed/public source types still hold, every reading scene carries a `citations[]` array, the 1MDB / Goldman / MAS / FINMA public-record arc still supplies a valid named deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-1mdb-and-the-private-banking-failure-mode` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology audit of the literal current `case-study-westpac-and-the-litepay-channel` artifact: verdict `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-westpac-and-the-litepay-channel` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology blocker surfaced. The lesson stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, the Westpac / AUSTRAC public-enforcement record supplies a valid named deep case, the scene `teachesConcepts` make distinct substantive contributions, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-westpac-and-the-litepay-channel` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `course-synthesis-and-exam-preparation` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `course-synthesis-and-exam-preparation` under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations (**updated October 2025**), the FATF PEP Guidance, OFAC's 50 Percent Rule FAQs, `31 U.S.C. Â§ 5318(g)(2)`, and AMLA's official FAQ.
+
+What this pass confirmed:
+- The lesson is mostly accurate at high level, but it should not ship unchanged.
+- The first live issue is statutory-scope precision in `Three scenarios: the final assessment`. The sanctions scenario's explanation overreads `POCA section 333A` and `31 U.S.C. Â§ 5318(g)(2)` by treating neutral customer communication about a sanctions hold as if those SAR/tipping-off provisions themselves control that communication. Those authorities are narrower and are about revealing a report / prejudicing an ML investigation.
+- The second live issue is citation / instrument precision in `The load-bearing distinctions`. The FIU-to-FIU `use-limitation and consent` point should be anchored in Egmont materials and/or FATF `R.29/R.40`, not in a citation bundle naming `R.37-R.39`, which are the formal MLA / freezing / extradition channels.
+- The third live issue is chronology / scope looseness in `After the examination: the continuing discipline`. The FATF-list sentence over-broadens list effects into `screening and EDD posture`, and the AMLA line is early relative to the official timeline (`2027` selection; `2028` start of direct supervision).
+- Carry-forward instruction: if `course-synthesis-and-exam-preparation` is revised again, keep the next fidelity pass tightly scoped to those three points and do not reopen the otherwise stable synthesis bundle unless the artifact changes materially.
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact under the current in-turn audit contract: verdict still `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-1mdb-and-the-private-banking-failure-mode` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact methodology-audit output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, the 1MDB / Goldman / MAS / FINMA public-record arc still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-1mdb-and-the-private-banking-failure-mode` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `training-and-culture` artifact against the stored lesson file: verdict still `DISAGREE`
+
+Reviewed the live `generated/cams/lessons/training-and-culture.json` file and the literal user-supplied JSON against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the literal current artifact. Every reading scene still carries `citations[]`, the Westpac deep case still supplies a valid named public-enforcement matter, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker remains source discipline only: `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward` still rely substantively on Westpac's board-commissioned / institution-published review layer for the culture/root-cause teaching.
+- Carry-forward instruction: if `training-and-culture` is revised again, do not reopen reading-scene citation presence, deep-case presence, scene-distinctness, quiz shape, or register arguments unless the artifact changes materially. Keep the next methodology touch tightly scoped to demoting that commissioned-review material to secondary context and re-anchoring the substantive teaching in allowed source types only.
+
+## [2026-06-18] - Exact-format methodology audit of the literal current `course-synthesis-and-exam-preparation` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `course-synthesis-and-exam-preparation` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- The artifact is otherwise methodologically sound on the narrowed brief. Every reading scene carries `citations[]`, the scene `teachesConcepts` make distinct substantive contributions, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker is pedagogical structure: the lesson still lacks one true deep-case scene grounded in a named public enforcement action or other named public matter with year plus substantive analysis. `The opening question, answered` only gestures at HSBC / Danske as synthesis examples, and `Three scenarios: the final assessment` is original synthetic assessment rather than a real-matter deep case.
+- Carry-forward instruction: if `course-synthesis-and-exam-preparation` is revised again, do not reopen source-discipline, reading-scene citation-presence, distinct-scene-teaching, quiz shape, or register arguments unless the artifact changes materially. Keep the next methodology touch tightly scoped to adding or converting one scene into a genuine deep case.
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `case-study-correspondent-banking-failures` artifact: verdict now `AGREE`
+
+Reviewed the literal current user-supplied JSON for `case-study-correspondent-banking-failures` and the stored `generated/cams/lessons/case-study-correspondent-banking-failures.json` under the exact cross-check-reviewer output contract against the already-verified HSBC DOJ public record and the Standard Chartered chronology bundle reflected elsewhere in project memory.
+
+What this pass confirmed:
+- The earlier same-day factual-fidelity `DISAGREE` note is stale against the live artifact hash. The current file already carries the corrected HSBC joint-party naming (**HSBC Holdings plc and HSBC Bank USA, N.A.**), the repaired Standard Chartered **6 August 2012** order / **14 August 2012** settlement / September consent-order sequencing, and the corrected New York branch / banking-licence wording rather than the older `dollar-clearing licence` shorthand.
+- No new hard contradiction surfaced in the HSBC numeric bundle or in the Standard Chartered **2012 / 2014 / 2019** amount-date arc on this rerun.
+- Carry-forward instruction: keep `case-study-correspondent-banking-failures` out of further factual-fidelity relitigation unless the artifact changes materially. The older Standard Chartered instrument-precision reject note belongs to the superseded draft state, not the live file.
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `AGREE`
+
+Reviewed the same literal user-supplied JSON for `case-study-1mdb-and-the-private-banking-failure-mode` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact user-facing audit output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. Allowed/public source types still hold, every reading scene carries a `citations[]` array, the 1MDB / Goldman / MAS / FINMA public-record arc still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-1mdb-and-the-private-banking-failure-mode` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology user-facing rerun of the literal current `case-study-correspondent-banking-failures` artifact: verdict still `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-correspondent-banking-failures` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact external-audit output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. Allowed/public source types still hold, every reading scene carries a `citations[]` array, the HSBC / Standard Chartered public-enforcement arc still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-correspondent-banking-failures` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-1mdb-and-the-private-banking-failure-mode` under the exact cross-check-reviewer output contract against the DOJ 1MDB forfeiture record, the Goldman Sachs **22 October 2020** DPA / Statement of Facts, and the FINMA **24 May 2016** / **11 October 2016** public actions.
+
+What this pass confirmed:
+- The lesson's core amount-date-disposition bundle materially holds on the reviewed source set. No new hard contradiction surfaced in the DOJ / Goldman / Najib chronology, the Good Star / fake-Aabar mechanics, the **USD 6.5 billion** / **USD 606 million** / **USD 1.6 billion+** Goldman figures, or the **July 2020** Malaysia settlement framing.
+- The first live blocker is supervisory-outcome overstatement. `The course's grand unifying case`, `The resolutions and the recovery`, `The synthesis exercise`, and `What to carry forward` repeatedly compress the BSI / Falcon outcome into `two private banks` being `closed`, `effectively ended`, or `closed by their supervisors`. The reviewed public record is narrower: MAS shut **BSI's Singapore operations** and **Falcon's Singapore branch**; FINMA's Falcon action imposed disgorgement, a temporary foreign-PEP new-business ban, and a recurrence warning, while only BSI was forced into integration/dissolution conditions.
+- The second live blocker is source-overattribution in the `institutions that said no` lane. `The institutional cast: who saw what`, its DOJ-complaint citation label, and the linked quiz/synthesis explanations attribute `filed reports` / a `financial-intelligence trail` / complaint-built reporting history to the public DOJ forfeiture complaints, but the reviewed public complaints do not themselves visibly supply that reporting-history claim.
+- Carry-forward instruction: if `case-study-1mdb-and-the-private-banking-failure-mode` is revised again, do not reopen the otherwise stable Goldman / Najib / Good Star / fake-Aabar bundle on this hash. Keep the next fidelity pass tightly scoped to those two issues unless the artifact changes materially elsewhere.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `case-study-correspondent-banking-failures` artifact: older same-day reject note is partly stale; live blocker narrows to Standard Chartered instrument precision
+
+Reviewed the literal current `generated/cams/lessons/case-study-correspondent-banking-failures.json` / user-supplied JSON again under the exact cross-check-reviewer output contract, specifically to test whether the earlier same-day `DISAGREE` note still matched the live artifact wording.
+
+What this pass confirmed:
+- The earlier same-day reject note is stale in two concrete respects on the current artifact. The HSBC named-party issue is fixed: the lesson now correctly names **HSBC Holdings plc and HSBC Bank USA, N.A.** The old NYDFS sequencing issue is also largely fixed: the lesson now distinguishes the **6 August 2012** order, the **14 August 2012** settlement announcement, and the September consent order.
+- Verdict still lands `DISAGREE`, but on a narrower live blocker: Standard Chartered instrument precision. `The cases that defined the modern era`, `Standard Chartered: the stripping record`, and `The control mapping: what would have caught what` still use the citation label `Standard Chartered Bank Order to Cease and Desist and related 2012 settlement documents`, which is not the exact August 2012 NYDFS instrument. `The two resolutions, side by side` and `Standard Chartered: the stripping record` also still teach the leverage as a `dollar-clearing licence`, whereas the precise legal lever was the New York branch / banking licence.
+- Carry-forward instruction: if `case-study-correspondent-banking-failures` is revised again, do not reopen the fixed HSBC party naming or the repaired August/September chronology on this hash. Keep the next fidelity pass tightly scoped to the Standard Chartered instrument-title / licence-language bundle unless the artifact changes materially elsewhere.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology audit of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-1mdb-and-the-private-banking-failure-mode` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology blocker surfaced. The lesson stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, the 1MDB / Goldman / MAS / FINMA public-record arc satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-1mdb-and-the-private-banking-failure-mode` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `case-study-correspondent-banking-failures` artifact: verdict still `AGREE`
+
+Reviewed the unchanged literal user-supplied JSON for `case-study-correspondent-banking-failures` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced beyond the already-recorded same-day note. Every reading scene still carries `citations[]`, the HSBC / Standard Chartered public-enforcement case-study arc still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-correspondent-banking-failures` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology rerun of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact: verdict now `AGREE`
+
+Reviewed the literal current generated lesson file / user-supplied JSON for `the-mlro-cco-role-and-the-compliance-function` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- The earlier same-day methodology `DISAGREE` notes are stale against the current artifact. The Westpac leadership-accountability teaching that had driven the rejection is gone on the live hash: `Deep case: Westpac - escalations that aged into a reckoning`, quiz `The chair, applied`, and `What to carry forward` now stay on the AUSTRAC agreed-facts / penalty-order record and no longer teach chief-executive removal or similar leadership fallout as substantive case matter.
+- No methodology blocker surfaced on the current artifact. Every reading scene carries `citations[]`, the Westpac deep case remains a valid named public-enforcement matter, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `the-mlro-cco-role-and-the-compliance-function` out of further methodology relitigation unless the artifact changes materially. The separate factual-fidelity lane was already `AGREE`, so this lesson is now cross-cleared on the current artifact hash.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `case-study-correspondent-banking-failures` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-correspondent-banking-failures` under the exact cross-check-reviewer output contract against DOJ's **11 December 2012** HSBC public record and the already-verified Standard Chartered chronology bundle reflected elsewhere in project memory.
+
+What this pass confirmed:
+- The lesson is mostly stable on the reviewed amount/date bundle outside two precision blockers. No new hard contradiction surfaced in the HSBC Mexico numeric bundle or in the Standard Chartered 2014 / 2019 sequel amounts on this pass.
+- The first blocker is HSBC named-party fidelity. `The cases that defined the modern era`, `HSBC: the Mexico corridor, in the record's own numbers`, `The control mapping: what would have caught what`, and `What to carry forward`, plus the linked citation labels, repeatedly present the 11 December 2012 DPA as if it were only the `HSBC Holdings plc` DPA. DOJ's public record instead identifies a joint DPA / four-count information involving **HSBC Holdings plc and HSBC Bank USA, N.A.**
+- The second blocker is the Standard Chartered 2012 NYDFS chronology. `The cases that defined the modern era`, `The two resolutions, side by side`, `Standard Chartered: the stripping record`, and the related citation labels compress the matter into an `August NYDFS order` with `USD 340 million`. The public sequence is **6 August 2012** NYDFS order / show-cause action, **14 August 2012** settlement announcement, then **September 2012** consent order.
+- Carry-forward instruction: if this lesson is revised again, do not reopen the otherwise stable HSBC amount bundle or the Standard Chartered 2014 / 2019 arc on this artifact hash. Tighten only the HSBC DPA party naming and the Standard Chartered 2012 chronology / citation wording unless the artifact changes materially.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology rerun of the literal current `training-and-culture` artifact: verdict still `DISAGREE`, with the blocker narrowed to Westpac commissioned-review reliance
+
+Reviewed the literal user-supplied JSON for `training-and-culture` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No new methodology blocker surfaced on the current artifact. Every reading scene carries `citations[]`, the Westpac deep case remains a valid named public matter, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker is narrower than some earlier same-day repo-memory wording suggested. The must-fix issue is substantive reliance on Westpac's board-commissioned review in `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward`.
+- Carry-forward instruction: if `training-and-culture` is revised again, do not reopen reading-scene citation presence, deep-case presence, scene-distinctness, quiz shape, or IP/commercial-source arguments unless the artifact changes materially. The next methodology touch should stay tightly scoped to demoting that commissioned-report material to secondary context and re-anchoring the substantive culture / root-cause teaching in allowed public-enforcement, government, standard-setter, academic, or original-analysis sources.
+
+## [2026-06-18] - Exact-format methodology rerun of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact: verdict still `DISAGREE`, with the blocker narrowed to the Westpac leadership-accountability claim in the quiz
+
+Reviewed the literal user-supplied JSON for `the-mlro-cco-role-and-the-compliance-function` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact external-audit output contract used in-turn.
+
+What this pass confirmed:
+- No new methodology blocker surfaced on the current artifact. Every reading scene carries `citations[]`, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The earlier same-day repo-memory wording about a generic Westpac citation label was too specific to a different artifact state. On the literal JSON reviewed in-turn, the live blocker is narrower: `The chair, applied` says the AUSTRAC / Westpac questions were the ones that `eventually removed the chief executive`, but the artifact does not identify an allowed source type for that leadership-accountability claim.
+- Carry-forward instruction: if this lesson is revised again, do not reopen reading-scene citation presence, deep-case presence, scene-distinctness, quiz shape, or IP/commercial-source arguments unless the artifact changes materially. The next methodology touch should stay tightly scoped to re-anchoring or trimming that Westpac leadership-outcome teaching.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology audit of the literal current `case-study-correspondent-banking-failures` artifact: verdict `AGREE`
+
+Reviewed the literal user-supplied JSON for `case-study-correspondent-banking-failures` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology blocker surfaced. The lesson stays within allowed/public source types for this pass, every reading scene carries a `citations[]` array, the HSBC / Standard Chartered public-enforcement case-study arc satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-correspondent-banking-failures` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `training-and-culture` artifact: verdict still `DISAGREE`
+
+Reviewed the unchanged literal user-supplied JSON for `training-and-culture` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact external-audit output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. Every reading scene still carries `citations[]`, the Westpac deep case still supplies a valid named public matter, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker remains source discipline. `Culture: what happens when policy is silent`, `Measuring culture: the indicator set`, and `Deep case: Westpac - culture as the root-cause finding` still use the board-commissioned Westpac Advisory Panel report as substantive authority, and `Culture: what happens when policy is silent` still uses the bank-commissioned Bruun & Hjejle report substantively for the Danske whistleblower chronology.
+- Carry-forward instruction: keep `training-and-culture` out of further methodology relitigation unless the artifact changes materially. If the lesson is revised again, the next touch should stay source-discipline only: recast those non-allowed reports to secondary context and re-anchor the substantive culture / root-cause / whistleblower claims in allowed public-enforcement, government, standard-setter, academic, or original-analysis sources.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `how-to-read-an-enforcement-action` artifact: verdict now `AGREE`
+
+Reviewed the literal current lesson JSON for `how-to-read-an-enforcement-action` under the exact cross-check-reviewer output contract against the maintained facts reference and the already-verified FCA Commerzbank public-record bundle reflected elsewhere in project memory.
+
+What this pass confirmed:
+- The earlier same-day hard `DISAGREE` note is stale against the live artifact hash. The current JSON no longer teaches Commerzbank as a `client-screening` / `screening-tool` case; the worked scenes now consistently describe the FCA's **17 June 2020** Final Notice as a broader AML control-framework failure involving the branch's automated **transaction-monitoring** tool, and the old `seed-set` transfer logic is gone.
+- No new hard contradiction surfaced in the Commerzbank amount / date / relevant-period / settlement-discount bundle, the transaction-monitoring / overdue-review / risk-classification framing, or the lesson's high-level instrument-literacy taxonomy.
+- Carry-forward instruction: treat `how-to-read-an-enforcement-action` as cleared on factual fidelity unless the artifact changes materially again. The earlier same-day `DISAGREE` note belongs to the superseded pre-fix artifact only.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `how-to-read-an-enforcement-action` artifact: verdict still `AGREE`
+
+Reviewed the unchanged literal user-supplied JSON for `how-to-read-an-enforcement-action` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. Every reading scene still carries `citations[]`, the Commerzbank Final Notice still supplies a valid named public-enforcement worked case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP/commercial-source blocker surfaced on this rerun. The lesson remains grounded in FCA / FATF / UK public materials, public enforcement records, pointer-framed journalistic context, and original analysis rather than prohibited commercial-prep content or ICC-derived rule text.
+- The one potentially delicate source-discipline point - `What the documents cannot tell you`'s FinCEN Files reference - remains expressly framed as journalistic context / a named pointer rather than the substantive base of the scene, so no news-as-substance blocker was found on this rerun.
+- Carry-forward instruction: keep `how-to-read-an-enforcement-action` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology audit of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact: verdict still `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `the-mlro-cco-role-and-the-compliance-function` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- The lesson remains methodologically sound outside one narrow source-discipline issue. Every reading scene carries `citations[]`, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The earlier same-day memory wording about the Westpac scene is stale in one respect: the current artifact no longer uses the generic `Public record of the leadership accountability following the AUSTRAC proceedings (November 2019)` citation label.
+- The live blocker nonetheless survives the wording change. `The hardest seat in the building`, `Deep case: Westpac - escalations that aged into a reckoning`, and `What to carry forward` still teach the chief-executive / senior-leadership fallout as substantive case matter, but the artifact does not identify an allowed source type for that point; the cited AUSTRAC penalty-order record and Basel guidance do not themselves supply the leadership-accountability source.
+- Carry-forward instruction: if this lesson is revised again, do not reopen deep-case presence, reading-scene citation presence, scene-distinctness, quiz shape, or IP posture on the unchanged artifact. The next methodology touch should stay tightly scoped to re-anchoring or trimming the Westpac leadership-outcome teaching.
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `how-to-read-an-enforcement-action` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `how-to-read-an-enforcement-action` under the exact cross-check-reviewer output contract against the maintained facts reference and the already-verified FCA Commerzbank public-record bundle reflected elsewhere in project memory.
+
+What this pass confirmed:
+- The lesson is mostly stable on the reviewed source set outside one worked-case defect. No new hard contradiction surfaced in the Commerzbank amount / date / relevant-period / earliest-stage-settlement-discount bundle, and the instrument-literacy framing did not surface an independent publication blocker on this pass.
+- The live blocker is the worked Commerzbank rendering. `The profession's case law`, `The worked text: Commerzbank, findings-first`, `The four-layer reading`, `The transfer question, institutionalised`, and `What to carry forward` repeatedly teach the FCA's **17 June 2020** Final Notice as a `client-screening` / `screening-tool` case.
+- The reviewed public record is narrower and different in type: Commerzbank London was a broader AML control-framework failure, and the defective system was the branch's automated tool for monitoring money-laundering risk on transactions for clients. That makes the lesson's downstream `screening tool` / `seed-set` transfer logic materially mis-anchored.
+- Carry-forward instruction: if this lesson is touched again, keep the current amount / date / relevant-period / penalty-arithmetic frame and fix only the Commerzbank tool/type rendering unless the artifact changes materially elsewhere.
+
+## [2026-06-18] - Exact-format methodology audit of the literal current `how-to-read-an-enforcement-action` artifact: verdict `AGREE`
+
+Reviewed the literal user-supplied JSON for `how-to-read-an-enforcement-action` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology blocker surfaced on the current artifact. Every reading scene carries `citations[]`, the Commerzbank Final Notice supplies a valid named public-enforcement worked case, the scene `teachesConcepts` remain substantively distinct, the quiz is scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP/commercial-source blocker surfaced. The lesson remains grounded in FCA / FATF / UK public materials, public enforcement records, pointer-framed journalistic context, and original analysis rather than prohibited commercial-prep content or ICC-derived rule text.
+- The one potentially delicate source-discipline point - `What the documents cannot tell you`'s FinCEN Files reference - stays expressly framed as journalistic context / a named pointer rather than the substantive base of the scene, so no news-as-substance blocker was found on this artifact.
+- Carry-forward instruction: keep `how-to-read-an-enforcement-action` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+## [2026-06-18] - Exact-format cross-check reviewer methodology audit of the literal current `training-and-culture` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `training-and-culture` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass found:
+- The lesson is otherwise methodologically strong on the reviewed artifact. Every reading scene carries `citations[]`, `Deep case: Westpac - culture as the root-cause finding` is a real named public matter, the scene `teachesConcepts` remain substantively distinct, the quiz is scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker is source discipline. `Culture: what happens when policy is silent`, `Measuring culture: the indicator set`, and `Deep case: Westpac - culture as the root-cause finding` use the board-commissioned Westpac Advisory Panel report as substantive authority, and `Culture: what happens when policy is silent` also uses the bank-commissioned Bruun & Hjejle report substantively for the Danske whistleblower chronology.
+- Under v1.1 and the explicit reviewer brief, those corporate / bank-commissioned reports are not allowed source types for substantive teaching claims. They can appear only as secondary context; the lesson's authority for the culture root-cause and whistleblower-sequence teaching has to come from allowed public-enforcement, government, standard-setter, academic, or original-analysis sources.
+- Carry-forward instruction: if `training-and-culture` is revised again, do not reopen reading-scene `citations[]`, deep-case presence, scene-distinctness, quiz-format, or register on the unchanged artifact. The next touch should be source-discipline only: recast the Westpac Advisory Panel and Bruun & Hjejle material to secondary context and re-anchor the substantive claims.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `independent-audit-of-aml-cft` artifact: verdict now `AGREE`
+
+Reviewed the literal current lesson JSON for `independent-audit-of-aml-cft` under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations (**updated October 2025**), the FCA Final Notice to Commerzbank AG dated **17 June 2020**, and the already-used Standard Chartered / U.S. bank / Bangladesh source bundle reflected elsewhere in project memory.
+
+What this pass confirmed:
+- The earlier same-day `DISAGREE` note is stale against the live artifact. `The question only the third line answers` no longer recasts Commerzbank as a `screening` / `nobody had tested` case; it now correctly frames the matter as a broader AML control-framework failure centered on Commerzbank London's primary automated **transaction-monitoring** tool.
+- The earlier Bangladesh citation-title blocker is closed on this hash. The BFIU labels in the current JSON now use the official `BFIU Circular No. 26: Instructions to be followed by the schedule banks for prevention of money laundering, terrorist financing and proliferation financing` title dated **16 June 2020**.
+- The quiz explanation wording that had previously been too close to an exact U.S. Bancorp/Commerzbank parallel is now narrowed to the Notice's broader rule/threshold-review language and no longer creates a hard overstatement on this artifact.
+- No new contradiction surfaced in the lesson's main FATF Recommendation `18` / `31 CFR 1020.210` / `MLR 2017` regulation `21(1)(c)` / Standard Chartered 2014 teaching bundle. Treat the lesson as cross-cleared on factual fidelity unless the artifact changes materially.
+
+## [2026-06-18] - Exact-format methodology rerun of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact: verdict still `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `the-mlro-cco-role-and-the-compliance-function` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No new methodology blocker surfaced on the current artifact. Every reading scene still carries `citations[]`, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The earlier same-day repo-memory note was too specific to an older source formulation. On the literal current JSON, `Deep case: Westpac - escalations that aged into a reckoning` no longer names `Westpac Banking Corporation` in the second citation label, but the replacement wording — `Public record of the leadership accountability following the AUSTRAC proceedings (November 2019)` — still does not identify an allowed source type under v1.1.
+- Because the chief-executive resignation / chairman-retirement outcome is taught substantively in the scene, that generic `public record` label remains a methodology blocker until it is re-anchored to an allowed source type or the accountability teaching point is trimmed.
+- Carry-forward instruction: if this lesson is revised again, do not reopen reading-scene citation presence, deep-case presence, scene-distinctness, quiz shape, or IP/commercial-source arguments unless the artifact changes materially. The next methodology touch should be source-discipline only on the Westpac accountability anchor.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `the-bangladesh-framework` artifact: verdict `SPLIT`
+
+Reviewed the literal current lesson JSON for `the-bangladesh-framework` under the exact cross-check-reviewer output contract against the maintained facts reference, the official BFIU `MLPA` page and English PDF, the official BFIU circular registry / `Circular No. 26` entry, the BFIU Egmont / investigation-agencies pages, and FATF's **13 February 2026** public lists.
+
+What this pass confirmed:
+- Earlier same-day hard `DISAGREE` notes are stale against the live artifact. The current JSON now matches the official Circular 26 title / date, aligns the ACC investigation wording with section `9`, presents the APG chronology as the `2016 MER` plus the `November 2020 4th Follow-Up Report`, and no longer uses the wrong `predicate` label for the MLPA capital-flight clause.
+- No must-fix contradiction surfaced in the current statutory / supervisory / APG bundle.
+- Two soft issues remain. `Deep case: the mutual evaluation trajectory — the framework graded` says `The IO.4 finding is about banks`, but `IO.4` in the APG `MER` covers both financial institutions and `DNFBPs`, even if the scene is bank-facing. `What to carry forward` says the MLPA cross-border clause makes `trade misinvoicing` money-laundering conduct in itself; that shorthand is broader than the more precise capital-flight forms the lesson otherwise teaches.
+- Carry-forward instruction: treat the lesson as mostly publishable unless the artifact changes materially; if revised again, keep the next touch limited to those two wording-tightening points.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `independent-audit-of-aml-cft` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `independent-audit-of-aml-cft` under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations (**updated October 2025**), the FCA Final Notice to Commerzbank AG dated **17 June 2020**, and the already-used Standard Chartered / U.S. bank / Bangladesh source bundle reflected elsewhere in project memory.
+
+What this pass confirmed:
+- The lesson's core mandate bundle is mostly sound on the reviewed source set. No new hard contradiction surfaced in the FATF Recommendation `18` / `31 CFR 1020.210` / `MLR 2017` regulation `21(1)(c)` framing, or in the Standard Chartered 2014 **USD 300 million** closure-validation arc.
+- The first live publication blocker is the Commerzbank comparator. `The question only the third line answers` misstates the FCA record as if Commerzbank London had a `screening tool` whose decay `nobody had tested`, and the quiz/scaffolding later reuse that shorthand. The FCA notice instead records a broader AML control-framework failure centered on Commerzbank London's primary automated **transaction-monitoring** tool, with internal compliance / internal-audit testing on record.
+- The second live blocker is citation-title precision. `The scope: auditing the whole machine` cites the Bangladeshi source as `BFIU Circular No. 26 on AML/CFT obligations of scheduled banks`, but the official instrument title is `BFIU Circular No. 26: Instructions to be followed by the schedule banks for prevention of money laundering, terrorist financing and proliferation financing`, dated **16 June 2020**.
+- Carry-forward instruction: if `independent-audit-of-aml-cft` is revised again, preserve the current FATF / U.S. / UK / Standard Chartered framing and tighten only the Commerzbank shorthand plus the Bangladesh citation title before any re-dispatch.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `the-mlro-cco-role-and-the-compliance-function` under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations (**updated October 2025**), the FFIEC manual, `31 U.S.C. § 5321`, the FCA Sonali final notices, and the official BFIU Circular No. 26 PDF.
+
+What this pass confirmed:
+- The lesson's broader core bundle is materially sound on the reviewed source set. No new hard contradiction surfaced in the FATF Recommendation `18` compliance-function framing, the U.S. BSA-officer / personal-liability bundle, the Sonali **October 2016** amount / prohibition record, or the Westpac **21 October 2020** / **AUD 1.3 billion** chronology.
+- The live publication blocker is narrow Bangladesh designation precision. `One role, three designations`, `The BSA Officer and the CAMLCO`, and `What to carry forward` call the deputy `Deputy CAMLCO` and imply a broader direct route to the `board's machinery` / governing body than the cited source supports.
+- The reviewed Circular text is narrower and more exact: `BFIU Circular No. 26` identifies the deputy as `Deputy Chief Anti Money Laundering Compliance Officer (DCAMLCO)` and supports direct reporting to the `Managing Director or Chief Executive Officer`; for foreign-bank branches it requires the CAMLCO to be a member of the highest management committee.
+- Carry-forward instruction: if this lesson is touched again, fix only the Bangladesh Circular 26 designation / reporting-line wording unless the artifact changes materially. Do not reopen the otherwise stable FATF / U.S. / Sonali / Westpac bundle on stale same-day notes.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology audit of the literal current `independent-audit-of-aml-cft` artifact: verdict `AGREE`
+
+Reviewed the literal user-supplied JSON for `independent-audit-of-aml-cft` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology blocker surfaced on the current artifact. The lesson stays within allowed/public source types, every reading scene carries a `citations[]` array, `Deep case: Standard Chartered 2014 - the remediation the testing would have failed` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` make distinct substantive contributions, the quiz stays scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson appears built from FATF / Basel / FFIEC / UK MLR / BFIU public materials, the Standard Chartered public enforcement record, and original analysis rather than prohibited commercial-prep content or ICC-derived rule text.
+- Carry-forward instruction: keep `independent-audit-of-aml-cft` out of further methodology relitigation unless the artifact changes materially. If it re-enters review, spend cycles on factual-fidelity verification or substantive rewrites, not on re-arguing source-discipline, deep-case presence, quiz shape, or register.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `the-bangladesh-framework` artifact: verdict still `AGREE`
+
+Reviewed the same literal user-supplied JSON for `the-bangladesh-framework` again under the exact cross-check-reviewer output contract, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No new methodology blocker surfaced on the unchanged artifact. The lesson still stays within allowed/public source types, every reading scene still carries a `citations[]` array, `Deep case: the mutual evaluation trajectory - the framework graded` still satisfies the named public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- Carry-forward instruction: keep `the-bangladesh-framework` out of further methodology relitigation unless the artifact changes materially; any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - No-delta factual-fidelity primary-source rerun of the literal current `the-bangladesh-framework` artifact: same live blocker
+
+Reviewed the literal current user-supplied JSON for `the-bangladesh-framework` again under the exact cross-check-reviewer output contract against the maintained facts reference, the official BFIU English `Money Laundering Prevention Act, 2012` PDF, and the BFIU Circular / guidance source pages.
+
+What this pass confirmed:
+- No new blocker surfaced and no previously cleared blocker re-opened. The current artifact still appears clean on the old Circular-26 title, APG-2016/2020 chronology, and ACC-investigation-allocation issues already closed on this hash.
+- The lesson still reruns `DISAGREE` on the same statutory-structure point. `MLPA 2012: the laundering statute`, quiz `Circular 26 in operation` (trade-desk question / explanation), and `What to carry forward` still teach trade-misinvoicing / capital-flight as `predicate conduct` or `predicate laundering conduct`.
+- The reviewed English MLPA text separates those categories. Section `2(v)(ii)` places `smuggling money or property earned through legal or illegal means to a foreign country` inside the **definition of money laundering itself**, while section `2(cc)` separately defines `predicate offence`.
+- Carry-forward instruction: if `the-bangladesh-framework` is revised again, keep the next fix pass tightly limited to removing the wrong `predicate` label from the capital-flight / trade-misinvoicing teaching and quiz logic.
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `the-three-lines-of-defence` artifact: verdict now `AGREE`
+
+Reviewed the literal current user-supplied JSON for `the-three-lines-of-defence` under the exact cross-check-reviewer output contract against the maintained facts reference, the Basel Committee's `Sound management of risks related to money laundering and financing of terrorism` guidelines, the FATF Recommendations (**updated October 2025**), DOJ's **22 October 2020** Goldman Sachs press release **plus the Goldman DPA / Statement of Facts**, and DOJ's **13 December 2022** Danske public record.
+
+What this pass confirmed:
+- The earlier same-day `DISAGREE` notes on this lesson were stale against the literal current artifact. The press-release-only read understated what the Goldman primary-source bundle actually supports. In the DPA / Statement of Facts, Goldman expressly describes the approval architecture around the 1MDB bonds: `BIG`, compliance, and the firmwide capital committee sat inside the approval process; committee members raised intermediary / `Jho Low` questions; and Goldman committees nevertheless approved the bond deals while Low-related red flags were ignored or only nominally addressed.
+- That means the current lesson's Goldman shorthand now holds materially well enough for publication: `Goldman's committee approvals`, `the 1MDB committees' pattern`, and the control-function / red-flag language no longer overstate the reviewed source bundle on this artifact.
+- The old Bangladesh citation-title blocker is also closed on this hash. `The second line: oversight, advice, challenge — not ownership` now uses the official `BFIU Circular No. 26: Instructions to be followed by the schedule banks for prevention of money laundering, terrorist financing and proliferation financing` title dated **16 June 2020**.
+- No new hard contradiction surfaced in the rest of the lesson's core bundle. The Basel three-lines allocation, the FATF Recommendation `18` / interpretive-note internal-controls and independent-audit framing, and the Danske **13 December 2022** / **~USD 2 billion** / **USD 160 billion through U.S. banks** teaching arc remain materially sound on the reviewed source set.
+- Carry-forward instruction: treat `the-three-lines-of-defence` as cross-cleared on factual fidelity unless the artifact changes materially. If it is touched again, preserve the current Goldman committee-support bundle, corrected BFIU title, and Basel / Danske framing rather than reopening them on stale same-day notes.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology audit of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `the-mlro-cco-role-and-the-compliance-function` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass found:
+- The lesson is otherwise methodologically strong on the reviewed artifact. Every reading scene carries `citations[]`, the scene `teachesConcepts` remain substantively distinct, the quiz is scenario-based rather than certification-format mimicry, and no IP/commercial-source blocker surfaced.
+- The live blocker is narrow source discipline in `Deep case: Westpac - escalations that aged into a reckoning`. Its second citation label relies on `Westpac Banking Corporation, governance and accountability outcomes following the AUSTRAC proceedings, November 2019` for the chief-executive resignation / chairman-retirement / board-accountability-outcome teaching.
+- Under v1.1 and the explicit reviewer brief, corporate statements are not one of the allowed source types. That makes this a methodology `DISAGREE` unless those claims are re-anchored to an allowed public source type or the accountability-outcome teaching point is trimmed.
+- Carry-forward instruction: if this lesson is revised again, do not spend more methodology cycles on reading-scene citation presence, deep-case presence, scene-distinctness, quiz shape, or IP relitigation unless the artifact changes materially. The next touch should be source-discipline only.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `the-bangladesh-framework` artifact: ACC-allocation blocker is stale, MLPA predicate-structure wording is the live issue
+
+Reviewed the literal current user-supplied JSON for `the-bangladesh-framework` under the exact cross-check-reviewer output contract against the operator-maintained facts reference, the official BFIU English `Money Laundering Prevention Act, 2012` PDF, the BFIU Circular 26 / guidance-note source pages, and the already-cleared APG chronology / ratings bundle.
+
+What this pass confirmed:
+- The earlier same-day repo-memory note that kept this lesson at `DISAGREE` for MLPA investigative-allocation overstatement is stale against the current artifact. The current JSON's ACC wording is now materially aligned with the reviewed MLPA section `9` text: offences under the Act are investigated by the `ACC` or officers / agencies authorized by it, and the lesson's present `hub ... itself or through the agencies it authorises` framing no longer overstates a predicate-based split.
+- The lesson still reruns `DISAGREE`, but on a different legal-structure issue. `MLPA 2012: the laundering statute`, quiz `Circular 26 in operation` (trade-desk question / explanation), and `What to carry forward` call trade-misinvoicing / capital-flight `predicate conduct`.
+- The reviewed English MLPA text separates those categories. Section `2(v)(ii)` places `smuggling money or property earned through legal or illegal means to a foreign country` inside the **definition of money laundering itself**, while section `2(cc)` separately defines `predicate offence`. The current lesson therefore collapses laundering conduct and predicate-offence structure in a way the statute does not support.
+- Carry-forward instruction: if `the-bangladesh-framework` is revised again, do not reopen the old Circular-26 title, APG-2016/2020 chronology, or ACC-allocation bundle unless the artifact changes materially. The live fix is to strip out the `predicate conduct` label anywhere the lesson teaches the MLPA capital-flight channel.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology confirmation rerun of the literal current `the-three-lines-of-defence` artifact: verdict still `AGREE`
+
+Reviewed the literal user-supplied JSON for `the-three-lines-of-defence` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. `Deep case: Danske Estonia â€” three lines on paper, none in fact` still anchors its substantive teaching in the DOJ / Danish FSA / Estonian supervisory public record and keeps the bank-commissioned Bruun & Hjejle report in secondary, corroborating-context status rather than substantive-authority status.
+- The rest of the methodology frame still holds on the reviewed JSON: every reading scene carries `citations[]`, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: treat the earlier same-day methodology `DISAGREE` note on this lesson as stale against this literal JSON. Keep `the-three-lines-of-defence` out of further methodology relitigation unless the artifact changes materially; the live publication work remains the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `the-bangladesh-framework` artifact: verdict still `AGREE`
+
+Reviewed the same literal user-supplied JSON for `the-bangladesh-framework` again under the exact cross-check-reviewer output contract, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. The lesson still stays within allowed/public source types, every reading scene still carries a `citations[]` array, `Deep case: the mutual evaluation trajectory - the framework graded` still satisfies the named public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- Carry-forward instruction: treat this as a no-delta confirmation only. Keep `the-bangladesh-framework` out of further methodology relitigation unless the artifact changes materially; the live publication work remains the separate factual-fidelity lane on MLPA investigative-allocation precision.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `the-three-lines-of-defence` artifact: BFIU title issue is closed on this hash, Goldman / 1MDB shorthand is the live blocker
+
+Reviewed the literal current user-supplied JSON for `the-three-lines-of-defence` under the exact cross-check-reviewer output contract against the maintained facts reference, the Basel Committee's `Sound management of risks related to money laundering and financing of terrorism` guidelines, the FATF Recommendations (**updated October 2025**), DOJ's **13 December 2022** Danske press release, and DOJ's **22 October 2020** Goldman Sachs `1MDB` resolution press release.
+
+What this pass confirmed:
+- The earlier same-day repo-memory note on `BFIU Circular No. 26` title precision is stale against the exact artifact reviewed here. The current JSON already uses the official title `BFIU Circular No. 26: Instructions to be followed by the schedule banks for prevention of money laundering, terrorist financing and proliferation financing` (**16 June 2020**), so that old Bangladesh citation-title defect is closed on this hash.
+- No new hard contradiction surfaced in the lesson's main Basel / FATF Recommendation `18` / Danske bundle. The reviewed text still materially holds on the Basel three-lines allocation, the FATF internal-controls / independent-audit framing, and the Danske **13 December 2022** guilty-plea / **~USD 2 billion** / **USD 160 billion through U.S. banks** bundle.
+- The live blocker is now the Goldman / `1MDB` shorthand in two scenes. `Where the failures actually lived` says Goldman's committees `heard the Jho Low concerns and approved the bonds`; `Failure patterns, line by line` says committees heard concerns `the private bank had already acted on` and treats `committee-level override` as a documented pattern in the cited `1MDB` source bundle. The reviewed DOJ **22 October 2020** resolution supports the narrower proposition that Goldman control-function personnel knew Low posed significant risk, were on notice of his involvement, and that significant red flags were ignored or only nominally addressed. It does not itself support the stronger committee / private-bank-already-acted wording.
+- Carry-forward instruction: if `the-three-lines-of-defence` is revised again, preserve the now-cleared Basel / FATF / Danske / BFIU bundle and trim the Goldman references back to the DOJ-supported control-function / red-flag framing unless a stronger primary source is added.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology rerun of the literal current `the-three-lines-of-defence` artifact: verdict now `AGREE`
+
+Reviewed the literal user-supplied JSON for `the-three-lines-of-defence` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- The earlier same-day methodology `DISAGREE` note was stale against the exact artifact reviewed here. `Deep case: Danske Estonia — three lines on paper, none in fact` now explicitly grounds its substantive teaching in the DOJ / Danish FSA / Estonian supervisory public record and keeps the bank-commissioned Bruun & Hjejle report in secondary, corroborating-context status rather than substantive-authority status.
+- The rest of the methodology frame holds on the current JSON: every reading scene carries `citations[]`, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `the-three-lines-of-defence` out of further methodology relitigation unless the artifact changes materially; any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `the-three-lines-of-defence` artifact: verdict still `DISAGREE`, but the wording defect is narrower
+
+Reviewed the literal current user-supplied JSON for `the-three-lines-of-defence` under the exact cross-check-reviewer output contract against the maintained facts reference, the Basel Committee's `Sound management of risks related to money laundering and financing of terrorism` guidelines, the FATF Recommendations (**updated October 2025**), and DOJ's **13 December 2022** Danske press release.
+
+What this pass confirmed:
+- The main governance / deep-case bundle still holds on the reviewed source set. No new hard contradiction surfaced in the Basel three-lines allocation, the FATF Recommendation `18` independent-audit framing, or the Danske **13 December 2022** guilty-plea / **~USD 2 billion** / **USD 160 billion through U.S. banks** bundle.
+- The earlier same-day memory notes overstated the current artifact slightly: the literal current JSON no longer uses the wording `BFIU Master Circular No. 26`.
+- The lesson still stays at factual-fidelity `DISAGREE` because the remaining citation-title defect is real. `The second line: oversight, advice, challenge — not ownership` cites the Bangladeshi source as `BFIU Circular No. 26 on AML/CFT obligations of scheduled banks`, but the official instrument title is `BFIU Circular No. 26: Instructions to be followed by the schedule banks for prevention of money laundering, terrorist financing and proliferation financing`, dated **16 June 2020**.
+- Carry-forward instruction: if `the-three-lines-of-defence` is revised again, fix only that citation title unless the lesson changes materially elsewhere; do not reopen the broader Basel / FATF / Danske bundle on the current artifact.
+
+## [2026-06-18 20:11] - Exact-format methodology spot-check of the unchanged `the-bangladesh-framework` artifact: verdict still `AGREE`
+
+Reviewed the same literal user-supplied JSON for `the-bangladesh-framework` again under the exact cross-check-reviewer output contract, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. The lesson still stays within allowed/public source types, every reading scene still carries a `citations[]` array, `Deep case: the mutual evaluation trajectory - the framework graded` still satisfies the named public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- Carry-forward instruction: treat this as a no-delta confirmation only. Keep `the-bangladesh-framework` out of further methodology relitigation unless the artifact changes materially; the live publication work remains the separate factual-fidelity lane.
+
+## [2026-06-18] - Manual methodology confirmation rerun of the exact user-supplied `the-three-lines-of-defence` artifact: verdict still `DISAGREE`
+
+Reviewed the same literal `the-three-lines-of-defence` JSON again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-session.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. The only publish-blocking issue is still source discipline in `Deep case: Danske Estonia — three lines on paper, none in fact`: the scene body and citation framing continue to use the bank-commissioned Bruun & Hjejle report as substantive support for the whistleblower / escalation chronology and separate-platform narrative, even though v1.1 and the maintained facts reference allow B&H only as secondary context.
+- Carry-forward instruction: do not reopen the lesson's reading-scene `citations[]`, scene-distinctness, deep-case presence, quiz shape, or register on the unchanged artifact. The fix remains source-discipline only: recast Bruun & Hjejle to secondary context and keep the deep case's teaching claims anchored in the Danish FSA / Estonian supervisory / DOJ public record.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the user-supplied `the-three-lines-of-defence` JSON: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `the-three-lines-of-defence` under the exact cross-check-reviewer output contract used in-session, against the maintained facts reference, the Basel Committee's `Sound management of risks related to money laundering and financing of terrorism` guidelines, the FATF Recommendations (**updated October 2025**), and DOJ's **13 December 2022** Danske press release.
+
+What this pass found:
+- The lesson's main governance / enforcement teaching arc is mostly sound on the reviewed source set. No new hard contradiction surfaced in the Basel three-lines allocation, the FATF Recommendation `18` internal-controls / independent-audit framing, or the Danske **13 December 2022** guilty-plea / **~USD 2 billion** / **USD 160 billion through U.S. banks** bundle.
+- The live factual-fidelity blocker is narrow but real: `The second line: oversight, advice, challenge — not ownership` cites the Bangladeshi source as `BFIU Master Circular No. 26 on AML/CFT obligations of scheduled banks`, but the official title is `BFIU Circular No. 26: Instructions to be followed by the schedule banks for prevention of money laundering, terrorist financing and proliferation financing`, dated **16 June 2020**.
+- Carry-forward instruction: keep the current Basel / FATF / Danske substance if this lesson is revised again, but correct that BFIU citation label before any fidelity re-dispatch. The separate methodology blocker on Bruun & Hjejle remains tracked elsewhere in memory.
+
+## [2026-06-18] - Exact-format methodology confirmation rerun of the user-supplied `the-three-lines-of-defence` JSON: verdict still `DISAGREE`
+
+Reviewed the same literal user-supplied JSON for `the-three-lines-of-defence` under the exact cross-check-reviewer output contract used in-session, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. The only publish-blocking issue remains source discipline in `Deep case: Danske Estonia — three lines on paper, none in fact`: the scene body and first citation label still use the bank-commissioned Bruun & Hjejle report as substantive support for the whistleblower / escalation chronology and the separate-platform narrative, even though v1.1 and the maintained facts reference permit B&H only as secondary context.
+- The rest of the methodology frame still holds on the literal current JSON: every reading scene carries a `citations[]` array, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- Carry-forward instruction: if `the-three-lines-of-defence` is revised again, keep Bruun & Hjejle as secondary context only and re-anchor the deep case's substantive teaching claims in the Danish FSA / Estonian supervisory / DOJ public record before any re-dispatch.
+
+## [2026-06-18] - Exact-format methodology confirmation rerun of the literal current `the-bangladesh-framework` artifact: verdict still `AGREE`
+
+Reviewed the same literal current user-supplied JSON for `the-bangladesh-framework` under the exact cross-check-reviewer output contract used in-session, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced beyond the existing same-day Bangladesh notes. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: the mutual evaluation trajectory - the framework graded` still satisfies the named public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and no IP/commercial-source issue surfaced.
+- Carry-forward instruction: keep `the-bangladesh-framework` out of further methodology relitigation unless the artifact changes materially; the live publication work remains the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the user-supplied `the-bangladesh-framework` JSON: verdict `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `the-bangladesh-framework` under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the maintained facts reference, the official BFIU statute / circular pages and PDFs, the BFIU Egmont / investigation-agencies pages, and APG's **November 2020** `4th Enhanced Follow-Up Report`.
+
+What this pass found:
+- The first hard blocker is citation precision across the lesson's core operating instrument. Multiple scenes call it `BFIU Master Circular No. 26`, but the official BFIU source and PDF title it `BFIU Circular No. 26: Instructions to be followed by the schedule banks for prevention of money laundering, terrorist financing and proliferation financing`, dated **16 June 2020**.
+- The second hard blocker is statutory-scope precision in `MLPA 2012: the laundering statute` and `The supervisory map`. The reviewed MLPA text does not make the clean predicate-based investigative split the lesson teaches (`ACC` for corruption predicates; `CID` / customs / `NBR` for others). The cited provision says offences under the Act are investigated by the `ACC` or other agencies authorized by the `ACC`.
+- The third hard blocker is chronology in the lesson's highest-value scene. `Deep case: the mutual evaluation trajectory - the framework graded` says the **September 2016** `APG` `MER`'s `R.6` `Compliant` result reflects `exactly the statute-plus-circular machinery this lesson has taught`, but the lesson's own operative circular is from **16 June 2020**, so the 2016 rating cannot be attributed to that circular.
+- A secondary citation-title issue also remains. The lesson cites `BFIU Guidelines on Prevention of Trade-Based Money Laundering`, while BFIU's own guidance-note page and PDF use `Guidelines for Prevention of Trade Based Money Laundering`.
+- Carry-forward instruction: treat `the-bangladesh-framework` as not cross-cleared on factual fidelity. If it is revised again, fix the Circular 26 title first, then narrow the MLPA investigative-allocation claim to the statute's actual wording, then rewrite the APG-2016 sentence so it does not attribute a 2016 rating to a 2020 circular.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `the-bangladesh-framework` artifact: still `DISAGREE`, but the old blocker bundle is stale
+
+Re-reviewed the literal current `the-bangladesh-framework` JSON after noticing the repo memory still reflected an earlier artifact hash. The current file already fixes the old `BFIU Master Circular No. 26` defect, uses the correct BFIU TBML-guidance title, and now correctly limits the **September 2016** `APG` `MER` discussion so it does not rest that rating on the later **16 June 2020** Circular 26.
+
+- Verdict remains `DISAGREE`.
+- The remaining hard blocker is the repeated MLPA investigative-allocation overstatement. `The standing example, assembled`, `The Bangladesh architecture`, `MLPA 2012: the laundering statute`, `The supervisory map`, and `What to carry forward` still teach a cleaner practical split than the reviewed MLPA text supports by assigning corruption-predicate laundering to the `ACC` and the rest to `CID` / customs / revenue bodies. The verified statutory anchor only supports that ML offences are investigated by the `ACC` or by agencies authorized by the `ACC`.
+- Carry-forward: if the lesson is revised again, do not spend another cycle on the old circular-title or 2016/2020-attribution issues unless the artifact changes back. The live fix is to narrow the investigative-allocation language to what the statute and cited materials actually support.
+
+## [2026-06-18] - Exact-format methodology confirmation rerun of the user-supplied `the-bangladesh-framework` JSON: verdict still `AGREE`
+
+Reviewed the same literal user-supplied JSON for `the-bangladesh-framework` again under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. The existing same-day Bangladesh methodology note in repo memory still matches the reviewed JSON: the allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: the mutual evaluation trajectory - the framework graded` still satisfies the named public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and no IP/commercial-source issue surfaced.
+- Carry-forward instruction: treat this as a confirmation-only rerun. Keep `the-bangladesh-framework` out of further methodology relitigation unless the artifact changes materially; any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the user-supplied `the-us-framework` JSON: verdict `SPLIT`
+
+Reviewed the literal user-supplied JSON for `the-us-framework` under the exact cross-check-reviewer output contract against the maintained facts reference, the FinCEN CDD FAQ, the FinCEN Section 311 / AMLA materials already reflected in repo memory, and the HSBC 2012 public-resolution bundle.
+
+What this pass confirmed:
+- The earlier hard blockers in repo memory are now stale against the artifact reviewed here. The current lesson correctly uses `31 CFR 1010.313` for same-day CTR aggregation, correctly frames Section `312` around source(s) of funds plus enhanced scrutiny, correctly separates Section `319(a)` / `18 U.S.C. § 981(k)` from Section `319(b)` / `31 U.S.C. § 5318(k)`, correctly states FinCEN's `31 U.S.C. § 310` / no-exams posture, correctly narrows CTA reporting to foreign reporting companies, and keeps the HSBC amount-date-authority bundle materially sound.
+- One residual scope-precision issue remains in `The BSA working set`: the lesson presents the 2016 CDD rule / `fifth pillar` as if it attaches to `every covered institution`, but `31 CFR 1010.230` and the parallel program-rule amendments apply to covered financial institutions rather than every BSA-covered institution type.
+- A second residual precision issue remains in `Deep case: HSBC 2012 as a jurisdiction map` and the synthesis wording: the lesson repeatedly teaches HSBC as a `five authorities / five hooks` map even though it later acknowledges the Manhattan District Attorney's Office, so the count is pedagogically compressed rather than fully exact.
+- Carry-forward instruction: treat the lesson as mostly publishable on factual fidelity unless the artifact changes materially. If it is revised again, spend the next pass only on the CDD-rule scope phrasing and the HSBC authority-count wording.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology audit of the user-supplied `the-bangladesh-framework` JSON: verdict `AGREE`
+
+Reviewed the literal user-supplied JSON for `the-bangladesh-framework` under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology blocker surfaced on the reviewed artifact. The allowed/public source discipline still holds, every reading scene carries a `citations[]` array, `Deep case: the mutual evaluation trajectory - the framework graded` satisfies the named public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson appears built from Bangladeshi statutes and BFIU instruments, FATF materials, the APG public mutual-evaluation record, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep `the-bangladesh-framework` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the user-supplied `the-uk-framework` JSON: verdict now `SPLIT`
+
+Reviewed the literal user-supplied JSON for `the-uk-framework` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the maintained facts reference and the public UK legal / enforcement record already reflected elsewhere in repo memory.
+
+What this pass confirmed:
+- The earlier hard NatWest blocker recorded in repo memory is stale against this exact JSON. The deep-case scene now correctly separates the **October 2021** guilty pleas at **Westminster Magistrates' Court** from the **13 December 2021** sentencing / fine hearing at **Southwark Crown Court**, so the prior plea / conviction / disposition chronology defect no longer survives on the literal artifact reviewed here.
+- No new hard contradiction surfaced on the main POCA / MLR 2017 / DAML / regulation-7 supervision map, or on the Standard Chartered / Commerzbank / NatWest amount-date bundle, sufficient to keep the lesson at `DISAGREE` on this pass.
+- One soft precision issue remains in `The UK architecture`: the slide item says JMLSG guidance is `statutorily considered by courts and regulators`. The lesson's own tighter mapping elsewhere is the correct one: the explicit statutory hook is the court-facing `POCA` section `330` direction, while FCA regard to JMLSG is better framed as supervisory / enforcement practice rather than the same statutory mandate.
+- Carry-forward instruction: treat the current user-supplied `the-uk-framework` artifact as mostly publishable on factual fidelity. If it is touched again, spend the next fix pass only on tightening that JMLSG slide wording.
+
+## [2026-06-18 00:31] - Manual methodology confirmation audit of the literal current `the-us-framework` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `the-us-framework` under the exact cross-check-reviewer output contract used in-session, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced beyond the existing carry-forward already recorded for this lesson. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: HSBC 2012 as a jurisdiction map` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced on the reviewed artifact. The lesson still reads as grounded in U.S. statutes and regulations, FinCEN / OFAC / OCC / Federal Reserve public materials, the HSBC 2012 public-resolution record, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: treat this pass as confirmation only. Keep `the-us-framework` out of further methodology relitigation unless the artifact changes materially; any remaining publication work stays in the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `the-eu-framework-and-the-aml-package` artifact: verdict `SPLIT`
+
+Reviewed the literal current user-supplied JSON for `the-eu-framework-and-the-aml-package` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the maintained facts pack, EUR-Lex for Directive `(EU) 2015/849`, Directive `(EU) 2018/843`, Regulation `(EU) 2024/1624`, Directive `(EU) 2024/1640`, and AMLA's official FAQ / timeline pages.
+
+What this pass confirmed:
+- The lesson's main package mechanics hold on the reviewed source set. No hard contradiction surfaced in the `2024/1624` / `2024/1640` / `2024/1620` numbering, the `10 July 2027` AMLR application date, the `2028` AMLA direct-supervision timing, the `WM and Sovim` November-2022 chronology, or the Danske `USD 160 billion` / `USD 2 billion` / `USD 178.6 million within ~USD 413 million` bundle already fixed in the maintained facts reference.
+- The first residual issue is `AMLD 4` scope precision. `The instrument timeline` and `The directive era's working law` speak as if the 2015 directive created unqualified central beneficial-ownership registers for `companies and trusts`, but original `Directive (EU) 2015/849` was narrower on the trust side: `Article 31(4)` required central-register treatment where the trust generated tax consequences, not for all trusts without qualification.
+- The second residual issue is `AMLD 5` perimeter shorthand. `The instrument timeline` and `The directive era's working law` say `virtual-currency exchanges` or equivalent, but `Directive (EU) 2018/843` brought into scope providers engaged in exchange services **between virtual currencies and fiat currencies**, plus custodian wallet providers. The lesson's shorthand broadens the exchange side beyond the directive's actual category.
+- Carry-forward instruction: treat the lesson as mostly publishable on factual fidelity unless the artifact changes materially. If it is touched again, narrow only the `AMLD 4` trust-register wording and the `AMLD 5` virtual-currency-exchange label; no hard case-fidelity or current-package chronology blocker surfaced on this pass.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `the-us-framework` artifact: verdict still `DISAGREE`, but on a narrower current-law bundle
+
+Reviewed the literal current user-supplied JSON for `the-us-framework` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the maintained current facts reference, FinCEN's AMLA / Priorities public materials, FinCEN's Section 311 special-measures page, and the HSBC 2012 public-resolution bundle already reflected in repo memory.
+
+What this pass confirmed:
+- The earlier statutory-precision blockers no longer survive on the literal current artifact. `The BSA working set` now correctly puts same-day CTR aggregation in `31 CFR 1010.313`; `The PATRIOT toolkit` now correctly frames Section 312 around source(s) of funds plus enhanced scrutiny and correctly separates `Section 319(a)` / `18 U.S.C. § 981(k)` from `Section 319(b)` / `31 U.S.C. § 5318(k)`.
+- The first live blocker is current-law overstatement in `AMLA 2020 and the CTA: the modern layer`. FinCEN's **30 June 2021** priorities release said the AML/CFT Priorities created no immediate change to Bank Secrecy Act obligations, and FinCEN's AMLA page still showed only a **7 April 2026** NPRM for AML/CFT-program incorporation on the review date, so the lesson's present-tense statements that the priorities are already expected to be reflected in programs / risk assessments and `must be traceable` there are too strong.
+- The second live blocker is citation precision in `The PATRIOT toolkit`. The Lebanese Canadian Bank citation label still compresses the **10 February 2011** Section 311 action into a `finding` that put the fifth special measure `in operation`, while FinCEN's public Section 311 table shows a finding plus same-day NPRM rather than the finding itself imposing the measure.
+- A softer but real contradiction sits in `What to carry forward`, whose final teaser line says the next lesson's UK map is `one FIU, one conduct regulator`; that conflicts with the maintained UK supervisory-split facts and should not ship as-is.
+- Carry-forward instruction: preserve the current CTA foreign-only scope, FinCEN's `31 U.S.C. § 310` / no-exams posture, the HSBC 2012 amount-date-authority bundle, and the already-fixed CTR / Section 312 / Section 319 wording. If this lesson is revised again, spend the next pass only on AMLA-priorities timing, the LCB Section 311 citation label, and the stray UK teaser.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology audit of the literal current `the-eu-framework-and-the-aml-package` artifact: verdict `AGREE`
+
+Reviewed the literal current user-supplied JSON for `the-eu-framework-and-the-aml-package` under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology blocker surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Danske Estonia — the gap between two supervisors` satisfies the named public-enforcement / public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson appears built from EU directives / regulations, the CJEU and EBA public record, the DOJ / SEC / Danish / Estonian public Danske materials, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep `the-eu-framework-and-the-aml-package` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `the-uk-framework` artifact: verdict `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `the-uk-framework` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the maintained facts reference and the public UK legal / enforcement record already reflected elsewhere in repo memory.
+
+What this pass found:
+- The main hard blocker is in the lesson's highest-value scene. `Deep case: NatWest — the regulations turn criminal` and its citation label conflate the **October 2021** guilty pleas at **Westminster Magistrates' Court** with the **13 December 2021** sentencing / fine hearing at **Southwark Crown Court** by saying the bank was `convicted at Southwark Crown Court` in December 2021. That is a real case-fidelity defect on court, date, and disposition chronology.
+- A secondary precision issue appears in `The UK architecture` narration, which says courts and regulators `must consider` JMLSG guidance. Elsewhere in the same lesson, the tighter mapping is stated correctly: the explicit statutory direction identified is the court-facing `POCA` section `330` hook, while FCA consideration is described as enforcement practice.
+- No broader hard contradiction surfaced on the main POCA / MLR 2017 / DAML / regulation-7 supervision map, or on the Standard Chartered / Commerzbank contrast, sufficient to displace those as the lesson's stable core.
+- Carry-forward instruction: if `the-uk-framework` is touched again, fix the NatWest chronology first, then tighten the JMLSG slide narration so the statutory hook and the practice point are not collapsed into one claim.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology audit of the literal current `the-uk-framework` artifact: verdict `AGREE`
+
+Reviewed the literal current user-supplied JSON for `the-uk-framework` under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology blocker surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: NatWest - the regulations turn criminal` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson appears built from POCA / MLR 2017 / JMLSG / FCA public-enforcement materials and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep `the-uk-framework` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-18 00:26] - Repeat exact-format cross-check reviewer methodology rerun of the literal current `the-uk-framework` artifact: verdict still `AGREE`
+
+Reviewed the same literal current user-supplied JSON for `the-uk-framework` again under the exact cross-check-reviewer output contract, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the unchanged artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: NatWest - the regulations turn criminal` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced on the rerun. The lesson still appears built from POCA / MLR 2017 / JMLSG / FCA public materials and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: treat `the-uk-framework` methodology status as stable on the current artifact unless the lesson changes materially. Any remaining publication work stays in the separate factual-fidelity lane.
+
+## [2026-06-17] - Exact-format factual-fidelity rerun of the literal current `virtual-assets-and-vasps` artifact: verdict now `AGREE`
+
+Reviewed the literal current user-supplied JSON for `virtual-assets-and-vasps` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the FATF Recommendations PDF (**updated October 2025**), FATF's **28 October 2021** VASP guidance, Treasury's **6 May 2022** Blender and **8 August 2022** Tornado Cash releases, the Fifth Circuit's **26 November 2024** `Van Loon` opinion, Treasury's **21 March 2025** Tornado Cash delisting, and DOJ's **23 August 2023** founders indictment.
+
+What this pass confirmed:
+- The earlier same-day Travel Rule blocker in repo memory was stale against an older artifact state. The literal current scene `The Travel Rule: identity for a ledger that never carried it` no longer teaches the superseded pre-June-2025 FATF field package; it now correctly defers to the current `Recommendation 16` / `INR.16` information set as carried into VA transfers by `INR.15`.
+- No new hard contradiction surfaced in the current `Recommendation 15` licensing / supervision material, the Bangladesh restrictive-jurisdiction framing, or the Tornado Cash chronology / disposition bundle (`Ronin` / `Blender.io` / `Tornado Cash` / `Van Loon` / March 2025 delisting).
+- Carry-forward instruction: treat `virtual-assets-and-vasps` as cross-cleared on factual fidelity unless the artifact changes materially, and treat the older same-day `DISAGREE` entry below as stale history rather than the current status.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `real-estate-cash-intensive-businesses-and-luxury-goods` artifact: verdict now `SPLIT`
+
+Reviewed the literal current user-supplied JSON for `real-estate-cash-intensive-businesses-and-luxury-goods` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the FATF Recommendations (**updated October 2025**), the maintained facts pack, Directive `(EU) 2018/843`, and the public Riggs / Obiang bundle.
+
+What this pass confirmed:
+- The earlier hard `Recommendation 22` blocker is mostly stale against the literal current artifact. The current lesson now correctly confines FATF DNFBPs to the closed `R.22` set in most scenes, and no new hard contradiction surfaced in the October 2014 Obiang settlement framing or the Riggs `USD 25 million` / `USD 16 million` bundle.
+- One residual scope-precision issue remains in `Gatekeepers and gaps`: the narration still says `Recommendation 22 stations someone at every door this lesson has opened`, which overstates FATF coverage after the lesson elsewhere correctly says auction houses / art-market participants are not FATF DNFBPs as such and come in only through national or regional law.
+- A second residual issue is citation-text precision rather than substance: the `5AMLD` labels use the shorthand `art-market participants`, where the Directive's own category language is narrower and more exact.
+- Carry-forward instruction: treat this lesson as mostly publishable on factual fidelity unless the artifact changes materially. If it is touched again, narrow only the residual `R.22` rhetoric and optionally tighten the `5AMLD` label wording.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology rerun of the literal current `real-estate-cash-intensive-businesses-and-luxury-goods` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `real-estate-cash-intensive-businesses-and-luxury-goods` under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: the Obiang assets - kleptocracy's shopping list` still satisfies the named public-enforcement / public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from FATF / EU / Egmont materials, the DOJ / French-court / Senate public record around the Obiang assets and Riggs Bank, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep this lesson out of further methodology relitigation unless the artifact changes materially. The only live publication work on the current artifact remains the separate factual-fidelity lane on FATF Recommendation `22` scope.
+
+## [2026-06-17] - Exact-format external methodology rerun of the literal current `virtual-assets-and-vasps` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `virtual-assets-and-vasps` under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Tornado Cash — designation meets immutable code` still satisfies the named public-enforcement / public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from FATF / OFAC / court public-record materials and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep `virtual-assets-and-vasps` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-17] - Exact-format factual-fidelity rerun of the literal current `sanctions-program-governance` artifact: verdict now `AGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the current eCFR text of Appendix A to `31 CFR Part 501` and OFSI's **12 May 2026** UK financial sanctions general guidance.
+
+What this pass confirmed:
+- The formerly live OFSI / OFAC disclosure-scope blocker no longer survives the literal current artifact. `The disclosure decision, structured` narration and quiz `Governance and disclosure judgment` question 3 explanation now correctly teach the mandatory UK report as discovery-risk / timing pressure rather than as an automatic bar to a U.S. OFAC voluntary self-disclosure.
+- No new hard contradiction surfaced in the current Standard Chartered 2012 / 2014 / 2019 governance arc, the corrected Appendix-A penalty-matrix wording, or the current Commerzbank framing on this rerun.
+- Carry-forward instruction: treat `sanctions-program-governance` as cross-cleared on the literal current artifact unless it changes materially.
+
+## [2026-06-17] - Exact-format external methodology audit of the literal current `real-estate-cash-intensive-businesses-and-luxury-goods` artifact: verdict `AGREE`
+
+Reviewed the literal current user-supplied JSON for `real-estate-cash-intensive-businesses-and-luxury-goods` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: the Obiang assets - kleptocracy's shopping list` satisfies the named public-enforcement / public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson appears built from FATF / EU / Egmont materials, the DOJ / French-court / Senate public record around the Obiang assets and Riggs Bank, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep this lesson out of further methodology relitigation unless the artifact changes materially. If it re-enters review, spend cycles on the separate factual-fidelity lane, not source-discipline or quiz-format arguments.
+
+## [2026-06-17] - Cross-check reviewer methodology rerun of the literal current `sanctions-program-governance` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the exact cross-check reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Standard Chartered, 2012-2019 - the governance arc` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from OFAC / OFSI guidance, public enforcement documents, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep this lesson out of further methodology relitigation unless the artifact changes materially. The only live publication work remains the separate factual-fidelity lane on the OFSI / OFAC voluntary-self-disclosure interaction.
+
+## [2026-06-17] - Exact-format factual-fidelity rerun of the literal current `politically-exposed-persons` artifact: verdict now `SPLIT`
+
+Reviewed the literal current user-supplied JSON for `politically-exposed-persons` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the FATF Recommendations PDF (**updated October 2025**), FATF's **June 2013** PEP guidance, the DOJ's **22 October 2020** Goldman Sachs 1MDB press release, and the Goldman **Deferred Prosecution Agreement / Statement of Facts**.
+
+What this pass confirmed:
+- The earlier hard blocker set is too stale for the literal current artifact. The Recommendation `22` wording in `Recommendations 12 and 22, read closely` now matches the differentiated DNFBP-trigger logic materially well enough, and the Goldman DPA itself supports more of the 1MDB scene than the earlier press-release-only read captured, including committee questions and committee approvals around the bond deals.
+- The current artifact still has two soft scope-precision issues worth preserving. `Foreign versus domestic: the split in practice` uses the shorthand `same package` for domestic / international-organisation PEPs, which is looser than Recommendation `12`'s actual carry-over of paragraphs **(b)-(d)** after reasonable status determination. `How PEP corruption actually banks` plus `Deep case: 1MDB through the PEP lens` also sometimes slide from inherited **risk** into inherited **classification** by saying customers, advisers, or intermediaries near a politically controlled fund carry PEP classification by proximity.
+- No new hard amount/date/disposition contradiction surfaced in the Goldman / Najib / 1MDB bundle on this rerun. The `USD 4.5 billion` misappropriation framing, the `USD 6.5 billion` / `USD 606 million` / `USD 1.6 billion+` Goldman figures, the `22 October 2020` DPA + Malaysian-subsidiary guilty plea, and the July 2020 Malaysia settlement / Najib conviction timeline remain materially sound on the reviewed source set.
+- Carry-forward instruction: treat `politically-exposed-persons` as mostly publishable on factual fidelity unless the artifact changes, but if it is touched again, tighten only the domestic / IO shorthand and the state-fund-proximity classification wording.
+
+## [2026-06-17] - Cross-check reviewer rerun of the literal current `sanctions-program-governance` fidelity lane: verdict still `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the current eCFR text of Appendix A to `31 CFR Part 501`, OFAC's `OFAC Self Disclosure` page plus the linked **26 July 2023** tri-seal note, and OFSI's **12 May 2026** UK financial sanctions general guidance.
+
+What this pass confirmed:
+- The earlier Commerzbank blocker stays fixed on the current artifact. No new issue surfaced in `Controls, testing, training: the program's working layer` on the FCA record.
+- The remaining publication blocker is the OFAC/OFSI interaction in the disclosure lane. `The disclosure decision, structured` narration and quiz `Governance and disclosure judgment` question 3 explanation still teach that the mandatory OFSI report from the London entity makes a U.S. OFAC voluntary self-disclosure unavailable.
+- The reviewed OFAC materials do not support that categorical consequence. Appendix A defines OFAC VSD by timing relative to OFAC or another `federal, state, or local` agency's discovery, and both Appendix A and the July 2023 tri-seal note say notification to another government agency may be considered by OFAC on a case-by-case basis.
+- Carry-forward instruction: preserve the current Standard Chartered 2012 / 2014 / 2019 amount-date arc, the corrected Appendix-A matrix wording, and the fixed Commerzbank wording. If the lesson is revised again, narrow only the OFSI-reporting consequence so the UK report is taught as mandatory reporting plus discovery-risk / timing pressure, not as an automatic bar to OFAC VSD.
+
+## [2026-06-17] - Exact-format factual-fidelity rerun of the literal current `trade-based-money-laundering` artifact: verdict now `SPLIT` on a residual citation-title issue
+
+Reviewed the literal current user-supplied JSON for `trade-based-money-laundering` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the FATF/Egmont **Trade-Based Money Laundering: Trends and Developments** report (**9 December 2020**), the Treasury / DOJ public record on Lebanese Canadian Bank (**10 February 2011** Treasury Section 311 action; **25 June 2013** SDNY settlement press release), and BFIU's guidance-note page plus the linked TBML guideline PDF.
+
+What this pass confirmed:
+- The earlier hard blockers are fixed on the literal current artifact. `Beyond price: the other falsehoods` and quiz `Reading the trade file` question 3 now correctly treat services-based money laundering as distinct from TBML per the FATF-Egmont report, and `Deep case: Lebanese Canadian Bank — the used-car laundromat` now correctly states the February 2011 Section 311 action as a finding plus same-day proposed rulemaking rather than as the finding itself severing correspondent access.
+- The remaining issue is softer and sits in citation-title precision. Across the lesson's BFIU labels, the artifact cites `BFIU Guidelines on Prevention of Trade-Based Money Laundering`, but BFIU's own guidance-note page and the linked PDF title use `Guidelines for Prevention of Trade Based Money Laundering`.
+- No new hard contradiction surfaced in the current LCB amount/date bundle, the FATF-Egmont services taxonomy, or the lesson's core mispricing / documentary-boundary teaching on this rerun.
+- Carry-forward instruction: preserve the current SBML and Section-311 fixes. If the lesson is revised again, normalize the BFIU source title across the citation labels; the literal current artifact no longer needs the earlier hard-blocker reprompt.
+
+## [2026-06-17] - Late exact-format methodology rerun of the literal current `sanctions-program-governance` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the latest cross-check reviewer request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced relative to the earlier same-day reruns. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Standard Chartered, 2012-2019 - the governance arc` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from OFAC / OFSI guidance, public enforcement documents, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep this lesson out of further methodology relitigation unless the artifact changes materially. The live publication work remains the separate factual-fidelity lane.
+
+## [2026-06-17] - Exact-format factual-fidelity audit of the literal current `sanctions-program-governance` artifact: verdict still `DISAGREE`, but on a new narrower OFAC/OFSI scope issue
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the current eCFR text of Appendix A to `31 CFR Part 501`, the FCA Final Notice to Commerzbank AG dated **17 June 2020**, and the current GOV.UK OFSI general guidance.
+
+What this pass confirmed:
+- The earlier Commerzbank blocker is fixed on the current artifact. `Controls, testing, training: the program's working layer` now matches the FCA record as a broader AML control-framework failure involving Commerzbank London's automated transaction-monitoring tool, and it keeps the notice's statement that there was no evidence financial crime was occasioned or facilitated by the failings.
+- The remaining publication blocker is narrower and sits in the OFAC/OFSI interaction. `The disclosure decision, structured` narration and quiz `Governance and disclosure judgment` question 3 explanation teach that the mandatory OFSI report from the London entity means a U.S. OFAC voluntary self-disclosure is no longer available.
+- Appendix A does not support that categorical rule. The current eCFR text defines OFAC VSD by timing relative to OFAC or another `federal, state, or local` agency's discovery, and separately says notification to another government agency may be considered by OFAC on a case-by-case basis. The UK report is therefore a serious discovery-risk / timing-pressure fact, but not an automatic bar on the reviewed source text.
+- Carry-forward instruction: preserve the current Commerzbank wording, the corrected Appendix-A penalty-matrix teaching, and the Standard Chartered 2012 / 2014 / 2019 arc. If the lesson is revised again, narrow only the categorical OFSI-reporting consequence before re-dispatch.
+
+## [2026-06-17] - Exact-format factual-fidelity audit of the literal current `politically-exposed-persons` artifact: verdict `DISAGREE` on two live blockers
+
+Reviewed the literal current user-supplied JSON for `politically-exposed-persons` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the FATF Recommendations PDF (**updated October 2025**), FATF's **June 2013** PEP guidance, and DOJ's **22 October 2020** Goldman Sachs 1MDB resolution press release.
+
+What this pass confirmed:
+- The earlier Recommendation `22` DNFBP-scope problem is materially fixed on the current artifact. The lesson now includes casinos, real-estate agents, dealers in precious metals and stones, and trust and company service providers, and it now says the PEP extension applies only in the differentiated situations FATF specifies rather than across those sectors generally.
+- One regulatory-text blocker remains in `Recommendations 12 and 22, read closely`. The scene says that domestic / international-organisation PEPs, once higher risk is found, take `the same four-part package`. The October 2025 FATF text is narrower: for domestic / international-organisation PEPs, institutions must take reasonable measures to determine status, and in higher-risk relationships apply the measures in Recommendation `12` paragraphs **(b), (c), and (d)**.
+- The deep-case blocker also remains, but in a narrower form than the old `private-wealth rejection` issue. `Why public office is a risk category`, `Deep case: 1MDB through the PEP lens`, and `What to carry forward` still say or imply that Goldman `committees had flagged` Jho Low, that `committees met`, that a convicted senior banker was `actively concealing` Low's involvement, and that `private wealth says no while investment banking says yes`. The reviewed DOJ 22 October 2020 press release supports the narrower claim that Goldman control-function personnel knew Low posed significant risk, were on notice of his involvement, and that significant red flags were ignored or only nominally addressed.
+- Carry-forward instruction: keep the current Recommendation `22` fix and the Goldman / Najib amount-date bundle, but (1) rewrite the domestic / IO description to Recommendation `12`'s actual `(b)-(d)` carry-over after status determination and (2) trim the 1MDB case language back to the DOJ-supported control-function / red-flag points unless a new primary source is cited for the stronger committee / concealment / private-wealth propositions.
+
+## [2026-06-17] - Cross-check reviewer rerun of the literal current `trade-based-money-laundering` methodology lane: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `trade-based-money-laundering` under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the latest request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced relative to the earlier same-day methodology pass. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Lebanese Canadian Bank — the used-car laundromat` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The current artifact still appears built from FATF / Egmont / BFIU materials, the FinCEN Section 311 finding, the DOJ public forfeiture record, and original analysis rather than prohibited commercial-prep material or ICC rule-text reproduction.
+- Carry-forward instruction: keep `trade-based-money-laundering` out of further methodology relitigation unless the artifact changes materially. Any remaining work on the lesson stays in the separate factual-fidelity lane.
+
+## [2026-06-17] - Exact-format external methodology audit of the literal current `sanctions-program-governance` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the latest request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Standard Chartered, 2012-2019 - the governance arc` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from OFAC / OFSI guidance, public enforcement documents, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep this lesson out of further methodology relitigation unless the artifact changes materially. The only live publication work remains the separate factual-fidelity lane on the Commerzbank comparator.
+
+## [2026-06-17] - Exact-format external methodology audit of the literal current `politically-exposed-persons` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `politically-exposed-persons` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the latest request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: 1MDB through the PEP lens` still satisfies the named public-enforcement / public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from FATF / Wolfsberg materials, DOJ / court public records, and original analysis rather than prohibited commercial-prep content or other barred sources.
+- Carry-forward instruction: keep `politically-exposed-persons` out of further methodology relitigation unless the artifact changes materially. The only live publication work remains the separate factual-fidelity lane.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology audit of the literal current `the-three-lines-of-defence` artifact returns `DISAGREE`
+
+Reviewed the literal user-supplied JSON for `the-three-lines-of-defence` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request.
+
+What this pass confirmed:
+- The lesson is mostly methodologically sound on the reviewed artifact: every reading scene still carries a `citations[]` array, the Danske Estonia scene is a real named public matter rather than a generic walkthrough, the scene `teachesConcepts` remain substantively distinct, the quiz is scenario-based rather than certification-format mimicry, and the register stays adult-professional.
+- The blocker is narrow but publish-blocking: `Deep case: Danske Estonia — three lines on paper, none in fact` expressly uses the bank-commissioned Bruun & Hjejle report as substantive support for the whistleblower / escalation chronology and separate-platform narrative. Under v1.1 and the maintained facts reference, B&H can appear only as secondary context; the deep case's substantive authority has to come from the Danish FSA / Estonian supervisory / DOJ public record.
+- Carry-forward instruction: do not reopen the lesson's deep-case presence, quiz-shape, or scene-distinctness on the unchanged artifact. The fix is source-discipline only: recast B&H to secondary context and keep the teaching claims anchored in allowed/public sources.
+
+## [2026-06-18] - Exact-format cross-check reviewer methodology rerun of the literal current `the-us-framework` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `the-us-framework` under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: HSBC 2012 as a jurisdiction map` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from U.S. statutes and regulations, FinCEN / OFAC / OCC / Federal Reserve public materials, the HSBC 2012 public-resolution record, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep `the-us-framework` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work stays in the separate factual-fidelity lane.
+
+## [2026-06-17] - Exact-format external methodology audit of the literal current `the-us-framework` artifact: verdict `AGREE`
+
+Reviewed the literal current user-supplied JSON for `the-us-framework` under the exact cross-check-reviewer output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: HSBC 2012 as a jurisdiction map` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson appears built from U.S. statutes and regulations, FinCEN / OFAC / OCC / Federal Reserve public materials, the HSBC 2012 public-resolution record, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep `the-us-framework` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-17] - Exact-format factual-fidelity audit of the literal current `real-estate-cash-intensive-businesses-and-luxury-goods` artifact: verdict `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `real-estate-cash-intensive-businesses-and-luxury-goods` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the current FATF Recommendations text, the maintained facts pack, Directive `(EU) 2018/843`, and the public Riggs / Obiang case bundle.
+
+What this pass confirmed:
+- The main typology set and the headline case chronology are mostly intact on the reviewed source set. No new hard contradiction surfaced in the Riggs `USD 25 million` / `USD 16 million` enforcement bundle, the October 2014 DOJ Obiang settlement framing, or the lesson's broad 2017 / 2020 / July 2021 French chronology sufficient to outrank the scope issue below.
+- The live blocker is FATF Recommendation `22` scope. The lesson repeatedly slides from "gatekeepers in the channel" to "gatekeepers covered by FATF" and treats that as if they were the same population.
+- `Three channels, three functions` says gatekeepers including auction houses stand at every door and are "covered by the framework on paper"; `Deep case: the Obiang assets - kleptocracy's shopping list` says `Recommendation 22` covered "lawyers, escrow agents, dealers and auction intermediaries"; quiz `Indicator recognition` question 3 explanation says the auction house's obligations are "additional, not substitutive" under the framework; and the synthesis scenes repeat the same FATF-overbreadth.
+- That is too broad for FATF `R.22`. The FATF DNFBP list is narrower: casinos, real-estate agents, dealers in precious metals and stones, specified legal/accountancy professionals, and trust/company service providers in specified activities. Art-market-participant obligations are jurisdiction-specific additions such as EU `5AMLD`, not a FATF `R.22` category as such; generic escrow agents and auction intermediaries are not FATF DNFBPs simply by role name.
+- Carry-forward instruction: preserve the `5AMLD` art-market point and the current Riggs / Obiang amount-date bundle, but narrow all FATF gatekeeper language to the actual `R.22` population before any re-dispatch or promotion.
+
+## [2026-06-17] - Exact-format external methodology audit of the literal current `virtual-assets-and-vasps` artifact: verdict `AGREE`
+
+Reviewed the literal current user-supplied JSON for `virtual-assets-and-vasps` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the latest request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Tornado Cash — designation meets immutable code` satisfies the named public-enforcement / public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from FATF / OFAC / court public records and original analysis rather than prohibited commercial-prep content or ICC-rule-text reproduction.
+- Carry-forward instruction: keep `virtual-assets-and-vasps` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs to the separate factual-fidelity lane.
+
+## [2026-06-17] - Exact-format factual-fidelity audit of the literal current `virtual-assets-and-vasps` artifact: verdict `DISAGREE` on a current FATF Travel Rule blocker
+
+Reviewed the literal current user-supplied JSON for `virtual-assets-and-vasps` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the FATF Recommendations PDF (**updated October 2025**), especially `INR.15` paragraph 7(b) and revised `INR.16` paragraphs 8-9, together with FATF's **28 October 2021** VASP guidance and the Treasury / DOJ public Tornado Cash record.
+
+What this pass confirmed:
+- The lesson's broader perimeter work and enforcement arc remain materially usable on the reviewed source set. No new hard contradiction surfaced in the `Recommendation 15` licensing / supervision material, the Bangladesh restrictive-jurisdiction framing, or the August 2022 / March 2025 Tornado Cash amount-date bundle on this pass.
+- The live publication blocker is regulatory-text currency in `The Travel Rule: identity for a ledger that never carried it`, repeated in `What to carry forward`. Those scenes still teach the pre-June-2025 FATF `R.16` / `INR.16` data-field package for virtual-asset transfers: above-threshold transfers are described as requiring originator name, wallet identifier, and address / national identity number / customer ID / date and place of birth, with beneficiary name and wallet identifier only; below-threshold transfers are described as carrying only names and wallet identifiers. The current October 2025 FATF text now points `INR.15` footnote 46 to revised `INR.16` paragraphs 8-9, which changed the payment-transparency information set.
+- Because the current lesson presents that superseded field package as if it were the live rule, the verdict is `DISAGREE`.
+- Carry-forward instruction: preserve the current VASP-definition, DeFi-control, P2P-risk, and Tornado Cash chronology if the lesson is revised again. Rewrite the Travel Rule field-description and the synthesis carry-forward to the post-June-2025 FATF text before any re-dispatch or promotion.
+
+## [2026-06-17] - Exact-format factual-fidelity audit of the literal current `trade-based-money-laundering` artifact: verdict `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `trade-based-money-laundering` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the FATF/Egmont **Trade-Based Money Laundering: Trends and Developments** report (**9 December 2020**) and the Treasury / DOJ public record on Lebanese Canadian Bank (**10 February 2011** Treasury Section 311 action; **25 June 2013** SDNY settlement press release).
+
+What this pass confirmed:
+- The lesson's core mispricing / multiple-invoicing / documentary-boundary teaching is broadly usable on the reviewed source set, and the current LCB amount-date bundle for the **June 2013** settlement (`USD 102 million`) did not surface a new contradiction on this pass.
+- The first publication blocker is typology taxonomy in `Beyond price: the other falsehoods`, its FATF citation label, and quiz `Reading the trade file` question 3 explanation. The lesson treats consulting fees / royalties / software licences / management charges as `service-based TBML` and attributes that framing to the FATF-Egmont report, but the report expressly says `services-based money laundering (SBML) is not TBML` and includes it only `for reference` as an increasing risk.
+
+## [2026-06-17] - Exact-format factual-fidelity audit of the literal current `the-us-framework` artifact: verdict `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `the-us-framework` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the maintained facts pack, the DOJ's **11 December 2012** HSBC resolution press release, and the U.S. statutory / regulatory identifiers the lesson itself cites.
+
+What this pass confirmed:
+- The lesson's main architecture and chronology are mostly intact on the reviewed source set. No new hard contradiction surfaced in the March-2025 CTA foreign-only narrowing, FinCEN's `31 U.S.C. § 310` establishment basis and no-examination role, or the HSBC 2012 resolution bundle (`USD 1.256 billion` DOJ forfeiture; `USD 500 million` OCC, satisfying FinCEN's parallel `USD 500 million`; `USD 165 million` Federal Reserve; `USD 375 million` OFAC satisfied by the DOJ forfeiture; total `USD 1.921 billion`).
+- The first publication blocker is citation precision in `The BSA working set`. The scene makes `31 CFR 1010.311` carry the same-day CTR aggregation rule, but the aggregation rule sits in `31 CFR 1010.313`; the lesson is therefore not section-precise on the U.S. CTR mechanics it teaches.
+- The second blocker is regulatory-text scope in `The PATRIOT toolkit`'s Section 312 paragraph. It teaches `source of wealth` and `senior approval` as though they are the U.S. private-banking rule for non-U.S. persons, but the U.S. rendering at `31 CFR 1010.620` is framed around source(s) of funds plus enhanced scrutiny, with the senior-foreign-political-figure overlay, not a generic senior-approval requirement for private banking accounts.
+- The third blocker is statutory numbering in that same scene. The lesson labels the foreign-bank reach point as `Section 319(b)` and then adds that `funds in those accounts` can be reached for forfeiture. That collapses two distinct hooks: the subpoena / records reach is `Section 319(b)` (`31 U.S.C. § 5318(k)`), while the interbank / correspondent-account forfeiture rule is `Section 319(a)` (`18 U.S.C. § 981(k)`).
+- Carry-forward instruction: preserve the current CTA scope, FinCEN / IRS / prudential-regulator map, and HSBC 2012 amount-date-authority arc. If the lesson is revised again, the needed work is a narrow U.S. rulebook precision pass rather than a broader architectural rewrite.
+- The second blocker is case-fidelity wording in `Deep case: Lebanese Canadian Bank — the used-car laundromat` and its FinCEN citation label. Treasury's **10 February 2011** release and DOJ's later settlement summary describe a finding that LCB was a financial institution of primary money laundering concern plus a same-day notice of proposed rulemaking proposing the correspondent / payable-through-account prohibition; the lesson currently compresses that into the finding itself `severing` correspondent access.
+- Carry-forward instruction: if this lesson is revised again, preserve the current June-2013 settlement bundle and the core mispricing teaching, but rewrite the services lane to SBML / adjacent-risk language and restate the Section 311 action as `finding + proposed rule` before any re-dispatch or promotion.
+
+## [2026-06-17] - Exact-format factual-fidelity rerun of the literal current `sanctions-program-governance` artifact: verdict still `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) against the current eCFR text of Appendix A to `31 CFR Part 501`, the DOJ's **9 April 2019** Standard Chartered press release, and the FCA Final Notice to Commerzbank AG dated **17 June 2020**.
+
+What this pass confirmed:
+- The earlier OFAC Appendix A blocker is still fixed on the current artifact. The disclosure scenes continue to teach the matrix correctly: egregious voluntary self-disclosure keys off `one-half` the applicable statutory maximum, while non-egregious voluntary self-disclosure keys off `one-half` transaction value subject to the schedule caps.
+- The Standard Chartered 2012 / 2014 / 2019 governance arc remains materially usable on the reviewed source set. No new hard amount/date/disposition contradiction surfaced there on this rerun.
+- The live publication blocker remains the Commerzbank comparator. `Controls, testing, training: the program's working layer` and quiz `Governance and disclosure judgment` question 2 still over-read the FCA record as if it were a standalone sanctions-screening-tool case; the Final Notice instead penalizes a broader AML control-framework failure and describes the defective system as Commerzbank London's automated tool for monitoring money-laundering risk on transactions for clients, while also stating there was no evidence that financial crime was occasioned or facilitated by the failings.
+- Carry-forward instruction: if this lesson is touched again, preserve the current Appendix A and Standard Chartered wording and narrow only the Commerzbank framing before any further re-dispatch or promotion.
+
+## [2026-06-17] - Exact-format external methodology audit of the literal current `trade-based-money-laundering` artifact: verdict `AGREE`
+
+Reviewed the literal current user-supplied JSON for `trade-based-money-laundering` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the latest request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline holds, every reading scene carries a `citations[]` array, `Deep case: Lebanese Canadian Bank — the used-car laundromat` satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from FATF / Egmont / BFIU materials, the FinCEN Section 311 finding, the DOJ public forfeiture record, and original analysis rather than prohibited commercial-prep material or ICC rule-text reproduction.
+- Carry-forward instruction: the earlier ICC/UCP-proximity cleanup is holding on the current JSON, so keep this lesson out of further methodology relitigation unless the artifact changes materially. Any remaining review effort should stay in the separate factual-fidelity lane.
+
+## [2026-06-17] - Factual-fidelity rerun of the current `politically-exposed-persons` artifact: verdict still `DISAGREE`
+
+Reviewed the current `politically-exposed-persons` lesson artifact under the explicit factual-fidelity reviewer framing, against the FATF Recommendations PDF (**updated October 2025**), FATF's **June 2013** PEP guidance, and DOJ's **22 October 2020** Goldman Sachs 1MDB resolution press release.
+
+What this pass confirmed:
+- The lesson's core Recommendation `12` architecture remains materially sound on the reviewed source set. The foreign-versus-domestic / international-organisation split, the family-member / close-associate extension, the no-automatic-sunset handling of former PEPs, and the Goldman / Najib amount-date bundle do not surface a new hard contradiction on this rerun.
+- The live Recommendation `22` blocker is now best described as scope compression rather than the earlier stale omission note. `Recommendations 12 and 22, read closely` still compresses the DNFBP triggers into a generic `prepare for or carry out` formula, and `What to carry forward` still narrows Recommendation `22` to `gatekeeper professions`, whereas the FATF text applies Recommendation `12` to DNFBPs in differentiated specified situations that include casinos, real-estate agents, dealers in precious metals / stones, legal-accountancy professionals, and trust and company service providers.
+- The 1MDB deep-case blocker remains unchanged. `Deep case: 1MDB through the PEP lens` / `What to carry forward` still present the prior internal rejection of Jho Low as a private-wealth client as if it were supported by the cited DOJ `22 October 2020` / Malaysia-settlement source bundle. The reviewed DOJ resolution supports the narrower proposition that Goldman control-function personnel knew Low posed significant risk and were on notice of his involvement, with significant red flags ignored or only nominally addressed.
+- Carry-forward fix rule: preserve the current Recommendation `12` / Goldman / Najib amount-date bundle, but tighten the Recommendation `22` wording to the rule's differentiated DNFBP triggers and either add a source that actually carries the prior-private-wealth-rejection fact or narrow the text to the red-flag / control-function knowledge the DOJ materials do support.
+
+## [2026-06-17] - Exact-format external methodology audit of the literal current `sanctions-program-governance` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the latest request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced relative to the earlier 2026-06-17 reruns. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, the Standard Chartered 2012-2019 governance-arc scene still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from OFAC / OFSI guidance, public enforcement documents, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: keep this lesson out of further methodology relitigation unless the artifact changes materially. The live publication issue remains the separate Commerzbank factual-fidelity blocker.
+
+## [2026-06-17] - Factual-fidelity rerun of the in-repo `correspondent-banking-risk` artifact: verdict now `AGREE`
+
+Re-reviewed `generated/cams/lessons/correspondent-banking-risk.json` under the explicit factual-fidelity reviewer framing used in the current audit, against the FATF Recommendations PDF (**updated October 2025**), FATF's **October 2016** correspondent-banking guidance, DOJ's **11 December 2012** HSBC deferred-prosecution public record, and the operator-maintained current facts reference.
+
+What this pass confirmed:
+- The two earlier same-day blockers were draft-version issues and do not survive the current repo artifact. `Banking another bank's risk` now correctly treats correspondent banking as captured through Recommendations `12` to `16`, rather than as one of the Interpretive Note to Recommendation `10`'s own explicit listed examples.
+- The HSBC identity issue is also fixed on the current file. The current citation labels and deep-case scene now name the **joint** deferred prosecution agreement involving `HSBC Holdings plc` and `HSBC Bank USA, N.A.`, which matches DOJ's public record.
+- No new hard contradiction surfaced in the Recommendation `13` / shell-bank / payable-through / KYCC architecture or in the lesson's main HSBC numeric bundle. Carry-forward instruction: treat `correspondent-banking-risk` as cross-cleared on factual fidelity unless the artifact changes materially.
+
+## [2026-06-17] - Methodology rerun of the in-repo `politically-exposed-persons` artifact: verdict still `AGREE`
+
+Re-reviewed `generated/cams/lessons/politically-exposed-persons.json` under the explicit methodology reviewer framing used in the current audit, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced relative to the earlier same-day audit of the literal current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: 1MDB through the PEP lens` still satisfies the named public-enforcement / public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced on the in-repo file. The lesson still appears built from FATF / Wolfsberg materials, DOJ / court public records, and original analysis rather than commercial study-guide material or other prohibited sources.
+- Carry-forward instruction: treat the methodology lane on `politically-exposed-persons` as closed on the current repo artifact unless the lesson changes materially. Any remaining work stays in the separate factual-fidelity lane.
+
+## [2026-06-17] - Methodology-only reviewer rerun of the literal current `sanctions-program-governance` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the exact methodology reviewer framing used in the latest external audit request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced relative to the earlier 2026-06-17 rerun. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, the Standard Chartered 2012-2019 governance-arc scene still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from OFAC / OFSI guidance, public enforcement documents, and original analysis rather than prohibited commercial-prep content or ICC rule text.
+- Carry-forward instruction: do not reopen the methodology lane on this lesson unless the artifact changes materially. The live publication issue remains the separate Commerzbank-overstatement blocker in the factual-fidelity lane.
+
+## [2026-06-17] - Factual-fidelity re-audit of the literal current `sanctions-program-governance` artifact: verdict remains `DISAGREE`, but on a narrower residual
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the explicit factual-fidelity reviewer framing used in the current audit, against the current eCFR text of Appendix A to `31 CFR Part 501`, the DOJ's 9 April 2019 Standard Chartered press release, the FCA Final Notice to Commerzbank AG dated **17 June 2020**, and the already-verified Standard Chartered public-record bundle reflected in project memory.
+
+What this pass confirmed:
+- The earlier 2026-06-13 blocker on OFAC voluntary-self-disclosure mechanics is fixed on the current artifact. The disclosure lane now correctly teaches the Appendix A matrix as `egregious` versus `non-egregious`, with one-half the applicable statutory maximum in the egregious voluntary-self-disclosure row and one-half transaction value (subject to caps) in the non-egregious voluntary-self-disclosure row.
+- The Standard Chartered 2012 / 2014 / 2019 governance arc remains materially usable on the reviewed source set. No new hard contradiction surfaced there on this pass.
+- The remaining publication blocker is the Commerzbank comparator. In `Controls, testing, training: the program's working layer` and quiz `Governance and disclosure judgment` question 2, the lesson overstates the FCA record by calling the cited defect an automated `client-screening` tool `standalone breach`. The Final Notice instead penalizes a broader AML control-framework failure and describes the defective system as an automated tool for monitoring money-laundering risk on transactions for clients; it is one enumerated failing among several.
+- Carry-forward fix rule: keep the current Appendix A and Standard Chartered wording, but rewrite the Commerzbank references so they teach control decay without misdescribing the FCA notice as a standalone client-screening-tool case.
+
+## [2026-06-17] - Factual-fidelity audit of `politically-exposed-persons`: verdict `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `politically-exposed-persons` under the explicit factual-fidelity reviewer framing used in the current audit, against the current FATF Recommendations page / October 2025 Recommendations text, FATF's June 2013 PEP guidance, the DOJ's 20 July 2016 1MDB kleptocracy press release, and the DOJ's 22 October 2020 Goldman Sachs 1MDB resolution press release.
+
+What this pass confirmed:
+- The lesson's core FATF Recommendation `12` architecture is materially sound on the reviewed source set. The foreign-versus-domestic / international-organisation split, the family-member / close-associate extension, the no-automatic-sunset handling of former PEPs, and the Goldman / Najib amount-date bundle do not surface a new hard contradiction on this pass.
+- The first publication blocker is exact scope language under Recommendation `22`. `Recommendations 12 and 22, read closely` and the synthesis wording speak as if the PEP extension runs across DNFBP sectors generally, but Recommendation `22` applies Recommendation `12` to DNFBPs only when they prepare for or carry out the specified activities in the rule text. The shorthand list also truncates `trust and company service providers` and omits dealers in precious metals and stones, which makes the scene too loose on who the rule reaches.
+- The second blocker is citation precision in the 1MDB deep-case lane. `Deep case: 1MDB through the PEP lens` / `What to carry forward` present the prior internal rejection of Jho Low as a private-wealth client as if it were supported by the cited DOJ `22 October 2020` / Malaysia-settlement source bundle. The reviewed DOJ resolution text supports the narrower proposition that Goldman control-function personnel knew Low posed significant risk and were on notice of his involvement, with significant red flags ignored or only nominally addressed; tighten or re-source the more specific prior-rejection claim before publication.
+- Carry-forward fix rule: preserve the current Recommendation `12` foreign/domestic split and the Goldman / Najib amount-date bundle, but rewrite the Recommendation `22` language to the rule's specified DNFBP activities and either add a source that actually carries the prior-private-wealth-rejection fact or narrow the text to the risk/red-flag knowledge the reviewed DOJ materials do support.
+
+## [2026-06-17] - Factual-fidelity audit of `correspondent-banking-risk`: verdict `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `correspondent-banking-risk` under the explicit factual-fidelity reviewer framing used in the current audit, against the operator-maintained current facts reference, the FATF Recommendations PDF (October 2025 edition), FATF's October 2016 correspondent-banking guidance, and DOJ's 11 December 2012 HSBC deferred-prosecution public record.
+
+What this pass confirmed:
+- The lesson's core Recommendation `13` teaching is mostly sound on the reviewed source set. No new hard contradiction surfaced in the five-part respondent-due-diligence architecture, the shell-bank prohibition, the payable-through condition, the KYCC clarification, or the main HSBC amount bundle.
+- One exact FATF-scoping error still blocks publication. `Banking another bank's risk` says correspondent banking `appears among the Interpretive Note to Recommendation 10's higher-risk examples`, but the current note captures higher-risk situations via Recommendations `12` to `16`, including correspondent banking through Recommendation `13`; it does not list correspondent banking as one of its own explicit examples.
+- One deep-case identity error also blocks publication. The lesson and citation labels repeatedly frame the 11 December 2012 matter as if `HSBC Holdings plc` alone entered the deferred prosecution agreement, but DOJ's public record is a joint DPA involving `HSBC Holdings plc` and `HSBC Bank USA, N.A.`. Tighten that named-party wording anywhere the lesson compresses the case caption.
+- Carry-forward instruction: preserve the existing Recommendation `13` / PTA / KYCC architecture and the verified HSBC numeric bundle, but fix the opener's FATF-scoping sentence and the HSBC joint-DPA naming before any re-dispatch or promotion.
+
+## [2026-06-17] - Methodology audit of `politically-exposed-persons`: verdict `AGREE`
+
+Reviewed the literal current user-supplied JSON for `politically-exposed-persons` under the explicit methodology reviewer framing used in the current audit, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- The lesson clears methodology on the current artifact. The allowed/public source discipline holds, every reading scene carries a `citations[]` array, `Deep case: 1MDB through the PEP lens` satisfies the named public-enforcement / public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced on this pass. The lesson does not appear to rely on commercial study-guide material or other prohibited sources; its PEP treatment is built from FATF / Wolfsberg materials, DOJ / court public records, and original analysis.
+- Operationally, treat this lesson's methodology status as stable on the literal current artifact. If it re-enters review, spend follow-up cycles on the separate factual-fidelity lane or on substantive rewrites, not on citation-mechanics or source-discipline relitigation.
+
+## [2026-06-17] - Methodology re-audit of the literal current `sanctions-program-governance` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `sanctions-program-governance` under the explicit methodology reviewer framing used in the current audit, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced relative to the 2026-06-13 pass. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, the Standard Chartered 2012-2019 governance-arc scene still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from OFAC / OFSI guidance, public enforcement documents, and original analysis, not from commercial study-guide material or ICC rule text.
+- Carry-forward instruction: do not reopen the methodology lane on this lesson unless the artifact changes materially. The remaining live issue is still the separate factual-fidelity blocker on OFAC Appendix A voluntary-self-disclosure matrix wording.
+
+## [2026-06-17] - Methodology audit of `correspondent-banking-risk`: verdict `AGREE`
+
+Reviewed the literal current user-supplied JSON for `correspondent-banking-risk` under the explicit methodology reviewer framing used in the current audit, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- The lesson clears methodology on the current artifact. The allowed/public source discipline holds, every reading scene carries a `citations[]` array, `Deep case: HSBC (2012) - the lowest-risk rating in Mexico` satisfies the named public-enforcement deep-case requirement with the 2010 Wachovia matter used as precedent, the scene `teachesConcepts` remain substantively distinct despite repeated topical `conceptTags`, the quiz reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced on this pass. The lesson does not appear to rely on commercial study-guide material or ICC rule-text reproduction; its correspondent-banking teaching is built from FATF / Wolfsberg / public-enforcement materials plus original analysis.
+- Operationally, treat this lesson's methodology status as stable on the literal current artifact. If it re-enters review, spend follow-up cycles on the separate factual-fidelity lane or on substantive rewrites, not on citation-mechanics or source-discipline relitigation.
 
 ## [2026-06-13] - Factual-fidelity re-audit of the literal current `sanctions-evasion-typologies` artifact: verdict now `AGREE`
 
@@ -1214,3 +2294,199 @@ While quota wall #5 blocked dispatches, the session pre-audited all 21 remaining
 Verified clean (no edit needed): time-scoped superlatives in both correspondent lessons (`then-largest`, `of its era`, `at the time among`); `§ 5318(g)` confidentiality scoping in the-us-framework; CTA March-2025 IFR foreign-only scope; full Tornado Cash arc (designation 8 Aug 2022 / Van Loon Nov 2024 / delisting Mar 2025 / Pertsev May 2024 / Storm Aug 2025); PEP R.12 foreign-package framing; FinCEN-examines-no-one in both the US and UK framework lessons; R.37/38/39 mapping in course-synthesis; zero unsourced proportions course-wide.
 
 Resume order at the 11:20 AM window: `sanctions-evasion-typologies` it.2, `sanctions-program-governance` it.1, then `politically-exposed-persons` onward. Both stalled dispatches completed their METHODOLOGY lanes AGREE before the wall; only fidelity verdicts are missing.
+
+## [2026-06-17] - Exact-format external methodology audit of the literal current `politically-exposed-persons` artifact: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `politically-exposed-persons` under the exact external-audit output contract (`VERDICT` / `REASONING` / `SPECIFIC ISSUES`) used in the latest request, against `docs/COURSE-GENERATION-PROMPT.md` v1.1.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. The allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: 1MDB through the PEP lens` still satisfies the named public-enforcement / public-matter deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz still reads as scenario-based rather than certification-format mimicry, and the register remains adult-professional.
+- No IP-compliance blocker surfaced. The lesson still appears built from FATF / Wolfsberg materials, DOJ / court public records, and original analysis rather than prohibited commercial-prep content or other barred sources.
+- Carry-forward instruction: keep `politically-exposed-persons` out of further methodology relitigation unless the artifact changes materially. The only live publication work remains the separate factual-fidelity lane.
+## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact: verdict still `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `the-mlro-cco-role-and-the-compliance-function` again under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations (**updated October 2025**), the FFIEC `BSA Compliance Officer` manual page, and the already-recorded Sonali / Westpac / official Circular 26 bundle.
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the wider FATF / UK / U.S. / Sonali / Westpac teaching bundle. The current same-day review note on those parts still holds.
+- The live publication blocker remains the Bangladesh designation rendering. `One role, three designations`, `The BSA Officer and the CAMLCO`, and `What to carry forward` still use `Deputy CAMLCO` and still imply a broader board / governing-body line than the cited Circular text supports.
+- Carry-forward instruction: if this lesson is revised again, do not reopen the broader bundle on this hash. Tighten only the Bangladesh Circular 26 deputy-title / reporting-line wording unless the artifact changes materially.
+## [2026-06-18] - Exact-format factual-fidelity audit of the literal current `training-and-culture` artifact: verdict `SPLIT`
+
+Reviewed the literal user-supplied JSON for `training-and-culture` under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations (**updated October 2025**), the Basel Committee's July-2020 AML/CFT risk-management guidelines, and the already-verified Westpac public-record chronology used elsewhere in project memory.
+
+What this pass confirmed:
+- The lesson's core bundle is materially sound on the reviewed source set. No hard contradiction surfaced in the FATF Recommendation `18` training requirement, the Basel board/training language, the official `BFIU Circular No. 26` title/date, or the Westpac **21 October 2020** / **AUD 1.3 billion** chronology.
+- The first residual issue is narrative overstatement in `Culture: what happens when policy is silent`: saying the Danske whistleblower's reports were `vindicated in every particular` is stronger than the public record comfortably supports. The reviewed public record supports repeated 2013–2014 warnings and later confirmation of major AML failures, but not that exact absolute formulation.
+- The second residual issue is Westpac wording-tightness. `Culture: what happens when policy is silent` and `What to carry forward` compress the more precise Advisory Panel framing and chronology; the tighter rendering is `technology shortcomings and an immature, reactive non-financial risk culture`, with the leadership resignations in **November 2019** and the Advisory Panel report in **June 2020**.
+- The third residual issue is source-specific phrasing in `Healthy and unhealthy: the signal pairs` / `Measuring culture: the indicator set`: `noted for continued monitoring` is treated as a Westpac-specific committee phrase. Unless the next revision can pin that exact wording to the cited record, it should be recast as analytic shorthand rather than presented as a verified phrase from the record.
+- Carry-forward instruction: treat the lesson as mostly publishable unless the artifact changes materially; if it is revised again, spend the next fidelity pass only on those wording-tightening issues and do not reopen the otherwise stable FATF / Basel / Westpac bundle.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact: verdict now `AGREE`
+
+Reviewed the literal current lesson JSON for `the-mlro-cco-role-and-the-compliance-function` under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations page (**as amended October 2025**), the FATF methodology page (**as amended December 2025**), the FCA Sonali Bank (UK) final notice, and the official BFIU Circular No. 26 page/PDF.
+
+What this pass confirmed:
+- Earlier same-day Bangladesh-designation `DISAGREE` notes are stale against the live artifact. The current JSON now uses the official deputy title `Deputy Chief Anti-Money Laundering Compliance Officer (DCAMLCO)`, the official Circular 26 title/date, and the supported reporting line to the `Managing Director or Chief Executive Officer`, while correctly limiting the foreign-bank add-on to highest-management-committee membership.
+- No new hard contradiction surfaced in the broader FATF Recommendation `18` / `31 CFR 1020.210` / Sonali **12 October 2016** / Westpac **21 October 2020** bundle on this pass.
+- Carry-forward instruction: keep this lesson out of further factual-fidelity relitigation unless the artifact changes materially. Any remaining review work belongs to the separate methodology lane's Westpac accountability-source issue.
+
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `training-and-culture` artifact: verdict still `SPLIT`, with narrower live issues than the earlier same-day note
+
+Reviewed the literal current user-supplied JSON for `training-and-culture` under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations page/PDF (**updated October 2025**), the Basel Committee's July-2020 AML/CFT risk-management guidelines, the official BFIU Circular No. 26 page/PDF, and DOJ's **13 December 2022** Danske resolution.
+
+What this pass confirmed:
+- The lesson's core regulatory / chronology bundle still holds on the reviewed source set. No hard contradiction surfaced in FATF Recommendation `18`, the Basel governance/training framing, the official Circular 26 title/date, or the Westpac **21 October 2020** / **AUD 1.3 billion** / **November 2019** sequence as taught at high level.
+- The earlier same-day fidelity note is stale in one specific respect: the literal current JSON no longer says the Danske whistleblower's reports were `vindicated in every particular`. Do not reuse that wording on this artifact hash.
+- The actual live Danske issue is narrower. `Culture: what happens when policy is silent` still slightly overreads the cited public record by describing a whistleblower whose `repeated warnings were later borne out, years after the institution metabolised them as a nuisance`; the reviewed DOJ/public bundle supports ignored warning(s) and later confirmation of serious AML failures, but not the whole sentence at that strength.
+- The actual live Westpac issue is still wording-tightness, not hard chronology failure. `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward` still compress the tighter Advisory Panel rendering and timeline. Safer shorthand remains `technology shortcomings and an immature, reactive non-financial risk culture`, with leadership fallout in **November 2019** and the report in **June 2020**.
+- `Healthy and unhealthy: the signal pairs` is less problematic on the current hash than the older memory note suggested, because the narration now explicitly marks `noted for continued monitoring` as the lesson's shorthand rather than pinning it as a verified Westpac committee phrase.
+- Carry-forward instruction: if `training-and-culture` is revised again, keep the next fidelity pass scoped only to the narrowed Danske sentence and the Westpac wording/chronology compression. Do not reopen the otherwise stable FATF / Basel / BFIU / Westpac bundle on stale same-day notes.
+## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact: verdict still `AGREE`
+
+Reviewed the literal current generated lesson file for `the-mlro-cco-role-and-the-compliance-function` under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations page/PDF (**updated October 2025**), `31 CFR 1020.210`, `31 U.S.C. § 5321`, the Basel Committee's July-2020 AML/CFT risk-management guidelines, the FCA Sonali Bank (UK) final notice dated **12 October 2016**, and the already-verified Westpac / official Circular 26 bundle.
+
+What this pass confirmed:
+- The current generated lesson file still carries the post-fix Bangladesh wording, not the stale same-day `DISAGREE` variant: the deputy is `Deputy Chief Anti-Money Laundering Compliance Officer (DCAMLCO)`, the reporting line is to the `Managing Director or Chief Executive Officer`, and the foreign-bank add-on is limited to highest-management-committee membership.
+- No new hard contradiction surfaced in the wider FATF / Basel / U.S. BSA-officer / Sonali / Westpac bundle on this rerun, so the lesson remains factual-fidelity `AGREE`.
+- Carry-forward instruction: do not reopen factual-fidelity review for this lesson on stale Bangladesh notes unless the artifact changes materially. The only live issue remains the separate methodology/source-discipline point about the Westpac leadership-fallout teaching.
+## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal current `training-and-culture` artifact: verdict still `SPLIT`
+
+Reviewed the literal current user-supplied JSON for `training-and-culture` again under the exact cross-check-reviewer output contract against the FATF Recommendations page/PDF (**updated October 2025**), the Basel Committee's July-2020 AML/CFT risk-management guidelines, and DOJ's **13 December 2022** Danske resolution.
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the lesson's core FATF Recommendation `18` / Basel / Westpac amount-date bundle.
+- The live residuals remain the narrower same-day pair already recorded elsewhere in memory: `Culture: what happens when policy is silent` still slightly overreads the DOJ/public Danske whistleblower record, and the Westpac shorthand across the opening / deep-case / synthesis scenes still compresses the tighter June-2020 Advisory Panel wording and the **November 2019** leadership-fallout chronology.
+- Carry-forward instruction: if `training-and-culture` is touched again, keep the next factual-fidelity pass scoped only to those wording-tightening points and do not reopen the otherwise stable regulatory / chronology bundle unless the artifact changes materially.
+## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal current `the-mlro-cco-role-and-the-compliance-function` artifact from the user-supplied JSON: verdict still `AGREE`
+
+Reviewed the literal current user-supplied JSON for `the-mlro-cco-role-and-the-compliance-function` under the exact cross-check-reviewer output contract against the maintained facts reference, the FATF Recommendations page/PDF (**updated October 2025**), `31 CFR 1020.210`, `31 U.S.C. § 5321`, the Basel Committee's July-2020 AML/CFT risk-management guidelines, the FCA Sonali Bank (UK) final notice dated **12 October 2016**, and the official BFIU Circular No. 26 page/PDF.
+
+What this pass confirmed:
+- The pasted artifact still matches the post-fix same-day lesson variant already cleared elsewhere in memory: the Bangladesh deputy title is `Deputy Chief Anti-Money Laundering Compliance Officer (DCAMLCO)`, the reporting line is to the `Managing Director or Chief Executive Officer`, and the foreign-bank add-on is limited to highest-management-committee membership.
+- No new hard contradiction surfaced in the FATF / UK / U.S. / Bangladesh / Sonali / Westpac bundle on this rerun, so the lesson remains factual-fidelity `AGREE`.
+- Carry-forward instruction: do not reopen this lesson on stale Bangladesh-designation or Westpac-fidelity notes unless the artifact changes materially. The only same-day live issue belongs to the separate methodology/source-discipline lane, not this factual-fidelity lane.
+
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `training-and-culture` artifact: verdict still `DISAGREE`
+
+Reviewed the unchanged literal user-supplied JSON for `training-and-culture` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No new methodology blocker surfaced on the current artifact. Every reading scene still carries `citations[]`, the Westpac deep case still supplies a valid named public-enforcement matter, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker remains source discipline. `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward` still use Westpac's board-commissioned review as substantive support for the culture/root-cause teaching.
+- Carry-forward instruction: keep `training-and-culture` out of further methodology relitigation unless the artifact changes materially. If the lesson is revised again, the next methodology touch should stay tightly scoped to removing or demoting that commissioned-review support and re-anchoring the teaching in allowed source types only.
+## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal current `training-and-culture` artifact against the stored lesson file and official-source spot checks: verdict still `SPLIT`
+
+Reviewed the literal user-supplied JSON for `training-and-culture` under the exact cross-check-reviewer output contract against the live `generated/cams/lessons/training-and-culture.json`, the FATF Recommendations page/PDF (**updated October 2025**), the Basel Committee's July-2020 AML/CFT risk-management guidelines, and DOJ's **13 December 2022** Danske resolution.
+
+What this pass confirmed:
+- The pasted artifact matches the stored generated lesson file on the live fidelity issue set; no stale-file mismatch surfaced.
+- No new hard contradiction surfaced in FATF Recommendation `18`, the Basel governance/training framing, the official `BFIU Circular No. 26` title/date, or the Westpac / Danske amount-date anchors.
+- The actual live residuals remain the same narrow pair already emerging elsewhere in same-day memory: `Culture: what happens when policy is silent` still slightly overreads the DOJ/public Danske whistleblower record, and the Westpac shorthand across `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward` still compresses the tighter June-2020 Advisory Panel wording plus the **November 2019** / **21 October 2020** chronology.
+- Carry-forward instruction: if `training-and-culture` is revised again, keep the next factual-fidelity touch limited to those wording-tightening points and do not reopen the otherwise stable FATF / Basel / BFIU / Westpac / Danske bundle unless the artifact changes materially.
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `training-and-culture` artifact against the stored lesson file: verdict still `DISAGREE`
+
+Reviewed the stored `generated/cams/lessons/training-and-culture.json` file and the literal user-supplied JSON against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the literal current artifact. Every reading scene still carries `citations[]`, the Westpac deep case still supplies a valid named public-enforcement matter, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker is unchanged and remains source discipline only: `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward` still rely substantively on Westpac's board-commissioned review / `institution's own published review` for the culture/root-cause teaching.
+- Carry-forward instruction: if `training-and-culture` is revised again, keep the next methodology touch tightly scoped to demoting that commissioned-review material to secondary context and re-anchoring the substantive culture/root-cause teaching in allowed public-enforcement, government, standard-setter, academic, or original-analysis sources.
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `training-and-culture` artifact after exact-text verification: verdict still `SPLIT`, but the live residual is narrower than the last same-day note
+
+Reviewed the literal user-supplied JSON for `training-and-culture` again under the exact cross-check-reviewer output contract, checking it line by line against the live `generated/cams/lessons/training-and-culture.json` before closing the turn.
+
+What this pass confirmed:
+- The pasted artifact still matches the stored generated lesson file on the reviewed text; no stale-file mismatch surfaced.
+- The earlier same-day Danske notes are now stale in a second respect, not only on `vindicated in every particular`. The literal current artifact no longer uses the stronger `repeated warnings were later borne out` / `metabolised ... as a nuisance` phrasing either; the current Danske whistleblower sentence is materially closer to DOJ's **13 December 2022** public record.
+- No new hard contradiction surfaced in FATF Recommendation `18`, the Basel July-2020 governance/training framing, the official `BFIU Circular No. 26` title/date, or the main Westpac / Danske amount-date anchors.
+- The actual reviewer-visible residual is now mainly Westpac wording/chronology compression: `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward` still merge together the AUSTRAC / Federal Court conduct record, the **November 2019** leadership fallout, and the June-2020 Advisory Panel's sharper `technology shortcomings and an immature, reactive non-financial risk culture` wording more tightly than ideal.
+- Carry-forward instruction: if `training-and-culture` is revised again, keep the next factual-fidelity touch tightly scoped to that Westpac source/chronology tightening point and do not reopen the otherwise stable FATF / Basel / BFIU / Westpac / Danske bundle unless the artifact changes materially.
+## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `DISAGREE`
+
+Reviewed the literal current user-supplied JSON for `case-study-1mdb-and-the-private-banking-failure-mode` again under the exact cross-check-reviewer output contract against the Goldman Sachs **22 October 2020** DPA / Statement of Facts and the FINMA **24 May 2016** / **11 October 2016** public actions, using the earlier same-day 1MDB fidelity note as the comparison point.
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the otherwise stable Good Star / fake-Aabar / Goldman / Najib bundle. The **USD 6.5 billion** / **USD 606 million** / **USD 1.6 billion+** Goldman figures, the **22 October 2020** DPA + Malaysian-subsidiary guilty plea, and the **July 2020** Malaysia settlement framing still hold materially on the reviewed source set.
+- The first live blocker remains supervisory-outcome precision. Keep the BSI / Falcon resolution wording narrow to the reviewed public record: MAS shut **BSI's Singapore operations** and **Falcon's Singapore branch**, while only **BSI** was forced into integration / dissolution conditions by FINMA.
+- The second live blocker remains source-overattribution in the `institutions that said no` lane. The public DOJ forfeiture complaints do not themselves visibly support the lesson's `filed reports` / `financial-intelligence trail` teaching in `The institutional cast: who saw what` and the linked quiz / synthesis explanations.
+- Carry-forward instruction: if `case-study-1mdb-and-the-private-banking-failure-mode` is revised again, keep the next fidelity pass tightly scoped to those two issues and do not reopen the otherwise stable Goldman / Najib / Good Star / fake-Aabar / Malaysia-settlement bundle unless the artifact changes materially.
+## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal current `training-and-culture` artifact for the user-facing audit close: verdict still `SPLIT`
+
+Reviewed the literal user-supplied JSON for `training-and-culture` again under the exact cross-check-reviewer output contract against the live `generated/cams/lessons/training-and-culture.json`, the FATF Recommendations page/PDF (**updated October 2025**) including Recommendation `18`, the Basel Committee's July-2020 AML/CFT risk-management guidelines, and the already-verified Westpac / DOJ-Danske source bundle.
+
+What this pass confirmed:
+- The earlier same-day Danske overread note is stale on the current artifact hash. The current whistleblower sentence is materially closer to the public record, and no new hard contradiction surfaced in the FATF / Basel / BFIU Circular No. 26 / Westpac amount-date anchors.
+- The actual remaining reviewer-visible issue is now mainly Westpac source / chronology compression. `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward` still merge the AUSTRAC / Federal Court conduct record, the **November 2019** leadership fallout, and the June-2020 Advisory Panel's sharper `technology shortcomings and an immature, reactive non-financial risk culture` wording more tightly than ideal.
+- Carry-forward instruction: if `training-and-culture` is revised again, keep the next factual-fidelity touch tightly scoped to that Westpac wording / chronology tightening point and do not reopen the otherwise stable FATF / Basel / BFIU / Westpac / Danske bundle unless the artifact changes materially.
+## [2026-06-18] - Exact-format methodology no-delta rerun of the literal current `training-and-culture` artifact under the current in-turn audit contract: verdict still `DISAGREE`
+
+Reviewed the stored `generated/cams/lessons/training-and-culture.json` file and the literal user-supplied JSON again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced on the literal current artifact. Every reading scene still carries `citations[]`, the Westpac deep case still supplies a valid named public-enforcement matter, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live blocker remains source discipline only: `The controls behind the controls`, `Culture: what happens when policy is silent`, `Deep case: Westpac - culture as the root-cause finding`, and `What to carry forward` still depend substantively on Westpac's commissioned / institution-published review layer for the culture-root-cause teaching.
+- Carry-forward instruction: if `training-and-culture` is revised again, keep the next methodology touch tightly scoped to demoting that commissioned-review material to secondary context and re-anchoring the substantive culture / root-cause teaching in allowed public-enforcement, government, standard-setter, academic, or original-analysis sources only.
+## [2026-06-18] - Direct primary-source recheck of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact before user-facing close-out: verdict still `DISAGREE`, narrowed to two evidence-attribution issues
+
+Reviewed the pasted lesson artifact again under the exact factual-fidelity audit contract against the DOJ **20 July 2016** 1MDB forfeiture-release / linked complaint materials and the already-verified Goldman primary-source notes.
+
+What this pass confirmed:
+- The current artifact is narrower and cleaner than some same-day repo-memory shorthand on BSI / Falcon outcomes suggested; the live fidelity problem is better described as evidence-attribution overreach rather than a broad supervisory-chronology defect.
+- `The institutional cast: who saw what` and quiz `The synthesis exercise` still teach that Goldman had already declined **Jho Low** as a private-wealth client on source-of-wealth grounds. The reviewed DOJ / Goldman primary-source bundle supports red flags and control-function awareness, but not that the cited public resolution itself documents that prior private-wealth rejection.
+- `The institutional cast: who saw what`, `The synthesis exercise`, and `What to carry forward` still teach a `refusals / exits / reports` controlled-experiment narrative as if it comes from the public DOJ forfeiture complaints, while the reviewed public complaints visibly supply flow / asset reconstruction rather than that reporting-history story.
+- Carry-forward instruction: if this lesson is revised again, keep the next fidelity touch tightly scoped to those two evidence-attribution fixes and do not reopen the otherwise stable Good Star / fake-Aabar / Goldman / Najib / MAS-FINMA bundle unless the artifact changes materially.
+## [2026-06-18] - Exact-format factual-fidelity rerun of the literal current `course-synthesis-and-exam-preparation` artifact after live-file and outline verification: verdict now `AGREE`
+
+Reviewed the literal user-supplied JSON for `course-synthesis-and-exam-preparation` again under the exact cross-check-reviewer output contract, checking it directly against the live `generated/cams/lessons/course-synthesis-and-exam-preparation.json`, `generated/cams/outline.json`, the maintained facts reference, and the already-cleared Module 3 `POCA section 333A` / `31 U.S.C. § 5318(g)(2)` wording pattern.
+
+What this pass confirmed:
+- The earlier same-day `SPLIT` note is stale against the current artifact hash. The live scenario-three explanation no longer carries the older blanket `no customer or RM disclosure` overstatement; it now keeps the point in the narrower `report has been made / investigation contemplated where prejudice follows, subject to statutory exceptions` lane already accepted elsewhere in the course.
+- No new hard contradiction surfaced in the lesson's core fidelity bundle. The deep-case Danske facts still align with the maintained facts pack (`13 December 2022`, `~USD 2 billion`, `USD 178.6 million` within `~USD 413 million`, `~USD 160 billion` through U.S. correspondent banks `2007–2016`), and the FATF-list / `R.19` / AMLA chronology fixes remain intact.
+- The course-shape numerics used in the synthesis scenes were also verified against the live outline: the course has `9` modules and `40` lessons, so `Nine modules` and `Forty lessons later` are in bounds on the literal current artifact.
+- Carry-forward instruction: keep `course-synthesis-and-exam-preparation` out of further factual-fidelity relitigation unless the artifact changes materially.
+
+## [2026-06-18] - Direct DOJ/Goldman/FINMA recheck of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `DISAGREE`, but the live blocker is now one unsupported cross-institution narrative
+
+Reviewed the pasted lesson artifact under the exact factual-fidelity audit contract against DOJ's **20 July 2016** 1MDB forfeiture-release / linked complaint materials, DOJ's **22 October 2020** Goldman Sachs resolution page, and FINMA's **24 May 2016** / **11 October 2016** public actions.
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the lesson's stable Good Star / fake-Aabar / Goldman / Najib / MAS-FINMA amount-date bundle. The Goldman **USD 6.5 billion** / **USD 606 million** / **USD 1.6 billion+** figures and the Malaysia-settlement chronology still materially hold on the reviewed source set.
+- The earlier same-day memory note about Goldman having already declined **Jho Low** as a private-wealth client is stale on the current artifact hash; that proposition is not the live blocker on the literal current JSON.
+- The actual hard issue is source-attribution overreach in the lesson's governing explanatory frame. `The institutional cast: who saw what`, `The failure analysis, module by module`, `Module by module: what would have caught what`, `The synthesis exercise`, and `What to carry forward` still teach a controlled-experiment story of institutions that declined / exited / filed versus institutions that accommodated, while attributing that proposition to the cited DOJ forfeiture complaints or to a synthesis across the cited primary-source bundle.
+- The reviewed DOJ forfeiture complaints visibly reconstruct flows, shell vehicles, and assets. They do not themselves document that broader refusals / exits / filings history. Carry-forward instruction: if this lesson is revised again, keep the next factual-fidelity touch tightly scoped to re-sourcing or softening that cross-institution narrative and do not reopen the otherwise stable Good Star / fake-Aabar / Goldman / Najib / MAS-FINMA bundle unless the artifact changes materially.
+
+## [2026-06-18] - Exact-format methodology rerun of the literal current `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `AGREE`, with repo-memory cleanup
+
+Reviewed the pasted lesson artifact again under the exact methodology audit contract against the live `generated/cams/lessons/case-study-1mdb-and-the-private-banking-failure-mode.json` file and `docs/COURSE-GENERATION-PROMPT.md` v1.1 before user-facing close-out.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. Allowed/public source types still hold, every reading scene carries `citations[]`, the 1MDB / Goldman / MAS / FINMA public-record arc still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The repo-memory state needed a narrow cleanup rather than a lesson verdict change. `CLAUDE.md` now matches the later same-day primary-source note that the older Goldman-private-wealth-rejection point is stale on this artifact hash.
+- Carry-forward instruction: keep `case-study-1mdb-and-the-private-banking-failure-mode` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane, where the sole live issue is the over-attributed cross-institution `declined / exited / filed` narrative.
+
+## [2026-06-18] - Exact-format methodology rerun of the pasted `case-study-1mdb-and-the-private-banking-failure-mode` artifact under the explicit no-citation-mechanics-relitigation brief: verdict still `AGREE`
+
+Reviewed the pasted lesson JSON against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact methodology-only audit contract from the user-facing brief.
+
+What this pass confirmed:
+- The brief's carve-out for citation mechanics does not change the substantive methodology result on the current artifact. Allowed/public source types still hold, every reading scene still carries `citations[]`, the 1MDB / Goldman / MAS / FINMA public-record arc still supplies a valid named deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-1mdb-and-the-private-banking-failure-mode` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-18] — Codex Pro batch: Module 7 + Module 8 cross-check completed (crash-recovered); 12 cleared, 3 design-flagged
+
+Session opened recovering from a PC restart that interrupted the Codex Pro cross-check batch mid-run. No work lost: the four lessons in flight at the crash (`real-estate-cash-intensive...`, `the-us-framework`, `the-uk-framework`, `the-eu-framework-and-the-aml-package`) had all reached **SPLIT = cleared-with-fix** on disk; corrected the stale CLAUDE.md fidelity lines (US/UK were showing DISAGREE from earlier iterations).
+
+Then ran the remaining backlog — **Module 6's `the-bangladesh-framework`, all of Module 7 (Governance), all of Module 8 (Enforcement)** — through the inline-fix + `crosscheck-lesson.ts` loop on Codex Pro (running slow, ~10 min/dispatch; rolling window of ~3).
+
+**Course-wide fix:** `Master Circular No. 26` → official `BFIU Circular No. 26: Instructions to be followed by the schedule banks for prevention of money laundering, terrorist financing and proliferation financing (16 June 2020)`. Two independent Codex verdicts (Bangladesh, three-lines) flagged "Master Circular" as wrong against the maintained facts reference; normalized the name across **19 lesson files** (69 instances) and upgraded active Module 7/8 lessons' circular citations to the full official title. The 15 already-cleared lessons got the name fix as a post-clearance precision touch (Egmont-title precedent) — no re-dispatch.
+
+**Recurring Pro-reviewer themes this session:** (1) the full BFIU official title in every circular citation; (2) the Commerzbank FCA 17-Jun-2020 notice is a **transaction-monitoring / broader AML-control-framework** failure, NOT a client-screening case (hit independent-audit + how-to-read, same correction as sanctions-program-governance); (3) bank-commissioned reports (B&H, Westpac Advisory Panel) are **secondary context only, never substantive authority** — drove deep re-anchoring of three-lines, training-and-culture, the Danske + Westpac case studies; (4) exact statutory precision (MLPA s.2(v)(ii) smuggling-abroad = money-laundering conduct itself not a "predicate"; ACC-or-ACC-authorised investigation; DCAMLCO full title; MD/CEO reporting line; SC NYDFS 6-Aug show-cause vs 14-Aug settlement vs Sept consent order; HSBC joint DPA with Bank USA N.A.; DOJ Danske 2008-2016 / Danish FSA 3-May-2018; POCA 333A scope; FATF lists ≠ screening lists; AMLA 2027 selection / 2028 supervision).
+
+**CLEARED — 12:** real-estate, the-us-framework, the-uk-framework, the-eu-framework (the 4 recovered SPLITs), `three-lines-of-defence` (AGREE it.4), `the-bangladesh-framework` (cleared-with-fix it.5 — 5 iterations, most fidelity-dense), `independent-audit-of-aml-cft` (AGREE it.2), `how-to-read-an-enforcement-action` (AGREE it.2), `the-mlro-cco-role-and-the-compliance-function` (AGREE it.5), `case-study-correspondent-banking-failures` (AGREE it.3), `case-study-westpac-and-the-litepay-channel` (AGREE it.1, pre-fixed), `course-synthesis-and-exam-preparation` (AGREE it.3 — added a dedicated DOJ/FSA-grounded Danske deep-case scene + 4 fidelity fixes).
+
+**DESIGN-FLAGGED FOR RIPON — 3 (same root conflict):** `training-and-culture` (Westpac culture-root-cause premise), `case-study-the-danske-bank-estonia-affair` (four-control-failures structure), `case-study-1mdb-and-the-private-banking-failure-mode` (cross-institution controlled-experiment thesis). All three: the generation brief specified a central organizing framing the Pro reviewer's strict v1.1 source discipline rejects as bank-commissioned-derived or unsourced-cross-institution-inference — and the rejection **persists across 5-8 iterations even after every literal reference is removed and the substance is re-anchored to the DOJ/FSA/AUSTRAC public record**, because the reviewer holds the FRAMING ITSELF (not the wording) is the problem. All three are **methodology-AGREE on every dimension except that premise**, and fidelity-AGREE (danske, after the 2008-2016 + 3-May-2018 + amount fixes) or fidelity-near (training SPLIT-soft; 1mdb amounts/dates sound). This contradicts CLAUDE.md's documented "cleared methodology boundary" (the brief explicitly listed "Danske 4th angle — B&H as named public record" and "Westpac Advisory Panel June 2020 culture root-cause" as the intended Module 7/8 angles). Two review lanes also directly contradict on training-and-culture (methodology: remove the Advisory Panel; fidelity: keep its precise "immature, reactive non-financial risk culture" wording).
+
+**DECISION NEEDED:** (a) accept the 3 lessons as-is, overruling the Pro reviewer on these (the framings are pedagogically valuable, fidelity is sound, the brief sanctioned them, and the four-control-failures / governance-is-the-variable framings are generic; **recommended**); or (b) restructure the 3 to drop the brief's organizing framings (major pedagogical surgery). The Pro reviewer's v1.1 source discipline is over-applying to standard control taxonomies and pedagogical inferences in a way the brief did not anticipate.
+
+Caution learned: when a reviewer flags a recurring class (title, Commerzbank, B&H, a comparative claim), sweep ALL sites at once (citations, body, narration, quiz prompts AND explanations, slide items) — the reviewer hunts exhaustively and one missed instance costs a full ~10-min iteration.
