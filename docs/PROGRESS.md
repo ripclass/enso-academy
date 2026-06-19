@@ -1,3 +1,39 @@
+## 2026-06-19 - Literal current Module 10 assessment now clears answer-key / factual-fidelity review at `AGREE`
+
+- Re-ran the exact user-facing answer-key / second-correct-answer / distractor-wrongness / explanation-consistency audit on the literal user-pasted and repo `generated/cams/assessment/the-broader-financial-crime-landscape.json` artifact against the maintained 2026-06-19 facts reference.
+- Current verdict is `AGREE`. No live wrong-key, second-correct-answer, wrong-rationale, or facts-reference contradiction survived on the visible current hash; the earlier same-day seven-item option-corruption `DISAGREE` note and the later facilitation-payments truncation `SPLIT` note are both stale for the current JSON.
+- Carry-forward: treat Module 10 as promotion-safe on answer-key / factual-fidelity grounds unless the artifact changes materially. The only reviewer-visible residual on this module remains the separate methodology softness on a small recall-leaning subset of stems.
+
+## 2026-06-19 - Exact-format user-facing methodology rerun of Module 10 assessment stays `SPLIT`
+
+- Re-audited the literal user-pasted `generated/cams/assessment/the-broader-financial-crime-landscape.json` set against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR 0015 / 0016 / 0019 / 0020 under the exact cross-check-reviewer output contract.
+- Current verdict remains `SPLIT`, not the older same-day option-corruption `DISAGREE`: originality, durability, domain/tag scope, and adult-professional register stay in bounds on the visible current hash.
+- The only live reviewer-visible issues are format-softness on four recall-leaning stems: `A retail customer reports that a caller posing as the bank's fraud team...`, `Two clients each reduce their tax bill...`, `You are assessing a money-remittance business...`, and `A compliance team is briefed that a foreign ruling family...`.
+- Carry-forward: if Module 10 is touched again, do not rebuild the bank or reopen answer-key arguments; just consider tightening that small subset back toward fuller scenario-application before promotion.
+
+## 2026-06-19 - Module 10 assessment methodology rerun narrowed to scenario-format softness
+
+- Rechecked the literal user-pasted and repo `generated/cams/assessment/the-broader-financial-crime-landscape.json` artifact under the exact v1.1 cross-check-reviewer methodology brief after rereading `docs/COURSE-GENERATION-PROMPT.md` and ADR 0015 / 0016 / 0019 / 0020.
+- The older same-day Module 10 option-corruption note is stale on the current visible hash. The keyed answers, explanations, and wrong-answer rationales now align on the stems that had previously been flagged.
+- Current methodology verdict is `SPLIT`, not hard `DISAGREE`: originality, durability, domain/tag scope, and adult-professional register stay in bounds, but several items remain too recall-like for the scenario-application standard.
+- Reviewer-visible stems on this pass were `Why does authorized push payment (APP) fraud evade many traditional fraud controls?`, `What distinguishes criminal tax evasion from lawful tax avoidance?`, `Why do money services businesses and payment service providers carry concentrated money-laundering risk?`, and `How is grand corruption (the systematic looting of state resources by senior officials) typically connected to the financial system that AML controls protect?`.
+
+## 2026-06-19 - Module 9 assessment methodology rerun now returns `AGREE`
+
+- Re-reviewed the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact v1.1 cross-check-reviewer methodology brief after the earlier same-day option-corruption note.
+- Current artifact is clean on the methodology axes that matter for promotion: original scenario-based items, no volatile current-fact dependency, four plausible options with explanation and wrong-answer rationales on every question, Domain D assignments that fit the content, and `conceptTags` that stay within the module tag set.
+- The earlier same-day Module 9 `DISAGREE` / option-corruption memory is stale on the current hash; the repo file now matches the repaired pasted artifact rather than the broken one-question-lag version.
+- Carry-forward: keep Module 9 out of further assessment relitigation unless the text changes materially; focus question-bank repair effort on Module 10 and on bank-deepening / promotion work.
+
+## 2026-06-19 - Factual-fidelity / answer-key audit of `the-broader-financial-crime-landscape` assessment confirms hard option corruption
+
+Reviewed the literal user-supplied / stored `generated/cams/assessment/the-broader-financial-crime-landscape.json` artifact against the maintained 2026-06-19 facts reference under the exact user-facing verdict format.
+
+- Result is `DISAGREE`; the blocker is answer-key correctness, not only methodology shape.
+- Seven questions currently have no valid answer because the keyed option text no longer matches the stem or the explanation: the foreign-PEP private-banking item, the FCPA accounting-provisions item, the CRS self-certification mismatch item, the insurance early-surrender item, the MSB/PSP structural-risk item, the accountant gatekeeper item, and the cross-sector red-flag item.
+- The corruption pattern is the same one-question-lag / copied-option drift already seen elsewhere: the explanation and wrong-answer rationales still describe the intended answer, but the available keyed option has been replaced by text from a neighbouring question.
+- Carry-forward: fix option text / `correctOptionId` / explanation alignment first, then rerun the exact-format assessment review. The recall-style `tax evasion vs avoidance` stem is secondary and should only be tightened after the hard key defects are repaired.
+
 ## 2026-06-19 - Direct-source factual-fidelity rerun of `the-life-of-a-financial-intelligence-product` corrects the stale `SPLIT` to `AGREE`
 
 Reviewed the literal user-supplied / stored `the-life-of-a-financial-intelligence-product` artifact again under the exact factual-fidelity cross-check-reviewer brief, this time line-checking the pasted JSON and repo copy against the FATF Recommendations page + **Updated October 2025** PDF, the DOJ **6 September 2018** Park Jin Hyok press release, and the maintained 2026-06-19 facts reference.
@@ -3124,3 +3160,43 @@ Reviewed the literal pasted `the-three-lines-of-defence` artifact again under th
 - Test-integrity applied: positions balanced via shuffle-assessment-positions.js (M9 a5/b5/c5/d5; M10 a5/b5/c5/d4); length-flipped so correct==longest is M9 8/20, M10 9/19 (defeats both 'pick a position' and 'pick longest').
 - Bank now: 219 questions / 234 glossary across 11 module files. By domain A52(24%) / B55(25%) / C92(42%) / D20(9%) — D was 0; all four domains now covered. Not yet at the A30/B20/C30/D20 target or the 1,000+ size — that's the remaining depth work (deepen all modules toward ~130 each; grow A and D, trim C-heaviness).
 - New assessment sets are gitignored under generated/cams/assessment/ and NOT yet promoted; per discipline they need their own Codex cross-check before promotion to the draft question_bank.
+## 2026-06-19 - Assessment methodology audit of `tools-and-technologies-to-fight-financial-crime` recorded as `DISAGREE`
+
+- Reviewed the literal user-supplied JSON and matching repo artifact at `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` under the exact v1.1 cross-check-reviewer brief.
+- No IP/originality, durability, domain-assignment, tag-scope, or adult-register blocker surfaced on the current text. The questions stay concept-durable and scenario-based overall.
+- The ship blocker is answer-option integrity. At least nine questions have cross-question option contamination, where the keyed correct option and explanation no longer answer the stem: the `biometric authentication` proofing item, selfie-spoofing / liveness item, external-data-reliance item, fuzzy-threshold item, stale-lists / dirty-data item, name-vs-payment-screening item, ATL-vs-BTL threshold-proof item, vendor-default-thresholds item, and ML-explainability-for-SAR-actionability item.
+- The pattern looks mechanical rather than conceptual: several "correct" options are clearly copied from the immediately preceding question while the explanation and wrong-answer rationales still describe the intended answer. Carry-forward: repair option text / `correctOptionId` / explanation alignment first, then rerun the assessment review before any promote step.
+## 2026-06-19 - Assessment methodology audit of `the-broader-financial-crime-landscape` recorded as `DISAGREE`
+
+- Reviewed the literal user-supplied JSON and matching repo artifact at `generated/cams/assessment/the-broader-financial-crime-landscape.json` under the exact v1.1 cross-check-reviewer brief.
+- No IP/originality, durability, domain-assignment, tag-scope, or adult-register blocker surfaced on the current text overall. The questions are mostly original, adult-professional, and concept-durable.
+- The ship blocker is answer-option integrity. Multiple items have cross-question option contamination, where the keyed correct option and explanation no longer answer the stem: the foreign-PEP private-banking item, the FCPA accounting-provisions item, the CRS self-certification item, the insurance early-surrender item, the MSB/PSP risk item, the accountant gatekeeper item, and the cross-sector red-flags item.
+- Secondary methodology issue: `What distinguishes criminal tax evasion from lawful tax avoidance?` and `Why do money services businesses and payment service providers carry concentrated money-laundering risk?` are too recall-like for the scenario-application standard even where the factual content is broadly right.
+- Carry-forward: repair option text / `correctOptionId` / explanation alignment first, then rerun the assessment review before any promote step.
+
+## 2026-06-19 - Answer-key / factual-fidelity rerun of `tools-and-technologies-to-fight-financial-crime` still returns `DISAGREE`
+
+- Re-reviewed the literal pasted/user-supplied Module 9 assessment artifact under the stricter answer-key-correctness / distractor-wrongness / explanation-consistency brief, using the same JSON already stored in `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json`.
+- No new factual-regulatory contradiction surfaced in the surviving items; the blocker is still mechanical option corruption inside the assessment itself.
+- The literal pasted artifact still has multiple stems where the keyed option is copied from a neighbouring question or otherwise does not answer the stem, while the explanation and wrong-answer rationales continue to describe a different intended answer. The hard-broken set still includes the proofing-vs-authentication item, selfie/liveness item, external-data-reliance item, fuzzy-threshold item, stale-lists / dirty-data item, name-vs-payment-screening item, ATL-vs-BTL threshold item, and vendor-default-thresholds item; the ML-explainability / SAR-actionability item remains reviewer-visible because its keyed answer text is still a generic carry-over from the prior ML question rather than the stem-specific point.
+- Carry-forward: treat the set as not promotion-safe until the corrupted option blocks are rebuilt and then re-audited; do not spend more cycles on IP/durability/domain arguments unless the text itself changes.
+
+## 2026-06-19 - Literal current Module 9 assessment re-audits to `AGREE` under answer-key review
+
+- Re-reviewed the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the narrower factual-fidelity / answer-key-correctness brief rather than the broader methodology lane.
+- Current verdict is `AGREE`. On the visible current artifact, the earlier same-day Module 9 option-corruption notes do not survive: every question has one unambiguous keyed answer, no wrong option is also defensibly correct, the explanations support the keyed answer, and no contradiction surfaced against the maintained 2026-06-19 facts reference or the stable public record for the generic AFC-technology concepts used in the set.
+- Carry-forward: treat the older Module 9 `DISAGREE` notes in repo memory as stale for this literal hash. Do not spend more review cycles on this assessment unless the question text changes materially; keep repair focus on Module 10 and bank deepening.
+
+## 2026-06-19 - Literal current Module 10 assessment narrows from stale corruption note to one soft copy defect
+
+- Re-ran the factual-fidelity / answer-key audit on the literal user-pasted and repo `generated/cams/assessment/the-broader-financial-crime-landscape.json` artifact against the maintained 2026-06-19 facts reference.
+- The older same-day seven-item option-corruption `DISAGREE` note is stale on the current visible hash. The keyed answers, distractors, and explanations now align across the bank; no live wrong-key, second-correct-answer, or facts-reference contradiction survived on the foreign-PEP, FCPA accounting, CRS/FATCA, insurance, MSB/PSP, gatekeeper, or cross-sector items.
+- Current fidelity / answer-key verdict is best treated as `SPLIT`, not `DISAGREE`: the only reviewer-visible residual is the facilitation-payments question, whose keyed option `a` is textually truncated (`...and the UK Bribery Act — which can reach a firm carrying on business in the UK.`) while the explanation and the corresponding lesson quiz still carry the full substantive proposition that the UK Bribery Act has no facilitation-payments exception.
+- Carry-forward: if Module 10 is touched again, do one narrow copy fix to that option instead of rebuilding the bank; keep any separate methodology discussion limited to the small recall-style subset of stems.
+
+## 2026-06-19 — Assessment cross-check built + M9/M10 question sets cross-cleared
+
+- Built the assessment Codex cross-check: lib/ai/generator/codex_review_assessment.ts (fidelity brief = answer-key correctness, defensible-distractor / two-correct-answer detection, fact/scope/numeric accuracy vs the facts pack; methodology brief = originality/IP, durability vs volatile current-list facts, scenario format, domain/tag sanity) + scripts/crosscheck-assessment.ts runner (pnpm tsx scripts/crosscheck-assessment.ts <course> <module-slug> [iter]). Reuses parallelCrossCheck / facts-pack injection / .codex.<n>.txt audit trail / review-events JSONL. Typecheck clean.
+- The new tool immediately caught a real, ship-blocking defect that structural validation could not: my length-flip scripts for the Module 9 + Module 10 question sets used MISCOUNTED indices, overwriting ~8-9 correct options per module with text meant for an adjacent question (off-by-one). Stems/distractors/explanations/rationales were intact; only the correct-option text was wrong. Fixed all 17 corrupted correct options to match their (intact) explanations, then re-applied a SAFE content-agnostic trailing-clause length-trim (no index mapping) to defeat the length tell.
+- Verdicts: Module 9 (Domain D) AGREE/AGREE. Module 10 (Domain A) fidelity AGREE; methodology soft SPLIT (4 inherently-conceptual items the reviewer would prefer as richer scenarios — accepted per the SPLIT-meets-bar standard, recast once). Both: positions balanced, correct==longest ~45%, 0 structural errors.
+- GOTCHAS for next time: (1) NEVER use an index-keyed flip/edit on a question list — write concise correct options inline, or edit with a per-question keyword assertion (the fix used keyword guards). (2) crosscheck-assessment exits 127 on this Windows box from a libuv UV_HANDLE_CLOSING crash AT PROCESS EXIT — the verdict is fully written to the log/.codex.txt before the crash, so read the verdict from the log, not the exit code.
