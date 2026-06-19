@@ -3150,3 +3150,9 @@ What this pass confirmed:
 - Promote (write) reads all lessons/*.json + assessment/*.json from disk, outline-driven by lessonSlug; .validation.json (no slug) are ignored; "98 generated lesson(s)" in the log = 49 lessons + 49 validation siblings, but only 49 written. clearCourseChildren wipes before rewrite (no dupes); refuses if published.
 - Distribution is deliberately NOT at A30/B20/C30/D20 yet — that's the depth pass's job once Domain D (Module 9) and the new Domain A (Module 10) questions are authored and the bank reaches 1000+.
 - Honest reviewer note (acting as the review gate per Ripon's trust): the lessons are all cross-cleared; the one open soft flag is 10.1's Google/Facebook public-reporting pointer. Promoted as DRAFT only — publishing stays Ripon's call.
+
+## 2026-06-19 — Question-bank depth pass (start): Domain D + A
+
+- Filled the two empty/thin domains first (highest value): Module 9 = Domain D (20 q), Module 10 = Domain A (19 q). domain field uses the letter-prefixed verbatim name; moduleSlug = the module slug; questionType scenario_mcq.
+- Authoring method that worked: write concise correct options + substantive plausible-but-wrong distractors, all at one position; then length-flip ~half the correct options to crisp form (reasoning lives in explanation) so a distractor is longest in ~half; then run shuffle-assessment-positions.js (pass the one file path so it rebalances only that file). Structural-validate in Python (4 opts, valid correct id, wrongAnswerRationales keyed to the 3 wrong ids, conceptTags ⊆ module tags, difficulty in {foundational,standard,advanced,expert}).
+- TODO before promoting the new questions: assessment Codex cross-check (no dedicated script yet — crosscheck-lesson.ts is lesson-shaped; may need an assessment brief or manual spot-check). Then deepen all modules toward ~130/module / 1,000+, rebalancing to A30/B20/C30/D20.
