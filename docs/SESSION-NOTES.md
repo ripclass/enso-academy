@@ -3143,3 +3143,10 @@ What this pass confirmed:
 - Re-checks of a cleared lesson re-review the WHOLE lesson and WILL surface pre-existing drift — budget for it. Here: the FIU lesson's known-soft R.37-39 looseness, and a stale Westpac shorthand in three-lines that the 2026-06-19 facts-pack Westpac entry now enforces against. Both fixed cleanly.
 - Carry-forward: the same stale Westpac "LitePay unwired" shorthand likely lives in how-to-read-an-enforcement-action and course-synthesis-and-exam-preparation — fix to the facts-pack framing if those are ever re-touched.
 - Slide gotcha: when an item adds a distinctive reference (e.g., Recommendation 38/39), the slide narration must mention it too, or methodology gate 6 (item↔narration consistency) FLAGs.
+
+## 2026-06-19 — A/B/C/D re-tag + promote
+
+- Domain mapping derived from the blueprint coverage table (A: M0,M5,M10; B: M1,M6; C: M2,M3,M4,M7,M8; D: M9). Question re-tag uses legacy bucket→domain with the two clearest module overrides (M5→A, M6→B) since those buckets most mislead. Question `domain` is free-text (types.ts: domain?: string), so the letter-prefixed verbatim name is safe for the writer.
+- Promote (write) reads all lessons/*.json + assessment/*.json from disk, outline-driven by lessonSlug; .validation.json (no slug) are ignored; "98 generated lesson(s)" in the log = 49 lessons + 49 validation siblings, but only 49 written. clearCourseChildren wipes before rewrite (no dupes); refuses if published.
+- Distribution is deliberately NOT at A30/B20/C30/D20 yet — that's the depth pass's job once Domain D (Module 9) and the new Domain A (Module 10) questions are authored and the bank reaches 1000+.
+- Honest reviewer note (acting as the review gate per Ripon's trust): the lessons are all cross-cleared; the one open soft flag is 10.1's Google/Facebook public-reporting pointer. Promoted as DRAFT only — publishing stays Ripon's call.
