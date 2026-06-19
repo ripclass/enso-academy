@@ -3235,3 +3235,15 @@ What this pass confirmed:
 - The cross-check caught what gates/structural checks cannot: semantic answer-key corruption. My .genq flip dicts were off-by-one on indices, so flip[i] (meant for question i's topic) landed on the wrong question's correct option. Lesson burned in: do not index-map edits onto a question list; the fix used `assert keyword in explanation` guards per question.
 - libuv exit-127 on Windows at node process exit (UV_HANDLE_CLOSING assertion) — cosmetic; verdict is written first. Append a `; sed .../combined verdict/...` to the run so the shell command exits 0 and you get the verdict inline.
 - M10 methodology soft-SPLIT residual: 4 concept-leaning questions (APP "why", evasion-vs-avoidance "what distinguishes", MSB "why", kleptocracy "how") — recast to scenarios once; reviewer still prefers richer applied fact-patterns. Accepted (fidelity AGREE; a bank legitimately carries some foundational concept items). Deepen later if desired.
+
+## 2026-06-19 - Module 9 assessment methodology no-delta rerun
+
+- Literal user-pasted JSON matched `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` on the current hash.
+- Exact-format methodology rerun stayed `AGREE`; no new blocker surfaced on IP/originality, durability, scenario format, domain/tag sanity, or adult-professional register.
+- Do not relitigate the stale same-day Module 9 option-corruption notes on this hash. Reopen only if the question text changes materially.
+
+## 2026-06-19 - Literal user-supplied Module 9 assessment rerun introduced no fidelity delta
+
+- Rechecked the exact pasted `tools-and-technologies-to-fight-financial-crime` JSON, not just the stored repo file, under the user-facing exact-format reviewer contract.
+- Outcome matched the later same-day stored-memory state: `AGREE` on answer-key / factual fidelity. The earlier same-day Module 9 option-corruption notes are stale for the current literal hash and should not be reused unless the assessment text changes again.
+- Memory cleanup point: `CLAUDE.md` carried one stale phrase still implying Module 10 was the answer-key repair focus; corrected it so the assessment backlog now reads as Module 10 methodology-softness only, not live fidelity repair.

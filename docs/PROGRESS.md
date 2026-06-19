@@ -3187,6 +3187,12 @@ Reviewed the literal pasted `the-three-lines-of-defence` artifact again under th
 - Current verdict is `AGREE`. On the visible current artifact, the earlier same-day Module 9 option-corruption notes do not survive: every question has one unambiguous keyed answer, no wrong option is also defensibly correct, the explanations support the keyed answer, and no contradiction surfaced against the maintained 2026-06-19 facts reference or the stable public record for the generic AFC-technology concepts used in the set.
 - Carry-forward: treat the older Module 9 `DISAGREE` notes in repo memory as stale for this literal hash. Do not spend more review cycles on this assessment unless the question text changes materially; keep repair focus on Module 10 and bank deepening.
 
+## 2026-06-19 - Literal user-supplied Module 9 assessment rerun introduced no answer-key / fidelity delta
+
+- Re-audited the exact pasted and repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the strict reviewer brief for answer-key correctness, second-correct-answer detection, distractor wrongness, rationale correctness, explanation consistency, and factual fidelity against the maintained 2026-06-19 facts reference.
+- Result stayed `AGREE`. No wrong key, defensible second answer, bad wrong-answer rationale, explanation contradiction, or facts-reference conflict surfaced on the current visible hash.
+- Carry-forward: keep Module 9 out of further answer-key / fidelity relitigation unless the question text changes materially. Live assessment work remains optional Module 10 methodology tightening and broader bank deepening.
+
 ## 2026-06-19 - Literal current Module 10 assessment narrows from stale corruption note to one soft copy defect
 
 - Re-ran the factual-fidelity / answer-key audit on the literal user-pasted and repo `generated/cams/assessment/the-broader-financial-crime-landscape.json` artifact against the maintained 2026-06-19 facts reference.
@@ -3200,3 +3206,16 @@ Reviewed the literal pasted `the-three-lines-of-defence` artifact again under th
 - The new tool immediately caught a real, ship-blocking defect that structural validation could not: my length-flip scripts for the Module 9 + Module 10 question sets used MISCOUNTED indices, overwriting ~8-9 correct options per module with text meant for an adjacent question (off-by-one). Stems/distractors/explanations/rationales were intact; only the correct-option text was wrong. Fixed all 17 corrupted correct options to match their (intact) explanations, then re-applied a SAFE content-agnostic trailing-clause length-trim (no index mapping) to defeat the length tell.
 - Verdicts: Module 9 (Domain D) AGREE/AGREE. Module 10 (Domain A) fidelity AGREE; methodology soft SPLIT (4 inherently-conceptual items the reviewer would prefer as richer scenarios — accepted per the SPLIT-meets-bar standard, recast once). Both: positions balanced, correct==longest ~45%, 0 structural errors.
 - GOTCHAS for next time: (1) NEVER use an index-keyed flip/edit on a question list — write concise correct options inline, or edit with a per-question keyword assertion (the fix used keyword guards). (2) crosscheck-assessment exits 127 on this Windows box from a libuv UV_HANDLE_CLOSING crash AT PROCESS EXIT — the verdict is fully written to the log/.codex.txt before the crash, so read the verdict from the log, not the exit code.
+
+## 2026-06-19 - Exact-format methodology rerun of Module 9 assessment stayed `AGREE`
+
+- Re-audited the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR 0015 / 0016 / 0019 / 0020 under the current cross-check-reviewer brief.
+- No new issue surfaced on the current hash: originality, durability, scenario format, domain/tag sanity, and adult-professional register all remained in bounds, so the prior Module 9 methodology `AGREE` stands.
+- Carry-forward: keep Module 9 assessment closed unless the text changes materially; any future assessment work should stay on Module 10 methodology-soft stems or broader bank deepening.
+
+## 2026-06-19 — Depth pass: Domain D deepened (Module 9 → 35 q, cross-cleared)
+
+- Appended a second Domain D batch to Module 9 (+15 questions; now 35 q / 30 glossary): integration & total-cost-of-ownership in tool selection; document-verification (chip/MRZ) / identity-assurance levels / data-minimisation; match-scoring & disposition / governed whitelists / transliteration & multi-script matching; customer segmentation / tuning governance / payment-rail screening; supervised-vs-unsupervised ML / model drift / bias-and-PETs / investigation automation / cross-institution privacy-enhancing analytics.
+- Authored with concise correct options INLINE (no index-keyed flip — the bug that corrupted the first batch), then a safe content-agnostic trailing-clause length-trim and the position shuffler. Structural 0 errors; positions a9/b8/c9/d9; correct==longest 18/35 (~51%, in line with the bank's 43-50% profile).
+- Cross-check (it.3, via the new assessment tool): AGREE/AGREE — keyed answers unambiguous, no defensible second answer, original/durable/in-scope, scenario format.
+- Bank now 234 questions across 11 modules (A52/B55/C92/D35). Depth pass continues toward A30/B20/C30/D20 / ~1,000+ — Domain A next, then B/C; each new set runs the assessment cross-check before promotion.
