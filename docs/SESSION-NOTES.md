@@ -1,3 +1,109 @@
+## [2026-06-19] - Direct-source factual-fidelity rerun of literal pasted/generated `the-life-of-a-financial-intelligence-product`: verdict now `AGREE`
+
+Reviewed the user-supplied JSON again under the exact factual-fidelity reviewer brief after confirming the repo copy still matches the pasted artifact and rechecking the lesson against the FATF Recommendations page + **Updated October 2025** PDF, the DOJ **6 September 2018** Park Jin Hyok press release, and the maintained current-facts spine.
+
+What this pass changed:
+- The earlier same-day `SPLIT` note is stale on the literal current artifact.
+- The stable bundle remains intact: Recommendation `29` / INR.29 for the FIU mandate and operational-versus-strategic analysis, Recommendation `40` for rapid international cooperation, the Egmont use-limitation / prior-consent / confidentiality frame, the Park complaint chronology (**filed 8 June 2018**, unsealed **6 September 2018**), the casino-gap perimeter point, and the `RA 10927` reform.
+- The specific `R.37` / `R.38` / `R.39` residual no longer survives the current wording. `Crossing borders: the Egmont network`, `Intelligence is not evidence`, the quiz evidence explanation, and `What to carry forward` already preserve `R.37` as the mutual-legal-assistance / evidence-retrieval lane, `R.38` as freezing / confiscation cooperation, and `R.39` as extradition.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `AGREE` and keep this lesson out of further factual-fidelity relitigation unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format methodology in-turn no-delta rerun of literal pasted/generated `the-life-of-a-financial-intelligence-product`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `the-life-of-a-financial-intelligence-product` again under the explicit v1.1 cross-check-reviewer methodology brief before responding.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact.
+- Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: the Bangladesh Bank heist (2016) - intelligence at the speed of money` remains a valid named public-matter / public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `the-life-of-a-financial-intelligence-product` out of further methodology relitigation unless the artifact changes materially. Only the separate factual-fidelity `R.37` / `R.38` / `R.39` wording residual remains live if requested.
+
+## [2026-06-19] - Exact-format factual-fidelity rerun of literal pasted/generated `the-three-lines-of-defence`: verdict now `AGREE` on the current stored artifact
+
+Reviewed the literal pasted/generated `the-three-lines-of-defence` artifact again under the exact factual-fidelity cross-check-reviewer output contract after reconciling the live lesson file with the older same-day cross-check draft that had produced the Westpac rejection.
+
+What this pass changed:
+- The earlier same-day `DISAGREE` note is stale for the literal current artifact. The older `the-three-lines-of-defence.codex.6.txt` / `crosscheck-run.enrich2.log` pair was reviewing a prior draft that still said `LitePay among them` and taught the detection scenarios as arriving years later.
+- The live `generated/cams/lessons/the-three-lines-of-defence.json` file (**last written 2026-06-19 21:46 +06:00**) no longer carries that wording. `Failure patterns, line by line` now correctly says Westpac monitored LitePay for the typology, reached an appropriate LitePay scenario by **June 2018**, and left the longer-running no-appropriate-scenario gap on **non-LitePay** channels until **October 2019**.
+- The separate-citation precision point is also closed on the current artifact: the Westpac Federal Court civil-penalty order and the AUSTRAC `Statement of Agreed Facts and Admissions` are already cited separately.
+- No new contradiction surfaced in the stable Basel / FATF Recommendation `18` / BFIU Circular No. 26 / Goldman / Danske bundle.
+- Carry-forward instruction: use `AGREE` for the literal current pasted/generated artifact unless it changes materially. Do not recycle the stale same-day Westpac rejection note against this hash. The duplicated `October 2019.non-LitePay channels until October 2019` fragment is a typo-only cleanup point, not a factual-fidelity blocker.
+
+## [2026-06-19] - Exact-format factual-fidelity user-facing rerun of literal pasted/generated `the-three-lines-of-defence`: verdict still `DISAGREE`, but only on one narrow Westpac sentence
+
+Reviewed the literal pasted/generated `the-three-lines-of-defence` artifact again under the exact factual-fidelity cross-check-reviewer output contract after reconciling the user-supplied JSON, the live `generated/cams/lessons/the-three-lines-of-defence.json` file, and the maintained 2026-06-19 Westpac facts spine.
+
+What this pass changed:
+- The older citation-label concern is stale on the current artifact. The Westpac Federal Court civil-penalty order and the AUSTRAC `Statement of Agreed Facts and Admissions` are already cited as separate primary documents.
+- No new contradiction surfaced in the stable Basel / FATF Recommendation `18` / BFIU Circular No. 26 / Goldman / Danske bundle.
+- The only live ship blocker is now `Failure patterns, line by line`, which still names `LitePay among them` in the product-launch-failure framing. On the maintained Westpac spine, that over-centres LitePay: the longer-running no-appropriate-scenario gap was on the **non-LitePay** channels until **October 2019**, while LitePay had scenario coverage from its **August 2016** launch and an appropriate LitePay scenario by **June 2018**.
+- Carry-forward instruction: keep the next touch tightly scoped to that sentence unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format methodology no-delta rerun of literal pasted `the-three-lines-of-defence`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `the-three-lines-of-defence` again under the explicit v1.1 cross-check-reviewer methodology brief before responding.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact.
+- Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Danske Estonia - three lines on paper, none in fact` remains a valid named public-enforcement / public-matter deep case grounded in the DOJ / Danish FSA / Estonian supervisory public record while keeping the bank-commissioned Bruun & Hjejle report in secondary context only, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `the-three-lines-of-defence` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-19] - Exact-format methodology no-delta rerun of literal pasted/generated `the-life-of-a-financial-intelligence-product`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `the-life-of-a-financial-intelligence-product` again under the explicit v1.1 cross-check-reviewer methodology brief before responding.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact.
+- Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: the Bangladesh Bank heist (2016) - intelligence at the speed of money` remains a valid named public-matter / public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `the-life-of-a-financial-intelligence-product` out of further methodology relitigation unless the artifact changes materially. Only the separate factual-fidelity `R.37` / `R.38` / `R.39` wording residual remains live if requested.
+
+## [2026-06-19] - Exact-format factual-fidelity rerun of the literal user-supplied / stored `the-three-lines-of-defence` artifact: verdict now `DISAGREE` on the corrected Westpac spine
+
+Reviewed the literal user-supplied JSON and live `generated/cams/lessons/the-three-lines-of-defence.json` file under the exact cross-check-reviewer output contract after rechecking the lesson against the maintained facts reference and the corrected 2026-06-19 Westpac spine in `lib/ai/generator/facts_pack.ts`.
+
+What this pass changed:
+- The older 2026-06-18 / same-day `AGREE` note on this lesson is now stale if reused without the later Westpac correction. The stable Basel / FATF Recommendation `18` / Goldman DPA / Danske **13 December 2022** bundle still materially holds on the current artifact, and no new blocker surfaced there.
+- The live blocker is the lesson's Westpac shorthand in two scenes. `Where the failures actually lived` says Westpac `launched a payments product without wiring it into monitoring`, and `Failure patterns, line by line` says `LitePay among them` and that `the detection scenarios arrived years later`. On the maintained facts spine, that is too broad: LitePay had detection-scenario coverage from its **August 2016** launch, an appropriate LitePay scenario in **June 2018**, and the longer-running no-appropriate-scenario gap was on **non-LitePay channels until October 2019**. The current wording therefore over-compresses the verified Westpac record by turning a primarily non-LitePay adequacy gap into an unwired-from-launch LitePay/product-launch story.
+- A second reviewer-visible issue is citation precision only. `The first line: ownership in practice` and `Failure patterns, line by line` still cite `Westpac Banking Corporation AUSTRAC Statement of Agreed Facts and Civil Penalty Order`, but the maintained facts rule is to cite the AUSTRAC `Statement of Agreed Facts and Admissions` and the Federal Court civil-penalty order as separate primary documents.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `DISAGREE`. If the lesson is touched again, keep the next pass tightly scoped to those Westpac wording and citation-label corrections only; do not reopen the otherwise stable Basel / FATF / Goldman / Danske bundle unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format factual-fidelity no-delta rerun of literal pasted/generated `the-life-of-a-financial-intelligence-product`: verdict still `SPLIT`
+
+Reviewed the user-supplied JSON for `the-life-of-a-financial-intelligence-product` again under the exact factual-fidelity cross-check-reviewer output contract after rechecking the current pasted artifact against the FATF Recommendations page + **Updated October 2025** PDF and the DOJ's **6 September 2018** Park Jin Hyok press release.
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the current artifact's FIU / Egmont / Bangladesh Bank bundle. Recommendation `29` / INR.29 still correctly ground the FIU mandate and the operational-versus-strategic analysis split, and the deep case still correctly states that the Park Jin Hyok complaint was **filed on 8 June 2018** and unsealed in September 2018.
+- The earlier hard Bangladesh Bank blockers remain closed on the literal current artifact. The casino gap stays limited to the covered-person / reporting perimeter, and the `RA 10927` citation no longer tries to carry the separate November 2016 recovery / forfeiture event.
+- The remaining reviewer-visible issue is still recommendation-scope compression only. `Crossing borders: the Egmont network`, slide `Intelligence is not evidence`, and `What to carry forward` continue to lean too hard on Recommendations `37` to `39` as if the whole cluster were an evidence / MLA lane, when the tight mapping is `R.37` = mutual legal assistance, `R.38` = freezing / confiscation cooperation, and `R.39` = extradition.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `SPLIT`. If the lesson is touched again, scope the next pass narrowly to that `R.37` / `R.38` / `R.39` wording only and do not reopen the otherwise stable Bangladesh Bank / Egmont / FATF `R.29` / `R.40` bundle unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format methodology no-delta rerun of the literal user-supplied `the-three-lines-of-defence` artifact: verdict still `AGREE`
+
+Reviewed the literal user-supplied JSON for `the-three-lines-of-defence` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract used in-turn.
+
+What this pass confirmed:
+- No methodology delta surfaced from the already-cleared 2026-06-18 state.
+- `Deep case: Danske Estonia — three lines on paper, none in fact` still anchors its substantive teaching in the DOJ / Danish FSA / Estonian supervisory public record and keeps the bank-commissioned Bruun & Hjejle report in secondary, corroborating-context status rather than substantive-authority status.
+- The rest of the methodology frame still holds on the reviewed JSON: every reading scene carries `citations[]`, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `the-three-lines-of-defence` out of further methodology relitigation unless the artifact changes materially; any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-19] - Exact-format methodology no-delta rerun of literal pasted/generated `risk-based-approach-as-operating-principle`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `risk-based-approach-as-operating-principle` again under the explicit v1.1 cross-check-reviewer methodology brief.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact.
+- Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Westpac and AUSTRAC (2020) - risk not assessed, controls not defensible` remains a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `risk-based-approach-as-operating-principle` out of further methodology relitigation unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format methodology no-delta rerun of literal pasted/generated `the-life-of-a-financial-intelligence-product`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `the-life-of-a-financial-intelligence-product` again under the explicit v1.1 cross-check-reviewer methodology brief.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact.
+- Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: the Bangladesh Bank heist (2016) - intelligence at the speed of money` remains a valid named public-matter / public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `the-life-of-a-financial-intelligence-product` out of further methodology relitigation unless the artifact changes materially. Only the separate factual-fidelity `R.37` / `R.38` / `R.39` wording residual remains live if requested.
+
 ## [2026-06-19] - Exact-format factual-fidelity close-out rerun of literal pasted/generated `sector-risk-deep-dives`: verdict `AGREE`
 
 Reviewed the user-supplied JSON for `sector-risk-deep-dives` again under the exact cross-check-reviewer output contract after reconciling the literal pasted artifact with the live lesson file and the same-day stale-memory notes.
@@ -3003,3 +3109,37 @@ What this pass confirmed:
 - Recurring fidelity catches → folded into the facts pack so they don't recur: R.12 PEP foreign/domestic scope (hit 10.2 and the earlier PEP lesson), and FATCA-vs-CRS scope (hit 10.3 repeatedly — FATCA = U.S.-person/account + NFFEs w/ substantial U.S. owners; CRS = tax residence/controlling persons).
 - 10.4 (sector deep-dives): kept the FI-vs-DNFBP split clean (life insurers + MVTS/MSBs = FIs; casinos + accountants = DNFBPs). Reviewer-driven precisions: nominee-director/shareholder = TCSP R.22(e) not the accountant limb R.22(d); casino R.22 trigger = designated transaction threshold (R.22(a)), professions = specified activities; Caesars = 8-Sep-2015 settlement + 6-Nov-2015 assessment (after Chapter 11 court approval).
 - PROCESS: do NOT bundle `python fix && … && crosscheck` — a fix-script assertion-abort (unmatched anchor) leaves the file unfixed and the crosscheck log empty, which looks like a transient Codex no-output. Run fix foreground, verify counts/anchors, THEN dispatch.
+## [2026-06-19] - Exact-format factual-fidelity no-delta rerun of literal pasted/generated `risk-based-approach-as-operating-principle`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `risk-based-approach-as-operating-principle` again under the exact cross-check-reviewer factual-fidelity brief after reloading the project-memory chain and rechecking the current lesson file against the maintained facts spine plus live FATF/Basel public pages.
+
+What this pass confirmed:
+- No new factual-fidelity delta surfaced on the current artifact.
+- `Where the RBA comes from: Recommendation 1 and its Interpretive Note` still tracks the current FATF lane in the **Updated October 2025** Recommendations PDF: Recommendation `1` uses `proportionate` wording, and the private-sector push-down remains correctly framed through Recommendation `1` / INR.1.
+- `Risk-based versus rule-based, concretely` still keeps the U.S. CTR example citation-precise on `31 CFR §§ 1010.311`, `1010.313`, and `1020.315`.
+- `Deep case: Westpac and AUSTRAC (2020) â€” risk not assessed, controls not defensible` still stays within the corrected Westpac framing already cleared on 2026-05-30: the IFTI regime is treated as amount-independent and distinct from FATF Recommendation `20`, and the lesson does not import the later LitePay chronology inversion that affected other Westpac-based artifacts.
+- Carry-forward instruction: keep `risk-based-approach-as-operating-principle` out of further factual-fidelity relitigation unless the artifact changes materially.
+## [2026-06-19] - Direct-source factual-fidelity no-delta rerun of literal pasted/generated `the-life-of-a-financial-intelligence-product`: verdict still `SPLIT`
+
+Reviewed the user-supplied JSON again under the exact factual-fidelity reviewer brief after confirming that the repo copy in `generated/cams/lessons/the-life-of-a-financial-intelligence-product.json` matches the pasted artifact.
+
+What this pass confirmed:
+- No new contradiction surfaced in the FIU / Egmont / Bangladesh Bank bundle when rechecked against the FATF Recommendations page + **Updated October 2025** PDF and the DOJ **6 September 2018** Park Jin Hyok press release.
+- The live issue remains the same narrow recommendation-scope precision point. `What to carry forward` still compresses Recommendations `37` to `39` by treating them as the evidence channel, when the tight mapping is `R.37` = mutual legal assistance / evidence retrieval, `R.38` = freezing / confiscation cooperation, and `R.39` = extradition. The related cross-border scenes are otherwise directionally sound but worth tightening if the lesson is touched again.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `SPLIT` and scope any next touch to that wording only.
+
+## [2026-06-19] - Exact-format methodology in-turn rerun of literal pasted `the-three-lines-of-defence`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `the-three-lines-of-defence` again under the explicit v1.1 cross-check-reviewer methodology brief before responding.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact.
+- Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Danske Estonia - three lines on paper, none in fact` remains a valid named public-enforcement / public-matter deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `the-three-lines-of-defence` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work on this lesson belongs only to the separate factual-fidelity Westpac issue.
+
+## 2026-06-19 — Fold-in enrichment pass
+
+- 3 enrichment scenes added + cleared. Pattern that worked: insert one tight, primary-source-grounded reading scene at a thematically natural point in an already-cleared lesson, re-gate, re-dispatch Codex. teachesConcepts must stay distinct; scene conceptTags can be outside the outline set; numerics belong in the new scene's citations.
+- Re-checks of a cleared lesson re-review the WHOLE lesson and WILL surface pre-existing drift — budget for it. Here: the FIU lesson's known-soft R.37-39 looseness, and a stale Westpac shorthand in three-lines that the 2026-06-19 facts-pack Westpac entry now enforces against. Both fixed cleanly.
+- Carry-forward: the same stale Westpac "LitePay unwired" shorthand likely lives in how-to-read-an-enforcement-action and course-synthesis-and-exam-preparation — fix to the facts-pack framing if those are ever re-touched.
+- Slide gotcha: when an item adds a distinctive reference (e.g., Recommendation 38/39), the slide narration must mention it too, or methodology gate 6 (item↔narration consistency) FLAGs.
