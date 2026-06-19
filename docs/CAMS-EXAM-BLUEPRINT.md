@@ -1,59 +1,71 @@
-# CAMS Exam Blueprint (LOCKED) — 6th Edition
+# CAMS Exam Blueprint (LOCKED) — current ACAMS handbook
 
-**Locked:** 2026-06-19. **Source of truth:** ACAMS, *Certified Anti-Money Laundering Specialist (CAMS) 6th Edition Candidate Handbook* + the ACAMS CAMS certification page and pass-score FAQ. Retrieved 2026-06-19. This is the authoritative frame for the question bank and mock-exam assembly — do not deviate without re-verifying against the current ACAMS handbook.
+**Locked:** 2026-06-19 (CORRECTED — see note). **Source of truth:** ACAMS, *Candidate Handbook for the Certified Anti-Money Laundering Specialist Examination*, scraped in full from https://www.acams.org/en/media/document/6341 (firecrawl, 2026-06-19). The handbook references **Regulation (EU) 2024/1624** and **COSMIC (Singapore)**, confirming it is the current (2024+) edition.
 
-> Re-verify on every ACAMS edition change. If ACAMS publishes a 7th edition, this file must be re-locked before generating to it.
+> **⚠️ Correction note.** An earlier draft of this file locked a STALE blueprint (4 domains "Risks and Methods of Money Laundering 26% / Compliance Standards 25% / Compliance Programs 28% / Investigation 21%") sourced from cached search snippets. That is **superseded**. The current ACAMS handbook uses the **AFC-rebranded A/B/C/D structure below**. Always lock from the handbook itself, never search snippets.
 
 ## Exam format
 
 | Property | Value |
 |---|---|
-| Questions | **120 multiple-choice** (theoretical knowledge + practical scenario-based) |
-| Duration | **3.5 hours** (210 minutes) |
-| Passing score | **75** — a **scaled** score, not a raw 75/120 (ACAMS scales; "75" is the scaled-score pass mark) |
-| Delivery | Proctored (test center / online) |
+| Questions | **120** — **multiple-choice AND multiple-selection** (i.e. some "select all that apply") |
+| Duration | **3.5 hours** |
+| Passing score | **75** |
+| Guessing | No penalty — answer everything |
+| Delivery | Pearson VUE (test center / online proctored) |
 
-> Scored vs. unscored split: the official line is "120 questions." ACAMS may include unscored pretest items within the 120; the handbook does not publish an exact scored/unscored count. We treat all 120 as the mock length. **(Confirm the scored/unscored detail from the handbook PDF when accessible — minor.)**
+> **Implication for our engine:** the question bank and mock taker must support **multi-select** questions, not only single-best-answer. (Current bank + mock engine are single-answer only — this is a build item.)
 
-## The four content domains and weights
+## The four domains (verbatim names + weights)
 
-ACAMS-verbatim domain names; weights from the handbook. Domain I's weight is arithmetically forced (the other three are official ACAMS figures and sum to 74%).
-
-| # | Domain (verbatim) | Weight | 120-q mock | 1,000-q bank target |
+| # | Domain (verbatim) | Weight | 120-q mock | 1,000-q bank |
 |---|---|---|---|---|
-| **I** | **Risks and Methods of Money Laundering** | **26%** | ~31 | 260 |
-| **II** | **Compliance Standards for Anti-Money Laundering (AML) and Combating the Financing of Terrorism (CFT)** | **25%** | 30 | 250 |
-| **III** | **AML, CFT and Sanctions Compliance Programs** | **28%** | ~34 | 280 |
-| **IV** | **Conducting and Supporting the Investigation Process** | **21%** | ~25 | 210 |
+| **A** | **Understanding the Risks and Methods of Financial Crime** | **30%** | 36 | 300 |
+| **B** | **Global AFC Frameworks, Governance, and Regulations** | **20%** | 24 | 200 |
+| **C** | **Building an Anti-Financial Crime Compliance Program** | **30%** | 36 | 300 |
+| **D** | **Tools and Technologies to Fight Financial Crime** | **20%** | 24 | 200 |
 
-(120-q mock rounds to 31/30/34/25 = 120. Bank targets are the floor; over-generate so multiple non-overlapping faithful mocks can be assembled.)
+"AFC" = Anti-Financial Crime. The exam scope is **broader than AML/CFT** — it explicitly covers **fraud, anti-bribery & corruption (ABC), tax evasion**, and a heavy **RegTech / tooling** domain.
 
-## Mock-exam spec (what "faithful" means here)
+## Domain task statements (the coverage matrix spine — from the handbook)
 
-A faithful CAMS mock = **120 questions, 3.5-hour no-pause timer, scaled-pass at 75%, drawn by the domain weights above** (31 / 30 / 34 / 25 across I/II/III/IV), with a realistic difficulty mix and scenario/recall blend. The mock engine + readiness thresholds already exist (lib/mock/); they assemble from `question_bank.domain` once every question carries one of these four domain values.
+**A — Understanding the Risks and Methods of Financial Crime (30%)** — 17 tasks:
+definitions of AML, CFT, sanctions, fraud, ABC, tax evasion · financial-system consequences of ML and AFC-violation risks · predicate crimes · FC risks by product across the banking sector · banking of high-risk sectors · how ML/TF/sanctions/bribery/tax-evasion/fraud manifest by product, customer, jurisdiction, channel · FC risks in other financial sectors · MSBs / PSPs / ecommerce · insurance · **VASPs / cryptoassets** · gaming & gambling · real estate · gatekeepers · trusts & company service providers · accountants.
 
-## Mapping our content to the blueprint
+**B — Global AFC Frameworks, Governance, and Regulations (20%)** — 13 tasks:
+FATF role/function/regional bodies/recommendations · UN & sanctions regimes · regulators, law enforcement, FIUs · public/private/NGO bodies · regulatory & LE/FIU cooperation incl. cross-border · leveraging regulator/FIU reports for trends & typologies · special reports from non-government bodies · national & sectoral risk assessments → RBA · US & EU AFC regulations (ML + sanctions) · awareness across jurisdictions · public-private partnerships (PPPs) · private-sector collaboration & data/intelligence sharing · other laws (data privacy, consumer protection, ESG, conduct & ethics, financial inclusion).
 
-Questions carry a `domain` field set to **one of the four domains above** (not the older 5-bucket approximation). The 9 course modules supply the *content*; the `domain` tag drives *mock assembly*. Indicative module → domain mapping (refine against the handbook subdomains):
+**C — Building an Anti-Financial Crime Compliance Program (30%)** — ~26 tasks:
+core pillars of an AFC program · policies vs standards vs procedures · governing committees · **three lines of defense + BSA officer / MLRO** · risk appetite statement (RAS) · KPIs/KRIs/MI for board oversight · designing/implementing/monitoring controls (KYC, CDD, EDD, employee DD, customer risk assessment, transaction monitoring) · FC reporting requirements by jurisdiction · controls for high-risk scenarios (conflict zones, dual-use goods, PEPs, complex ownership) · employee/vendor/third-party DD & insider threat · investigating unusual transactions & gathering info · documenting investigations / escalation / **SAR** within timelines · de-risking & financial inclusion · escalation & offboarding governance · responding to court orders/subpoenas/LE requests (**FinCEN 314(a)/314(b), Regulation EU 2024/1624, COSMIC Singapore**) · customer communication, RFIs, tipping-off · staff training & awareness · FC team structure & org placement · interaction with the front office · supporting functions (data privacy, cybersecurity, other risk).
 
-- **Domain I (Risks & Methods)** ← Module 0 (Foundations of ML/TF), Module 5 (High-Risk Categories & Typologies)
-- **Domain II (Compliance Standards)** ← Module 1 (FATF / RBA), Module 4 (Sanctions — standards side), Module 6 (National Frameworks)
-- **Domain III (Compliance Programs)** ← Module 2 (CDD/BO), Module 4 (Sanctions — program side), Module 7 (Governance, Audit, Compliance Function)
-- **Domain IV (Investigation Process)** ← Module 3 (Suspicious Activity Monitoring & Reporting), Module 8 (Learning from Enforcement)
+**D — Tools and Technologies to Fight Financial Crime (20%)** — 15 tasks:
+tools across the customer lifecycle · customer experience & friction balance · onboarding tech (digital onboarding, E-KYC, digital identity, facial recognition, liveness, biometrics, geolocation) · external data sources (credit agencies, BO registers, adverse media, criminal records, gov ID checks) · **name/customer screening & sanctions lists** (UN, OFAC, EU, watchlists) · adverse-media screening + AI/ML · transaction/payment screening (SWIFT, blockchain) + AI/ML · batch sanctions screening, **fuzzy logic**, list management · **rules-based transaction monitoring** (segmentation, scenario coverage, threshold setting, ATL/BTL statistical testing, **model risk management**, tuning) · transition rules→AI/ML · investigation tools (open-source, automation) · **network analysis** · privacy/data-protection tech · choosing & integrating AFC tools · operational effectiveness & RBA resource prioritization.
 
-A single module can feed two domains; tag each question by the competency it actually tests, not by its source module.
+## Coverage of our current course against this blueprint (honest assessment)
 
-## Migration of the existing 180 questions
+The 40-lesson course was built to an **AML/CFT** frame (FATF, statutes, enforcement, CDD, sanctions, monitoring, governance). Mapping to the *current* AFC blueprint:
 
-The existing breadth-first bank (180 q, 185 glossary, position-balanced, distractor-substance done) used 5 approximate buckets. Before mock assembly, **re-map each existing question's `domain` to one of the four official domains** above (a mechanical re-tag — each question already carries a `domain` + `conceptTags`).
+| Domain | Weight | Course coverage | Gap |
+|---|---|---|---|
+| **A** Risks & Methods of FC | 30% | **Partial** — strong on ML/TF/sanctions risks & typologies (Modules 0, 5; VASPs, real estate, TBML, correspondent, PEPs). Thin on the broader AFC scope: **fraud, anti-bribery & corruption, tax evasion**, and some sector specifics (insurance, gaming, MSBs/PSPs/ecommerce, accountants as a distinct risk). | Add fraud / ABC / tax-evasion risk + the thin sectors. |
+| **B** Global AFC Frameworks | 20% | **Strong** — FATF, UN, FIUs, regulators, national frameworks (Modules 1, 6). | Minor: PPPs, data-sharing, ESG/data-privacy/financial-inclusion framing. |
+| **C** Building an AFC Program | 30% | **Strong** — CDD/EDD/KYC, three lines, MLRO/BSA officer, SAR, escalation, training, governance, audit (Modules 2, 3, 7). | Minor: RAS, KPIs/KRIs, 314(a)/(b), EU 2024/1624, COSMIC, vendor/insider DD. |
+| **D** Tools & Technologies | 20% | **WEAK — the real gap.** The course teaches monitoring/screening as *concepts and regulation*, not the **RegTech/tooling** this domain demands: digital onboarding/biometrics, AI/ML screening & monitoring, fuzzy logic, list management, ATL/BTL testing, model risk management, network analysis, tool selection. | A whole content strand is missing. |
 
-## Open follow-ups (for the coverage matrix, next step)
+**Bottom line:** ~50% of the exam (domains B + C) is well covered; domain A (30%) is half-covered; **domain D (20%) is largely uncovered.** You cannot write fidelity-grounded questions for content the course doesn't teach — so deepening the bank to 1,000+ requires **closing the content gap first**, especially Domain D (a RegTech strand) and the broader-financial-crime parts of Domain A.
 
-1. **Extract the subdomain / task-competency statements** under each of the four domains from the handbook PDF (currently 403-blocked on direct fetch; get via an authenticated/operator pull or firecrawl) — these drive the coverage matrix so the 1,000-q bank covers the whole blueprint, not just where questions are easy to write.
-2. Confirm Domain I's printed weight = 26% and the scored/unscored split from the handbook directly (both currently inferred / partial).
+## Revised plan (supersedes the prior 5-bucket and stale-4-domain plans)
+
+1. Blueprint locked ✅ (this file).
+2. Re-tag content + questions to **A/B/C/D**, not the old AML buckets.
+3. **Close the content gap** — new lessons for Domain D (Tools & Technologies) and the fraud/ABC/tax-evasion + thin-sector parts of Domain A. (This is new teaching, generated to the same lesson spine + cross-check.)
+4. Then generate the question bank to 1,000+ against the **A/B/C/D** coverage matrix (300/200/300/200), **including multi-select items**, per `QUESTION-BANK-STANDARD.md`.
+5. Gate + Codex-fidelity per batch; Ripon spot-checks.
+6. Assemble faithful 120-q mocks at 30/20/30/20; calibrate readiness.
+7. Real-candidate pilot.
 
 ## Sources
 
-- ACAMS — CAMS Certification page: https://www.acams.org/en/certifications/cams-certification
-- ACAMS — CAMS 6th Edition Candidate Handbook: http://files.acams.org/pdfs/CandidateHandbook/EN_CAMS6_Candidate_Handbook.pdf and https://www.acams.org/en/media/document/6341
-- ACAMS — passing-score FAQ ("75 to pass the 6th Edition CAMS exam"): https://www.acams.org/en/node/7941
+- ACAMS — Candidate Handbook (CAMS): https://www.acams.org/en/media/document/6341 (full scrape: `.firecrawl/cams-handbook` / `hb2.md`, 2026-06-19)
+- ACAMS — CAMS certification page: https://www.acams.org/en/certifications/cams-certification
+- ACAMS — passing-score FAQ: https://www.acams.org/en/node/7941
