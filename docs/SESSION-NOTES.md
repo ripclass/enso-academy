@@ -1,3 +1,163 @@
+## [2026-06-19] - Exact-format factual-fidelity close-out rerun of literal pasted/generated `sector-risk-deep-dives`: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `sector-risk-deep-dives` again under the exact cross-check-reviewer output contract after reconciling the literal pasted artifact with the live lesson file and the same-day stale-memory notes.
+
+What this pass changed:
+- The earlier same-day `DISAGREE` notes were stale against the literal current artifact.
+- `Why sector risk is not one-size-fits-all` and `What to carry forward` now preserve casinos' separate FATF Recommendation `22(a)` designated-threshold trigger rather than collapsing casinos into the professions' specified-activities formula.
+- `The gatekeepers: accountants and the professions` plus quiz `Reading sector risk` now preserve the accountant-versus-TCSP split under Recommendation `22(d)` / `22(e)`, and `Deep case: Caesars Palace (2015)` separately dates the **8 September 2015** settlement announcement and **6 November 2015** assessment-after-court-approval notice.
+- Carry-forward instruction: treat `sector-risk-deep-dives` as cross-cleared in both methodology and factual-fidelity lanes unless the artifact changes materially. Do not recycle the earlier same-day `DISAGREE` notes against the current JSON.
+
+## [2026-06-19] - Exact-format methodology user-facing no-delta rerun of literal pasted/generated `sector-risk-deep-dives`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `sector-risk-deep-dives` again under the explicit v1.1 cross-check-reviewer methodology brief after rechecking `docs/COURSE-GENERATION-PROMPT.md`, ADR 0015 / 0016 / 0019 / 0020, the stored lesson JSON, and `generated/cams/lessons/sector-risk-deep-dives.validation.json`.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact.
+- Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Caesars Palace (2015)` remains a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `sector-risk-deep-dives` out of further methodology relitigation unless the artifact changes materially. Only the separate factual-fidelity lane remains live if requested.
+
+## [2026-06-19] - Exact-format factual-fidelity re-audit of literal pasted/generated `sector-risk-deep-dives`: verdict still `DISAGREE`, but on one narrower live blocker
+
+Reviewed the user-supplied JSON for `sector-risk-deep-dives` again under the exact cross-check-reviewer output contract after rereading the live lesson file against the FATF Recommendations page/PDF (**updated October 2025**) and FinCEN's Caesars Palace settlement / assessment record.
+
+What this pass changed:
+- The earlier same-day repo-memory note is partly stale on the current artifact hash. `Deep case: Caesars Palace (2015)` now correctly separates the **8 September 2015** settlement announcement from the **6 November 2015** assessment-after-court-approval notice, so the old blended-source/date objection no longer survives the current text.
+- The earlier same-day gatekeeper objection is also stale on the current artifact hash. `The gatekeepers: accountants and the professions` and quiz `Reading sector risk` now correctly distinguish accountant scope under Recommendation `22(d)` from trust-and-company-service-provider functions under Recommendation `22(e)`.
+- The verdict still stays `DISAGREE` because the lesson retains one real FATF-scope compression issue in its framing scenes. `Why sector risk is not one-size-fits-all` and `What to carry forward` still say casinos and accountants are DNFBPs obliged `when they perform specified activities`, but FATF Recommendation `22(a)` applies casino CDD when customers engage in financial transactions equal to or above the applicable designated threshold. That `specified activities` formula belongs to the legal/accountancy/TCSP limbs, not to casinos.
+- Carry-forward instruction: if the lesson is touched again, keep the next pass tightly scoped to those intro/synthesis scenes. Do not reopen the now-fixed Caesars source split or the now-correct accountant / TCSP distinction unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format factual-fidelity close-out rerun of literal pasted/generated `tax-evasion-and-financial-crime`: verdict `AGREE`
+
+Reviewed the user-supplied / stored `tax-evasion-and-financial-crime` JSON again under the exact factual-fidelity cross-check-reviewer brief after rereading the current pasted/live file against the maintained FATCA/CRS facts spine, the IRS FATCA page, the FATF Recommendations page, and the DOJ UBS public-record bundle.
+
+What this pass changed:
+- The earlier same-day `SPLIT` note is stale on the current artifact hash.
+- No contradiction surfaced in the stable FATF Recommendation `3` predicate-offence framing or the core UBS **18 February 2009** / **USD 780 million** / approximately **4,450 accounts** bundle.
+- The current artifact keeps FATCA's **U.S.-account / U.S.-person** lane and CRS's **tax-residence / controlling-persons** lane distinct across the substantive teaching, and the FATCA definition already preserves the `certain foreign entities with substantial U.S. owners` scope. The remaining earlier objection was to a non-exhaustive summary slide, not to a contradiction of the maintained facts reference.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `AGREE` and keep this lesson out of further factual-fidelity relitigation unless the artifact changes materially.
+
+## [2026-06-19] - Factual-fidelity audit of literal pasted/generated `sector-risk-deep-dives`: verdict `DISAGREE`
+
+Reviewed the user-supplied JSON for `sector-risk-deep-dives` under the exact cross-check-reviewer output contract after reloading the project-memory chain, the stored lesson file, the FATF Recommendations page + **Updated October 2025** PDF, and the FinCEN Caesars Palace public-enforcement pages.
+
+What this pass confirmed:
+- The main sector-mapping bundle is broadly sound on the current hash: life insurers and MVTS are taught as financial institutions; casinos and the professions are taught as DNFBPs; and the Caesars conduct core (`8 million`, private gaming salons, anonymous high-roller play, training / testing failures) stays materially aligned with the reviewed FinCEN record.
+- The live blocker is first a deep-case citation/date-precision issue. `Deep case: Caesars Palace (2015)` cites an `assessment of civil money penalty and settlement (September 2015)` as though it were one September primary document. The reviewed public record instead separates a **8 September 2015** FinCEN settlement announcement from the later **6 November 2015** notice that FinCEN issued the assessment after court approval. The current lesson also nests the California / Asia / `2012-2014` look-back detail inside that blended citation/date bundle, so the source path needs to be split and named exactly.
+- The second blocker is scope compression in the gatekeeper scene and quiz. The October 2025 FATF text at Recommendation `22(d)` covers accountants when they prepare for or carry out client transactions such as managing client money, organising contributions for companies, and creating / operating / managing legal persons or arrangements. The separate nominee-director / nominee-shareholder functions sit in the trust-and-company-service-provider list at Recommendation `22(e)`. The current lesson's `An accountant can ... act as or arrange a nominee director or shareholder` line, and the quiz explanation that treats `nominee arrangements` as accountant specified activity simpliciter, blur that distinction. An accountancy firm can still be in scope if it is acting as a TCSP, but the wording needs to say so.
+- Carry-forward instruction: keep the user-facing verdict at `DISAGREE`. If the lesson is revised again, keep the next touch tightly scoped to (1) splitting the Caesars source bundle correctly and (2) tightening accountant-versus-TCSP scope wording. Do not reopen the otherwise stable FATF category mapping or the broader Caesars conduct story unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format factual-fidelity rerun of literal pasted/generated `tax-evasion-and-financial-crime`: verdict narrowed to `SPLIT`
+
+Reviewed the user-supplied / stored `tax-evasion-and-financial-crime` JSON again under the exact factual-fidelity cross-check-reviewer brief after rereading the current pasted/live file against the maintained FATCA/CRS facts spine, Treasury's FATCA page, and the already-cleared UBS public-record bundle.
+
+What this pass changed:
+- The earlier same-day `DISAGREE` notes were too broad for the current artifact. No contradiction surfaced in the stable FATF Recommendation `3` predicate-offence framing or the core UBS **18 February 2009** / **USD 780 million** / approximately **4,450 accounts** bundle.
+- The broader four-scene FATCA/CRS blocker is stale on the current text. `What tax transparency means in practice`, quiz `Detecting tax-related financial crime` question 2's explanation, and the synthesis scene remain in bounds on the U.S.-person / U.S.-account versus tax-residence / controlling-persons split.
+- The residual reviewer-visible issue is narrower and sits in `CRS and FATCA: the transparency answer`: the FATCA bullet and the slide's AML-significance framing still compress FATCA's scope by omitting the further coverage of certain foreign entities with substantial U.S. owners and by risking blur between FATCA's U.S.-person / U.S.-account focus and CRS's tax-residence / controlling-persons mechanics.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `SPLIT`. If the lesson is touched again, scope the next fix narrowly to that slide/narration only; do not reopen the otherwise stable FATF / UBS chronology bundle unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format methodology no-delta close-out of literal pasted/generated `tax-evasion-and-financial-crime`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `tax-evasion-and-financial-crime` again under the explicit v1.1 methodology-only cross-check-reviewer brief after reloading the project-memory chain, `docs/COURSE-GENERATION-PROMPT.md`, ADR 0015 / 0016 / 0019 / 0020, the stored lesson JSON, and `generated/cams/lessons/tax-evasion-and-financial-crime.validation.json`.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current hash. Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: UBS AG (2009)` remains a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The live stored lesson file and validation artifact still align with the pasted JSON, so this was a true no-delta rerun rather than a hash-change re-audit.
+- Carry-forward instruction: keep the user-facing methodology verdict at `AGREE` and keep the methodology lane closed unless the artifact changes materially. Any remaining work on this lesson belongs only to the separate factual-fidelity FATCA/CRS scope issue.
+
+## [2026-06-19] - Exact-format factual-fidelity no-delta rerun of literal pasted/generated `bribery-and-corruption-abc`: verdict now `AGREE`
+
+Reviewed the user-supplied JSON for `bribery-and-corruption-abc` again under the exact factual-fidelity cross-check-reviewer output contract after a direct reread of the live PEP wording against FATF Recommendation `12` in the **Updated October 2025** FATF Recommendations PDF, plus the DOJ / SEC Siemens public record, the DOJ FCPA overview/resource guide, and the GOV.UK Bribery Act guidance.
+
+What this pass confirmed:
+- The earlier same-day `SPLIT` note was a stale misread of the current text. `Grand corruption, kleptocracy, and the PEP link` and `What to carry forward` already preserve the automatic **foreign PEP** package versus the **domestic / international-organisation** higher-risk qualification, so no live Recommendation `12` scope blocker remains on this hash.
+- No new contradiction surfaced in the lesson's FATF / OECD numbering, facilitation-payments distinction, or Siemens deep-case date / charge / amount / disposition bundle.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `AGREE` unless the artifact changes materially. The lesson is now cross-cleared in both methodology and factual-fidelity lanes.
+
+## [2026-06-19] - Exact-format methodology no-delta rerun of literal pasted/generated `bribery-and-corruption-abc`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `bribery-and-corruption-abc` again under the explicit v1.1 methodology-only cross-check-reviewer brief after reloading the project-memory chain, `docs/COURSE-GENERATION-PROMPT.md`, ADR 0015 / 0016 / 0019 / 0020, the stored lesson JSON, and `generated/cams/lessons/bribery-and-corruption-abc.validation.json`.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current hash. Allowed/public source discipline holds, every reading scene carries a `citations[]` array, `Deep case: Siemens AG (2008)` remains a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The stored validation spine remains aligned with the manual review lane on the methodology-relevant checks, so this rerun introduced no reviewer-visible change from the same-day stored note.
+- Carry-forward instruction: keep the user-facing methodology verdict at `AGREE` unless the artifact changes materially. Only the separate factual-fidelity `SPLIT` on Recommendation 12 scope wording remains live on the current hash.
+
+## [2026-06-19] - Exact-format factual-fidelity no-delta rerun of literal pasted/generated `fraud-and-the-fraud-aml-nexus-framl`: verdict still `SPLIT`
+
+Reviewed the user-supplied JSON for `fraud-and-the-fraud-aml-nexus-framl` again under the exact cross-check-reviewer output contract after reloading the project-memory chain and rechecking the accessible public-record support around the Rimasauskas deep case.
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the lesson's core bundle. The FATF Recommendation `3` / Glossary predicate-offence framing remains sound, and the already-cleared Rimasauskas chronology / disposition bundle stays in bounds.
+- The SDNY **21 March 2017** arrest release still keeps the DOJ lane at unnamed victim companies plus `the recovery of much of the stolen funds`.
+- Axios **29 April 2017** still carries the company-attributed `Google` / `Facebook` identification and `recovered the bulk` / `recouped the funds` wording.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `SPLIT`. If the lesson is touched again, either name the separate public-reporting / company-statement source precisely in the deep-case citation set or soften the body text so the scene stays inside the DOJ formulation.
+
+## [2026-06-19] - Factual-fidelity audit of literal pasted/generated `bribery-and-corruption-abc`: verdict `SPLIT`
+
+Reviewed the user-supplied JSON for `bribery-and-corruption-abc` under the factual-fidelity cross-check-reviewer brief after reloading the project-memory chain, the governing methodology ADRs, the stored lesson JSON, and the primary-source bundle used for line-checking.
+
+What this pass confirmed:
+- No hard contradiction surfaced in the lesson's main legal and case bundle. The FATF citation is on the current **October 2025** Recommendations edition, the FCPA / UK Bribery Act facilitation-payments distinction matches the reviewed statutory record, and the Siemens deep case stays in bounds on date / charge / amount / disposition against the DOJ **15 December 2008** press release and the SEC press release / complaint.
+- The live reviewer-visible issue is narrow but real scope compression in the PEP framing. `Grand corruption, kleptocracy, and the PEP link` and `What to carry forward` teach the full Recommendation 12 package — senior-management approval, source of wealth, source of funds, enhanced monitoring — as if it attaches to PEP relationships generally. In the reviewed October 2025 FATF text, that package is automatic for **foreign PEPs** and applies to **domestic PEPs** and persons entrusted with a prominent function by an **international organisation** only in **higher-risk** business relationships.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `SPLIT`. If the lesson is touched again, keep the next pass tightly scoped to that Recommendation 12 wording and do not reopen the otherwise stable Siemens / FCPA / UK Bribery Act bundle unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format methodology audit of literal pasted/generated `bribery-and-corruption-abc`: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `bribery-and-corruption-abc` under the explicit v1.1 methodology-only cross-check-reviewer brief after reloading the project-memory chain, the governing methodology ADRs, the stored lesson JSON, and `generated/cams/lessons/bribery-and-corruption-abc.validation.json`.
+
+What this pass confirmed:
+- No methodology blocker surfaced on the current hash. Allowed/public source discipline holds, every reading scene carries a `citations[]` array, `Deep case: Siemens AG (2008)` is a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register issue surfaced.
+- The stored validation spine also stays clean on the methodology-relevant gates (`citation`, `ip`, `pedagogy`, `quiz_alignment`, `methodology`, `citation_bind`), so this audit introduced no reviewer-visible delta from the repo's own deterministic pass.
+- Carry-forward instruction: use `AGREE` for the current pasted/generated artifact unless it changes materially. Keep the methodology lane closed on this hash.
+
+## [2026-06-19] - Exact-format methodology close-out of literal pasted/generated `fraud-and-the-fraud-aml-nexus-framl`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `fraud-and-the-fraud-aml-nexus-framl` again under the explicit v1.1 methodology-only cross-check-reviewer brief before user-facing close-out.
+
+What this pass confirmed:
+- No methodology delta from the later same-day reruns. Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, the Rimasauskas matter remains a valid named deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The Google/Facebook reporting continues to sit inside the acceptable methodology lane because it is used as a journalistic pointer around a DOJ-grounded deep case, not as the scene's substantive authority.
+- Carry-forward instruction: keep `fraud-and-the-fraud-aml-nexus-framl` out of further methodology relitigation unless the artifact changes materially. Only the separate factual-fidelity `SPLIT` on victim-identification / recovery-source precision remains live on the current hash.
+
+## [2026-06-19] - Exact-format methodology rerun of literal pasted/generated `fraud-and-the-fraud-aml-nexus-framl`: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `fraud-and-the-fraud-aml-nexus-framl` again under the explicit v1.1 methodology-only cross-check-reviewer brief after reloading the project-memory chain and the governing methodology ADRs/prompt.
+
+What this pass confirmed:
+- The earlier same-day methodology `DISAGREE` note was stale for an older artifact that explicitly leaned on the current CAMS blueprint in `Fraud is the front door`; that wording is absent from the current pasted/generated artifact.
+- No methodology blocker surfaced on the current hash. Allowed/public source discipline holds, every reading scene carries a `citations[]` array, the Rimasauskas matter remains a valid named deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, the Google/Facebook reporting is pointer-framed rather than the scene's substantive base, and no IP/commercial-source or adult-register issue surfaced.
+- Carry-forward instruction: use `AGREE` for the current pasted/generated artifact unless it changes materially. Keep only the separate factual-fidelity `SPLIT` live on this hash for victim-identification / recovery-source precision.
+
+## [2026-06-19] - Factual-fidelity re-audit of literal pasted/generated `fraud-and-the-fraud-aml-nexus-framl`: verdict stays `SPLIT`, issue narrowed to citation precision
+
+Reviewed the user-supplied JSON for `fraud-and-the-fraud-aml-nexus-framl` again under the factual-fidelity brief, using the maintained current facts reference, the repo's earlier review spine, and a fresh public-source spot check on the deep-case victim-identification / recovery wording.
+
+What this pass changed:
+- The lesson's core bundle still holds. No new contradiction surfaced in the FATF Recommendation `3` / Glossary predicate-offence framing or in the Rimasauskas chronology / disposition bundle already tracked in repo memory.
+- The Google / Facebook identification and the `recovered the bulk` / `recouped the funds` line are no longer best described as unsupported substance. Fresh public reporting surfaced company-attributed support for those points.
+- The live reviewer-visible issue is now narrower: `Deep case: the BEC scheme against Google and Facebook (2013-2015)` cites `Contemporaneous public reporting (2019) and the victim companies' own public statements` too generically for this review standard, while the DOJ / SDNY public record itself still names only a `multinational technology company` and a `multinational online social media company`.
+- Carry-forward instruction: keep the factual-fidelity verdict at `SPLIT`. If the lesson is touched again, keep the next pass tightly scoped to naming the specific public-reporting / company-statement support more precisely (or softening the scene text to the DOJ formulation) and do not reopen the otherwise stable FATF / Rimasauskas bundle unless the artifact changes materially.
+
+## [2026-06-19] - Factual-fidelity audit of literal pasted/generated `fraud-and-the-fraud-aml-nexus-framl`: verdict `SPLIT`
+
+Reviewed the user-supplied JSON for `fraud-and-the-fraud-aml-nexus-framl` against the maintained current facts reference, the FATF Recommendations page + October 2025 PDF, the SDNY Rimasauskas sentencing release, and the FBI follow-up story.
+
+What this pass confirmed:
+- No hard contradiction surfaced in the lesson's core FATF or case-chronology bundle. FATF Recommendation `3` plus the Glossary still support fraud as a designated predicate-offence category, and the deep-case sentence/disposition bundle materially matches the SDNY public release (`Thursday, December 19, 2019`; `60 months`; `2 years` supervised release; forfeiture `USD 49,738,559.41`; restitution `USD 26,479,079.24`; over `USD 120 million`; Latvia/Cyprus accounts with onward movement through multiple jurisdictions).
+- The live reviewer-visible issue is deep-case source-attribution precision, not the underlying sentence chronology. `Deep case: the BEC scheme against Google and Facebook (2013-2015)` cites DOJ / SDNY public enforcement records, but the reviewed SDNY release names the victims only as a `multinational technology company` and a `multinational online social media company`, not `Google` and `Facebook`. The same reviewed DOJ bundle also does not supply the lesson's sentence that `both companies have said they recovered the bulk of the stolen funds`.
+- Carry-forward instruction: if this lesson is touched again, keep the next factual-fidelity pass tightly scoped to that deep-case attribution point only. Either add separate support for the victim-identification / recovery claims or soften the wording to stay inside what the DOJ public record says on its face; do not reopen the settled FATF numbering or the core Rimasauskas amount/date/sentence bundle unless the artifact changes materially.
+
+## [2026-06-19] - Methodology audit of literal pasted/generated `fraud-and-the-fraud-aml-nexus-framl`: verdict `DISAGREE`
+
+Reviewed the user-supplied JSON for `fraud-and-the-fraud-aml-nexus-framl` against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR 0015, ADR 0020, the stored lesson JSON, and `generated/cams/lessons/fraud-and-the-fraud-aml-nexus-framl.validation.json`.
+
+What this pass confirmed:
+- The lesson is otherwise clean on the methodology dimensions the cross-check brief asks for: every reading scene carries `citations[]`, `Deep case: the BEC scheme against Google and Facebook (2013-2015)` is a valid named DOJ-grounded deep case, the scene `teachesConcepts` are substantively distinct, the quiz is scenario-based rather than certification-format mimicry, and no commercial-source or adult-register blocker surfaced.
+- The live blocker is source discipline in `Fraud is the front door`. Its opening framing uses the current CAMS blueprint / certification-body structure as substantive authority for the claim that financial crime is wider than money laundering (`it names fraud, bribery and corruption, and tax evasion`), which is exactly the certification-body dependence v1.1 is meant to avoid.
+- Carry-forward instruction: if this lesson is touched again, keep the next methodology pass tightly scoped to recasting that opener from allowed public-source authority only (for example FATF / public enforcement / original analysis) and removing the certification-body scaffold. Do not reopen reading-scene `citations[]`, deep-case, scene-distinctness, quiz-format, or adult-register arguments unless the artifact changes materially.
+
 ## [2026-06-19] - Literal pasted/generated `case-study-westpac-and-the-litepay-channel` factual-fidelity re-audit: verdict `AGREE`
 
 Reviewed the literal pasted JSON for `case-study-westpac-and-the-litepay-channel` against the live `generated/cams/lessons/case-study-westpac-and-the-litepay-channel.json` file, the operator-maintained verified Westpac facts spine in `lib/ai/generator/facts_pack.ts`, and the current FATF Recommendations text for Recommendation `15`.
@@ -2738,3 +2898,108 @@ What this pass confirmed:
 - Resolution: verified the chronology against primary sources (AUSTRAC concise statement + the SAFA/[2020] FCA 1538 detail) and wrote it into the facts pack. KEY FACTS: LitePay had a detection scenario from Aug 2016 that targeted multi-beneficiary sending and did NOT adequately cover the child-exploitation typology; appropriate LitePay scenario June 2018; non-LitePay channels had no appropriate scenario from late 2016 until October 2019 (the longer gap); 19,502,841 s.45(2) = within-time failures, not "never reported"; cite the Federal Court order and the AUSTRAC SAFA as two separate documents.
 - Lesson for future Westpac work: frame the coverage gap as primarily the non-LitePay channels (LitePay was monitored, just not adequately until June 2018) — do NOT frame LitePay as wholly uncovered.
 - Process note: when the reviewer repeatedly cites a "repo verified spine," grep facts_pack.ts FIRST — if the matter isn't there, add it (verified) rather than burning iterations on lesson text.
+## [2026-06-19] - Methodology rerun of literal pasted/generated `fraud-and-the-fraud-aml-nexus-framl`: current artifact is `AGREE`
+
+Reviewed the user-supplied JSON for `fraud-and-the-fraud-aml-nexus-framl` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR 0015, ADR 0020, the current stored lesson JSON, and the earlier same-day `review_events.jsonl` rejection note.
+
+What this pass changed:
+- The earlier same-day methodology `DISAGREE` was tied to an older artifact that explicitly leaned on the `current CAMS blueprint` in `Fraud is the front door`. That wording is absent from the current stored/pasted artifact (current SHA-256 `2299c76455ca3f4617cf62f48abb3d4e4470be2cf3e123f7775a4e359429e0b3`).
+- On the current hash, the methodology dimensions in the cross-check brief are clean: allowed/public source discipline holds, every reading scene carries `citations[]`, the Rimasauskas matter remains a valid named deep case, the scene `teachesConcepts` are substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, the Google/Facebook reporting is used as a journalistic pointer rather than the substantive base, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: use `AGREE` for the current pasted/generated artifact unless it changes materially. Keep only the separate factual-fidelity `SPLIT` live on the current hash for victim-identification / recovery-source precision.
+## [2026-06-19] - Direct DOJ-release + Axios recheck of literal pasted/generated `fraud-and-the-fraud-aml-nexus-framl`: verdict still `SPLIT`
+
+Reviewed the user-supplied JSON again under the factual-fidelity brief after reloading the memory chain, then line-checked the accessible public-record support around the Rimasauskas deep case.
+
+## [2026-06-19] - Methodology audit of literal pasted/generated `sector-risk-deep-dives`: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `sector-risk-deep-dives` against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR 0015 / 0016 / 0019 / 0020, the stored lesson JSON, and `generated/cams/lessons/sector-risk-deep-dives.validation.json`.
+
+What this pass confirmed:
+- No methodology blocker surfaced on the current hash. Allowed/public source discipline holds, every reading scene carries a `citations[]` array, `Deep case: Caesars Palace (2015)` remains a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register issue surfaced.
+- The stored validation spine also stays clean on the methodology-relevant gates, so the manual audit introduced no reviewer-visible delta from the repo's deterministic pass.
+- Carry-forward instruction: keep `sector-risk-deep-dives` out of further methodology relitigation unless the artifact changes materially.
+
+What this pass confirmed:
+- No new hard contradiction surfaced in the lesson's core bundle. The maintained FATF Recommendation `3` / Glossary predicate-offence framing remains sound, and the already-cleared Rimasauskas chronology / disposition bundle stays in bounds.
+- The accessible SDNY arrest release from **21 March 2017** is useful for narrowing the source-attribution issue precisely: DOJ publicly names only `a multinational technology company` and `a multinational online social media company`, describes the same-named Latvian company / fraudulent-email / Latvia-Cyprus-account facts, and says cooperation led to `the recovery of much of the stolen funds`.
+- Separate public reporting is what carries the company-specific identification / recovery wording. Axios **29 April 2017** explicitly reports company statements that Facebook recovered `the bulk of the funds` and Google `recouped the funds`, which is enough to keep the lesson out of hard-contradiction territory but not enough to excuse the current generic citation label.
+- Carry-forward instruction: keep the user-facing factual-fidelity verdict at `SPLIT`. If the lesson is touched again, either name the separate public-reporting / company-statement source precisely in the deep-case citation set, or soften the body text so the victim-identification / recovery wording stays inside the DOJ formulation.
+
+## [2026-06-19] - Methodology audit of literal pasted/generated `tax-evasion-and-financial-crime`: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `tax-evasion-and-financial-crime` against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR 0015, ADR 0019, ADR 0020, the stored lesson JSON, and `generated/cams/lessons/tax-evasion-and-financial-crime.validation.json`.
+
+What this pass confirmed:
+- No methodology blocker surfaced on the current hash. Allowed/public source discipline holds, every reading scene carries a `citations[]` array, `Deep case: UBS AG (2009)` remains a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register issue surfaced.
+- The stored validation spine also stays clean on the methodology-relevant gates (`citation`, `ip`, `pedagogy`, `quiz_alignment`, `methodology`), so this audit introduced no reviewer-visible delta from the repo's deterministic pass.
+- Carry-forward instruction: keep `tax-evasion-and-financial-crime` out of further methodology relitigation unless the artifact changes materially. Any later work on this lesson, if requested, should focus on separate factual-fidelity questions rather than re-opening the methodology lane.
+
+## [2026-06-19] - Factual-fidelity audit of literal pasted/generated `tax-evasion-and-financial-crime`: verdict `DISAGREE`
+
+Reviewed the user-supplied JSON for `tax-evasion-and-financial-crime` under the exact cross-check-reviewer output contract after reloading the project-memory chain and line-checking the lesson's transparency scenes against the IRS FATCA pages and the OECD's **2025 Consolidated text of the Common Reporting Standard**.
+
+What this pass confirmed:
+- No hard contradiction surfaced in the stable FATF / UBS bundle. The FATF Recommendation `3` predicate-offence framing still holds, and the UBS deep-case core remains in bounds on the reviewed public record (`18 February 2009`, deferred prosecution agreement, `USD 780 million`, approximately `4,450` accounts).
+- The live blocker is a regulatory-scope error repeated across the transparency teaching. `CRS and FATCA: the transparency answer` says both regimes work by having institutions identify account holders' **tax residence**; `What tax transparency means in practice`, quiz `Detecting tax-related financial crime` question 2 explanation, and `What to carry forward` extend that by teaching that compliance with FATCA and CRS requires determining each account holder's **tax residence** and identifying **controlling persons** behind entities.
+- The IRS FATCA materials frame FATCA more narrowly: FFIs report information about their **U.S. accounts**, including accounts of certain foreign entities with **substantial U.S. owners**, or face withholding. By contrast, the CRS text expressly requires reporting the **jurisdiction(s) of residence** of reportable persons and, for relevant entity accounts, the details of **controlling persons**. The lesson's convergence framing therefore overstates FATCA by importing CRS scope language into it.
+- Carry-forward instruction: keep the next fidelity pass tightly scoped to correcting that FATCA/CRS convergence wording across the affected slide, reading, quiz explanation, and synthesis scene. Do not reopen the otherwise stable FATF / UBS chronology bundle unless the artifact changes materially.
+
+## [2026-06-19] - No-delta methodology rerun for literal pasted `tax-evasion-and-financial-crime`
+
+Reviewed the user-supplied JSON again under the methodology-only cross-check brief before responding.
+
+What this pass confirmed:
+- Verdict is still `AGREE`.
+- Keep the lanes separated on this lesson: methodology is publication-safe on the current hash, while the separate factual-fidelity pass remains `DISAGREE` on the FATCA/CRS scope convergence wording.
+
+## [2026-06-19] - Exact-format factual-fidelity no-delta rerun of literal pasted `tax-evasion-and-financial-crime`: verdict still `DISAGREE`
+
+Reviewed the user-supplied / stored JSON again under the exact cross-check-reviewer output contract before responding.
+
+What this pass confirmed:
+- No new contradiction surfaced in the stable FATF Recommendation `3` predicate-offence framing or the UBS deep-case core (`18 February 2009`, `USD 780 million`, approximately `4,450` accounts).
+- The live blocker is still the same scope error repeated across four reuse points: FATCA is taught as if it shares CRS's **tax-residence** / **controlling-persons** framework. That is too broad; the lesson needs to distinguish FATCA's U.S.-account / U.S.-person focus from CRS's tax-residence / controlling-persons mechanics.
+- Carry-forward instruction: if this lesson is touched again, limit the fix to `CRS and FATCA: the transparency answer`, `What tax transparency means in practice`, quiz `Detecting tax-related financial crime` question 2 explanation, and `What to carry forward`.
+
+## [2026-06-19] - User-facing no-delta methodology rerun of literal pasted/generated `tax-evasion-and-financial-crime`
+
+Reviewed the literal pasted lesson JSON again under the exact v1.1 methodology-only cross-check brief before responding.
+
+What this pass confirmed:
+- The repo's earlier same-day methodology note for this lesson was still current; no new methodology issue surfaced on the pasted artifact.
+- Keep the lane separation explicit on future touches: methodology remains `AGREE` on this hash, while the separate factual-fidelity lane remains `DISAGREE` on the FATCA/CRS scope convergence wording only.
+
+## [2026-06-19] - Later factual-fidelity rerun of literal pasted/generated `tax-evasion-and-financial-crime`: broader same-day FATCA/CRS note was partly stale, but verdict stayed `DISAGREE`
+
+Reviewed the literal stored/pasted lesson JSON again under the exact cross-check-reviewer brief after reconciling the live generated file with the official-source spine: FATF Recommendations (**updated October 2025**) PDF, IRS FATCA page, OECD **2025 Consolidated text of the Common Reporting Standard**, and DOJ's **18 February 2009** UBS release.
+
+What this pass changed:
+- The broader same-day repo memory note was partly stale against the current file. `What tax transparency means in practice`, quiz `Detecting tax-related financial crime` question 2's explanation, and the synthesis item now correctly separate FATCA's **U.S.-person / U.S.-account** focus from CRS's **tax-residence / controlling-persons** mechanics.
+- The verdict still stays `DISAGREE` because one core explanatory slide still overstates FATCA. In `CRS and FATCA: the transparency answer`, the `Why it matters for AML` item says the regimes made institutions reporters of account holders' identity and residence, and the slide narration says they became reporters of customers' identity and tax residence. On the maintained facts reference and the IRS FATCA page, that is too broad for FATCA; tax-residence determination is the CRS mechanism.
+- The stable bundle remains closed: FATF Recommendation `3` / Glossary predicate-offence framing and the UBS **18 February 2009** / **USD 780 million** / approximately **4,450-account** chronology still materially hold.
+- Carry-forward: if the lesson is touched again, keep the next fix pass tightly scoped to that slide/narration first. Do not reopen the otherwise stable FATF / UBS bundle unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format methodology no-delta rerun of literal pasted/generated `tax-evasion-and-financial-crime`: verdict still `AGREE`
+
+Reviewed the user-supplied JSON again under the explicit v1.1 methodology-only cross-check brief before responding.
+
+What this pass confirmed:
+- No methodology delta surfaced from the same-day stored review spine.
+- Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: UBS AG (2009)` remains a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `tax-evasion-and-financial-crime` out of further methodology relitigation unless the artifact changes materially. The only live follow-up on this lesson remains the separate factual-fidelity FATCA/CRS scope issue.
+## [2026-06-19] - Exact-format methodology no-delta rerun of literal pasted/generated `sector-risk-deep-dives`: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `sector-risk-deep-dives` again under the explicit v1.1 cross-check-reviewer methodology brief after rereading `docs/COURSE-GENERATION-PROMPT.md` and ADR 0015 / 0016 / 0019 / 0020.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact.
+- Allowed/public source discipline still holds, every reading scene still carries a `citations[]` array, `Deep case: Caesars Palace (2015)` remains a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `sector-risk-deep-dives` out of further methodology relitigation unless the artifact changes materially.
+
+## 2026-06-19 — Module 10 generated + cross-cleared (Domain A)
+
+- Generated 10.1-10.4 inline, one per turn, each gates+Codex. Deep cases: Rimašauskas BEC (DOJ/SDNY), Siemens AG (DOJ/SEC 2008), UBS AG (DPA 2009), Caesars Palace (FinCEN 2015).
+- 10.1 cleared-with-fix at SPLIT: the DOJ release names victims as "a multinational technology company"/"a multinational online social-media company"; Google/Facebook + recovery wording ride on public reporting (DOJ does say "recovery of much of the stolen funds"). Methodology AGREE throughout; the reviewer kept the naming flag no matter how precisely cited — accepted per Ripon's SPLIT-meets-bar standard, flagged for review.
+- Recurring fidelity catches → folded into the facts pack so they don't recur: R.12 PEP foreign/domestic scope (hit 10.2 and the earlier PEP lesson), and FATCA-vs-CRS scope (hit 10.3 repeatedly — FATCA = U.S.-person/account + NFFEs w/ substantial U.S. owners; CRS = tax residence/controlling persons).
+- 10.4 (sector deep-dives): kept the FI-vs-DNFBP split clean (life insurers + MVTS/MSBs = FIs; casinos + accountants = DNFBPs). Reviewer-driven precisions: nominee-director/shareholder = TCSP R.22(e) not the accountant limb R.22(d); casino R.22 trigger = designated transaction threshold (R.22(a)), professions = specified activities; Caesars = 8-Sep-2015 settlement + 6-Nov-2015 assessment (after Chapter 11 court approval).
+- PROCESS: do NOT bundle `python fix && … && crosscheck` — a fix-script assertion-abort (unmatched anchor) leaves the file unfixed and the crosscheck log empty, which looks like a transient Codex no-output. Run fix foreground, verify counts/anchors, THEN dispatch.
