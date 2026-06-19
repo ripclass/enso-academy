@@ -2501,3 +2501,5 @@ Recovered from a mid-batch PC restart (no work lost) and completed the Codex Pro
 **Cross-check of all 40 CAMS lessons is now complete** — 37 cleared/cleared-with-fix, 3 awaiting the design decision; then the `generate-course.ts write` promote step.
 
 **2026-06-19 — Ripon accepted the 3 design-flagged lessons as-is.** training-and-culture, case-study-danske, case-study-1mdb cleared at Ripon's review gate (overruling the Pro reviewer on the disputed brief-sanctioned premise). **All 40/40 CAMS lessons now cleared/cleared-with-fix; generation + cross-check complete. Next step: the `generate-course.ts write` promote step.**
+
+**2026-06-19 — Promoted: `generate-course.ts write`.** The `cams` draft course now holds 9 modules / 40 lessons / 419 scenes / 180 assessment questions + glossary (course id 364842c7-393b-46dc-8924-7b9164639a22), written as DRAFT. Moved the stale `what-terrorist-financing-actually-is.inline-trial.json` out of `lessons/` first (duplicate slug, sorts first → would shadow the cleared lesson). Remaining before launch: Ripon publishes after spot review; Stripe (Prompt 15); pending Supabase migrations; facts-pack INR.16 TODO.
