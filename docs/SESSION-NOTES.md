@@ -1,3 +1,204 @@
+## [2026-06-19] - Literal pasted/generated `case-study-westpac-and-the-litepay-channel` factual-fidelity re-audit: verdict `AGREE`
+
+Reviewed the literal pasted JSON for `case-study-westpac-and-the-litepay-channel` against the live `generated/cams/lessons/case-study-westpac-and-the-litepay-channel.json` file, the operator-maintained verified Westpac facts spine in `lib/ai/generator/facts_pack.ts`, and the current FATF Recommendations text for Recommendation `15`.
+
+What this pass confirmed:
+- The earlier same-day `DISAGREE` notes for this lesson were stale against an older text state, not the literal current artifact.
+- No ship-blocking contradiction surfaced in the current Westpac bundle. The lesson now keeps the LitePay chronology in bounds: monitoring on LitePay from its **August 2016** launch, refined to an appropriate LitePay scenario in **June 2018**, while the longer-running no-appropriate-scenario point remains on **non-LitePay channels until October 2019**.
+- The `19,502,841` section-`45(2)` strand is also now in the right lane as failures to give IFTI reports within the required time, not a cleanly `unreported` count.
+- The current artifact preserves the `12`-customer subset versus `262`-customer declaration distinction and stays inside the verified **21 October 2020** / **AUD 1.3 billion** / **November 2019** chronology bundle.
+- Carry-forward instruction: use `AGREE` for the current pasted/generated artifact unless the lesson changes materially; do not recycle the stale same-day LitePay-inversion rejection language against this hash.
+
+## [2026-06-19] - Stored-artifact + validation recheck of literal pasted `case-study-westpac-and-the-litepay-channel`: methodology verdict still `AGREE`
+
+Reviewed the user-supplied JSON again under the explicit v1.1 cross-check-reviewer methodology contract after reloading `docs/COURSE-GENERATION-PROMPT.md`, ADR 0015, ADR 0020, the live `generated/cams/lessons/case-study-westpac-and-the-litepay-channel.json` artifact, and its `.validation.json` file.
+
+What this pass confirmed:
+- No methodology delta from the earlier same-day notes. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, the Westpac / AUSTRAC public-enforcement matter still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-westpac-and-the-litepay-channel` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-19] - Factual-fidelity hash recheck of literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk`: current artifact now `AGREE`
+
+Reviewed the literal pasted JSON again after checking it against the live `generated/cams/lessons/transaction-monitoring-systems-rules-scenarios-and-model-risk.json` file (SHA-256 `2737cbd4e16a04324963f6fe0d85bfcc1410005c5634d7bf9f860ccf6dfd8a16`) and the maintained Westpac facts spine.
+
+What this pass changed:
+- The earlier same-day `DISAGREE` notes in repo memory are stale for the current pasted artifact. They tracked older rejected hashes where the lesson still inverted the LitePay chronology.
+- The current pasted/live artifact now keeps the chronology in bounds: LitePay had detection-scenario coverage from its **August 2016** launch, that coverage was refined into an appropriate scenario in **June 2018**, and the longer-running no-appropriate-scenario point remained on **non-LitePay channels until October 2019**.
+- The `19,502,841` section-`45(2)` strand is also now framed correctly as failures to report within the required time frame.
+- Carry-forward instruction: use `AGREE` for the current pasted JSON/hash unless the artifact changes again; do not recycle the earlier LitePay-inversion rejection language against this corrected version.
+
+## [2026-06-19] - Methodology-only rerun of literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk`: no delta, verdict still `AGREE`
+
+Reviewed the user-supplied JSON again under the exact cross-check-reviewer methodology contract after reloading `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR 0015, ADR 0020, the stored lesson JSON, and the `.validation.json` file.
+
+What this pass confirmed:
+- No methodology change from the same-day review spine. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, the Westpac / AUSTRAC public-enforcement record still satisfies the named deep-case requirement for this methodology pass, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- This pass is purely a no-delta rerun for audit closure. It does not soften or reopen the separate factual-fidelity `DISAGREE` on the Westpac chronology bundle.
+- Carry-forward: keep `transaction-monitoring-systems-rules-scenarios-and-model-risk` out of further methodology relitigation unless the artifact changes materially; only the separate Westpac factual-fidelity correction remains live on the current hash.
+
+## [2026-06-19] - Exact-format methodology close-out no-delta rerun of the literal pasted `case-study-westpac-and-the-litepay-channel` artifact: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `case-study-westpac-and-the-litepay-channel` again under the explicit v1.1 cross-check-reviewer brief before user-facing close-out, re-checking it against `docs/COURSE-GENERATION-PROMPT.md` and ADR 0020.
+
+What this pass confirmed:
+- No change from the earlier same-day methodology rerun. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, the Westpac / AUSTRAC public-enforcement matter still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-westpac-and-the-litepay-channel` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-19] - Exact-output factual-fidelity close-out rerun of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: verdict still `DISAGREE`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` again under the exact final-output contract before closing the audit, using the live generated lesson file and the same-day Westpac Federal Court / AUSTRAC findings already captured in repo memory as the comparison baseline.
+
+What this pass confirmed:
+- No delta from the later same-day primary-source note. The live blocker is still the Westpac LitePay chronology inversion in `Deep case: Westpac, LitePay and the wrong scenario — coverage means the right scenario on every channel`: the lesson teaches no appropriate LitePay scenario until **June 2018**, while the recorded SAFA chronology is LitePay detection scenarios from launch in **August 2016**, an updated LitePay scenario in **June 2018**, and the longer-running no-appropriate-scenario point on **non-LitePay channels until October 2019**.
+- The same case-fidelity error is still propagated into quiz `Designing and validating a monitoring system` and slide `What to carry forward`, so the user-facing verdict should remain `DISAGREE`.
+- Preserve the narrower wording fix too: the `19,502,841` section-`45(2)` strand should stay in the `late / not within the required time frame` lane rather than `unreported` IFTIs.
+
+## [2026-06-19] - Exact-format user-facing rerun of the literal pasted `case-study-westpac-and-the-litepay-channel` artifact: verdict still `DISAGREE`
+
+Reviewed the user-supplied JSON for `case-study-westpac-and-the-litepay-channel` again under the exact cross-check-reviewer output contract before user-facing close-out, using the repo's later same-day Westpac primary-source reread as the comparison baseline.
+
+What this pass confirmed:
+- No delta from the later same-day correction. The live blocker remains the LitePay chronology wording: the repo's verified SAFA spine says Westpac identified the need in **May 2016**, had **two LitePay detection scenarios from the August 2016 launch**, added an **updated LitePay scenario in June 2018**, and the longer-running no-appropriate-scenario point persisted via **non-LitePay channels until October 2019**.
+- The current lesson still overstates that bundle across `The matter, in strands`, `LitePay: the product story`, `The typology and its indicators, professionally handled`, and `What to carry forward` by teaching LitePay as the channel that lacked an appropriate scenario until 2018, rather than keeping the longer-running absence point on non-LitePay channels.
+- Preserve the narrower second issue too: `The IFTI strand: the other unwired pipe` and quiz `The product-launch review` still drift from `failed to report within the required time frame` into `unreported` / `not generated` wording for the `19,502,841` section-`45(2)` contraventions.
+- Carry-forward instruction: if this lesson is revised again, keep the next factual-fidelity touch tightly scoped to those two Westpac corrections and the propagated reuse points only.
+
+## [2026-06-19] - Exact-format methodology stored-artifact + validation-file rerun of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1, then checked it against the stored lesson JSON and its `.validation.json` file before closing the audit.
+
+What this pass confirmed:
+- No methodology delta from the earlier same-day notes. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, the Westpac / AUSTRAC public-enforcement record still supplies a valid named deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- The stored validation file still passes the methodology-relevant deterministic gates, so this rerun added no new review work beyond reconfirming the closed status of the methodology lane.
+- Carry-forward instruction: keep `transaction-monitoring-systems-rules-scenarios-and-model-risk` out of further methodology relitigation unless the artifact changes materially. Only the separate Westpac factual-fidelity correction remains live on the current hash.
+
+## [2026-06-19] - Exact-format factual-fidelity close-out rerun of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: verdict still `DISAGREE`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` again under the exact cross-check-reviewer output contract before the user-facing close, checking it against the repo's stored `review_events.jsonl` rejection spine, the live generated lesson file, and the recorded Westpac Federal Court / AUSTRAC findings already captured in same-day memory.
+
+What this pass confirmed:
+- No delta from the later same-day primary-source correction. The live blocker is still the Westpac LitePay chronology inversion in `Deep case: Westpac and the LitePay channel - when scenario coverage lagged a known typology`: the lesson teaches no appropriate LitePay scenario until **June 2018**, while the recorded SAFA chronology used elsewhere in repo memory is LitePay need identified in **May 2016**, **two LitePay detection scenarios from launch in August 2016**, an updated LitePay scenario in **June 2018**, and the longer-running appropriate-scenario gap on **non-LitePay channels until October 2019**.
+- The same case-fidelity error is still propagated into quiz `Designing and validating a monitoring system` and slide `What to carry forward`, so the user-facing verdict should stay `DISAGREE`, not `SPLIT`.
+- Preserve the narrower secondary wording note from the stored rejection event too: the `19,502,841` section-`45(2)` strand should be framed as failures to give IFTI reports within the required time frame, not compressed to a clean never-reported count.
+- Carry-forward instruction: if this lesson is revised again, keep the next factual-fidelity touch tightly scoped to that Westpac chronology correction, the propagated reuse points, and the `late/not-within-time-frame` wording only.
+
+## [2026-06-19] - Exact-format factual-fidelity audit of the literal pasted `case-study-westpac-and-the-litepay-channel` artifact: earlier same-day `AGREE` note is stale; verdict now `DISAGREE`
+
+Reviewed the user-supplied JSON for `case-study-westpac-and-the-litepay-channel` again under the exact cross-check-reviewer output contract before user-facing close-out, using the repo's later same-day Westpac primary-source reread as the comparison baseline.
+
+What this pass changed:
+- The earlier same-day `AGREE` note for this exact lesson is stale on the current artifact hash.
+- The lesson carries the same substantive LitePay chronology inversion already confirmed in the related transaction-monitoring lesson. The filed AUSTRAC `Statement of Agreed Facts and Admissions` says Westpac identified the need in **May 2016**, had **two LitePay detection scenarios from LitePay's August 2016 launch**, added an **updated LitePay scenario in June 2018**, and the longer-running no-appropriate-scenario point persisted via **non-LitePay channels until October 2019**. The current lesson instead teaches that LitePay lacked the relevant scenario until 2018 and that Westpac simply failed to deploy scenarios it already ran elsewhere.
+- The lesson also overstates the section-`45(2)` strand by compressing the `19,502,841` contraventions into `never reported` / `unreported` IFTIs rather than failures to report within the required time frame.
+- Carry-forward instruction: if `case-study-westpac-and-the-litepay-channel` is revised again, keep the next fidelity touch tightly scoped to those two Westpac corrections and the propagated reuse points across the reading scenes, quiz, and synthesis. The older same-day `AGREE` note should not be reused on this artifact hash.
+
+## [2026-06-19] - Repeat exact-format methodology no-delta rerun of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before the user-facing close.
+
+What this pass confirmed:
+- No methodology delta from the earlier same-day methodology entries. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, the Westpac / AUSTRAC public-enforcement record still supplies a valid named deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `transaction-monitoring-systems-rules-scenarios-and-model-risk` out of further methodology relitigation unless the artifact changes materially. Only the separate Westpac factual-fidelity correction remains live on the current hash.
+
+## [2026-06-19] - Exact-format factual-fidelity no-delta rerun of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: verdict still `DISAGREE`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` again under the exact cross-check-reviewer output contract before user-facing close-out, using the repo's same-day review spine and recorded Federal Court / AUSTRAC Westpac findings as the comparison baseline.
+
+What this pass confirmed:
+- No delta from the later same-day primary-source correction. The live blocker is still the Westpac LitePay chronology inversion in `Deep case: Westpac and the LitePay channel - a known typology with no scenario where the risk ran`: the lesson teaches no appropriate LitePay scenario until June 2018, while the recorded SAFA findings used elsewhere in the repo say LitePay had two detection scenarios from launch in August 2016, an updated LitePay scenario in June 2018, and the longer-running appropriate-scenario gap on non-LitePay channels until October 2019.
+- The same case-fidelity error is still propagated into quiz `Designing and validating a monitoring system` and slide `What to carry forward`, so the problem is not contained to one paragraph or citation label.
+- Carry-forward instruction: if this lesson is revised again, keep the next factual-fidelity touch tightly scoped to correcting that Westpac chronology and its reused explanatory language only.
+
+## [2026-06-19] - Exact-format methodology no-delta rerun of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before closing the user-facing audit.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, `Deep case: Westpac and the LitePay channel - the scenarios the bank owned but did not deploy` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `transaction-monitoring-systems-rules-scenarios-and-model-risk` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-19] - Exact-format factual-fidelity audit of the literal pasted `ai-ml-network-analytics-and-investigation-tooling` artifact: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `ai-ml-network-analytics-and-investigation-tooling` under the exact cross-check-reviewer output contract against the maintained facts reference, the reviewed DOJ Goldman `22 October 2020` resolution page, and the already-cleared 1MDB / Goldman / Najib public-record bundle before closing the user-facing audit.
+
+What this pass confirmed:
+- No publication-blocking contradiction surfaced on the current artifact hash. The lesson's high-level FATF New Technologies / Data Pooling framing stays within acceptable source-grounded bounds for this technology-focused module.
+- The deep-case bundle is publication-safe on the current artifact: approximately `USD 4.5 billion` misappropriated from 1MDB, the Good Star / fake-Aabar mechanics, Goldman `USD 6.5 billion` in bond deals / approximately `USD 606 million` in fees / more than `USD 1.6 billion` in bribes / more than `USD 2.9 billion` in the `22 October 2020` coordinated resolution, and Najib's conviction arising from the affair all materially hold on the reviewed source set.
+- Carry-forward instruction: keep `ai-ml-network-analytics-and-investigation-tooling` out of further factual-fidelity relitigation unless the artifact changes materially. The lesson is now cross-cleared in both methodology and factual-fidelity lanes.
+
+## [2026-06-19] - Exact-format factual-fidelity audit of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: verdict `SPLIT`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` under the exact cross-check-reviewer output contract against the maintained facts reference and the already-cleared Federal Court / AUSTRAC Westpac public-record bundle before closing the user-facing audit.
+
+What this pass confirmed:
+- No publication-blocking contradiction surfaced in the substantive bundle on the current artifact hash. The Westpac deep-case facts (`21 October 2020`, `AUD 1.3 billion`, `19.5 million+`, LitePay-until-`2018`, and the initial `12`-customer subset versus the court-declared `262`-customer section-`36(1)` population) materially hold, and no current FATF / Wolfsberg / model-governance wording in the lesson contradicts the maintained facts pack.
+- The reviewer-visible residual is citation-title precision only. `Deep case: Westpac and the LitePay channel - the scenarios the bank owned but did not deploy` compresses the Federal Court civil-penalty order and the `Statement of Agreed Facts and Admissions` into one imprecise blended label (`Statement of Agreed Facts and Civil Penalty Order`) rather than naming the two primary documents separately and exactly.
+- Carry-forward instruction: if `transaction-monitoring-systems-rules-scenarios-and-model-risk` is revised again, keep the next factual-fidelity touch tightly scoped to that deep-case citation-label cleanup only. Do not reopen the otherwise stable Westpac amount/date/customer/channel bundle unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format methodology audit of the literal pasted `ai-ml-network-analytics-and-investigation-tooling` artifact: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `ai-ml-network-analytics-and-investigation-tooling` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before closing the user-facing audit.
+
+What this pass confirmed:
+- Allowed/public source types hold on the artifact, every reading scene carries a `citations[]` array, and `Deep case: 1MDB - the network the rules could not see` satisfies the named public-matter deep-case requirement.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `ai-ml-network-analytics-and-investigation-tooling` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-19] - Exact-format methodology audit of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before closing the user-facing audit.
+
+What this pass confirmed:
+- Allowed/public source types hold on the artifact, every reading scene carries a `citations[]` array, and `Deep case: Westpac and the LitePay channel - the scenarios the bank owned but did not deploy` satisfies the named public-enforcement deep-case requirement.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `transaction-monitoring-systems-rules-scenarios-and-model-risk` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-19] - Exact-format factual-fidelity audit of the literal pasted `identity-and-onboarding-technology` artifact: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `identity-and-onboarding-technology` under the exact cross-check-reviewer output contract against the maintained facts reference, FATF's Digital Identity / New Technologies guidance, the Basel Committee's July-2020 AML/CFT risk-management guidelines, and the already-cleared DOJ / Danish-FSA Danske bundle before closing the user-facing audit.
+
+What this pass confirmed:
+- No ship-blocking contradiction surfaced on the current artifact hash. The lesson's distinction between identity proofing and authentication, its assurance-level framing for digital identity, and its cautions on beneficial-ownership / adverse-media data all stay within acceptable source-grounded bounds.
+- The deep-case bundle is publication-safe on factual fidelity: `13 December 2022` guilty plea; approximately `USD 2 billion` DOJ resolution; approximately `USD 160 billion` through U.S. correspondent banks over `2008-2016`; shell-company / nominee structures; and the branch's separate systems / group-visibility failure remain aligned with the maintained facts pack and the reviewed public record.
+- Carry-forward instruction: keep `identity-and-onboarding-technology` out of further factual-fidelity relitigation unless the artifact changes materially. The lesson is now cross-cleared in both methodology and factual-fidelity lanes.
+
+## [2026-06-19] - Exact-format methodology audit of the literal pasted `screening-systems-sanctions-watchlists-and-fuzzy-matching` artifact: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `screening-systems-sanctions-watchlists-and-fuzzy-matching` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before closing the user-facing audit.
+
+What this pass confirmed:
+- Allowed/public source types hold on the artifact, every reading scene carries a `citations[]` array, and `Deep case: Standard Chartered — defeating your own screening` satisfies the named public-enforcement deep-case requirement.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `screening-systems-sanctions-watchlists-and-fuzzy-matching` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-19] - Exact-format methodology audit of the literal pasted `identity-and-onboarding-technology` artifact: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `identity-and-onboarding-technology` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before closing the user-facing audit.
+
+What this pass confirmed:
+- Allowed/public source types hold on the artifact, every reading scene carries a `citations[]` array, and `Deep case: Danske Estonia — identity and ownership never established` satisfies the named public-enforcement deep-case requirement.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `identity-and-onboarding-technology` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
+## [2026-06-19] - Exact-format factual-fidelity audit of the literal pasted `the-afc-technology-landscape-and-the-build-buy-decision` artifact: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `the-afc-technology-landscape-and-the-build-buy-decision` under the exact cross-check-reviewer output contract against the maintained facts reference, the repo's locked current ACAMS blueprint note, and the already-cleared Commerzbank/FCA source bundle before closing the user-facing audit.
+
+What this pass confirmed:
+- The lesson is clean for publication on factual fidelity. No ship-blocking contradiction surfaced on the current hash against the maintained facts pack or the repo's current CAMS blueprint note.
+- The line that this topic is now its own CAMS exam domain is current: the locked ACAMS handbook note shows Domain D, `Tools and Technologies to Fight Financial Crime`, as a standalone 20% domain.
+- The Commerzbank deep-case bundle is correctly framed on the current artifact: `Commerzbank AG, London Branch`; Final Notice dated `17 June 2020`; penalty `GBP 37,805,400`; Relevant Period `23 October 2012 to 29 September 2017`; broader AML control-framework failure centered on the branch's automated transaction-monitoring tool rather than a screening-only case.
+- Carry-forward instruction: keep `the-afc-technology-landscape-and-the-build-buy-decision` out of further factual-fidelity relitigation unless the artifact changes materially.
+
+## [2026-06-19] - Exact-format methodology audit of the literal pasted `the-afc-technology-landscape-and-the-build-buy-decision` artifact: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `the-afc-technology-landscape-and-the-build-buy-decision` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before closing the user-facing audit.
+
+What this pass confirmed:
+- Allowed/public source types hold on the artifact, every reading scene carries a `citations[]` array, and `Deep case: Commerzbank London - when the technology did not keep pace with the risk` satisfies the named public-enforcement deep-case requirement.
+- The scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `the-afc-technology-landscape-and-the-build-buy-decision` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+
 ## [2026-06-18] - Exact-format factual-fidelity no-delta rerun of the literal pasted `case-study-1mdb-and-the-private-banking-failure-mode` artifact: verdict still `DISAGREE`
 
 Reviewed the pasted lesson JSON again under the exact cross-check-reviewer output contract against the maintained facts reference and the already-reviewed DOJ / Goldman / MAS / FINMA source bundle before closing the user-facing audit.
@@ -2492,3 +2693,48 @@ Then ran the remaining backlog — **Module 6's `the-bangladesh-framework`, all 
 Caution learned: when a reviewer flags a recurring class (title, Commerzbank, B&H, a comparative claim), sweep ALL sites at once (citations, body, narration, quiz prompts AND explanations, slide items) — the reviewer hunts exhaustively and one missed instance costs a full ~10-min iteration.
 
 **[2026-06-19] Ripon's decision on the 3 design-flagged lessons: ACCEPT ALL 3 AS-IS.** training-and-culture, case-study-the-danske-bank-estonia-affair, and case-study-1mdb are accepted at Ripon's review gate, overruling the Pro reviewer on the disputed premise (the brief-sanctioned framing the reviewer holds is bank-commissioned-derived / unsourced-cross-institution-inference). Every concrete fidelity and methodology issue was addressed; only the disputed organizing framing remains, and it is accepted. **All 40 CAMS lessons are now cleared/cleared-with-fix — generation + cross-check complete. Remaining: the `generate-course.ts write` promote step (Ripon's).**
+## [2026-06-19] - Exact-format factual-fidelity audit of the literal pasted `screening-systems-sanctions-watchlists-and-fuzzy-matching` artifact: verdict `AGREE`
+
+Reviewed the user-supplied JSON for `screening-systems-sanctions-watchlists-and-fuzzy-matching` under the exact cross-check-reviewer output contract before closing the user-facing audit, checking it against the maintained facts reference, the Federal Reserve's **10 December 2012** and **9 April 2019** Standard Chartered press releases, OFAC's **9 April 2019** Standard Chartered settlement page, OFAC FAQ `401` / `398`, and OFAC's 2019 *Framework for OFAC Compliance Commitments*.
+
+What this pass confirmed:
+- No ship-blocking contradiction surfaced in the lesson's control framing. The reading scenes' list-management and interdiction teaching matches the OFAC Framework's language that internal controls should identify and interdict prohibited activity and adjust rapidly to sanctions-list and program updates, and the ownership-reach wording stays within OFAC's aggregate `50 percent or more` rule rather than drifting into a control-only test.
+- The Standard Chartered deep-case bundle is materially sound on the reviewed public record. The **December 2012** federal package matches the Fed's stated `USD 100 million` Board penalty plus `USD 227 million` DOJ / New York County DA forfeiture, with OFAC's `USD 132 million` settlement deemed satisfied by that forfeiture, which supports the lesson's approximately `USD 327 million` figure for that package. The **9 April 2019** sequel also lands correctly: OFAC's exact settlement amount is `USD 639,023,750`, and the Fed's same-day press release confirms a combined agency total of `USD 1.1 billion`.
+- Carry-forward instruction: keep `screening-systems-sanctions-watchlists-and-fuzzy-matching` out of further factual-fidelity relitigation unless the artifact changes materially.
+## [2026-06-19] - Direct primary-source recheck of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: earlier same-day `SPLIT` note is stale; verdict is `DISAGREE`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` again under the exact cross-check-reviewer output contract, this time line-checking the filed AUSTRAC `Statement of Agreed Facts and Admissions` directly against the lesson's Westpac teaching before closing the audit.
+
+What this pass changed:
+- The problem is substantive, not just citation-label precision. The SAFA says Westpac identified the need for LitePay detection scenarios in **May 2016**, had **two LitePay scenarios from launch in August 2016**, added an **updated LitePay scenario in June 2018**, and lacked an appropriate child-exploitation scenario via **non-LitePay channels until October 2019**.
+- The current lesson teaches the opposite control story: that Westpac already owned the right scenario and simply failed to deploy it on LitePay until 2018. That inversion appears in the deep-case scene, the first quiz explanation, and the final synthesis scene.
+- Separate wording note: the `19,502,841` section-`45(2)` contraventions should be kept in the `late / not within the required time frame` lane, not compressed to `unreported` IFTIs.
+- Carry-forward instruction: if this lesson is revised again, fix the Westpac deep-case framing first and propagate that correction everywhere it is reused. Only after that should anyone bother with the secondary citation-label cleanup note recorded earlier the same day.
+## [2026-06-19] - Exact-format methodology rerun of the literal pasted `transaction-monitoring-systems-rules-scenarios-and-model-risk` artifact: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `transaction-monitoring-systems-rules-scenarios-and-model-risk` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before finalizing the user-facing audit.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, `Deep case: Westpac and the LitePay channel - a known typology with no scenario where the risk ran` still satisfies the named public-enforcement deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `transaction-monitoring-systems-rules-scenarios-and-model-risk` out of further methodology relitigation unless the artifact changes materially. The only live publication issue on the current hash remains the separate Westpac factual-fidelity correction.
+## [2026-06-19] - Exact-format methodology no-delta rerun of the literal pasted `case-study-westpac-and-the-litepay-channel` artifact: verdict still `AGREE`
+
+Reviewed the user-supplied JSON for `case-study-westpac-and-the-litepay-channel` again against `docs/COURSE-GENERATION-PROMPT.md` v1.1 under the exact cross-check-reviewer output contract before user-facing close-out.
+
+What this pass confirmed:
+- No methodology delta surfaced on the current artifact. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, the Westpac / AUSTRAC public-enforcement matter still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-westpac-and-the-litepay-channel` out of further methodology relitigation unless the artifact changes materially. Any remaining publication work belongs only to the separate factual-fidelity lane.
+## [2026-06-19] - Exact-format methodology re-audit of the literal pasted `case-study-westpac-and-the-litepay-channel` artifact: verdict still `AGREE`
+
+Reviewed the same user-supplied JSON again under the explicit v1.1 cross-check-reviewer brief, checking it against `docs/COURSE-GENERATION-PROMPT.md` and ADR 0020 before closing the current audit turn.
+
+What this pass confirmed:
+- No methodology delta from the earlier same-day note. Allowed/public source types still hold, every reading scene still carries a `citations[]` array, the Westpac / AUSTRAC public-enforcement matter still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register blocker surfaced.
+- Carry-forward instruction: keep `case-study-westpac-and-the-litepay-channel` out of further methodology relitigation unless the artifact changes materially. Only the separate factual-fidelity lane remains live on the current hash.
+
+## 2026-06-19 — Westpac/LitePay deep fidelity chase (resolved) + Module 9 done
+
+- The Westpac/LitePay deep case fought the cross-check through ~6 iterations on 9.4 and ~5 on Module 8. The trap: the Codex fidelity brief injects `CURRENT_FACTS_PACK` as "treat as ground truth," and the reviewer kept citing a Westpac "verified SAFA spine" — but the facts pack had NO Westpac entry (only Danske). The reviewer was enforcing its own SAFA recollection, so no lesson-only edit could converge.
+- Resolution: verified the chronology against primary sources (AUSTRAC concise statement + the SAFA/[2020] FCA 1538 detail) and wrote it into the facts pack. KEY FACTS: LitePay had a detection scenario from Aug 2016 that targeted multi-beneficiary sending and did NOT adequately cover the child-exploitation typology; appropriate LitePay scenario June 2018; non-LitePay channels had no appropriate scenario from late 2016 until October 2019 (the longer gap); 19,502,841 s.45(2) = within-time failures, not "never reported"; cite the Federal Court order and the AUSTRAC SAFA as two separate documents.
+- Lesson for future Westpac work: frame the coverage gap as primarily the non-LitePay channels (LitePay was monitored, just not adequately until June 2018) — do NOT frame LitePay as wholly uncovered.
+- Process note: when the reviewer repeatedly cites a "repo verified spine," grep facts_pack.ts FIRST — if the matter isn't there, add it (verified) rather than burning iterations on lesson text.
