@@ -40,6 +40,7 @@ export type WriteResult = {
   lessons: number
   scenes: number
   questions: number
+  glossary: number
 }
 
 export async function writeCourse(opts: {
@@ -179,6 +180,7 @@ export async function writeCourse(opts: {
 
   // 4. Assessment + glossary (Stage 3 — present only if it was generated)
   let questionCount = 0
+  let glossaryCount = 0
   if (opts.assessment) {
     const moduleIdBySlug = new Map<string, string>()
     const { data: mods } = await admin.from('modules').select('id, slug').eq('course_id', courseId)
@@ -204,15 +206,27 @@ export async function writeCourse(opts: {
       questionCount = opts.assessment.questions.length
     }
     if (opts.assessment.glossary.length > 0) {
-      await admin.from('glossary').insert(
-        opts.assessment.glossary.map((g) => ({
+      // De-dupe by term: the table has UNIQUE(course_id, term), and a term may
+      // recur across module assessment files (e.g. a statute defined in two
+      // modules). A single batch insert otherwise aborts on the first duplicate.
+      const seenTerms = new Set<string>()
+      const glossaryRows = opts.assessment.glossary
+        .filter((g) => {
+          const key = g.term.trim().toLowerCase()
+          if (seenTerms.has(key)) return false
+          seenTerms.add(key)
+          return true
+        })
+        .map((g) => ({
           course_id: courseId,
           term: g.term,
           definition: g.definition,
           short_definition: g.shortDefinition ?? null,
           aliases: g.aliases ?? [],
-        })),
-      )
+        }))
+      const { error: ge } = await admin.from('glossary').insert(glossaryRows)
+      if (ge) throw new Error('Failed to insert glossary: ' + ge.message)
+      glossaryCount = glossaryRows.length
     }
   }
 
@@ -232,6 +246,7 @@ export async function writeCourse(opts: {
     lessons: lessonCount,
     scenes: sceneCount,
     questions: questionCount,
+    glossary: glossaryCount,
   }
 }
 

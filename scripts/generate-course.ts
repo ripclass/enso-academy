@@ -347,7 +347,7 @@ async function main() {
         'Generated via the Prompt 13 content pipeline (methodology v1.1, ADR 0020 — AI verification spine).',
     })
     console.log(`  course ${result.courseId}`)
-    console.log(`  ${result.modules} modules, ${result.lessons} lessons, ${result.scenes} scenes, ${result.questions} questions`)
+    console.log(`  ${result.modules} modules, ${result.lessons} lessons, ${result.scenes} scenes, ${result.questions} questions, ${result.glossary} glossary terms`)
     console.log(
       '  written as DRAFT — unpublished, not enrollable. Per methodology v1.1 (ADR 0020), the AI verification spine has run per-lesson; the operator publishes after reviewing any FLAGs and resolving any over-cap lessons.',
     )
