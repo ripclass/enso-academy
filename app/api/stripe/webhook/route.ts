@@ -141,8 +141,7 @@ async function fulfillCheckout(session: Stripe.Checkout.Session): Promise<void> 
 
   if (kind === 'mock') {
     // Idempotency anchor: insert the mock_purchases row keyed on the session id.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-    const { error } = await (admin as any)
+    const { error } = await admin
       .from('mock_purchases')
       .insert({
         student_id: studentId,

@@ -14,14 +14,13 @@ The product is functionally complete end-to-end (marketing → signup → course
 
 ---
 
-## Phase 1 — Database & schema
-- [ ] Apply all pending migrations to the remote Supabase project (yffwnyuodulbfjjobhmf):
-      `supabase db push`
-      Pending: `20260524161116_path2_lesson_review_events.sql`, `20260620120000_mock_entitlements.sql` (+ confirm the v1 schema is fully applied).
-- [ ] Regenerate types: `supabase gen types typescript --project-id yffwnyuodulbfjjobhmf > lib/supabase/database.types.ts`.
-- [ ] After types regenerate, remove the narrowly-scoped `any` casts on `mock_entitlements` / `mock_purchases` / `consume_mock_attempt` in `lib/stripe/entitlements.ts` and the webhook's mock branch. Re-run `npx tsc --noEmit`.
-- [ ] Run security advisors: `supabase db advisors` (expect 0 WARN/ERROR; the new tables use hardened RLS).
-- [ ] (Optional) Backfill Path-2 review events: `pnpm tsx scripts/backfill-review-events.ts cams`.
+## Phase 1 — Database & schema ✅ DONE (2026-06-20)
+- [x] Applied pending migrations to remote (yffwnyuodulbfjjobhmf) via `supabase db push`: `path2_lesson_review_events`, `mock_entitlements`. Verified: 3 new tables + `consume_mock_attempt` RPC + 4 RLS policies exist.
+- [x] Regenerated `lib/supabase/database.types.ts` (`supabase gen types`); `tsc --noEmit` clean.
+- [x] Removed the narrowly-scoped `any` casts (`entitlements.ts` + webhook mock branch); `tsc --noEmit` clean.
+- [x] Security advisors run. **Caught + fixed a real bug**: `consume_mock_attempt` (SECURITY DEFINER) was still PUBLIC-executable (the original revoke missed PUBLIC), so anon/authenticated could call the RPC with an arbitrary `p_student` and burn another user's mock attempts. Fixed by migration `20260620130000_secure_consume_mock_attempt.sql` (REVOKE FROM PUBLIC/anon/authenticated; GRANT to service_role). Re-run: function WARNs cleared.
+- [x] Backfilled 393 Path-2 review events into `lesson_review_events`.
+- [ ] **(Carried to Phase 6)** 2 pre-existing advisor WARNs, not from these migrations: (a) `lesson-audio` public bucket allows listing — tighten the SELECT policy or accept (audio URLs are already public); (b) Auth "leaked password protection" disabled — enable in the Supabase dashboard (one click).
 
 ## Phase 2 — Content: promote + publish
 - [ ] Promote the course content to the DB (writes the `cams` DRAFT — lessons, scenes, 502 questions, glossary):

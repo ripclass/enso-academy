@@ -12,31 +12,6 @@ export type Database = {
   __InternalSupabase: {
     PostgrestVersion: "14.5"
   }
-  graphql_public: {
-    Tables: {
-      [_ in never]: never
-    }
-    Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      graphql: {
-        Args: {
-          extensions?: Json
-          operationName?: string
-          query?: string
-          variables?: Json
-        }
-        Returns: Json
-      }
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
-  }
   public: {
     Tables: {
       ai_grader_evaluations: {
@@ -1263,6 +1238,54 @@ export type Database = {
           },
         ]
       }
+      lesson_review_events: {
+        Row: {
+          artifact_hash: string
+          course_slug: string
+          created_at: string
+          decision: string
+          event_id: string
+          from_status: string | null
+          lesson_slug: string
+          methodology_version: string
+          notes: string
+          outline_hash: string
+          reviewer: string
+          reviewer_role: string
+          to_status: string
+        }
+        Insert: {
+          artifact_hash: string
+          course_slug: string
+          created_at?: string
+          decision: string
+          event_id: string
+          from_status?: string | null
+          lesson_slug: string
+          methodology_version: string
+          notes?: string
+          outline_hash: string
+          reviewer: string
+          reviewer_role: string
+          to_status: string
+        }
+        Update: {
+          artifact_hash?: string
+          course_slug?: string
+          created_at?: string
+          decision?: string
+          event_id?: string
+          from_status?: string | null
+          lesson_slug?: string
+          methodology_version?: string
+          notes?: string
+          outline_hash?: string
+          reviewer?: string
+          reviewer_role?: string
+          to_status?: string
+        }
+        Relationships: []
+      }
       lessons: {
         Row: {
           concept_tags: string[]
@@ -1312,6 +1335,50 @@ export type Database = {
             columns: ["module_id"]
             isOneToOne: false
             referencedRelation: "modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mock_entitlements: {
+        Row: {
+          course_id: string
+          created_at: string
+          id: string
+          included_total: number
+          metadata: Json
+          purchased_total: number
+          student_id: string
+          updated_at: string
+          used: number
+        }
+        Insert: {
+          course_id: string
+          created_at?: string
+          id?: string
+          included_total?: number
+          metadata?: Json
+          purchased_total?: number
+          student_id: string
+          updated_at?: string
+          used?: number
+        }
+        Update: {
+          course_id?: string
+          created_at?: string
+          id?: string
+          included_total?: number
+          metadata?: Json
+          purchased_total?: number
+          student_id?: string
+          updated_at?: string
+          used?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mock_entitlements_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
             referencedColumns: ["id"]
           },
         ]
@@ -1455,6 +1522,62 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "mock_exam_templates_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mock_purchases: {
+        Row: {
+          amount_cents: number
+          course_id: string
+          created_at: string
+          credits_granted: number
+          currency: string
+          id: string
+          metadata: Json
+          purchased_at: string
+          status: Database["public"]["Enums"]["purchase_status"]
+          stripe_checkout_session_id: string | null
+          stripe_payment_intent_id: string | null
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          amount_cents: number
+          course_id: string
+          created_at?: string
+          credits_granted?: number
+          currency?: string
+          id?: string
+          metadata?: Json
+          purchased_at?: string
+          status?: Database["public"]["Enums"]["purchase_status"]
+          stripe_checkout_session_id?: string | null
+          stripe_payment_intent_id?: string | null
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number
+          course_id?: string
+          created_at?: string
+          credits_granted?: number
+          currency?: string
+          id?: string
+          metadata?: Json
+          purchased_at?: string
+          status?: Database["public"]["Enums"]["purchase_status"]
+          stripe_checkout_session_id?: string | null
+          stripe_payment_intent_id?: string | null
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mock_purchases_course_id_fkey"
             columns: ["course_id"]
             isOneToOne: false
             referencedRelation: "courses"
@@ -2485,6 +2608,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      consume_mock_attempt: {
+        Args: { p_course: string; p_student: string }
+        Returns: boolean
+      }
       match_cached_qa: {
         Args: {
           p_course_id: string
@@ -2696,9 +2823,6 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
-  graphql_public: {
-    Enums: {},
-  },
   public: {
     Enums: {
       content_element_type: [

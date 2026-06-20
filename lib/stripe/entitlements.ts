@@ -6,13 +6,8 @@ import { COURSE_INCLUDED_MOCKS, FREE_TASTE_MOCKS } from './client'
  * Mock-attempt entitlement ledger helpers (server-only).
  *
  * All writes go through the service-role admin client — RLS allows only
- * service-role writes to `mock_entitlements` / `mock_purchases`.
- *
- * NOTE: `mock_entitlements` / `mock_purchases` and the `consume_mock_attempt`
- * RPC are not yet in `lib/supabase/database.types.ts` (the migration is applied
- * to the remote DB as an operator step). Until the types regenerate after the
- * migration apply, those specific calls use a narrowly-scoped `any` cast — the
- * client is NOT weakened globally.
+ * service-role writes to `mock_entitlements` / `mock_purchases`. Attempt
+ * consumption uses the atomic `consume_mock_attempt` RPC for race-safety.
  */
 
 export type MockEntitlement = {
@@ -32,8 +27,7 @@ export async function ensureBaselineEntitlement(
   courseId: string,
 ): Promise<void> {
   const admin = createAdminClient()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-  await (admin as any)
+  await admin
     .from('mock_entitlements')
     .upsert(
       {
@@ -54,8 +48,7 @@ export async function getMockEntitlement(
   courseId: string,
 ): Promise<MockEntitlement> {
   const admin = createAdminClient()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-  const { data } = await (admin as any)
+  const { data } = await admin
     .from('mock_entitlements')
     .select('included_total, purchased_total, used')
     .eq('student_id', studentId)
@@ -93,8 +86,7 @@ export async function consumeMockAttempt(
 ): Promise<boolean> {
   await ensureBaselineEntitlement(studentId, courseId)
   const admin = createAdminClient()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-  const { data, error } = await (admin.rpc as any)('consume_mock_attempt', {
+  const { data, error } = await admin.rpc('consume_mock_attempt', {
     p_student: studentId,
     p_course: courseId,
   })
@@ -112,8 +104,7 @@ export async function grantCourseMockAllowance(
   courseId: string,
 ): Promise<void> {
   const admin = createAdminClient()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-  const { data: existing } = await (admin as any)
+  const { data: existing } = await admin
     .from('mock_entitlements')
     .select('included_total')
     .eq('student_id', studentId)
@@ -123,8 +114,7 @@ export async function grantCourseMockAllowance(
   const currentIncluded = Number(existing?.included_total ?? 0)
   const nextIncluded = Math.max(currentIncluded, COURSE_INCLUDED_MOCKS)
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-  await (admin as any)
+  await admin
     .from('mock_entitlements')
     .upsert(
       {
@@ -146,8 +136,7 @@ export async function grantPurchasedCredits(
   credits: number,
 ): Promise<void> {
   const admin = createAdminClient()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-  const { data: existing } = await (admin as any)
+  const { data: existing } = await admin
     .from('mock_entitlements')
     .select('included_total, purchased_total')
     .eq('student_id', studentId)
@@ -157,8 +146,7 @@ export async function grantPurchasedCredits(
   const currentIncluded = Number(existing?.included_total ?? FREE_TASTE_MOCKS)
   const currentPurchased = Number(existing?.purchased_total ?? 0)
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-  await (admin as any)
+  await admin
     .from('mock_entitlements')
     .upsert(
       {

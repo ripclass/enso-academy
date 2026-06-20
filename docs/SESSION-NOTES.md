@@ -3831,3 +3831,8 @@ What this pass confirmed:
 - Prices are server-side only (`PRODUCTS` in `lib/stripe/client.ts`, course 29900 / mock 1499); checkout puts the session-derived `student_id` in metadata; never trust client amounts/ids.
 - Known edge: if a grant step fails AFTER the purchase insert, the handler returns 200 (no retry) → rare paid-but-under-granted, recoverable from the purchase audit row. Harden later (fulfillment-status flag + retry-safe re-grant).
 - Stripe = TEST keys until Atlas approval. Operator: set webhook endpoint + STRIPE_WEBHOOK_SECRET + NEXT_PUBLIC_APP_URL.
+
+## 2026-06-20 — Phase 1 go-live (migrations applied to prod) + SECURITY DEFINER gotcha
+- Applied to remote (yffwnyuodulbfjjobhmf): path2_lesson_review_events, mock_entitlements, and a same-day security fix migration. Types regenerated; any-casts removed; 393 review events backfilled.
+- **GOTCHA (durable):** a `SECURITY DEFINER` Postgres function is EXECUTE-able by PUBLIC by default. `REVOKE EXECUTE ... FROM anon, authenticated` is NOT enough — anon/authenticated still inherit EXECUTE via PUBLIC and can call it over `/rest/v1/rpc/<fn>`. For `consume_mock_attempt` this let any caller pass an arbitrary `p_student` and burn another user's mock attempts. Fix pattern: `REVOKE EXECUTE ON FUNCTION fn(args) FROM PUBLIC; REVOKE ... FROM anon, authenticated; GRANT EXECUTE ... TO service_role;`. The Supabase security advisor (`anon_security_definer_function_executable`) catches this — always run advisors after adding a SECURITY DEFINER function.
+- 2 pre-existing advisor WARNs remain (not from these migrations): lesson-audio public-bucket listing; Auth leaked-password-protection disabled — folded into Phase 6.
