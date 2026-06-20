@@ -2,7 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
-import { stripe, PRODUCTS, type ProductKind } from './client'
+import { getStripe, PRODUCTS, type ProductKind } from './client'
 
 /**
  * Stripe Checkout creators (server actions).
@@ -37,7 +37,7 @@ async function getOrCreateStripeCustomer(
 
   if (existing?.stripe_customer_id) return existing.stripe_customer_id
 
-  const customer = await stripe.customers.create({
+  const customer = await getStripe().customers.create({
     email,
     metadata: { student_id: studentId },
   })
@@ -77,7 +77,7 @@ async function createCheckout(kind: ProductKind, courseSlug: string): Promise<{ 
   const returnUrl =
     kind === 'course' ? `${base}/courses/${course.slug}` : `${base}/courses/${course.slug}/mock`
 
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     mode: 'payment',
     customer: customerId,
     line_items: [

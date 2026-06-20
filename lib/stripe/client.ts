@@ -9,11 +9,22 @@ import Stripe from 'stripe'
  * from any client input. Never accept a price/amount from the browser.
  */
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  // Pinned API version — bump deliberately, not implicitly. Pinned to the
-  // version this SDK (stripe 22.x) is built against.
-  apiVersion: '2026-05-27.dahlia',
-})
+// Lazy singleton. Constructing Stripe at module load would throw during the
+// production build's "collect page data" step if STRIPE_SECRET_KEY were absent,
+// taking down the whole build. Instead we build it on first use (runtime), so a
+// missing key fails only the Stripe call path, not the entire build.
+let _stripe: Stripe | null = null
+export function getStripe(): Stripe {
+  if (_stripe) return _stripe
+  const key = process.env.STRIPE_SECRET_KEY
+  if (!key) throw new Error('STRIPE_SECRET_KEY is not set')
+  _stripe = new Stripe(key, {
+    // Pinned API version — bump deliberately, not implicitly. Pinned to the
+    // version this SDK (stripe 22.x) is built against.
+    apiVersion: '2026-05-27.dahlia',
+  })
+  return _stripe
+}
 
 export type ProductKind = 'course' | 'mock'
 

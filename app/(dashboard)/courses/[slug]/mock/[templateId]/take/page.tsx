@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import { startMockExam, MOCK_PAYWALL } from '@/lib/mock/actions'
+import { startMockExam } from '@/lib/mock/actions'
+import { MOCK_PAYWALL } from '@/lib/mock/types'
 import { MockTaker } from './mock-taker'
 
 type Props = { params: Promise<{ slug: string; templateId: string }> }

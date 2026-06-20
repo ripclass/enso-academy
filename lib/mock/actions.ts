@@ -4,27 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { recordEvidence } from '@/lib/student-model/knowledge'
 import { consumeMockAttempt } from '@/lib/stripe/entitlements'
-
-/**
- * Thrown by startMockExam when the student has no mock attempts left (free taste
- * used up and no purchased credits). The UI catches this to show buy options.
- */
-export const MOCK_PAYWALL = 'MOCK_PAYWALL'
-
-// An option as rendered to the student — id is what the answer references.
-export type MockOption = { id: string; text: string }
-
-// A question as seen by the student — never includes the correct answer.
-export type MockQuestion = {
-  id: string
-  question_text: string
-  options: MockOption[]
-  domain: string
-  difficulty: string
-  question_type: string
-  /** For multiple_choice: how many options to select (>= 1). Single types: 1. */
-  select_count?: number
-}
+import { MOCK_PAYWALL, type MockOption, type MockQuestion } from './types'
 
 type StartMockResult = {
   attemptId: string

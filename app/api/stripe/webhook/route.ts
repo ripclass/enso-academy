@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type Stripe from 'stripe'
-import { stripe, MOCK_CREDITS_PER_PURCHASE } from '@/lib/stripe/client'
+import { getStripe, MOCK_CREDITS_PER_PURCHASE } from '@/lib/stripe/client'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { grantCourseMockAllowance, grantPurchasedCredits } from '@/lib/stripe/entitlements'
 
@@ -38,7 +38,7 @@ export async function POST(req: Request): Promise<Response> {
 
   let event: Stripe.Event
   try {
-    event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret)
+    event = getStripe().webhooks.constructEvent(rawBody, signature, webhookSecret)
   } catch (err) {
     const message = err instanceof Error ? err.message : 'unknown'
     console.error('[stripe-webhook] signature verification failed:', message)

@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { Flag, ChevronLeft, ChevronRight, AlertTriangle } from 'lucide-react'
-import { submitMockExam, type MockQuestion } from '@/lib/mock/actions'
+import { submitMockExam } from '@/lib/mock/actions'
+import { type MockQuestion } from '@/lib/mock/types'
 import { toast } from 'sonner'
 
 type Props = {
