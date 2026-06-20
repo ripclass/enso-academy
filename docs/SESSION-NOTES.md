@@ -3860,3 +3860,21 @@ What this pass confirmed:
 - $399→$299: the CHARGE stays 29900 in lib/stripe/client.ts; $399 is display-only (strikethrough + "$100 off" badge). If we ever change the actual charge, update PRODUCTS.course.amountCents.
 - Stripe live secret key creation needs email verification opened in the SAME browser as the dashboard session — can't be done headlessly for the automated browser without Ripon relaying the link. Simpler: he pastes a sk_live_ he creates in his own browser.
 - Open Ripon decisions: (a) 7-day vs longer refund — I'd argue 14–30d builds more trust for a new brand, but implemented 7 per his call; (b) sim pass mark 75% raw (readiness) vs ~63% raw (mirror real) — kept 75% as readiness; (c) ElevenLabs/OpenAI voice keys still needed.
+
+## 2026-06-21 — OpenMAIC study + the "experience/packaging" phase (post-launch priority)
+Ripon's verdict after going through the live product: content is mature, but UI/UX + interactivity are not — "curated Google find with a chat window," anticlimactic for $400. The fix is PACKAGING/EXPERIENCE, not content (don't reinvent the courses). Studied OpenMAIC live (open.maic.chat, Tsinghua THU-MAIC open-source "Generative Learning in Multi-Agent Interactive Classroom"). Screenshots saved (openmaic-*.png, gitignored).
+
+**OpenMAIC features to adopt (packaging we lack):**
+- **Classroom playback** — scenes play like a video: play/pause/1x speed/auto-play/prev-next + scene counter; the "video-like thing" Ripon meant.
+- **Named teacher persona with voice** ("Dr. Greenleaf") narrating line-by-line + **multiple named classmates** (Mia/Chloe/Leo/Sophia) — multi-agent classroom.
+- **Animated slides** (flow diagrams/cards reveal in sync with narration) vs our static text/cards.
+- **Whiteboard mode**, **voice input (mic)**, **interactive simulations** (drag-build, 3D), **Export PPTX / offline**, Discover feed w/ views/likes.
+
+**What we already beat them on (keep leaning on):** primary-source content fidelity + cross-check; the faithful 120q/3.5h exam simulation + readiness signoff (they have none); persistent student model/memory; real certification structure + payments.
+
+**Adoption plan (prioritized):** Tier 1 — (1) classroom playback w/ voice [VOICE KEY UNBLOCKS], (2) animated slides, (3) 3–4 named classmates asking questions in-flow. Tier 2 — (4) voice input, (5) interactive flashcards (flip + spaced repetition), (6) richer quizzes + RETAKE-INTEGRITY FIX (shuffle options per attempt + pool variation — real bug: options aren't shuffled per attempt so retakes are position-memorizable), (7) 1–2 signature AML interactives. Tier 3 — progress/mastery viz + "X concepts mastered" depth indicators, whiteboard, PPTX/offline export.
+
+**Other Ripon feedback captured (full write-up still coming):**
+- Audio never generated for CAMS (not disabled) — voice key → pre-generate narration for all 49 lessons.
+- Classmate exists but dormant (gated to student-model evidence) → make it present + multi-persona.
+- BD-in-global-CAMS = home-market bias. FACT: the CAMS exam is ONE global exam, identical questions worldwide — NO country-specific questions. So country deep-dives don't help anyone PASS; national content is practitioner value, not exam prep. Plan: global CAMS = FATF + US/EU/UK + "map it to any jurisdiction"; localized national add-ons (India/Pakistan/etc.) as a separate practitioner layer where BD is just one of many; keep BD-centric content in the Enso Academy Bangladesh track. (Awaiting Ripon's full write-up before re-scoping the National Frameworks module.)
