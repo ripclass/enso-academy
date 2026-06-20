@@ -3843,3 +3843,13 @@ What this pass confirmed:
 - Phase 3 seed is also DB-only. Domain distribution is stored under `selection_criteria.by_domain` (NOT `domain_distribution`) + `multi_response_count`; that's what the mock engine reads.
 - Phase 6: the publish-gating fix. After removing dev auto-enroll, a logged-in user with no purchase would have hit a dead-end "no enrollments" page, so I added an "Available courses" section linking to the course page (purchase view). Do NOT re-add auto-enroll.
 - Decision rationale (publish deferred): publish must be the LAST flip — auto-enroll off + Stripe webhook configured + mock seeded must all precede it, else the live course is free (auto-enroll) or purchases don't grant access (no webhook). Re-sequenced publish from Phase 2 to Phase 10 in the checklist.
+
+## 2026-06-20 (launch) — gotchas from taking CAMS live
+- **`vercel env add` ignores piped stdin in agent/non-interactive mode** — both `printf` and `echo` pipes wrote EMPTY values (commands still exit 0). Use `vercel env add NAME ENV --value "<v>" --force --yes`. Mark secrets `--sensitive`.
+- **Sensitive Vercel env vars don't read back via `vercel env pull`** (all values come out empty) — don't use pull to verify; verify functionally. (Known-good NEXT_PUBLIC_SUPABASE_URL also pulled empty, which is how I diagnosed it.)
+- **`'use server'` files may ONLY export async functions.** A const/type export compiles under tsc + dev but fails the Turbopack production build with "module has no exports at all". Keep shared consts/types in a plain sibling module.
+- **Don't construct SDK clients at module load with `KEY!`** — `new Stripe(process.env.X!)` throws during Next "collect page data" if the env is absent, failing the whole build. Use a lazy getter.
+- **Always check `vercel ls` after a push** — tsc-clean code can still fail the prod build; the last *Ready* prod deploy may be far older than HEAD. Builds were erroring for ~40 min unnoticed.
+- Stripe webhook signing secret is returned ONLY at endpoint-creation — capture it then; can't re-fetch. Recreate the endpoint if lost.
+- Playwright is logged into Stripe via Google now; test-mode toggle is safe (test/live fully isolated — does not touch the live product).
+- Test account `livecheck.claude@ensoacademy.ai` now owns CAMS + has 5 mock credits (used 1) + a dangling in-progress free-mock attempt; reset if a clean re-test is needed.

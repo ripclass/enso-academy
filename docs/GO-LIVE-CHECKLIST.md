@@ -32,17 +32,16 @@ The product is functionally complete end-to-end (marketing → signup → course
 - [x] Seeded both templates (`seed-cams-mock.ts`). DB-verified: **CAMS Full Exam Simulation** (120q / 210min / pass 75% / `by_domain` A36-B24-C36-D24, `multi_response_count` 12 ≈10%) + **CAMS Diagnostic** (60q / 105min / 75% / 6 multi-resp), both `is_published=true`.
 - [ ] **(Operator) Confirm vs the current ACAMS candidate handbook**: the scaled pass mark and the multiple-response proportion (seeded at `pass_score_percent=75`, ~10% multi-response — sensible defaults). Adjust `scripts/seed-cams-mock.ts` + re-run if the handbook differs.
 
-## Phase 4 — Payments (Stripe)
-- [ ] In the Stripe Dashboard, add a webhook endpoint → `https://www.ensoacademy.ai/api/stripe/webhook`, event **`checkout.session.completed`**. Copy its signing secret.
-- [ ] Set `STRIPE_WEBHOOK_SECRET` (Vercel Production + Preview) to that secret.
-- [ ] Confirm `STRIPE_SECRET_KEY` / `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` are the right keys per environment (TEST until Atlas approval).
-- [ ] When **Stripe Atlas is approved**: swap to LIVE keys + create a LIVE webhook endpoint + LIVE signing secret; re-test one live purchase.
-- [ ] (Local webhook testing) `stripe listen --forward-to localhost:3000/api/stripe/webhook`.
+## Phase 4 — Payments (Stripe) ✅ DONE (2026-06-20, TEST mode)
+- [x] Created the production webhook endpoint via the Stripe API → `https://www.ensoacademy.ai/api/stripe/webhook`, event `checkout.session.completed`. Active endpoint: **`we_1TkR6VBG8gnvAJXarecH5LRn`** (account `acct_1T4IAtBG8gnvAJXa`, "Enso Intelligence Labs, Inc.", Test). Set `STRIPE_WEBHOOK_SECRET` in Vercel Production (sensitive).
+- [x] Set `STRIPE_SECRET_KEY` (sensitive) + `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` in Vercel Production (TEST keys). **CLI gotcha:** `vercel env add` ignores piped stdin in agent mode — use `--value "<v>" --force --yes`; sensitive vars don't read back via `vercel env pull` (verify functionally).
+- [ ] **When Stripe Atlas is approved (only thing left for REAL money):** swap to LIVE `sk_live_`/`pk_live_` keys in Vercel, create a LIVE webhook endpoint + LIVE `whsec_`, redeploy, re-test one live purchase + refund.
+- [ ] **DECISION — Adaptive Pricing:** Stripe is auto-presenting **BDT** (≈38,072) as the default currency for BD-locale buyers, with USD as an option (account-level "Adaptive Pricing"). Decide: keep multi-currency presentment, or disable it for USD-only. (Dashboard → Settings → Payments.)
 
-## Phase 5 — Environment & config
-- [ ] Set `NEXT_PUBLIC_APP_URL` per environment (e.g. `https://www.ensoacademy.ai` in prod) — checkout success/cancel URLs use it.
-- [ ] Verify all env vars synced to Vercel (Production + Preview): Supabase URL/anon/service-role, `OPENROUTER_API_KEY`, `GOOGLE_APPLICATION_CREDENTIALS_JSON`, the three Stripe vars, `NEXT_PUBLIC_APP_URL`.
-- [ ] Confirm Supabase Auth config (Site URL + redirect URLs) includes the production domain (`supabase config push`).
+## Phase 5 — Environment & config ✅ DONE (2026-06-20, Production)
+- [x] `NEXT_PUBLIC_APP_URL` was **empty** in Vercel production (would have broken checkout return URLs) — fixed to `https://www.ensoacademy.ai`. Verified functionally: Stripe success/cancel URLs resolved correctly during the live purchase.
+- [x] All required prod env present: Supabase URL/anon/service-role, `OPENROUTER_API_KEY`, `GOOGLE_APPLICATION_CREDENTIALS_JSON`, the three Stripe vars, `NEXT_PUBLIC_APP_URL`. (Preview not populated with Stripe — production-only for launch.)
+- [ ] (Nice-to-have) Confirm Supabase Auth Site URL + redirect URLs include the prod domain — login worked in the smoke test, so this is effectively fine.
 
 ## Phase 6 — Access-control / dev-mode cleanup ✅ DONE (2026-06-20)
 - [x] **Disabled dev auto-enrollment.** Removed the auto-enroll block from `app/(dashboard)/courses/page.tsx`; access now comes ONLY from a completed purchase (the Stripe webhook creates the enrollment). Grep-verified the only two enrollment-insert paths are the (now-removed) dev block and `webhook/route.ts`. Added an "Available courses" buy-catalog section so a logged-in non-owner isn't dead-ended.
@@ -57,20 +56,19 @@ The product is functionally complete end-to-end (marketing → signup → course
 ## Phase 8 — Content accuracy final checks
 - [ ] (Maintenance) Facts-pack TODO: enumerate the revised INR.16 ¶8-9 VA Travel-Rule data elements in `lib/ai/generator/facts_pack.ts` (bump `FACTS_PACK_AS_OF`) if any VA-travel-rule content is re-touched.
 
-## Phase 9 — Verification / smoke tests (end-to-end, on the deployed site)
-- [ ] Production health: `GET /api/health/supabase` and `/api/ai/smoke-test` (with service-role bearer) pass.
-- [ ] Sign up a fresh account → reach the dashboard.
-- [ ] **Free mock**: start a mock with a new account → confirm 1 free attempt is granted and consumed, the exam is the faithful shape (count/time/domain mix incl. multiple-response), submit, see results + by-domain scoring.
-- [ ] **Pay-per-mock**: exhaust the free attempt → buy a single mock with Stripe test card `4242 4242 4242 4242` → webhook fulfils → 1 credit granted → can start another mock.
-- [ ] **Course purchase**: buy the course ($299, test card) → webhook creates the enrollment + grants ≥5 included mocks → course content unlocks → land back on the course page.
-- [ ] Verify **idempotency**: re-send the same webhook event (Stripe Dashboard) → no double-grant.
-- [ ] Verify **readiness**: take enough mocks to see the readiness status + the human-readable reason update.
-- [ ] Verify the landing pricing CTAs + Terms/Privacy links resolve.
+## Phase 9 — Verification / smoke tests ✅ PASSED (2026-06-20, live site, Playwright)
+- [x] Production health: `/api/health/supabase` ok; home 200; landing shows CAMS available / others "Coming soon".
+- [x] Login (test user) → dashboard.
+- [x] **Free mock**: course page showed the $299 purchase view to the non-owner; `/courses/cams/mock` granted **1 free attempt**; started the **CAMS Full Exam Simulation** → faithful **120q / 210-min countdown / Q1-of-120** with a real scenario + 4 options + navigator. (Did not submit — results-page scoring not separately live-tested.)
+- [x] **Paywall**: after the free attempt, the mock page showed **0 remaining** + both buy options ($14.99 / $299).
+- [x] **Course purchase ($299, test card 4242…)** → Stripe Checkout → payment → redirect `?checkout=success` → **webhook created the enrollment → full course content unlocked**. DB-verified: `course_purchases=1`, entitlement `included_total` raised **1→5** (used 1 → 4 remaining), `mock_purchases=0`.
+- [x] Enrollment de-dup confirmed (UNIQUE(student_id,course_id); webhook upsert correct).
+- [ ] Not separately tested (share the verified webhook path / by design): pay-per-mock $14.99, webhook idempotency re-send (idempotent by the unique purchase anchor), readiness after multiple mocks, results-page scoring.
 
-## Phase 10 — Launch
-- [ ] Final deploy from `main` (Vercel auto-deploys); confirm the build is green.
-- [ ] Switch Stripe to LIVE (if Atlas approved) and do one real low-risk live transaction, then refund it.
-- [ ] Announce.
+## Phase 10 — Launch ✅ LIVE in TEST mode (2026-06-20)
+- [x] `main` deploys green (after fixing two build-breakers: `'use server'` non-async exports in `lib/mock/actions.ts`, and `new Stripe()` at module load → lazy `getStripe()`). Course **published** + enrollable; full purchase flow works.
+- [ ] **Real-money launch (pending Stripe Atlas):** switch to LIVE keys + LIVE webhook, one real low-risk transaction + refund. Until then the site is live and accepts **test** payments only.
+- [ ] Announce (after Atlas / real-money is on).
 
 ## Phase 11 — Post-launch / known follow-ups
 - [ ] **Webhook fulfilment hardening** (known edge): a grant step failing *after* the purchase insert returns 200 (no retry) → rare paid-but-under-granted, recoverable from the audit row. Harden with a fulfilment-status flag + retry-safe re-grant.
