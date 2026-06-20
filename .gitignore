@@ -60,3 +60,13 @@ next-env.d.ts
 
 # Course-generation artifacts (Prompt 13)
 generated/
+
+.vercel
+
+# scratch / local-only
+.playwright-mcp/
+.firecrawl/
+/stripe-login.png
+/livecheck-landing.png
+.env.*.check
+.env.x
