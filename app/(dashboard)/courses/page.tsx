@@ -14,36 +14,15 @@ export default async function CoursesPage() {
 
   const admin = createAdminClient()
 
-  // Find published courses
+  // Find published courses (the catalog the user can browse / buy)
   const { data: publishedCourses } = await admin
     .from('courses')
     .select('id, slug, name, short_name, description, tier, estimated_study_hours')
     .eq('status', 'published')
     .order('created_at', { ascending: true })
 
-  // Auto-enroll the user in any published course they're not yet enrolled in (dev mode only)
-  if (publishedCourses && publishedCourses.length > 0) {
-    const { data: existingEnrollments } = await admin
-      .from('enrollments')
-      .select('course_id')
-      .eq('student_id', user.id)
-
-    const enrolledIds = new Set((existingEnrollments ?? []).map(e => e.course_id))
-    const toEnroll = publishedCourses.filter(c => !enrolledIds.has(c.id))
-
-    if (toEnroll.length > 0) {
-      await admin.from('enrollments').insert(
-        toEnroll.map(c => ({
-          student_id: user.id,
-          course_id: c.id,
-          status: 'active' as const,
-          metadata: { auto_enrolled: true, reason: 'dev_mode' },
-        }))
-      )
-    }
-  }
-
-  // Now fetch enrollments with course info
+  // Fetch the user's active enrollments. Access comes ONLY from a completed
+  // purchase (the Stripe webhook creates the enrollment) — no dev auto-enroll.
   const { data: enrollments } = await admin
     .from('enrollments')
     .select(`
@@ -52,6 +31,13 @@ export default async function CoursesPage() {
     `)
     .eq('student_id', user.id)
     .eq('status', 'active')
+
+  // Published courses the user does not yet own — shown as a "buy" catalog.
+  const enrolledCourseIds = new Set(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (enrollments ?? []).map(e => (e.course as any)?.id).filter(Boolean),
+  )
+  const availableCourses = (publishedCourses ?? []).filter(c => !enrolledCourseIds.has(c.id))
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50">
@@ -64,11 +50,7 @@ export default async function CoursesPage() {
           <p className="mt-2 text-neutral-600">Continue where you left off, or start a new lesson.</p>
         </div>
 
-        {!enrollments || enrollments.length === 0 ? (
-          <div className="rounded-lg border border-neutral-200 bg-white p-12 text-center">
-            <p className="text-neutral-500">No active enrollments yet.</p>
-          </div>
-        ) : (
+        {enrollments && enrollments.length > 0 && (
           <div className="grid gap-6 md:grid-cols-2">
             {enrollments.map(enr => {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -107,6 +89,47 @@ export default async function CoursesPage() {
                 </div>
               )
             })}
+          </div>
+        )}
+
+        {availableCourses.length > 0 && (
+          <div className={enrollments && enrollments.length > 0 ? 'mt-14' : ''}>
+            <h2 className="text-2xs font-semibold uppercase tracking-wider text-neutral-500">
+              {enrollments && enrollments.length > 0 ? 'More courses' : 'Available courses'}
+            </h2>
+            <div className="mt-4 grid gap-6 md:grid-cols-2">
+              {availableCourses.map(course => (
+                <div
+                  key={course.id}
+                  className="flex flex-col justify-between rounded-lg border border-neutral-200 bg-white p-6 transition-all hover:shadow-md"
+                >
+                  <div>
+                    <span className="text-2xs font-semibold uppercase tracking-widest text-neutral-400 font-mono">
+                      {course.short_name}
+                    </span>
+                    <h3 className="mt-3 text-xl font-bold text-neutral-900">{course.name}</h3>
+                    <p className="mt-2 text-sm text-neutral-600 leading-relaxed">{course.description}</p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
+                    <span className="text-2xs font-mono text-neutral-400">
+                      {course.estimated_study_hours}h estimated
+                    </span>
+                    <Link
+                      href={`/courses/${course.slug}`}
+                      className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md border border-primary px-4 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-colors"
+                    >
+                      View course <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {(!enrollments || enrollments.length === 0) && availableCourses.length === 0 && (
+          <div className="rounded-lg border border-neutral-200 bg-white p-12 text-center">
+            <p className="text-neutral-500">No courses available yet. Check back soon.</p>
           </div>
         )}
       </main>

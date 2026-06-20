@@ -1,7 +1,9 @@
 // app/api/ai/smoke-test/route.ts
 // Smoke test for the AI client wrapper. GET this endpoint to verify Claude + OpenAI connectivity.
-// SECURITY: protected by a header check using SUPABASE_SERVICE_ROLE_KEY to prevent random calls.
-// Remove or further harden before launch.
+// SECURITY: bearer-guarded by SUPABASE_SERVICE_ROLE_KEY (never exposed client-side).
+// Kept post-launch only as an operator health check (Phase 9). It triggers paid AI
+// calls, so it must stay non-public. If the key is ever unset, the endpoint fails
+// closed rather than accepting the literal "Bearer undefined".
 
 import { NextResponse } from 'next/server'
 import { callHaiku, callSonnet } from '@/lib/ai/routing'
@@ -10,10 +12,14 @@ import { embed } from '@/lib/ai/embeddings'
 export const runtime = 'nodejs'
 
 export async function GET(request: Request) {
-  // Simple bearer-token guard so this endpoint isn't world-callable
+  // Bearer-token guard so this endpoint isn't world-callable. Fail closed if the
+  // service-role key is missing/short so "Bearer undefined" can never authorize.
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!serviceKey || serviceKey.length < 20) {
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  }
   const authHeader = request.headers.get('authorization')
-  const expectedHeader = `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`
-  if (!authHeader || authHeader !== expectedHeader) {
+  if (!authHeader || authHeader !== `Bearer ${serviceKey}`) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 

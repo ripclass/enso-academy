@@ -22,19 +22,15 @@ The product is functionally complete end-to-end (marketing → signup → course
 - [x] Backfilled 393 Path-2 review events into `lesson_review_events`.
 - [ ] **(Carried to Phase 6)** 2 pre-existing advisor WARNs, not from these migrations: (a) `lesson-audio` public bucket allows listing — tighten the SELECT policy or accept (audio URLs are already public); (b) Auth "leaked password protection" disabled — enable in the Supabase dashboard (one click).
 
-## Phase 2 — Content: promote + publish
-- [ ] Promote the course content to the DB (writes the `cams` DRAFT — lessons, scenes, 502 questions, glossary):
-      `pnpm tsx scripts/generate-course.ts write`
-      Note: the writer wipes + rewrites idempotently and refuses to overwrite a *published* course, so promote BEFORE publishing. Keep non-lesson `.json` out of `generated/cams/lessons/`.
-- [ ] Spot-review the promoted course in the app (draft is viewable to you).
-- [ ] Decide the **10.1 Google/Facebook cleared-with-fix flag** (victim names ride on public reporting, not the DOJ release) — accept or tweak.
-- [ ] **Publish**: set the `cams` course `status` → `published` (SQL/dashboard). `/courses` and the course page only show published courses; the course page shows "launching soon" until then.
+## Phase 2 — Content: promote ✅ DONE (2026-06-20) · publish DEFERRED to Phase 10
+- [x] Promoted to the `cams` DRAFT via `generate-course.ts write`. DB-verified: status `draft`, 11 modules / 49 lessons / 499 scenes / **502 questions** (30 multiple-response, all mock-eligible) / 313 glossary; domain split A131/B101/C184/D86 (writer de-duped glossary 333→313 on UNIQUE(course_id,term)).
+- [x] Spot-review: structure verified + every lesson & all 502 questions already passed the cross-check spine; sampled live questions (multi-response screening, scenario override, placement typology) render correctly.
+- [x] **10.1 Google/Facebook flag → KEEP as-is.** Widely-reported, company-acknowledged public fact; lesson cites the public reporting; methodology lane already AGREE. No edit.
+- [ ] **Publish → DEFERRED to Phase 10 (the LAST flip).** Publishing now would make the course live-but-broken/free because auto-enroll, the Stripe webhook, and the mock seed weren't yet closed. Content is promoted + verified; it stays a draft until the payment + access gates are done. Flip `status` → `published` (SQL/dashboard) as the final go-live step.
 
-## Phase 3 — Mock simulation
-- [ ] Seed the faithful mock template(s) AFTER promote:
-      `pnpm tsx scripts/seed-cams-mock.ts`
-      (creates "CAMS Full Exam Simulation" 120q/210min/75%/A36-B24-C36-D24 + a 60q diagnostic; prints per-domain mock-eligible coverage.)
-- [ ] **Confirm vs the current ACAMS candidate handbook**: the scaled pass mark and the target multiple-response proportion (currently `pass_score_percent=75`, `multi_response_count≈10%`). Adjust `scripts/seed-cams-mock.ts` and re-run if different.
+## Phase 3 — Mock simulation ✅ DONE (2026-06-20)
+- [x] Seeded both templates (`seed-cams-mock.ts`). DB-verified: **CAMS Full Exam Simulation** (120q / 210min / pass 75% / `by_domain` A36-B24-C36-D24, `multi_response_count` 12 ≈10%) + **CAMS Diagnostic** (60q / 105min / 75% / 6 multi-resp), both `is_published=true`.
+- [ ] **(Operator) Confirm vs the current ACAMS candidate handbook**: the scaled pass mark and the multiple-response proportion (seeded at `pass_score_percent=75`, ~10% multi-response — sensible defaults). Adjust `scripts/seed-cams-mock.ts` + re-run if the handbook differs.
 
 ## Phase 4 — Payments (Stripe)
 - [ ] In the Stripe Dashboard, add a webhook endpoint → `https://www.ensoacademy.ai/api/stripe/webhook`, event **`checkout.session.completed`**. Copy its signing secret.
@@ -48,10 +44,10 @@ The product is functionally complete end-to-end (marketing → signup → course
 - [ ] Verify all env vars synced to Vercel (Production + Preview): Supabase URL/anon/service-role, `OPENROUTER_API_KEY`, `GOOGLE_APPLICATION_CREDENTIALS_JSON`, the three Stripe vars, `NEXT_PUBLIC_APP_URL`.
 - [ ] Confirm Supabase Auth config (Site URL + redirect URLs) includes the production domain (`supabase config push`).
 
-## Phase 6 — Access-control / dev-mode cleanup (CRITICAL — do not skip)
-- [ ] **Disable dev auto-enrollment.** `app/(dashboard)/courses/page.tsx` auto-enrolls any authenticated user (dev convenience). In production this would give the course away free. Gate it behind purchase (or remove it) so access comes only from a completed `course_purchase` / entitlement.
-- [ ] **Remove or harden the smoke-test endpoint** `/api/ai/smoke-test` (currently bearer-protected by the service-role key) before launch.
-- [ ] Re-confirm mock gating is entitlement-based (it is) and that no path bypasses it.
+## Phase 6 — Access-control / dev-mode cleanup ✅ DONE (2026-06-20)
+- [x] **Disabled dev auto-enrollment.** Removed the auto-enroll block from `app/(dashboard)/courses/page.tsx`; access now comes ONLY from a completed purchase (the Stripe webhook creates the enrollment). Grep-verified the only two enrollment-insert paths are the (now-removed) dev block and `webhook/route.ts`. Added an "Available courses" buy-catalog section so a logged-in non-owner isn't dead-ended.
+- [x] **Hardened the smoke-test endpoint** `/api/ai/smoke-test`: kept the service-role bearer guard (Phase 9 needs it) but it now **fails closed** if `SUPABASE_SERVICE_ROLE_KEY` is unset/short, so the literal `Bearer undefined` can never authorize.
+- [x] Mock gating confirmed entitlement-based: `startMockExam` → `consumeMockAttempt` (atomic RPC) → throws `MOCK_PAYWALL` when none remain. No bypass path. `tsc --noEmit` clean after all Phase 6 edits.
 
 ## Phase 7 — Legal & compliance
 - [ ] Counsel review of `/terms` and `/privacy` (especially refund terms, governing law, and the final operating entity).
