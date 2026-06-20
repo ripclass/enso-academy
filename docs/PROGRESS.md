@@ -1,3 +1,70 @@
+## 2026-06-20 - Module 1 methodology exact current-turn no-delta rerun stays `DISAGREE`
+
+- Re-read the literal user-pasted `generated/cams/assessment/the-fatf-framework-and-the-risk-based-approach.json` question set against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020` under the exact cross-check-reviewer brief after reloading the project-memory chain.
+- No new blocker class surfaced: no hard IP/originality, durability, domain-scope, or adult-professional-register defect on the visible current questions.
+- The live no-ship issue remains methodology only: the back third is still too recall-heavy / mapping-heavy for promotion, with the clearest stems `A compliance officer asks what a FATF-style mutual evaluation actually assesses...`, `A new analyst believes the FATF Recommendations address money laundering only...`, `A compliance officer is unsure how the FATF's standards reach...`, `A country is drafting its money-laundering offence...`, and `Designing a risk assessment, an analyst wants to capture...`; the repeated Interpretive-Note teaching is still live too.
+- Carry-forward: if Module 1 is touched again, keep the next pass tightly scoped to scenario-deepening that recall cluster, differentiating or removing the repeated Interpretive-Note item, and cleaning up the single off-target tag on the literal current text. Do not reopen question-level answer-key / factual-fidelity unless the question text changes materially.
+
+## 2026-06-20 - Module 9 question-only fidelity exact no-delta rerun stays `AGREE`
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact cross-check-reviewer brief after reloading the project-memory chain and doing a final explicit sweep for partial-answer and second-correct-answer risk.
+- Current verdict still lands `AGREE` on the visible **questions**: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or ship-blocking question-level factual defect surfaced against the maintained 2026-06-19 facts reference.
+- Carry-forward: keep Module 9 closed on answer-key / factual fidelity unless the literal question text changes materially; the only live residual remains the separate methodology-side repetition / recall-softness cluster. Scope note: this close-out is question-only and does not extend to a glossary audit.
+
+## 2026-06-20 - Module 9 methodology exact current-turn rerun stays `SPLIT` on the user's stated contract
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020` under the exact cross-check-reviewer brief used in-turn.
+- Current verdict remains `SPLIT`, not the stricter same-day `DISAGREE`, because this brief explicitly allows knowledge-anchored multiple-response items and says not to reject them on format grounds alone.
+- No hard IP/originality, durability, domain/tag-scope, or adult-professional-register blocker surfaced on the visible current questions; the live residual is format-softness only: repeated payment-screening / transliteration / external-data / explainability / build-vs-buy clusters, plus a few thinner concept-recall wrappers (`A data-science team debates using a supervised model...`, `A bank refreshes customer due diligence only on fixed multi-year cycles...`, `Before replacing its production monitoring model...`).
+- Carry-forward: if Module 9 is touched again on this same contract, keep the next pass tightly scoped to dedupe / scenario-deepening / secondary-tag tightening; keep the separate question-only answer-key / factual-fidelity `AGREE` distinct. Scope note: this close-out is question-only and does not extend to a glossary audit.
+
+## 2026-06-20 - Module 10 question-level answer-key / factual-fidelity rerun stays `AGREE`
+
+- Re-read the literal user-pasted `generated/cams/assessment/the-broader-financial-crime-landscape.json` assessment under the exact cross-check-reviewer brief for wrong keys, second-correct-answer risk, distractor wrongness, explanation consistency, and factual fidelity.
+- Current result is still `AGREE` on the **questions**: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual contradiction surfaced on the current wording against the maintained 2026-06-19 facts spine.
+- Carry-forward: keep Module 10 closed on question-level answer-key / fidelity unless the literal question text changes materially; the only live residual on the current hash remains the separate methodology `SPLIT` on four recall-leaning stems. Scope note: this close-out is question-only and does not extend to a glossary audit.
+
+## 2026-06-20 - Module 10 assessment methodology exact user-facing rerun stays `SPLIT`
+
+- Re-read the literal user-pasted `generated/cams/assessment/the-broader-financial-crime-landscape.json` artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020` under the exact cross-check-reviewer brief.
+- No hard IP/originality, durability, domain/tag-vocabulary, or adult-professional-register blocker surfaced on the visible current **questions**; the bank remains promotion-safe on the user's harder no-ship dimensions.
+- The live reviewer-visible residual is format softness only: `A retail customer reports that a caller posing as the bank's fraud team...`, `Two clients each reduce their tax bill...`, `You are assessing a money-remittance business...`, and `A compliance team is briefed that a foreign ruling family...` are concept-correct but thinner scenario-application than the rest of the set.
+- Carry-forward: if Module 10 is touched again, keep the next pass tightly scoped to scenario-deepening those four stems only. Do not reopen answer-key / factual-fidelity unless the literal question text changes materially. Scope note: this close-out is question-only and does not extend to a glossary audit.
+
+## 2026-06-20 - Module 6 methodology exact user-facing rerun stays `DISAGREE`
+
+- Re-read the literal user-pasted `national-frameworks-in-depth` assessment against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020` under the exact cross-check-reviewer methodology brief.
+- No new blocker class surfaced: no hard IP/originality, tag-vocabulary, or adult-register defect on the visible current set; the live no-ship issues remain recall-heavy statute / authority / instrument lookup stems (`JMLSG`, Bangladesh principal-law / `ATA section 15`, and U.S. `314(a)/(b)` / `Section 311` / `GTO`) plus smaller durability drift on the CTA 2025-scope and EU AML Package / AMLA rollout items.
+- Carry-forward: if Module 6 is touched again, keep the next pass tightly scoped to recasting those stems into practitioner decision questions and de-dating the rollout-sensitive wording.
+
+## 2026-06-20 - Module 5 assessment answer-key / factual-fidelity exact current-turn rerun stays `AGREE`
+
+- Re-read the literal user-pasted `generated/cams/assessment/high-risk-categories-and-typologies.json` question set under the exact cross-check-reviewer brief for answer-key correctness, second-correct-answer risk, distractor wrongness / rationale accuracy, explanation consistency, and fidelity to the maintained 2026-06-19 facts reference.
+- Current verdict is `AGREE` on the visible current **questions**: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect survived on the literal pasted text.
+- Carry-forward: keep the separate same-day Module 5 methodology `SPLIT` distinct, and treat older same-day Module 5 question-level `DISAGREE` notes as stale unless the literal question text changes materially.
+
+## 2026-06-20 - Module 5 assessment methodology exact user-brief rerun stays `SPLIT`
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/high-risk-categories-and-typologies.json` artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020` under the exact question-set methodology brief.
+- No hard IP/originality-from-third-party, durability, domain/tag-vocabulary, or adult-professional-register blocker surfaced on the visible current text, and the multiple-response items remain valid on this contract.
+- The live reviewer-visible issue is assessment-design softness only: several later single-answer items are near-duplicate rewrites of earlier judgments, especially the over-invoicing pair (`An importer's invoice prices a shipment of commodity goods...` / `An importer consistently pays far more for commodity shipments...`), the phantom-shipment pair (`An investigation finds an exporter repeatedly invoicing...` / `An investigation finds invoices, bills of lading and payments...`), the real-estate pair, the cash-intensive-business pair, and the luxury-goods pair.
+- Smaller residual: `A bank onboards a foreign head of state's finance minister...` is a thinner compare-the-rule recall item than the rest of the bank.
+- Carry-forward: if Module 5 methodology is touched again, keep the next pass narrowly on deduping / differentiating those repeated items and deepening that recall-leaning PEP comparison stem; do not reuse older stale tag/copy methodology notes against the current literal hash.
+
+## 2026-06-20 - Module 4 sanctions-assessment answer-key / factual-fidelity rerun stays `AGREE`
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/sanctions-compliance.json` artifact under the exact cross-check-reviewer brief after reloading the required project-memory chain.
+- Checked the current-sensitive sanctions points directly against the supplied 2026-06-19 facts reference plus current official sources used in earlier same-day review memory: OFAC FAQ `401` / `398`, the GOV.UK `UK Sanctions List` page, and current OFSI enforcement guidance.
+- Current result is `AGREE` on the literal current **questions**: no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual contradiction surfaced across the bank.
+- Carry-forward: keep Module 4 closed on question-level answer-key / factual-fidelity unless the question text changes materially; keep the separate same-day methodology `SPLIT` note distinct. Scope note: this close-out is question-only and does not extend to a glossary audit.
+
+## 2026-06-20 - Module 4 sanctions-assessment methodology rerun under the exact user brief softens to `SPLIT`
+
+- Re-reviewed the literal user-pasted / repo `generated/cams/assessment/sanctions-compliance.json` artifact under the exact cross-check-reviewer contract focused on IP/originality, durability, valid exam-faithful format, domain/tag sanity, and adult-professional register.
+- No hard IP/originality, durability, tag-vocabulary, or adult-register blocker surfaced on the visible current text, and the multiple-response items are valid on this brief.
+- The live reviewer-visible residual is smaller and format-soft only: a cluster of thin scenario-wrapped concept-recall stems (`A trainee assumes all sanctions work the same way...`, `A transaction that would otherwise be prohibited...`, `A non-US company with no US operations is warned...`, `A new designation lands while...`) plus one arguable domain softness on `Select the THREE statements that correctly describe the reach of US sanctions.`, which reads more like Domain `B` than `C`.
+- Carry-forward: for this exact brief, remember Module 4 methodology as `SPLIT`, not the earlier stricter same-day `DISAGREE`. Only reuse the harder call if a later review contract again treats those recall-leaning single-answer items as no-ship.
+
 ## 2026-06-20 - Module 9 question-level answer-key / factual-fidelity exact in-turn rerun stays `AGREE`
 
 - Re-read the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact cross-check-reviewer brief in-turn, after reloading the required project-memory chain.
@@ -3670,3 +3737,17 @@ Shifted from question-bank volume to **mock fidelity** (the higher-leverage work
 - **Multi-response question pool started**: 20 authored (5 per domain) into M9/M4/M5/M6, positions spread across 5 patterns. M9 cross-check confirmed fidelity-AGREE with the multiple-response keys validated; the assessment cross-check brief (`codex_review_assessment.ts`) was updated so it treats multiple-response as exam-faithful, not "certification-format mimicry."
 
 **To go live:** operator runs `generate-course.ts write` (promote bank → DB) then `seed-cams-mock.ts` (create template); then a faithful mock is takeable. Confirm the scaled pass mark + target multi-response proportion vs the current ACAMS handbook. Pricing decision this session: **CAMS = $299 at launch** ($399 once proven), no subscription, per-course differentiated pricing; BD-track certs priced in BDT at local-market levels.
+## 2026-06-20 - Module 6 assessment answer-key / factual-fidelity exact user-facing rerun clears at `AGREE`
+
+- Re-read the literal user-pasted `generated/cams/assessment/national-frameworks-in-depth.json` question set under the strict cross-check-reviewer brief for answer-key correctness, second-correct-answer risk, distractor wrongness / rationale accuracy, explanation consistency, and question-level factual fidelity.
+- Used the maintained 2026-06-19 facts spine as ground truth and checked the precision-sensitive current-law points against the project's already-verified AMLA / CTA / UK-authority notes rather than relying on stale same-day memory fragments.
+- Current result is `AGREE` on the visible current **questions**: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect surfaced on the pasted text.
+- Carry-forward: keep the separate same-day Module 6 methodology `DISAGREE` distinct. On the current hash, any future touch is methodology-only unless the literal question text changes materially. Scope note: this close-out is question-only and does not extend to a glossary audit.
+
+## 2026-06-20 (later) — Leaner question-bank target + high-distinctness pass
+
+- **Target changed: ~650 high-distinctness questions** (was 1,000), Ripon's call. Past ~150/domain the cross-check mostly flags near-duplicates (saturation); that effort is better spent on launch-blockers (payments, promote+publish, freemium-mock paywall). Leaner weighting ≈ A195/B130/C195/D130 — enough for several non-repeating faithful mocks per domain.
+- **Confirming cross-checks (multi-response)**: M4/M5/M6 all fidelity-AGREE with multiple-response items "valid / correctly scoped"; methodology SPLITs are pre-existing single-answer premises (recall/saturation/frameworks), not the multi-response. Fixed M4 "US-sanctions-reach" multi-response domain → B.
+- **Mock-assembly multi-response %**: `startMockExam` now honors `selection_criteria.multi_response_count` (largest-remainder by domain weight, backfill). seed-cams-mock.ts → ~10% (12/120, 6/60). Committed (11437cf).
+- **Volume (leaner pass)**: +10 multiple-response (5 Domain A→M10, 5 Domain D→M9; multi-response pool 20→30, addressing mock variety) + 13 distinct FATF-Recommendation single-answer questions (M1: R.2/4/5/7/9/14/24-25/32-40) — all fidelity-AGREE; Domain B grew 79→92.
+- **Bank: 457** (A103/B92/C184/D78). C at target; A/B/D ≈193 remaining to ~650. High-distinctness discipline: mine genuinely-uncovered angles (distinct FATF Recommendations are an easy high-distinctness B runway); module tag-unions constrain scope (emerging typologies need M0/M10 tags, not M5's).
