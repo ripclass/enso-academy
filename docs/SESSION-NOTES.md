@@ -3853,3 +3853,10 @@ What this pass confirmed:
 - Stripe webhook signing secret is returned ONLY at endpoint-creation — capture it then; can't re-fetch. Recreate the endpoint if lost.
 - Playwright is logged into Stripe via Google now; test-mode toggle is safe (test/live fully isolated — does not touch the live product).
 - Test account `livecheck.claude@ensoacademy.ai` now owns CAMS + has 5 mock credits (used 1) + a dangling in-progress free-mock attempt; reset if a clean re-test is needed.
+
+## 2026-06-20 (post-launch) — mock/sim + pricing + stripe-live notes
+- Mock template kind lives in `selection_criteria.kind` ('mock' | 'simulation'); read by both startMockExam and the mock page. Re-run `seed-cams-mock.ts` after changing template defs.
+- Practice mock = enrolled-only + free + unlimited (no entitlement). Simulation = entitlement-gated (1 free taste / purchased / 5 with course). Don't refund entitlement for practice (it consumes nothing) — guarded in startMockExam.
+- $399→$299: the CHARGE stays 29900 in lib/stripe/client.ts; $399 is display-only (strikethrough + "$100 off" badge). If we ever change the actual charge, update PRODUCTS.course.amountCents.
+- Stripe live secret key creation needs email verification opened in the SAME browser as the dashboard session — can't be done headlessly for the automated browser without Ripon relaying the link. Simpler: he pastes a sk_live_ he creates in his own browser.
+- Open Ripon decisions: (a) 7-day vs longer refund — I'd argue 14–30d builds more trust for a new brand, but implemented 7 per his call; (b) sim pass mark 75% raw (readiness) vs ~63% raw (mirror real) — kept 75% as readiness; (c) ElevenLabs/OpenAI voice keys still needed.
