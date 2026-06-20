@@ -7,30 +7,34 @@ const plans = [
     name: 'Full course access',
     blurb: 'Everything for one certification.',
     price: '$299',
+    originalPrice: '$399',
+    badge: '$100 off · limited',
     cadence: '/ one-time',
     features: [
       'The complete course — interactive lessons grounded in primary sources',
       'Personalized Socratic AI lecturer with long-term memory, plus the classmate',
-      'Exam-faithful mock exams with detailed per-question review',
-      '5 full mock-exam attempts included',
-      'Calibrated readiness signoff',
+      '5 full 3.5-hour exam simulations included',
+      'Unlimited free practice mocks',
+      'Calibrated readiness signoff · 7-day money-back guarantee',
     ],
     href: '/courses/cams',
     cta: 'Get full access',
   },
   {
-    name: 'Single mock exam',
-    blurb: 'Test yourself — no course required.',
+    name: 'Single exam simulation',
+    blurb: 'Sit the full exam — no course required.',
     price: '$14.99',
-    cadence: '/ per mock',
+    originalPrice: null,
+    badge: null,
+    cadence: '/ per simulation',
     features: [
-      'One full, exam-faithful timed mock under real conditions',
+      'One full 3.5-hour, 120-question simulation under real exam conditions',
       'Real domain weighting and multiple-response questions',
       'Detailed per-question review and by-domain scoring',
-      'Your first mock is free',
+      'Your first simulation is free',
     ],
     href: '/courses/cams/mock',
-    cta: 'Try a free mock',
+    cta: 'Try a free simulation',
   },
 ]
 
@@ -58,10 +62,18 @@ export function Pricing() {
                 <p className="mt-1 text-xs text-foreground/55">{plan.blurb}</p>
                 <div className="mt-6 flex items-baseline gap-1.5">
                   <span className="font-mono text-4xl font-extrabold text-foreground">{plan.price}</span>
+                  {plan.originalPrice && (
+                    <span className="font-mono text-lg text-foreground/35 line-through">{plan.originalPrice}</span>
+                  )}
                   <span className="text-2xs font-bold uppercase tracking-wider text-foreground/45 font-mono">
                     {plan.cadence}
                   </span>
                 </div>
+                {plan.badge && (
+                  <span className="mt-2 inline-block rounded-full bg-accent px-2.5 py-0.5 text-2xs font-bold uppercase tracking-wider text-white">
+                    {plan.badge}
+                  </span>
+                )}
                 <ul className="mt-8 space-y-3.5 text-sm text-foreground/75">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-3">
@@ -84,7 +96,7 @@ export function Pricing() {
         </div>
 
         <p className="mx-auto mt-8 max-w-2xl text-center text-2xs text-foreground/40">
-          One-time purchase — no subscription. Secure checkout by Stripe.
+          One-time purchase — no subscription. 7-day money-back guarantee. Secure checkout by Stripe.
         </p>
       </div>
     </section>

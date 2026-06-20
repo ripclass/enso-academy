@@ -55,8 +55,7 @@ export function CoursePurchase({
 
       <h2 className="text-lg font-bold text-neutral-900">Get full course access</h2>
       <p className="mt-1.5 text-sm text-neutral-600 leading-relaxed">
-        One-time purchase. Lifetime access to the full course, the AI lecturer and classmate,
-        and {included.length ? '' : '5 '}mock exam attempts included.
+        One-time purchase, lifetime access.{included.length ? ' Everything below is included:' : ' The full course, the AI lecturer and classmate, 5 full exam simulations and unlimited practice mocks — all included.'}
       </p>
 
       {included.length > 0 && (
@@ -71,7 +70,13 @@ export function CoursePurchase({
       )}
 
       <div className="mt-6 flex flex-wrap items-center gap-4">
-        <span className="text-3xl font-bold font-mono text-neutral-900">{priceLabel}</span>
+        <span className="flex items-baseline gap-2.5">
+          <span className="text-3xl font-bold font-mono text-neutral-900">{priceLabel}</span>
+          <span className="text-lg font-mono text-neutral-400 line-through">$399</span>
+          <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-bold uppercase tracking-wider text-white">
+            $100 off · limited
+          </span>
+        </span>
         <button
           onClick={buy}
           disabled={pending}
@@ -83,9 +88,11 @@ export function CoursePurchase({
           href={`/courses/${courseSlug}/mock`}
           className="text-sm font-semibold text-primary hover:underline"
         >
-          or try a free mock first →
+          or try a free simulation first →
         </Link>
       </div>
+
+      <p className="mt-4 text-xs text-neutral-500">7-day money-back guarantee. Secure checkout by Stripe.</p>
 
       {error && <p className="mt-3 text-sm text-accent font-medium">{error}</p>}
     </div>

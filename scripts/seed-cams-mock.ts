@@ -36,36 +36,49 @@ type TemplateDef = {
   byDomain: Record<string, number>
   /** Approx. number of multiple-response items the exam should include. */
   multiResponseCount: number
+  /**
+   * 'simulation' = the full, exam-faithful, ENTITLEMENT-GATED product (1 free
+   * taste, then purchased / course-included attempts). 'mock' = a short, FREE,
+   * UNLIMITED practice exam, available only to enrolled course owners (no
+   * attempt is consumed). The ethical line: we only charge for the genuine
+   * full-length simulation; practice is free with the course.
+   */
+  kind: 'simulation' | 'mock'
   metadata: Record<string, unknown>
 }
 
 // Domain weighting 30 / 20 / 30 / 20 (AFC blueprint), scaled to each length.
+// THE PAID PRODUCT — a genuine simulation: 120 items / 3.5 hours, exactly the
+// real CAMS exam length and blueprint.
 const FULL_SIM: TemplateDef = {
   name: 'CAMS Full Exam Simulation',
   sortOrder: 1,
   questionCount: 120,
-  timeLimitMinutes: 210, // 3.5 hours
+  timeLimitMinutes: 210, // 3.5 hours — matches the real ACAMS exam
   passScorePercent: 75,
   byDomain: { [DOMAIN_A]: 36, [DOMAIN_B]: 24, [DOMAIN_C]: 36, [DOMAIN_D]: 24 },
   multiResponseCount: 12, // ≈10%; confirm exact proportion vs ACAMS handbook
+  kind: 'simulation',
   metadata: {
     faithful: true,
     blueprint: 'AFC A30/B20/C30/D20',
-    note: 'Full-length exact simulation. Pass mark scaled ≈75%; confirm vs current ACAMS handbook.',
+    note: 'Full-length exact simulation (120 q / 3.5 h). Pass mark is a conservative readiness target (75% raw; the real exam is 75 scaled ≈ 62.5% raw).',
     includes_multiple_response: true,
   },
 }
 
-// A shorter diagnostic for the freemium funnel (same weighting, half length).
-const DIAGNOSTIC: TemplateDef = {
-  name: 'CAMS Diagnostic (Half-Length)',
+// FREE practice for enrolled course owners — short and unlimited. NOT charged.
+// Deliberately small so it is clearly practice, not the simulation.
+const PRACTICE_MOCK: TemplateDef = {
+  name: 'CAMS Practice Mock',
   sortOrder: 2,
-  questionCount: 60,
-  timeLimitMinutes: 105,
-  passScorePercent: 75,
-  byDomain: { [DOMAIN_A]: 18, [DOMAIN_B]: 12, [DOMAIN_C]: 18, [DOMAIN_D]: 12 },
-  multiResponseCount: 6, // ≈10%
-  metadata: { faithful: true, blueprint: 'AFC A30/B20/C30/D20', diagnostic: true },
+  questionCount: 25,
+  timeLimitMinutes: 30,
+  passScorePercent: 70,
+  byDomain: { [DOMAIN_A]: 8, [DOMAIN_B]: 5, [DOMAIN_C]: 7, [DOMAIN_D]: 5 },
+  multiResponseCount: 2,
+  kind: 'mock',
+  metadata: { practice: true, blueprint: 'AFC A30/B20/C30/D20', free_unlimited_for_enrolled: true },
 }
 
 async function main() {
@@ -93,7 +106,14 @@ async function main() {
     console.log(`  ${dom[0]}: ${count ?? 0} mock-eligible questions`)
   }
 
-  for (const t of [FULL_SIM, DIAGNOSTIC]) {
+  // Remove the superseded half-length diagnostic if it exists (renamed to mock).
+  await admin
+    .from('mock_exam_templates')
+    .delete()
+    .eq('course_id', course.id)
+    .eq('name', 'CAMS Diagnostic (Half-Length)')
+
+  for (const t of [FULL_SIM, PRACTICE_MOCK]) {
     await admin
       .from('mock_exam_templates')
       .delete()
@@ -107,13 +127,13 @@ async function main() {
       question_count: t.questionCount,
       time_limit_minutes: t.timeLimitMinutes,
       pass_score_percent: t.passScorePercent,
-      selection_criteria: { by_domain: t.byDomain, multi_response_count: t.multiResponseCount },
+      selection_criteria: { by_domain: t.byDomain, multi_response_count: t.multiResponseCount, kind: t.kind },
       is_published: true,
       metadata: t.metadata,
     })
     if (ie) throw new Error(`Failed to insert template "${t.name}": ${ie.message}`)
     const total = Object.values(t.byDomain).reduce((s, n) => s + n, 0)
-    console.log(`Seeded "${t.name}" — ${t.questionCount} q / ${t.timeLimitMinutes} min / pass ${t.passScorePercent}% (domain sum ${total})`)
+    console.log(`Seeded "${t.name}" [${t.kind}] — ${t.questionCount} q / ${t.timeLimitMinutes} min / pass ${t.passScorePercent}% (domain sum ${total})`)
   }
 
   console.log('\nDone. Faithful CAMS mock template(s) seeded and published.')

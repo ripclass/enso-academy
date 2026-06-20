@@ -130,20 +130,36 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
 
   if (!template || !template.is_published) throw new Error('Mock template not found')
 
-  // Entitlement-gated, NOT enrollment-gated: any authenticated user gets a free
-  // taste, then must have a purchased credit. This atomic consume is race-safe
-  // (the consume_mock_attempt RPC increments `used` only when an attempt is
-  // available). Course ownership is not required to sit a mock.
-  const consumed = await consumeMockAttempt(user.id, template.course_id)
-  if (!consumed) throw new Error(MOCK_PAYWALL)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const criteria = (template.selection_criteria as any) ?? {}
+  // 'mock' = free, unlimited PRACTICE — a course benefit (no attempt consumed),
+  // gated only by active enrollment. Anything else is the full SIMULATION, which
+  // is entitlement-gated (1 free taste, then purchased / course-included).
+  const isPractice = criteria.kind === 'mock'
+
+  if (isPractice) {
+    const { data: enrollment } = await admin
+      .from('enrollments')
+      .select('id')
+      .eq('student_id', user.id)
+      .eq('course_id', template.course_id)
+      .eq('status', 'active')
+      .maybeSingle()
+    // Not enrolled → practice is not available; backstop (the UI only surfaces
+    // practice to owners). Reuse MOCK_PAYWALL so the page routes to purchase.
+    if (!enrollment) throw new Error(MOCK_PAYWALL)
+  } else {
+    // Entitlement-gated. The atomic consume_mock_attempt RPC is race-safe (it
+    // increments `used` only when an attempt is available).
+    const consumed = await consumeMockAttempt(user.id, template.course_id)
+    if (!consumed) throw new Error(MOCK_PAYWALL)
+  }
 
   // Selection criteria: per-domain counts (by_domain), plus an optional
   // multi_response_count that guarantees ~that many multiple-response items in
   // the exam (distributed across domains by their share) so the single/
   // multi-response mix is faithful to the real exam rather than left to chance.
   // 0 / absent = natural mix.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const criteria = (template.selection_criteria as any) ?? {}
   const byDomain: Record<string, number> = criteria.by_domain ?? {}
   const domains = Object.entries(byDomain).map(([domain, c]) => ({ domain, count: Number(c) }))
   const totalCount = domains.reduce((s, d) => s + d.count, 0)
@@ -229,27 +245,30 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
     .single()
 
   if (error || !attempt) {
-    // The attempt was already consumed above. Best-effort refund so a failed
-    // build does not silently burn the student's credit.
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-      const { data: ent } = await (admin as any)
-        .from('mock_entitlements')
-        .select('used')
-        .eq('student_id', user.id)
-        .eq('course_id', template.course_id)
-        .maybeSingle()
-      const usedNow = Number(ent?.used ?? 0)
-      if (usedNow > 0) {
+    // A simulation attempt was consumed above; best-effort refund so a failed
+    // build does not silently burn the student's credit. Practice mocks consume
+    // nothing, so there is nothing to refund.
+    if (!isPractice) {
+      try {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
-        await (admin as any)
+        const { data: ent } = await (admin as any)
           .from('mock_entitlements')
-          .update({ used: usedNow - 1 })
+          .select('used')
           .eq('student_id', user.id)
           .eq('course_id', template.course_id)
+          .maybeSingle()
+        const usedNow = Number(ent?.used ?? 0)
+        if (usedNow > 0) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
+          await (admin as any)
+            .from('mock_entitlements')
+            .update({ used: usedNow - 1 })
+            .eq('student_id', user.id)
+            .eq('course_id', template.course_id)
+        }
+      } catch {
+        // Swallow refund errors — don't shadow the original failure below.
       }
-    } catch {
-      // Swallow refund errors — don't shadow the original failure below.
     }
     throw new Error('Failed to start mock: ' + (error?.message ?? 'unknown'))
   }

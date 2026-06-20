@@ -86,8 +86,8 @@ export default async function CourseDetailPage({ params }: Props) {
             included={[
               'The complete course — interactive lessons grounded in primary sources',
               'The AI lecturer that adapts to what you know, plus the classmate',
-              'Exam-faithful mock exams with a calibrated readiness signoff',
-              '5 full mock-exam attempts included',
+              '5 full 3.5-hour exam simulations with a calibrated readiness signoff',
+              'Unlimited free practice mocks',
             ]}
           />
         </main>
