@@ -26,7 +26,16 @@ export default async function MockResultsPage({ params }: Props) {
   const correct = attempt.correct_count ?? 0
   const total = attempt.total_questions ?? questions.length
   const passed = score >= passScorePercent
-  const answers: Record<string, string> = (attempt.answers as Record<string, string>) ?? {}
+  const answers: Record<string, string | string[]> =
+    (attempt.answers as Record<string, string | string[]>) ?? {}
+
+  // Normalize a single/array answer (or correct answer) to a set of option ids.
+  const toIdSet = (value: string | string[] | undefined): Set<string> => {
+    if (value === undefined || value === null) return new Set()
+    if (Array.isArray(value)) return new Set(value.map(String))
+    if (value === '') return new Set()
+    return new Set([String(value)])
+  }
   const byDomain: Record<string, { correct: number; total: number; percent: number }> =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (attempt.by_domain_scores as any) ?? {}
@@ -104,10 +113,15 @@ export default async function MockResultsPage({ params }: Props) {
           <div className="space-y-4">
             {questions.map((q, i) => {
               const qb = qbankMap[q.id]
-              const studentAnswer = answers[q.id]
-              const correctAnswer = qb?.correct_answer
-              const skipped = studentAnswer === undefined || studentAnswer === ''
-              const isCorrect = !skipped && studentAnswer === correctAnswer
+              const options = qb?.options ?? q.options
+              const studentSet = toIdSet(answers[q.id])
+              const correctSet = toIdSet(qb?.correct_answer)
+              const skipped = studentSet.size === 0
+              // All-or-nothing: the student's selected id set equals the correct id set.
+              const isCorrect =
+                !skipped &&
+                studentSet.size === correctSet.size &&
+                [...correctSet].every((id) => studentSet.has(id))
               return (
                 <div key={q.id} className="rounded-lg border border-neutral-200 bg-white p-6">
                   <div className="flex items-start justify-between gap-4">
@@ -128,12 +142,13 @@ export default async function MockResultsPage({ params }: Props) {
                     </span>
                   </div>
                   <div className="mt-4 space-y-2">
-                    {q.options.map((opt) => {
-                      const isCorrectOpt = opt === correctAnswer
-                      const isStudentWrong = opt === studentAnswer && !isCorrectOpt
+                    {options.map((opt) => {
+                      const isCorrectOpt = correctSet.has(opt.id)
+                      const isStudentPick = studentSet.has(opt.id)
+                      const isStudentWrong = isStudentPick && !isCorrectOpt
                       return (
                         <div
-                          key={opt}
+                          key={opt.id}
                           className={`text-sm rounded border px-3 py-2 flex items-start gap-2 ${
                             isCorrectOpt
                               ? 'border-primary/30 bg-primary-light/40 text-neutral-900'
@@ -145,7 +160,7 @@ export default async function MockResultsPage({ params }: Props) {
                           <span className="shrink-0 w-4 text-center font-mono text-xs" aria-hidden>
                             {isCorrectOpt ? '✓' : isStudentWrong ? '✗' : ''}
                           </span>
-                          <span>{opt}</span>
+                          <span>{opt.text}</span>
                         </div>
                       )
                     })}

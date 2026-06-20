@@ -194,12 +194,17 @@ export async function writeCourse(opts: {
           question_type: q.questionType,
           question_text: q.questionText,
           options: q.options as any,
-          correct_answer: q.correctOptionId as any,
+          // Multi-select stores an array of correct option ids; single-answer
+          // types store the one correct option id string.
+          correct_answer: (q.questionType === 'multiple_choice'
+            ? (q.correctOptionIds ?? [])
+            : q.correctOptionId) as any,
           explanation: q.explanation,
           wrong_answer_rationales: (q.wrongAnswerRationales ?? null) as any,
           concept_tags: q.conceptTags ?? [],
           difficulty: q.difficulty,
           domain: q.domain ?? null,
+          metadata: (q.selectCount ? { select_count: q.selectCount } : {}) as any,
         })),
       )
       if (qe) throw new Error('Failed to insert questions: ' + qe.message)

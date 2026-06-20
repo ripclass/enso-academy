@@ -4,13 +4,19 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { recordEvidence } from '@/lib/student-model/knowledge'
 
+// An option as rendered to the student — id is what the answer references.
+export type MockOption = { id: string; text: string }
+
 // A question as seen by the student — never includes the correct answer.
 export type MockQuestion = {
   id: string
   question_text: string
-  options: string[]
+  options: MockOption[]
   domain: string
   difficulty: string
+  question_type: string
+  /** For multiple_choice: how many options to select (>= 1). Single types: 1. */
+  select_count?: number
 }
 
 type StartMockResult = {
@@ -20,9 +26,10 @@ type StartMockResult = {
   timeLimitMinutes: number
 }
 
+// Single answers are an option id string; multi-select answers are an array of ids.
 type SubmitMockOptions = {
   attemptId: string
-  answers: Record<string, string>
+  answers: Record<string, string | string[]>
   flags: string[]
   navigationEvents: unknown[]
   focusBlurCount: number
@@ -39,11 +46,13 @@ type SubmitMockResult = {
 }
 
 type QbankResultRow = {
-  correct_answer: string
+  // Single-answer types: an option id string. Multiple_choice: an array of ids.
+  correct_answer: string | string[]
   explanation: string | null
   wrong_answer_rationales: Record<string, string> | null
   question_text: string
-  options: string[]
+  options: MockOption[]
+  question_type: string
   domain: string
 }
 
@@ -65,6 +74,55 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 const round2 = (n: number) => Math.round(n * 100) / 100
+
+/**
+ * Normalize a question_bank `options` value to `{ id, text }[]`, robust to both
+ * the id-based generated format ({id,text} objects) and the legacy CDCS format
+ * (plain option-text strings, for which the id IS the text).
+ */
+function normalizeOptions(raw: unknown): MockOption[] {
+  if (!Array.isArray(raw)) return []
+  return raw.map((o) => {
+    if (o && typeof o === 'object' && 'id' in o && 'text' in o) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const obj = o as any
+      return { id: String(obj.id), text: String(obj.text) }
+    }
+    const text = String(o)
+    return { id: text, text }
+  })
+}
+
+/**
+ * Grade one question. Returns true iff the student's answer is fully correct.
+ * - single-answer types: exact id match.
+ * - multiple_choice: all-or-nothing set equality (order-independent, dedup).
+ * An empty / undefined answer is treated as not-correct by the caller as "skipped".
+ */
+function gradeAnswer(
+  questionType: string,
+  studentAnswer: string | string[] | undefined,
+  correctAnswer: string | string[],
+): boolean {
+  if (questionType === 'multiple_choice') {
+    const selected = new Set((Array.isArray(studentAnswer) ? studentAnswer : []).map(String))
+    const correct = new Set((Array.isArray(correctAnswer) ? correctAnswer : [String(correctAnswer)]).map(String))
+    if (selected.size !== correct.size) return false
+    for (const id of correct) if (!selected.has(id)) return false
+    return true
+  }
+  // single-answer: legacy text path works because correct_answer text === id.
+  const ans = Array.isArray(studentAnswer) ? studentAnswer[0] : studentAnswer
+  const correct = Array.isArray(correctAnswer) ? correctAnswer[0] : correctAnswer
+  return ans !== undefined && String(ans) === String(correct)
+}
+
+/** True when the student left a question unanswered (single empty or empty array). */
+function isSkipped(studentAnswer: string | string[] | undefined): boolean {
+  if (studentAnswer === undefined || studentAnswer === null) return true
+  if (Array.isArray(studentAnswer)) return studentAnswer.length === 0
+  return studentAnswer === ''
+}
 
 /**
  * Start a mock exam: validate enrollment, select questions per the template's
@@ -103,19 +161,32 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
     const count = Number(countRaw)
     const { data: pool } = await admin
       .from('question_bank')
-      .select('id, question_text, options, domain, difficulty')
+      .select('id, question_text, options, correct_answer, question_type, metadata, domain, difficulty')
       .eq('course_id', template.course_id)
       .eq('domain', domain)
       .eq('eligible_for_mock', true)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const picked = shuffle((pool ?? []) as any[]).slice(0, count)
     for (const q of picked) {
+      // Derive how many options to pick (multi-select): explicit metadata wins,
+      // else the number of correct ids for multiple_choice, else 1.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const metaCount = (q.metadata as any)?.select_count
+      let selectCount = 1
+      if (typeof metaCount === 'number' && metaCount > 0) {
+        selectCount = metaCount
+      } else if (q.question_type === 'multiple_choice') {
+        selectCount = Array.isArray(q.correct_answer) ? q.correct_answer.length : 1
+      }
+      // Snapshot is stored AND returned to the browser — keep it answer-free.
       selected.push({
         id: q.id,
         question_text: q.question_text,
-        options: (q.options as string[]) ?? [],
+        options: normalizeOptions(q.options),
         domain: q.domain,
         difficulty: q.difficulty,
+        question_type: q.question_type,
+        select_count: selectCount,
       })
     }
   }
@@ -172,15 +243,17 @@ export async function submitMockExam(opts: SubmitMockOptions): Promise<SubmitMoc
 
   const { data: qbankRows } = await admin
     .from('question_bank')
-    .select('id, correct_answer, domain, concept_tags')
+    .select('id, correct_answer, question_type, domain, concept_tags')
     .in('id', questionIds)
 
-  const correctMap = new Map<string, string>()
+  const correctMap = new Map<string, string | string[]>()
+  const typeMap = new Map<string, string>()
   const domainMap = new Map<string, string>()
   const conceptMap = new Map<string, string[]>()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   for (const row of (qbankRows ?? []) as any[]) {
-    correctMap.set(row.id, row.correct_answer as string)
+    correctMap.set(row.id, row.correct_answer as string | string[])
+    typeMap.set(row.id, row.question_type as string)
     domainMap.set(row.id, row.domain)
     conceptMap.set(row.id, (row.concept_tags as string[]) ?? [])
   }
@@ -196,11 +269,13 @@ export async function submitMockExam(opts: SubmitMockOptions): Promise<SubmitMoc
     domainTally[domain].total += 1
 
     const studentAnswer = opts.answers[q.id]
-    if (studentAnswer === undefined || studentAnswer === null || studentAnswer === '') {
+    if (isSkipped(studentAnswer)) {
       skippedCount += 1
       continue
     }
-    if (studentAnswer === correctMap.get(q.id)) {
+    const correctAnswer = correctMap.get(q.id)
+    const questionType = typeMap.get(q.id) ?? q.question_type
+    if (correctAnswer !== undefined && gradeAnswer(questionType, studentAnswer, correctAnswer)) {
       correctCount += 1
       domainTally[domain].correct += 1
     } else {
@@ -252,14 +327,18 @@ export async function submitMockExam(opts: SubmitMockOptions): Promise<SubmitMoc
   // Feed the student knowledge model: one observation per answered question.
   for (const q of snapshot) {
     const studentAnswer = opts.answers[q.id]
-    if (studentAnswer === undefined || studentAnswer === null || studentAnswer === '') continue
+    if (isSkipped(studentAnswer)) continue
     const conceptTags = conceptMap.get(q.id) ?? []
     if (conceptTags.length === 0) continue
+    const correctAnswer = correctMap.get(q.id)
+    const questionType = typeMap.get(q.id) ?? q.question_type
+    const isCorrect =
+      correctAnswer !== undefined && gradeAnswer(questionType, studentAnswer, correctAnswer)
     await recordEvidence({
       studentId: user.id,
       courseId: attempt.course_id,
       conceptTags,
-      evidence: studentAnswer === correctMap.get(q.id) ? 'correct' : 'incorrect',
+      evidence: isCorrect ? 'correct' : 'incorrect',
     })
   }
 
@@ -276,8 +355,15 @@ export async function submitMockExam(opts: SubmitMockOptions): Promise<SubmitMoc
 /**
  * Re-evaluate student_readiness from the last 5 submitted attempts.
  * Writes a signoff_event when the readiness status transitions.
- * v1 thresholds: ready = count>=5, avg>=80, min>=70, weakest>=65;
- *                approaching = count>=3, avg>=70; else not_ready.
+ *
+ * v2 model (conservative, anchored to the course pass mark P, default 75):
+ *   ready       = >=5 mocks AND last 3 attempts all passed AND recent avg >= P+5
+ *                 AND no recent attempt below P AND every domain >= P-5
+ *                 AND no sharp recent decline.
+ *   approaching = >=3 mocks AND recent avg >= P.
+ *   else not_ready.
+ * The bias is deliberate: hold at "approaching" rather than falsely call
+ * "ready". criteria_met carries a human-readable `reason` for the UI.
  */
 async function updateReadiness(
   studentId: string,
@@ -329,25 +415,79 @@ async function updateReadiness(
     }
   }
 
+  // Anchor the model to the course's actual pass mark rather than hardcoded
+  // numbers, so readiness scales if the pass standard changes.
+  const { data: tpl } = await admin
+    .from('mock_exam_templates')
+    .select('pass_score_percent')
+    .eq('course_id', courseId)
+    .order('sort_order', { ascending: true })
+    .limit(1)
+    .maybeSingle()
+  const passMark = Number(tpl?.pass_score_percent ?? 75)
+  const readyAvgTarget = passMark + 5 // margin above pass for exam-day variance
+  const domainFloor = Math.max(0, passMark - 5)
+
+  // attempts are most-recent-first. Consistency: a streak of recent passes,
+  // not a single lucky run.
+  let passStreak = 0
+  for (const a of attempts) {
+    if (Number(a.score_percent ?? 0) >= passMark) passStreak += 1
+    else break
+  }
+  const mostRecent = attempts.length > 0 ? Number(attempts[0].score_percent ?? 0) : 0
+  // A sharp recent drop is a warning even if the average still looks fine.
+  const decliningSharply = attempts.length >= 2 && mostRecent < average - 8
+  const allDomainsClear = weakestScore === null || weakestScore >= domainFloor
+
+  // READY is deliberately conservative — every condition must hold. We would
+  // rather hold someone at "approaching" than tell them they are ready and be
+  // wrong (the signoff is meant to mean something).
   let status: 'not_ready' | 'approaching' | 'ready' = 'not_ready'
   if (
-    mockCount >= 5 && average >= 80 && minimum >= 70 &&
-    (weakestScore === null || weakestScore >= 65)
+    mockCount >= 5 &&
+    passStreak >= 3 &&            // last 3 attempts all at/above pass
+    average >= readyAvgTarget &&  // averaging comfortably above pass
+    minimum >= passMark &&        // no recent attempt below the pass line
+    allDomainsClear &&            // no domain dragging risk
+    !decliningSharply             // not on a downward slide
   ) {
     status = 'ready'
-  } else if (mockCount >= 3 && average >= 70) {
+  } else if (mockCount >= 3 && average >= passMark) {
     status = 'approaching'
   }
 
+  // A transparent, human-readable reason so the UI can tell the student exactly
+  // why — confidence comes from knowing what's left, not just a colour.
+  const gaps: string[] = []
+  if (mockCount < 5) gaps.push(`take ${5 - mockCount} more full mock(s)`)
+  if (passStreak < 3) gaps.push('string together 3 consecutive passes')
+  if (average < readyAvgTarget) gaps.push(`raise your recent average to ${readyAvgTarget}% (now ${round2(average)}%)`)
+  if (minimum < passMark) gaps.push('clear the pass mark on every recent mock')
+  if (!allDomainsClear && weakestDomain) gaps.push(`lift ${weakestDomain} above ${domainFloor}% (now ${round2(weakestScore ?? 0)}%)`)
+  if (decliningSharply) gaps.push('recover from a recent dip in your scores')
+
+  const reason =
+    status === 'ready'
+      ? `Ready: ${mockCount} mocks, last ${passStreak} passed, averaging ${round2(average)}% with no domain below ${domainFloor}%.`
+      : status === 'approaching'
+        ? `Almost there (averaging ${round2(average)}%). To reach ready: ${gaps.join('; ')}.`
+        : `Not ready yet. To progress: ${gaps.join('; ')}.`
+
   const criteriaMet = {
     mock_count: mockCount,
+    pass_mark: passMark,
     average_score: round2(average),
     minimum_score: round2(minimum),
+    recent_pass_streak: passStreak,
+    most_recent_score: round2(mostRecent),
+    declining_sharply: decliningSharply,
     weakest_domain: weakestDomain,
     weakest_domain_score: weakestScore === null ? null : round2(weakestScore),
+    reason,
     thresholds: {
-      ready: 'count>=5, avg>=80, min>=70, weakest>=65',
-      approaching: 'count>=3, avg>=70',
+      ready: `count>=5, last-3-passes, avg>=${readyAvgTarget} (pass+5), min>=${passMark}, every domain>=${domainFloor}, no sharp decline`,
+      approaching: `count>=3, avg>=${passMark}`,
     },
   }
 
@@ -420,18 +560,19 @@ export async function getAttemptResults(attemptId: string): Promise<AttemptResul
 
   const { data: qbankRows } = await admin
     .from('question_bank')
-    .select('id, question_text, options, correct_answer, explanation, wrong_answer_rationales, domain')
+    .select('id, question_text, options, correct_answer, question_type, explanation, wrong_answer_rationales, domain')
     .in('id', questionIds)
 
   const qbankMap: Record<string, QbankResultRow> = {}
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   for (const row of (qbankRows ?? []) as any[]) {
     qbankMap[row.id] = {
-      correct_answer: row.correct_answer as string,
+      correct_answer: row.correct_answer as string | string[],
       explanation: row.explanation,
       wrong_answer_rationales: row.wrong_answer_rationales as Record<string, string> | null,
       question_text: row.question_text,
-      options: (row.options as string[]) ?? [],
+      options: normalizeOptions(row.options),
+      question_type: row.question_type as string,
       domain: row.domain,
     }
   }

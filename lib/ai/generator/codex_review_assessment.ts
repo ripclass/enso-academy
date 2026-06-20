@@ -79,9 +79,9 @@ CONTEXT
 
 YOUR JOB — audit every question in the set below for:
 
-1. **Answer-key correctness.** For each question, confirm the option identified by \`correctOptionId\` is genuinely, unambiguously correct. A wrong key is a ship-blocking defect.
+1. **Answer-key correctness.** For a single-answer question (\`questionType\` 'scenario_mcq'/'single_choice'), confirm the option identified by \`correctOptionId\` is genuinely, unambiguously correct. For a **multiple-response** question (\`questionType\` 'multiple_choice'), confirm the SET of options in \`correctOptionIds\` is exactly right — every listed id is genuinely correct AND no correct option is missing from the set; the stem should make clear how many to select (\`selectCount\`). A wrong key, a wrongly-included id, or a missing-correct id is a ship-blocking defect.
 
-2. **No defensible distractor (no second correct answer).** Confirm that none of the wrong options is also defensibly correct or arguably true. A question with two correct answers is a defect — flag it.
+2. **No defensible distractor (no second correct answer).** For single-answer questions, confirm no wrong option is also defensibly correct. For multiple-response questions, confirm that every option NOT in \`correctOptionIds\` is clearly wrong and that no correct option was left out of the set — a "distractor" that is actually correct is a defect. Flag it.
 
 3. **Distractor wrongness.** Each distractor must be clearly wrong (plausible but incorrect), and its entry in \`wrongAnswerRationales\` must correctly state WHY it is wrong. Flag a distractor that is not actually wrong, or a rationale that misstates the reason.
 
@@ -118,7 +118,10 @@ YOUR JOB — methodology audit of the question set below:
 
 2. **Durability.** The bank must stay correct over time. Flag any question whose correct answer depends on a VOLATILE current fact that will date — e.g. current FATF grey/black-list membership, a specific entity's current sanctions-designation status, "the latest" amendment — rather than a durable, concept-anchored fact (statutory structure, typology, control principle).
 
-3. **Format.** Items should be scenario-based application questions, not rote recall in a certification-format mimic. "All of the following EXCEPT", "Which of the following is NOT" and trivia-recall stems are red flags. Each item should have four plausible options, an explanation, and wrong-answer rationales.
+3. **Format.** TWO question formats are valid and both are exam-faithful — do NOT flag a question merely for which of these it uses:
+   - **Single-answer** (\`questionType\` 'scenario_mcq'/'single_choice'): four plausible options, one correct, with an explanation and wrong-answer rationales. Prefer scenario-based application framing.
+   - **Multiple-response** (\`questionType\` 'multiple_choice'): the real certification exam includes "select N" / "select all that apply" items, so these are legitimate and faithful, NOT certification-format mimicry. They normally carry 4–6 options with two or more correct (\`correctOptionIds\`), a clear select-count instruction in the stem, an explanation, and rationales for the incorrect options. A 5- or 6-option "select THREE" checklist is the expected shape here, NOT a format violation.
+   "Certification-format mimicry" means copying a prep provider's proprietary question wording/content or its house style — it does NOT mean using the standard single-answer or multiple-response MCQ formats. "All of the following EXCEPT" / "Which of the following is NOT" / pure trivia-recall stems remain red flags. Multiple-response items may be knowledge-anchored (e.g. "select the THREE characteristics of …") or scenario-framed; prefer scenario framing where natural, but do not reject a knowledge-anchored multiple-response item on format grounds alone.
 
 4. **Domain + tag sanity.** Each question's \`domain\` should be appropriate to its content (A = risks & methods of financial crime; B = global AFC frameworks/governance/regulations; C = building an AFC compliance program; D = tools & technologies), and its \`conceptTags\` should be drawn from the module's tag set above. Flag a clear domain misassignment or out-of-scope tags.
 

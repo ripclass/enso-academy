@@ -1,3 +1,362 @@
+## 2026-06-20 - Module 9 question-only fidelity exact in-turn rerun: no delta
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact answer-key / factual-fidelity brief after reloading the required project-memory chain.
+- No delta from the earlier same-day stored state: the visible current **questions** still return `AGREE`, with no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect against the maintained 2026-06-19 facts reference.
+- Future reviewers should keep this separate from the same-day Module 9 methodology `SPLIT` and stricter item-format `DISAGREE` notes, and should not reopen Module 9 answer-key / fidelity unless the question text changes materially.
+
+## 2026-06-20 - Module 9 methodology contract gotcha: exact user brief yields `SPLIT`, not the stricter same-day `DISAGREE`
+
+- The exact user brief for the Module 9 audit explicitly says both single-answer and multiple-response items are valid and that knowledge-anchored multi-selects are not to be flagged on format grounds alone.
+- That means the earlier same-day Module 9 `DISAGREE` tied to select-THREE items is not the right memory for this contract. On this brief, the bank is better read as `SPLIT`: no hard IP/originality, durability, domain/tag-scope, or adult-register blocker, but real repetition remains on payment-screening, transliteration, external-data, explainability, and build-vs-buy clusters, with a few thinner concept-recall wrappers still visible.
+- Future reviewers should start from the active contract before reusing the stricter Module 9 note.
+
+## 2026-06-20 - Module 9 question-only fidelity rerun: current literal bank still clean
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact answer-key / factual-fidelity brief after reloading the required project-memory chain.
+- Current verdict still lands `AGREE` on the visible **questions**: no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or ship-blocking factual defect surfaced on the current file.
+- Reviewer hygiene: keep this separate from the same-day Module 9 methodology `SPLIT` and stricter item-format `DISAGREE` notes. The live issues on the current hash remain format / repetition / recall-softness, not question-level fidelity.
+- Scope note: question-only close-out; glossary not reviewed.
+
+## 2026-06-20 - Module 9 methodology rerun under the strict item-format contract: `DISAGREE`
+
+- Re-ran the literal user-pasted `tools-and-technologies-to-fight-financial-crime` assessment against the v1.1 methodology spine (`docs/COURSE-GENERATION-PROMPT.md`, ADR `0015` / `0016` / `0019` / `0020`) plus the stricter user-facing item-format rule rather than only the softer same-day design-quality lens.
+- No hard IP/originality, durability, adult-professional-register, or domain-scope defect surfaced; all `conceptTags` remain inside the module tag set and Domain `D` still fits overall.
+- The current no-ship issue is the question format itself: the bank includes several non-scenario multi-select checklist items (`Select the THREE characteristics of an effective transaction-monitoring programme.`, `Select the THREE requirements of sound model risk management for an AFC model.`, `A bank is adopting a cloud-hosted (SaaS) RegTech screening service. Select the THREE considerations specific to the cloud option.`, `Select the THREE sound practices for fuzzy matching in sanctions screening.`, `Select the THREE limitations to keep in view when deploying AI/ML monitoring.`) that violate the four-option scenario-based item expectation and read like certification-format mimicry.
+- The earlier same-day `SPLIT` note remains useful as a secondary-quality note only: repetition clusters (payment screening, transliteration, external data, explainability, build-vs-buy / TCO) and a few thin recall wrappers still need cleanup after the select-three items are fixed.
+- Carry-forward: if Module 9 is revised again, first convert or remove the select-three items, then dedupe the repeated concept clusters and tighten the loosest secondary tags before promotion.
+
+## 2026-06-20 - Module 9 assessment methodology rerun now reads `SPLIT`, not a flat `AGREE`
+
+- Re-ran the literal user-pasted `tools-and-technologies-to-fight-financial-crime` assessment against the v1.1 methodology spine (`docs/COURSE-GENERATION-PROMPT.md`, ADR `0015` / `0016` / `0019` / `0020`) after reloading the required project-memory chain.
+- No hard IP/originality, durability, adult-professional-register, or domain-scope defect surfaced; all `conceptTags` remain inside the module tag set and Domain `D` still fits overall.
+- The stored `AGREE` was too broad on the current literal text. The live reviewer-visible issue is format/design softness: repeated concepts on payment-screening-vs-customer-screening, transliteration/fuzzy-matching, external-data caveats, explainability, and build-vs-buy / TCO, plus a smaller recall-leaning cluster (`A data-science team debates using a supervised model...`, `A bank refreshes customer due diligence only on fixed multi-year cycles...`, `Before replacing its production monitoring model...`).
+- Smaller tag softness remains where `Perpetual KYC (pKYC)` is carried under `onboarding_technology` and regulatory-reporting automation is carried under `investigation_tooling`.
+- If Module 9 is revised again, keep the next pass narrow on dedupe / differentiation and on deepening the thinnest compare-the-concept stems into fuller practitioner-judgment scenarios.
+
+## 2026-06-20 - Module 0 assessment methodology no-ship call: durable/original bank, but back-third recall drift
+
+- Re-read the literal user-pasted `foundations-of-money-laundering-and-terrorist-financing` assessment JSON and matching repo file against the current v1.1 methodology sources rather than relying on the older breadth-pass notes from 2026-06-13.
+- Current exact-format methodology verdict is `DISAGREE`: no hard IP/originality, durability, adult-register, or tag-vocabulary blocker surfaced, but the question set is not promotion-safe on the literal current text.
+- The live blocker is a glossary-style recall cluster in the back third. The clearest stems are `A trainee asks for the classic model of how money laundering...`, `A criminal group holds a large volume of cash...`, `After illicit funds enter the system...`, `Laundered funds, now distanced from their source...`, `An analyst treats money laundering and terrorist financing as the same problem...`, and `A country is deciding which crimes can serve...`; these are thin scenario wrappers around stage / definition recall rather than richer practitioner judgment.
+- Smaller metadata drift also remains where preventive-regime / reporting-role items such as `A new analyst asks: 'Catching criminals is the police's job...'` and `An institution hesitates to report a suspicion because...` are filed in Domain `A` even though they fit `B` / `C` better.
+- Carry-forward: if Module 0 is revised, keep the next pass tight on recasting that recall cluster into operational scenarios and repairing the clearest domain assignments. Treat the current result as question-only, not a glossary audit.
+
+## 2026-06-20 - Module 0 question-level answer-key / factual-fidelity close-out
+
+- Re-read the literal user-pasted `foundations-of-money-laundering-and-terrorist-financing` assessment JSON and matching repo file against the maintained 2026-06-19 facts spine rather than relying only on the same-day methodology note.
+- Spot-checked the time-sensitive FATF / Global Network points directly on current official pages: the FATF Recommendations page and PDF (`As amended October 2025`), the 13 February 2026 FATF `Jurisdictions under Increased Monitoring` / `High-Risk Jurisdictions subject to a Call for Action` statements, the FATF `Who we are` page, the FATF APG page, and the Council of Europe `MONEYVAL in brief` page.
+- Current literal-text result is `AGREE` on the **questions**: no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual contradiction surfaced on the visible current questions.
+- Keep this separate from the same-day Module 0 methodology `DISAGREE`: on the current hash, the live issues are recall-heavy design and a small domain-metadata drift, not answer-key / factual fidelity. Scope note: this close-out is question-only and does not bless the glossary.
+
+## 2026-06-20 - Module 1 answer-key / factual-fidelity no-delta rerun
+
+- Re-ran the exact user-facing audit on the literal user-pasted `the-fatf-framework-and-the-risk-based-approach` assessment JSON against the maintained 2026-06-19 facts spine.
+- Reconfirmed the only current-sensitive FATF points directly on official FATF pages: `The FATF Recommendations` (`As amended October 2025`) and the 13 February 2026 `Jurisdictions under Increased Monitoring` / `High-Risk Jurisdictions subject to a Call for Action` statements.
+- No wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual contradiction surfaced on the visible current questions; verdict stays `AGREE`.
+- Carry-forward: treat Module 1 as closed on question-level answer-key / fidelity unless the literal question text changes materially. If touched again on the current hash, the next pass is methodology-only.
+
+## 2026-06-20 - Module 1 question-level answer-key / factual-fidelity close-out
+
+- Re-read the literal user-pasted `the-fatf-framework-and-the-risk-based-approach` assessment JSON and matching repo file against the maintained 2026-06-19 facts spine instead of relying only on the same-day methodology note.
+- Spot-checked the only current-sensitive FATF points directly on official FATF pages: the Recommendations page (`As amended October 2025`) and the 13 February 2026 `Jurisdictions under Increased Monitoring` / `High-Risk Jurisdictions subject to a Call for Action` statements.
+- Current literal-text result is `AGREE`: no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual contradiction surfaced on the visible current questions.
+- Keep this separate from the same-day Module 1 methodology `DISAGREE`: on the current hash, the live issues are recall-heavy design, a repeated Interpretive-Note item, and one off-target tag, not answer-key / factual fidelity. This close-out is question-only and does not bless the glossary.
+
+## 2026-06-20 - Module 8 assessment question-only rerun corrected the stale LitePay blocker
+
+- Re-read the literal user-pasted `learning-from-enforcement` assessment JSON and matching repo file against the maintained 2026-06-19 facts spine, starting from the file itself rather than from older same-day Westpac notes.
+- Current question-level answer-key / factual-fidelity verdict is `AGREE`: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, or question-level factual contradiction surfaced on the visible current questions.
+- The repo memory had drifted onto a stale blocker. The literal current **question** bank no longer contains the LitePay-launch stem (`An enforcement matter found that a new payment channel's monitoring was never designed around an assessment...` / `Westpac launched a payment channel...`) those earlier notes were reacting to. The current Westpac questions now stay in the safer `not reported within the required time`, `inadequate detection-scenario coverage`, and generic pre-launch product-risk lane.
+- Scope note for future reviewers: this close-out is question-only. The glossary still carries stale Westpac wording (`Westpac / AUSTRAC matter` says `unreported`; `LitePay channel` says launched without adequate risk assessment), so do not recycle this `AGREE` result into a glossary audit without a separate fix or separate review.
+
+## 2026-06-20 - Module 8 exact user-facing question-level rerun: no delta from the narrowed Westpac blocker
+
+- Re-read the literal user-pasted `learning-from-enforcement` assessment JSON, the matching repo file, the Module 8 entries already living in `CLAUDE.md`, `docs/PROGRESS.md`, and `docs/SESSION-NOTES.md`, and the maintained Westpac spine in `lib/ai/generator/facts_pack.ts` before final close-out.
+- No broader wrong-key, second-correct-answer, bad-rationale, or explanation-contradiction cluster surfaced on the current visible questions; the exact-format user-facing verdict still lands `DISAGREE` solely because the current file keeps one factual over-compression inside the Westpac cluster.
+- The live blocker remains `An enforcement matter found that a new payment channel's monitoring was never designed around an assessment...`. On the literal current text, that stem / explanation still teach the Westpac lesson as a LitePay-from-launch no-assessment / no-appropriate-monitoring failure, even though the maintained facts spine says LitePay had detection-scenario coverage from **August 2016**, reached an appropriate LitePay scenario in **June 2018**, and that the longer-running no-appropriate-scenario gap sat on **non-LitePay** channels until **October 2019**.
+- Carry-forward: if the Module 8 assessment is revised, fix that question first and then sweep `Across the HSBC, Danske, Westpac, and 1MDB matters...` if it still reuses the compressed `Westpac launched a product without assessing its risk` shorthand. Do not reopen the older stale `unreported` / `unmonitored` note against the literal current file.
+
+## 2026-06-20 - Module 8 methodology literal-current rerun: reviewer-visible issues are now the recall cluster + exam-strategy drift
+
+- Started from the literal user-pasted `learning-from-enforcement` assessment JSON and the matching repo file, not from older same-day summary notes.
+- Current exact-format methodology verdict stayed `DISAGREE`, but the issue set is narrower than some earlier same-day memory: no hard IP/originality, durability, or adult-register blocker surfaced on the literal current text.
+- The live no-ship cluster is now the legal-instrument / glossary recall set (`An analyst encounters three documents...`, `A UK firm wants to understand how a peer was sanctioned...`, `A resolution of an AML enforcement matter requires...`, `An enforcement resolution requires an institution both to pay...`, `An analyst is unsure how a deferred prosecution agreement differs...`) plus the exam-technique / continuing-education set (`Facing a complex exam scenario...`, `Preparing for the exam...`, `A newly certified analyst assumes...`, `An exam scenario synthesises several modules...`) that is forced into Domains `B` / `C`.
+- Carry-forward: if Module 8 is revised again, treat the next methodology pass as a scenario-deepening + domain-metadata repair pass on that exact cluster, and do not recycle older same-day duplicate-pair or off-target-tag notes unless the literal artifact changes.
+
+## 2026-06-20 - Module 8 current-file question audit: stale Westpac note replaced again
+
+- Started from the literal user-pasted `learning-from-enforcement` assessment JSON and the matching repo file, not from older same-day summary notes.
+- The old question-level blocker note on `The Westpac / AUSTRAC matter involved millions...` is now stale on the live file; that question already uses the safer `not reported within the required time` and `inadequate detection-scenario coverage` wording.
+- The live answer-key / fidelity blocker is `An enforcement matter found that a new payment channel's monitoring was never designed around an assessment...`. Its stem / explanation still over-centre LitePay as a product that went live without typology-based monitoring design, while the maintained Westpac spine says LitePay had detection-scenario coverage from **August 2016**, reached an appropriate LitePay scenario in **June 2018**, and the longer-running no-appropriate-scenario gap sat on **non-LitePay** channels until **October 2019**.
+- Carry-forward: if Module 8 is revised, fix that LitePay/product-risk question first and then sweep `Across the HSBC, Danske, Westpac, and 1MDB matters...` if it still says Westpac `launched a product without assessing its risk`. Do not recycle the stale `unreported` / `unmonitored` rejection language against the current hash.
+
+## 2026-06-20 - Module 8 current-file question audit: stale Westpac note replaced
+
+- Started from the literal user-pasted `learning-from-enforcement` assessment JSON and the matching repo file, not from the earlier same-day rejected copy stored in `generated/cams/assessment/learning-from-enforcement.codex.1.txt`.
+- The old Westpac blocker note is now partly stale on the live file. `The Westpac / AUSTRAC matter involved millions of international funds-transfer instructions...` no longer says `unreported` or `failure to monitor`; it now uses the safer `not reported within the required time` and `inadequate detection-scenario coverage` wording.
+- The current question-level blocker is instead `Westpac launched a payment channel (the LitePay product)...`. That stem / explanation still over-centre LitePay as the product that went live without product-specific risk assessment and appropriate monitoring, while the maintained Westpac spine says LitePay had detection-scenario coverage from **August 2016**, reached an appropriate LitePay scenario in **June 2018**, and the longer-running no-appropriate-scenario gap was on **non-LitePay** channels until **October 2019**.
+- Carry-forward: if the Module 8 assessment is revised, fix that LitePay-launch question first and stop reusing the stale `unreported` / `unmonitored` rejection language against the current hash.
+
+## 2026-06-20 - Module 8 methodology no-delta rerun
+
+- Started from the literal user-pasted `learning-from-enforcement` assessment JSON and the matching repo file, not from older same-day summary notes.
+- The exact-format methodology verdict stayed `DISAGREE`. No hard IP/originality, durability, or adult-register issue surfaced, but the live blocker set did not move: duplicated enforcement-reading / synthesis / exam-technique stems, a recall-heavy legal-instrument cluster, and metadata drift on the exam-strategy items.
+- Keep the literal current issue list tight for the next pass: `A compliance team reads a major enforcement action...`, `Across the HSBC, Danske, Westpac, and 1MDB matters...`, `A newly certified analyst assumes...`, the legal-instrument stems (`An analyst encounters three documents...`, `A UK firm wants to understand how a peer was sanctioned...`, `A resolution of an AML enforcement matter requires...`, `An enforcement resolution requires an institution both to pay a penalty...`, `An analyst is unsure how a deferred prosecution agreement differs...`), and the domain drift on the pure exam-strategy items that are currently filed inside AFC Domains `B` / `C`.
+
+## 2026-06-20 - Module 8 assessment methodology close-out: current verdict is `DISAGREE`
+
+- Started from the literal user-pasted `learning-from-enforcement` JSON and the matching repo artifact, not from the older breadth-pass summary.
+- Current exact-format methodology result is `DISAGREE`: no hard IP/originality, durability, or adult-register blocker surfaced, but the current bank is not promotion-safe because the back half drifts into duplicated / recall-heavy design and metadata slippage.
+- The clearest duplicate pairs are `A compliance team reads a major enforcement action...` / `A compliance officer reads a peer institution's enforcement action...`, `Across the HSBC, Danske, Westpac, and 1MDB matters...` / `Reviewing several major AML enforcement matters...`, and `A newly certified analyst assumes...` / `A newly certified analyst plans...`.
+- The clearest thin scenario wrappers are the legal-instrument / glossary-style stems (`An analyst encounters three documents...`, `A UK firm wants to understand how a peer was sanctioned...`, `A resolution of an AML enforcement matter requires...`, `An enforcement resolution requires an institution both to pay a penalty...`, `An analyst is unsure how a deferred prosecution agreement differs...`) plus the late exam-technique cluster (`Facing a long exam scenario...`, `On a difficult multiple-choice item...`, `A candidate spends so long...`).
+- Metadata drift to preserve for the next pass: pure exam-strategy items are forced into Domains `B` / `C`, and `An analyst is unsure how a deferred prosecution agreement differs from a guilty plea...` carries an off-target `consent_order` tag.
+
+## 2026-06-20 - Module 7 question-level answer-key / factual-fidelity close-out
+
+- Re-read the literal user-pasted `governance-audit-and-the-compliance-function` assessment against the maintained 2026-06-19 facts spine and the matching repo artifact instead of relying on the same-day methodology-only memory note.
+- Spot-checked the two scope-sensitive FATF anchors directly in the current Recommendations (**Updated October 2025**): Recommendation `18` for the independent-audit / independent-testing lane and Recommendation `15` for the pre-launch risk-assessment lane.
+- Current literal-text result is `AGREE`: no wrong key, defensible second-correct answer, bad wrong-answer rationale, or question-level factual contradiction surfaced on the visible current questions. A same-day no-delta rerun under the exact reviewer brief confirmed the same result.
+- Keep this distinct from the separate Module 7 methodology `SPLIT`: on the current hash, any future review is methodology-only unless the question text changes materially. This close-out is question-only and does not bless the glossary.
+
+## 2026-06-20 - Module 4 assessment (`sanctions-compliance`) literal current-text question audit now clears
+
+- Re-read the exact user-pasted `sanctions-compliance` assessment questions against the maintained 2026-06-19 facts spine, current OFAC FAQ `401` / `398`, the GOV.UK `UK Sanctions List` page, and current OFSI enforcement guidance.
+- The older same-day Module 4 answer-key notes in session memory are stale on the literal current text. On the pasted current bank, the UK-authority issue, the EU-subsidiary stem inconsistency, and the old `sectoral or list-based` wording defect are no longer present.
+- Current question-level answer-key / factual-fidelity verdict is `AGREE`: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, or question-level factual contradiction surfaced.
+- Scope note for the next reviewer: treat this as a questions-only close-out, not as a glossary audit. On the current hash, any remaining Module 4 work is methodology-only unless the question text changes again.
+
+## 2026-06-20 - Module 4 assessment (`sanctions-compliance`) answer-key rerun: current literal blocker is UK-authority attribution, not the older same-day notes
+
+- Started from the literal user-pasted / repo `generated/cams/assessment/sanctions-compliance.json` artifact again rather than from the earlier same-day memory notes.
+- Rechecked the live questions against the maintained 2026-06-19 facts spine plus current official OFAC FAQs and current GOV.UK OFSI general-guidance / enforcement pages.
+- The earlier same-day Module 4 answer-key notes about the EU-subsidiary stem and the `sectoral or list-based` wording do not survive on the literal current text; those are stale on the current artifact.
+- Current verdict still lands `DISAGREE`, but the live reviewer-visible defect is now UK-regime authority attribution. `A compliance officer maps the institution's sanctions obligations...` says `OFSI` maintains the autonomous UK list lane, and `A UK firm asks which authority administers UK financial sanctions...` says OFSI maintains the `UK consolidated list`.
+- Current GOV.UK guidance instead says FCDO publishes the `UK Sanctions List` and handles designations, while OFSI is the authority for implementing UK financial sanctions and for civil enforcement / monetary penalties. If this assessment is revised, fix those UK-authority statements first, then rerun the exact-format answer-key audit; keep the separate methodology `DISAGREE` on domain drift / duplication as a different lane.
+
+## 2026-06-20 - Module 4 assessment (`sanctions-compliance`) methodology rerun: no-delta verdict, tighter live issue set
+
+- Started from the literal user-pasted / repo `generated/cams/assessment/sanctions-compliance.json` artifact again rather than from the earlier same-day methodology memory note.
+- Current exact-format methodology verdict remains `DISAGREE`: no hard IP/originality, durability, or adult-register issue surfaced, but the set is still not promotion-safe on the literal current text.
+- The live methodology blockers are now best treated as metadata drift plus design duplication, not as the older stale tag note: `To cut false positives, a bank sets its name-screening matcher...` is Domain `D` screening-technology calibration content misfiled in `C`; `A bank screens customers against sanctions lists at onboarding...` duplicates `A bank screens its account holders against sanctions lists...`; `After a screening alert on a payment...` duplicates `Holding funds blocked under sanctions...`; and `A transaction that would otherwise be prohibited...` plus `A non-US company with no US operations is warned...` are the clearest thin rule-recall wrappers.
+- If this assessment is revised, keep the next pass tight: fix domain metadata first, then dedupe or materially differentiate the repeated screening / blocking items, then deepen the recall-leaning stems. Do not reopen IP or durability arguments unless the artifact changes materially.
+
+## 2026-06-20 - Module 4 assessment (`sanctions-compliance`) answer-key / factual-fidelity close-out
+
+- Started from the literal user-pasted / repo `generated/cams/assessment/sanctions-compliance.json` artifact rather than from older generation notes.
+- Current exact-format question-level verdict is `DISAGREE`: most keys are still unambiguous, but the current text is not promotion-safe.
+- `A US-owned subsidiary incorporated in the EU...` is internally inconsistent in the stem (`US-owned subsidiary` but then `the EU parent's lawyers`), so the fact pattern itself needs repair even though option `a` is still the intended answer.
+- `A compliance officer treats every appearance of a country's name...` also needs a fidelity fix: the keyed option / explanation describe `sectoral or list-based measures` as the narrower non-blocking category, which is too broad because full SDN blocking is itself list-based.
+- If this assessment is revised, keep the next pass narrow: fix those two question-level fidelity defects first, then rerun the exact-format answer-key audit. The separate same-day methodology note on duplication / metadata drift remains live.
+
+## 2026-06-20 - Module 4 assessment (`sanctions-compliance`) methodology close-out
+
+- Started from the literal user-pasted / repo `generated/cams/assessment/sanctions-compliance.json` artifact rather than from older generation notes.
+- Current exact-format methodology verdict is `DISAGREE`: no hard IP/originality, durability, or adult-register issue surfaced, but the set is not promotion-safe because the back half repeats earlier concepts in thinner form and carries metadata drift.
+- The clearest repeats are the second 50 Percent Rule item (`An entity appears on no sanctions list, but diligence...`), the second false-positive / recall-testing item (`A screening team is proud of having driven false positives...`), and the second strict-liability-vs-suspicion item (`An analyst applies the AML 'suspicion' mindset to sanctions...`).
+- The clearest metadata issues are `To cut false positives, a bank sets its name-screening matcher...` (screening-tech content mis-domained away from `D`) and `An entity is only 20% owned by a designated person...` (EU/UK ownership-or-control concept mistagged with `ofac`).
+- If this assessment is revised, keep the next pass narrow: dedupe the repeated concept pairs, deepen the recall-leaning stems, and repair the domain/tag metadata before any promote step.
+
+## 2026-06-20 - `suspicious-activity-monitoring-and-reporting` direct primary-source rerun: current question-level fidelity is `AGREE`
+
+- Started from the literal user-pasted `suspicious-activity-monitoring-and-reporting` JSON and matching repo artifact, not from older same-day memory notes.
+- Re-read all questions against the maintained 2026-06-19 facts spine, the FATF Recommendations (**Updated October 2025**) on Recommendation `11` / Recommendation `20`, and current U.S. SAR rules at `31 CFR 1020.320` / `31 CFR 1010.430`.
+- Current result on the literal current **questions** is `AGREE`: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, or question-level factual contradiction surfaced.
+- Reviewer hygiene: the earlier same-day `SPLIT` note on `A bank purges its customer due-diligence files...` is stale on the current text; the keyed answer now correctly separates transaction-record retention from post-relationship CDD / account-file retention. Keep future review on this hash scoped to the already-recorded methodology softness only unless the question text changes.
+
+## 2026-06-20 - `suspicious-activity-monitoring-and-reporting` methodology rerun: literal current soft issues
+
+- Started from the literal user-pasted `suspicious-activity-monitoring-and-reporting` JSON rather than older same-day memory notes.
+- Current exact-format methodology result is `SPLIT`: no hard IP/originality, durability, domain/tag, or adult-register blocker surfaced on the visible current set.
+- The live reviewer-visible issues are narrower than some older same-day notes: `A reviewer reads a filed suspicious transaction report whose narrative says only...` and `A reviewer rejects a report whose narrative simply lists the transactions...` now read as the clearest near-duplicate pair, and `A bank wants a monitoring scenario aimed at a customer...`, `A bank purges its customer due-diligence files...`, and `A compliance team worries that any discussion of a filed report...` are the clearest thin scenario wrappers around rule recall.
+- If this set is touched again, treat the next pass as a dedupe + scenario-deepening pass only; do not reopen source-discipline or domain arguments unless the literal artifact changes.
+
+## 2026-06-20 - `suspicious-activity-monitoring-and-reporting` question-level answer-key / factual-fidelity audit
+
+- Started from the literal user-pasted `suspicious-activity-monitoring-and-reporting` JSON and matching repo artifact, not from older same-day memory notes.
+- Current exact-format question-level result is `SPLIT`: no wrong key, defensible second-correct answer, or bad wrong-answer rationale surfaced on the visible current bank.
+- The only reviewer-visible precision issue is `A bank purges its customer due-diligence files...`, where option `c` / the explanation compress the retention clocks too much by implying CDD records and transaction/report records commonly run on the same `five years after the relationship ends` timeline.
+- Tight source point to preserve if this question is revised: FATF Recommendation `11` separates the clocks — transaction records are kept `for at least five years`, while CDD / account-file / business-correspondence records are kept `for at least five years after the business relationship is ended`, or after the occasional transaction.
+- If this set is touched again, treat the next pass as a one-question retention-language tightening only; do not reopen the otherwise sound key / rationale set unless the literal artifact changes.
+
+## 2026-06-20 - `suspicious-activity-monitoring-and-reporting` assessment methodology audit
+
+- Started from the literal user-pasted `suspicious-activity-monitoring-and-reporting` JSON and matching repo artifact, not from older same-day memory notes.
+- Current exact-format methodology result is `SPLIT`: no hard IP/originality, durability, domain/tag, or adult-register blocker surfaced on the visible current set.
+- The live reviewer-visible issue is design softness. There is a real near-duplicate cluster on suspicion-vs-proof (`Investigating an alert...` / `An analyst holds back from reporting because...`), FIU exchange vs evidence (`A domestic FIU traces suspected stolen funds...` / `A domestic FIU receives intelligence from a foreign FIU...`), and report-as-intelligence vs proof (`A board member, reviewing the bank's rising suspicious-activity-report volumes...` / `A prosecutor asks a bank to treat its filed suspicious-activity report...`).
+- Smaller residual: a few stems are still thin scenario wrappers around rule recall, especially `A bank wants a monitoring scenario aimed at a customer...`, `A bank purges its customer due-diligence files...`, and `A compliance team worries that any discussion of a filed report...`.
+- If this set is touched again, treat the next pass as a dedupe + scenario-deepening pass only; do not reopen source-discipline or domain arguments unless the literal artifact changes.
+
+## 2026-06-20 - Module 2 literal-text fidelity rerun: no delta from the cleared question-level state
+
+- Started from the exact user-pasted `customer-due-diligence-and-beneficial-ownership` JSON again rather than from the same-day memory summary.
+- Re-read all 35 questions against the maintained 2026-06-19 facts spine and the current repo artifact. No live wrong key, defensible second-correct answer, wrong-answer-rationale defect, explanation contradiction, or question-level scope issue surfaced on the visible current text.
+- Reviewer hygiene: keep future Module 2 answer-key / factual-fidelity work scoped to the literal current **questions** only, because the artifact also contains glossary duplication that was not part of this user brief. On the current hash, only the separate methodology-softness note remains live.
+
+## 2026-06-20 - Module 2 methodology call is `SPLIT` on the literal pasted assessment
+
+- Started from the exact user-pasted `customer-due-diligence-and-beneficial-ownership` JSON rather than older same-day memory notes.
+- No hard methodology blocker surfaced on originality/IP, durability, adult register, domain fit, or tag scope. All 35 questions are still in Domain `C`, and all `conceptTags` are valid for the module.
+- The reviewer-visible issue set is soft design only: `Onboarding remotely, a bank cannot collect a physical identity document...`, `A trainee uses 'identify the customer' and 'verify the customer' interchangeably...`, and `A customer is a general partnership...` read as thin rule-recall, and the purpose-of-relationship concept is taught twice in very similar judgment form (`import/export, general goods...` and `Why is that purpose information important beyond box-ticking?`).
+- If this set is touched again, do a narrow scenario-deepening / dedupe pass only. Keep future reviewers from reopening IP, durability, or domain/tag arguments on this literal current text unless the artifact changes.
+
+## 2026-06-20 - Module 6 literal current questions re-audit to `AGREE` on answer-key / factual fidelity
+
+- Started from the exact user-pasted `national-frameworks-in-depth` JSON again rather than from the same-day memory summaries.
+- Rechecked the live questions against the maintained facts spine plus primary official materials for the time-sensitive points: AMLA's `About AMLA` page, the consolidated `Regulation (EU) 2024/1620`, and FinCEN / Treasury's March 2025 CTA releases.
+- Current result on the literal current **questions** is `AGREE`: the earlier same-day Module 6 factual-fidelity blocker notes on AMLA scope, `WM and Sovim`, CIP timing, and CTR / structuring do not survive on the visible current question text.
+- Reviewer hygiene: keep this close-out scoped to questions only; if someone later wants the glossary audited, treat that as a separate pass rather than reusing this verdict wholesale.
+
+## 2026-06-20 - Module 6 current-text fidelity gotcha: the live AMLA defect is now the missing cross-border qualifier
+
+- Started from the exact user-pasted `national-frameworks-in-depth` JSON again rather than from the same-day memory summaries.
+- Current literal-text answer-key / factual-fidelity result still reads `DISAGREE`, but the live blocker is now only `An EU compliance lead describes the bloc's AML regime as 'a set of directives...'`.
+- Official-source point to preserve: AMLA's site says AMLA will `directly supervise selected financial sector entities that operate on cross border basis and present high risk of money laundering and terrorism financing`, and the consolidated `Regulation (EU) 2024/1620` keeps the same lane for direct supervision.
+- Practical implication: on the current artifact, the keyed option and explanation for that question are not exact because they omit the **cross-border** qualifier. Keep older same-day notes that still widen the defect to the other AMLA questions out of rotation unless the text changes again.
+
+## 2026-06-20 - Module 6 literal current-text fidelity note: one live question blocker remains
+
+- Started from the exact user-pasted `national-frameworks-in-depth` JSON again rather than from the same-day repo-memory summaries.
+- Current literal-text result still reads `DISAGREE`, but the live question-level blocker is now only `An EU compliance lead describes the bloc's AML regime as 'a set of directives...'`.
+- Keyed option `a` is not fully correct because it says AMLA will directly supervise selected high-risk `obliged entities` generally; AMLA's official `About AMLA` page limits direct supervision to selected entities **in the financial sector** operating cross-border and presenting high ML/TF risk.
+- Reviewer hygiene: keep the older same-day `WM and Sovim`, CIP timing, CTR / structuring, and multi-question AMLA notes out of rotation for the literal current artifact unless the text changes again.
+
+## 2026-06-20 - Module 6 methodology user-facing close-out: no delta from the current literal-text call
+
+- Started from the literal user-pasted `national-frameworks-in-depth` JSON, not the same-day memory summaries.
+- Result stayed `DISAGREE` on methodology only: no hard IP/originality, domain/tag, or adult-register issue, but the bank is still too recall-heavy on the `JMLSG` / Bangladesh-statute / U.S. `314(a)/(b)` / `Section 311` / `GTO` stems.
+- Keep the next Module 6 methodology pass tight: recast those stems into practitioner decision questions and de-date the CTA 2025-scope / AMLA-rollout items rather than re-opening scope or tone debates.
+
+## 2026-06-20 - Module 6 current-hash fidelity gotcha: the live blocker is AMLA direct-supervision scope, not the older same-day notes
+
+- Re-read the literal user-pasted and repo `generated/cams/assessment/national-frameworks-in-depth.json` artifact against the maintained 2026-06-19 facts spine, AMLA's official `About AMLA` page, and the unofficial consolidated `Regulation (EU) 2024/1620`.
+- Official-source point that changed the call: AMLA's site says AMLA will `directly supervise selected financial sector entities that operate on cross border basis and present high risk`, and recital `5` of the consolidated `2024/1620` says direct supervision is of selected obliged entities `in the financial sector`, including crypto-asset service providers.
+- Current literal-text blocker set: `An EU compliance lead describes the bloc's AML regime as 'a set of directives...'`, `A compliance officer asks what AMLA will actually do...`, and `A cross-border EU banking group asks whether the EU's AML Authority...` all broaden that to selected high-risk / cross-border `obliged entities` generally; the `AMLA` glossary entry repeats the same scope error.
+- Reviewer hygiene: older same-day Module 6 notes on `WM and Sovim`, CIP timing, and CTR / structuring are stale on the current artifact and should not drive the next pass unless the text changes again.
+
+## 2026-06-20 - Module 6 exact-format methodology rerun: still `DISAGREE`, no new blocker class
+
+- Re-read the literal user-pasted `national-frameworks-in-depth` assessment against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR 0015 / 0016 / 0019 / 0020 before returning the exact-format user-facing verdict.
+- No new IP/originality, domain/tag-vocabulary, or adult-professional-register blocker surfaced on the current text.
+- The live blockers remain format plus durability only: the bank is still too recall-heavy on the JMLSG-status, Bangladesh principal-law / ATA-section, and U.S. `314(a)/(b)` / `Section 311` / `GTO` stems, and the CTA 2025-scope / EU AML Package rollout questions still depend too much on current-status facts.
+
+## 2026-06-20 - Module 6 fidelity rerun: current literal blocker still the `WM and Sovim` access-language overstatement
+
+- Manual in-turn reread of the literal user-pasted `national-frameworks-in-depth` set against the maintained facts spine plus current official EU package / AMLA materials kept the answer-key / factual-fidelity verdict at `DISAGREE`.
+- The earlier same-day U.S. notes are stale on the current text; the live ship blocker is still the beneficial-ownership-register question whose keyed option / explanation say access `remains` for `persons with a legitimate interest`.
+- Carry-forward: if Module 6 fidelity is touched again, tighten that `WM and Sovim` wording first and do not reopen the already-corrected CIP / CTR points unless the question text changes again.
+
+## 2026-06-20 - Module 6 methodology audit carry-forward
+
+- Exact-format methodology verdict on the literal user-pasted `national-frameworks-in-depth` assessment remains `DISAGREE`.
+- Do not reopen IP/originality, domain/tag, or adult-register arguments first; those were fine on the visible current set.
+- The fix scope is still format + durability only: recast the recall-heavy JMLSG / Bangladesh-statute / U.S. `314(a)/(b)` / `Section 311` / `GTO` items into applied decision questions, and de-date the CTA 2025-scope / EU AMLA-rollout questions.
+
+## 2026-06-20 - Module 6 fidelity rerun: current literal blocker is the `WM and Sovim` access-class overstatement
+
+- Re-read the literal user-pasted `national-frameworks-in-depth` assessment under the exact cross-check-reviewer brief after loading the project memory chain and spot-checking the current official EU material on `WM and Sovim`.
+- The earlier same-day U.S. notes are stale on the current pasted/generated file: the CIP answer now uses `within a reasonable time before or after the account is opened`, and the CTR explanation now properly treats structuring as a separate intent-based issue.
+- Current blocker: `A European bank built a control on the assumption that beneficial-ownership registers are freely searchable...` still says the Court's ruling means access `remains` for competent authorities, obliged entities, and `persons with a legitimate interest`. That overstates the judgment itself, which invalidated general-public access and described the legitimate-interest group as part of the former regime.
+
+## 2026-06-20 - Module 6 methodology audit reminder
+
+- Start from the literal pasted `national-frameworks-in-depth` JSON, not from same-day memory summaries.
+- Current methodology result is still `DISAGREE`: no IP / tag / adult-register blocker, but too many questions are thin scenario wrappers around section / authority recall.
+- Keep any repair scope narrow: CTA / CDD, JMLSG status, UK SAR routing, Bangladesh principal-law / ATA-section, and US `314(a)/(b)` / `Section 311` / `GTO`; de-date the CTA March 2025 and AMLA 2027-2028 timing items.
+
+## 2026-06-20 - Module 6 question-only answer-key / factual-fidelity rerun corrected to `DISAGREE`
+
+- Exact-format reread of the literal user-pasted `national-frameworks-in-depth` assessment against the maintained 2026-06-19 facts reference plus spot checks on the current official U.S./EU/UK materials.
+- Current result is `DISAGREE`. Most keys are still fine and the earlier same-day EU precision note does not survive on the current wording, but two U.S. items still need copy-tightening before promotion.
+- `At account opening, a bank's staff collect only...` is the main blocker: option `a`, the explanation, and rationale `c` all say CIP verification must occur `at account opening`, but the bank CIP rule allows verification within a reasonable time before or after opening. The fix is to preserve the required data elements / documentary-or-nondocumentary verification point while correcting the timing language.
+- `A US bank customer makes three separate cash deposits...` keeps the right keyed answer on same-day CTR aggregation, but the explanation should stop there. Calling the pattern `itself structuring` overstates the facts because the stem does not establish the purpose-to-evade element.
+
+## 2026-06-20 - Module 6 methodology rerun: keep the critique narrow
+
+- Exact-format close-out rerun of the literal user-pasted `national-frameworks-in-depth` assessment still came back `DISAGREE`.
+- Do not reopen IP/originality, domain/tag, or adult-register arguments first; those stayed fine on the visible current set.
+- The live blocker is still format: too many stems are effectively `which section / which Act / which authority / which tool` recall under a thin scenario wrapper. The clearest offenders remain the CTA / CDD-Rule change item, JMLSG status, UK SAR-routing, Bangladesh principal-law / ATA-section items, and the US `314(a)/(b)` / `Section 311` / `GTO` stems.
+- Separate durability note: if the bank is revised, de-date the March 2025 CTA scope-change question and the EU AML Package / AMLA 2027-2028 timing questions rather than arguing about them harder.
+
+## 2026-06-20 - Module 6 assessment methodology note: current blocker is recall-heavy design
+
+- Exact-format review of the literal user-pasted `national-frameworks-in-depth` assessment came back `DISAGREE`.
+- Do not reopen IP/originality or domain/tag arguments first; those were fine on the visible current set.
+- The live blocker is format: too many items are really `which section / which Act / which authority` recall with only thin scenario wrapping. Watch especially the PATRIOT Act `section 326`, UK statute / SAR-filing, Bangladesh principal-law, and US `314(a)/(b)` / `Section 311` / `GTO` stems.
+- Separate soft durability note: de-date the CTA / March 2025 rule-change item and the EU AML Package / AMLA 2027-2028 timing items if the bank is revised.
+
+## 2026-06-20 - Module 5 reviewer gotcha: question-only brief + same-day memory drift
+
+- For `generated/cams/assessment/high-risk-categories-and-typologies.json`, same-day repo memory drifted across multiple literal-text states. Start from the user's pasted JSON, then use earlier notes only as hints.
+- Latest question-only answer-key / factual-fidelity rerun, with FATF Recommendations (**Updated October 2025**) + FATF PEP guidance spot-check, stayed `AGREE`. The older same-day `DISAGREE` notes about incomplete keyed answers do not match the literal current text.
+- The user brief on this pass was question-scoped; do not let glossary-only concerns bleed into the verdict unless a future reviewer explicitly audits the glossary too.
+- If Module 5 is touched again, only the separate methodology softness remains live (duplication / recall-leaning stems).
+
+## 2026-06-20 - Module 5 exact-format methodology audit on the literal pasted set: soft issues only
+
+- Re-read the user-pasted `high-risk-categories-and-typologies` assessment against the committed methodology docs rather than trusting the same-day repo-memory drift.
+- Current user-facing methodology verdict still lands at `SPLIT`, but not for IP, durability, domain/tag scope, or register.
+- The issue cluster is design repetition: later questions repeat earlier judgments with light surface changes on over-invoicing, phantom shipments, real-estate ML, cash-intensive-business, luxury-goods / DNFBP, and de-risking.
+- A smaller subset is still compare-the-rule recall with only thin scenario wrapping, especially the foreign-vs-domestic / international-organisation PEP distinction stems.
+- Next touch, if any: dedupe / materially differentiate those repeated items and deepen the recall-leaning PEP stems. Do not reopen stale same-day answer-key or tag arguments unless the artifact changes again.
+
+## 2026-06-20 - Module 5 literal-text rerun confirmed the cleared answer-key state
+
+- This session's manual reread of the user-pasted `high-risk-categories-and-typologies` artifact also came back `AGREE` on answer-key / factual-fidelity. No current visible question reproduced the older same-day blocker cluster.
+- Reviewer hygiene note: for Module 5, stale same-day memory drift is real. Start from the literal current pasted/generated JSON, then use the memory entries only as carry-forward hints.
+- Practical result on the current text: the documentary-boundary answer is complete, the foreign-vs-domestic PEP comparison is complete, and the DNFBP item is acceptable for this bank as written.
+
+## 2026-06-20 - Module 5 exact-format answer-key / factual-fidelity rerun on the literal pasted set returned `AGREE`
+
+- Re-read every question in the user-pasted `high-risk-categories-and-typologies` assessment against the maintained 2026-06-19 facts spine, with focus on wrong keys, second-correct-answer risk, distractor-rationale accuracy, and explanation consistency.
+- The live current-text result is `AGREE`: no answer-key defect survived, no distractor is also defensibly correct, and the earlier same-day notes about the documentary-boundary item, the foreign-vs-domestic PEP comparison, and the DNFBP-scope question are stale on the literal pasted artifact.
+- If this module re-enters review later, start from the literal current JSON rather than from older same-day memory summaries.
+
+## 2026-06-20 - Module 5 methodology note: stale same-day memory drifted away from the literal current JSON
+
+- Re-ran the exact-format v1.1 methodology audit on the literal user-pasted `high-risk-categories-and-typologies` assessment and found that the repo's earlier same-day methodology notes were no longer describing the visible artifact.
+- Practical gotcha: on the current pasted JSON, the previously discussed documentary-boundary option is complete, the foreign-vs-domestic PEP comparison option answers both halves, and the over-invoicing item does not carry an `under_invoicing` tag. Future reviewers should inspect the literal artifact first instead of trusting older same-day summaries.
+- The live methodology residual is softer and more structural: repeated near-duplicate items on former-PEP offboarding, RCAs, payable-through accounts, and wallet-attribution / travel-rule concepts, plus a few compare-the-rule stems that would benefit from fuller practitioner-judgment fact patterns.
+- Next touch, if any: treat Module 5 methodology as a dedupe / differentiation pass, not a tag-fix or truncated-option pass.
+
+## 2026-06-20 - Module 5 assessment answer-key / factual-fidelity review corrected to the literal current blocker set
+
+- Exact-format reviewer pass on `generated/cams/assessment/high-risk-categories-and-typologies.json` still came back `DISAGREE`, but the current-hash blockers are narrower than some older same-day notes.
+- After rereading the literal pasted JSON, the repo file, the maintained facts spine, the FATF Recommendations (**Updated October 2025**), and the FATF PEP guidance, the live hard defects are only two incomplete keyed answers: `A trade-finance team approves a transaction because the documents...` and `A bank onboards a foreign head of state's finance minister...`.
+- The first keyed option stops at the documentary-credit boundary and leaves the required AML-escalation / investigation consequence only in the explanation; the second keyed option states only the foreign-PEP side even though the stem asks for the foreign-vs-domestic comparison.
+- Treat earlier same-day memory that still carried the art / jewellery question as a hard answer-key blocker as stale for the literal current artifact unless that text changes again.
+
+## 2026-06-20 - Module 5 assessment methodology review: stale issue list corrected
+
+- Exact-format reviewer pass on `generated/cams/assessment/high-risk-categories-and-typologies.json` still came back `SPLIT`, not `DISAGREE`, but the earlier same-day issue list was not the literal current artifact anymore.
+- No hard methodology failure class surfaced: originality/IP, durability, adult-professional register, domain fit, and tag-vocabulary scope stayed in bounds on the literal current set.
+- The live issues are now: `A trade-finance team approves a transaction because the documents...` has a keyed option that is materially incomplete without the explanation; `A bank onboards a foreign head of state's finance minister...` has a keyed option that only answers the foreign-PEP side of the comparison; and `An importer consistently pays far more for commodity shipments...` is over-tagged with `under_invoicing`.
+- If this file is repaired later, do a surgical copy / metadata cleanup only on those three points. Do not reopen the whole bank or relitigate IP / durability unless the question text itself changes.
+
+## 2026-06-20 - Module 9 assessment answer-key / factual-fidelity exact-format rerun
+
+- Re-ran the literal user-supplied `tools-and-technologies-to-fight-financial-crime` assessment against the stricter cross-check-reviewer brief before returning the reviewer verdict.
+- Current result stays `AGREE`: every keyed answer remains unambiguous, no distractor matured into a defensible second correct answer, the wrong-answer rationales still describe real wrongness, and no stem / option / explanation contradiction surfaced against the maintained 2026-06-19 facts reference.
+- If this bank is touched again, do not reopen Module 9 answer-key / factual-fidelity review unless the assessment text changes materially.
+
+## 2026-06-20 - Module 9 assessment methodology exact-format rerun
+
+- Re-ran the literal user-supplied `tools-and-technologies-to-fight-financial-crime` assessment against the v1.1 methodology spine (`docs/COURSE-GENERATION-PROMPT.md`, ADR 0015 / 0016 / 0019 / 0020) before returning the reviewer verdict.
+- Current result stays `AGREE`: no IP/originality, durability, format, domain/tag, or adult-register issue surfaced on the pasted artifact, and the earlier same-day option-corruption notes remain stale for this hash.
+- If this bank is touched again, do not reopen Module 9 methodology review unless the assessment text changes materially.
+
+## 2026-06-19 - Late Module 10 factual-fidelity no-delta rerun after primary-source spot checks
+
+- Re-ran the exact-format answer-key / distractor / explanation-consistency / factual-fidelity audit on the literal user-pasted `generated/cams/assessment/the-broader-financial-crime-landscape.json` set after spot-checking the edge PEP, FATCA-vs-CRS, FCPA, and facilitation-payments points against current FATF / OECD / DOJ / GOV.UK primary texts.
+- No change from the stored same-day state: verdict stays `AGREE`; no wrong key, defensible second answer, bad wrong-answer rationale, explanation contradiction, or facts-reference conflict surfaced on the current visible hash.
+- Practical instruction for future passes: keep Module 10 closed on answer-key / fidelity unless the assessment text changes; only the separate methodology-softness note on the four recall-leaning stems remains live.
+
+## 2026-06-19 - Module 10 assessment methodology rerun (same-hash no-delta)
+
+- Latest exact-format reviewer rerun on the literal user-pasted / repo `generated/cams/assessment/the-broader-financial-crime-landscape.json` artifact stays `SPLIT` on methodology, not `DISAGREE`.
+- When this set re-enters review, ignore stale same-day notes about option corruption or facilitation-payments truncation in the methodology lane; those were older hash states or answer-key concerns and do not apply to the current visible JSON.
+- The live soft issues are only four recall-leaning stems: `A retail customer reports that a caller posing as the bank's fraud team...`, `Two clients each reduce their tax bill...`, `You are assessing a money-remittance business...`, and `A compliance team is briefed that a foreign ruling family...`.
+- Next touch, if any: rewrite only those four toward richer application scenarios and leave the rest of the bank alone unless the artifact changes materially.
+
 ## 2026-06-19 - Literal current Module 10 assessment exact-format answer-key rerun now reads `AGREE`
 
 - Re-ran the exact-format factual-fidelity / answer-key audit on the literal user-pasted and repo `generated/cams/assessment/the-broader-financial-crime-landscape.json` artifact after reloading the project-memory chain, `docs/COURSE-GENERATION-PROMPT.md`, and ADR 0015 / 0016 / 0019 / 0020.
@@ -3247,3 +3606,98 @@ What this pass confirmed:
 - Rechecked the exact pasted `tools-and-technologies-to-fight-financial-crime` JSON, not just the stored repo file, under the user-facing exact-format reviewer contract.
 - Outcome matched the later same-day stored-memory state: `AGREE` on answer-key / factual fidelity. The earlier same-day Module 9 option-corruption notes are stale for the current literal hash and should not be reused unless the assessment text changes again.
 - Memory cleanup point: `CLAUDE.md` carried one stale phrase still implying Module 10 was the answer-key repair focus; corrected it so the assessment backlog now reads as Module 10 methodology-softness only, not live fidelity repair.
+## 2026-06-20 - Module 5 assessment answer-key / factual-fidelity review: narrow but real blockers
+
+- Exact-format reviewer pass on `generated/cams/assessment/high-risk-categories-and-typologies.json` came back `DISAGREE` on answer-key / fidelity, even though the same file was only `SPLIT` on methodology.
+- Live blockers are concentrated, not broad-bank: the respondent-due-diligence item has a visibly corrupted keyed option and an over-narrow Recommendation 13 explanation; the art / jewellery DNFBP item overstates FATF baseline scope and misstates why the bank-transfer distractor is wrong; and the documentary-boundary item has a keyed option that is materially incomplete without the explanation.
+- If this file is repaired later, do a surgical fix on those three questions first, then rerun the exact-format answer-key / fidelity audit. Do not reopen the whole bank unless the assessment text changes materially.
+## 2026-06-20 - Module 5 methodology memory drift corrected
+
+- The repo memory had drifted away from the literal current `high-risk-categories-and-typologies` assessment: `CLAUDE.md` / `PROGRESS.md` were still carrying a `real_estate_ml` stray-tag note and an off-target `luxury_goods` note that do not match the literal current pasted/generated set.
+- Exact current-hash methodology read is `SPLIT` with a different narrow issue set: the documentary-boundary keyed option is incomplete without the explanation; the foreign-vs-domestic PEP comparison keyed option only answers the foreign side; and the over-invoicing item is over-tagged with `under_invoicing`.
+- Next reviewer should start from the literal current assessment JSON, not the older same-day stale-memory summary.
+
+## 2026-06-20 - Module 5 methodology rerun now points to duplication, not stale tag/copy issues
+
+- Exact-format v1.1 reviewer pass on the literal user-pasted `high-risk-categories-and-typologies` assessment still came back `SPLIT`, but the live methodology issues are different from the older same-day repo-memory summary.
+- No hard methodology failure class survived on the current artifact: originality/IP, durability, domain/tag vocabulary, and adult-professional register stayed in bounds.
+- The reviewer-visible issues are assessment-design softness instead: several near-duplicate items repeat the same judgment with only light surface changes (former-PEP offboarding, RCAs, payable-through accounts, travel rule / wallet attribution), and a few stems are still compare-the-rule recall with only thin scenario wrapping.
+- If this bank is touched again, treat Module 5 methodology as a dedupe / differentiation pass. Do not reuse the stale tag/copy issue list against the current literal JSON unless the artifact changes again.
+
+## 2026-06-20 - Module 6 methodology no-delta rerun reminder
+
+- Start from the literal user-pasted `national-frameworks-in-depth` JSON, not from same-day memory summaries; the current exact-format methodology call is still `DISAGREE`.
+- No IP/originality, domain/tag-vocabulary, or adult-register blocker surfaced on the visible artifact. The live issue is design: too many items are really `which section / which Act / which authority / which tool` under a thin scenario wrapper.
+- The clearest current stems to rewrite first are the `JMLSG` status item, Bangladesh principal-law / `ATA section 15`, and the U.S. `314(a)/(b)` / `Section 311` / `GTO` items.
+- Separate soft durability reminder: if the set is revised, de-date the CTA March-2025 scope-change item and the EU AML Package / AMLA rollout items instead of leaning harder on current-status wording.
+
+## 2026-06-20 - Module 8 assessment answer-key / fidelity gotcha
+
+- Start from the literal user-pasted `learning-from-enforcement` JSON, not only the same-day methodology note at the top of `CLAUDE.md`; there was no prior closed question-level fidelity note for this module.
+- Current exact-format answer-key / factual-fidelity verdict is `DISAGREE`, but the blocker is narrow rather than bank-wide: `The Westpac / AUSTRAC matter involved millions of unreported international funds-transfer instructions...` uses two phrasings the maintained Westpac spine explicitly rejects.
+- Preserve the exact correction points if the file is revised: the `19,502,841` section-`45(2)` strand is `failed to report within the required time`, not a clean `unreported` count; and the low-value LitePay channel was not simply `unmonitored` — LitePay had detection-scenario coverage from its August 2016 launch, while the longer-running no-appropriate-scenario gap was on non-LitePay channels until October 2019.
+- Reviewer hygiene: most of the rest of Module 8's bank looked sound on the user-facing dimensions. Keep the next factual-fidelity pass tightly scoped to that Westpac item unless the question text changes materially.
+
+## 2026-06-20 - Module 6 methodology literal-paste rerun still fails on recall-heavy assessment design
+
+- Re-read the exact user-pasted `national-frameworks-in-depth` assessment against methodology v1.1 before final close-out.
+- Current reviewer call remains `DISAGREE`: no hard IP/originality, domain/tag-vocabulary, or adult-register blocker surfaced, but the bank is still too recall-heavy on the `JMLSG` / `ATA section 15` / U.S. `314(a)/(b)` / `Section 311` / `GTO` stems.
+- Carry-forward: if this set is touched again, keep the next pass tight on rebuilding those as practitioner-decision scenarios and de-dating the CTA 2025-scope / EU AMLA-rollout wording.
+
+## 2026-06-20 - Module 2 methodology call is `SPLIT`, with design softness not source or scope failure
+
+- Exact-format v1.1 reviewer pass on `generated/cams/assessment/customer-due-diligence-and-beneficial-ownership.json` came back `SPLIT`.
+- No hard IP/originality, durability, domain/tag-vocabulary, or adult-register blocker surfaced on the literal current set.
+- The live issues are the same pattern seen in other soft methodology calls: a few stems are thin compare-the-rule / definition recall (`identify vs verify`, remote non-documentary verification, partnership beneficial ownership), and a few later items materially repeat earlier judgments (trust beneficial-ownership, control-test, purpose-of-relationship).
+- If this bank is touched again, do a targeted dedupe + scenario-deepening pass rather than reopening source-discipline or timeline-stability arguments.
+
+## 2026-06-20 - Module 2 answer-key / factual-fidelity call is `AGREE`
+
+- Re-read every question in the literal user-pasted `generated/cams/assessment/customer-due-diligence-and-beneficial-ownership.json` set against the maintained 2026-06-19 facts reference, the FATF Recommendations (**Updated October 2025**), and the current EUR-Lex text of Directive `(EU) 2015/849` Articles `25` to `29`.
+- Current result is `AGREE`: no wrong key, defensible second correct answer, bad wrong-answer rationale, explanation contradiction, or question-level scope defect surfaced on the CDD / beneficial-ownership / PEP / reliance bundle.
+- Reviewer hygiene: keep future Module 2 review on this literal hash scoped to the already-recorded methodology softness only; do not reopen answer-key / factual-fidelity unless the question text changes materially.
+
+## 2026-06-20 - Module 4 methodology gotcha: start from the literal current JSON, not the older same-day note
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/sanctions-compliance.json` artifact under the exact v1.1 cross-check-reviewer brief after loading the methodology docs and same-day repo memory.
+- One of the earlier same-day Module 4 methodology notes is stale on the current visible artifact: `To cut false positives, a bank sets its name-screening matcher...` is already in Domain `D`, so do not keep repeating the old Domain-`D` drift complaint unless the file changes again.
+- The live no-ship methodology issues on the current file are different and narrower: several stems are still thin scenario wrappers around term / rule recognition (`A trainee assumes all sanctions work the same way...`, `A transaction that would otherwise be prohibited...`, `A non-US company with no US operations is warned...`, `A new designation lands while...`), and `A UK firm asks which authority administers UK financial sanctions...` carries an off-target secondary `eu_sanctions` tag even though the concept being taught is the UK/OFSI-FCDO split.
+- Practical carry-forward: for future Module 4 methodology passes, fix the recall-style stems first and treat the UK-tag cleanup as the only live metadata issue on the literal current hash. Keep older same-day domain-drift / duplicate-pair notes out of rotation unless the artifact changes materially.
+
+## 2026-06-20 - Module 7 assessment methodology call is `SPLIT`
+
+- Re-read the literal user-pasted `governance-audit-and-the-compliance-function` assessment against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR 0015 / 0016 / 0019 / 0020 before close-out.
+- No hard IP/originality, durability, domain/tag vocabulary, or adult-professional-register blocker surfaced on the visible current set. Domain `C` is appropriate to the module overall.
+- The reviewer-visible issue set is format softness only: several later items are thin scenario wrappers around governance-term recall rather than richer practitioner judgment, especially `A board asks how it should express...`, `A new compliance head is asked what core elements...`, `Employees fear that raising concerns...`, and `A bank's view is that AML accountability rests only...`.
+- Smaller metadata softness: some of those stems teach adjacent governance concepts (risk appetite statement, program pillars, speak-up channels) that are only loosely captured by broad tags like `compliance_function` or `tone_from_the_top`.
+- If this set is touched again, keep the next pass narrow on scenario-deepening that cluster and tightening the broadest tag mappings. Do not reopen source-discipline or durability arguments unless the literal artifact changes.
+
+## 2026-06-20 - Module 7 assessment methodology rerun: no delta from the stored `SPLIT`
+
+- Re-ran the exact-format user-facing review on the same literal `governance-audit-and-the-compliance-function` JSON to make sure the verdict still tracked the pasted artifact, not just the earlier same-day memory note.
+- Result stayed `SPLIT`. No new issue surfaced on IP/originality, durability, domain/tag vocabulary, or adult-professional register; the only live residual remains the recall-leaning governance cluster (`A board asks how it should express...`, `A new compliance head is asked what core elements...`, `Employees fear that raising concerns...`, `A bank's view is that AML accountability rests only...`) plus the smaller broad-tag mapping softness.
+- Next reviewer should treat Module 7 as methodology-softness only on the current hash and avoid re-litigating harder blocker classes unless the assessment text changes materially.
+
+## 2026-06-20 - Module 1 assessment methodology audit: current literal hash is `DISAGREE`
+
+- Re-read the literal user-pasted and repo `generated/cams/assessment/the-fatf-framework-and-the-risk-based-approach.json` artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR 0015 / 0016 / 0019 / 0020 before returning the exact-format reviewer verdict.
+- No hard IP/originality, durability, or adult-register blocker surfaced. Domain `B` / `C` assignment is broadly fine and the content stays within the module's concept perimeter overall.
+- The current no-ship issue is format drift, not factual drift: too much of the back third is thin scenario-wrapped framework recall rather than practitioner application. The clearest current stems are `A compliance officer asks what a FATF-style mutual evaluation actually assesses...`, `A new analyst believes the FATF Recommendations address money laundering only...`, `A compliance officer is unsure how the FATF's standards reach...`, `A country is drafting its money-laundering offence...`, and `Designing a risk assessment, an analyst wants to capture...`.
+- Smaller current-hash issues: `Reading a FATF Recommendation...` is too close to the earlier Interpretive-Note pair, and `A bank notes that a country it deals with has been placed...` carries the off-target `high_risk_customer` tag despite testing FATF jurisdiction-list consequences rather than customer classification.
+- Carry-forward: if Module 1 is touched again, keep the next pass narrow on scenario-deepening that recall-heavy cluster, removing or materially differentiating the repeated Interpretive-Note item, and cleaning up the single tag drift. Do not reopen IP / durability / register arguments unless the artifact changes materially.
+
+## 2026-06-20 - Module 9 question-only fidelity rerun: current literal bank is clean
+
+- Re-read the literal user-pasted and repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact answer-key / factual-fidelity brief after reloading the required project-memory chain.
+- Current verdict is `AGREE` on the visible **questions**: no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or ship-blocking factual defect surfaced on the current file.
+- Reviewer hygiene: keep this separate from the same-day Module 9 methodology `SPLIT`. The live issues on the current hash are repetition / recall softness and a couple of loose secondary tags, not question-level fidelity.
+- Scope note: question-only close-out; glossary not reviewed.
+
+## 2026-06-20 — Multi-select / faithful-mock gotchas
+- **id-vs-text format crux (fixed):** the generated-course writer stores `question_bank.options` as `{id,text}[]` and `correct_answer` as the option **id**; the mock runtime previously assumed `options: string[]` (texts) and scored by exact **text** match. They were inconsistent — generated mocks would have broken. Runtime is now **id-based** end-to-end (`lib/mock/actions.ts` `normalizeOptions`/`gradeAnswer`), robust to legacy text-based CDCS rows (synthesizes `{id:text,text}`).
+- **Multi-select scoring = all-or-nothing set-equality** (order-independent, dedup). `selectCount` priority: `metadata.select_count` → number of correct ids → 1.
+- **DO NOT run `scripts/shuffle-assessment-positions.js` on `multiple_choice` questions** — it re-letters by a single `correctOptionId` and corrupts `correctOptionIds`. Use a multi-aware rotation (rotate option order, re-letter a–e, re-map `correctOptionIds` + `wrongAnswerRationales` by option text). All 20 seed multi-response items were authored with correct=`["a","b","c"]` then rotated so the correct set is spread across 5 position patterns (no "pick a,b,c" tell).
+- **Assessment cross-check now handles multiple-response:** `codex_review_assessment.ts` fidelity brief audits the SET (`correctOptionIds`) — every id correct + none missing; methodology brief recognizes multiple-response (4–6 options, "select N") as exam-faithful (NOT mimicry). A 5/6-option "select THREE" checklist is the expected shape.
+- **seed-cams-mock.ts** is idempotent (delete-by-name then insert); `selection_criteria.by_domain` keys MUST exactly match the full `question_bank.domain` strings ("A - Understanding…", etc.). Run AFTER `generate-course.ts write`.
+- **Readiness v2** anchors to the course's primary template `pass_score_percent` (default 75); ready targets are P+5 (avg), P (min), P−5 (domain floor), plus a 3-attempt pass streak and no sharp recent decline.
+- Did NOT commit the stray untracked `.firecrawl/` and `livecheck-landing.png` (pre-existing, not ours).

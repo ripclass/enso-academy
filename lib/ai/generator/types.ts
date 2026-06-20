@@ -70,9 +70,14 @@ export type AssessmentArtifact = {
 
 export type GeneratedQuestion = {
   questionText: string
-  questionType: 'single_choice' | 'scenario_mcq'
+  questionType: 'single_choice' | 'scenario_mcq' | 'multiple_choice'
   options: { id: string; text: string }[]
+  /** The correct option id for single-answer types (single_choice / scenario_mcq). */
   correctOptionId: string
+  /** The correct option ids for multiple_choice (multi-select) questions. */
+  correctOptionIds?: string[]
+  /** How many options a multi-select question expects the student to pick. */
+  selectCount?: number
   explanation: string
   wrongAnswerRationales?: Record<string, string>
   conceptTags: string[]

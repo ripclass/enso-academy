@@ -26,7 +26,7 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
   const router = useRouter()
 
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [answers, setAnswers] = useState<Record<string, string>>({})
+  const [answers, setAnswers] = useState<Record<string, string | string[]>>({})
   const [flagged, setFlagged] = useState<Set<string>>(new Set())
   const [secondsRemaining, setSecondsRemaining] = useState(timeLimitMinutes * 60)
   const [submitting, setSubmitting] = useState(false)
@@ -39,7 +39,16 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
 
   const total = questions.length
   const current = questions[currentIndex]
-  const answeredCount = Object.keys(answers).length
+  const isMulti = current?.question_type === 'multiple_choice'
+
+  // An answer counts only if it's a non-empty string or a non-empty array.
+  const isAnswered = (qid: string): boolean => {
+    const a = answers[qid]
+    if (a === undefined || a === null) return false
+    if (Array.isArray(a)) return a.length > 0
+    return a !== ''
+  }
+  const answeredCount = questions.reduce((n, q) => (isAnswered(q.id) ? n + 1 : n), 0)
 
   // --- submit ---------------------------------------------------------------
   const doSubmit = useCallback(async () => {
@@ -102,9 +111,23 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
   }, [answers])
 
   // --- handlers -------------------------------------------------------------
-  function selectAnswer(optionText: string) {
+  // Single-answer: store the chosen option id.
+  function selectAnswer(optionId: string) {
     if (!current) return
-    setAnswers((prev) => ({ ...prev, [current.id]: optionText }))
+    setAnswers((prev) => ({ ...prev, [current.id]: optionId }))
+  }
+
+  // Multi-select: add/remove the option id from the question's id array.
+  function toggleAnswer(optionId: string) {
+    if (!current) return
+    setAnswers((prev) => {
+      const existing = prev[current.id]
+      const arr = Array.isArray(existing) ? existing : []
+      const next = arr.includes(optionId)
+        ? arr.filter((id) => id !== optionId)
+        : [...arr, optionId]
+      return { ...prev, [current.id]: next }
+    })
   }
 
   function toggleFlag() {
@@ -213,21 +236,40 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
               {current?.question_text}
             </h2>
 
+            {isMulti && (
+              <p className="mt-3 text-2xs font-semibold uppercase tracking-wider text-slate-500 font-mono">
+                {current?.select_count && current.select_count > 1
+                  ? `Select ${current.select_count}.`
+                  : 'Select all that apply.'}
+              </p>
+            )}
+
             <div className="mt-5 space-y-2.5">
               {current?.options.map((opt) => {
-                const selected = answers[current.id] === opt
+                const currentAnswer = answers[current.id]
+                const selected = isMulti
+                  ? Array.isArray(currentAnswer) && currentAnswer.includes(opt.id)
+                  : currentAnswer === opt.id
                 return (
                   <button
-                    key={opt}
+                    key={opt.id}
                     type="button"
-                    onClick={() => selectAnswer(opt)}
-                    className={`w-full text-left text-sm rounded border px-4 py-3 transition-colors ${
+                    onClick={() => (isMulti ? toggleAnswer(opt.id) : selectAnswer(opt.id))}
+                    className={`w-full text-left text-sm rounded border px-4 py-3 transition-colors flex items-start gap-3 ${
                       selected
                         ? 'border-slate-600 bg-slate-100 text-slate-900'
                         : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
                     }`}
                   >
-                    {opt}
+                    <span
+                      aria-hidden
+                      className={`mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center border text-2xs font-bold ${
+                        isMulti ? 'rounded-[3px]' : 'rounded-full'
+                      } ${selected ? 'border-slate-700 bg-slate-700 text-white' : 'border-slate-300 bg-white'}`}
+                    >
+                      {selected ? (isMulti ? '✓' : '●') : ''}
+                    </span>
+                    <span>{opt.text}</span>
                   </button>
                 )
               })}
@@ -262,13 +304,13 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
             </h2>
             <div className="grid grid-cols-6 gap-1.5">
               {questions.map((q, i) => {
-                const isAnswered = answers[q.id] !== undefined
+                const answered = isAnswered(q.id)
                 const isFlagged = flagged.has(q.id)
                 const isCurrent = i === currentIndex
                 let cls = 'bg-slate-50 border-slate-200 text-slate-600'
                 if (isCurrent) cls = 'bg-blue-900 border-blue-900 text-white'
                 else if (isFlagged) cls = 'bg-amber-100 border-amber-300 text-amber-800'
-                else if (isAnswered) cls = 'bg-slate-200 border-slate-300 text-slate-800'
+                else if (answered) cls = 'bg-slate-200 border-slate-300 text-slate-800'
                 return (
                   <button
                     key={q.id}
