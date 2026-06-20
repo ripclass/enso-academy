@@ -65,10 +65,12 @@ The product is functionally complete end-to-end (marketing → signup → course
 - [x] Enrollment de-dup confirmed (UNIQUE(student_id,course_id); webhook upsert correct).
 - [ ] Not separately tested (share the verified webhook path / by design): pay-per-mock $14.99, webhook idempotency re-send (idempotent by the unique purchase anchor), readiness after multiple mocks, results-page scoring.
 
-## Phase 10 — Launch ✅ LIVE in TEST mode (2026-06-20)
-- [x] `main` deploys green (after fixing two build-breakers: `'use server'` non-async exports in `lib/mock/actions.ts`, and `new Stripe()` at module load → lazy `getStripe()`). Course **published** + enrollable; full purchase flow works.
-- [ ] **Real-money launch (pending Stripe Atlas):** switch to LIVE keys + LIVE webhook, one real low-risk transaction + refund. Until then the site is live and accepts **test** payments only.
-- [ ] Announce (after Atlas / real-money is on).
+## Phase 10 — Launch 🟢 LIVE FOR REAL MONEY (2026-06-20)
+- [x] `main` deploys green. Course **published** + enrollable; full purchase flow works.
+- [x] **Switched to LIVE Stripe.** `charges_enabled=true` (verified via the live account object), live webhook `we_1TkSUy…` → `/api/stripe/webhook` (`checkout.session.completed`), live `sk_/pk_/whsec_` set in Vercel prod, redeployed (live `/terms` confirms the build). Payouts paused — funds accrue until the US bank opens (operator-accepted).
+- [ ] **ROTATE the live secret key** — it was pasted in chat; roll it in Stripe and update `STRIPE_SECRET_KEY` in Vercel.
+- [ ] **Operator: one real-card test purchase + refund** to confirm live fulfillment end-to-end (a real charge can't be done with the test card / by the agent).
+- [ ] Announce.
 
 ## Phase 11 — Post-launch / known follow-ups
 - [ ] **Webhook fulfilment hardening** (known edge): a grant step failing *after* the purchase insert returns 200 (no retry) → rare paid-but-under-granted, recoverable from the audit row. Harden with a fulfilment-status flag + retry-safe re-grant.
