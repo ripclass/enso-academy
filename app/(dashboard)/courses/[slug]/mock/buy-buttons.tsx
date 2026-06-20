@@ -1,0 +1,70 @@
+'use client'
+
+import { useState, useTransition } from 'react'
+import { createCourseCheckout, createMockCheckout } from '@/lib/stripe/checkout'
+
+/**
+ * Buy options shown when the student has 0 mock attempts left. Each button calls
+ * a server action that creates a Stripe Checkout Session (amount set SERVER-SIDE)
+ * and returns its URL, then redirects the browser to Stripe.
+ */
+export function BuyButtons({ courseSlug }: { courseSlug: string }) {
+  const [pending, startTransition] = useTransition()
+  const [which, setWhich] = useState<'mock' | 'course' | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  function go(kind: 'mock' | 'course') {
+    setError(null)
+    setWhich(kind)
+    startTransition(async () => {
+      try {
+        const { url } =
+          kind === 'mock'
+            ? await createMockCheckout(courseSlug)
+            : await createCourseCheckout(courseSlug)
+        window.location.href = url
+      } catch {
+        setError('Could not start checkout. Please try again.')
+        setWhich(null)
+      }
+    })
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="rounded-lg border border-neutral-200 bg-white p-6 flex flex-col">
+          <h3 className="font-bold text-neutral-900">Single mock attempt</h3>
+          <p className="mt-1 text-sm text-neutral-600 leading-relaxed flex-1">
+            One full timed mock under real exam conditions. No course purchase required.
+          </p>
+          <p className="mt-3 text-2xl font-bold font-mono text-neutral-900">$14.99</p>
+          <button
+            onClick={() => go('mock')}
+            disabled={pending}
+            className="mt-4 inline-flex h-10 items-center justify-center rounded-md border border-primary px-5 text-sm font-semibold text-primary hover:bg-primary-light transition-colors disabled:opacity-50"
+          >
+            {pending && which === 'mock' ? 'Starting…' : 'Buy a single mock'}
+          </button>
+        </div>
+
+        <div className="rounded-lg border border-primary/30 bg-primary-light/40 p-6 flex flex-col">
+          <h3 className="font-bold text-neutral-900">Full course access</h3>
+          <p className="mt-1 text-sm text-neutral-600 leading-relaxed flex-1">
+            The complete course, plus 5 mock attempts included. The best value if you are
+            studying for the exam.
+          </p>
+          <p className="mt-3 text-2xl font-bold font-mono text-neutral-900">$299</p>
+          <button
+            onClick={() => go('course')}
+            disabled={pending}
+            className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-5 text-sm font-semibold text-white hover:bg-primary-hover transition-colors disabled:opacity-50"
+          >
+            {pending && which === 'course' ? 'Starting…' : 'Get full course access'}
+          </button>
+        </div>
+      </div>
+      {error && <p className="text-sm text-accent font-medium">{error}</p>}
+    </div>
+  )
+}

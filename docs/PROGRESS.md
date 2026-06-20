@@ -3815,3 +3815,14 @@ High-distinctness batches this session (all fidelity-AGREE; methodology = recall
 **Why 502 not 650:** the leaner goal (several high-distinctness non-repeating mocks per domain) is met on all four; distinctness was genuinely thinning (shrinking batches; reviewer flagging repetition). 650 would be padding with low-distinctness recall — contrary to the "high-distinctness" qualifier. This is a principled "done," not fatigue.
 
 **The bank is mock-capable now.** Remaining before a student can take a faithful mock is operator/engineering, not more questions: promote (`generate-course.ts write`) → seed template (`seed-cams-mock.ts`) → publish → Stripe + freemium-mock paywall → confirm scaled pass mark + multi-response % vs ACAMS handbook → apply pending Supabase migrations.
+
+## 2026-06-20 (later) — Payments + freemium-mock surface (Stripe test mode)
+
+Built the commerce layer so the faithful mock can be a standalone freemium product.
+
+- **Model**: course **$299** one-time → active enrollment + **≥5 included mock attempts**; **freemium mocks** — any authenticated user gets **1 free taste**, then **pay-per-mock $14.99** (course ownership not required to sit a mock).
+- **Migration** `20260620120000_mock_entitlements.sql` (not yet applied): `mock_entitlements` (included_total + purchased_total − used = remaining), `mock_purchases` (audit + webhook idempotency anchor), atomic `consume_mock_attempt` RPC, hardened RLS (service-role writes only).
+- **App code**: `lib/stripe/client.ts` (server-side price config), `lib/stripe/entitlements.ts` (grant/consume/read), `lib/stripe/checkout.ts` (checkout-session creators; prices server-side; student_id from session into metadata), `app/api/stripe/webhook/route.ts` (raw-body signature verification; idempotent fulfillment: course → enrollment + included≥5; mock → +1 credit). `stripe` ^22.2.2 added. `tsc --noEmit` clean.
+- **Gating change**: mocks are now **entitlement-gated, not enrollment-gated** — `startMockExam` consumes an attempt (atomic RPC) and throws `MOCK_PAYWALL` when none remain; the mock page is decoupled from enrollment and shows remaining attempts + buy buttons at zero.
+- **Security reviewed** (all 5 invariants): webhook signature verify (400 on fail), idempotent fulfillment (insert-first-then-unique-stop — no double grants), server-side prices only, server-derived student_id, service-role writes.
+- **Operator to go live**: apply migration + regenerate types (drop the narrowly-scoped any-casts), set the Stripe webhook endpoint + secret, set NEXT_PUBLIC_APP_URL; Stripe stays in TEST mode until Atlas approval. Known hardening follow-up: a grant-failure-after-purchase-insert edge returns 200 (rare paid-but-under-granted, audit-recoverable) — harden with a fulfillment-status flag later.

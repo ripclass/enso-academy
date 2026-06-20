@@ -3,6 +3,13 @@
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { recordEvidence } from '@/lib/student-model/knowledge'
+import { consumeMockAttempt } from '@/lib/stripe/entitlements'
+
+/**
+ * Thrown by startMockExam when the student has no mock attempts left (free taste
+ * used up and no purchased credits). The UI catches this to show buy options.
+ */
+export const MOCK_PAYWALL = 'MOCK_PAYWALL'
 
 // An option as rendered to the student — id is what the answer references.
 export type MockOption = { id: string; text: string }
@@ -143,14 +150,12 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
 
   if (!template || !template.is_published) throw new Error('Mock template not found')
 
-  const { data: enrollment } = await admin
-    .from('enrollments')
-    .select('id')
-    .eq('student_id', user.id)
-    .eq('course_id', template.course_id)
-    .eq('status', 'active')
-    .single()
-  if (!enrollment) throw new Error('Not enrolled in this course')
+  // Entitlement-gated, NOT enrollment-gated: any authenticated user gets a free
+  // taste, then must have a purchased credit. This atomic consume is race-safe
+  // (the consume_mock_attempt RPC increments `used` only when an attempt is
+  // available). Course ownership is not required to sit a mock.
+  const consumed = await consumeMockAttempt(user.id, template.course_id)
+  if (!consumed) throw new Error(MOCK_PAYWALL)
 
   // Selection criteria: per-domain counts (by_domain), plus an optional
   // multi_response_count that guarantees ~that many multiple-response items in
@@ -244,6 +249,28 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
     .single()
 
   if (error || !attempt) {
+    // The attempt was already consumed above. Best-effort refund so a failed
+    // build does not silently burn the student's credit.
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
+      const { data: ent } = await (admin as any)
+        .from('mock_entitlements')
+        .select('used')
+        .eq('student_id', user.id)
+        .eq('course_id', template.course_id)
+        .maybeSingle()
+      const usedNow = Number(ent?.used ?? 0)
+      if (usedNow > 0) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- types regenerate after migration apply
+        await (admin as any)
+          .from('mock_entitlements')
+          .update({ used: usedNow - 1 })
+          .eq('student_id', user.id)
+          .eq('course_id', template.course_id)
+      }
+    } catch {
+      // Swallow refund errors — don't shadow the original failure below.
+    }
     throw new Error('Failed to start mock: ' + (error?.message ?? 'unknown'))
   }
 

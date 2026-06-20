@@ -1,3 +1,65 @@
+## 2026-06-20 - Module 6 question-only fidelity exact current-turn rerun: no delta
+
+- Re-read the literal user-pasted `national-frameworks-in-depth` assessment under the exact answer-key / factual-fidelity brief after reloading the required project-memory chain.
+- Current verdict on the visible **questions** still lands `AGREE`: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect surfaced on the current hash against the maintained 2026-06-19 facts reference plus the current official AMLA / FinCEN / GOV.UK / NCA spot-checks.
+- Reviewer hygiene: keep this separate from the same-day Module 6 methodology `DISAGREE`. On the current wording, the live issue remains recall-heavy assessment design and some durability-sensitive framing, not question-level fidelity. Glossary remains out of scope unless separately requested.
+
+## 2026-06-20 - Module 6 methodology exact user-brief rerun: no delta from the current no-ship call
+
+- Re-read the literal user-pasted `national-frameworks-in-depth` assessment under the exact cross-check-reviewer methodology brief after reloading the project-memory chain.
+- Current verdict remains `DISAGREE`: the bank is still original and tag-safe overall, but too many items are thin scenario wrappers around statute / authority / instrument lookup (`JMLSG`, Bangladesh `ATA section 15`, and U.S. `314(a)/(b)` / `Section 311` / `GTO`), with smaller durability drift on the CTA 2025-scope and EU AML Package / AMLA rollout wording.
+- Reviewer hygiene: keep this separate from the same-day Module 6 question-level answer-key / factual-fidelity `AGREE`. On the current wording, the live issue is methodology only.
+
+## 2026-06-20 - Module 0 question-only fidelity exact current-turn rerun: no delta
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/foundations-of-money-laundering-and-terrorist-financing.json` artifact under the exact answer-key / factual-fidelity brief after reloading the required project-memory chain.
+- Current verdict on the visible **questions** still lands `AGREE`: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect surfaced on the current hash against the maintained 2026-06-19 facts reference.
+- Reviewer hygiene: keep this separate from the same-day Module 0 methodology `DISAGREE`. On the current wording, the live issue remains recall-heavy design only; glossary is still out of scope unless separately requested.
+
+## 2026-06-20 - Module 10 question-only fidelity line-by-line rerun: no delta
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/the-broader-financial-crime-landscape.json` artifact against the supplied 2026-06-19 facts spine with an explicit wrong-key / second-correct-answer / wrong-rationale sweep after reloading the project-memory chain.
+- The visible current **questions** still return `AGREE`: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect surfaced on the current hash.
+- Practical instruction for future passes: keep Module 10 closed on question-level answer-key / fidelity unless the literal question text changes. If the file is touched again on the current hash, the only live work is the separate methodology-softness pass on the four already-named recall-leaning stems; glossary remains out of scope without a separate brief.
+
+## 2026-06-20 - Module 10 assessment methodology contract reminder
+
+- Exact user-facing rerun of the literal pasted `generated/cams/assessment/the-broader-financial-crime-landscape.json` stays `SPLIT`, not `DISAGREE`.
+- Do not relitigate answer-key / factual-fidelity on the current hash: the visible current questions are still clean there. The only live issues are four thinner methodology stems already named in `CLAUDE.md` Current state / What's next.
+- If Ripon touches Module 10 again, keep the pass surgical: deepen `A retail customer reports that a caller posing...`, `Two clients each reduce their tax bill...`, `You are assessing a money-remittance business...`, and `A compliance team is briefed that a foreign ruling family...`; do not spend more review cycles on glossary or stale same-day option-corruption notes.
+
+## 2026-06-20 - Module 1 methodology no-delta reminder on the literal current-turn bank
+
+- Start from the literal user-pasted `the-fatf-framework-and-the-risk-based-approach` JSON under the exact user brief; current verdict stays `DISAGREE`.
+- No hard IP/originality, durability, or adult-register blocker surfaced. The live issue is still the recall-heavy back-third / recommendation-mapping cluster plus repeated Interpretive-Note teaching, not question-level answer-key fidelity.
+- If this set is touched again, keep the next pass narrow on scenario-deepening that cluster and cleaning the single off-target tag drift on the literal current text; do not blindly reuse older same-day stem-specific tag notes unless the literal question text matches.
+
+## 2026-06-20 - Module 9 question-only fidelity exact no-delta rerun after final ambiguity sweep
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact answer-key / factual-fidelity brief after reloading the required project-memory chain and then doing one more explicit sweep for partial-answer / second-correct-answer problems.
+- No delta from the earlier same-day Module 9 question-only close-outs: the visible current **questions** still return `AGREE`, with no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or ship-blocking question-level factual defect against the maintained 2026-06-19 facts reference.
+- Reviewer hygiene: keep this separate from the same-day Module 9 methodology `SPLIT` and stricter item-format `DISAGREE` notes. On the current hash, any future Module 9 touch is methodology-only unless the literal question text changes materially. Scope note: question-only close-out; glossary not reviewed.
+
+## 2026-06-20 - Module 9 methodology exact current-turn rerun: no delta under the user's stated contract
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact cross-check-reviewer brief used in-turn, after reloading the required project-memory chain plus `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- Current verdict stays `SPLIT`, not the stricter same-day `DISAGREE`, because this contract explicitly allows knowledge-anchored multiple-response items and says not to reject them on format grounds alone.
+- No new hard blocker surfaced on IP/originality, durability, domain/tag-scope, or adult-professional register. The live residual remains methodology softness only: repetition clusters on payment screening, transliteration, external data, explainability, and build-vs-buy, plus thinner concept-recall wrappers on `A data-science team debates using a supervised model...`, `A bank refreshes customer due diligence only on fixed multi-year cycles...`, and `Before replacing its production monitoring model...`.
+- Future reviewers should start from the active contract before reusing the same-day stricter Module 9 select-THREE `DISAGREE` note. Keep the separate question-only answer-key / factual-fidelity `AGREE` distinct; glossary not reviewed.
+
+## 2026-06-20 - Module 10 question-only fidelity exact current-turn rerun: no delta
+
+- Re-read the literal user-pasted `the-broader-financial-crime-landscape` assessment under the exact cross-check-reviewer brief for answer-key correctness, second-correct-answer risk, distractor wrongness / rationale accuracy, explanation consistency, and question-level factual fidelity.
+- Current verdict stays `AGREE` on the visible **questions**: no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual contradiction surfaced on the literal current text against the maintained 2026-06-19 facts spine.
+- Reviewer hygiene: keep this distinct from the same-day Module 10 methodology `SPLIT`. On the current hash, any future touch is methodology-only unless the question text changes materially. Scope note: this close-out is question-only and does not bless the glossary.
+
+## 2026-06-20 - Module 10 methodology no-delta rerun reminder
+
+- Start from the literal user-pasted `the-broader-financial-crime-landscape` assessment JSON, not from older same-day option-corruption notes; the current exact-format methodology call is still `SPLIT`, not `DISAGREE`.
+- No hard IP/originality, durability, domain/tag-vocabulary, or adult-professional-register blocker surfaced on the visible current questions.
+- The only live residual is a small recall-leaning cluster: `A retail customer reports that a caller posing as the bank's fraud team...`, `Two clients each reduce their tax bill...`, `You are assessing a money-remittance business...`, and `A compliance team is briefed that a foreign ruling family...` are thinner scenario-application than the rest of the bank.
+- If this set is touched again, keep the next methodology pass tightly scoped to deepening those four stems and do not reopen answer-key / factual-fidelity or glossary arguments unless the literal question text changes materially.
+
 ## 2026-06-20 - Module 6 methodology rerun: no delta from the current literal-text call
 
 - Re-read the literal user-pasted `national-frameworks-in-depth` assessment under the exact cross-check-reviewer methodology brief after loading the project memory chain.
@@ -79,6 +141,12 @@
 - Spot-checked the time-sensitive FATF / Global Network points directly on current official pages: the FATF Recommendations page and PDF (`As amended October 2025`), the 13 February 2026 FATF `Jurisdictions under Increased Monitoring` / `High-Risk Jurisdictions subject to a Call for Action` statements, the FATF `Who we are` page, the FATF APG page, and the Council of Europe `MONEYVAL in brief` page.
 - Current literal-text result is `AGREE` on the **questions**: no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual contradiction surfaced on the visible current questions.
 - Keep this separate from the same-day Module 0 methodology `DISAGREE`: on the current hash, the live issues are recall-heavy design and a small domain-metadata drift, not answer-key / factual fidelity. Scope note: this close-out is question-only and does not bless the glossary.
+
+## 2026-06-20 - Module 0 methodology rerun: literal-text correction
+
+- Re-read the same literal pasted `foundations-of-money-laundering-and-terrorist-financing` assessment under the exact user-facing v1.1 brief to check whether the earlier same-day memory note still matched the visible JSON.
+- It only partly did: the `DISAGREE` verdict still holds, but the live blocker on the literal current text is the recall-heavy back third plus the weaker repeated `What is this stage/technique?` cluster, not the preventive-regime / reporting-role domain point.
+- Important stale-memory correction: the earlier same-day note saying `A new analyst asks: 'Catching criminals is the police's job...'` and `An institution hesitates to report a suspicion because...` are filed in Domain `A` does not match the literal pasted current artifact and should not be reused unless the assessment text changes.
 
 ## 2026-06-20 - Module 1 answer-key / factual-fidelity no-delta rerun
 
@@ -3743,3 +3811,23 @@ What this pass confirmed:
 - `startMockExam` now honors `selection_criteria.multi_response_count`: it allocates that many multiple-response items across domains by largest-remainder (proportional to each domain's question count), draws them from the `multiple_choice` pool per domain, fills the rest from single-answer, and backfills if a pool is short. `0`/absent = natural mix. seed-cams-mock.ts sets 12 (120-q sim) / 6 (60-q diagnostic) ≈10%.
 - Caveat: the multi-response pool is only ~20 items (A5/B6/C4/D5), so distinct repeat mocks will reuse them — grow the multi-response pool as part of the volume pass for true mock variety.
 - M4: reassigned the "reach of US sanctions" multi-response item to Domain B (framework reach, not program). M4/M5/M6 multi-response all confirmed fidelity-AGREE + format-accepted.
+
+## 2026-06-20 - Module 9 methodology exact-format rerun: answer stays `SPLIT` on this contract
+
+- Re-read the literal user-pasted `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` bank under the exact v1.1 cross-check-reviewer brief after reloading the memory chain and methodology docs.
+- No new blocker surfaced on IP/originality, durability, domain/tag-scope, or adult-professional register; the brief still explicitly allows knowledge-anchored multiple-response items, so the select-THREE questions are not the issue on this contract.
+- The exact user-facing response should stay narrow: `SPLIT`, with soft bullets on the repeated payment-screening / transliteration / external-data / explainability / build-vs-buy clusters and the thinner recall-style single-answer stems (`A data-science team debates using a supervised model...`, `A bank refreshes customer due diligence only on fixed multi-year cycles...`, `Before replacing its production monitoring model...`).
+- Do not expand into glossary commentary or reopen question-level answer-key / factual-fidelity unless the literal text or the review contract changes.
+## 2026-06-20 - Module 9 question-only fidelity rerun: explanation-completed stems are not live blockers
+
+- Re-read the literal user-pasted `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` bank under the strict answer-key / factual-fidelity brief after reloading the required project-memory chain and current ADRs.
+- Current verdict still lands `AGREE` on the visible **questions**. No new wrong key, second-correct-answer, wrong-rationale, explanation-contradiction, or factual-fidelity defect surfaced on the current hash.
+- One nuance to remember if the file is revised later: `An investigation team manually copies data between five systems...` and `A compliance team files regulatory reports and SARs manually...` ask for a response plus caveat/control, but the keyed option text carries the operational response more directly than the caveat/control, which is then made explicit in the explanation. On the current wording this is still not enough to flip the bank out of `AGREE`, but if those stems are ever edited, fold the caveat/control into the keyed option itself and keep the lane closed otherwise.
+
+## 2026-06-20 — payments / freemium-mock gotchas
+- Mocks are now ENTITLEMENT-gated (mock_entitlements ledger), not enrollment-gated. `startMockExam` → `consumeMockAttempt` (atomic `consume_mock_attempt` RPC) → throws `MOCK_PAYWALL` when remaining hits 0. Enrollment still gates course CONTENT.
+- Migration `20260620120000_mock_entitlements.sql` is NOT applied to the remote DB yet → the new tables/RPC aren't in `database.types.ts`, so `lib/stripe/entitlements.ts` + the webhook's mock branch use narrowly-scoped `(admin as any)` casts with eslint-disable + "types regenerate after migration apply". Remove those casts after `supabase db push` + type regen.
+- Stripe webhook is at `app/api/stripe/webhook/route.ts` (`runtime='nodejs'`, raw body). Idempotency = insert the purchase row keyed on UNIQUE stripe_checkout_session_id, stop on 23505 before granting — prevents double-grant even though `grantPurchasedCredits` is a non-idempotent `+=`.
+- Prices are server-side only (`PRODUCTS` in `lib/stripe/client.ts`, course 29900 / mock 1499); checkout puts the session-derived `student_id` in metadata; never trust client amounts/ids.
+- Known edge: if a grant step fails AFTER the purchase insert, the handler returns 200 (no retry) → rare paid-but-under-granted, recoverable from the purchase audit row. Harden later (fulfillment-status flag + retry-safe re-grant).
+- Stripe = TEST keys until Atlas approval. Operator: set webhook endpoint + STRIPE_WEBHOOK_SECRET + NEXT_PUBLIC_APP_URL.

@@ -2,15 +2,21 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
+import { ensureBaselineEntitlement, getMockEntitlement } from '@/lib/stripe/entitlements'
+import { BuyButtons } from './buy-buttons'
 
-type Props = { params: Promise<{ slug: string }> }
+type Props = {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ checkout?: string }>
+}
 
 export const metadata = { title: 'Mock exams' }
 
-export default async function MockLaunchPage({ params }: Props) {
+export default async function MockLaunchPage({ params, searchParams }: Props) {
   const { slug } = await params
+  const { checkout } = await searchParams
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect(`/login?next=/courses/${slug}/mock`)
@@ -25,13 +31,14 @@ export default async function MockLaunchPage({ params }: Props) {
     .single()
   if (!course) notFound()
 
-  const { data: enrollment } = await admin
-    .from('enrollments')
-    .select('id, status')
-    .eq('student_id', user.id)
-    .eq('course_id', course.id)
-    .single()
-  if (!enrollment || enrollment.status !== 'active') redirect('/courses')
+  // Entitlement-gated (not enrollment-gated): seed the baseline free taste, then
+  // read the balance. Anyone authenticated can reach this surface.
+  await ensureBaselineEntitlement(user.id, course.id)
+  const entitlement = await getMockEntitlement(user.id, course.id)
+  const remaining = entitlement.remaining
+  // "free" while the student is still inside the baseline included allowance
+  // and has bought nothing — purely for friendlier copy.
+  const onFreeTaste = entitlement.purchasedTotal === 0 && entitlement.includedTotal <= 1
 
   const { data: templates } = await admin
     .from('mock_exam_templates')
@@ -63,6 +70,44 @@ export default async function MockLaunchPage({ params }: Props) {
           </p>
         </div>
 
+        {checkout === 'success' && (
+          <div className="mb-8 rounded-lg border border-primary/30 bg-primary-light/40 p-4 flex items-start gap-3">
+            <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+            <div>
+              <p className="font-semibold text-neutral-900">Payment received.</p>
+              <p className="text-sm text-neutral-600 mt-0.5">
+                Your mock attempts are updated below. If they have not appeared yet, refresh in a
+                moment.
+              </p>
+            </div>
+          </div>
+        )}
+        {checkout === 'cancel' && (
+          <div className="mb-8 rounded-lg border border-neutral-200 bg-white p-4">
+            <p className="text-sm text-neutral-600">
+              Checkout cancelled — no payment was made. You can pick up where you left off whenever
+              you are ready.
+            </p>
+          </div>
+        )}
+
+        {/* Entitlement summary */}
+        <div className="mb-8 rounded-lg border border-neutral-200 bg-white p-6 flex items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono">
+              Your mock attempts
+            </h2>
+            <p className="mt-2 text-2xl font-bold font-mono text-neutral-900">
+              {remaining} <span className="text-base font-medium text-neutral-500">remaining</span>
+            </p>
+          </div>
+          {remaining > 0 && onFreeTaste && (
+            <p className="text-sm text-neutral-500 max-w-xs text-right">
+              You have a free attempt to try the exam experience.
+            </p>
+          )}
+        </div>
+
         <div className="mb-8 rounded-lg border border-neutral-200 bg-white p-6">
           <h2 className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono">
             Before you start
@@ -83,7 +128,7 @@ export default async function MockLaunchPage({ params }: Props) {
           <div className="rounded-lg border border-neutral-200 bg-white p-12 text-center">
             <p className="text-neutral-500">No mock exams are available for this course yet.</p>
           </div>
-        ) : (
+        ) : remaining > 0 ? (
           <div className="space-y-4">
             {templates.map((t) => (
               <div
@@ -105,6 +150,19 @@ export default async function MockLaunchPage({ params }: Props) {
                 </Link>
               </div>
             ))}
+            <p className="text-2xs font-mono text-neutral-400 uppercase tracking-wider pt-1">
+              Each start uses one attempt.
+            </p>
+          </div>
+        ) : (
+          <div>
+            <div className="mb-6 rounded-lg border border-accent/30 bg-accent-light/40 p-4">
+              <p className="text-sm text-neutral-700">
+                You have used all of your mock attempts. Buy another single mock, or get full course
+                access (5 mocks included) to keep going.
+              </p>
+            </div>
+            <BuyButtons courseSlug={course.slug} />
           </div>
         )}
       </main>
