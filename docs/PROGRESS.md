@@ -1,3 +1,35 @@
+## 2026-06-20 - Module 6 question-only fidelity exact current-turn rerun stays `AGREE`
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/national-frameworks-in-depth.json` bank under the exact cross-check-reviewer brief for answer-key correctness, second-correct-answer risk, distractor wrongness / rationale accuracy, explanation consistency, and question-level factual fidelity.
+- Checked the current-sensitive items directly against the maintained 2026-06-19 facts reference plus current official sources already live in the project workflow: FinCEN's 21 March 2025 BOI-scope release, AMLA's current "About AMLA" page, the GOV.UK UK Sanctions List page, and the NCA SARs page.
+- Current verdict stays `AGREE` on the visible **questions**: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or ship-blocking factual defect surfaced on the literal current text.
+- Carry-forward: keep this separate from the same-day Module 6 methodology `DISAGREE`; on the current hash, future Module 6 review is methodology-only unless the question text changes materially. Scope note: this close-out is question-only and does not extend to a glossary audit.
+
+## 2026-06-20 - Module 6 methodology exact user-brief no-delta rerun stays `DISAGREE`
+
+- Re-read the literal user-pasted `generated/cams/assessment/national-frameworks-in-depth.json` assessment against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020` under the exact cross-check-reviewer methodology brief.
+- No new blocker class surfaced on the visible current text: no hard IP/originality, domain/tag-vocabulary, or adult-professional-register defect; the live no-ship issue remains recall-heavy statute / authority / instrument lookup (`JMLSG`, Bangladesh `ATA section 15`, and U.S. `314(a)/(b)` / `Section 311` / `GTO`) plus smaller durability drift on the CTA 2025-scope and EU AML Package / AMLA rollout wording.
+- Carry-forward: keep the separate same-day Module 6 question-level answer-key / factual-fidelity `AGREE` distinct. On the current hash, any future touch is methodology-only unless the literal question text changes materially.
+
+## 2026-06-20 - Module 0 question-only fidelity exact current-turn rerun stays `AGREE`
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/foundations-of-money-laundering-and-terrorist-financing.json` bank under the exact cross-check-reviewer brief after reloading the required project-memory chain.
+- No delta from the earlier same-day Module 0 close-out: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect surfaced on the visible current questions against the maintained 2026-06-19 facts reference.
+- Carry-forward: keep Module 0 closed on question-level answer-key / factual fidelity unless the literal question text changes materially; glossary remains out of scope without a separate brief.
+
+## 2026-06-20 - Module 10 question-only fidelity line-by-line rerun stays `AGREE`
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/the-broader-financial-crime-landscape.json` bank against the supplied 2026-06-19 facts spine with an explicit wrong-key / second-correct-answer / wrong-rationale sweep after reloading the required project-memory chain.
+- No delta from the earlier same-day close-outs: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect surfaced on the visible current questions.
+- Carry-forward: keep Module 10 closed on the user's question-only answer-key / fidelity lane unless the literal question text changes materially; if touched again on the current hash, the next pass is methodology-only on the four already-named recall-leaning stems. Scope note: this close-out is question-only and does not extend to a glossary audit.
+
+## 2026-06-20 - Module 10 assessment methodology no-delta rerun stays `SPLIT`
+
+- Re-ran the exact user-facing methodology audit on the literal user-pasted `generated/cams/assessment/the-broader-financial-crime-landscape.json` bank after reloading the required project-memory chain plus `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- No hard IP/originality, durability, domain/tag-vocabulary, or adult-professional-register blocker surfaced on the visible current text; the set remains promotion-safe on the user's hard no-ship dimensions.
+- The only live reviewer-visible residual is still the same four thinner scenario-application stems: `A retail customer reports that a caller posing as the bank's fraud team...`, `Two clients each reduce their tax bill...`, `You are assessing a money-remittance business...`, and `A compliance team is briefed that a foreign ruling family...`.
+- Carry-forward: keep Module 10 at methodology `SPLIT`, not `DISAGREE`, on this exact contract; if touched again, deepen those four stems only and do not reopen answer-key / factual-fidelity or glossary arguments unless the literal question text changes materially.
+
 ## 2026-06-20 - Module 1 methodology exact current-turn no-delta rerun stays `DISAGREE`
 
 - Re-read the literal user-pasted `generated/cams/assessment/the-fatf-framework-and-the-risk-based-approach.json` question set against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020` under the exact cross-check-reviewer brief after reloading the project-memory chain.
@@ -114,6 +146,13 @@
 - Used the maintained 2026-06-19 facts spine as ground truth and spot-checked the time-sensitive FATF / Global Network points directly on current official pages: the FATF Recommendations page and PDF (`As amended October 2025`), the 13 February 2026 FATF `Jurisdictions under Increased Monitoring` / `High-Risk Jurisdictions subject to a Call for Action` statements, the FATF `Who we are` / APG pages, and the Council of Europe `MONEYVAL in brief` page.
 - Current result is `AGREE` on the literal current **questions**: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual contradiction surfaced across the Module 0 bank.
 - Carry-forward: keep the same-day Module 0 methodology `DISAGREE` separate. On the current hash, any future Module 0 work is methodology-only unless the question text changes materially. Scope note: this close-out is question-only and does not extend to a glossary audit.
+
+## 2026-06-20 - Module 0 methodology rerun corrected stale domain memory
+
+- Re-ran the exact user-facing methodology audit on the literal pasted `generated/cams/assessment/foundations-of-money-laundering-and-terrorist-financing.json` set after reloading the required memory chain and the v1.1 methodology sources.
+- Verdict stayed `DISAGREE`, with no new hard blocker class: IP/originality, durability, adult register, and tag vocabulary remain in bounds on the visible current text.
+- The live no-ship issue is the recall-heavy back third and the weaker repeated `What is this stage/technique?` cluster, not a current domain assignment defect on the preventive-regime / reporting-role stems.
+- Correction to repo memory: the earlier same-day note claiming `A new analyst asks: 'Catching criminals is the police's job...'` and `An institution hesitates to report a suspicion because...` are mis-domained on the literal current text is stale and should not be reused unless the artifact changes.
 
 ## 2026-06-20 - Module 1 answer-key / factual-fidelity no-delta rerun stayed `AGREE`
 
@@ -3751,3 +3790,28 @@ Shifted from question-bank volume to **mock fidelity** (the higher-leverage work
 - **Mock-assembly multi-response %**: `startMockExam` now honors `selection_criteria.multi_response_count` (largest-remainder by domain weight, backfill). seed-cams-mock.ts → ~10% (12/120, 6/60). Committed (11437cf).
 - **Volume (leaner pass)**: +10 multiple-response (5 Domain A→M10, 5 Domain D→M9; multi-response pool 20→30, addressing mock variety) + 13 distinct FATF-Recommendation single-answer questions (M1: R.2/4/5/7/9/14/24-25/32-40) — all fidelity-AGREE; Domain B grew 79→92.
 - **Bank: 457** (A103/B92/C184/D78). C at target; A/B/D ≈193 remaining to ~650. High-distinctness discipline: mine genuinely-uncovered angles (distinct FATF Recommendations are an easy high-distinctness B runway); module tag-unions constrain scope (emerging typologies need M0/M10 tags, not M5's).
+
+## 2026-06-20 - Module 9 methodology exact-format rerun: no delta, stays `SPLIT`
+
+- Re-read the literal user-pasted `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact v1.1 cross-check-reviewer brief after reloading the project-memory chain plus `docs/COURSE-GENERATION-PROMPT.md` and ADR `0015` / `0016` / `0019` / `0020`.
+- No hard IP/originality, durability, domain/tag-scope, or adult-professional-register blocker surfaced on the visible current questions, and the brief still expressly allows knowledge-anchored multiple-response items.
+- Current verdict stays `SPLIT`: the live reviewer-visible residual is soft methodology only — repeated payment-screening / transliteration / external-data / explainability / build-vs-buy clusters, plus thinner concept-recall wrappers on `A data-science team debates using a supervised model...`, `A bank refreshes customer due diligence only on fixed multi-year cycles...`, and `Before replacing its production monitoring model...`.
+- Carry-forward: if Module 9 is touched again on this same contract, keep the user-facing answer narrow and contract-sensitive: soft methodology bullets only, with no reopened answer-key / fidelity or glossary argument unless the literal text changes materially.
+## 2026-06-20 - Module 9 question-only fidelity rerun: still `AGREE`, with one narrow carry-forward nuance
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` bank under the exact cross-check-reviewer brief for wrong keys, second-correct-answer risk, distractor wrongness / wrong-rationale risk, explanation consistency, and question-level factual fidelity.
+- Current verdict still lands `AGREE` on the visible **questions**: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or ship-blocking factual defect surfaced against the maintained 2026-06-19 facts reference.
+- Carry-forward nuance only: `An investigation team manually copies data between five systems...` and `A compliance team files regulatory reports and SARs manually...` rely on the explanation to state the caveat/control more fully than the keyed option text itself, but on the current wording that is still not a key-breaking defect. Keep the separate Module 9 methodology `SPLIT` / stricter-format `DISAGREE` notes distinct, and keep glossary review out of scope unless separately requested.
+
+## 2026-06-20 (later) — Question bank DONE for the leaner target (502)
+
+Ground the leaner ~650 high-distinctness pass to a principled stop at **502 questions** (30 multiple-response): **A131 / B101 / C184 / D86**, every domain supporting **~3.6–5.1 non-repeating faithful mocks** (per-mock need A/C 36, B/D 24).
+
+High-distinctness batches this session (all fidelity-AGREE; methodology = recall/frameworks premise + soft near-dups, accepted per the standing overrule):
+- Domain A: M10 fraud/ABC/tax/sector/kleptocracy (+15: Ponzi, synthetic ID, third-party-agent bribery, FCPA accounting provisions, duress-vs-bribe, grand corruption, tax havens, FATCA withholding, art market, e-money, online gaming, asset recovery, insider fraud, mortgage fraud, card-not-present); M0 classic typologies (+13: structuring/smurfing, mules, funnel accounts, bulk-cash smuggling, hawala/IVTS, nominees, professional launderers, pass-through accounts, layering, round-tripping, instrument conversion, third-party distancing, asset integration).
+- Domain B: M1 distinct FATF Recommendations (+13: R.2/4/5/7/9/14/24-25/32-40); M6 granular national provisions (+9: FBAR, BSA funds-transfer recordkeeping, MSB registration, OPBAS, BFIU powers, AML Act 2020 whistleblower, MLR registration, EU high-risk-country list, FinCEN-vs-OFAC).
+- Domain D: M9 deeper tooling (+5 multi-response earlier + 8 single: integration/interoperability, alert-aging/SLA, adverse-media NLP relevance, payment-message field screening, data lineage/auditability, scalability-at-volume, watchlist-data quality, OSINT).
+
+**Why 502 not 650:** the leaner goal (several high-distinctness non-repeating mocks per domain) is met on all four; distinctness was genuinely thinning (shrinking batches; reviewer flagging repetition). 650 would be padding with low-distinctness recall — contrary to the "high-distinctness" qualifier. This is a principled "done," not fatigue.
+
+**The bank is mock-capable now.** Remaining before a student can take a faithful mock is operator/engineering, not more questions: promote (`generate-course.ts write`) → seed template (`seed-cams-mock.ts`) → publish → Stripe + freemium-mock paywall → confirm scaled pass mark + multi-response % vs ACAMS handbook → apply pending Supabase migrations.
