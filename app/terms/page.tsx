@@ -83,7 +83,7 @@ export default function TermsPage() {
         <Section title="5. Refunds">
           <p>
             If you are not satisfied with a course purchase, you may request a refund within{' '}
-            <strong>7 days</strong> of purchase provided you have not substantially consumed the
+            <strong>14 days</strong> of purchase provided you have not substantially consumed the
             content (for example, completed a large portion of the course or used most included exam
             simulations). Single exam-simulation purchases are non-refundable once the simulation has
             been started. To request a refund, contact us at the address below.
