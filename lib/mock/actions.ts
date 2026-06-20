@@ -152,13 +152,54 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
     .single()
   if (!enrollment) throw new Error('Not enrolled in this course')
 
-  // Select questions per by_domain criteria: fetch each domain's pool, shuffle, take N.
+  // Selection criteria: per-domain counts (by_domain), plus an optional
+  // multi_response_count that guarantees ~that many multiple-response items in
+  // the exam (distributed across domains by their share) so the single/
+  // multi-response mix is faithful to the real exam rather than left to chance.
+  // 0 / absent = natural mix.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const byDomain: Record<string, number> = ((template.selection_criteria as any)?.by_domain) ?? {}
-  const selected: MockQuestion[] = []
+  const criteria = (template.selection_criteria as any) ?? {}
+  const byDomain: Record<string, number> = criteria.by_domain ?? {}
+  const domains = Object.entries(byDomain).map(([domain, c]) => ({ domain, count: Number(c) }))
+  const totalCount = domains.reduce((s, d) => s + d.count, 0)
+  const multiTarget = Number(criteria.multi_response_count ?? 0)
 
-  for (const [domain, countRaw] of Object.entries(byDomain)) {
-    const count = Number(countRaw)
+  // Largest-remainder allocation of the multi-response target across domains,
+  // proportional to each domain's question count.
+  const domainMulti: Record<string, number> = {}
+  if (multiTarget > 0 && totalCount > 0) {
+    const exact = domains.map((d) => ({ domain: d.domain, e: (multiTarget * d.count) / totalCount }))
+    for (const x of exact) domainMulti[x.domain] = Math.floor(x.e)
+    let allocated = Object.values(domainMulti).reduce((s, n) => s + n, 0)
+    const byFrac = exact
+      .map((x) => ({ domain: x.domain, frac: x.e - Math.floor(x.e) }))
+      .sort((a, b) => b.frac - a.frac)
+    for (let i = 0; allocated < multiTarget && i < byFrac.length; i++, allocated++) {
+      domainMulti[byFrac[i].domain] += 1
+    }
+  }
+
+  // Map a question_bank row to an answer-free MockQuestion (the snapshot is
+  // stored AND returned to the browser, so it must never carry the answer).
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const toMock = (q: any): MockQuestion => {
+    const metaCount = q.metadata?.select_count
+    let selectCount = 1
+    if (typeof metaCount === 'number' && metaCount > 0) selectCount = metaCount
+    else if (q.question_type === 'multiple_choice') selectCount = Array.isArray(q.correct_answer) ? q.correct_answer.length : 1
+    return {
+      id: q.id,
+      question_text: q.question_text,
+      options: normalizeOptions(q.options),
+      domain: q.domain,
+      difficulty: q.difficulty,
+      question_type: q.question_type,
+      select_count: selectCount,
+    }
+  }
+
+  const selected: MockQuestion[] = []
+  for (const { domain, count } of domains) {
     const { data: pool } = await admin
       .from('question_bank')
       .select('id, question_text, options, correct_answer, question_type, metadata, domain, difficulty')
@@ -166,29 +207,25 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
       .eq('domain', domain)
       .eq('eligible_for_mock', true)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const picked = shuffle((pool ?? []) as any[]).slice(0, count)
-    for (const q of picked) {
-      // Derive how many options to pick (multi-select): explicit metadata wins,
-      // else the number of correct ids for multiple_choice, else 1.
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const metaCount = (q.metadata as any)?.select_count
-      let selectCount = 1
-      if (typeof metaCount === 'number' && metaCount > 0) {
-        selectCount = metaCount
-      } else if (q.question_type === 'multiple_choice') {
-        selectCount = Array.isArray(q.correct_answer) ? q.correct_answer.length : 1
+    const all = (pool ?? []) as any[]
+    const wantMulti = domainMulti[domain] ?? 0
+    let picked: typeof all
+    if (wantMulti > 0) {
+      const multiPool = shuffle(all.filter((q) => q.question_type === 'multiple_choice'))
+      const singlePool = shuffle(all.filter((q) => q.question_type !== 'multiple_choice'))
+      const takeMulti = multiPool.slice(0, Math.min(wantMulti, multiPool.length))
+      const takeSingle = singlePool.slice(0, Math.max(0, count - takeMulti.length))
+      picked = [...takeMulti, ...takeSingle]
+      if (picked.length < count) {
+        // Backfill if a pool was short (e.g. fewer single-answer than needed).
+        const leftover = [...multiPool.slice(takeMulti.length), ...singlePool.slice(takeSingle.length)]
+        picked = picked.concat(leftover.slice(0, count - picked.length))
       }
-      // Snapshot is stored AND returned to the browser — keep it answer-free.
-      selected.push({
-        id: q.id,
-        question_text: q.question_text,
-        options: normalizeOptions(q.options),
-        domain: q.domain,
-        difficulty: q.difficulty,
-        question_type: q.question_type,
-        select_count: selectCount,
-      })
+      picked = shuffle(picked)
+    } else {
+      picked = shuffle(all).slice(0, count)
     }
+    for (const q of picked) selected.push(toMock(q))
   }
 
   const questions = shuffle(selected)

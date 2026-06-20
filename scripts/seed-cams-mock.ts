@@ -34,6 +34,8 @@ type TemplateDef = {
   timeLimitMinutes: number
   passScorePercent: number
   byDomain: Record<string, number>
+  /** Approx. number of multiple-response items the exam should include. */
+  multiResponseCount: number
   metadata: Record<string, unknown>
 }
 
@@ -45,6 +47,7 @@ const FULL_SIM: TemplateDef = {
   timeLimitMinutes: 210, // 3.5 hours
   passScorePercent: 75,
   byDomain: { [DOMAIN_A]: 36, [DOMAIN_B]: 24, [DOMAIN_C]: 36, [DOMAIN_D]: 24 },
+  multiResponseCount: 12, // ≈10%; confirm exact proportion vs ACAMS handbook
   metadata: {
     faithful: true,
     blueprint: 'AFC A30/B20/C30/D20',
@@ -61,6 +64,7 @@ const DIAGNOSTIC: TemplateDef = {
   timeLimitMinutes: 105,
   passScorePercent: 75,
   byDomain: { [DOMAIN_A]: 18, [DOMAIN_B]: 12, [DOMAIN_C]: 18, [DOMAIN_D]: 12 },
+  multiResponseCount: 6, // ≈10%
   metadata: { faithful: true, blueprint: 'AFC A30/B20/C30/D20', diagnostic: true },
 }
 
@@ -103,7 +107,7 @@ async function main() {
       question_count: t.questionCount,
       time_limit_minutes: t.timeLimitMinutes,
       pass_score_percent: t.passScorePercent,
-      selection_criteria: { by_domain: t.byDomain },
+      selection_criteria: { by_domain: t.byDomain, multi_response_count: t.multiResponseCount },
       is_published: true,
       metadata: t.metadata,
     })

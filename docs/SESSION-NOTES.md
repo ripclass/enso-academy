@@ -1,3 +1,35 @@
+## 2026-06-20 - Module 6 methodology rerun: no delta from the current literal-text call
+
+- Re-read the literal user-pasted `national-frameworks-in-depth` assessment under the exact cross-check-reviewer methodology brief after loading the project memory chain.
+- Current verdict remains `DISAGREE`; the live critique is still narrow and methodological rather than factual: recall-heavy statute / authority / instrument lookup (`JMLSG`, Bangladesh principal-law / `ATA section 15`, and U.S. `314(a)/(b)` / `Section 311` / `GTO`) plus smaller durability drift on the CTA 2025-scope and EU AML Package / AMLA rollout wording.
+- Next touch should stay tight on scenario-deepening those stems and de-dating the rollout-sensitive items, not on reopening IP / tone / tag-vocabulary debates.
+
+## 2026-06-20 - Module 5 question-only fidelity reminder from the exact current-turn rerun
+
+- Start from the literal user-pasted `high-risk-categories-and-typologies` JSON, not older same-day drift notes.
+- The current question-only answer-key / factual-fidelity verdict is `AGREE`: no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect survived on the visible current text against the maintained 2026-06-19 facts spine.
+- Keep this separate from the same-day Module 5 methodology `SPLIT`; any future current-hash touch is methodology-only unless the literal question text changes materially.
+
+## 2026-06-20 - Module 5 methodology current-hash reminder
+
+- Start from the literal user-pasted `high-risk-categories-and-typologies` JSON, not from the older same-day stale-memory notes. On the exact user-facing methodology brief, the current verdict is `SPLIT`, not `DISAGREE`.
+- No hard IP/originality, durability, domain/tag-vocabulary, or adult-register blocker surfaced on the visible current artifact, and the select-THREE items remain valid on this contract.
+- The live issue is design softness: near-duplicate over-invoicing, phantom-shipment, real-estate, cash-intensive-business, and luxury-goods pairs, plus one thinner compare-the-rule PEP stem (`A bank onboards a foreign head of state's finance minister...`).
+- If this set is touched again, keep the next methodology pass tight on dedupe / differentiation and scenario-deepening rather than reopening stale tag/copy complaints.
+
+## 2026-06-20 - Module 4 sanctions-assessment question-only fidelity rerun: no delta
+
+- Re-read the literal user-pasted / repo `generated/cams/assessment/sanctions-compliance.json` bank under the exact answer-key / factual-fidelity brief after reloading the required memory chain.
+- Current question-level verdict stays `AGREE`: no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual contradiction surfaced on the visible current questions against the maintained 2026-06-19 sanctions facts spine.
+- Direct current-source check stayed inside the official-source lane already used elsewhere in repo memory for this module: OFAC FAQ `401` / `398`, the GOV.UK `UK Sanctions List` page, and current OFSI enforcement guidance.
+- Future reviewers should keep this separate from the same-day Module 4 methodology `SPLIT`; on the current hash, the live residual is recall/design softness only. Scope note: question-only close-out; glossary not reviewed.
+
+## 2026-06-20 - Module 4 sanctions-assessment methodology contract distinction
+
+- The literal current `sanctions-compliance` assessment lands `SPLIT` rather than the earlier same-day stricter `DISAGREE` when the reviewer brief is limited to IP/originality, durability, valid exam-faithful format, domain/tag sanity, and adult-professional register.
+- No hard blocker surfaced on the current visible text; the residual is a smaller recall-leaning cluster (`A trainee assumes all sanctions work the same way...`, `A transaction that would otherwise be prohibited...`, `A non-US company with no US operations is warned...`, `A new designation lands while...`) plus one arguable Domain `B` / `C` softness on `Select the THREE statements that correctly describe the reach of US sanctions.`.
+- Future reviewers should start from the exact contract before reusing the same-day Module 4 methodology memory note.
+
 ## 2026-06-20 - Module 9 question-only fidelity exact in-turn rerun: no delta
 
 - Re-read the literal user-pasted / repo `generated/cams/assessment/tools-and-technologies-to-fight-financial-crime.json` artifact under the exact answer-key / factual-fidelity brief after reloading the required project-memory chain.
@@ -3701,3 +3733,13 @@ What this pass confirmed:
 - **seed-cams-mock.ts** is idempotent (delete-by-name then insert); `selection_criteria.by_domain` keys MUST exactly match the full `question_bank.domain` strings ("A - Understanding…", etc.). Run AFTER `generate-course.ts write`.
 - **Readiness v2** anchors to the course's primary template `pass_score_percent` (default 75); ready targets are P+5 (avg), P (min), P−5 (domain floor), plus a 3-attempt pass streak and no sharp recent decline.
 - Did NOT commit the stray untracked `.firecrawl/` and `livecheck-landing.png` (pre-existing, not ours).
+## 2026-06-20 - Module 6 question-only answer-key / factual-fidelity rerun: current literal set is clean
+
+- Re-read the literal user-pasted `national-frameworks-in-depth` assessment under the exact cross-check-reviewer brief for wrong keys, second-correct-answer risk, distractor wrongness, explanation consistency, and factual fidelity.
+- Current verdict on the visible **questions** is `AGREE`: against the maintained 2026-06-19 facts spine and the project’s already-verified current-law notes for AMLA / CTA / UK-authority split, no live wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect survived on the pasted text.
+- Reviewer hygiene: keep this separate from the same-day Module 6 methodology `DISAGREE`. On the current wording, the open issue is assessment design / recall-heaviness, not question-level fidelity. Scope note: question-only close-out; glossary not reviewed.
+
+## 2026-06-20 — multi-response % in mock assembly
+- `startMockExam` now honors `selection_criteria.multi_response_count`: it allocates that many multiple-response items across domains by largest-remainder (proportional to each domain's question count), draws them from the `multiple_choice` pool per domain, fills the rest from single-answer, and backfills if a pool is short. `0`/absent = natural mix. seed-cams-mock.ts sets 12 (120-q sim) / 6 (60-q diagnostic) ≈10%.
+- Caveat: the multi-response pool is only ~20 items (A5/B6/C4/D5), so distinct repeat mocks will reuse them — grow the multi-response pool as part of the volume pass for true mock variety.
+- M4: reassigned the "reach of US sanctions" multi-response item to Domain B (framework reach, not program). M4/M5/M6 multi-response all confirmed fidelity-AGREE + format-accepted.
