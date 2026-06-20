@@ -8,8 +8,8 @@ const courses = [
     title: 'CDCS Prep',
     subtitle: 'Certified Documentary Credit Specialist',
     description:
-      'International trade finance, letters of credit, UCP 600, and bank guarantees — for bankers and trade finance professionals.',
-    status: 'available' as const,
+      'International trade finance, letters of credit, and bank guarantees — for bankers and trade finance professionals.',
+    status: 'soon' as const,
   },
   {
     slug: 'cams',
@@ -17,7 +17,7 @@ const courses = [
     subtitle: 'Certified Anti-Money Laundering Specialist',
     description:
       'AML compliance, financial crime investigation, and regulatory reporting — built from FATF, Basel, and Wolfsberg frameworks.',
-    status: 'available' as const, // Available too, so we can mock enrollment
+    status: 'available' as const,
   },
   {
     slug: 'ccas',
