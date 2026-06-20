@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight, FileText } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
 import { SectionHeader, StatusBadge, ConceptMasteryRow } from '@/components/in-app/ui-kit'
+import { CoursePurchase } from './course-purchase'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -18,23 +19,80 @@ export default async function CourseDetailPage({ params }: Props) {
 
   const { data: course } = await admin
     .from('courses')
-    .select('id, slug, name, short_name, description, certifying_body, estimated_study_hours, real_exam_format')
+    .select('id, slug, name, short_name, description, certifying_body, estimated_study_hours, real_exam_format, status')
     .eq('slug', slug)
-    .eq('status', 'published')
-    .single()
+    .maybeSingle()
 
   if (!course) notFound()
 
-  // Confirm enrollment
+  // An unpublished course (e.g. a marketing link followed before launch) shows a
+  // graceful "launching soon" view rather than a 404.
+  if (course.status !== 'published') {
+    return (
+      <div className="min-h-screen flex flex-col bg-neutral-50">
+        <AppHeader context={course.short_name} />
+        <main className="flex-1 mx-auto max-w-2xl px-6 py-24 w-full text-center">
+          <span className="text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
+            {course.short_name}
+          </span>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900">{course.name}</h1>
+          <p className="mt-4 text-neutral-600 leading-relaxed">
+            This course is launching soon. Check back shortly — or create an account and we’ll have it
+            ready for you.
+          </p>
+          <Link
+            href="/courses"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+          >
+            <ArrowLeft className="h-3 w-3" /> Your courses
+          </Link>
+        </main>
+      </div>
+    )
+  }
+
+  // Confirm enrollment. A signed-in user who does not own the course sees the
+  // purchase view (rather than being bounced) so they can buy access here.
   const { data: enrollment } = await admin
     .from('enrollments')
     .select('id, status')
     .eq('student_id', user.id)
     .eq('course_id', course.id)
-    .single()
+    .maybeSingle()
 
   if (!enrollment || enrollment.status !== 'active') {
-    redirect('/courses')
+    return (
+      <div className="min-h-screen flex flex-col bg-neutral-50">
+        <AppHeader context={course.short_name} />
+        <main className="flex-1 mx-auto max-w-3xl px-6 py-12 w-full">
+          <Link
+            href="/courses"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-primary transition-colors"
+          >
+            <ArrowLeft className="h-3 w-3" /> Your courses
+          </Link>
+          <div className="mt-6 mb-8">
+            <span className="text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
+              {course.short_name}
+            </span>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900">{course.name}</h1>
+            <p className="mt-3 text-neutral-600 leading-relaxed">{course.description}</p>
+            <p className="mt-3 text-2xs font-mono text-neutral-400 uppercase tracking-wider">
+              Certifying body: {course.certifying_body}
+            </p>
+          </div>
+          <CoursePurchase
+            courseSlug={course.slug}
+            included={[
+              'The complete course — interactive lessons grounded in primary sources',
+              'The AI lecturer that adapts to what you know, plus the classmate',
+              'Exam-faithful mock exams with a calibrated readiness signoff',
+              '5 full mock-exam attempts included',
+            ]}
+          />
+        </main>
+      </div>
+    )
   }
 
   // Fetch modules and lessons

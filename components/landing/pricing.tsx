@@ -4,28 +4,33 @@ import { Check } from 'lucide-react'
 
 const plans = [
   {
-    name: 'Single course access',
-    blurb: 'Focus on one certification.',
-    price: '$199',
+    name: 'Full course access',
+    blurb: 'Everything for one certification.',
+    price: '$299',
     cadence: '/ one-time',
     features: [
-      'Full access to your chosen certification prep (6 months)',
-      'Personalized Socratic AI lecturer with long-term memory',
-      'Full mock exam engine with detailed review',
+      'The complete course — interactive lessons grounded in primary sources',
+      'Personalized Socratic AI lecturer with long-term memory, plus the classmate',
+      'Exam-faithful mock exams with detailed per-question review',
+      '5 full mock-exam attempts included',
       'Calibrated readiness signoff',
     ],
+    href: '/courses/cams',
+    cta: 'Get full access',
   },
   {
-    name: 'All-access subscription',
-    blurb: 'Every certification, all the time.',
-    price: '$39',
-    cadence: '/ month',
+    name: 'Single mock exam',
+    blurb: 'Test yourself — no course required.',
+    price: '$14.99',
+    cadence: '/ per mock',
     features: [
-      'All courses included (CDCS, CAMS, CCAS)',
-      'Personalized Socratic AI lecturer with long-term memory',
-      'Unlimited mock exams and updates',
-      'Calibrated readiness signoff for every certification',
+      'One full, exam-faithful timed mock under real conditions',
+      'Real domain weighting and multiple-response questions',
+      'Detailed per-question review and by-domain scoring',
+      'Your first mock is free',
     ],
+    href: '/courses/cams/mock',
+    cta: 'Try a free mock',
   },
 ]
 
@@ -68,10 +73,10 @@ export function Pricing() {
               </div>
               <div className="mt-8 pt-6 border-t border-foreground/15">
                 <Link
-                  href="/signup"
+                  href={plan.href}
                   className="inline-flex w-full items-center justify-center rounded-full border border-foreground bg-foreground py-3 px-4 text-2xs font-bold uppercase tracking-[0.18em] text-background hover:bg-background hover:text-foreground transition-all"
                 >
-                  Get started
+                  {plan.cta}
                 </Link>
               </div>
             </div>
@@ -79,7 +84,7 @@ export function Pricing() {
         </div>
 
         <p className="mx-auto mt-8 max-w-2xl text-center text-2xs text-foreground/40">
-          Pricing shown for planning. Checkout opens at launch.
+          One-time purchase — no subscription. Secure checkout by Stripe.
         </p>
       </div>
     </section>

@@ -73,7 +73,9 @@ async function createCheckout(kind: ProductKind, courseSlug: string): Promise<{ 
   const customerId = await getOrCreateStripeCustomer(user.id, user.email)
 
   const base = appUrl()
-  const mockUrl = `${base}/courses/${course.slug}/mock`
+  // Course buyers return to the course (now unlocked); mock buyers to the mock page.
+  const returnUrl =
+    kind === 'course' ? `${base}/courses/${course.slug}` : `${base}/courses/${course.slug}/mock`
 
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',
@@ -94,8 +96,8 @@ async function createCheckout(kind: ProductKind, courseSlug: string): Promise<{ 
       student_id: user.id,
       course_id: course.id,
     },
-    success_url: `${mockUrl}?checkout=success`,
-    cancel_url: `${mockUrl}?checkout=cancel`,
+    success_url: `${returnUrl}?checkout=success`,
+    cancel_url: `${returnUrl}?checkout=cancel`,
   })
 
   if (!session.url) throw new Error('Stripe did not return a checkout URL')
