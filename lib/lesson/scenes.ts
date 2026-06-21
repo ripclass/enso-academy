@@ -66,14 +66,45 @@ export type QuizSceneData = {
 }
 
 /**
- * `interactive` / `pbl` — defined in the contract now so the pipeline can emit
- * them with no future regeneration. v1 renders a placeholder from title +
- * summary; `spec` carries the (future, renderer-version-specific) build data.
+ * `interactive` / `pbl` payload. `spec` carries the renderer-specific build
+ * data; when it names a known interactive `kind`, that widget renders, else the
+ * scene falls back to a title + summary placeholder.
  */
 export type PlaceholderSceneData = {
   title: string
   summary: string
-  spec?: unknown
+  spec?: InteractiveSpec | unknown
+}
+
+// ── Interactive widgets ─────────────────────────────────────────────────────
+// A bounded set of signature interactions. The renderer dispatches on `kind`.
+
+/** One customer/scenario to sort into a risk tier. */
+export type RiskClassifyItem = {
+  id: string
+  label: string
+  tier: 'low' | 'medium' | 'high'
+  /** Why it belongs in that tier — shown as feedback after placement. */
+  why: string
+}
+
+export type InteractiveSpec = {
+  kind: 'risk-classify'
+  prompt?: string
+  items: RiskClassifyItem[]
+}
+
+/** Narrow an unknown spec to a known interactive kind. */
+export function asInteractiveSpec(spec: unknown): InteractiveSpec | null {
+  if (
+    spec &&
+    typeof spec === 'object' &&
+    (spec as { kind?: unknown }).kind === 'risk-classify' &&
+    Array.isArray((spec as { items?: unknown }).items)
+  ) {
+    return spec as InteractiveSpec
+  }
+  return null
 }
 
 // ── The discriminated Scene union ───────────────────────────────────────────

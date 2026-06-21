@@ -445,6 +445,11 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     }).catch(() => {})
   }
 
+  // An interactive scene's result also feeds the student knowledge model.
+  function handleInteractiveComplete(conceptTags: string[], correct: boolean) {
+    void recordQuizEvidence({ courseId, conceptTags, correct }).catch(() => {})
+  }
+
   function handleAskQuestion(e: React.FormEvent) {
     e.preventDefault()
     const question = questionInput.trim()
@@ -614,6 +619,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                       <SceneRenderer
                         scene={currentScene}
                         onQuizAnswer={handleQuizAnswer}
+                        onInteractiveComplete={handleInteractiveComplete}
                         revealed={currentScene.sceneType === 'slide' ? revealedCount : undefined}
                       />
                     </div>
