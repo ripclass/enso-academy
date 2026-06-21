@@ -121,6 +121,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // Classmate-moment beat sequencing (bridge → question → answer).
   const momentOnEndRef = useRef<(() => void) | null>(null)
   const momentTimerRef = useRef<number | null>(null)
+  // One classmate at a time: held from the moment a check is claimed until the
+  // moment is dismissed, so a second raised hand can never interrupt the first.
+  const momentBusyRef = useRef(false)
   // Resolved narration URLs per scene, seeded from any pre-generated audio.
   // Scenes without pre-gen are synthesized on demand and cached here + server-side.
   const audioUrlsRef = useRef<Record<string, string>>(
@@ -250,6 +253,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // After the student advances past a scene, give the classmate a chance to
   // raise a hand about a concept that scene taught and the student is weak on.
   async function runClassmateCheck(taughtIndex: number) {
+    if (momentBusyRef.current) return // a moment is in flight or on stage — never interrupt it
     if (classmateCount.current >= MAX_CLASSMATE_FIRES) return
     if (taughtIndex - lastClassmateIndex.current < CLASSMATE_COOLDOWN_SCENES) return
     const taught = scenes[taughtIndex]
@@ -257,6 +261,8 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     const taughtConceptTags = [...new Set([...taught.conceptTags, ...taught.teachesConcepts])]
     if (taughtConceptTags.length === 0) return
 
+    // Claim the slot before the async check so a second advance can't race in.
+    momentBusyRef.current = true
     // A grounded gap always fires; otherwise allow an ambient on-topic question
     // most of the time, so the class feels alive without piping up every scene.
     const allowAmbient = Math.random() < AMBIENT_CLASSMATE_CHANCE
@@ -303,8 +309,11 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
             playMomentBeat(answer, () => {})
           }, 1800)
         })
+      } else {
+        momentBusyRef.current = false // nothing fired — release the slot
       }
     } catch (err) {
+      momentBusyRef.current = false
       console.error(err)
     } finally {
       setClassmatePending(false)
@@ -344,6 +353,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
       momentTimerRef.current = null
     }
     momentOnEndRef.current = null
+    momentBusyRef.current = false // release the slot for the next classmate
     if (audioSource.current === 'qa') audioRef.current?.pause()
     setClassmateMoment(null)
     setMomentPhase('bridge')
