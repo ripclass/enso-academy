@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { Hand, CornerDownLeft, ArrowLeft, MessageSquare, X, Play } from 'lucide-react'
-import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText } from '@/lib/lesson/actions'
+import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
 import { LecturerDock, NarrationBubble, LecturerAvatar, LECTURER_SEED } from '@/components/lesson/classroom/lecturer-presence'
@@ -14,7 +14,7 @@ import { CastStrip, type CastMember } from '@/components/lesson/classroom/cast-s
 import { ClassmateMoment, type MomentPhase } from '@/components/lesson/classroom/classmate-moment'
 import { Avatar } from '@/components/lesson/classroom/avatar'
 import { SceneProgress } from '@/components/lesson/classroom/scene-progress'
-import { sceneContext, sceneNarration, suggestedQuestions, type Scene, type SceneType, type QuizQuestion } from '@/lib/lesson/scenes'
+import { sceneContext, sceneNarration, suggestedQuestions, type Scene, type SceneType, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
 import { toast } from 'sonner'
 
 type Lesson = {
@@ -450,6 +450,21 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     void recordQuizEvidence({ courseId, conceptTags, correct }).catch(() => {})
   }
 
+  // Grade a PBL project submission via the AI mentor.
+  function handleGradeProject(spec: PblSpec, submission: string) {
+    return gradeProjectSubmission({
+      courseId,
+      lessonId: lesson.id,
+      sessionId,
+      brief: spec.brief,
+      task: spec.task,
+      deliverable: spec.deliverable,
+      rubric: spec.rubric,
+      submission,
+      conceptTags: currentScene?.conceptTags ?? [],
+    })
+  }
+
   function handleAskQuestion(e: React.FormEvent) {
     e.preventDefault()
     const question = questionInput.trim()
@@ -620,6 +635,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                         scene={currentScene}
                         onQuizAnswer={handleQuizAnswer}
                         onInteractiveComplete={handleInteractiveComplete}
+                        onGradeProject={handleGradeProject}
                         revealed={currentScene.sceneType === 'slide' ? revealedCount : undefined}
                       />
                     </div>

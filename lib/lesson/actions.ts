@@ -2,7 +2,7 @@
 
 import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient } from '@/lib/supabase/server'
-import { callHaikuStreaming } from '@/lib/ai/routing'
+import { callHaikuStreaming, callSonnet } from '@/lib/ai/routing'
 import { embed } from '@/lib/ai/embeddings'
 import { logAiCall } from '@/lib/ai/cost-tracking'
 import { getMasterySummary, recordEvidence } from '@/lib/student-model/knowledge'
@@ -201,6 +201,76 @@ export async function synthesizeText(text: string): Promise<{ url: string | null
     console.error('synthesizeText failed:', err)
     return { url: null }
   }
+}
+
+/**
+ * Grade a PBL project submission as an AML/CFT examiner would — against the
+ * brief + rubric, with constructive feedback. Uses Sonnet (the written-answer
+ * tier). Returns a band + feedback, and feeds the student knowledge model.
+ */
+export async function gradeProjectSubmission(opts: {
+  courseId: string
+  lessonId: string
+  sessionId: string
+  brief: string
+  task: string
+  deliverable?: string
+  rubric: string[]
+  submission: string
+  conceptTags?: string[]
+}): Promise<{ band: string; feedback: string }> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+
+  const system = `You are an experienced AML/CFT examiner grading a trainee's submission against a project brief and rubric. Be rigorous but constructive and concise.
+
+Reply in exactly this shape:
+BAND: <Strong | Developing | Needs work>
+then 2-4 short paragraphs of feedback — what they did well, what is missing or wrong, and the one or two things a strong answer must include. Grade only against the rubric and the brief. Do NOT rewrite their submission for them, and never invent facts that were not in the brief.`
+
+  const rubricBlock = opts.rubric.map((r) => `- ${r}`).join('\n')
+  const userMsg = `PROJECT BRIEF:\n${opts.brief}\n\nTASK:\n${opts.task}\n${
+    opts.deliverable ? `\nDELIVERABLE:\n${opts.deliverable}\n` : ''
+  }\nRUBRIC (what a strong answer meets):\n${rubricBlock}\n\nTRAINEE SUBMISSION:\n${opts.submission}`
+
+  const start = Date.now()
+  const result = await callSonnet({
+    system,
+    messages: [{ role: 'user', content: userMsg }],
+    maxTokens: 700,
+    temperature: 0.3,
+  })
+  await logAiCall({
+    context: {
+      studentId: user.id,
+      courseId: opts.courseId,
+      sessionId: opts.sessionId,
+      lessonId: opts.lessonId,
+      purpose: 'grading',
+    },
+    model: 'sonnet',
+    inputTokens: result.inputTokens,
+    outputTokens: result.outputTokens,
+    costCents: result.costCents,
+    latencyMs: Date.now() - start,
+  })
+
+  const text = result.text.trim()
+  const m = text.match(/^BAND:\s*(Strong|Developing|Needs work)/i)
+  const band = m ? m[1] : 'Reviewed'
+  const feedback = m ? text.replace(/^BAND:.*(\r?\n)?/i, '').trim() : text
+
+  if (opts.conceptTags && opts.conceptTags.length > 0) {
+    await recordEvidence({
+      studentId: user.id,
+      courseId: opts.courseId,
+      conceptTags: opts.conceptTags,
+      evidence: /strong|developing/i.test(band) ? 'correct' : 'incorrect',
+    }).catch(() => {})
+  }
+
+  return { band, feedback }
 }
 
 /**

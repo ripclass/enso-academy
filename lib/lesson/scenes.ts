@@ -73,7 +73,7 @@ export type QuizSceneData = {
 export type PlaceholderSceneData = {
   title: string
   summary: string
-  spec?: InteractiveSpec | unknown
+  spec?: InteractiveSpec | PblSpec | unknown
 }
 
 // ── Interactive widgets ─────────────────────────────────────────────────────
@@ -103,6 +103,35 @@ export function asInteractiveSpec(spec: unknown): InteractiveSpec | null {
     Array.isArray((spec as { items?: unknown }).items)
   ) {
     return spec as InteractiveSpec
+  }
+  return null
+}
+
+// ── Project-based learning (PBL) ────────────────────────────────────────────
+// A project brief the student works, then an AI mentor grades the submission.
+
+export type PblSpec = {
+  kind: 'project'
+  /** The scenario / context. */
+  brief: string
+  /** What the student must do. */
+  task: string
+  /** What to produce, e.g. "a 4-6 sentence SAR narrative". */
+  deliverable?: string
+  /** The criteria a strong answer meets — shown to the student and used to grade. */
+  rubric: string[]
+}
+
+/** Narrow an unknown spec to a project (PBL) kind. */
+export function asPblSpec(spec: unknown): PblSpec | null {
+  if (
+    spec &&
+    typeof spec === 'object' &&
+    (spec as { kind?: unknown }).kind === 'project' &&
+    typeof (spec as { brief?: unknown }).brief === 'string' &&
+    Array.isArray((spec as { rubric?: unknown }).rubric)
+  ) {
+    return spec as PblSpec
   }
   return null
 }

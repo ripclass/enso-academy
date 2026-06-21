@@ -1,11 +1,12 @@
 'use client'
 
-import { asInteractiveSpec, type Scene, type QuizQuestion } from '@/lib/lesson/scenes'
+import { asInteractiveSpec, asPblSpec, type Scene, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
 import { ReadingScene } from './reading-scene'
 import { SlideScene } from './slide-scene'
 import { QuizScene } from './quiz-scene'
 import { PlaceholderScene } from './placeholder-scene'
 import { RiskClassify } from './interactives/risk-classify'
+import { ProjectScene } from './pbl/project-scene'
 
 /**
  * Renders a single lesson scene by type. The one entry point the lesson player
@@ -15,11 +16,13 @@ export function SceneRenderer({
   scene,
   onQuizAnswer,
   onInteractiveComplete,
+  onGradeProject,
   revealed,
 }: {
   scene: Scene
   onQuizAnswer?: (question: QuizQuestion, selectedOptionId: string, correct: boolean) => void
   onInteractiveComplete?: (conceptTags: string[], correct: boolean) => void
+  onGradeProject?: (spec: PblSpec, submission: string) => Promise<{ band: string; feedback: string }>
   /** Progressive reveal count for slide scenes (driven by narration progress). */
   revealed?: number
 }) {
@@ -51,7 +54,19 @@ export function SceneRenderer({
       }
       return <PlaceholderScene kind="interactive" data={scene.data} />
     }
-    case 'pbl':
+    case 'pbl': {
+      const pbl = asPblSpec(scene.data.spec)
+      if (pbl && onGradeProject) {
+        return (
+          <ProjectScene
+            title={scene.data.title}
+            summary={scene.data.summary}
+            spec={pbl}
+            onGrade={onGradeProject}
+          />
+        )
+      }
       return <PlaceholderScene kind="pbl" data={scene.data} />
+    }
   }
 }
