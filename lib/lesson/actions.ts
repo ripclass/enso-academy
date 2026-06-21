@@ -147,7 +147,9 @@ export async function getSceneAudio(elementId: string): Promise<{ url: string | 
     const variant = lecturerVariantFor((row.lesson_id as string | null) ?? '')
     const { audioBuffer } = await synthesizeSpeech({ text: cleanText, voiceName: LECTURER_VOICES[variant] })
 
-    const fileName = `${row.course_id}/${row.id}.mp3`
+    // Voice in the path → a voice change yields a NEW url, so the browser/CDN
+    // never serves a stale recording from the old (same-path) cache.
+    const fileName = `${row.course_id}/${row.id}-${variant}.mp3`
     const { error: uploadError } = await admin.storage
       .from('lesson-audio')
       .upload(fileName, audioBuffer, { contentType: 'audio/mpeg', upsert: true })
