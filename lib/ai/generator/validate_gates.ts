@@ -330,6 +330,31 @@ export function gateSchema(artifact: LessonArtifact): GateResult {
         })
         break
       }
+      case 'interactive': {
+        const d = scene.sceneData as { title?: unknown; spec?: unknown }
+        if (!isStr(d.title)) errors.push(`${ctx}.sceneData.title not a string`)
+        const spec = d.spec
+        if (!isObj(spec) || (spec.kind !== 'risk-classify' && spec.kind !== 'red-flags')) {
+          errors.push(`${ctx}.sceneData.spec.kind must be 'risk-classify' or 'red-flags'`)
+        } else if (!isArr(spec.items) || spec.items.length < 3) {
+          errors.push(`${ctx}.sceneData.spec.items needs ≥ 3 items`)
+        }
+        break
+      }
+      case 'pbl': {
+        const d = scene.sceneData as { title?: unknown; spec?: unknown }
+        if (!isStr(d.title)) errors.push(`${ctx}.sceneData.title not a string`)
+        const spec = d.spec
+        if (!isObj(spec) || spec.kind !== 'project') {
+          errors.push(`${ctx}.sceneData.spec.kind must be 'project'`)
+        } else {
+          if (!isStr(spec.brief)) errors.push(`${ctx}.sceneData.spec.brief not a string`)
+          if (!isArr(spec.rubric) || spec.rubric.length < 2) {
+            errors.push(`${ctx}.sceneData.spec.rubric needs ≥ 2 criteria`)
+          }
+        }
+        break
+      }
     }
   })
 

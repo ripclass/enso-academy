@@ -12,7 +12,7 @@ import type { LessonArtifact, OutlineArtifact, OutlineModule, OutlineLesson } fr
 
 const SCENE_SCHEMA = `Each scene is an object:
 {
-  "sceneType": "reading" | "slide" | "quiz",
+  "sceneType": "reading" | "slide" | "quiz" | "interactive" | "pbl",
   "title": "string",
   "conceptTags": ["snake_case", ...],
   "teachesConcepts": ["snake_case", ...],
@@ -29,6 +29,19 @@ sceneData by sceneType:
                "questions": [{ "prompt": "string", "options": [{ "id": "a", "text": "string" }],
                                "correctOptionId": "a", "explanation": "string",
                                "conceptTags": ["snake_case", ...], "points": 10 }] }
+- "interactive": { "title": "string", "summary": "string", "spec": <ONE interactive spec, see below> }
+- "pbl":         { "title": "string", "summary": "string",
+                   "spec": { "kind": "project", "brief": "the scenario (markdown)",
+                             "task": "what the student must do", "deliverable": "what to produce, e.g. 'a 4-6 sentence narrative'",
+                             "rubric": ["criterion a strong answer meets", ...] } }
+
+Interactive specs (sceneData.spec for "interactive"):
+- risk-classify: { "kind": "risk-classify", "prompt": "string?",
+                   "items": [{ "id": "string", "label": "a customer / scenario", "tier": "low"|"medium"|"high", "why": "feedback" }] }
+                   — 4-6 items, balanced across the three tiers.
+- red-flags:     { "kind": "red-flags", "prompt": "string?", "scenario": "string?",
+                   "items": [{ "id": "string", "label": "a statement", "flag": true|false, "why": "feedback" }] }
+                   — 5-6 items, a mix of genuine flags and non-flags.
 
 Slide templates:
 - key-points : heading + items as point cards (icon, label, text)
@@ -69,6 +82,11 @@ Concept tags: ${lesson.conceptTags.join(', ')}
 Scene brief: ${lesson.sceneBrief}
 
 Follow the methodology above. Produce an ordered list of scenes that teach this lesson — typically an opening, the core concept(s) taught from primary sources with visible citations, one or two worked examples, a formative knowledge check, and a synthesis. Use scene types reading / slide / quiz. Every factual claim must be citable: reading scenes carry a citations array; cite primary sources by name and section. Quizzes are formative — scenario-based questions with per-question conceptTags. Professional tone for an adult practitioner; no marketing register.
+
+HANDS-ON APPLICATION SCENE. Where the lesson's material supports applying a skill (not pure recall), include exactly ONE "interactive" or "pbl" scene, placed near the end just before the synthesis:
+- "interactive" — a "risk-classify" (sort customers/scenarios into risk tiers) or "red-flags" (select the genuine indicators in a scenario) widget. Best for typologies, risk-rating, sanctions, fraud, CDD.
+- "pbl" — a "project": a realistic brief where the student writes a deliverable (a SAR narrative, an EDD or escalation memo, a build-vs-buy recommendation, an analysis), graded by an AI mentor against the rubric. Best for SAR/STR drafting, governance, enforcement analysis, decisions.
+Author the spec fully (real, defensible items / a concrete brief with a clear rubric). Interactive/pbl scenes apply what the lesson already taught, so they do NOT introduce new statutes and carry no citations[]. Skip this scene entirely for purely conceptual or definitional lessons rather than forcing one.
 
 THREE REQUIREMENTS THE CROSS-CHECK ENFORCES STRICTLY — satisfy them up front:
 1. DISTINCT CONCEPTS PER SCENE. Each scene's teachesConcepts must make a substantively distinct contribution — do not produce two scenes whose teachesConcepts merely restate the same concept. (Topical conceptTags MAY recur across scenes — that is fine; it is teachesConcepts that must be distinct.) Where scenes share a topic, each must add a genuinely new facet, mechanism, edge case, or application — not re-teach the same point under a different title.

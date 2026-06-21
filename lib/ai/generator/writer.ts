@@ -18,8 +18,8 @@ type ElementType = 'quiz_question' | 'definition' | 'explanation' | 'example'
 function elementType(scene: GeneratedScene): ElementType {
   if (scene.sceneType === 'quiz') return 'quiz_question'
   if (scene.sceneType === 'slide' && (scene.sceneData as any)?.template === 'definition') return 'definition'
-  if (scene.sceneType === 'reading' || scene.sceneType === 'slide') return 'explanation'
-  return 'example'
+  // reading, slide, interactive, pbl → the generic content category.
+  return 'explanation'
 }
 
 /** A non-empty plain-text body for the content row (NOT NULL; the reading fallback). */
