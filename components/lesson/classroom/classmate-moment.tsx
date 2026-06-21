@@ -2,7 +2,7 @@
 
 import { Hand, X, ArrowRight } from 'lucide-react'
 import { Avatar } from './avatar'
-import { LecturerAvatar } from './lecturer-presence'
+import { LecturerAvatar, type LecturerVariant } from './lecturer-presence'
 
 export type MomentPhase = 'bridge' | 'question' | 'answer'
 
@@ -21,6 +21,7 @@ export function ClassmateMoment({
   bridge,
   phase,
   speaking,
+  lecturerVariant = 'female',
   onDismiss,
 }: {
   name: string
@@ -29,6 +30,7 @@ export function ClassmateMoment({
   bridge: string
   phase: MomentPhase
   speaking: boolean
+  lecturerVariant?: LecturerVariant
   onDismiss: () => void
 }) {
   return (
@@ -69,7 +71,7 @@ export function ClassmateMoment({
 
       {/* Lecturer */}
       <div className="mt-3 flex gap-3 border-t border-neutral-100 pt-3">
-        <LecturerAvatar size={40} speaking={speaking} />
+        <LecturerAvatar size={40} variant={lecturerVariant} speaking={speaking} />
         <div className="min-w-0 flex-1">
           <div className="font-mono text-2xs font-bold uppercase tracking-widest text-primary">
             Lecturer

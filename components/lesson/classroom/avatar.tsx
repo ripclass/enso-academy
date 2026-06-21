@@ -1,39 +1,55 @@
 'use client'
 
-import { useMemo } from 'react'
-import { createAvatar } from '@dicebear/core'
-import { personas } from '@dicebear/collection'
+import { UserRound } from 'lucide-react'
 
 /**
- * A deterministic character avatar (DiceBear "personas" — clean, diverse,
- * offline, free). Same `seed` always yields the same face, so the lecturer,
- * each classmate, and the student get a stable identity. When Higgsfield
- * portraits are unparked, this is the single place to swap the source.
+ * A character avatar — a hand-drawn line-art portrait (generated, stored under
+ * /public/avatars). Classmate seeds (the cast names) map to their portrait
+ * automatically; the lecturer and the student pass an explicit `src`. Unknown
+ * seeds fall back to a neutral glyph.
  */
+
+const SEED_IMAGES: Record<string, string> = {
+  priya: '/avatars/priya.webp',
+  marcus: '/avatars/marcus.webp',
+  aisha: '/avatars/aisha.webp',
+  daniel: '/avatars/daniel.webp',
+  lena: '/avatars/lena.webp',
+  omar: '/avatars/omar.webp',
+}
+
 export function Avatar({
   seed,
+  src,
   size = 40,
-  bg,
   className,
 }: {
-  seed: string
+  seed?: string
+  /** Explicit image path; overrides the seed lookup. */
+  src?: string
   size?: number
-  /** Optional fixed background hex(es) (no '#'); defaults to a pastel set. */
-  bg?: string[]
   className?: string
 }) {
-  const uri = useMemo(
-    () =>
-      createAvatar(personas, {
-        seed,
-        size,
-        radius: 50,
-        backgroundColor: bg ?? ['b6e3f4', 'c0aede', 'd1d4f9', 'ffd5dc', 'ffdfbf', 'c7f9cc'],
-      }).toDataUri(),
-    [seed, size, bg],
-  )
+  const img = src ?? (seed ? SEED_IMAGES[seed.toLowerCase()] : undefined)
+  if (img) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={img}
+        width={size}
+        height={size}
+        alt=""
+        aria-hidden
+        className={`h-full w-full bg-white object-cover ${className ?? ''}`}
+      />
+    )
+  }
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={uri} width={size} height={size} alt="" aria-hidden className={className} />
+    <span
+      className="flex items-center justify-center bg-neutral-100 text-neutral-400"
+      style={{ width: size, height: size }}
+    >
+      <UserRound style={{ width: size * 0.55, height: size * 0.55 }} strokeWidth={1.75} />
+    </span>
   )
 }

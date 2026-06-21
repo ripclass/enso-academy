@@ -8,7 +8,7 @@ import { Hand, CornerDownLeft, ArrowLeft, MessageSquare, X, Play } from 'lucide-
 import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
-import { LecturerDock, NarrationBubble, LecturerAvatar, LECTURER_SEED } from '@/components/lesson/classroom/lecturer-presence'
+import { LecturerDock, NarrationBubble, LecturerAvatar, type LecturerVariant } from '@/components/lesson/classroom/lecturer-presence'
 import { TransportBar } from '@/components/lesson/classroom/transport-bar'
 import { CastStrip, type CastMember } from '@/components/lesson/classroom/cast-strip'
 import { ClassmateMoment, type MomentPhase } from '@/components/lesson/classroom/classmate-moment'
@@ -44,6 +44,16 @@ type Props = {
   courseId: string
   courseSlug: string
   lecturerOpening?: string | null
+  /** The student's chosen avatar (from settings). */
+  userAvatar?: 'male' | 'female'
+}
+
+// Pick the lecturer's face deterministically per lesson, so chapters alternate
+// between the two lecturers but each lesson is consistent.
+function lecturerFor(lessonId: string): LecturerVariant {
+  let h = 0
+  for (let i = 0; i < lessonId.length; i++) h = (h + lessonId.charCodeAt(i)) % 2
+  return h === 0 ? 'female' : 'male'
 }
 
 type AudioStatus = 'idle' | 'loading' | 'playing' | 'paused' | 'ended' | 'error'
@@ -90,8 +100,10 @@ const CAST: CastMember[] = [
   { name: 'Omar' },
 ]
 
-export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, lecturerOpening }: Props) {
+export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, lecturerOpening, userAvatar = 'female' }: Props) {
   const router = useRouter()
+  const lecturerVariant = lecturerFor(lesson.id)
+  const userAvatarSrc = `/avatars/user-${userAvatar}.webp`
   const [currentIndex, setCurrentIndex] = useState(0)
   const [messages, setMessages] = useState<Message[]>(
     lecturerOpening ? [{ role: 'lecturer', content: lecturerOpening }] : [],
@@ -671,6 +683,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                   bridge={classmateMoment.bridge}
                   phase={momentPhase}
                   speaking={(momentPhase === 'bridge' || momentPhase === 'answer') && isPlaying}
+                  lecturerVariant={lecturerVariant}
                   onDismiss={dismissMoment}
                 />
               </div>
@@ -698,7 +711,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
 
             {/* Dock row: lecturer · narration · cast */}
             <div className="grid grid-cols-[auto_1fr_auto] items-center gap-6">
-              <LecturerDock speaking={speaking} thinking={askingQuestion} />
+              <LecturerDock variant={lecturerVariant} speaking={speaking} thinking={askingQuestion} />
 
               <div className="min-w-0 space-y-2">
                 <NarrationBubble
@@ -752,7 +765,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
           <aside className="flex w-full max-w-sm shrink-0 flex-col border-l border-neutral-200 bg-white animate-in slide-in-from-right duration-300">
             <div className="flex shrink-0 items-center justify-between gap-3 border-b border-neutral-200 px-5 py-3.5">
               <div className="flex items-center gap-3">
-                <LecturerAvatar size={36} />
+                <LecturerAvatar size={36} variant={lecturerVariant} />
                 <div>
                   <h2 className="text-sm font-bold text-neutral-900">Enso Guide</h2>
                   <p className="font-mono text-2xs text-neutral-400">Ask about this scene</p>
@@ -809,11 +822,11 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                     <div key={i} className="flex gap-2.5">
                       <div className="mt-0.5 h-7 w-7 shrink-0 overflow-hidden rounded-full border border-neutral-200 bg-white">
                         {isLecturer ? (
-                          <Avatar seed={LECTURER_SEED} size={28} bg={['0F3D3E']} />
+                          <Avatar src={`/avatars/lecturer-${lecturerVariant}.webp`} size={28} />
                         ) : isClassmate ? (
                           <Avatar seed={msg.classmateName ?? 'Classmate'} size={28} />
                         ) : (
-                          <Avatar seed="You" size={28} />
+                          <Avatar src={userAvatarSrc} size={28} />
                         )}
                       </div>
                       <div className="min-w-0 flex-1 space-y-1.5">

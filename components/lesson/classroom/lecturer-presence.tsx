@@ -2,27 +2,24 @@
 
 import { Avatar } from './avatar'
 
-// A fixed seed + background so the lecturer always has the same, distinct face.
-export const LECTURER_SEED = 'Professor Enso'
+export type LecturerVariant = 'male' | 'female'
 
 /**
- * The lecturer's on-stage presence, split into two surfaces to match the
- * classroom layout:
- *  - LecturerAvatar — the round portrait (reused in the dock and the Ask panel).
- *  - LecturerDock — the avatar + name that lives bottom-left and comes alive
- *    while narrating.
- *  - NarrationBubble — the floating bubble showing the spoken script.
- *
- * Avatars are clean icon-portraits for now; when the named cast + Higgsfield
- * portraits land, LecturerAvatar is the single place to swap in the image.
+ * The lecturer's on-stage presence:
+ *  - LecturerAvatar — the round portrait (reused in the dock, Ask panel, chat).
+ *    `variant` picks the male/female lecturer (the player alternates by chapter).
+ *  - LecturerDock — avatar + name, bottom-left, alive while narrating.
+ *  - NarrationBubble — the floating bubble with the spoken script.
  */
 
 export function LecturerAvatar({
   size = 56,
+  variant = 'female',
   speaking,
   thinking,
 }: {
   size?: number
+  variant?: LecturerVariant
   speaking?: boolean
   thinking?: boolean
 }) {
@@ -34,7 +31,7 @@ export function LecturerAvatar({
           active ? 'border-primary/40 shadow-[0_0_0_4px_rgba(15,61,62,0.14)]' : 'border-neutral-200 shadow-sm'
         }`}
       >
-        <Avatar seed={LECTURER_SEED} size={size} bg={['0F3D3E']} />
+        <Avatar src={`/avatars/lecturer-${variant}.webp`} size={size} />
       </div>
       {speaking && <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-primary/15" />}
       {active && (
@@ -46,16 +43,18 @@ export function LecturerAvatar({
 
 export function LecturerDock({
   name = 'Enso Guide',
+  variant = 'female',
   speaking,
   thinking,
 }: {
   name?: string
+  variant?: LecturerVariant
   speaking: boolean
   thinking?: boolean
 }) {
   return (
     <div className="flex items-center gap-3">
-      <LecturerAvatar size={56} speaking={speaking} thinking={thinking} />
+      <LecturerAvatar size={56} variant={variant} speaking={speaking} thinking={thinking} />
       <div className="min-w-0">
         <div className="truncate text-sm font-bold text-neutral-900">{name}</div>
         <div className="flex items-center gap-1.5">
@@ -90,7 +89,6 @@ export function NarrationBubble({
   )
 }
 
-/** A small three-bar equalizer that animates while speaking. */
 function SpeakingBars() {
   return (
     <span className="flex items-end gap-0.5" aria-hidden>
