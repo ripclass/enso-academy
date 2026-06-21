@@ -183,6 +183,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     const scene = currentScene
     if (!audio || !scene) return
     let cancelled = false
+    // Stop the previous scene's narration immediately so it never plays over
+    // the new slide while the new audio resolves (synthesis/cache lookup).
+    audio.pause()
     setAudioStatus('loading')
     void resolveSceneAudio(scene).then((url) => {
       if (cancelled) return // scene changed / unmounted while synthesizing
