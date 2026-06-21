@@ -13,6 +13,7 @@ import { TransportBar } from '@/components/lesson/classroom/transport-bar'
 import { CastStrip, type CastMember } from '@/components/lesson/classroom/cast-strip'
 import { ClassmateMoment, type MomentPhase } from '@/components/lesson/classroom/classmate-moment'
 import { Avatar } from '@/components/lesson/classroom/avatar'
+import { SceneProgress } from '@/components/lesson/classroom/scene-progress'
 import { sceneContext, sceneNarration, suggestedQuestions, type Scene, type SceneType, type QuizQuestion } from '@/lib/lesson/scenes'
 import { toast } from 'sonner'
 
@@ -376,6 +377,13 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     }
   }
 
+  // Jump to any scene from the chapter-tick scrubber.
+  function goToScene(index: number) {
+    if (index === currentIndex || index < 0 || index >= scenes.length) return
+    dismissMoment()
+    setCurrentIndex(index)
+  }
+
   // Play/pause the narration. If the lesson is muted (manual reading), pressing
   // play turns narration on — the listen effect then plays the current scene.
   function handlePlayPause() {
@@ -579,6 +587,11 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
       {/* Body: stage + footer on the left, chat pushes in on the right */}
       <div className="flex min-h-0 flex-1">
         <div className="flex min-w-0 flex-1 flex-col">
+          {/* Chapter ticks — one per scene; click to jump */}
+          <div className="border-b border-neutral-200 bg-white/60 px-6 py-2.5 backdrop-blur">
+            <SceneProgress scenes={scenes} currentIndex={currentIndex} onJump={goToScene} />
+          </div>
+
           {/* Stage */}
           <main className="relative flex-1 overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8">
