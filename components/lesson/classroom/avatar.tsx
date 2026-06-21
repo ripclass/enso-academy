@@ -36,11 +36,10 @@ export function Avatar({
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={img}
-        width={size}
-        height={size}
         alt=""
         aria-hidden
-        className={`h-full w-full bg-white object-cover ${className ?? ''}`}
+        style={{ width: size, height: size }}
+        className={`shrink-0 bg-white object-cover object-top ${className ?? ''}`}
       />
     )
   }

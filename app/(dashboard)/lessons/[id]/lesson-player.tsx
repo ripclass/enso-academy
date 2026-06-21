@@ -8,13 +8,13 @@ import { Hand, CornerDownLeft, ArrowLeft, MessageSquare, X, Play } from 'lucide-
 import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
-import { LecturerDock, NarrationBubble, LecturerAvatar, type LecturerVariant } from '@/components/lesson/classroom/lecturer-presence'
+import { LecturerDock, NarrationBubble, LecturerAvatar } from '@/components/lesson/classroom/lecturer-presence'
 import { TransportBar } from '@/components/lesson/classroom/transport-bar'
 import { CastStrip, type CastMember } from '@/components/lesson/classroom/cast-strip'
 import { ClassmateMoment, type MomentPhase } from '@/components/lesson/classroom/classmate-moment'
 import { Avatar } from '@/components/lesson/classroom/avatar'
 import { SceneProgress } from '@/components/lesson/classroom/scene-progress'
-import { sceneContext, sceneNarration, suggestedQuestions, type Scene, type SceneType, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
+import { sceneContext, sceneNarration, suggestedQuestions, lecturerVariantFor, type Scene, type SceneType, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
 import { toast } from 'sonner'
 
 type Lesson = {
@@ -48,13 +48,6 @@ type Props = {
   userAvatar?: 'male' | 'female'
 }
 
-// Pick the lecturer's face deterministically per lesson, so chapters alternate
-// between the two lecturers but each lesson is consistent.
-function lecturerFor(lessonId: string): LecturerVariant {
-  let h = 0
-  for (let i = 0; i < lessonId.length; i++) h = (h + lessonId.charCodeAt(i)) % 2
-  return h === 0 ? 'female' : 'male'
-}
 
 type AudioStatus = 'idle' | 'loading' | 'playing' | 'paused' | 'ended' | 'error'
 
@@ -102,7 +95,7 @@ const CAST: CastMember[] = [
 
 export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, lecturerOpening, userAvatar = 'female' }: Props) {
   const router = useRouter()
-  const lecturerVariant = lecturerFor(lesson.id)
+  const lecturerVariant = lecturerVariantFor(lesson.id)
   const userAvatarSrc = `/avatars/user-${userAvatar}.webp`
   const [currentIndex, setCurrentIndex] = useState(0)
   const [messages, setMessages] = useState<Message[]>(
@@ -347,7 +340,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
       fallback()
       return
     }
-    void synthesizeText(text).then(({ url }) => {
+    void synthesizeText(text, lecturerVariant).then(({ url }) => {
       if (!url || !audioRef.current) {
         fallback()
         return

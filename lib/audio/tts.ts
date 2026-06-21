@@ -34,11 +34,16 @@ export type SynthesizeOptions = {
   speakingRate?: number
 }
 
-// The lecturer's voice. Google "Chirp 3: HD" — the newest generative tier,
-// far more natural than Wavenet. Swap this single constant to change the voice
-// course-wide (audition others: Kore, Orus, Aoede, Puck, Algenib …).
+// The lecturer's voices. Google "Chirp 3: HD" — the newest generative tier,
+// far more natural than Wavenet. A male and a female voice so the spoken voice
+// matches the lecturer's avatar (which alternates per chapter). Swap these to
+// re-cast (audition others: Orus, Aoede, Puck, Algenib, Leda …).
 // NOTE: Chirp 3 HD voices do NOT support SSML or `pitch`; plain text + rate only.
-export const LECTURER_VOICE = 'en-US-Chirp3-HD-Charon'
+export const LECTURER_VOICES: Record<'male' | 'female', string> = {
+  male: 'en-US-Chirp3-HD-Charon',
+  female: 'en-US-Chirp3-HD-Kore',
+}
+export const LECTURER_VOICE = LECTURER_VOICES.male
 
 const DEFAULT_VOICE = LECTURER_VOICE
 const DEFAULT_LANGUAGE = 'en-US'

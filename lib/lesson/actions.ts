@@ -7,6 +7,7 @@ import { embed } from '@/lib/ai/embeddings'
 import { logAiCall } from '@/lib/ai/cost-tracking'
 import { getMasterySummary, recordEvidence } from '@/lib/student-model/knowledge'
 import { getMemoryPreamble, summarizeSessionToMemory } from '@/lib/student-model/memory'
+import { lecturerVariantFor } from '@/lib/lesson/scenes'
 import { after } from 'next/server'
 
 type AskQuestionResult = {
@@ -121,7 +122,7 @@ export async function getSceneAudio(elementId: string): Promise<{ url: string | 
     const admin = createAdminClient()
     const { data: row } = await admin
       .from('content_library_elements')
-      .select('id, course_id, scene_type, scene_data, body, audio_url')
+      .select('id, course_id, lesson_id, scene_type, scene_data, body, audio_url')
       .eq('id', elementId)
       .single()
     if (!row) return { url: null }
@@ -138,11 +139,13 @@ export async function getSceneAudio(elementId: string): Promise<{ url: string | 
     else if ((type === 'interactive' || type === 'pbl') && typeof data.summary === 'string') raw = data.summary
     else raw = row.body ?? ''
 
-    const { synthesizeSpeech, textToSpeechReady } = await import('@/lib/audio/tts')
+    const { synthesizeSpeech, textToSpeechReady, LECTURER_VOICES } = await import('@/lib/audio/tts')
     const cleanText = textToSpeechReady(raw)
     if (!cleanText) return { url: null }
 
-    const { audioBuffer } = await synthesizeSpeech({ text: cleanText })
+    // Match the voice to the lesson's lecturer (avatar alternates per chapter).
+    const variant = lecturerVariantFor((row.lesson_id as string | null) ?? '')
+    const { audioBuffer } = await synthesizeSpeech({ text: cleanText, voiceName: LECTURER_VOICES[variant] })
 
     const fileName = `${row.course_id}/${row.id}.mp3`
     const { error: uploadError } = await admin.storage
@@ -174,22 +177,25 @@ export async function getSceneAudio(elementId: string): Promise<{ url: string | 
  * moment, where the lecturer answers aloud). Caches by content hash so the same
  * line is only synthesized once. Returns null on failure (audio is optional).
  */
-export async function synthesizeText(text: string): Promise<{ url: string | null }> {
+export async function synthesizeText(
+  text: string,
+  variant: 'male' | 'female' = 'male',
+): Promise<{ url: string | null }> {
   try {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return { url: null }
 
-    const { synthesizeSpeech, textToSpeechReady } = await import('@/lib/audio/tts')
+    const { synthesizeSpeech, textToSpeechReady, LECTURER_VOICES } = await import('@/lib/audio/tts')
     const clean = textToSpeechReady(text)
     if (!clean) return { url: null }
 
     const { createHash } = await import('crypto')
-    const hash = createHash('sha1').update(clean).digest('hex').slice(0, 24)
+    const hash = createHash('sha1').update(`${variant}:${clean}`).digest('hex').slice(0, 24)
     const fileName = `qa-audio/text/${hash}.mp3`
 
     const admin = createAdminClient()
-    const { audioBuffer } = await synthesizeSpeech({ text: clean })
+    const { audioBuffer } = await synthesizeSpeech({ text: clean, voiceName: LECTURER_VOICES[variant] })
     const { error } = await admin.storage
       .from('lesson-audio')
       .upload(fileName, audioBuffer, { contentType: 'audio/mpeg', upsert: true })

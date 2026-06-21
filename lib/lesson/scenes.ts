@@ -220,6 +220,17 @@ export function parseScene(row: ContentRow): Scene {
   return { ...base, sceneType: 'reading', data: { body: row.body } }
 }
 
+/**
+ * Deterministic male/female lecturer for a lesson, so chapters alternate but
+ * each lesson is consistent. Shared by the player (avatar) and the narration
+ * synthesis (voice), so the face and the voice always match.
+ */
+export function lecturerVariantFor(lessonId: string): 'male' | 'female' {
+  let h = 0
+  for (let i = 0; i < lessonId.length; i++) h = (h + lessonId.charCodeAt(i)) % 2
+  return h === 0 ? 'female' : 'male'
+}
+
 /** The narration text for a scene — what TTS speaks. */
 export function sceneNarration(scene: Scene): string {
   switch (scene.sceneType) {
