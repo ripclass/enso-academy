@@ -4,7 +4,7 @@
 // Idempotent: skips elements that already have audio_url set, unless force=true.
 
 import { createAdminClient } from '@/lib/supabase/admin'
-import { synthesizeSpeech } from './tts'
+import { synthesizeSpeech, textToSpeechReady } from './tts'
 
 type PregenerateOptions = {
   courseId: string
@@ -55,12 +55,8 @@ export async function pregenerateCourseAudio(opts: PregenerateOptions): Promise<
     }
 
     try {
-      // Strip markdown to plain text for TTS
-      const cleanText = (el.body ?? '')
-        .replace(/[*_`#>]/g, '') // strip markdown punctuation
-        .replace(/\[(.*?)\]\(.*?\)/g, '$1') // strip links, keep text
-        .replace(/\n+/g, '. ') // newlines -> period for natural pause
-        .trim()
+      // Normalize to natural speech (spells out §, strips markdown, etc.)
+      const cleanText = textToSpeechReady(el.body ?? '')
 
       // Nothing to narrate — skip rather than send empty input to TTS.
       if (!cleanText) {

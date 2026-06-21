@@ -104,6 +104,106 @@ export async function getLessonContent(lessonId: string) {
 }
 
 /**
+ * Resolve narration audio for a single scene (content element), synthesizing it
+ * on first request and caching it to Storage + the row. Returns the public URL,
+ * or null when there is nothing to narrate / synthesis fails. The narration text
+ * is computed server-side from the scene payload (never trusted from the client).
+ *
+ * This lets the whole course speak without a giant pre-generation batch — the
+ * cache fills as students play, and a later batch pass can warm it.
+ */
+export async function getSceneAudio(elementId: string): Promise<{ url: string | null }> {
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return { url: null }
+
+    const admin = createAdminClient()
+    const { data: row } = await admin
+      .from('content_library_elements')
+      .select('id, course_id, scene_type, scene_data, body, audio_url')
+      .eq('id', elementId)
+      .single()
+    if (!row) return { url: null }
+    if (row.audio_url) return { url: row.audio_url }
+
+    // The spoken script for this scene, by type (mirrors sceneNarration()).
+    const type = row.scene_type ?? 'reading'
+    const data = (row.scene_data && typeof row.scene_data === 'object'
+      ? (row.scene_data as Record<string, unknown>)
+      : {})
+    let raw = ''
+    if (type === 'slide' && typeof data.narration === 'string') raw = data.narration
+    else if (type === 'quiz' && typeof data.intro === 'string') raw = data.intro
+    else if ((type === 'interactive' || type === 'pbl') && typeof data.summary === 'string') raw = data.summary
+    else raw = row.body ?? ''
+
+    const { synthesizeSpeech, textToSpeechReady } = await import('@/lib/audio/tts')
+    const cleanText = textToSpeechReady(raw)
+    if (!cleanText) return { url: null }
+
+    const { audioBuffer } = await synthesizeSpeech({ text: cleanText })
+
+    const fileName = `${row.course_id}/${row.id}.mp3`
+    const { error: uploadError } = await admin.storage
+      .from('lesson-audio')
+      .upload(fileName, audioBuffer, { contentType: 'audio/mpeg', upsert: true })
+    if (uploadError) return { url: null }
+
+    const { data: pub } = admin.storage.from('lesson-audio').getPublicUrl(fileName)
+    const url = pub.publicUrl
+    const wordCount = cleanText.split(/\s+/).length
+    await admin
+      .from('content_library_elements')
+      .update({
+        audio_url: url,
+        audio_generated_at: new Date().toISOString(),
+        audio_duration_seconds: Math.round((wordCount / 150) * 60),
+      })
+      .eq('id', row.id)
+
+    return { url }
+  } catch (err) {
+    console.error('getSceneAudio failed:', err)
+    return { url: null }
+  }
+}
+
+/**
+ * Synthesize arbitrary lecturer text to speech (used for the on-stage classmate
+ * moment, where the lecturer answers aloud). Caches by content hash so the same
+ * line is only synthesized once. Returns null on failure (audio is optional).
+ */
+export async function synthesizeText(text: string): Promise<{ url: string | null }> {
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return { url: null }
+
+    const { synthesizeSpeech, textToSpeechReady } = await import('@/lib/audio/tts')
+    const clean = textToSpeechReady(text)
+    if (!clean) return { url: null }
+
+    const { createHash } = await import('crypto')
+    const hash = createHash('sha1').update(clean).digest('hex').slice(0, 24)
+    const fileName = `qa-audio/text/${hash}.mp3`
+
+    const admin = createAdminClient()
+    const { audioBuffer } = await synthesizeSpeech({ text: clean })
+    const { error } = await admin.storage
+      .from('lesson-audio')
+      .upload(fileName, audioBuffer, { contentType: 'audio/mpeg', upsert: true })
+    if (error) return { url: null }
+
+    const { data: pub } = admin.storage.from('lesson-audio').getPublicUrl(fileName)
+    return { url: pub.publicUrl }
+  } catch (err) {
+    console.error('synthesizeText failed:', err)
+    return { url: null }
+  }
+}
+
+/**
  * Ask a question of the AI lecturer. Cache-first; falls back to Haiku.
  */
 export async function askLecturer(opts: {

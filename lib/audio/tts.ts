@@ -32,19 +32,45 @@ export type SynthesizeOptions = {
   voiceName?: string
   languageCode?: string
   speakingRate?: number
-  pitch?: number
 }
 
-const DEFAULT_VOICE = 'en-US-Wavenet-D'
+// The lecturer's voice. Google "Chirp 3: HD" — the newest generative tier,
+// far more natural than Wavenet. Swap this single constant to change the voice
+// course-wide (audition others: Kore, Orus, Aoede, Puck, Algenib …).
+// NOTE: Chirp 3 HD voices do NOT support SSML or `pitch`; plain text + rate only.
+export const LECTURER_VOICE = 'en-US-Chirp3-HD-Charon'
+
+const DEFAULT_VOICE = LECTURER_VOICE
 const DEFAULT_LANGUAGE = 'en-US'
 
-// Pricing for Wavenet voices: $16 per 1M characters
-const WAVENET_PRICE_PER_M_CHARS = 16
+// Chirp 3 HD is billed per character like other premium tiers; this is an
+// estimate for cost logging only (not billing). ~$30 per 1M characters.
+const PRICE_PER_M_CHARS = 30
 
 export type SynthesizeResult = {
   audioBuffer: Buffer
   characterCount: number
   costCents: number
+}
+
+/**
+ * Normalize text for natural speech: spell out symbols a TTS engine reads badly
+ * (legal citations are full of "§"), strip markdown, and collapse whitespace.
+ * Used by every narration path so the spoken script never says "section-sign".
+ * The on-screen text is untouched — this only shapes what the voice says.
+ */
+export function textToSpeechReady(raw: string): string {
+  return (raw ?? '')
+    .replace(/§§/g, ' sections ')
+    .replace(/§/g, ' section ')
+    .replace(/¶¶/g, ' paragraphs ')
+    .replace(/¶/g, ' paragraph ')
+    .replace(/&/g, ' and ')
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1') // markdown links → their text
+    .replace(/[*_`#>]/g, '') // markdown punctuation
+    .replace(/\n+/g, '. ') // newlines → sentence breaks
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 export async function synthesizeSpeech(opts: SynthesizeOptions): Promise<SynthesizeResult> {
@@ -58,7 +84,6 @@ export async function synthesizeSpeech(opts: SynthesizeOptions): Promise<Synthes
     audioConfig: {
       audioEncoding: 'MP3',
       speakingRate: opts.speakingRate ?? 1.0,
-      pitch: opts.pitch ?? 0,
     },
   })
 
@@ -68,7 +93,7 @@ export async function synthesizeSpeech(opts: SynthesizeOptions): Promise<Synthes
 
   const audioBuffer = Buffer.from(response.audioContent as Uint8Array)
   const characterCount = opts.text.length
-  const costCents = Math.round((characterCount / 1_000_000) * WAVENET_PRICE_PER_M_CHARS * 100 * 10000) / 10000
+  const costCents = Math.round((characterCount / 1_000_000) * PRICE_PER_M_CHARS * 100 * 10000) / 10000
 
   return { audioBuffer, characterCount, costCents }
 }

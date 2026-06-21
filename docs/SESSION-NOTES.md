@@ -1,3 +1,25 @@
+## 2026-06-21 - Experience/packaging phase: OpenMAIC-style classroom player built (branch `feat/classroom-experience`, NOT deployed)
+
+Re-studied OpenMAIC live (open.maic.chat) — its model is **4 scene types (Slides / Quiz / Interactive / PBL) = already our scene contract**, plus a full-bleed stage with edge docks, a floating transport, and chat-as-a-push (not overlay). Rebuilt the lesson player to match, in our brand. All local on branch `feat/classroom-experience`; **production is unchanged / not redeployed.**
+
+Shipped (`app/(dashboard)/lessons/[id]/lesson-player.tsx` + new `components/lesson/classroom/*`):
+- **Full-bleed classroom layout**: stage card floats on a warm paper canvas (`#F4F2ED`) with a ghosted scene number; thin top bar; **floating transport pill** (play/pause · prev/next · speed 1–2× · replay · mute); big play overlay; **lecturer dock** bottom-left; **narration bubble** center; **"YOUR CLASS" cast strip** bottom-right.
+- **Animated slides** (`slide-scene.tsx` takes a `revealed` prop): items reveal progressively, driven by narration audio progress (`revealed = ceil(currentTime/duration × itemCount)`) when listening, else a 700 ms timed stagger. No new data; upgrades to word-accurate free if we ever add TTS timepoints.
+- **Ask (Q&A) is a PUSH panel, not overlay** — body is a flex row `[stage | aside]`; the stage shrinks, never covered. Chat messages now carry avatars.
+- **VOICE — Google Chirp 3 HD** (the new generative tier) via the **existing GCP account, NOT ElevenLabs**. `tts.ts` default `LECTURER_VOICE = en-US-Chirp3-HD-Charon` (30 voices available; swap the one constant). **On-demand synthesis**: `getSceneAudio(elementId)` synthesizes a scene's narration on first play, caches to Storage (`lesson-audio/{courseId}/{elementId}.mp3`) + sets `audio_url` — **the whole course self-warms, no batch needed**. `synthesizeText(text)` for arbitrary lecturer lines (cached by sha1 hash). Player resolves via a ref-cache + in-flight dedup (`resolveSceneAudio`). Verified a real 36.5 s Chirp MP3 playing.
+- **"§" fix**: § was **clean section signs** (210, legit legal citations like "18 U.S.C. § 1956") rendering fine — the **VOICE** was reading the symbol. `textToSpeechReady()` in `tts.ts` spells out `§ → "section"`, `§§ → "sections"`, `¶`, `&` — **spoken text only; on-screen citations untouched**. Centralized; used by `getSceneAudio` + `pregenerate`. Nulled the 3 already-synthesized CAMS scenes' `audio_url` so they re-voice.
+- **Avatars — DiceBear "personas"** (`@dicebear/core` + `@dicebear/collection`, both **PINNED to 9.4.2** — collection 9 wants core `^9`; default install pulled core 10 = peer mismatch). `avatar.tsx` `<Avatar seed size bg/>`; lecturer (seed `Professor Enso`), 6 classmates (by name), user (`You`). **Ripon thinks they're "bad" but OK for now — swap to Higgsfield later in `avatar.tsx` (single source).**
+- **Suggested questions**: `suggestedQuestions(scene)` in `scenes.ts` → scene-type-specific starter chips (2 on stage under the narration, 3 in the Ask empty state). Click → opens Ask + submits. Teaches users *how* to ask.
+- **Cast-on-stage** (`classmate-moment.tsx`): when `checkClassmateGap` fires, instead of routing to the Ask panel the peer's avatar **highlights in the strip** and a card **rises from the class** with their question + hand badge; after 1.4 s the **lecturer answers (text + voiced** via `synthesizeText`). Continue/✕/navigate dismisses. Still kept in the Ask transcript as history.
+
+Gotchas / process:
+- **`pnpm dev` launched via `(pnpm dev &)` inside a Bash wrapper DIES when the wrapper command completes** (detached child killed). `ERR_CONNECTION_REFUSED` on navigate = server died; just relaunch.
+- **Chirp 3 HD**: `audioConfig` must NOT include `pitch` (errors); MP3 + `speakingRate` only; **plain text, no SSML**.
+- **Verifying gated UI**: the classmate moment fires only on a real evidenced gap (mastery < 0.45 + observation > 0, once/session). To screenshot it, temporarily seed the `useState` initial value with dummy data, capture, then **revert to `null`** (don't ship the seed).
+- Scratch PNGs + `tmp-*` now gitignored (`/*.png`, `/tmp-*`).
+
+NOT done: deploy (still on branch); per-classmate voices; a scrubber / chapter ticks; interactive + PBL scene renderers; the National Frameworks re-scope (pending Ripon's write-up). **Next: make classmates chime in more often** (keep the grounded gap-question as priority, add a periodic engaging question so the room feels alive).
+
 ## 2026-06-20 - Module 6 question-only fidelity exact current-turn rerun: no delta
 
 - Re-read the literal user-pasted `national-frameworks-in-depth` assessment under the exact answer-key / factual-fidelity brief after reloading the required project-memory chain.

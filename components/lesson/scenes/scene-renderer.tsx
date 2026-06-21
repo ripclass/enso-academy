@@ -13,15 +13,18 @@ import { PlaceholderScene } from './placeholder-scene'
 export function SceneRenderer({
   scene,
   onQuizAnswer,
+  revealed,
 }: {
   scene: Scene
   onQuizAnswer?: (question: QuizQuestion, selectedOptionId: string, correct: boolean) => void
+  /** Progressive reveal count for slide scenes (driven by narration progress). */
+  revealed?: number
 }) {
   switch (scene.sceneType) {
     case 'reading':
       return <ReadingScene title={scene.title} data={scene.data} />
     case 'slide':
-      return <SlideScene data={scene.data} />
+      return <SlideScene data={scene.data} revealed={revealed} />
     case 'quiz':
       return <QuizScene data={scene.data} onAnswer={onQuizAnswer} />
     case 'interactive':
