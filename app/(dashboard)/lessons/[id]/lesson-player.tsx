@@ -57,6 +57,12 @@ const SCENE_LABEL: Record<SceneType, string> = {
 
 const SPEEDS = [1, 1.25, 1.5, 2]
 
+// Classmate cadence: a hard cap per session, a cooldown of N scenes between
+// fires, and the chance of an ambient (non-gap) question on an eligible scene.
+const MAX_CLASSMATE_FIRES = 4
+const CLASSMATE_COOLDOWN_SCENES = 2
+const AMBIENT_CLASSMATE_CHANCE = 0.6
+
 // The classroom's peer cast — presence-only for now (a later pass wires them to
 // speak on stage). The lecturer is separate (LecturerDock).
 const CAST: CastMember[] = [
@@ -123,9 +129,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     inflightAudioRef.current[scene.id] = p
     return p
   }
-  // The classmate fires at most once per session; this guards the client side
-  // (the checkClassmateGap action also enforces the cap server-side).
-  const classmateFired = useRef(false)
+  // Classmate cadence guards (client side; the action also enforces the cap).
+  const classmateCount = useRef(0)
+  const lastClassmateIndex = useRef(-10)
   const [classmatePending, setClassmatePending] = useState(false)
 
   const currentScene = scenes[currentIndex]
@@ -226,14 +232,20 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // After the student advances past a scene, give the classmate a chance to
   // raise a hand about a concept that scene taught and the student is weak on.
   async function runClassmateCheck(taughtIndex: number) {
-    if (classmateFired.current) return
+    if (classmateCount.current >= MAX_CLASSMATE_FIRES) return
+    if (taughtIndex - lastClassmateIndex.current < CLASSMATE_COOLDOWN_SCENES) return
     const taught = scenes[taughtIndex]
     if (!taught) return
     const taughtConceptTags = [...new Set([...taught.conceptTags, ...taught.teachesConcepts])]
     if (taughtConceptTags.length === 0) return
 
+    // A grounded gap always fires; otherwise allow an ambient on-topic question
+    // most of the time, so the class feels alive without piping up every scene.
+    const allowAmbient = Math.random() < AMBIENT_CLASSMATE_CHANCE
     const { lessonContext } = buildContext(taughtIndex)
-    const askedQuestions = messages.filter((m) => m.role === 'student').map((m) => m.content)
+    const askedQuestions = messages
+      .filter((m) => m.role === 'student' || m.role === 'classmate')
+      .map((m) => m.content)
 
     setClassmatePending(true)
     try {
@@ -244,9 +256,11 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         taughtConceptTags,
         lessonContext,
         askedQuestions,
+        allowAmbient,
       })
       if (result.fired && result.question && result.answer) {
-        classmateFired.current = true
+        classmateCount.current += 1
+        lastClassmateIndex.current = taughtIndex
         const who = result.classmateName ?? CAST[0].name
         const question = result.question
         const answer = result.answer
