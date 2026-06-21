@@ -394,6 +394,10 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
 
   async function submitQuestion(question: string) {
     if (!question || askingQuestion) return
+    // Asking pauses the lecture so the lecturer's voice doesn't talk over you.
+    // The answer comes back as TEXT (voice stays reserved for teaching); press
+    // play to resume the lecture right where it left off.
+    audioRef.current?.pause()
     setMessages((prev) => [...prev, { role: 'student', content: question }])
     setAskingQuestion(true)
 
@@ -407,26 +411,13 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         question,
         lessonContext,
         conceptTags,
-        listenMode,
+        listenMode: false, // Q&A is text-only; the lecturer's voice stays with the lecture
       })
 
       setMessages((prev) => [
         ...prev,
-        {
-          role: 'lecturer',
-          content: result.answer,
-          fromCache: result.fromCache,
-          audioUrl: result.audioUrl,
-        },
+        { role: 'lecturer', content: result.answer, fromCache: result.fromCache },
       ])
-
-      // Speak the lecturer's answer if listen mode produced audio.
-      if (result.audioUrl && audioRef.current) {
-        audioSource.current = 'qa'
-        audioRef.current.src = result.audioUrl
-        audioRef.current.playbackRate = playbackRate
-        audioRef.current.play().catch(() => {})
-      }
     } catch (err) {
       toast.error('Could not reach the lecturer. Try again.')
       console.error(err)
