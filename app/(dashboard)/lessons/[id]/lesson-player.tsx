@@ -4,13 +4,16 @@ import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
-import { Volume2, VolumeX, Hand, ArrowLeft, ArrowRight, CornerDownLeft } from 'lucide-react'
-import { Logo } from '@/components/brand/logo'
-import { Mascot } from '@/components/brand/mascot'
-import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference } from '@/lib/lesson/actions'
+import { Hand, CornerDownLeft, ArrowLeft, MessageSquare, X, Play } from 'lucide-react'
+import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
-import { sceneContext, type Scene, type SceneType, type QuizQuestion } from '@/lib/lesson/scenes'
+import { LecturerDock, NarrationBubble, LecturerAvatar, LECTURER_SEED } from '@/components/lesson/classroom/lecturer-presence'
+import { TransportBar } from '@/components/lesson/classroom/transport-bar'
+import { CastStrip, type CastMember } from '@/components/lesson/classroom/cast-strip'
+import { ClassmateMoment } from '@/components/lesson/classroom/classmate-moment'
+import { Avatar } from '@/components/lesson/classroom/avatar'
+import { sceneContext, sceneNarration, suggestedQuestions, type Scene, type SceneType, type QuizQuestion } from '@/lib/lesson/scenes'
 import { toast } from 'sonner'
 
 type Lesson = {
@@ -52,6 +55,25 @@ const SCENE_LABEL: Record<SceneType, string> = {
   pbl: 'Project',
 }
 
+const SPEEDS = [1, 1.25, 1.5, 2]
+
+// Classmate cadence: a hard cap per session, a cooldown of N scenes between
+// fires, and the chance of an ambient (non-gap) question on an eligible scene.
+const MAX_CLASSMATE_FIRES = 4
+const CLASSMATE_COOLDOWN_SCENES = 2
+const AMBIENT_CLASSMATE_CHANCE = 0.6
+
+// The classroom's peer cast — presence-only for now (a later pass wires them to
+// speak on stage). The lecturer is separate (LecturerDock).
+const CAST: CastMember[] = [
+  { name: 'Priya' },
+  { name: 'Marcus' },
+  { name: 'Aisha' },
+  { name: 'Daniel' },
+  { name: 'Lena' },
+  { name: 'Omar' },
+]
+
 export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, lecturerOpening }: Props) {
   const router = useRouter()
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -63,43 +85,129 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   const [completing, setCompleting] = useState(false)
   const [listenMode, setListenMode] = useState(false)
   const [audioStatus, setAudioStatus] = useState<AudioStatus>('idle')
+  const [playbackRate, setPlaybackRate] = useState(1)
+  const [hasStarted, setHasStarted] = useState(false)
+  const [chatOpen, setChatOpen] = useState(false)
+  const [chatUnread, setChatUnread] = useState(false)
+  const [speakingClassmate, setSpeakingClassmate] = useState<string | null>(null)
+  // The on-stage classmate moment (a peer raises a hand, the lecturer answers).
+  const [classmateMoment, setClassmateMoment] = useState<
+    { name: string; question: string; answer: string } | null
+  >(null)
+  const [momentPhase, setMomentPhase] = useState<'question' | 'answer'>('question')
+  // How many slide items are revealed so far — driven by narration progress
+  // when listening, or a gentle timed stagger when reading silently.
+  const [revealedCount, setRevealedCount] = useState(1)
   const conversationRef = useRef<HTMLDivElement>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   // Tracks what the audio element is currently playing, so that a finished
   // Q&A answer does not auto-advance the lesson like a finished narration does.
   const audioSource = useRef<'scene' | 'qa'>('scene')
-  // The classmate fires at most once per session; this guards the client side
-  // (the checkClassmateGap action also enforces the cap server-side).
-  const classmateFired = useRef(false)
+  // Resolved narration URLs per scene, seeded from any pre-generated audio.
+  // Scenes without pre-gen are synthesized on demand and cached here + server-side.
+  const audioUrlsRef = useRef<Record<string, string>>(
+    Object.fromEntries(scenes.filter((s) => s.audioUrl).map((s) => [s.id, s.audioUrl as string])),
+  )
+  const inflightAudioRef = useRef<Record<string, Promise<string | null>>>({})
+
+  // Return the narration URL for a scene, synthesizing it on first need.
+  async function resolveSceneAudio(scene: Scene): Promise<string | null> {
+    const cached = audioUrlsRef.current[scene.id]
+    if (cached) return cached
+    if (scene.id in inflightAudioRef.current) return inflightAudioRef.current[scene.id]
+    const p = getSceneAudio(scene.id)
+      .then((res) => {
+        const url = res?.url ?? null
+        if (url) audioUrlsRef.current[scene.id] = url
+        delete inflightAudioRef.current[scene.id]
+        return url
+      })
+      .catch(() => {
+        delete inflightAudioRef.current[scene.id]
+        return null
+      })
+    inflightAudioRef.current[scene.id] = p
+    return p
+  }
+  // Classmate cadence guards (client side; the action also enforces the cap).
+  const classmateCount = useRef(0)
+  const lastClassmateIndex = useRef(-10)
   const [classmatePending, setClassmatePending] = useState(false)
 
   const currentScene = scenes[currentIndex]
   const isLast = currentIndex === scenes.length - 1
+  const slideItemCount =
+    currentScene?.sceneType === 'slide' ? currentScene.data.items?.length ?? 1 : 0
+  const isPlaying = audioStatus === 'playing'
+  const speaking = isPlaying && audioSource.current === 'scene'
+  const showPlayOverlay =
+    !hasStarted &&
+    !!currentScene &&
+    (currentScene.sceneType === 'slide' || currentScene.sceneType === 'reading')
+  const suggestions = currentScene ? suggestedQuestions(currentScene) : []
 
   // Auto-scroll the conversation when new messages arrive
   useEffect(() => {
     if (conversationRef.current) {
       conversationRef.current.scrollTop = conversationRef.current.scrollHeight
     }
-  }, [messages])
+  }, [messages, chatOpen])
 
-  // Listen mode: load + play the current scene's narration when the scene
-  // changes, or when listen mode is switched on.
+  // Listen mode: resolve (synthesize if needed) + play the current scene's
+  // narration when the scene changes or listen mode is switched on.
   useEffect(() => {
     if (!listenMode) return
     const audio = audioRef.current
-    if (!audio) return
-    const url = currentScene?.audioUrl
-    if (!url) {
-      setAudioStatus('idle')
-      return
-    }
-    audioSource.current = 'scene'
-    audio.src = url
-    audio.play().catch((err) => {
-      console.error('Audio play failed:', err)
-      setAudioStatus('error')
+    const scene = currentScene
+    if (!audio || !scene) return
+    let cancelled = false
+    setAudioStatus('loading')
+    void resolveSceneAudio(scene).then((url) => {
+      if (cancelled) return // scene changed / unmounted while synthesizing
+      if (!url) {
+        setAudioStatus('idle')
+        return
+      }
+      audioSource.current = 'scene'
+      audio.src = url
+      audio.playbackRate = playbackRate
+      audio.play().catch((err) => {
+        // A play() superseded by a newer play/pause (rapid scene changes) is expected.
+        if (err?.name === 'AbortError') return
+        console.error('Audio play failed:', err)
+        setAudioStatus('error')
+      })
     })
+    return () => {
+      cancelled = true
+    }
+    // playbackRate intentionally excluded — a speed change must not restart audio.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex, listenMode])
+
+  // Keep the audio element's rate in sync with the chosen speed.
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.playbackRate = playbackRate
+  }, [playbackRate])
+
+  // Reset progressive reveal when the scene changes (first item shows at once).
+  useEffect(() => {
+    setRevealedCount(1)
+  }, [currentIndex])
+
+  // Silent stagger: when not listening (or this scene has no narration audio),
+  // reveal slide items on a gentle timer so the slide still builds in.
+  useEffect(() => {
+    if (!currentScene || currentScene.sceneType !== 'slide') return
+    if (listenMode) return // narration audio drives the reveal when listening
+    const n = currentScene.data.items?.length ?? 1
+    let k = 1
+    const id = setInterval(() => {
+      k += 1
+      setRevealedCount((r) => Math.max(r, k))
+      if (k >= n) clearInterval(id)
+    }, 700)
+    return () => clearInterval(id)
   }, [currentIndex, listenMode, currentScene])
 
   // Persist the Listen-mode preference (debounced; non-critical).
@@ -124,14 +232,20 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // After the student advances past a scene, give the classmate a chance to
   // raise a hand about a concept that scene taught and the student is weak on.
   async function runClassmateCheck(taughtIndex: number) {
-    if (classmateFired.current) return
+    if (classmateCount.current >= MAX_CLASSMATE_FIRES) return
+    if (taughtIndex - lastClassmateIndex.current < CLASSMATE_COOLDOWN_SCENES) return
     const taught = scenes[taughtIndex]
     if (!taught) return
     const taughtConceptTags = [...new Set([...taught.conceptTags, ...taught.teachesConcepts])]
     if (taughtConceptTags.length === 0) return
 
+    // A grounded gap always fires; otherwise allow an ambient on-topic question
+    // most of the time, so the class feels alive without piping up every scene.
+    const allowAmbient = Math.random() < AMBIENT_CLASSMATE_CHANCE
     const { lessonContext } = buildContext(taughtIndex)
-    const askedQuestions = messages.filter((m) => m.role === 'student').map((m) => m.content)
+    const askedQuestions = messages
+      .filter((m) => m.role === 'student' || m.role === 'classmate')
+      .map((m) => m.content)
 
     setClassmatePending(true)
     try {
@@ -142,14 +256,39 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         taughtConceptTags,
         lessonContext,
         askedQuestions,
+        allowAmbient,
       })
       if (result.fired && result.question && result.answer) {
-        classmateFired.current = true
+        classmateCount.current += 1
+        lastClassmateIndex.current = taughtIndex
+        const who = result.classmateName ?? CAST[0].name
+        const question = result.question
+        const answer = result.answer
+        // Keep the exchange in the Ask transcript as history.
         setMessages((prev) => [
           ...prev,
-          { role: 'classmate', content: result.question!, classmateName: result.classmateName },
-          { role: 'lecturer', content: result.answer! },
+          { role: 'classmate', content: question, classmateName: who },
+          { role: 'lecturer', content: answer },
         ])
+        // Bring it on stage: pause narration, the peer's avatar lifts and asks,
+        // then the lecturer answers aloud.
+        audioRef.current?.pause()
+        setSpeakingClassmate(who)
+        setMomentPhase('question')
+        setClassmateMoment({ name: who, question, answer })
+        window.setTimeout(() => {
+          setMomentPhase('answer')
+          if (listenMode) {
+            void synthesizeText(answer).then(({ url }) => {
+              const audio = audioRef.current
+              if (!url || !audio) return
+              audioSource.current = 'qa'
+              audio.src = url
+              audio.playbackRate = playbackRate
+              audio.play().catch(() => {})
+            })
+          }
+        }, 1400)
       }
     } catch (err) {
       console.error(err)
@@ -158,9 +297,17 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     }
   }
 
+  function dismissMoment() {
+    setClassmateMoment(null)
+    setMomentPhase('question')
+    setSpeakingClassmate(null)
+    if (audioSource.current === 'qa') audioRef.current?.pause()
+  }
+
   function goNext() {
     if (currentIndex < scenes.length - 1) {
       const taughtIndex = currentIndex
+      dismissMoment()
       setCurrentIndex(currentIndex + 1)
       void runClassmateCheck(taughtIndex)
     }
@@ -168,16 +315,57 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
 
   function goPrev() {
     if (currentIndex > 0) {
+      dismissMoment()
       setCurrentIndex(currentIndex - 1)
     }
   }
 
-  function toggleListenMode() {
-    const newMode = !listenMode
-    setListenMode(newMode)
-    if (!newMode && audioRef.current) {
-      audioRef.current.pause()
+  // Play/pause the narration. If the lesson is muted (manual reading), pressing
+  // play turns narration on — the listen effect then plays the current scene.
+  function handlePlayPause() {
+    setHasStarted(true)
+    if (!listenMode) {
+      setListenMode(true)
+      return
     }
+    const audio = audioRef.current
+    if (!audio) return
+    if (audio.paused) {
+      if (audio.ended) audio.currentTime = 0
+      audio.play().catch(() => {})
+    } else {
+      audio.pause()
+    }
+  }
+
+  // Restart the current scene's narration (and its reveal) from the top.
+  function handleReplay() {
+    setRevealedCount(1)
+    if (!currentScene) return
+    if (!listenMode) {
+      setListenMode(true) // the listen effect resolves + plays from the start
+      return
+    }
+    const audio = audioRef.current
+    if (!audio) return
+    void resolveSceneAudio(currentScene).then((url) => {
+      if (!url) return
+      audioSource.current = 'scene'
+      audio.src = url
+      audio.currentTime = 0
+      audio.playbackRate = playbackRate
+      audio.play().catch(() => {})
+    })
+  }
+
+  function cycleSpeed() {
+    const next = SPEEDS[(SPEEDS.indexOf(playbackRate) + 1) % SPEEDS.length]
+    setPlaybackRate(next)
+  }
+
+  function openChat() {
+    setChatOpen(true)
+    setChatUnread(false)
   }
 
   // A quiz-scene answer feeds the student knowledge model (same model the mock
@@ -190,12 +378,26 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     }).catch(() => {})
   }
 
-  async function handleAskQuestion(e: React.FormEvent) {
+  function handleAskQuestion(e: React.FormEvent) {
     e.preventDefault()
-    if (!questionInput.trim() || askingQuestion) return
-
     const question = questionInput.trim()
+    if (!question || askingQuestion) return
     setQuestionInput('')
+    void submitQuestion(question)
+  }
+
+  // Ask a suggested question — opens the panel and submits it.
+  function askSuggested(question: string) {
+    openChat()
+    void submitQuestion(question)
+  }
+
+  async function submitQuestion(question: string) {
+    if (!question || askingQuestion) return
+    // Asking pauses the lecture so the lecturer's voice doesn't talk over you.
+    // The answer comes back as TEXT (voice stays reserved for teaching); press
+    // play to resume the lecture right where it left off.
+    audioRef.current?.pause()
     setMessages((prev) => [...prev, { role: 'student', content: question }])
     setAskingQuestion(true)
 
@@ -209,25 +411,13 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         question,
         lessonContext,
         conceptTags,
-        listenMode,
+        listenMode: false, // Q&A is text-only; the lecturer's voice stays with the lecture
       })
 
       setMessages((prev) => [
         ...prev,
-        {
-          role: 'lecturer',
-          content: result.answer,
-          fromCache: result.fromCache,
-          audioUrl: result.audioUrl,
-        },
+        { role: 'lecturer', content: result.answer, fromCache: result.fromCache },
       ])
-
-      // Speak the lecturer's answer if listen mode produced audio.
-      if (result.audioUrl && audioRef.current) {
-        audioSource.current = 'qa'
-        audioRef.current.src = result.audioUrl
-        audioRef.current.play().catch(() => {})
-      }
     } catch (err) {
       toast.error('Could not reach the lecturer. Try again.')
       console.error(err)
@@ -249,27 +439,24 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     }
   }
 
-  const audioStatusLabel: Record<AudioStatus, string> = {
-    idle: 'Ready',
-    loading: 'Loading audio…',
-    playing: 'Playing',
-    paused: 'Paused',
-    ended: 'Finished',
-    error: 'Audio unavailable for this section',
-  }
-
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50">
+    <div className="flex h-screen flex-col bg-[#F4F2ED]">
       {/* Hidden audio element — drives both narration and Q&A playback. */}
       <audio
         ref={audioRef}
         onPlay={() => setAudioStatus('playing')}
         onPlaying={() => setAudioStatus('playing')}
         onTimeUpdate={() => {
-          // Catch-all: once playback is actually progressing, the status is
-          // 'playing' — reliable even if a discrete play/playing event is missed.
-          if (audioRef.current && !audioRef.current.paused) {
-            setAudioStatus((s) => (s === 'playing' ? s : 'playing'))
+          const audio = audioRef.current
+          if (!audio) return
+          if (!audio.paused) setAudioStatus((s) => (s === 'playing' ? s : 'playing'))
+          // Progressive slide reveal, paced to the actual narration length.
+          if (audioSource.current === 'scene' && slideItemCount > 0 && audio.duration > 0) {
+            const k = Math.min(
+              slideItemCount,
+              Math.max(1, Math.ceil((audio.currentTime / audio.duration) * slideItemCount)),
+            )
+            setRevealedCount((r) => Math.max(r, k))
           }
         }}
         onPause={() => setAudioStatus('paused')}
@@ -277,146 +464,230 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
           setAudioStatus('ended')
           // Auto-advance only when narration (not a Q&A answer) finishes.
           if (audioSource.current === 'scene' && listenMode && currentIndex < scenes.length - 1) {
-            setCurrentIndex(currentIndex + 1)
+            goNext()
           }
         }}
         onError={() => setAudioStatus('error')}
         onLoadStart={() => setAudioStatus('loading')}
       />
 
-      {/* Header */}
-      <header className="border-b border-neutral-200 bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-5 min-w-0">
-            <Link href="/dashboard" aria-label="Enso Academy">
-              <Logo variant="mark-only" />
-            </Link>
-            <div className="text-sm text-neutral-500 truncate">
-              <Link href={`/courses/${courseSlug}`} className="font-medium hover:text-primary transition-colors">
-                {lesson.module.course.short_name}
-              </Link>
-              <span className="mx-2 text-neutral-300">/</span>
-              {lesson.module.name}
+      {/* Top bar */}
+      <header className="flex shrink-0 items-center justify-between gap-4 border-b border-neutral-200 bg-white/80 px-5 py-2.5 backdrop-blur">
+        <div className="flex min-w-0 items-center gap-3">
+          <Link
+            href={`/courses/${courseSlug}`}
+            aria-label="Exit lesson"
+            className="flex h-8 w-8 items-center justify-center rounded-md text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-primary"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </Link>
+          <div className="min-w-0">
+            <div className="font-mono text-2xs font-semibold uppercase tracking-widest text-neutral-400">
+              {lesson.module.course.short_name} · {SCENE_LABEL[currentScene?.sceneType ?? 'reading']}
+            </div>
+            <div className="truncate text-sm font-semibold text-neutral-900">
+              {currentScene?.title ?? lesson.name}
             </div>
           </div>
-          <div className="flex items-center gap-4 shrink-0">
-            <button
-              type="button"
-              onClick={toggleListenMode}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-                listenMode
-                  ? 'bg-primary text-white'
-                  : 'border border-neutral-200 text-neutral-600 hover:text-primary'
-              }`}
-            >
-              {listenMode ? <Volume2 className="h-3.5 w-3.5" /> : <VolumeX className="h-3.5 w-3.5" />}
-              {listenMode ? 'Listen on' : 'Listen off'}
-            </button>
-            <Link
-              href={`/courses/${courseSlug}`}
-              className="text-sm font-medium text-neutral-500 hover:text-primary transition-colors"
-            >
-              Exit
-            </Link>
-          </div>
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <span className="font-mono text-2xs tabular-nums text-neutral-400">
+            {currentIndex + 1} / {scenes.length}
+          </span>
+          <button
+            type="button"
+            onClick={() => (chatOpen ? setChatOpen(false) : openChat())}
+            aria-label="Toggle lecturer chat"
+            className={`relative flex h-8 items-center gap-1.5 rounded-md border px-2.5 text-xs font-semibold transition-colors ${
+              chatOpen
+                ? 'border-primary bg-primary text-white'
+                : 'border-neutral-200 text-neutral-600 hover:text-primary'
+            }`}
+          >
+            <MessageSquare className="h-3.5 w-3.5" />
+            Ask
+            {chatUnread && !chatOpen && (
+              <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full border border-white bg-accent" />
+            )}
+          </button>
         </div>
       </header>
 
-      <div className="flex-1 max-w-7xl mx-auto px-6 py-8 w-full grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8">
-        {/* Lesson content */}
-        <div className="space-y-6">
-          <div>
-            <span className="text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
-              Lesson
-            </span>
-            <h1 className="mt-1 text-2xl font-bold tracking-tight text-neutral-900">{lesson.name}</h1>
-            {lesson.description && (
-              <p className="mt-1.5 text-sm text-neutral-500">{lesson.description}</p>
-            )}
-          </div>
+      {/* Body: stage + footer on the left, chat pushes in on the right */}
+      <div className="flex min-h-0 flex-1">
+        <div className="flex min-w-0 flex-1 flex-col">
+          {/* Stage */}
+          <main className="relative flex-1 overflow-hidden">
+            <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8">
+              <div className="relative flex max-h-full w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-xl">
+                {/* Ghosted scene number */}
+                <span className="pointer-events-none absolute right-6 top-2 select-none font-mono text-6xl font-bold tracking-tight text-neutral-100">
+                  {String(currentIndex + 1).padStart(2, '0')}
+                </span>
 
-          <div className="rounded-lg border border-neutral-200 bg-white">
-            <div className="flex items-center justify-between border-b border-neutral-100 px-6 py-3">
-              <span className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono">
-                {currentScene ? SCENE_LABEL[currentScene.sceneType] : ''}
-              </span>
-              <span className="text-2xs font-mono text-neutral-400 tabular-nums">
-                {currentIndex + 1} / {scenes.length}
-              </span>
-            </div>
-            <div className="p-6 md:p-8 space-y-4">
-              {currentScene ? (
-                <SceneRenderer scene={currentScene} onQuizAnswer={handleQuizAnswer} />
-              ) : (
-                <p className="text-sm text-neutral-500">This lesson has no content yet.</p>
-              )}
-
-              {listenMode && (
-                <div className="flex items-center gap-3 text-2xs font-mono text-neutral-400 pt-3 border-t border-neutral-100">
-                  <span>{audioStatusLabel[audioStatus]}</span>
-                  {audioStatus === 'playing' && (
-                    <button type="button" onClick={() => audioRef.current?.pause()} className="hover:text-primary">
-                      Pause
-                    </button>
-                  )}
-                  {audioStatus === 'paused' && (
-                    <button type="button" onClick={() => audioRef.current?.play()} className="hover:text-primary">
-                      Resume
-                    </button>
+                {/* Scene content */}
+                <div className="flex-1 overflow-y-auto px-8 py-10 md:px-14 md:py-12">
+                  {currentScene ? (
+                    <div
+                      key={currentScene.id}
+                      className="animate-in fade-in slide-in-from-bottom-2 duration-500"
+                    >
+                      <SceneRenderer
+                        scene={currentScene}
+                        onQuizAnswer={handleQuizAnswer}
+                        revealed={currentScene.sceneType === 'slide' ? revealedCount : undefined}
+                      />
+                    </div>
+                  ) : (
+                    <p className="text-sm text-neutral-500">This lesson has no content yet.</p>
                   )}
                 </div>
-              )}
-            </div>
-          </div>
 
-          <div className="flex items-center justify-between">
-            <button
-              type="button"
-              onClick={goPrev}
-              disabled={currentIndex === 0}
-              className="inline-flex h-10 items-center gap-1.5 rounded-md border border-neutral-200 bg-white px-4 text-sm font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              <ArrowLeft className="h-4 w-4" /> Previous
-            </button>
-            {isLast ? (
-              <button
-                type="button"
-                onClick={handleComplete}
-                disabled={completing}
-                className="inline-flex h-10 items-center rounded-md bg-primary px-5 text-sm font-semibold text-white hover:bg-primary-hover transition-colors disabled:opacity-60"
-              >
-                {completing ? 'Saving…' : 'Complete lesson'}
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={goNext}
-                className="inline-flex h-10 items-center gap-1.5 rounded-md bg-primary px-5 text-sm font-semibold text-white hover:bg-primary-hover transition-colors"
-              >
-                Next <ArrowRight className="h-4 w-4" />
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Lecturer Q&A panel */}
-        <div className="lg:sticky lg:top-8 self-start">
-          <div className="rounded-lg border border-neutral-200 bg-white flex flex-col h-[640px] overflow-hidden">
-            {/* Panel header — the Enso Guide */}
-            <div className="flex items-center gap-3 border-b border-neutral-200 px-5 py-4 shrink-0">
-              <Mascot variant="default" size={40} className="shrink-0" />
-              <div>
-                <h2 className="text-sm font-bold text-neutral-900">Enso Guide</h2>
-                <p className="text-2xs font-mono text-neutral-400">Personalized AI lecturer</p>
+                {/* Big play overlay — the invitation to begin */}
+                {showPlayOverlay && (
+                  <button
+                    type="button"
+                    onClick={handlePlayPause}
+                    aria-label="Start the lesson"
+                    className="group absolute inset-0 flex items-center justify-center rounded-2xl bg-white/40 backdrop-blur-[1px]"
+                  >
+                    <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-primary text-white shadow-lg transition-transform group-hover:scale-105">
+                      <Play className="ml-1 h-8 w-8" />
+                      <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-primary/20" />
+                    </span>
+                  </button>
+                )}
               </div>
             </div>
 
-            {/* Socratic transcript */}
-            <div ref={conversationRef} className="flex-1 overflow-y-auto p-5 space-y-5">
+            {/* On-stage classmate moment — a peer raises a hand from the class */}
+            {classmateMoment && (
+              <div className="pointer-events-none absolute inset-0 z-10 flex items-end justify-center p-6 pb-8">
+                <ClassmateMoment
+                  name={classmateMoment.name}
+                  question={classmateMoment.question}
+                  answer={classmateMoment.answer}
+                  phase={momentPhase}
+                  speaking={momentPhase === 'answer' && isPlaying}
+                  onDismiss={dismissMoment}
+                />
+              </div>
+            )}
+          </main>
+
+          {/* Bottom dock */}
+          <footer className="shrink-0 border-t border-neutral-200 bg-white/70 px-6 pb-5 pt-3 backdrop-blur">
+            {/* Floating transport */}
+            <div className="mb-3 flex justify-center">
+              <TransportBar
+                isPlaying={isPlaying}
+                onPlayPause={handlePlayPause}
+                onPrev={goPrev}
+                onNext={goNext}
+                onReplay={handleReplay}
+                canPrev={currentIndex > 0}
+                canNext={!isLast}
+                speed={playbackRate}
+                onCycleSpeed={cycleSpeed}
+                muted={!listenMode}
+                onToggleMute={() => setListenMode((m) => !m)}
+              />
+            </div>
+
+            {/* Dock row: lecturer · narration · cast */}
+            <div className="grid grid-cols-[auto_1fr_auto] items-center gap-6">
+              <LecturerDock speaking={speaking} thinking={askingQuestion} />
+
+              <div className="min-w-0 space-y-2">
+                <NarrationBubble
+                  narration={currentScene ? sceneNarration(currentScene) : ''}
+                  thinking={askingQuestion}
+                />
+                {suggestions.length > 0 && (
+                  <div className="flex flex-wrap items-center justify-center gap-1.5">
+                    <span className="font-mono text-2xs uppercase tracking-widest text-neutral-400">Ask</span>
+                    {suggestions.slice(0, 2).map((q) => (
+                      <button
+                        key={q}
+                        type="button"
+                        onClick={() => askSuggested(q)}
+                        className="rounded-full border border-neutral-200 bg-white px-2.5 py-1 text-2xs text-neutral-600 transition-colors hover:border-primary hover:text-primary"
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {isLast && (
+                  <div className="flex justify-center">
+                    <button
+                      type="button"
+                      onClick={handleComplete}
+                      disabled={completing}
+                      className="inline-flex h-9 items-center rounded-md bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
+                    >
+                      {completing ? 'Saving…' : 'Complete lesson'}
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex flex-col items-end gap-1.5">
+                <span className="font-mono text-2xs font-semibold uppercase tracking-widest text-neutral-400">
+                  Your class
+                </span>
+                <CastStrip
+                  members={CAST}
+                  activeName={classmateMoment ? classmateMoment.name : classmatePending ? speakingClassmate : null}
+                />
+              </div>
+            </div>
+          </footer>
+        </div>
+
+        {/* Q&A panel — pushes the stage, never overlaps it */}
+        {chatOpen && (
+          <aside className="flex w-full max-w-sm shrink-0 flex-col border-l border-neutral-200 bg-white animate-in slide-in-from-right duration-300">
+            <div className="flex shrink-0 items-center justify-between gap-3 border-b border-neutral-200 px-5 py-3.5">
+              <div className="flex items-center gap-3">
+                <LecturerAvatar size={36} />
+                <div>
+                  <h2 className="text-sm font-bold text-neutral-900">Enso Guide</h2>
+                  <p className="font-mono text-2xs text-neutral-400">Ask about this scene</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setChatOpen(false)}
+                aria-label="Close chat"
+                className="flex h-8 w-8 items-center justify-center rounded-md text-neutral-500 hover:bg-neutral-100 hover:text-primary"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div ref={conversationRef} className="flex-1 space-y-5 overflow-y-auto p-5">
               {messages.length === 0 ? (
-                <p className="text-sm text-neutral-400 text-center py-8">
-                  Ask anything about what you just read.
-                </p>
+                <div className="py-4">
+                  <p className="mb-3 text-center text-sm text-neutral-400">
+                    Ask anything about this scene — or start with:
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    {(suggestions.length > 0
+                      ? suggestions
+                      : ['Explain this more simply', 'Give me an example', 'How is this tested?']
+                    ).map((q) => (
+                      <button
+                        key={q}
+                        type="button"
+                        onClick={() => askSuggested(q)}
+                        className="rounded-lg border border-neutral-200 px-3 py-2 text-left text-sm text-neutral-700 transition-colors hover:border-primary hover:text-primary"
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               ) : (
                 messages.map((msg, i) => {
                   const isClassmate = msg.role === 'classmate'
@@ -433,12 +704,20 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                       ? 'text-primary'
                       : 'text-neutral-500'
                   return (
-                    <div key={i} className="space-y-1.5">
+                    <div key={i} className="flex gap-2.5">
+                      <div className="mt-0.5 h-7 w-7 shrink-0 overflow-hidden rounded-full border border-neutral-200 bg-white">
+                        {isLecturer ? (
+                          <Avatar seed={LECTURER_SEED} size={28} bg={['0F3D3E']} />
+                        ) : isClassmate ? (
+                          <Avatar seed={msg.classmateName ?? 'Classmate'} size={28} />
+                        ) : (
+                          <Avatar seed="You" size={28} />
+                        )}
+                      </div>
+                      <div className="min-w-0 flex-1 space-y-1.5">
                       <div className="flex items-center gap-1.5">
                         {isClassmate && <Hand className="h-3 w-3 text-accent" />}
-                        <span
-                          className={`text-2xs font-bold uppercase tracking-widest font-mono ${labelColor}`}
-                        >
+                        <span className={`font-mono text-2xs font-bold uppercase tracking-widest ${labelColor}`}>
                           {label}
                         </span>
                       </div>
@@ -448,7 +727,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                         </div>
                       ) : (
                         <p
-                          className={`text-sm leading-relaxed whitespace-pre-wrap ${
+                          className={`whitespace-pre-wrap text-sm leading-relaxed ${
                             isClassmate ? 'italic text-neutral-700' : 'text-neutral-800'
                           }`}
                         >
@@ -456,27 +735,27 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                         </p>
                       )}
                       {isLecturer && (msg.fromCache || msg.audioUrl) && (
-                        <div className="flex gap-2 text-2xs font-mono text-neutral-400">
+                        <div className="flex gap-2 font-mono text-2xs text-neutral-400">
                           {msg.fromCache && <span>cached</span>}
                           {msg.audioUrl && <span>spoken</span>}
                         </div>
                       )}
+                      </div>
                     </div>
                   )
                 })
               )}
               {askingQuestion && (
-                <p className="text-2xs font-mono text-neutral-400">Lecturer is thinking…</p>
+                <p className="font-mono text-2xs text-neutral-400">Lecturer is thinking…</p>
               )}
               {classmatePending && (
-                <p className="flex items-center gap-1.5 text-2xs font-mono text-accent">
+                <p className="flex items-center gap-1.5 font-mono text-2xs text-accent">
                   <Hand className="h-3 w-3" /> A classmate is raising their hand…
                 </p>
               )}
             </div>
 
-            {/* Input */}
-            <form onSubmit={handleAskQuestion} className="border-t border-neutral-200 p-3 shrink-0">
+            <form onSubmit={handleAskQuestion} className="shrink-0 border-t border-neutral-200 p-3">
               <div className="relative">
                 <input
                   type="text"
@@ -490,14 +769,14 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                   type="submit"
                   disabled={askingQuestion || !questionInput.trim()}
                   aria-label="Ask"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded bg-primary text-white hover:bg-primary-hover transition-colors disabled:opacity-40"
+                  className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded bg-primary text-white transition-colors hover:bg-primary-hover disabled:opacity-40"
                 >
                   <CornerDownLeft className="h-3.5 w-3.5" />
                 </button>
               </div>
             </form>
-          </div>
-        </div>
+          </aside>
+        )}
       </div>
     </div>
   )

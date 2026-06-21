@@ -12,9 +12,10 @@ import { callSonnet, callHaiku } from '@/lib/ai/routing'
 import { embed } from '@/lib/ai/embeddings'
 import { logAiCall } from '@/lib/ai/cost-tracking'
 
-// v1 fires conservatively — one classmate intervention per lesson session.
-// The framework flags classmate calibration as an open question; tune later.
-const MAX_INTERVENTIONS_PER_SESSION = 1
+// Hard cap per session (server-authoritative). The player paces fires with a
+// cooldown + an ambient-question chance; this is the ceiling so a long lesson
+// never turns into a chorus. Tune as classmate calibration settles.
+const MAX_INTERVENTIONS_PER_SESSION = 4
 // A concept counts as an evidenced gap below this mastery, given observations.
 const WEAK_THRESHOLD = 0.45
 
@@ -104,6 +105,8 @@ export async function checkClassmateGap(opts: {
   taughtConceptTags: string[]
   lessonContext: string
   askedQuestions: string[]
+  /** When no evidenced gap exists, allow an ambient on-topic question anyway. */
+  allowAmbient?: boolean
 }): Promise<CheckResult> {
   try {
     const supabase = await createClient()
@@ -119,17 +122,20 @@ export async function checkClassmateGap(opts: {
       .eq('session_id', opts.sessionId)
     if ((count ?? 0) >= MAX_INTERVENTIONS_PER_SESSION) return { fired: false }
 
-    // Gap detection — grounded in the student model. No evidence, no fire.
+    // Priority 1: a grounded gap (the moat). Priority 2: an ambient on-topic
+    // question to keep the room alive — only when the player allows it.
     const gap = await detectGap(user.id, opts.courseId, opts.taughtConceptTags, admin)
-    if (!gap) return { fired: false }
+    if (!gap && !opts.allowAmbient) return { fired: false }
 
     const classmate = await getOrCreateClassmate(opts.courseId, admin)
     if (!classmate) return { fired: false }
 
-    const concept = titleize(gap.conceptTag)
+    const concept = gap ? titleize(gap.conceptTag) : null
 
-    // Generate the classmate's question (Sonnet, in character).
-    const questionSystem = `You are ${classmate.name}, ${CLASSMATE_PERSONA}. You are sitting in a professional certification lesson alongside another student.
+    // Generate the classmate's question (Sonnet, in character) — a gap-clarifying
+    // question when there's an evidenced weakness, else a curious on-topic one.
+    const questionSystem = concept
+      ? `You are ${classmate.name}, ${CLASSMATE_PERSONA}. You are sitting in a professional certification lesson alongside another student.
 
 The lesson just covered the material below. The other student has shown weakness on the concept "${concept}" but has not asked about it. Raise your hand and ask ONE question — the question a slightly-unsure student genuinely would ask to get clarity on ${concept}.
 
@@ -137,7 +143,17 @@ Rules:
 - First person, natural, conversational — a real student, not a teacher.
 - ONE question, one or two sentences. Do not preface it with "I have a question".
 - It is fine to sound a little unsure. Never show off.
-- Do not ask anything the student has already asked (listed below).
+- Do not ask anything already asked (listed below).
+- Output only the question itself.`
+      : `You are ${classmate.name}, ${CLASSMATE_PERSONA}. You are sitting in a professional certification lesson alongside another student.
+
+The lesson just covered the material below. Raise your hand and ask ONE genuine, on-topic question that a curious, engaged student would naturally ask here — to clarify a nuance, connect it to real practice, or probe a "what about…". Make it specific to this material, not generic.
+
+Rules:
+- First person, natural, conversational — a real student, not a teacher.
+- ONE question, one or two sentences. Do not preface it with "I have a question".
+- Stay on the lesson's topic. Never show off.
+- Do not ask anything already asked (listed below).
 - Output only the question itself.`
     const questionUser = `LESSON MATERIAL:\n${opts.lessonContext}\n\nThe student has already asked:\n${
       opts.askedQuestions.length ? opts.askedQuestions.map((q) => `- ${q}`).join('\n') : '(nothing yet)'
@@ -202,7 +218,9 @@ ${opts.lessonContext}`
           question_text: question,
           answer_text: answer,
           origin: 'classmate_asked',
-          concept_tags: [gap.conceptTag],
+          concept_tags: gap
+            ? [gap.conceptTag]
+            : [...new Set(opts.taughtConceptTags.filter(Boolean))].slice(0, 3),
           answered_by_model: 'haiku',
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           embedding: embedding.vector as any,
@@ -221,8 +239,10 @@ ${opts.lessonContext}`
       session_id: opts.sessionId,
       lesson_id: opts.lessonId,
       classmate_id: classmate.id,
-      triggering_concept: gap.conceptTag,
-      gap_evidence: { mastery: gap.mastery, observations: gap.observations, weak_threshold: WEAK_THRESHOLD },
+      triggering_concept: gap ? gap.conceptTag : opts.taughtConceptTags.filter(Boolean)[0] ?? null,
+      gap_evidence: gap
+        ? { mastery: gap.mastery, observations: gap.observations, weak_threshold: WEAK_THRESHOLD }
+        : { mode: 'ambient' },
       question_asked: question,
       lecturer_response: answer,
       cached_qa_id: cachedQaId,

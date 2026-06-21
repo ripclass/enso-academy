@@ -1,3 +1,13 @@
+## 2026-06-21 - Experience/packaging: OpenMAIC-style classroom player (branch, not deployed)
+
+- Rebuilt the lesson player into a full-bleed **classroom**: floating stage + transport, lecturer dock, narration bubble, "YOUR CLASS" cast strip, **Ask as a push panel**. Animated slides reveal in sync with narration.
+- **Voice live via Google Chirp 3 HD** (existing GCP account, **not** ElevenLabs): on-demand per-scene synthesis that **self-caches** to Storage; default voice Charon (swap `LECTURER_VOICE`).
+- Fixed the **spoken "§"** (TTS read the symbol) → "section" in preprocessing only; on-screen legal citations unchanged.
+- Real character **avatars** (DiceBear personas) for lecturer / 6 classmates / user — placeholder until Higgsfield.
+- Per-scene **suggested-question chips** (stage + Ask panel) so users learn how to ask.
+- **Cast-on-stage**: a classmate raises a hand *on the stage* (card rises, lecturer answers + voiced) instead of routing to the Ask panel.
+- All on branch `feat/classroom-experience`; production unchanged. Next: make classmates chime in more often; then scrubber, interactive/PBL scenes, deploy.
+
 ## 2026-06-20 - Module 6 question-only fidelity exact current-turn rerun stays `AGREE`
 
 - Re-read the literal user-pasted / repo `generated/cams/assessment/national-frameworks-in-depth.json` bank under the exact cross-check-reviewer brief for answer-key correctness, second-correct-answer risk, distractor wrongness / rationale accuracy, explanation consistency, and question-level factual fidelity.

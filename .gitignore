@@ -68,5 +68,7 @@ generated/
 .firecrawl/
 /stripe-login.png
 /livecheck-landing.png
+/*.png
+/tmp-*
 .env.*.check
 .env.x

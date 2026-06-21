@@ -165,6 +165,34 @@ export function sceneNarration(scene: Scene): string {
   }
 }
 
+/**
+ * Up to three starter questions for a scene — shown as clickable chips so the
+ * student learns *how* to ask, not just that they can. Tuned to the scene type.
+ */
+export function suggestedQuestions(scene: Scene): string[] {
+  switch (scene.sceneType) {
+    case 'reading':
+      return ['Summarize the key point', 'Give me an example', 'How is this tested on the exam?']
+    case 'slide':
+      switch (scene.data.template) {
+        case 'comparison':
+          return ["What's the key difference?", 'When does each one apply?', 'Give me an example']
+        case 'definition':
+          return ['What does this mean in practice?', 'Give me an example', 'Why does this matter?']
+        case 'callout':
+          return ['Why does this matter?', 'How do I apply this?', 'Give me an example']
+        case 'key-points':
+        default:
+          return ['Explain this more simply', 'Give me a real example', 'How is this tested?']
+      }
+    case 'interactive':
+    case 'pbl':
+      return ['What should I do here?', 'Give me a hint']
+    case 'quiz':
+      return []
+  }
+}
+
 /** Plain-text context for a scene — fed to the lecturer Q&A and classmate prompts. */
 export function sceneContext(scene: Scene): string {
   const t = scene.title ? `${scene.title}\n` : ''

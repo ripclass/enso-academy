@@ -17,16 +17,17 @@ This is the single-glance handoff. Deeper detail: `CLAUDE.md` (milestone line), 
 ## ⛔ Operator action items (only Ripon can do)
 1. **ROTATE the live secret key** — `sk_live_` was pasted in chat (transcript-exposed). Stripe → Developers → API keys → roll → paste me the new one → I update Vercel. *(Also delete the unused `rk_live_` he created.)*
 2. **One real-card live test + refund** — buy a $14.99 simulation with a real card, confirm the attempt grants, refund from the dashboard. (Agent can't do a real charge; test card `4242` is test-mode only. Everything else on the live path is verified.)
-3. **Send the voice key** — `ELEVENLABS_API_KEY` (narration) and/or `OPENAI_API_KEY` (live tutor). **Unblocks the #1 next-phase item.**
+3. ~~Send the voice key~~ — **RESOLVED**: narration is live via **Google Chirp 3 HD** on the existing GCP account (no ElevenLabs needed). `ELEVENLABS_API_KEY` / `OPENAI_API_KEY` are now only optional upgrades (specific voices / live tutor), not blockers.
 4. **Send the full write-up** of product corrections (Ripon is compiling it).
 5. Deferred: counsel review of Terms/Privacy; 2 Supabase advisor WARNs (enable leaked-password protection; lesson-audio bucket listing).
 
 ## ▶ Next build phase — EXPERIENCE / PACKAGING (the priority)
-Content is mature; UI/UX + interactivity are thin. Studied **OpenMAIC** (open.maic.chat) — gap is pure packaging. We already beat them on content fidelity, the exam simulation, and the student model. Adopt their *show*:
+Content is mature; UI/UX + interactivity were thin. Studied **OpenMAIC** (open.maic.chat) — gap is pure packaging. **Tier 1 is now BUILT** on branch `feat/classroom-experience` (local, NOT deployed — production unchanged). See the 2026-06-21 SESSION-NOTES entry for the full technical map.
 
-- **Tier 1 (core):** (1) **Classroom playback** — lessons play scene-by-scene like a video with the lecturer's **voice** + play/pause/speed/auto + scene nav *(voice key unblocks)*; (2) **animated slides** (reveal in sync with narration, not static text); (3) **3–4 named classmates** asking questions in-flow.
-- **Tier 2:** (4) voice input (mic→STT); (5) interactive flashcards (flip + spaced repetition); (6) richer quizzes + **retake-integrity fix** *(real bug: answer options aren't shuffled per attempt → retakes are position-memorizable; fix = shuffle per attempt + pool variation)*; (7) 1–2 signature AML interactives (transaction-network map, drag-to-classify risk, screening match).
-- **Tier 3:** progress/mastery viz + "X concepts mastered" depth indicators; whiteboard mode; PPTX/offline export.
+- **Tier 1 — DONE (on branch):** the lesson player is now an OpenMAIC-style **classroom** — full-bleed floating stage, transport (play/pause/speed/replay), **animated slides** (reveal in sync with narration), **lecturer dock + narration bubble**, **"YOUR CLASS" 6-classmate strip**, **Ask as a push panel**. **Voice is LIVE via Google Chirp 3 HD** (existing GCP account — ElevenLabs NOT required; on-demand per-scene synthesis self-caches to Storage). Real **avatars** (DiceBear personas — placeholder until Higgsfield). Per-scene **suggested-question chips**. **Cast-on-stage** (a classmate raises a hand on the stage; the lecturer answers + voiced).
+- **Tier 1 — remaining:** make classmates **chime in more often** (in progress); a thin **scrubber / chapter ticks**; review the look ("avatars are bad" → Higgsfield later, single swap in `avatar.tsx`); then **merge + deploy**.
+- **Tier 2:** voice input (mic→STT); interactive flashcards; richer quizzes + **retake-integrity fix** *(real bug: options aren't shuffled per attempt → position-memorizable; fix = shuffle per attempt + pool variation)*; the real **interactive + PBL scene renderers** (transaction-network map, drag-to-classify, screening match — the genuinely interactive content).
+- **Tier 3:** progress/mastery viz; whiteboard mode; PPTX/offline export.
 
 ## Open product decisions
 - **National Frameworks re-scope** (pending Ripon's write-up): the **CAMS exam is ONE global exam — no country-specific questions.** So country deep-dives don't help anyone *pass*. Plan → global CAMS = FATF + US/EU/UK + "map it to any jurisdiction"; localized national add-ons (India/Pakistan/…) as a separate **practitioner** layer where BD is just one of many; keep BD-centric content in the **Enso Academy Bangladesh** track.
