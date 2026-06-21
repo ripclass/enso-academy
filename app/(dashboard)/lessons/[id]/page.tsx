@@ -4,6 +4,7 @@ import { redirect, notFound } from 'next/navigation'
 import { LessonPlayer } from './lesson-player'
 import { startLessonSession, getLessonContent } from '@/lib/lesson/actions'
 import { getLecturerOpening } from '@/lib/student-model/memory'
+import { getAvatarChoice } from '@/lib/settings'
 import { parseScene, type ContentRow } from '@/lib/lesson/scenes'
 
 type Props = { params: Promise<{ id: string }> }
@@ -54,6 +55,7 @@ export default async function LessonPage({ params }: Props) {
 
   // Continuity greeting from the lecturer's memory of this student (null if none)
   const lecturerOpening = await getLecturerOpening(user.id, courseId, (lesson as any).name)
+  const userAvatar = await getAvatarChoice()
 
   return (
     <LessonPlayer
@@ -63,6 +65,7 @@ export default async function LessonPage({ params }: Props) {
       courseId={courseId}
       courseSlug={courseSlug}
       lecturerOpening={lecturerOpening}
+      userAvatar={userAvatar}
     />
   )
 }
