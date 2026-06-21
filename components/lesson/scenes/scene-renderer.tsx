@@ -6,6 +6,7 @@ import { SlideScene } from './slide-scene'
 import { QuizScene } from './quiz-scene'
 import { PlaceholderScene } from './placeholder-scene'
 import { RiskClassify } from './interactives/risk-classify'
+import { RedFlagSpot } from './interactives/red-flag-spot'
 import { ProjectScene } from './pbl/project-scene'
 
 /**
@@ -35,20 +36,26 @@ export function SceneRenderer({
       return <QuizScene data={scene.data} onAnswer={onQuizAnswer} />
     case 'interactive': {
       const spec = asInteractiveSpec(scene.data.spec)
-      if (spec?.kind === 'risk-classify') {
+      if (spec) {
+        const report = (correct: number, total: number) =>
+          onInteractiveComplete?.(scene.conceptTags ?? [], total > 0 && correct / total >= 0.6)
         return (
           <div className="space-y-5">
             <div className="space-y-1">
               <h2 className="text-2xl font-semibold tracking-tight text-primary">{scene.data.title}</h2>
               {scene.data.summary && <p className="text-sm text-muted-foreground">{scene.data.summary}</p>}
             </div>
-            <RiskClassify
-              prompt={spec.prompt}
-              items={spec.items}
-              onComplete={(correct, total) =>
-                onInteractiveComplete?.(scene.conceptTags ?? [], total > 0 && correct / total >= 0.6)
-              }
-            />
+            {spec.kind === 'risk-classify' && (
+              <RiskClassify prompt={spec.prompt} items={spec.items} onComplete={report} />
+            )}
+            {spec.kind === 'red-flags' && (
+              <RedFlagSpot
+                prompt={spec.prompt}
+                scenario={spec.scenario}
+                items={spec.items}
+                onComplete={report}
+              />
+            )}
           </div>
         )
       }

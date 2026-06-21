@@ -88,20 +88,26 @@ export type RiskClassifyItem = {
   why: string
 }
 
-export type InteractiveSpec = {
-  kind: 'risk-classify'
-  prompt?: string
-  items: RiskClassifyItem[]
+/** One statement to judge as a red flag (or not) in a scenario. */
+export type RedFlagItem = {
+  id: string
+  label: string
+  /** True if this is genuinely a red flag / indicator. */
+  flag: boolean
+  /** Why it is (or is not) a red flag — shown as feedback after checking. */
+  why: string
 }
+
+export type InteractiveSpec =
+  | { kind: 'risk-classify'; prompt?: string; items: RiskClassifyItem[] }
+  | { kind: 'red-flags'; prompt?: string; scenario?: string; items: RedFlagItem[] }
 
 /** Narrow an unknown spec to a known interactive kind. */
 export function asInteractiveSpec(spec: unknown): InteractiveSpec | null {
-  if (
-    spec &&
-    typeof spec === 'object' &&
-    (spec as { kind?: unknown }).kind === 'risk-classify' &&
-    Array.isArray((spec as { items?: unknown }).items)
-  ) {
+  if (!spec || typeof spec !== 'object') return null
+  const kind = (spec as { kind?: unknown }).kind
+  const hasItems = Array.isArray((spec as { items?: unknown }).items)
+  if ((kind === 'risk-classify' || kind === 'red-flags') && hasItems) {
     return spec as InteractiveSpec
   }
   return null
