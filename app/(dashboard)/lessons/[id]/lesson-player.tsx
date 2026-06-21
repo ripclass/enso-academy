@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
@@ -82,6 +82,33 @@ const pickBridge = (name: string) =>
 const estimateMs = (text: string) =>
   Math.min(25000, Math.max(1200, Math.round((text.trim().split(/\s+/).length / 2.5) * 1000)))
 
+// Split narration into display sentences for the live subtitle (markdown stripped).
+function splitSentences(raw: string): string[] {
+  const clean = raw
+    .replace(/\*\*|__|\*|_|`/g, '')
+    .replace(/^#+\s*/gm, '')
+    .replace(/^\s*[-*]\s+/gm, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (!clean) return []
+  const parts = clean.match(/[^.!?]+[.!?]+["')\]]*(?:\s|$)|[^.!?]+$/g)
+  return (parts ?? [clean]).map((s) => s.trim()).filter(Boolean)
+}
+
+// Which sentence is "live" at a given audio progress (0–1), weighted by length.
+function activeSentence(sentences: string[], progress: number): number {
+  if (sentences.length <= 1) return 0
+  const lens = sentences.map((s) => s.length)
+  const total = lens.reduce((a, b) => a + b, 0) || 1
+  const target = Math.max(0, Math.min(1, progress)) * total
+  let acc = 0
+  for (let i = 0; i < sentences.length; i++) {
+    acc += lens[i]
+    if (target <= acc) return i
+  }
+  return sentences.length - 1
+}
+
 // The classroom's peer cast — presence-only for now (a later pass wires them to
 // speak on stage). The lecturer is separate (LecturerDock).
 const CAST: CastMember[] = [
@@ -119,6 +146,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // How many slide items are revealed so far — driven by narration progress
   // when listening, or a gentle timed stagger when reading silently.
   const [revealedCount, setRevealedCount] = useState(1)
+  // Which narration sentence is "live" — advanced by audio progress for the
+  // subtitle, so the bubble tracks what the lecturer is actually saying.
+  const [spokenIdx, setSpokenIdx] = useState(0)
   const conversationRef = useRef<HTMLDivElement>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   // Tracks what the audio element is currently playing, so that a finished
@@ -127,6 +157,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // Classmate-moment beat sequencing (bridge → question → answer).
   const momentOnEndRef = useRef<(() => void) | null>(null)
   const momentTimerRef = useRef<number | null>(null)
+  // Where the lecture narration was when a hand interrupted it, so Continue can
+  // resume the lecture from that point instead of leaving it stopped.
+  const lecturePosRef = useRef<number | null>(null)
   // One classmate at a time: held from the moment a check is claimed until the
   // moment is dismissed, so a second raised hand can never interrupt the first.
   const momentBusyRef = useRef(false)
@@ -172,6 +205,11 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     !!currentScene &&
     (currentScene.sceneType === 'slide' || currentScene.sceneType === 'reading')
   const suggestions = currentScene ? suggestedQuestions(currentScene) : []
+  // Narration split into sentences for the live subtitle.
+  const narrationSentences = useMemo(
+    () => (currentScene ? splitSentences(sceneNarration(currentScene)) : []),
+    [currentScene],
+  )
 
   // Auto-scroll the conversation when new messages arrive
   useEffect(() => {
@@ -220,9 +258,10 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     if (audioRef.current) audioRef.current.playbackRate = playbackRate
   }, [playbackRate])
 
-  // Reset progressive reveal when the scene changes (first item shows at once).
+  // Reset progressive reveal + subtitle when the scene changes.
   useEffect(() => {
     setRevealedCount(1)
+    setSpokenIdx(0)
   }, [currentIndex])
 
   // Silent stagger: when not listening (or this scene has no narration audio),
@@ -307,7 +346,10 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         // of cutting off cold: the lecturer registers the hand (bridge), the
         // peer asks (question), then the lecturer answers (answer).
         const bridge = pickBridge(who)
-        audioRef.current?.pause()
+        // Remember where the lecture was so Continue can resume it.
+        const a = audioRef.current
+        if (a && audioSource.current === 'scene') lecturePosRef.current = a.currentTime
+        a?.pause()
         setSpeakingClassmate(who)
         setMomentPhase('bridge')
         setClassmateMoment({ name: who, question, answer, bridge })
@@ -356,7 +398,32 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     })
   }
 
-  function dismissMoment() {
+  // Resume the lecture narration from where a hand interrupted it.
+  function resumeLecture() {
+    const audio = audioRef.current
+    const at = lecturePosRef.current
+    lecturePosRef.current = null
+    if (!listenMode || !audio || !currentScene) return
+    void resolveSceneAudio(currentScene).then((url) => {
+      if (!url) return
+      audioSource.current = 'scene'
+      audio.src = url
+      const seek = () => {
+        try {
+          if (at != null) audio.currentTime = at
+        } catch {
+          /* seek past end — ignore */
+        }
+        audio.playbackRate = playbackRate
+        audio.play().catch(() => {})
+        audio.removeEventListener('loadedmetadata', seek)
+      }
+      audio.addEventListener('loadedmetadata', seek)
+      audio.load()
+    })
+  }
+
+  function dismissMoment(resume = false) {
     if (momentTimerRef.current) {
       clearTimeout(momentTimerRef.current)
       momentTimerRef.current = null
@@ -367,6 +434,8 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     setClassmateMoment(null)
     setMomentPhase('bridge')
     setSpeakingClassmate(null)
+    if (resume) resumeLecture()
+    else lecturePosRef.current = null // navigating away — drop the saved spot
   }
 
   function goNext() {
@@ -542,13 +611,18 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
           const audio = audioRef.current
           if (!audio) return
           if (!audio.paused) setAudioStatus((s) => (s === 'playing' ? s : 'playing'))
-          // Progressive slide reveal, paced to the actual narration length.
-          if (audioSource.current === 'scene' && slideItemCount > 0 && audio.duration > 0) {
-            const k = Math.min(
-              slideItemCount,
-              Math.max(1, Math.ceil((audio.currentTime / audio.duration) * slideItemCount)),
-            )
-            setRevealedCount((r) => Math.max(r, k))
+          if (audioSource.current === 'scene' && audio.duration > 0) {
+            const progress = audio.currentTime / audio.duration
+            // Progressive slide reveal, paced to the actual narration length.
+            if (slideItemCount > 0) {
+              const k = Math.min(slideItemCount, Math.max(1, Math.ceil(progress * slideItemCount)))
+              setRevealedCount((r) => Math.max(r, k))
+            }
+            // Live subtitle: advance to the sentence being spoken.
+            if (narrationSentences.length > 0) {
+              const idx = activeSentence(narrationSentences, progress)
+              setSpokenIdx((p) => (p === idx ? p : idx))
+            }
           }
         }}
         onPause={() => setAudioStatus('paused')}
@@ -677,7 +751,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                   phase={momentPhase}
                   speaking={(momentPhase === 'bridge' || momentPhase === 'answer') && isPlaying}
                   lecturerVariant={lecturerVariant}
-                  onDismiss={dismissMoment}
+                  onDismiss={() => dismissMoment(true)}
                 />
               </div>
             )}
@@ -702,32 +776,33 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
               />
             </div>
 
-            {/* Dock row: lecturer · narration · cast */}
-            <div className="grid grid-cols-[auto_1fr_auto] items-center gap-6">
-              <LecturerDock variant={lecturerVariant} speaking={speaking} thinking={askingQuestion} />
+            {/* Dock row: lecturer + speech bubble on the left, cast on the right */}
+            <div className="flex items-center justify-between gap-6">
+              <div className="flex min-w-0 flex-1 items-center gap-3">
+                <LecturerDock variant={lecturerVariant} speaking={speaking} thinking={askingQuestion} />
 
-              <div className="min-w-0 space-y-2">
-                <NarrationBubble
-                  narration={currentScene ? sceneNarration(currentScene) : ''}
-                  thinking={askingQuestion}
-                />
-                {suggestions.length > 0 && (
-                  <div className="flex flex-wrap items-center justify-center gap-1.5">
-                    <span className="font-mono text-2xs uppercase tracking-widest text-neutral-400">Ask</span>
-                    {suggestions.slice(0, 2).map((q) => (
-                      <button
-                        key={q}
-                        type="button"
-                        onClick={() => askSuggested(q)}
-                        className="rounded-full border border-neutral-200 bg-white px-2.5 py-1 text-2xs text-neutral-600 transition-colors hover:border-primary hover:text-primary"
-                      >
-                        {q}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {isLast && (
-                  <div className="flex justify-center">
+                <div className="min-w-0 flex-1 space-y-2">
+                  <NarrationBubble
+                    text={speaking ? narrationSentences[spokenIdx] ?? '' : ''}
+                    speaking={speaking}
+                    thinking={askingQuestion}
+                  />
+                  {suggestions.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="font-mono text-2xs uppercase tracking-widest text-neutral-400">Ask</span>
+                      {suggestions.slice(0, 2).map((q) => (
+                        <button
+                          key={q}
+                          type="button"
+                          onClick={() => askSuggested(q)}
+                          className="rounded-full border border-neutral-200 bg-white px-2.5 py-1 text-2xs text-neutral-600 transition-colors hover:border-primary hover:text-primary"
+                        >
+                          {q}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {isLast && (
                     <button
                       type="button"
                       onClick={handleComplete}
@@ -736,11 +811,11 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                     >
                       {completing ? 'Saving…' : 'Complete lesson'}
                     </button>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
 
-              <div className="flex flex-col items-end gap-1.5">
+              <div className="flex shrink-0 flex-col items-end gap-1.5">
                 <span className="font-mono text-2xs font-semibold uppercase tracking-widest text-neutral-400">
                   Your class
                 </span>

@@ -68,21 +68,38 @@ export function LecturerDock({
   )
 }
 
+/**
+ * The lecturer's live subtitle. It shows the line currently being spoken
+ * (`text`, advanced sentence-by-sentence by the player as the audio plays) and
+ * collapses to nothing when the lecturer is silent — so the stage stays clean.
+ * A little tail on the left points back at the lecturer dock.
+ */
 export function NarrationBubble({
-  narration,
+  text,
+  speaking,
   thinking,
 }: {
-  narration: string
+  text: string
   speaking?: boolean
   thinking?: boolean
 }) {
+  // Quiet unless the lecturer is actually speaking (or composing an answer).
+  if (!thinking && (!speaking || !text)) return null
   return (
-    <div className="mx-auto w-full max-w-2xl rounded-2xl border border-neutral-200 bg-white px-5 py-3 shadow-sm">
+    <div className="relative max-w-2xl rounded-2xl rounded-bl-sm border border-neutral-200 bg-white px-4 py-2.5 shadow-sm">
+      {/* tail pointing left, toward the lecturer */}
+      <span
+        aria-hidden
+        className="absolute -left-1.5 top-5 h-3 w-3 rotate-45 border-b border-l border-neutral-200 bg-white"
+      />
       {thinking ? (
         <p className="font-mono text-xs text-neutral-400">The lecturer is thinking…</p>
       ) : (
-        <p className="line-clamp-2 text-center text-sm leading-relaxed text-neutral-700">
-          {narration || 'Press play to begin the lesson.'}
+        <p
+          key={text}
+          className="line-clamp-3 text-sm leading-relaxed text-neutral-700 duration-300 animate-in fade-in"
+        >
+          {text}
         </p>
       )}
     </div>
