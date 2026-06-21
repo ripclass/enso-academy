@@ -18,7 +18,19 @@ Gotchas / process:
 - **Verifying gated UI**: the classmate moment fires only on a real evidenced gap (mastery < 0.45 + observation > 0, once/session). To screenshot it, temporarily seed the `useState` initial value with dummy data, capture, then **revert to `null`** (don't ship the seed).
 - Scratch PNGs + `tmp-*` now gitignored (`/*.png`, `/tmp-*`).
 
-NOT done: deploy (still on branch); per-classmate voices; a scrubber / chapter ticks; interactive + PBL scene renderers; the National Frameworks re-scope (pending Ripon's write-up). **Next: make classmates chime in more often** (keep the grounded gap-question as priority, add a periodic engaging question so the room feels alive).
+NOT done at the time of this entry: deploy; chime-in cadence; scrubber; interactive/PBL; National Frameworks re-scope. **All of the below were then done + DEPLOYED to production the same day** (see addendum).
+
+### 2026-06-21 addendum — deployed + further polish (all live in prod)
+- **Deployed** the classroom to production (merged to `main`; Vercel auto-deploys). Verified via the Vercel MCP (`list_deployments`/`get_deployment` → state READY) + live curl. Production domains alias to the new deploy.
+- **Classmates chime in more often**: replaced once-per-session with cap `MAX_CLASSMATE_FIRES=4` + `CLASSMATE_COOLDOWN_SCENES=2` + `AMBIENT_CLASSMATE_CHANCE=0.6`. `checkClassmateGap` gained `allowAmbient` — fires a grounded gap question first, else a curious on-topic question.
+- **3-beat bridged moment** (`classmate-moment.tsx` MomentPhase = bridge|question|answer): lecturer registers the hand and acknowledges it aloud (`pickBridge`), peer asks, lecturer answers. `playMomentBeat` speaks each beat (synthesizeText) and chains on audio `onended` (or estimated read-time when muted).
+- **One moment at a time** (concurrency fix): `momentBusyRef` is claimed BEFORE the async `checkClassmateGap` and held until dismiss — a second raised hand can't overwrite the first mid-answer.
+- **Q&A is text-only**: `submitQuestion` passes `listenMode:false` and no longer plays the answer; asking pauses the lecture. Voice is reserved for teaching (lecture + classmate moments, both markdown-cleaned). Fixes the lecturer reading "§"/asterisks aloud + hijacking the lecture.
+- **Audio/slide sync fix**: the listen effect now `audio.pause()`s immediately on scene change so the previous narration never plays over the new slide during the async resolve.
+- **Chapter-tick scrubber** (`scene-progress.tsx`): one tick per scene (done=teal / current=pulsing coral / upcoming=empty), click to jump (`goToScene`).
+- **First interactive — drag-to-classify-risk** (`components/lesson/scenes/interactives/risk-classify.tsx`): native HTML5 DnD + click-to-place fallback, per-placement feedback + score, feeds the knowledge model via `onInteractiveComplete` → `recordQuizEvidence`. Renderer dispatches on `spec.kind` via `asInteractiveSpec`.
+  - **The course has ZERO interactive/pbl scenes** (only reading/slide/quiz) — interactive content must be SEEDED. A live `risk-classify` scene was inserted into `customer-risk-rating-models` at `metadata.order = 9.5` (between the quiz and the wrap-up). Model the INSERT on an existing row: `element_type='explanation'`, `scene_type='interactive'`, `scene_data={title,summary,spec:{kind,prompt,items}}`. `scene_type` enum already includes interactive/pbl.
+- **PBL renderer NOT built yet** — still the placeholder; that + more interactive kinds (transaction-network, screening match) are next.
 
 ## 2026-06-20 - Module 6 question-only fidelity exact current-turn rerun: no delta
 
