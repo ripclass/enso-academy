@@ -191,7 +191,9 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
     return {
       id: q.id,
       question_text: q.question_text,
-      options: normalizeOptions(q.options),
+      // Shuffle options per attempt so the answer position is not memorizable
+      // on retakes. Grading is id-based, so display order does not affect scoring.
+      options: shuffle(normalizeOptions(q.options)),
       domain: q.domain,
       difficulty: q.difficulty,
       question_type: q.question_type,

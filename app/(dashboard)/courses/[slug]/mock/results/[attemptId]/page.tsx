@@ -113,7 +113,9 @@ export default async function MockResultsPage({ params }: Props) {
           <div className="space-y-4">
             {questions.map((q, i) => {
               const qb = qbankMap[q.id]
-              const options = qb?.options ?? q.options
+              // Prefer the snapshot's option order — the order the student saw
+              // (shuffled per attempt) — so the review matches the exam.
+              const options = q.options ?? qb?.options
               const studentSet = toIdSet(answers[q.id])
               const correctSet = toIdSet(qb?.correct_answer)
               const skipped = studentSet.size === 0
