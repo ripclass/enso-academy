@@ -11,7 +11,7 @@ import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
 import { LecturerDock, NarrationBubble, LecturerAvatar, LECTURER_SEED } from '@/components/lesson/classroom/lecturer-presence'
 import { TransportBar } from '@/components/lesson/classroom/transport-bar'
 import { CastStrip, type CastMember } from '@/components/lesson/classroom/cast-strip'
-import { ClassmateMoment } from '@/components/lesson/classroom/classmate-moment'
+import { ClassmateMoment, type MomentPhase } from '@/components/lesson/classroom/classmate-moment'
 import { Avatar } from '@/components/lesson/classroom/avatar'
 import { sceneContext, sceneNarration, suggestedQuestions, type Scene, type SceneType, type QuizQuestion } from '@/lib/lesson/scenes'
 import { toast } from 'sonner'
@@ -63,6 +63,21 @@ const MAX_CLASSMATE_FIRES = 4
 const CLASSMATE_COOLDOWN_SCENES = 2
 const AMBIENT_CLASSMATE_CHANCE = 0.6
 
+// What the lecturer says to register a raised hand before answering — so the
+// lecture transitions instead of cutting off cold.
+const BRIDGE_TEMPLATES = [
+  (n: string) => `Hold on — it looks like ${n} has a question. Go ahead, ${n}.`,
+  (n: string) => `Yes, ${n}? Let's hear it.`,
+  (n: string) => `Let me pause there for a second. ${n}, go ahead.`,
+  (n: string) => `Good timing — ${n} has a question.`,
+]
+const pickBridge = (name: string) =>
+  BRIDGE_TEMPLATES[Math.floor(Math.random() * BRIDGE_TEMPLATES.length)](name)
+
+// Estimated spoken duration of a line (~150 wpm), used when narration is muted.
+const estimateMs = (text: string) =>
+  Math.min(25000, Math.max(1200, Math.round((text.trim().split(/\s+/).length / 2.5) * 1000)))
+
 // The classroom's peer cast — presence-only for now (a later pass wires them to
 // speak on stage). The lecturer is separate (LecturerDock).
 const CAST: CastMember[] = [
@@ -92,9 +107,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   const [speakingClassmate, setSpeakingClassmate] = useState<string | null>(null)
   // The on-stage classmate moment (a peer raises a hand, the lecturer answers).
   const [classmateMoment, setClassmateMoment] = useState<
-    { name: string; question: string; answer: string } | null
+    { name: string; question: string; answer: string; bridge: string } | null
   >(null)
-  const [momentPhase, setMomentPhase] = useState<'question' | 'answer'>('question')
+  const [momentPhase, setMomentPhase] = useState<MomentPhase>('bridge')
   // How many slide items are revealed so far — driven by narration progress
   // when listening, or a gentle timed stagger when reading silently.
   const [revealedCount, setRevealedCount] = useState(1)
@@ -103,6 +118,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // Tracks what the audio element is currently playing, so that a finished
   // Q&A answer does not auto-advance the lesson like a finished narration does.
   const audioSource = useRef<'scene' | 'qa'>('scene')
+  // Classmate-moment beat sequencing (bridge → question → answer).
+  const momentOnEndRef = useRef<(() => void) | null>(null)
+  const momentTimerRef = useRef<number | null>(null)
   // Resolved narration URLs per scene, seeded from any pre-generated audio.
   // Scenes without pre-gen are synthesized on demand and cached here + server-side.
   const audioUrlsRef = useRef<Record<string, string>>(
@@ -270,25 +288,21 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
           { role: 'classmate', content: question, classmateName: who },
           { role: 'lecturer', content: answer },
         ])
-        // Bring it on stage: pause narration, the peer's avatar lifts and asks,
-        // then the lecturer answers aloud.
+        // Bring it on stage as three beats so the lecture transitions instead
+        // of cutting off cold: the lecturer registers the hand (bridge), the
+        // peer asks (question), then the lecturer answers (answer).
+        const bridge = pickBridge(who)
         audioRef.current?.pause()
         setSpeakingClassmate(who)
-        setMomentPhase('question')
-        setClassmateMoment({ name: who, question, answer })
-        window.setTimeout(() => {
-          setMomentPhase('answer')
-          if (listenMode) {
-            void synthesizeText(answer).then(({ url }) => {
-              const audio = audioRef.current
-              if (!url || !audio) return
-              audioSource.current = 'qa'
-              audio.src = url
-              audio.playbackRate = playbackRate
-              audio.play().catch(() => {})
-            })
-          }
-        }, 1400)
+        setMomentPhase('bridge')
+        setClassmateMoment({ name: who, question, answer, bridge })
+        playMomentBeat(bridge, () => {
+          setMomentPhase('question')
+          momentTimerRef.current = window.setTimeout(() => {
+            setMomentPhase('answer')
+            playMomentBeat(answer, () => {})
+          }, 1800)
+        })
       }
     } catch (err) {
       console.error(err)
@@ -297,11 +311,43 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     }
   }
 
+  // Speak one beat of a classmate moment (synthesize + play when listening,
+  // calling onDone when the audio ends; else wait an estimated read time). The
+  // narration audio element is reused with audioSource = 'qa'.
+  function playMomentBeat(text: string, onDone: () => void) {
+    const fallback = () => {
+      momentTimerRef.current = window.setTimeout(onDone, estimateMs(text))
+    }
+    if (!listenMode || !audioRef.current) {
+      fallback()
+      return
+    }
+    void synthesizeText(text).then(({ url }) => {
+      if (!url || !audioRef.current) {
+        fallback()
+        return
+      }
+      momentOnEndRef.current = onDone
+      audioSource.current = 'qa'
+      audioRef.current.src = url
+      audioRef.current.playbackRate = playbackRate
+      audioRef.current.play().catch(() => {
+        momentOnEndRef.current = null
+        fallback()
+      })
+    })
+  }
+
   function dismissMoment() {
-    setClassmateMoment(null)
-    setMomentPhase('question')
-    setSpeakingClassmate(null)
+    if (momentTimerRef.current) {
+      clearTimeout(momentTimerRef.current)
+      momentTimerRef.current = null
+    }
+    momentOnEndRef.current = null
     if (audioSource.current === 'qa') audioRef.current?.pause()
+    setClassmateMoment(null)
+    setMomentPhase('bridge')
+    setSpeakingClassmate(null)
   }
 
   function goNext() {
@@ -462,6 +508,13 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         onPause={() => setAudioStatus('paused')}
         onEnded={() => {
           setAudioStatus('ended')
+          // A finished classmate-moment beat advances the sequence.
+          if (audioSource.current === 'qa' && momentOnEndRef.current) {
+            const cb = momentOnEndRef.current
+            momentOnEndRef.current = null
+            cb()
+            return
+          }
           // Auto-advance only when narration (not a Q&A answer) finishes.
           if (audioSource.current === 'scene' && listenMode && currentIndex < scenes.length - 1) {
             goNext()
@@ -567,8 +620,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                   name={classmateMoment.name}
                   question={classmateMoment.question}
                   answer={classmateMoment.answer}
+                  bridge={classmateMoment.bridge}
                   phase={momentPhase}
-                  speaking={momentPhase === 'answer' && isPlaying}
+                  speaking={(momentPhase === 'bridge' || momentPhase === 'answer') && isPlaying}
                   onDismiss={dismissMoment}
                 />
               </div>

@@ -4,15 +4,21 @@ import { Hand, X, ArrowRight } from 'lucide-react'
 import { Avatar } from './avatar'
 import { LecturerAvatar } from './lecturer-presence'
 
+export type MomentPhase = 'bridge' | 'question' | 'answer'
+
 /**
- * The on-stage classmate moment: a peer raises a hand and asks, then the
- * lecturer answers aloud — rendered as a card that rises from the class, rather
- * than buried in the Ask panel. `phase` sequences it (question → answer).
+ * The on-stage classmate moment, choreographed as three beats so it doesn't cut
+ * the lecture off cold:
+ *   1. bridge   — the lecturer notices the raised hand and acknowledges it
+ *                 ("Hold on — Priya, go ahead").
+ *   2. question — the classmate asks (their bubble appears).
+ *   3. answer   — the lecturer answers, then Continue resumes the lecture.
  */
 export function ClassmateMoment({
   name,
   question,
   answer,
+  bridge,
   phase,
   speaking,
   onDismiss,
@@ -20,14 +26,15 @@ export function ClassmateMoment({
   name: string
   question: string
   answer: string
-  phase: 'question' | 'answer'
+  bridge: string
+  phase: MomentPhase
   speaking: boolean
   onDismiss: () => void
 }) {
   return (
     <div className="pointer-events-auto w-full max-w-xl rounded-2xl border border-neutral-200 bg-white p-4 shadow-2xl animate-in slide-in-from-bottom-4 fade-in duration-300">
+      {/* Classmate */}
       <div className="flex items-start justify-between gap-3">
-        {/* Classmate question */}
         <div className="flex min-w-0 gap-3">
           <div className="relative shrink-0">
             <div className="overflow-hidden rounded-full border-2 border-accent">
@@ -41,7 +48,13 @@ export function ClassmateMoment({
             <div className="font-mono text-2xs font-bold uppercase tracking-widest text-accent">
               {name} · raised a hand
             </div>
-            <p className="mt-1 text-sm italic leading-relaxed text-neutral-700">{question}</p>
+            {phase === 'bridge' ? (
+              <p className="mt-1 flex items-center gap-1.5 text-sm text-neutral-400">
+                <TypingDots /> waiting to ask…
+              </p>
+            ) : (
+              <p className="mt-1 text-sm italic leading-relaxed text-neutral-700">{question}</p>
+            )}
           </div>
         </div>
         <button
@@ -54,40 +67,53 @@ export function ClassmateMoment({
         </button>
       </div>
 
-      {/* Lecturer answer */}
-      {phase === 'answer' ? (
-        <div className="mt-3 flex gap-3 border-t border-neutral-100 pt-3 animate-in fade-in slide-in-from-bottom-1 duration-300">
-          <LecturerAvatar size={40} speaking={speaking} />
-          <div className="min-w-0 flex-1">
-            <div className="font-mono text-2xs font-bold uppercase tracking-widest text-primary">
-              Lecturer
-            </div>
-            <p className="mt-1 text-sm leading-relaxed text-neutral-800">{answer}</p>
-            <div className="mt-3 flex justify-end">
-              <button
-                type="button"
-                onClick={onDismiss}
-                className="inline-flex h-8 items-center gap-1.5 rounded-md bg-primary px-3 text-xs font-semibold text-white transition-colors hover:bg-primary-hover"
-              >
-                Continue <ArrowRight className="h-3.5 w-3.5" />
-              </button>
-            </div>
+      {/* Lecturer */}
+      <div className="mt-3 flex gap-3 border-t border-neutral-100 pt-3">
+        <LecturerAvatar size={40} speaking={speaking} />
+        <div className="min-w-0 flex-1">
+          <div className="font-mono text-2xs font-bold uppercase tracking-widest text-primary">
+            Lecturer
           </div>
+          {phase === 'bridge' && (
+            <p className="mt-1 text-sm leading-relaxed text-neutral-800 animate-in fade-in duration-300">
+              {bridge}
+            </p>
+          )}
+          {phase === 'question' && (
+            <p className="mt-1 flex items-center gap-1.5 text-sm text-neutral-400">
+              <TypingDots /> answering…
+            </p>
+          )}
+          {phase === 'answer' && (
+            <div className="animate-in fade-in slide-in-from-bottom-1 duration-300">
+              <p className="mt-1 text-sm leading-relaxed text-neutral-800">{answer}</p>
+              <div className="mt-3 flex justify-end">
+                <button
+                  type="button"
+                  onClick={onDismiss}
+                  className="inline-flex h-8 items-center gap-1.5 rounded-md bg-primary px-3 text-xs font-semibold text-white transition-colors hover:bg-primary-hover"
+                >
+                  Continue <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="mt-3 flex items-center gap-1.5 border-t border-neutral-100 pt-3 font-mono text-2xs text-neutral-400">
-          <span className="flex gap-0.5" aria-hidden>
-            {[0, 150, 300].map((d) => (
-              <span
-                key={d}
-                className="h-1.5 w-1.5 animate-bounce rounded-full bg-neutral-300"
-                style={{ animationDelay: `${d}ms` }}
-              />
-            ))}
-          </span>
-          The lecturer is answering…
-        </div>
-      )}
+      </div>
     </div>
+  )
+}
+
+function TypingDots() {
+  return (
+    <span className="flex gap-0.5" aria-hidden>
+      {[0, 150, 300].map((d) => (
+        <span
+          key={d}
+          className="h-1.5 w-1.5 animate-bounce rounded-full bg-neutral-300"
+          style={{ animationDelay: `${d}ms` }}
+        />
+      ))}
+    </span>
   )
 }
