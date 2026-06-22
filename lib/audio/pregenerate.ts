@@ -5,7 +5,7 @@
 
 import { createAdminClient } from '@/lib/supabase/admin'
 import { synthesizeSpeech, textToSpeechReady, LECTURER_VOICES, textClipFileName } from './tts'
-import { readingBeats } from '@/lib/lesson/beats'
+import { readingBeats, slideBeats } from '@/lib/lesson/beats'
 import { lecturerVariantFor } from '@/lib/lesson/scenes'
 
 type PregenerateOptions = {
@@ -141,10 +141,10 @@ export async function pregenerateBeatAudio(opts: {
   const admin = createAdminClient()
   const { data: scenes, error } = await admin
     .from('content_library_elements')
-    .select('id, lesson_id, scene_data, body')
+    .select('id, lesson_id, scene_type, scene_data, body')
     .eq('course_id', opts.courseId)
-    .eq('scene_type', 'reading')
-  if (error) throw new Error('Failed to fetch reading scenes: ' + error.message)
+    .in('scene_type', ['reading', 'slide'])
+  if (error) throw new Error('Failed to fetch scenes: ' + error.message)
 
   const result: BeatPregenResult = {
     readingScenes: scenes?.length ?? 0,
@@ -163,11 +163,20 @@ export async function pregenerateBeatAudio(opts: {
   const jobs: Job[] = []
   for (const s of scenes) {
     const sd = s.scene_data && typeof s.scene_data === 'object' ? (s.scene_data as Record<string, unknown>) : null
-    const body = (typeof sd?.body === 'string' ? sd.body : s.body ?? '') || ''
-    const beats = readingBeats(body)
-    if (beats.length <= 1) continue // single-beat readings use the whole-scene clip
+    let texts: string[] = []
+    if (s.scene_type === 'reading') {
+      const body = (typeof sd?.body === 'string' ? sd.body : s.body ?? '') || ''
+      texts = readingBeats(body)
+    } else if (s.scene_type === 'slide') {
+      const narration = typeof sd?.narration === 'string' ? sd.narration : ''
+      const itemCount = Array.isArray(sd?.items) ? (sd.items as unknown[]).length : 0
+      texts = slideBeats(narration, itemCount).map((b) => b.narration)
+    }
+    // Only multi-beat scenes whose every beat has narration use per-beat audio
+    // (mirrors the player's beatAudio() guard); the rest use a single clip.
+    if (texts.length <= 1 || texts.some((t) => !t.trim())) continue
     const variant = lecturerVariantFor((s.lesson_id as string | null) ?? '')
-    beats.forEach((text, index) => jobs.push({ elementId: s.id, variant, index, text }))
+    texts.forEach((text, index) => jobs.push({ elementId: s.id, variant, index, text }))
   }
   result.beatsTotal = jobs.length
 

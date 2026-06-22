@@ -16,7 +16,7 @@ import { Avatar } from '@/components/lesson/classroom/avatar'
 import { SceneProgress } from '@/components/lesson/classroom/scene-progress'
 import { BeatPager } from '@/components/lesson/classroom/beat-pager'
 import { sceneContext, sceneNarration, suggestedQuestions, lecturerVariantFor, splitSentences, type Scene, type SceneType, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
-import { readingBeats } from '@/lib/lesson/beats'
+import { readingBeats, slideBeats } from '@/lib/lesson/beats'
 import { toast } from 'sonner'
 
 type Lesson = {
@@ -192,18 +192,32 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     return p
   }
 
-  // Whether a scene uses per-beat audio: a reading scene, in beat mode, that
-  // actually splits into more than one beat.
-  function beatReadingAudio(s: Scene | undefined): boolean {
-    return !!s && beatMode && s.sceneType === 'reading' && readingBeats(s.data.body).length > 1
+  // Per-beat narration text for each beat: reading → the paragraph chunk
+  // (which is itself the narration); slide → the narration slice for each
+  // item-page. Empty array for scene types that don't paginate with audio.
+  function beatNarrationTexts(s: Scene | undefined): string[] {
+    if (!s) return []
+    if (s.sceneType === 'reading') return readingBeats(s.data.body)
+    if (s.sceneType === 'slide') {
+      return slideBeats(s.data.narration, s.data.items?.length ?? 0).map((b) => b.narration)
+    }
+    return []
   }
 
-  // Resolve (synthesize-or-cache) the narration clip for one beat of a reading
-  // scene. Cached per scene + index; dedups in-flight requests.
+  // Whether a scene uses per-beat audio: in beat mode, more than one beat, and
+  // every beat has narration to synthesize (a slide whose script can't be split
+  // per page falls back to its single whole-slide clip).
+  function beatAudio(s: Scene | undefined): boolean {
+    if (!s || !beatMode) return false
+    const texts = beatNarrationTexts(s)
+    return texts.length > 1 && texts.every((t) => t.trim().length > 0)
+  }
+
+  // Resolve (synthesize-or-cache) the narration clip for one beat. Cached per
+  // scene + index; dedups in-flight requests.
   async function resolveBeatAudio(scene: Scene, index: number): Promise<string | null> {
-    if (scene.sceneType !== 'reading') return null
-    const texts = readingBeats(scene.data.body)
-    if (index < 0 || index >= texts.length) return null
+    const texts = beatNarrationTexts(scene)
+    if (index < 0 || index >= texts.length || !texts[index]?.trim()) return null
     const cache = (beatUrlsRef.current[scene.id] ??= [])
     if (cache[index] !== undefined) return cache[index]
     const inflight = (beatInflightRef.current[scene.id] ??= {})
@@ -250,12 +264,10 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // beat (no scene-long drift). Otherwise it's the scene-narration sentence.
   const bubbleText = useMemo(() => {
     if (!speaking) return ''
-    if (beatMode && currentScene?.sceneType === 'reading') {
-      const beats = readingBeats(currentScene.data.body)
-      if (beats.length > 1) {
-        const sents = splitSentences(beats[Math.min(activeBeat, beats.length - 1)] ?? '')
-        return sents[activeSentence(sents, narrationProgress)] ?? ''
-      }
+    if (beatAudio(currentScene)) {
+      const texts = beatNarrationTexts(currentScene)
+      const sents = splitSentences(texts[Math.min(activeBeat, texts.length - 1)] ?? '')
+      return sents[activeSentence(sents, narrationProgress)] ?? ''
     }
     return narrationSentences[spokenIdx] ?? ''
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -275,7 +287,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     const audio = audioRef.current
     const scene = currentScene
     if (!audio || !scene) return
-    if (beatReadingAudio(scene)) return // per-beat reading is driven by the beat-audio effect
+    if (beatAudio(scene)) return // per-beat reading is driven by the beat-audio effect
     let cancelled = false
     // Stop the previous scene's narration immediately so it never plays over
     // the new slide while the new audio resolves (synthesis/cache lookup).
@@ -312,7 +324,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     if (!listenMode || !beatMode) return
     const audio = audioRef.current
     const scene = currentScene
-    if (!audio || !scene || !beatReadingAudio(scene)) return
+    if (!audio || !scene || !beatAudio(scene)) return
     let cancelled = false
     audio.pause()
     setAudioStatus('loading')
@@ -730,11 +742,11 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
           // Auto-advance only when narration (not a Q&A answer) finishes.
           if (audioSource.current === 'scene' && listenMode) {
             const scene = currentScene
-            // Per-beat reading: a finished beat advances to the next beat; only
+            // Per-beat scene: a finished beat advances to the next beat; only
             // move to the next scene once the last beat has played.
-            if (beatMode && scene && scene.sceneType === 'reading') {
-              const total = readingBeats(scene.data.body).length
-              if (total > 1 && activeBeat < total - 1) {
+            if (beatAudio(scene)) {
+              const total = beatNarrationTexts(scene).length
+              if (activeBeat < total - 1) {
                 setActiveBeat((b) => b + 1)
                 return
               }
@@ -814,9 +826,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                         <BeatPager
                           scene={currentScene}
                           progress={narrationProgress}
-                          audioBeat={beatReadingAudio(currentScene) ? activeBeat : null}
+                          audioBeat={beatAudio(currentScene) ? activeBeat : null}
                           playing={speaking}
-                          onSeekBeat={beatReadingAudio(currentScene) ? (i) => setActiveBeat(i) : undefined}
+                          onSeekBeat={beatAudio(currentScene) ? (i) => setActiveBeat(i) : undefined}
                         />
                       </div>
                     ) : (

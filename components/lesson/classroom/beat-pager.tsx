@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from 'lucide-react'
 import { type Scene } from '@/lib/lesson/scenes'
-import { readingBeats } from '@/lib/lesson/beats'
+import { readingBeats, slideBeats, SLIDE_ITEMS_PER_BEAT } from '@/lib/lesson/beats'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
 import { SlideScene } from '@/components/lesson/scenes/slide-scene'
 
@@ -21,8 +21,6 @@ import { SlideScene } from '@/components/lesson/scenes/slide-scene'
 
 const PROSE =
   "prose prose-sm max-w-none leading-relaxed text-foreground [&_p]:mb-3 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_em]:italic [&_ul]:my-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_h3]:font-medium [&_h3]:mt-4 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-xs"
-
-const SLIDE_ITEMS_PER_BEAT = 4
 
 type ReadingCitations = { label: string; url?: string }[]
 
@@ -43,12 +41,11 @@ function buildBeats(scene: Scene): Beat[] {
   }
   if (scene.sceneType === 'slide') {
     const n = scene.data.items?.length ?? 0
-    if (n <= SLIDE_ITEMS_PER_BEAT) return [{ kind: 'slideItems', from: 0, to: n }]
-    const beats: Beat[] = []
-    for (let i = 0; i < n; i += SLIDE_ITEMS_PER_BEAT) {
-      beats.push({ kind: 'slideItems', from: i, to: Math.min(n, i + SLIDE_ITEMS_PER_BEAT) })
-    }
-    return beats
+    return slideBeats(scene.data.narration, n).map((b) => ({
+      kind: 'slideItems' as const,
+      from: b.from,
+      to: b.to,
+    }))
   }
   return []
 }
