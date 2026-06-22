@@ -243,6 +243,23 @@ export function sceneNarration(scene: Scene): string {
 }
 
 /**
+ * Split narration/body text into display sentences (markdown stripped). Shared
+ * by the live subtitle and beat pagination so both index the same sentence
+ * stream — keeping the lecturer's bubble and the on-screen beat in lockstep.
+ */
+export function splitSentences(raw: string): string[] {
+  const clean = raw
+    .replace(/\*\*|__|\*|_|`/g, '')
+    .replace(/^#+\s*/gm, '')
+    .replace(/^\s*[-*]\s+/gm, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (!clean) return []
+  const parts = clean.match(/[^.!?]+[.!?]+["')\]]*(?:\s|$)|[^.!?]+$/g)
+  return (parts ?? [clean]).map((s) => s.trim()).filter(Boolean)
+}
+
+/**
  * Up to three starter questions for a scene — shown as clickable chips so the
  * student learns *how* to ask, not just that they can. Tuned to the scene type.
  */

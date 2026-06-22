@@ -15,7 +15,7 @@ import { ClassmateMoment, type MomentPhase } from '@/components/lesson/classroom
 import { Avatar } from '@/components/lesson/classroom/avatar'
 import { SceneProgress } from '@/components/lesson/classroom/scene-progress'
 import { BeatPager } from '@/components/lesson/classroom/beat-pager'
-import { sceneContext, sceneNarration, suggestedQuestions, lecturerVariantFor, type Scene, type SceneType, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
+import { sceneContext, sceneNarration, suggestedQuestions, lecturerVariantFor, splitSentences, type Scene, type SceneType, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
 import { toast } from 'sonner'
 
 type Lesson = {
@@ -82,19 +82,6 @@ const pickBridge = (name: string) =>
 // Estimated spoken duration of a line (~150 wpm), used when narration is muted.
 const estimateMs = (text: string) =>
   Math.min(25000, Math.max(1200, Math.round((text.trim().split(/\s+/).length / 2.5) * 1000)))
-
-// Split narration into display sentences for the live subtitle (markdown stripped).
-function splitSentences(raw: string): string[] {
-  const clean = raw
-    .replace(/\*\*|__|\*|_|`/g, '')
-    .replace(/^#+\s*/gm, '')
-    .replace(/^\s*[-*]\s+/gm, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-  if (!clean) return []
-  const parts = clean.match(/[^.!?]+[.!?]+["')\]]*(?:\s|$)|[^.!?]+$/g)
-  return (parts ?? [clean]).map((s) => s.trim()).filter(Boolean)
-}
 
 // Which sentence is "live" at a given audio progress (0–1), weighted by length.
 function activeSentence(sentences: string[], progress: number): number {
@@ -722,6 +709,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                         <BeatPager
                           scene={currentScene}
                           progress={narrationProgress}
+                          spokenIdx={spokenIdx}
                           playing={speaking}
                         />
                       </div>

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from 'lucide-react'
-import type { Scene } from '@/lib/lesson/scenes'
+import { splitSentences, type Scene } from '@/lib/lesson/scenes'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
 import { SlideScene } from '@/components/lesson/scenes/slide-scene'
 
@@ -90,12 +90,16 @@ export function paginates(scene: Scene): boolean {
 export function BeatPager({
   scene,
   progress,
+  spokenIdx,
   playing,
 }: {
   /** Only `reading` and `slide` scenes are passed here (the player gates it). */
   scene: Scene
   /** Narration progress 0–1 for the current scene (0 when not playing). */
   progress: number
+  /** Index of the sentence the lecturer is speaking — keeps the beat in sync
+   *  with the subtitle bubble (which renders the same sentence stream). */
+  spokenIdx: number
   playing: boolean
 }) {
   const beats = useMemo(() => buildBeats(scene), [scene])
@@ -129,7 +133,23 @@ export function BeatPager({
     )
   }
 
-  const progressBeat = Math.min(beats.length - 1, Math.max(0, Math.floor(progress * beats.length)))
+  // Reading beats advance with the spoken sentence (the same index the subtitle
+  // bubble uses), so the bubble and the on-screen beat stay in lockstep. Slides
+  // carry a separate narration track, so they fall back to overall progress.
+  const sentenceBeat = useMemo(() => {
+    if (scene.sceneType !== 'reading') return null
+    let cum = 0
+    for (let i = 0; i < beats.length; i++) {
+      const b = beats[i]
+      const n = b.kind === 'reading' ? Math.max(1, splitSentences(b.body).length) : 1
+      if (spokenIdx < cum + n) return i
+      cum += n
+    }
+    return beats.length - 1
+  }, [scene.sceneType, beats, spokenIdx])
+
+  const progressBeat =
+    sentenceBeat ?? Math.min(beats.length - 1, Math.max(0, Math.floor(progress * beats.length)))
   const active = playing ? progressBeat : manual ?? progressBeat
   const beat = beats[active]
 
@@ -154,7 +174,7 @@ export function BeatPager({
 
       {/* The active beat — one thought at a time, centered in the stage */}
       <div className="flex flex-1 items-center">
-        <div key={active} className="w-full animate-in fade-in slide-in-from-bottom-2 duration-500">
+        <div key={active} className="w-full animate-in fade-in slide-in-from-bottom-2 duration-200">
           {beat.kind === 'reading' ? (
             <div className="space-y-4">
               <div className={PROSE}>
