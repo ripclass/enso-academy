@@ -16,6 +16,7 @@ import { Avatar } from '@/components/lesson/classroom/avatar'
 import { SceneProgress } from '@/components/lesson/classroom/scene-progress'
 import { BeatPager } from '@/components/lesson/classroom/beat-pager'
 import { sceneContext, sceneNarration, suggestedQuestions, lecturerVariantFor, splitSentences, type Scene, type SceneType, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
+import { readingBeats } from '@/lib/lesson/beats'
 import { toast } from 'sonner'
 
 type Lesson = {
@@ -144,6 +145,12 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   const [beatMode] = useState(
     () => typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('beats') === '1',
   )
+  // Per-beat audio (reading scenes in beat mode): the active beat index, plus a
+  // per-scene cache of resolved beat narration URLs so each beat plays its own
+  // clip in sequence — the displayed beat is always exactly the clip playing.
+  const [activeBeat, setActiveBeat] = useState(0)
+  const beatUrlsRef = useRef<Record<string, (string | null)[]>>({})
+  const beatInflightRef = useRef<Record<string, Record<number, Promise<string | null>>>>({})
   const conversationRef = useRef<HTMLDivElement>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   // Tracks what the audio element is currently playing, so that a finished
@@ -184,6 +191,38 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     inflightAudioRef.current[scene.id] = p
     return p
   }
+
+  // Whether a scene uses per-beat audio: a reading scene, in beat mode, that
+  // actually splits into more than one beat.
+  function beatReadingAudio(s: Scene | undefined): boolean {
+    return !!s && beatMode && s.sceneType === 'reading' && readingBeats(s.data.body).length > 1
+  }
+
+  // Resolve (synthesize-or-cache) the narration clip for one beat of a reading
+  // scene. Cached per scene + index; dedups in-flight requests.
+  async function resolveBeatAudio(scene: Scene, index: number): Promise<string | null> {
+    if (scene.sceneType !== 'reading') return null
+    const texts = readingBeats(scene.data.body)
+    if (index < 0 || index >= texts.length) return null
+    const cache = (beatUrlsRef.current[scene.id] ??= [])
+    if (cache[index] !== undefined) return cache[index]
+    const inflight = (beatInflightRef.current[scene.id] ??= {})
+    if (index in inflight) return inflight[index]
+    const variant = lecturerVariantFor(lesson.id)
+    const p = synthesizeText(texts[index], variant)
+      .then((res) => {
+        const url = res?.url ?? null
+        cache[index] = url
+        delete inflight[index]
+        return url
+      })
+      .catch(() => {
+        delete inflight[index]
+        return null
+      })
+    inflight[index] = p
+    return p
+  }
   // Classmate cadence guards (client side; the action also enforces the cap).
   const classmateCount = useRef(0)
   const lastClassmateIndex = useRef(-10)
@@ -220,6 +259,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     const audio = audioRef.current
     const scene = currentScene
     if (!audio || !scene) return
+    if (beatReadingAudio(scene)) return // per-beat reading is driven by the beat-audio effect
     let cancelled = false
     // Stop the previous scene's narration immediately so it never plays over
     // the new slide while the new audio resolves (synthesis/cache lookup).
@@ -248,6 +288,41 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, listenMode])
 
+  // Per-beat audio: play the current beat's clip for a reading scene in beat
+  // mode, and prefetch the next. Re-runs when the beat changes (sequential
+  // playback advances activeBeat on each clip's end), so the on-screen beat is
+  // always exactly the clip being spoken.
+  useEffect(() => {
+    if (!listenMode || !beatMode) return
+    const audio = audioRef.current
+    const scene = currentScene
+    if (!audio || !scene || !beatReadingAudio(scene)) return
+    let cancelled = false
+    audio.pause()
+    setAudioStatus('loading')
+    void resolveBeatAudio(scene, activeBeat).then((url) => {
+      if (cancelled) return
+      if (!url) {
+        setAudioStatus('idle')
+        return
+      }
+      audioSource.current = 'scene'
+      audio.src = url
+      audio.playbackRate = playbackRate
+      audio.play().catch((err) => {
+        if (err?.name === 'AbortError') return
+        console.error('Beat audio play failed:', err)
+        setAudioStatus('error')
+      })
+      void resolveBeatAudio(scene, activeBeat + 1) // prefetch the next beat
+    })
+    return () => {
+      cancelled = true
+    }
+    // playbackRate intentionally excluded — a speed change must not restart audio.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex, listenMode, activeBeat, beatMode])
+
   // Keep the audio element's rate in sync with the chosen speed.
   useEffect(() => {
     if (audioRef.current) audioRef.current.playbackRate = playbackRate
@@ -258,6 +333,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     setRevealedCount(1)
     setSpokenIdx(0)
     setNarrationProgress(0)
+    setActiveBeat(0)
   }, [currentIndex])
 
   // Silent stagger: when not listening (or this scene has no narration audio),
@@ -438,6 +514,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     if (currentIndex < scenes.length - 1) {
       const taughtIndex = currentIndex
       dismissMoment()
+      setActiveBeat(0)
       setCurrentIndex(currentIndex + 1)
       void runClassmateCheck(taughtIndex)
     }
@@ -446,6 +523,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   function goPrev() {
     if (currentIndex > 0) {
       dismissMoment()
+      setActiveBeat(0)
       setCurrentIndex(currentIndex - 1)
     }
   }
@@ -454,6 +532,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   function goToScene(index: number) {
     if (index === currentIndex || index < 0 || index >= scenes.length) return
     dismissMoment()
+    setActiveBeat(0)
     setCurrentIndex(index)
   }
 
@@ -633,8 +712,18 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
             return
           }
           // Auto-advance only when narration (not a Q&A answer) finishes.
-          if (audioSource.current === 'scene' && listenMode && currentIndex < scenes.length - 1) {
-            goNext()
+          if (audioSource.current === 'scene' && listenMode) {
+            const scene = currentScene
+            // Per-beat reading: a finished beat advances to the next beat; only
+            // move to the next scene once the last beat has played.
+            if (beatMode && scene && scene.sceneType === 'reading') {
+              const total = readingBeats(scene.data.body).length
+              if (total > 1 && activeBeat < total - 1) {
+                setActiveBeat((b) => b + 1)
+                return
+              }
+            }
+            if (currentIndex < scenes.length - 1) goNext()
           }
         }}
         onError={() => setAudioStatus('error')}
@@ -709,8 +798,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                         <BeatPager
                           scene={currentScene}
                           progress={narrationProgress}
-                          spokenIdx={spokenIdx}
+                          audioBeat={beatReadingAudio(currentScene) ? activeBeat : null}
                           playing={speaking}
+                          onSeekBeat={beatReadingAudio(currentScene) ? (i) => setActiveBeat(i) : undefined}
                         />
                       </div>
                     ) : (
@@ -791,11 +881,15 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                 <LecturerDock variant={lecturerVariant} speaking={speaking} thinking={askingQuestion} />
 
                 <div className="min-w-0 flex-1 space-y-2">
-                  <NarrationBubble
-                    text={speaking ? narrationSentences[spokenIdx] ?? '' : ''}
-                    speaking={speaking}
-                    thinking={askingQuestion}
-                  />
+                  {/* In beat mode the on-screen beat IS the caption, so the
+                      per-sentence bubble (which estimates position) is hidden. */}
+                  {!beatMode && (
+                    <NarrationBubble
+                      text={speaking ? narrationSentences[spokenIdx] ?? '' : ''}
+                      speaking={speaking}
+                      thinking={askingQuestion}
+                    />
+                  )}
                   {suggestions.length > 0 && (
                     <div className="flex flex-wrap items-center gap-1.5">
                       <span className="font-mono text-2xs uppercase tracking-widest text-neutral-400">Ask</span>

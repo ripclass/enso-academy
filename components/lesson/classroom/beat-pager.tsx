@@ -3,29 +3,25 @@
 import { useEffect, useMemo, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from 'lucide-react'
-import { splitSentences, type Scene } from '@/lib/lesson/scenes'
+import { type Scene } from '@/lib/lesson/scenes'
+import { readingBeats } from '@/lib/lesson/beats'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
 import { SlideScene } from '@/components/lesson/scenes/slide-scene'
 
 /**
  * Beat-pagination prototype (gated by `?beats=1` in the player).
  *
- * Instead of dumping a whole scene into a scrolling card, we break it into
- * "beats" sized to fit the stage, and show one at a time. While the narration
- * plays, beats advance with the voice (a slide that "plays like a video");
- * when paused or reading silently, the student steps through manually. A
- * "show full" toggle always reveals the complete scene as an escape hatch.
- *
- * Only `reading` and multi-item `slide` scenes are paginated; everything else
- * (quiz / interactive / pbl, and short scenes) renders normally.
+ * Breaks a scene into viewport-sized "beats" shown one at a time. For reading
+ * scenes the player narrates one clip per beat and passes the authoritative
+ * `audioBeat`, so the on-screen beat is exactly the clip being spoken — no
+ * estimation, no drift. Paused / read-mode, the student steps with < >. Slides
+ * (separate narration track) fall back to overall progress. A "Full text"
+ * toggle reveals the whole scene as an escape hatch.
  */
 
 const PROSE =
   "prose prose-sm max-w-none leading-relaxed text-foreground [&_p]:mb-3 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_em]:italic [&_ul]:my-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_h3]:font-medium [&_h3]:mt-4 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-xs"
 
-// Character budget per reading beat — tuned so a beat reads as ~3-5 sentences
-// and fits the stage without scrolling on a typical screen.
-const READING_BUDGET = 620
 const SLIDE_ITEMS_PER_BEAT = 4
 
 type ReadingCitations = { label: string; url?: string }[]
@@ -34,32 +30,9 @@ type Beat =
   | { kind: 'reading'; body: string; citations?: ReadingCitations }
   | { kind: 'slideItems'; from: number; to: number }
 
-/** Group markdown blocks (split on blank lines) into beats under a char budget. */
-function splitReadingBeats(body: string): string[] {
-  const blocks = body
-    .split(/\n{2,}/)
-    .map((b) => b.trim())
-    .filter(Boolean)
-  if (blocks.length === 0) return [body]
-  const beats: string[] = []
-  let cur = ''
-  for (const block of blocks) {
-    const candidate = cur ? `${cur}\n\n${block}` : block
-    // A single block longer than the budget gets its own beat.
-    if (cur && candidate.length > READING_BUDGET) {
-      beats.push(cur)
-      cur = block
-    } else {
-      cur = candidate
-    }
-  }
-  if (cur) beats.push(cur)
-  return beats
-}
-
 function buildBeats(scene: Scene): Beat[] {
   if (scene.sceneType === 'reading') {
-    const chunks = splitReadingBeats(scene.data.body)
+    const chunks = readingBeats(scene.data.body)
     const cites = scene.data.citations
     return chunks.map((body, i) => ({
       kind: 'reading' as const,
@@ -82,7 +55,7 @@ function buildBeats(scene: Scene): Beat[] {
 
 /** Whether this scene is eligible for (and benefits from) beat pagination. */
 export function paginates(scene: Scene): boolean {
-  if (scene.sceneType === 'reading') return splitReadingBeats(scene.data.body).length > 1
+  if (scene.sceneType === 'reading') return readingBeats(scene.data.body).length > 1
   if (scene.sceneType === 'slide') return (scene.data.items?.length ?? 0) > SLIDE_ITEMS_PER_BEAT
   return false
 }
@@ -90,17 +63,20 @@ export function paginates(scene: Scene): boolean {
 export function BeatPager({
   scene,
   progress,
-  spokenIdx,
+  audioBeat,
   playing,
+  onSeekBeat,
 }: {
   /** Only `reading` and `slide` scenes are passed here (the player gates it). */
   scene: Scene
-  /** Narration progress 0–1 for the current scene (0 when not playing). */
+  /** Narration progress 0–1 (used for slides, which have one narration track). */
   progress: number
-  /** Index of the sentence the lecturer is speaking — keeps the beat in sync
-   *  with the subtitle bubble (which renders the same sentence stream). */
-  spokenIdx: number
+  /** Authoritative active beat when the player drives per-beat audio (reading
+   *  scenes in listen mode). When set, the display equals the clip playing. */
+  audioBeat?: number | null
   playing: boolean
+  /** Seek the player's per-beat audio queue (reading + listen mode). */
+  onSeekBeat?: (i: number) => void
 }) {
   const beats = useMemo(() => buildBeats(scene), [scene])
   const [manual, setManual] = useState<number | null>(null)
@@ -133,25 +109,24 @@ export function BeatPager({
     )
   }
 
-  // Reading beats advance with the spoken sentence (the same index the subtitle
-  // bubble uses), so the bubble and the on-screen beat stay in lockstep. Slides
-  // carry a separate narration track, so they fall back to overall progress.
-  const sentenceBeat = useMemo(() => {
-    if (scene.sceneType !== 'reading') return null
-    let cum = 0
-    for (let i = 0; i < beats.length; i++) {
-      const b = beats[i]
-      const n = b.kind === 'reading' ? Math.max(1, splitSentences(b.body).length) : 1
-      if (spokenIdx < cum + n) return i
-      cum += n
-    }
-    return beats.length - 1
-  }, [scene.sceneType, beats, spokenIdx])
-
-  const progressBeat =
-    sentenceBeat ?? Math.min(beats.length - 1, Math.max(0, Math.floor(progress * beats.length)))
-  const active = playing ? progressBeat : manual ?? progressBeat
+  const progressBeat = Math.min(beats.length - 1, Math.max(0, Math.floor(progress * beats.length)))
+  const active =
+    audioBeat != null
+      ? Math.min(beats.length - 1, Math.max(0, audioBeat))
+      : playing
+        ? progressBeat
+        : manual ?? progressBeat
   const beat = beats[active]
+
+  // Seek a beat — drive the audio queue when the player owns it, else local.
+  const seek = (i: number) => {
+    const c = Math.min(beats.length - 1, Math.max(0, i))
+    if (onSeekBeat) onSeekBeat(c)
+    else setManual(c)
+  }
+  // Manual stepping shows whenever the player isn't auto-advancing audio, or
+  // when we can seek the audio queue directly.
+  const showControls = onSeekBeat != null || !playing
 
   return (
     <div className="flex h-full flex-col">
@@ -208,7 +183,7 @@ export function BeatPager({
         </div>
       </div>
 
-      {/* Beat rail: dots + manual step (when not auto-advancing) */}
+      {/* Beat rail: dots + manual step */}
       <div className="mt-4 flex items-center justify-between">
         <div className="flex items-center gap-1.5">
           {beats.map((_, i) => (
@@ -224,11 +199,11 @@ export function BeatPager({
           <span className="font-mono text-2xs tabular-nums text-neutral-400">
             {active + 1} / {beats.length}
           </span>
-          {!playing && (
+          {showControls && (
             <>
               <button
                 type="button"
-                onClick={() => setManual(Math.max(0, active - 1))}
+                onClick={() => seek(active - 1)}
                 disabled={active === 0}
                 aria-label="Previous beat"
                 className="flex h-7 w-7 items-center justify-center rounded-md border border-neutral-200 text-neutral-500 transition-colors hover:text-primary disabled:opacity-30"
@@ -237,7 +212,7 @@ export function BeatPager({
               </button>
               <button
                 type="button"
-                onClick={() => setManual(Math.min(beats.length - 1, active + 1))}
+                onClick={() => seek(active + 1)}
                 disabled={active === beats.length - 1}
                 aria-label="Next beat"
                 className="flex h-7 w-7 items-center justify-center rounded-md border border-neutral-200 text-neutral-500 transition-colors hover:text-primary disabled:opacity-30"

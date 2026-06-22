@@ -197,6 +197,16 @@ export async function synthesizeText(
     const fileName = `qa-audio/text/${hash}.mp3`
 
     const admin = createAdminClient()
+    // Cache hit: same text+voice already synthesized — return its URL, no re-synth.
+    // Keeps replayed beats instant and avoids paying TTS for repeated lines.
+    const { data: existing } = await admin.storage
+      .from('lesson-audio')
+      .list('qa-audio/text', { search: `${hash}.mp3`, limit: 1 })
+    if (existing && existing.length > 0) {
+      const { data: hit } = admin.storage.from('lesson-audio').getPublicUrl(fileName)
+      return { url: hit.publicUrl }
+    }
+
     const { audioBuffer } = await synthesizeSpeech({ text: clean, voiceName: LECTURER_VOICES[variant] })
     const { error } = await admin.storage
       .from('lesson-audio')
