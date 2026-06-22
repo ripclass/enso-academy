@@ -244,6 +244,22 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     () => (currentScene ? splitSentences(sceneNarration(currentScene)) : []),
     [currentScene],
   )
+  // The line the lecturer is "saying" right now, for the speech bubble. In
+  // per-beat reading mode it's the active sentence of the CURRENT beat, timed
+  // off that beat's own short clip — so it tracks the voice and resets each
+  // beat (no scene-long drift). Otherwise it's the scene-narration sentence.
+  const bubbleText = useMemo(() => {
+    if (!speaking) return ''
+    if (beatMode && currentScene?.sceneType === 'reading') {
+      const beats = readingBeats(currentScene.data.body)
+      if (beats.length > 1) {
+        const sents = splitSentences(beats[Math.min(activeBeat, beats.length - 1)] ?? '')
+        return sents[activeSentence(sents, narrationProgress)] ?? ''
+      }
+    }
+    return narrationSentences[spokenIdx] ?? ''
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [speaking, beatMode, currentScene, activeBeat, narrationProgress, narrationSentences, spokenIdx])
 
   // Auto-scroll the conversation when new messages arrive
   useEffect(() => {
@@ -881,15 +897,11 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                 <LecturerDock variant={lecturerVariant} speaking={speaking} thinking={askingQuestion} />
 
                 <div className="min-w-0 flex-1 space-y-2">
-                  {/* In beat mode the on-screen beat IS the caption, so the
-                      per-sentence bubble (which estimates position) is hidden. */}
-                  {!beatMode && (
-                    <NarrationBubble
-                      text={speaking ? narrationSentences[spokenIdx] ?? '' : ''}
-                      speaking={speaking}
-                      thinking={askingQuestion}
-                    />
-                  )}
+                  <NarrationBubble
+                    text={bubbleText}
+                    speaking={speaking}
+                    thinking={askingQuestion}
+                  />
                   {suggestions.length > 0 && (
                     <div className="flex flex-wrap items-center gap-1.5">
                       <span className="font-mono text-2xs uppercase tracking-widest text-neutral-400">Ask</span>
