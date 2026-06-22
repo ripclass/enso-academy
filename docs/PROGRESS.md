@@ -1,3 +1,10 @@
+## 2026-06-22 - Classroom subtitle/resume polish + global (US/UK/EU) re-scope (LIVE)
+
+- **Live lecturer subtitle** (commit `3fba58d`, deployed): narration bubble advances sentence-by-sentence with the voice, anchored to the lecturer with a tail, collapses when silent (was a stale block stuck on the first sentence, detached in a centered column).
+- **Continue resumes the lecture**: a raised-hand moment now saves the narration position and resumes from it on Continue (was leaving the lecture stopped). Round-arrow stays replay-from-top.
+- **Bangladesh de-privileged → US/UK/EU** across **28 lessons / 98 scenes, live in the DB**: BD was the default example jurisdiction course-wide (~247 hits); now FATF + US/UK/EU + "map to any jurisdiction". `the-bangladesh-framework` kept as the optional national deep-dive. Legit BD references kept (Bangladesh Bank heist deep-case, Sonali Bank (UK)/Haider enforcement, one illustrative APG evaluation). `the-global-architecture` deep case swapped to Danske Bank Estonia. Narration for changed scenes re-voices on next play.
+- **Open:** question bank (502 q) not yet swept for BD; the new Danske deep case is un-cross-checked text.
+
 ## 2026-06-21 - Experience/packaging: OpenMAIC-style classroom player (branch, not deployed)
 
 - Rebuilt the lesson player into a full-bleed **classroom**: floating stage + transport, lecturer dock, narration bubble, "YOUR CLASS" cast strip, **Ask as a push panel**. Animated slides reveal in sync with narration.

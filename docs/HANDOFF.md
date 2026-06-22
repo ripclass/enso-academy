@@ -1,8 +1,19 @@
 # Enso Academy — Session Handoff
 
-**As of:** 2026-06-21 · **Status:** 🟢 **CAMS is LIVE, taking real money, exam-validated.** Next focus: the **experience/packaging phase** (make the product *feel* worth $400).
+**As of:** 2026-06-22 · **Status:** 🟢 **CAMS is LIVE, taking real money, exam-validated.** Experience/packaging phase well underway. Latest session shipped classroom subtitle/resume polish **and the full global (US/UK/EU) re-scope**.
 
 This is the single-glance handoff. Deeper detail: `CLAUDE.md` (milestone line), `docs/GO-LIVE-CHECKLIST.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`.
+
+## ⭐ Latest session (2026-06-22) — classroom polish + GLOBAL re-scope
+- **Classroom player polish — DONE + LIVE** (commit `3fba58d`, deploy `dpl_4iFb…` READY):
+  - **Live lecturer subtitle:** the narration bubble now advances **sentence-by-sentence with the voice** (was a stale block stuck on the first sentence), is **anchored to the lecturer with a speech-bubble tail**, and **collapses when he's not speaking** (stage breathes). Files: `components/lesson/classroom/lecturer-presence.tsx` (`NarrationBubble` now takes `text`+`speaking`), `app/(dashboard)/lessons/[id]/lesson-player.tsx` (`splitSentences`/`activeSentence`, `spokenIdx` driven off `onTimeUpdate`, footer dock regrouped lecturer+bubble left / cast right).
+  - **Continue resumes the lecture:** a raised-hand moment now **saves the narration position** (`lecturePosRef`) and **Continue seeks back + resumes** (`resumeLecture()`, `dismissMoment(resume=true)`) — it used to leave the lecture stopped. The round-arrow stays "replay this scene from the top" (by design); the ▶ button resumes mid-scene.
+- **GLOBAL re-scope (Bangladesh de-privileged) — DONE + LIVE in the DB.** Bangladesh was woven in as the **default example jurisdiction** across the core (~247 hits / ~30 lessons). Swept to **US / UK / EU + "map it to any jurisdiction"** across **28 lessons, 98 scenes pushed to the live `content_library_elements`** (course reads from DB, so it's live now — no deploy needed for content; generated JSON is gitignored). e.g. the opening ML lesson now teaches **US 18 USC 1956/1957 · UK POCA · EU 6AMLD** (was US/UK/Bangladesh).
+  - **`the-bangladesh-framework` KEPT as the optional national-framework deep-dive** (Ripon's call).
+  - **Legit BD references intentionally kept** in the global core: the *Bangladesh Bank heist* deep-case (life-of-FIU, virtual-assets), the genuine *Sonali Bank (UK) / Haider* enforcement cases (mlro-cco), and **one** explicitly-"illustrative" APG evaluation (global-architecture).
+  - **`the-global-architecture` deep case was swapped** from BD-centric → **Danske Bank Estonia** (real, well-documented; €200bn NRP, DOJ Dec-2022 ~$2bn, SEC $178.6m/~$413m — matches the facts spine; Bruun & Hjejle correctly demoted to secondary context). **Worth Ripon's glance.**
+  - Method (for any future sweep): captured an exact JSON-scene→live-row map by content-equality, agents reframed JSON only (generalize-first), then a diff-push to the DB cleared `audio_url` on changed scenes. **Narration for the 98 changed scenes re-voices with the new global text on next play.** Verified: 0 prose artifacts, scene counts intact, live DB clean of BD-as-default vocab.
+- **⚠ Caveat:** the 10 reframing subagents hit a **server-side rate limit** mid-run (not the usage cap) and the **safety classifier was unavailable**, so their work was **verified directly** (BD-vocab counts, scene-count integrity, prose-artifact scan, spot-read of the heaviest lesson) before pushing — not trusted blind. A couple of agents briefly made things *worse* (added CAMLCO/Dhaka); those were caught and fixed by hand.
 
 ---
 
@@ -39,7 +50,7 @@ Content is mature; UI/UX + interactivity were thin. Studied **OpenMAIC** (open.m
 - **Tier 3:** progress/mastery viz; whiteboard mode; PPTX/offline export.
 
 ## Open product decisions
-- **National Frameworks re-scope** (pending Ripon's write-up): the **CAMS exam is ONE global exam — no country-specific questions.** So country deep-dives don't help anyone *pass*. Plan → global CAMS = FATF + US/EU/UK + "map it to any jurisdiction"; localized national add-ons (India/Pakistan/…) as a separate **practitioner** layer where BD is just one of many; keep BD-centric content in the **Enso Academy Bangladesh** track.
+- **National Frameworks re-scope — DONE (2026-06-22).** Lesson content globalized to **FATF + US/UK/EU + "map it to any jurisdiction"**; `the-bangladesh-framework` kept as the optional national-framework deep-dive. **Still TODO if Ripon wants:** (a) re-scope the **question bank** the same way (the 502-q bank may still lean BD in the national-frameworks module — not yet swept); (b) decide whether BD-specific national content seeds the separate **Enso Academy Bangladesh** track.
 - Classmate cast size: TBD (define how many, OpenMAIC-style).
 
 ## Key facts / gotchas for next session
