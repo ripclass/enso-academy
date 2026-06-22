@@ -14,6 +14,7 @@ import { CastStrip, type CastMember } from '@/components/lesson/classroom/cast-s
 import { ClassmateMoment, type MomentPhase } from '@/components/lesson/classroom/classmate-moment'
 import { Avatar } from '@/components/lesson/classroom/avatar'
 import { SceneProgress } from '@/components/lesson/classroom/scene-progress'
+import { BeatPager } from '@/components/lesson/classroom/beat-pager'
 import { sceneContext, sceneNarration, suggestedQuestions, lecturerVariantFor, type Scene, type SceneType, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
 import { toast } from 'sonner'
 
@@ -149,6 +150,13 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // Which narration sentence is "live" — advanced by audio progress for the
   // subtitle, so the bubble tracks what the lecturer is actually saying.
   const [spokenIdx, setSpokenIdx] = useState(0)
+  // Narration progress 0–1 for the current scene — drives beat pagination.
+  const [narrationProgress, setNarrationProgress] = useState(0)
+  // Beat-pagination prototype: opt-in via ?beats=1, so the default published
+  // experience is unchanged while we trial fragmenting long scenes into beats.
+  const [beatMode] = useState(
+    () => typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('beats') === '1',
+  )
   const conversationRef = useRef<HTMLDivElement>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   // Tracks what the audio element is currently playing, so that a finished
@@ -262,6 +270,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   useEffect(() => {
     setRevealedCount(1)
     setSpokenIdx(0)
+    setNarrationProgress(0)
   }, [currentIndex])
 
   // Silent stagger: when not listening (or this scene has no narration audio),
@@ -613,6 +622,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
           if (!audio.paused) setAudioStatus((s) => (s === 'playing' ? s : 'playing'))
           if (audioSource.current === 'scene' && audio.duration > 0) {
             const progress = audio.currentTime / audio.duration
+            if (beatMode) setNarrationProgress(progress)
             // Progressive slide reveal, paced to the actual narration length.
             if (slideItemCount > 0) {
               const k = Math.min(slideItemCount, Math.max(1, Math.ceil(progress * slideItemCount)))
@@ -706,18 +716,29 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                 {/* Scene content */}
                 <div className="flex-1 overflow-y-auto px-8 py-10 md:px-14 md:py-12">
                   {currentScene ? (
-                    <div
-                      key={currentScene.id}
-                      className="animate-in fade-in slide-in-from-bottom-2 duration-500"
-                    >
-                      <SceneRenderer
-                        scene={currentScene}
-                        onQuizAnswer={handleQuizAnswer}
-                        onInteractiveComplete={handleInteractiveComplete}
-                        onGradeProject={handleGradeProject}
-                        revealed={currentScene.sceneType === 'slide' ? revealedCount : undefined}
-                      />
-                    </div>
+                    beatMode &&
+                    (currentScene.sceneType === 'reading' || currentScene.sceneType === 'slide') ? (
+                      <div key={currentScene.id} className="h-full animate-in fade-in duration-500">
+                        <BeatPager
+                          scene={currentScene}
+                          progress={narrationProgress}
+                          playing={speaking}
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        key={currentScene.id}
+                        className="animate-in fade-in slide-in-from-bottom-2 duration-500"
+                      >
+                        <SceneRenderer
+                          scene={currentScene}
+                          onQuizAnswer={handleQuizAnswer}
+                          onInteractiveComplete={handleInteractiveComplete}
+                          onGradeProject={handleGradeProject}
+                          revealed={currentScene.sceneType === 'slide' ? revealedCount : undefined}
+                        />
+                      </div>
+                    )
                   ) : (
                     <p className="text-sm text-neutral-500">This lesson has no content yet.</p>
                   )}
