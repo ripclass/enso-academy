@@ -78,7 +78,7 @@ export type SynthesizeResult = {
  * The on-screen text is untouched — this only shapes what the voice says.
  */
 export function textToSpeechReady(raw: string): string {
-  return (raw ?? '')
+  const cleaned = (raw ?? '')
     .replace(/§§/g, ' sections ')
     .replace(/§/g, ' section ')
     .replace(/¶¶/g, ' paragraphs ')
@@ -89,6 +89,43 @@ export function textToSpeechReady(raw: string): string {
     .replace(/\n+/g, '. ') // newlines → sentence breaks
     .replace(/\s+/g, ' ')
     .trim()
+  return breakLongSentences(cleaned)
+}
+
+// Chirp 3 HD rejects a single sentence that exceeds its length cap ("split with
+// periods"). A few legal run-on sentences trip this. Break only those, at a
+// clause boundary near the middle — and leave text without an over-long
+// sentence byte-for-byte unchanged (so cached-clip hashes don't move).
+const MAX_SENTENCE_CHARS = 240
+
+function breakLongSentences(text: string): string {
+  const sentences = text.match(/[^.!?]+[.!?]*/g) ?? []
+  if (!sentences.some((s) => s.trim().length > MAX_SENTENCE_CHARS)) return text
+
+  const out: string[] = []
+  const split = (s: string): void => {
+    const t = s.trim()
+    if (!t) return
+    if (t.length <= MAX_SENTENCE_CHARS) {
+      out.push(t)
+      return
+    }
+    const mid = Math.floor(t.length / 2)
+    let best = -1
+    const re = /[,;:](\s)/g
+    let m: RegExpExecArray | null
+    while ((m = re.exec(t)) !== null) {
+      if (best === -1 || Math.abs(m.index - mid) < Math.abs(best - mid)) best = m.index
+    }
+    if (best === -1) {
+      out.push(t) // no clause boundary to split on — leave it (rare)
+      return
+    }
+    split(t.slice(0, best)) // drop the comma; the period below ends the clause
+    split(t.slice(best + 1))
+  }
+  for (const s of sentences) split(s)
+  return out.map((s) => (/[.!?]$/.test(s) ? s : `${s}.`)).join(' ')
 }
 
 export async function synthesizeSpeech(opts: SynthesizeOptions): Promise<SynthesizeResult> {
