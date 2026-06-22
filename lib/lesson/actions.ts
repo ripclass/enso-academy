@@ -188,20 +188,18 @@ export async function synthesizeText(
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return { url: null }
 
-    const { synthesizeSpeech, textToSpeechReady, LECTURER_VOICES } = await import('@/lib/audio/tts')
+    const { synthesizeSpeech, textToSpeechReady, LECTURER_VOICES, textClipFileName } = await import('@/lib/audio/tts')
     const clean = textToSpeechReady(text)
     if (!clean) return { url: null }
 
-    const { createHash } = await import('crypto')
-    const hash = createHash('sha1').update(`${variant}:${clean}`).digest('hex').slice(0, 24)
-    const fileName = `qa-audio/text/${hash}.mp3`
+    const fileName = textClipFileName(clean, variant)
 
     const admin = createAdminClient()
     // Cache hit: same text+voice already synthesized — return its URL, no re-synth.
     // Keeps replayed beats instant and avoids paying TTS for repeated lines.
     const { data: existing } = await admin.storage
       .from('lesson-audio')
-      .list('qa-audio/text', { search: `${hash}.mp3`, limit: 1 })
+      .list('qa-audio/text', { search: fileName.split('/').pop(), limit: 1 })
     if (existing && existing.length > 0) {
       const { data: hit } = admin.storage.from('lesson-audio').getPublicUrl(fileName)
       return { url: hit.publicUrl }

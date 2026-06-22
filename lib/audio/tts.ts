@@ -4,6 +4,7 @@
 // inline JSON (Vercel production) via GOOGLE_APPLICATION_CREDENTIALS_JSON.
 
 import { TextToSpeechClient } from '@google-cloud/text-to-speech'
+import { createHash } from 'crypto'
 
 let cachedClient: TextToSpeechClient | null = null
 
@@ -47,6 +48,18 @@ export const LECTURER_VOICE = LECTURER_VOICES.male
 
 const DEFAULT_VOICE = LECTURER_VOICE
 const DEFAULT_LANGUAGE = 'en-US'
+
+/**
+ * Storage path for a hash-cached text clip (lecturer Q&A lines, and per-beat
+ * narration). The SAME function is used by the on-demand synth action and the
+ * batch pre-generator, so a beat the player requests and a beat the batch
+ * created land at the identical path. `cleanText` must already be run through
+ * textToSpeechReady().
+ */
+export function textClipFileName(cleanText: string, variant: 'male' | 'female'): string {
+  const hash = createHash('sha1').update(`${variant}:${cleanText}`).digest('hex').slice(0, 24)
+  return `qa-audio/text/${hash}.mp3`
+}
 
 // Chirp 3 HD is billed per character like other premium tiers; this is an
 // estimate for cost logging only (not billing). ~$30 per 1M characters.

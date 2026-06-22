@@ -4,7 +4,9 @@
 // Idempotent: skips elements that already have audio_url set, unless force=true.
 
 import { createAdminClient } from '@/lib/supabase/admin'
-import { synthesizeSpeech, textToSpeechReady } from './tts'
+import { synthesizeSpeech, textToSpeechReady, LECTURER_VOICES, textClipFileName } from './tts'
+import { readingBeats } from '@/lib/lesson/beats'
+import { lecturerVariantFor } from '@/lib/lesson/scenes'
 
 type PregenerateOptions = {
   courseId: string
@@ -111,5 +113,102 @@ export async function pregenerateCourseAudio(opts: PregenerateOptions): Promise<
     await new Promise((resolve) => setTimeout(resolve, 1100))
   }
 
+  return result
+}
+
+export type BeatPregenResult = {
+  readingScenes: number
+  beatsTotal: number
+  generated: number
+  skipped: number
+  failed: number
+  totalCostCents: number
+  errors: Array<{ elementId: string; beat: number; error: string }>
+}
+
+/**
+ * Pre-generate the per-beat narration clips for a course's reading scenes, at
+ * the exact hash path the player's beat-audio queue requests (textClipFileName)
+ * — so beat playback never waits on synthesis, including across scene changes.
+ * Idempotent: skips clips already in storage. Only multi-beat reading scenes use
+ * per-beat audio; single-beat readings + slides keep the whole-scene clip
+ * (pregenerateCourseAudio).
+ */
+export async function pregenerateBeatAudio(opts: {
+  courseId: string
+  onProgress?: (current: number, total: number, label: string) => void
+}): Promise<BeatPregenResult> {
+  const admin = createAdminClient()
+  const { data: scenes, error } = await admin
+    .from('content_library_elements')
+    .select('id, lesson_id, scene_data, body')
+    .eq('course_id', opts.courseId)
+    .eq('scene_type', 'reading')
+  if (error) throw new Error('Failed to fetch reading scenes: ' + error.message)
+
+  const result: BeatPregenResult = {
+    readingScenes: scenes?.length ?? 0,
+    beatsTotal: 0,
+    generated: 0,
+    skipped: 0,
+    failed: 0,
+    totalCostCents: 0,
+    errors: [],
+  }
+  if (!scenes) return result
+
+  // Build the full beat work-list first (mirrors the client: effective body is
+  // scene_data.body when present, else the row body; variant is per-lesson).
+  type Job = { elementId: string; variant: 'male' | 'female'; index: number; text: string }
+  const jobs: Job[] = []
+  for (const s of scenes) {
+    const sd = s.scene_data && typeof s.scene_data === 'object' ? (s.scene_data as Record<string, unknown>) : null
+    const body = (typeof sd?.body === 'string' ? sd.body : s.body ?? '') || ''
+    const beats = readingBeats(body)
+    if (beats.length <= 1) continue // single-beat readings use the whole-scene clip
+    const variant = lecturerVariantFor((s.lesson_id as string | null) ?? '')
+    beats.forEach((text, index) => jobs.push({ elementId: s.id, variant, index, text }))
+  }
+  result.beatsTotal = jobs.length
+
+  let i = 0
+  for (const job of jobs) {
+    i++
+    opts.onProgress?.(i, jobs.length, `${job.elementId} · beat ${job.index + 1}`)
+    try {
+      const clean = textToSpeechReady(job.text)
+      if (!clean) {
+        result.skipped++
+        continue
+      }
+      const fileName = textClipFileName(clean, job.variant)
+      const dir = fileName.slice(0, fileName.lastIndexOf('/'))
+      const name = fileName.slice(fileName.lastIndexOf('/') + 1)
+      const { data: existing } = await admin.storage.from('lesson-audio').list(dir, { search: name, limit: 1 })
+      if (existing && existing.length > 0) {
+        result.skipped++
+        continue
+      }
+      const { audioBuffer, costCents } = await synthesizeSpeech({
+        text: clean,
+        voiceName: LECTURER_VOICES[job.variant],
+      })
+      const { error: upErr } = await admin.storage
+        .from('lesson-audio')
+        .upload(fileName, audioBuffer, { contentType: 'audio/mpeg', upsert: true })
+      if (upErr) throw new Error('Upload failed: ' + upErr.message)
+      result.generated++
+      result.totalCostCents += costCents
+      // Throttle only after an actual synth (skips stay fast on re-runs).
+      await new Promise((r) => setTimeout(r, 800))
+    } catch (err) {
+      result.failed++
+      result.errors.push({
+        elementId: job.elementId,
+        beat: job.index,
+        error: err instanceof Error ? err.message : 'unknown',
+      })
+    }
+  }
   return result
 }
