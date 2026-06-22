@@ -1,3 +1,26 @@
+## 2026-06-22 - the-global-architecture lesson: AMLA legal-basis + FIU-routing fidelity fix (LIVE)
+
+Fixed the fidelity issues the background-codex audit flagged on `the-global-architecture-fatf-fius-supervisors` (the swapped-in Danske/EU-package lesson). 7 surgical edits across 3 scenes, applied to the JSON source **and** the live DB (`content_library_elements`), audio nulled so they re-voice:
+- **AMLA legal basis** (the real issue): the lesson tied AMLA to **Reg (EU) 2024/1624 + Dir 2024/1640**, but AMLA is established by **Reg (EU) 2024/1620** (1624 = the AML Regulation / single rulebook; 1640 = AMLD6). Corrected in the FIU scene body, the National Supervisors scene body, both scenes' citation labels, and the "Match the Question to the Authority" slide item — AMLA now established by 2024/1620, with 1624/1640 named as completing the package.
+- **FIU domestic routing:** "a domestic request from a national law-enforcement agency comes through that country's own **legal-assistance framework**" → "**domestic legal and investigative powers**" (legal assistance / MLA is the cross-border channel, wrong for domestic routing).
+- **Egmont not exclusive:** "without a recognised framework. That framework is the Egmont Group" → "without a recognised **gateway for exchange. The principal such gateway** is the Egmont Group … FIUs may also exchange under bilateral MOUs and other lawful arrangements."
+- Method: temp tsx (admin client) read each scene's actual DB `scene_data`, replaced only the 7 known phrases (surgical — no field-clobber, safe under concurrency), wrote back. Verified live: 0 "legal-assistance framework", AMLA→2024/1620 in all 3 scenes, slide item correct.
+
+**Multi-session note:** a parallel CAMS session ran concurrently this session (it committed `8472062` "stand down on CAMS", redirecting to CCAS) — Ripon's "don't run two sessions on CAMS at once" lesson. My session did the question-bank sweep + glossary fix + this lesson fix at Ripon's direct request; the live DB is the source of truth and was verified after each change.
+
+## 2026-06-22 - Literal user-pasted Module 6 question-only fidelity audit remains `AGREE`
+
+- Re-ran the exact cross-check-reviewer brief on the literal pasted `national-frameworks-in-depth` bank, without assuming the pasted text matched the live post-global-sweep DB bank.
+- External spot-check bundle used this turn: AMLA `About AMLA` (Frankfurt seat; cross-border financial-sector direct-supervision scope; direct supervision starts during 2028), EUR-Lex `Regulation (EU) 2024/1624` (single rulebook / application date / cash-limit context), FinCEN BOI / FBAR / MSB pages, the NCA SARs page (`7 working day` / moratorium references), and GOV.UK OFSI / UK Sanctions List pages.
+- Result stayed `AGREE` on the questions: no wrong key, defensible second-correct answer, bad wrong-answer rationale, explanation contradiction, or question-level factual defect found on the literal pasted text.
+- Carry-forward: older Module 6 question-only `DISAGREE` notes in memory were tied to superseded literal-text variants and should not be reused against this pasted globalized set. If the set comes back unchanged, only methodology or glossary review remains live.
+
+## 2026-06-22 - Literal user-pasted Module 6 methodology audit: keep it separate from the live post-sweep bank
+
+- Exact user-facing rerun on the literal pasted `national-frameworks-in-depth` question set still lands `DISAGREE` on the narrowed methodology brief.
+- The live reviewer-visible issues on that pasted text are narrower than the older BD-statute-recall note set: the clearest remaining format problems are thin authority / tool-name recall (`FinCEN issues an order requiring title-insurance companies...`, `A US person holds several foreign bank accounts whose combined balance...`, `In the UK, who oversees the professional body supervisors...`), plus one clear metadata issue (`A European bank built a control on the assumption...` carries off-topic `amld_6`) and one smaller durability issue (`A compliance officer asks what AMLA will actually do once operational...` still hard-codes `from 2028`).
+- Reviewer hygiene: do not merge this note into the live 2026-06-22 global-sweep memory as if the repo bank still contains this exact text. If Module 6 comes up again, first determine whether the target is the live post-sweep bank or a separately pasted historical artifact.
+
 ## 2026-06-22 - Question-bank global sweep (BD-leaning Qs reframed to US/UK/EU/FATF, LIVE)
 
 Finished the global re-scope's loose end: the 502-q question bank (last session globalized the lessons, not the questions). Ripon's call (AskUserQuestion): **reframe** the BD questions to US/UK/EU/FATF (vs keep-some / remove-from-pool).

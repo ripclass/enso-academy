@@ -1,3 +1,15 @@
+## 2026-06-22 - Literal pasted Module 6 question-only fidelity rerun reconfirmed `AGREE`
+
+- Re-audited the exact user-pasted `national-frameworks-in-depth` question set for answer-key correctness, second-correct-answer risk, distractor wrongness / rationale accuracy, explanation consistency, and question-level factual fidelity after reloading the required project-memory chain.
+- Spot-checked the current-sensitive questions against current official sources already in the review workflow: AMLA's `About AMLA` page / timeline, EUR-Lex `Regulation (EU) 2024/1624`, FinCEN's BOI / FBAR / MSB pages, the NCA SARs page, and GOV.UK's OFSI / UK Sanctions List pages.
+- No ship-blocking question-level defect surfaced on the literal pasted questions. Carry-forward: keep Module 6 closed on the user's answer-key / fidelity lane unless the literal text changes; open work remains only in the separate methodology lane, or glossary lane if separately requested.
+
+## 2026-06-22 - Literal user-pasted Module 6 methodology audit still lands `DISAGREE`
+
+- Re-read the exact user-pasted `national-frameworks-in-depth` question set under the methodology-only cross-check brief after reloading the project-memory chain plus `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0020`.
+- The literal pasted artifact is still not promotion-safe on this brief: originality and adult register stay in bounds, but a small cluster of stems remain thin scenario-wrapped authority / tool recall (`FinCEN issues an order requiring title-insurance companies...`, `A US person holds several foreign bank accounts...`, `In the UK, who oversees the professional body supervisors...`), the WM / Sovim beneficial-ownership-access item carries an off-target `amld_6` tag, and the AMLA-role item still bakes in rollout-sensitive `from 2028` wording.
+- Carry-forward: do not conflate this literal pasted-artifact audit with the live 2026-06-22 post-global-sweep question bank; if Module 6 is touched again, first confirm whether the target is the user-pasted historical text or the current repo / DB bank.
+
 ## 2026-06-22 - Classroom subtitle/resume polish + global (US/UK/EU) re-scope (LIVE)
 
 - **Live lecturer subtitle** (commit `3fba58d`, deployed): narration bubble advances sentence-by-sentence with the voice, anchored to the lecturer with a tail, collapses when silent (was a stale block stuck on the first sentence, detached in a centered column).
