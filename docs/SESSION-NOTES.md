@@ -1,4 +1,23 @@
-## 2026-06-22 - CCAS MODULE 1 COMPLETE (4/4): The Crypto Ecosystem — VASPs, DeFi, Token Types (8/43 total)
+## 2026-06-23 - CCAS lesson `keys-addresses-and-wallets` factual-fidelity exact rerun
+
+User asked for the strict factual-fidelity audit on the pasted `keys-addresses-and-wallets` lesson artifact.
+
+- Re-read the required memory stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, and ADR `0015` / `0016` / `0019` / `0020`.
+- Confirmed the repo artifact `generated/ccas/lessons/keys-addresses-and-wallets.json` matches the pasted lesson; validation file remains structurally clean (`generated/ccas/lessons/keys-addresses-and-wallets.validation.json` = `overall: pass`).
+- Factual rerun still lands `SPLIT`, not `AGREE` or `DISAGREE`. The live text keeps the corrected Quadriga opener (`approximately C$215 million`; `roughly 76,000` affected clients) and stays materially sound on the FATF `R.15` / `INR.15` custody / self-hosted perimeter framing.
+- Residual reviewer-visible issues remain the same softer pair only: the Quadriga scene still briefly leans on the exchange's public lost-keys account before the later OSC fraud correction, and some key-control / self-custody language remains too absolute for certain issuer- or contract-controlled cryptoassets.
+- Source posture for this rerun: maintained 2026-06-22 crypto/VASP facts reference + FATF public Recommendation / VA-guidance materials + public Quadriga record. No lesson-content edits were made in this work block.
+
+## 2026-06-23 - CCAS lesson `keys-addresses-and-wallets` methodology exact rerun
+
+User asked for the strict v1.1 methodology audit on the pasted `keys-addresses-and-wallets` lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md`.
+- Checked the companion validation artifact `generated/ccas/lessons/keys-addresses-and-wallets.validation.json`; current file shows `overall: pass` (`validatedAt` `2026-06-23T14:09:48.369Z`) with 4/4 reading scenes carrying citations and pass on pedagogy / methodology / citation-bind.
+- Manual methodology call stayed `AGREE` on the current pasted lesson: no prohibited/commercial-source issue, the QuadrigaCX scene still satisfies the named deep-case requirement, repeated `teachesConcepts` remain substantively distinct by contribution rather than redundant reteaching, and the quiz remains formative rather than certification-format mimicry.
+- Carry-forward: keep the lesson closed on methodology unless the artifact changes materially. The only reviewer-visible residuals on this slug remain in the separate factual-fidelity lane (Quadriga lost-keys framing softness; absolute self-custody wording for certain issuer- or contract-controlled assets).
+
+## 2026-06-22 - CCAS MODULE 1 COMPLETE (4/4): The Crypto Ecosystem - VASPs, DeFi, Token Types (8/43 total)
 
 All 4 Module-1 lessons generated inline and cleared AGREE/AGREE (per-verdict entries below are auto-written by the cross-check runs). Module 0 + Module 1 = **8/43 CCAS lessons done**.
 

@@ -1,3 +1,15 @@
+## 2026-06-23 - CCAS lesson `keys-addresses-and-wallets` factual-fidelity exact rerun stays `SPLIT`
+
+- Re-audited the literal user-pasted / repo lesson artifact against the maintained 2026-06-22 crypto/VASP facts reference, FATF public Recommendation / VA-guidance materials, and the public QuadrigaCX record.
+- No new hard blocker surfaced on the live text: the FATF `R.15` / `INR.15` perimeter framing, the custody vs self-hosted distinction, and the corrected Quadriga opener (`approximately C$215 million`; `roughly 76,000` affected clients) remain materially sound.
+- Carry-forward: the same two softer reviewer-visible issues remain live only if this lesson is touched again — the Quadriga scene still briefly leans on the exchange's public lost-keys account before the later OSC fraud correction, and some key-control / self-custody wording remains too absolute for certain issuer- or contract-controlled cryptoassets. No lesson-content edits were made in this work block.
+
+## 2026-06-23 - CCAS lesson `keys-addresses-and-wallets` methodology rerun stays `AGREE`
+
+- Re-audited the literal user-pasted lesson against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the matching `generated/ccas/lessons/keys-addresses-and-wallets.validation.json`.
+- No methodology delta surfaced: allowed/public source discipline still holds, all reading scenes carry `citations[]`, the QuadrigaCX scene still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, and the quiz remains scenario-based rather than certification-format mimicry.
+- Carry-forward: keep the methodology lane closed on this lesson unless the artifact changes materially; any live issue remains in the separate factual-fidelity lane only.
+
 ## 2026-06-22 - CCAS Module 1 COMPLETE: 8/43 lessons cleared (MILESTONE)
 
 - **Module 1 (The Crypto Ecosystem: VASPs, DeFi, Token Types) done — all 4 AGREE/AGREE.** M1L1 `exchanges-custodians-and-the-vasp-landscape` (Liberty Reserve S.A.), M1L2 `decentralized-finance-and-smart-contracts` (Ooki DAO), M1L3 `stablecoins-nfts-and-tokenization` (Tether reserves), M1L4 `privacy-coins-mixers-and-obfuscation` (Helix/Larry Harmon, + a red-flags interactive). With Module 0 → **8/43 CCAS lessons cleared**.
