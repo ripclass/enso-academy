@@ -1,3 +1,279 @@
+## 2026-06-22 - CCAS MODULE 1 COMPLETE (4/4): The Crypto Ecosystem — VASPs, DeFi, Token Types (8/43 total)
+
+All 4 Module-1 lessons generated inline and cleared AGREE/AGREE (per-verdict entries below are auto-written by the cross-check runs). Module 0 + Module 1 = **8/43 CCAS lessons done**.
+
+- **M1L1 `exchanges-custodians-and-the-vasp-landscape`** — AGREE/AGREE (it.2). Deep case **Liberty Reserve S.A.** (DOJ 2013 → 2016) as the precursor that established the money-transmitter/VASP control-point principle. Fix: numbers realigned to the DOJ releases (>$6bn laundered, >5M accounts, millions of txns — dropped a secondary-source $8bn/5.5M blend) + split the plea (OPA) vs sentencing (SDNY) citations exactly.
+- **M1L2 `decentralized-finance-and-smart-contracts`** — AGREE/AGREE (it.2). Deep case **Ooki DAO** (CFTC 2022-2023, "a DAO can be a liable person"). Fixes: scoped the CIP/BSA obligation to the FCM fact pattern; **cut an unsupported Lazarus sentence**.
+- **M1L3 `stablecoins-nfts-and-tokenization`** — AGREE/AGREE (it.2). Deep case **Tether** (NYAG Feb-2021 + CFTC Oct-2021 reserves actions). Fix: corrected "no reserves at all" → the precise NYAG finding (not backed 1-to-1 by USD in a Tether bank account; partly commingled/receivable). Builds on M0L1's taxonomy with the "is it actually backed?" angle.
+- **M1L4 `privacy-coins-mixers-and-obfuscation`** — AGREE/AGREE (it.3). Deep case **Helix / Larry Harmon** (FinCEN 2020 $60M, first penalty against a crypto mixer; DOJ plea) + a **red-flags interactive** (spot obfuscation indicators). Tornado Cash kept as a forward pointer to M9. Fixes: softened Helix advertising to the DOJ wording; cut the unsupported "cooperated against another mixer" claim; added the "transfers cryptoasset for others" qualifier to the mixer=money-transmission holding; cut two unsupported Lazarus references.
+
+**Recurring fidelity lesson reinforced:** the Pro reviewer rejects **named-actor attributions / motive claims (esp. Lazarus Group) when the scene's own citations don't support them** — re-source with the exact OFAC/Treasury primary doc or cut; don't add Lazarus "for colour." Deep-case entity heuristic: `S.A.`/`N.A.` don't satisfy the gate (trailing-period kills the `\b`) — use word-char-ending entities (Ltd/Group/Holdings/Bank/AG); "Bank Secrecy Act" incidentally supplies "Bank" for US-enforcement deep cases. Don't pipe a backgrounded crosscheck through `tail`/`head` (truncates the verdict header) — dispatch raw, read the file. Transient `ETIMEDOUT` spawn failures auto-retry.
+
+**NEXT:** Module 2 (`blockchain-analytics-and-on-chain-investigation`) — transparency-pseudonymity-and-the-tracing-premise, clustering-attribution-and-exposure-analysis, conducting-an-on-chain-investigation (deep case: Bitfinex 2016→2022 seizure). Then Domain 2 (M3-M5).
+
+## 2026-06-22 - CCAS lesson `privacy-coins-mixers-and-obfuscation` factual-fidelity exact rerun on live hash `EF1C9CD...` now returns `AGREE`
+
+Re-read the literal user-pasted / repo `generated/ccas/lessons/privacy-coins-mixers-and-obfuscation.json` artifact on live repo hash `EF1C9CD22744F8F6E0A47E91CE05EAE94D755E7F3D3053B922B57646A9C5907D` against the maintained 2026-06-22 crypto/VASP facts reference plus DOJ Helix primary materials: the 13 February 2020 charge release and the 15 November 2024 sentencing release, with the live Helix scene text checked directly in repo.
+
+- Current factual-fidelity verdict is `AGREE`.
+- The older same-day `SPLIT` notes on this slug are stale on the live file. The current artifact no longer carries the named Lazarus / motive language or the earlier Helix overreach sentences preserved in repo memory.
+- The current Helix takeaway is now scoped correctly for this level of teaching: `A mixer that transfers cryptoasset for others is a money transmitter`, which stays aligned with the custodial Helix fact pattern and does not collapse the lesson's earlier custodial-vs-non-custodial distinction.
+- The remaining deep-case bundle stays in bounds on the public record: Harmon / Helix operated from `2014-2017`; DOJ charged him in February `2020`; FinCEN assessed a parallel `USD 60 million` civil penalty; Harmon pleaded guilty on 18 August `2021`; and the public DOJ record supports the over `350,000` bitcoin / over `USD 300 million` scale bundle.
+- Carry-forward: keep this lesson closed on factual fidelity unless the artifact changes materially. If this slug is reviewed again, do not recycle the earlier same-day `SPLIT` notes unless the deleted language reappears.
+
+## 2026-06-22 - CCAS lesson `privacy-coins-mixers-and-obfuscation` methodology exact current-turn rerun: still `AGREE`
+
+Re-read the literal user-pasted / repo `generated/ccas/lessons/privacy-coins-mixers-and-obfuscation.json` artifact, the matching `generated/ccas/lessons/privacy-coins-mixers-and-obfuscation.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020` before returning the exact-format reviewer answer.
+
+- Current methodology verdict remains `AGREE`.
+- No methodology delta surfaced on the live hash: every reading scene carries `citations[]`, the source posture stays inside allowed/public types, `Worked example: Helix and the first penalty against a crypto mixer (2020)` still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, and the interactive / quiz remain formative rather than certification-format mimicry.
+- Carry-forward: keep this lesson closed on methodology unless the artifact changes materially; any live reviewer-visible issue remains in the separate factual-fidelity lane only.
+
+## 2026-06-22 - CCAS lesson `privacy-coins-mixers-and-obfuscation` factual-fidelity rerun: older Helix-specific SPLIT note is stale, current residuals are softer
+
+Re-read the literal user-pasted / repo `generated/ccas/lessons/privacy-coins-mixers-and-obfuscation.json` artifact against the maintained 2026-06-22 crypto/VASP facts reference plus DOJ Helix primary materials and the public 15 November 2024 sentencing release before returning the exact-format reviewer verdict.
+
+- Current factual-fidelity verdict remains `SPLIT`, but not for the reasons preserved in older same-day repo memory.
+- The earlier same-day Helix-specific note is stale on the live file: the current artifact no longer says Harmon later cooperated in another mixer investigation, and it no longer says he advertised Helix for paying for `drugs, weapons, and other illegal goods`.
+- Live residual 1: `What to carry forward` and the Helix synthesis language now overgeneralize the holding into `running a mixer is money transmission subject to AML obligations`, even though `Mixers and tumblers` itself correctly distinguishes custodial mixers from non-custodial CoinJoin-type arrangements. If touched again, keep the Helix principle scoped to a mixer transferring cryptoassets for others / the custodial-operator fact pattern.
+- Live residual 2: the named Lazarus / motive sentences in `Mixers and tumblers` (`routes stolen funds through mixers and across bridges precisely to break the trail before cash-out`) and in the Helix wrap-up (`Sophisticated actors such as the Lazarus Group depend on exactly these services`) are directionally plausible, but the cited FATF / Helix source labels as written do not carry that named attribution or motive. If retained, re-source them to the relevant OFAC / FBI / Treasury public materials; otherwise soften them to generic obfuscation-risk language.
+- Carry-forward: do not recycle the older same-day `cooperated with authorities` / `drugs, weapons, and other illegal goods` SPLIT note against the current hash unless those deleted sentences reappear.
+
+## 2026-06-22 - CCAS lesson `privacy-coins-mixers-and-obfuscation` methodology exact rerun: no delta
+
+- Re-read the literal user-pasted / repo `generated/ccas/lessons/privacy-coins-mixers-and-obfuscation.json` artifact, the matching `.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020` before returning the exact-format reviewer answer.
+- Verdict remains `AGREE`: allowed/public source discipline still holds, every reading scene carries `citations[]`, the Helix scene still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, and the interactive / quiz stay formative rather than certification-format mimicry.
+- Carry-forward: keep this lesson closed on methodology unless the artifact changes materially; any live issue remains in the separate factual-fidelity lane only.
+
+## 2026-06-22 - CCAS lesson `decentralized-finance-and-smart-contracts` factual-fidelity close-out
+
+Re-read the literal user-pasted lesson artifact and the repo file `generated/ccas/lessons/decentralized-finance-and-smart-contracts.json` against the maintained 2026-06-22 crypto/VASP facts reference plus the public FATF / CFTC primary materials before returning the exact-format reviewer verdict.
+
+- Current factual-fidelity verdict is `AGREE`.
+- The earlier same-day Lazarus / bridges blocker is stale on the live artifact: direct repo grep confirmed the current file does **not** contain that sentence, so the stored `DISAGREE` note should not be recycled against this hash.
+- The remaining live text stays in bounds on the DeFi / FATF side (control-or-influence test; genuinely decentralised software not itself a VASP; possible VASP status for creators / owners / operators with control or sufficient influence) and on the Ooki side (September 2022 bZeroX settlement; N.D. Cal. `3:22-cv-05416-WHO`; Judge Orrick; 8 June 2023 default judgment; `USD 643,542` civil penalty plus injunctive relief).
+- Carry-forward: keep this lesson closed on factual fidelity unless the artifact changes materially; any future review on the same text should not reopen the stale Lazarus-source complaint.
+
+## 2026-06-22 - CCAS lesson `decentralized-finance-and-smart-contracts` methodology no-delta rerun
+
+Re-ran the exact user-pasted lesson artifact against the live repo file `generated/ccas/lessons/decentralized-finance-and-smart-contracts.json`, the matching `.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020` before returning the user-facing methodology verdict.
+
+- No delta from the earlier same-day methodology state: verdict still returns `AGREE`.
+- The current pasted artifact still matches the repo / validation-cleared hash.
+- Keep future review on this slug narrow: methodology is closed unless the artifact changes materially; the only live reviewer issue remains the separate factual-fidelity blocker on the closing Lazarus / DeFi / bridges motive sentence in the Ooki deep case.
+
+## 2026-06-22 - Manual factual-fidelity audit on CCAS lesson `privacy-coins-mixers-and-obfuscation`
+
+Re-read the literal user-pasted / repo `generated/ccas/lessons/privacy-coins-mixers-and-obfuscation.json` artifact against the maintained 2026-06-22 crypto/VASP facts reference plus DOJ Helix primary materials: the 13 February 2020 charge release, the 18 August 2021 guilty-plea release, and the 15 November 2024 sentencing release.
+
+- Current factual-fidelity verdict is `SPLIT`.
+- The core lesson spine is materially sound on the current hash: the privacy-coin / mixer / chain-hopping bundle stays in bounds at the level taught, and the Helix deep case correctly keeps the main chronology / disposition bundle together (`2014-2017` operation; February `2020` charge; FinCEN `USD 60 million` parallel penalty; 18 August `2021` guilty plea to money-laundering conspiracy; Helix moved over `350,000` bitcoin / over `USD 300 million`).
+- Reviewer-visible residual 1: `Worked example: Helix and the first penalty against a crypto mixer (2020)` says Harmon `later cooperated with authorities, including in the investigation of another major mixing operator`, but the scene cites only the 2020 FinCEN assessment and the 2021 DOJ plea release. That cooperation point became public later and is not supported by the cited primary sources as labeled here.
+- Reviewer-visible residual 2: the same scene says Harmon advertised Helix explicitly for paying for `drugs, weapons, and other illegal goods`, while the DOJ charging / plea materials I verified more cautiously say he advertised Helix to conceal transactions from law enforcement and admitted laundering darknet drug-market proceeds / other illegal-activity proceeds. Tighten or re-source that sentence on the next touch.
+- Carry-forward: if this lesson is revised later, keep the next fidelity pass tightly scoped to those two Helix sentences first; no broader rewrite is needed unless the artifact changes materially.
+
+## 2026-06-22 - Manual methodology audit on CCAS lesson `privacy-coins-mixers-and-obfuscation`
+
+Re-read the literal user-pasted / repo `generated/ccas/lessons/privacy-coins-mixers-and-obfuscation.json` artifact, the matching `generated/ccas/lessons/privacy-coins-mixers-and-obfuscation.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020` before returning the exact-format answer.
+
+- Current methodology verdict is `AGREE`.
+- Allowed/public source discipline holds on the current hash: FATF public guidance / Recommendations, the public FinCEN civil-penalty action against Larry Dean Harmon / Helix, the public DOJ Helix plea matter, and original analysis; no commercial-source / ICC / certification-body IP issue surfaced.
+- Every reading scene carries `citations[]`, `Worked example: Helix and the first penalty against a crypto mixer (2020)` satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct in contribution, and the interactive / quiz remain formative rather than certification-format mimicry.
+- Carry-forward: keep this lesson closed on methodology unless the artifact changes materially; any later review on this slug should stay in the separate factual-fidelity lane if requested.
+
+## 2026-06-22 - Manual methodology audit on CCAS lesson `stablecoins-nfts-and-tokenization`
+
+Re-read the literal user-pasted / repo `generated/ccas/lessons/stablecoins-nfts-and-tokenization.json` artifact, the matching `generated/ccas/lessons/stablecoins-nfts-and-tokenization.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020` before returning the exact-format answer.
+
+- Current methodology verdict is `AGREE`.
+- Allowed/public source discipline holds on the current hash: FATF public guidance / Recommendations, OFAC guidance, the NYAG + CFTC Tether actions, and original analysis; no commercial-source / ICC / certification-body IP issue surfaced.
+- Every reading scene carries `citations[]`, `Worked example: Tether and the reserves question (2021)` satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, and the quiz stays scenario-based rather than certification-format mimicry.
+- Carry-forward: keep this lesson closed on methodology unless the artifact changes materially. The separate factual-fidelity lane is still pending on the current hash.
+
+## 2026-06-22 - CCAS lesson `exchanges-custodians-and-the-vasp-landscape` factual-fidelity exact rerun cleared the stale Liberty Reserve blocker
+
+Re-read the literal user-pasted lesson artifact, the repo file `generated/ccas/lessons/exchanges-custodians-and-the-vasp-landscape.json`, and the current deep-case citation labels after noticing that same-day repo memory still described an older rejected Liberty Reserve bundle.
+
+- Current verdict is `AGREE`.
+- The earlier same-day `DISAGREE` note is stale on the live hash: the scene no longer says `more than 5.5 million user accounts` or `more than 8 billion US dollars`, and the plea source is no longer misattributed to SDNY.
+- The live artifact now keeps the Liberty Reserve scale claim inside the verified `more than 6 billion US dollars` / `more than 5 million user accounts worldwide` / `millions of transactions` bundle and already splits the DOJ Office of Public Affairs plea release from the SDNY sentencing release.
+- Carry-forward: keep future review on this slug closed on factual fidelity unless the artifact changes materially; do not recycle the stale same-day Liberty Reserve numerics / source-attribution rejection against the current file.
+
+## 2026-06-22 - Manual no-delta rerun on `exchanges-custodians-and-the-vasp-landscape` methodology brief
+
+Re-read the literal user-pasted lesson artifact, the repo file `generated/ccas/lessons/exchanges-custodians-and-the-vasp-landscape.json`, the matching `.validation.json`, and the governing methodology docs (`docs/COURSE-GENERATION-PROMPT.md` v1.1; ADR `0015` / `0016` / `0019` / `0020`) before closing the exact-format methodology answer.
+
+- No methodology delta from the already-recorded same-day state: verdict remains `AGREE`.
+- Validation still matches the live hash (`overall: pass`; every reading scene has `citations[]`; pedagogy gate pass with 1 deep-case scene).
+- Keep future reviewer work on this slug tightly scoped: methodology is closed unless the artifact changes materially; the only live reviewer lane remains separate factual-fidelity on the Liberty Reserve numerics / source-attribution precision cluster.
+
+## 2026-06-22 - CCAS MODULE 0 COMPLETE (4/4): Cryptoasset & Blockchain Foundations
+
+Generated and cleared all 4 Module-0 lessons inline (one-at-a-time Codex cross-check; MAX plan, no quota wall). The per-verdict entries below were auto-written by the cross-check runs — this is the milestone marker.
+
+- **L1 `what-cryptoassets-are`** — AGREE/AGREE (it.3). risk-classify interactive + Terra/Luna deep case.
+- **L2 `how-blockchains-work`** — AGREE/AGREE (it.2). Mt. Gox (MtGox Co., Ltd., 2014) deep case. Fixed: loose Mt. Gox citation date; coin-issuance scoped to flagship chains (not inherent to PoW/PoS).
+- **L3 `keys-addresses-and-wallets`** — **cleared-with-fix** (methodology AGREE ×5; fidelity SPLIT, no hard blocker). QuadrigaCX deep case + custody risk-classify interactive. Fixed across iterations: Quadriga figures realigned to the cited OSC review (~C$215M owed / ~76,000 clients, dropped the widow-affidavit 115,000/C$190M mix); reframed from "lost keys caused the loss" → fraud concealed by concentrated control (per the OSC finding); added the stablecoin-issuer freeze exception to the self-hosted-wallet scene + quiz. **Residual (declined, flagged for Ripon):** the reviewer wants the foundational "not your keys, not your coins" hook itself hedged for issuer/contract-controlled assets — declined as a pedagogy call (it's the standard correct teaching device, and the narrow exception is already taught where it operationally matters). Same over-application pattern as the CAMS training-and-culture / danske / 1mdb overrules.
+- **L4 `how-on-chain-transactions-work`** — AGREE/AGREE (it.2). Colonial Pipeline / DarkSide 2021 deep case (pseudonymity≠anonymity) + Lazarus Group pointer. Fixed: scoped "public/permanent" correctly — signing is wallet-side/private; mempool visibility is provisional (RBF); permanence attaches at confirmation, not broadcast.
+
+**Reusable fidelity lessons for later CCAS lessons (the Pro reviewer is sharp on these):** don't assert market-share/dominance or post-cutoff figures without a source; state coin issuance as a flagship-chain property, not inherent to consensus; keep transaction "publicness/permanence" precise (signing private, mempool provisional, permanence at confirmation); match deep-case figures to the exact cited source (don't blend source vintages/currencies); frame enforcement/insolvency cases by the regulator's actual finding (e.g. Quadriga = fraud, not key loss); caveat "self-custody can't be frozen" for issuer-controlled tokens. Deep cases used so far (avoid over-reuse): Terra/Luna, Mt. Gox, QuadrigaCX, Colonial Pipeline (+Lazarus pointer).
+
+**NEXT:** Module 1 (`the-crypto-ecosystem-vasps-defi-and-token-types`) — exchanges-custodians-and-the-vasp-landscape, decentralized-finance-and-smart-contracts, stablecoins-nfts-and-tokenization, privacy-coins-mixers-and-obfuscation. Then M2 (analytics). Same inline → gate → cross-check loop.
+
+## 2026-06-22 - Manual no-delta reread on `keys-addresses-and-wallets` after repo/review-events check
+
+Re-read the literal user-pasted lesson artifact, the repo file `generated/ccas/lessons/keys-addresses-and-wallets.json`, and the current `generated/ccas/review_events.jsonl` entries before closing the exact-format factual-fidelity brief.
+
+- No delta from the live same-day state: the current artifact still best reads `SPLIT`, not `DISAGREE`.
+- The only live residuals remain the already-recorded narrow pair: the Quadriga scene still briefly leans into the exchange's public lost-keys account before the later OSC fraud correction, and some self-custody / key-control wording is still too absolute for certain contract- or issuer-controlled cryptoassets.
+
+## 2026-06-22 - Manual close-out on `keys-addresses-and-wallets` exact factual-fidelity brief: no delta
+
+Re-read the literal user-pasted lesson artifact, the matching repo file `generated/ccas/lessons/keys-addresses-and-wallets.json`, ADR `0015` / `0016` / `0019` / `0020`, and the existing same-day stored reviewer output before returning the manual exact-format answer.
+
+- No delta from the live same-day fidelity state: the current artifact still best reads `SPLIT`, not `DISAGREE`.
+- The earlier opening-figures blocker and the earlier downstream `lost with the keys` synthesis blocker remain stale on the current hash.
+- The only live reviewer-visible residuals remain the same narrow pair already captured elsewhere in memory: the Quadriga scene still briefly leans into the exchange's public lost-keys account in lesson voice, and the self-hosted-wallet scenes / quiz still use absolute no-third-party-move-or-freeze wording that is too broad for some contract- or issuer-controlled cryptoassets.
+
+## 2026-06-22 - CCAS lesson `keys-addresses-and-wallets` methodology rerun after live title check
+
+Exact user-facing rerun on the literal pasted / repo `generated/ccas/lessons/keys-addresses-and-wallets.json` artifact after reloading the memory chain, `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the matching `.validation.json`.
+
+- No methodology delta: verdict stays `AGREE`.
+- Repo/live artifact note: the deep-case title on the current hash is `Worked example: QuadrigaCX - concentrated custody, concealed fraud (2018-2020)`, not the older `keys that died with the founder` title still present in some same-day memory notes.
+- Keep future exact-format reviewer answers narrow on this slug: source discipline, `citations[]`, deep-case presence, distinct `teachesConcepts`, and quiz format are all already cleared; any remaining live work is factual-fidelity only.
+
+## 2026-06-22 - CCAS lesson `keys-addresses-and-wallets` factual-fidelity reread: current best verdict is `SPLIT`, earlier same-day `DISAGREE` notes are stale
+
+Re-read the literal user-pasted lesson artifact and the repo file `generated/ccas/lessons/keys-addresses-and-wallets.json` against the maintained 2026-06-22 crypto/VASP facts reference and the Ontario Securities Commission's public QuadrigaCX review after noticing the current file no longer matched the stored same-day rejection notes.
+
+- The earlier opening-figures blocker is stale on the live file: the current deep-case opener already uses the OSC-aligned `roughly 76,000` / `approximately C$215 million` bundle.
+- The earlier downstream lost-keys-synthesis blocker is also stale on the live file: `What to carry forward` now says concentrated key control `enabled a fraud the regulator later uncovered`, rather than saying the assets themselves were lost with the keys.
+- Current best verdict is `SPLIT`. Residual 1: `Worked example: QuadrigaCX and the keys that died with the founder (2018-2020)` still briefly treats the exchange's public lost-keys story in lesson voice (`they had never held the keys, and now no one could`) before the later OSC correction. Residual 2: the self-hosted-wallet scenes / quiz still use absolute `no third party can move or freeze the funds` wording, which is too broad for some contract- or issuer-controlled cryptoassets.
+- Carry-forward: if this lesson is touched again, keep the next fidelity pass tightly scoped to those softer framing / scope points and do not reuse the superseded same-day `DISAGREE` notes unless the artifact changes materially.
+
+## 2026-06-22 - CCAS lesson `keys-addresses-and-wallets` factual-fidelity rerun: earlier figure blocker is stale, case-takeaway blocker is live
+
+Re-read the literal user-pasted lesson artifact and the repo file `generated/ccas/lessons/keys-addresses-and-wallets.json` against the maintained 2026-06-22 crypto/VASP facts reference and the Ontario Securities Commission's public QuadrigaCX review after noticing the stored same-day blocker no longer matched the current file.
+
+- Current verdict stays `DISAGREE`, but not for the earlier reason. The current deep-case opener already uses the OSC-aligned `over 76,000 clients` / `about C$215 million` figures, so the old `115,000` / `C$190 million` note is now stale history only.
+- Live publication-blocking issue: later scenes collapse Quadriga back into a pure lost-keys event. `Sort wallet arrangements by custody-and-control risk` says multisig `would have prevented the QuadrigaCX single-point-of-failure loss`, and `What to carry forward` says `one person's keys, and the assets behind them, were lost`. The cited OSC review says the widely speculated `inaccessible because Cotten died with the keys` account was not the case and that most of the shortfall resulted from Cotten's fraudulent conduct.
+- Carry-forward: if this lesson is revised, fix those downstream takeaways first and keep the case lesson on one-person control + opacity enabling fraud / concealment, not on a discredited `lost keys caused the loss` narrative.
+
+## 2026-06-22 - CCAS lesson `keys-addresses-and-wallets` factual-fidelity lane is `DISAGREE`
+
+Re-read the literal user-pasted lesson artifact and the repo file `generated/ccas/lessons/keys-addresses-and-wallets.json` against the maintained 2026-06-22 crypto/VASP facts reference, the Ontario Securities Commission's public QuadrigaCX review, and the earlier company-claim figures reflected in public reporting before returning the exact-format reviewer verdict.
+
+- Current verdict is `DISAGREE`. The lesson's key-control / wallet / FATF-perimeter teaching is materially sound on the current hash.
+- Publication-blocking issue: `Worked example: QuadrigaCX and the keys that died with the founder (2018-2020)` opens with a blended figure set that does not track the cited record cleanly. The scene says the exchange told `roughly 115,000 customers` that `About C$190 million in customer cryptoassets` was locked behind Cotten's keys. The cited OSC review instead says over **76,000** clients were owed about **C$215 million** at collapse, while the earlier company / widow-affidavit narrative used about **115,000** affected users and **C$250 million** owed (roughly **US$190 million**). The lesson appears to have combined the 115,000 figure with the USD-converted 190 million figure and relabelled it in Canadian dollars / cryptoassets.
+- Carry-forward: if this lesson is revised, fix the Quadriga opening figures first and keep them inside one sourced number set. Do not keep `C$190 million` tied to the `115,000 customers` claim unless a cited primary filing is added that actually says that.
+
+## 2026-06-22 - CCAS lesson `keys-addresses-and-wallets` methodology lane cleared
+
+Exact user-facing rerun on the literal pasted / repo `generated/ccas/lessons/keys-addresses-and-wallets.json` artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+
+- Verdict is `AGREE`.
+- Repo context matched the pasted artifact, and `generated/ccas/lessons/keys-addresses-and-wallets.validation.json` was already structurally clean (`overall: pass`; 4/4 reading scenes with `citations[]`; pedagogy gate pass with 1 deep-case scene).
+- Allowed/public source discipline holds, `Worked example: QuadrigaCX and the keys that died with the founder (2018-2020)` is a valid named deep-case public matter, the scene `teachesConcepts` remain substantively distinct, the quiz stays scenario-based rather than certification-format mimicry, and no commercial-source/IP or adult-register blocker surfaced.
+- Carry-forward: keep the methodology lane closed on this slug unless the artifact changes materially; any later review should stay separate from factual fidelity.
+
+## 2026-06-22 - CCAS lesson `how-blockchains-work` factual-fidelity exact rerun now clears the stale `SPLIT`
+
+Re-read the literal user-pasted lesson artifact and the repo file `generated/ccas/lessons/how-blockchains-work.json` against the maintained 2026-06-22 crypto/VASP facts reference plus public Mt. Gox reporting after noticing that one stored residual no longer matched the live citation label.
+
+- Current verdict is `AGREE`.
+- The earlier same-day Mt. Gox precision note is stale on the live text: the citation now already says `charged conduct from 2011; charges announced June 2023`, so the prior `2014 hack` issue is gone.
+- The consensus / issuance wording also stays publication-safe on the current artifact: the lesson limits the claim to major networks, uses `typically` in the comparison slide, and explicitly caveats in `How the network agrees: consensus` that some chains reward participants from fees alone.
+
+## 2026-06-22 - CCAS lesson `how-blockchains-work` methodology rerun: no delta
+
+Exact user-facing rerun on the literal pasted / repo `generated/ccas/lessons/how-blockchains-work.json` artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+
+- Verdict stays `AGREE`.
+- Repo context still matches the pasted artifact; `generated/ccas/lessons/how-blockchains-work.validation.json` remains structurally clean (`overall: pass`; 4/4 reading scenes with `citations[]`; pedagogy gate pass with 1 deep-case scene).
+- Keep the methodology lane closed on this slug unless the artifact changes materially; any live residuals belong only to the separate factual-fidelity lane.
+
+## 2026-06-22 - CCAS lesson `how-blockchains-work` factual-fidelity lane is `SPLIT`
+
+Re-read the literal user-pasted lesson artifact and the repo file `generated/ccas/lessons/how-blockchains-work.json` against public Mt. Gox reporting plus the maintained 2026-06-22 crypto/VASP facts reference before returning the exact-format reviewer verdict.
+
+- Current verdict is `SPLIT`. The lesson's core blockchain-mechanics teaching and the Mt. Gox chronology / identity bundle are materially sound on the current hash.
+- Reviewer-visible residual 1: `Worked example: Mt. Gox and the ledger that outlived the exchange (2014)` cites the June 2023 DOJ matter as the `2014 hack`, but the charged conduct reportedly began in September 2011 and continued into May 2014. Tighten that citation label if the lesson is revised.
+- Reviewer-visible residual 2: `How the network agrees: consensus`, `Proof-of-work vs proof-of-stake`, the mining/staking quiz item, and `What to carry forward` state too generally that proof-of-work and proof-of-stake *necessarily* issue newly created coins as part of securing the chain. That is true for the lesson's flagship examples (Bitcoin/current Ethereum) but is not an inherent property of the consensus mechanisms themselves; soften to a typical / often-present implementation pattern on the next touch.
+
+## 2026-06-22 - CCAS lesson `how-blockchains-work` methodology lane cleared
+
+- Re-read the literal user-pasted lesson artifact and the repo file `generated/ccas/lessons/how-blockchains-work.json` after loading the required memory chain plus `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- Repo context matched the pasted artifact, and `generated/ccas/lessons/how-blockchains-work.validation.json` was already structurally clean (`overall: pass`; 4/4 reading scenes with `citations[]`; pedagogy gate pass with 1 deep-case scene).
+- Exact user-facing methodology verdict is `AGREE`: allowed/public source discipline holds, the Mt. Gox scene satisfies the named deep-case requirement, `teachesConcepts` stay substantively distinct, the quiz is scenario-based, and no commercial-source/IP or adult-register blocker surfaced.
+- Carry-forward: keep this lesson's methodology lane closed unless the artifact changes materially; any further review should stay separate from factual fidelity.
+
+## 2026-06-22 - CCAS MILESTONE: outline APPROVED + facts pack added + M0L1 cleared AGREE/AGREE (pipeline proven)
+
+Single milestone marker (the per-verdict entries below were auto-written by the Codex cross-check runs during M0L1's 3 iterations — expected; they are the audit trail, not separate work).
+
+- **Outline approved by Ripon** ("you decide" on structure). `generated/ccas/outline.json` = 10 modules / 43 lessons / 29 sources, validated clean. The 2 CAMS misses (Domain-D tooling, Domain-A breadth incl. **tax evasion**) are addressed: analytics/monitoring tooling is first-class (M2, M7) and a dedicated crypto tax-evasion lesson sits in M3.
+- **Facts pack updated** (`lib/ai/generator/facts_pack.ts`, `FACTS_PACK_AS_OF`→2026-06-22): added a verified CRYPTOASSETS/VASPs section — FATF VA/VASP defs, R.15/INR.15, Travel Rule (INR.16 flagged VERIFY-AT-GENERATION), EU MiCA 2023/1114 + TFR 2023/1113 + AMLA **2024/1620** (≠ AMLR 2024/1624), US FinCEN 2013/2019 + OFAC 2021 + BitLicense, UK FCA/MLR/POCA, and the 5 crypto enforcement matters (amounts flagged verify). The AML sections are unchanged (verified 2026-06-19).
+- **M0L1 `what-cryptoassets-are` CLEARED** — 7/7 gates PASS first-try; Codex methodology AGREE throughout; fidelity DISAGREE→DISAGREE→**AGREE** over 3 iterations. Fixes: (it.1) softened unsourced stablecoin market-dominance claims + re-grounded the FATF rationale in ML/TF-risk-at-scale (not "run risk"); (it.2) restored the full FATF Glossary exclusion ("other financial assets already covered elsewhere", not just fiat/securities) in two paraphrases; register polish ("rug it"→"rug pull"). Lesson includes a signature `risk-classify` interactive (sort asset types by inherent obfuscation risk) and the Terra/Luna 2022 deep case (SEC v. Terraform Labs).
+- **Pipeline confirmed working for CCAS**: inline gen → `validate-lesson.ts ccas <slug>` → `crosscheck-lesson.ts ccas <slug>` → fix → AGREE. Codex on MAX = no quota wall.
+- **NEXT (one lesson/turn, outline order):** M0L2 `how-blockchains-work` → … → M9. Reusable craft for this course: keep slide ITEMS free of statute/numeric tokens (put instruments in narration); bind every `FATF Recommendation N`/`INR.N` to a citation label; unique `teachesConcepts` set per scene; one ≥1500-char deep-case reading scene per lesson with a year + an entity ending Bank/AG/Ltd/etc.; don't assert market-share/dominance or post-cutoff numbers without a source (soften or cite).
+
+## 2026-06-22 - CCAS lesson `what-cryptoassets-are` factual-fidelity reread now returns `AGREE`
+
+Re-read the literal user-pasted lesson JSON and the repo copy at `generated/ccas/lessons/what-cryptoassets-are.json` against the maintained 2026-06-22 crypto/VASP facts reference after noticing a mismatch between the stored blocker notes and the live text.
+
+- Current verdict is `AGREE` on factual fidelity. The current artifact preserves the full FATF Glossary exclusion, the earlier same-day stablecoin-superlative / `run risk` rejection language is not present, and no live contradiction remained on the FATF scope boundary, CBDC treatment, `R.15` / `INR.15` chronology, or the lesson's high-level Terraform framing.
+- Treat the earlier same-day `DISAGREE` notes on this slug as stale history only.
+- Soft carry-forward only: if the lesson is revised later, the Terra case citation could be made more exact with the full caption / docket, but that is not a no-ship issue on the current artifact.
+
+## 2026-06-22 - CCAS lesson `what-cryptoassets-are` memory sync only: align CLAUDE.md with the current narrower blocker
+
+This turn did not change the lesson verdicts. It only corrected a stale repo-memory inconsistency.
+
+- `CLAUDE.md` had still been carrying the earlier same-day stablecoin-superlative / `run risk` blocker for `what-cryptoassets-are`.
+- The later same-day exact rerun in `PROGRESS.md` / `SESSION-NOTES.md` already narrowed the live factual-fidelity issue to the FATF Glossary exclusion paraphrase in `What FATF means by a 'virtual asset'` and `What to carry forward`.
+- Synced `CLAUDE.md`'s current-state and carry-forward note to that narrower blocker. Methodology remains closed at `AGREE`; no lesson-content changes were made.
+
+## 2026-06-22 - CCAS lesson `what-cryptoassets-are` factual-fidelity rerun: earlier stablecoin note is stale on the current artifact
+
+Re-read the literal user-pasted lesson JSON and the repo copy at `generated/ccas/lessons/what-cryptoassets-are.json` against the maintained 2026-06-22 crypto/VASP facts reference to reconcile a mismatch with earlier same-day notes.
+
+- The earlier same-day memory note about unsupported stablecoin superlatives / `run risk` is stale on the current hash: those phrases are not present in the pasted or repo lesson text now.
+- Current best verdict still stays `DISAGREE`, but on a narrower blocker: `What FATF means by a 'virtual asset'` and `What to carry forward` paraphrase the FATF Glossary too narrowly by reducing the exclusion to fiat / securities and dropping `other financial assets already covered elsewhere in the FATF Recommendations`.
+- Carry-forward: if the lesson is revised, fix that FATF-scope paraphrase first and do not recycle the stale stablecoin-source rejection language unless the artifact changes materially.
+
+## 2026-06-22 - CCAS lesson `what-cryptoassets-are` methodology exact-format rerun: no delta
+
+Re-ran the exact user-facing cross-check-reviewer methodology brief on the literal pasted lesson JSON after reloading the project-memory chain, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+
+- Verdict stayed `AGREE` on methodology. No new source-discipline, IP/commercial-source, pedagogical-structure, citation-array, or adult-register blocker surfaced on the current artifact.
+- Keep reviewer hygiene tight if this slug comes back: the methodology answer should stay narrow and should not drift into the already-separated factual-fidelity lane. The only soft note worth preserving on methodology is the slang `rug it` in `Coins and tokens`, which is not a no-ship issue.
+
+## 2026-06-22 - CCAS lesson `what-cryptoassets-are` factual-fidelity lane is `DISAGREE`
+
+Re-read the literal user-pasted lesson JSON against the operator-maintained 2026-06-22 crypto/VASP facts reference and current official FATF / SEC materials before returning the exact-format reviewer verdict.
+
+- Current verdict is `DISAGREE` on factual fidelity. The FATF virtual-asset definition, the CBDC-out-of-scope point, and the broad Terraform / TerraUSD teaching spine remain in bounds.
+- Publication-blocking issue 1: `A working taxonomy of cryptoassets` and `Stablecoins: the settlement layer` currently assert that stablecoins now carry `most on-chain value`, are the `dominant settlement asset on-chain`, and handle more real settlement than Bitcoin, but the cited FATF Glossary and FATF 2021 VA/VASP guidance do not support those current-sensitive market-structure claims. Either add a current authoritative source or soften the language.
+- Publication-blocking issue 2: `Stablecoins: the settlement layer` says FATF's 2021 risk-based-approach guidance focuses on stablecoins `precisely because mass-adoption potential and run risk travel together`. The FATF guidance supports the mass-adoption / ML-TF-risk rationale, but not that `run risk` framing in the cited instrument. Recast or separately source the prudential point.
+
+## 2026-06-22 - CCAS lesson `what-cryptoassets-are` methodology lane cleared
+
+Re-read the literal user-pasted lesson JSON against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the repo's standing reviewer contract before returning the exact-format verdict.
+
+- Current verdict is `AGREE` on methodology: every reading scene has `citations[]`, the source posture stays inside allowed/public types, the TerraUSD / Luna scene is a valid named deep-case public matter, the scene `teachesConcepts` are substantively distinct, and the quiz is scenario-based.
+- No reviewer-visible IP / commercial-source / news-as-substance / pedagogical-structure blocker surfaced on the literal current artifact.
+- Soft note only: `Coins and tokens` says a controller may `rug it`, which reads as slang in a foundations lesson. Not a no-ship issue on this contract, but if the lesson is revised later, replace it with defined professional wording.
+
+## 2026-06-22 - CCAS course KICKOFF: exam shape confirmed + outline written (awaiting Ripon's outline sign-off)
+
+Started **CCAS** (Certified Cryptoasset Anti-Financial Crime Specialist — ACAMS), the 2nd global Phase-1 course, from `docs/CCAS-KICKOFF.md`. ⛔ Not touching CAMS (a parallel track owns it).
+- **Exam shape locked from the official ACAMS CCAS factsheet (© 2025):** 3 domains — **Cryptoassets and blockchain 30% · AML foundations for cryptoassets and blockchain 35% · Risk management programs for cryptoassets and blockchain 35%**; **100 questions** (multiple-choice **and** multiple-select); **175 min**. Pass mark not published by ACAMS (scaled) → defaulting the faithful mock to **75%** (matches CAMS), tunable. ACAMS 403s automated fetch and **firecrawl is out of credits (0/1000)**, so handbook task-statement granularity came from the factsheet PDF (read directly) + the 3 ACAMS certificate-course learning objectives via search. Ripon confirmed shape (\"ok\").
+- **The 2 CAMS misses (Ripon: \"check… you will find… all fixed now\")** = `docs/CONTENT-GAP-SCOPE.md` + `CAMS-EXAM-BLUEPRINT.md`: **(1) Domain D — Tools & Technologies / RegTech** (taught monitoring/screening as concepts, not tooling) and **(2) Domain A breadth — fraud/FRAML, bribery-corruption, tax evasion + thin sectors**. Root cause + documented lesson: *lock the blueprint from the handbook's task statements, never coarse domain titles/snippets.* **Applied to CCAS:** the tooling strand is first-class (M2 blockchain analytics — an explicit Domain-1 objective; M7 monitoring/screening/model-risk), and I added a dedicated **crypto tax-evasion lesson** (M3) after the official AML-foundations objective literally names \"money laundering, fraud, and tax evasion\" — tax evasion was one of the CAMS misses.
+- **`generated/ccas/outline.json` written** (mirrors the CAMS schema exactly): **10 modules / 43 lessons / 29 primary sources**, global-first (US/UK/EU + map-to-any-jurisdiction; Bangladesh only as the Bangladesh-Bank-heist example inside the Lazarus case). Domain split 11/14/18. Validates clean (no dup slugs, all fields present). Deep cases: Bitfinex 2022 seizure (M2), Tornado Cash / Binance 2023 / BitMEX / Lazarus-DPRK (M9). Carries the **INR.16 Travel-Rule data-elements** TODO (M4 lesson `the-travel-rule-r16-and-inr16` — enumerate the revised June-2025 set from current FATF text at generation).
+- **Setup verified:** `validate-lesson.ts ccas <slug>` and `crosscheck-lesson.ts ccas <slug>` resolve `generated/ccas/`; crosscheck requires each lesson slug to exist in the outline. **`generate-course.ts` hard-codes `COURSE.slug='cams'`** and the `write` step forces `outline.course.slug=COURSE.slug` → at **promote time** flip `COURSE` to ccas (doesn't touch the published CAMS course).
+- **NEXT:** on Ripon's outline sign-off → add CCAS facts to `lib/ai/generator/facts_pack.ts` (incl. INR.16) + bump `FACTS_PACK_AS_OF` → generate lessons inline one/turn → `validate-lesson.ts` → `crosscheck-lesson.ts` → fix → AGREE → next. Recommended order: M0→M9 in outline order.
+
 ## 2026-06-22 - the-global-architecture lesson: AMLA legal-basis + FIU-routing fidelity fix (LIVE)
 
 Fixed the fidelity issues the background-codex audit flagged on `the-global-architecture-fatf-fius-supervisors` (the swapped-in Danske/EU-package lesson). 7 surgical edits across 3 scenes, applied to the JSON source **and** the live DB (`content_library_elements`), audio nulled so they re-voice:
@@ -3984,3 +4260,104 @@ Re-read the literal user-pasted / repo lesson JSON against the maintained 2026-0
 - **AMLA legal-basis defect:** the lesson currently uses **Regulation (EU) 2024/1624 + Directive (EU) 2024/1640** as the legal basis bundle for AMLA's role / direct supervision in `Financial Intelligence Units and the Egmont Group`, `National Supervisors: Three Jurisdictions Compared`, and the routing slide. That is incomplete / wrong for this claim. Official EU materials treat **Regulation (EU) 2024/1620** as the instrument that establishes AMLA; `2024/1624` is the AML Regulation / single-rulebook instrument.
 - **FIU-routing wording defect:** `Financial Intelligence Units and the Egmont Group` says a domestic request from national law enforcement comes through the country's own `legal-assistance framework`. That term is wrong for the domestic side; it should be recast to domestic legal / investigative powers. Keep an eye on the related Egmont wording too so it does not read as though Egmont / ESW is the only possible foreign-FIU channel unless the text is expressly limited that way.
 - The Danske bundle itself stayed in bounds on this pass: 13 December 2022 resolution date, ~USD 2 billion DOJ resolution, USD 178.6 million SEC civil penalty, ~USD 413 million total SEC settlement, the 2014 Estonian draft / 2018 Danish decision / 2019 Danish report sequence, and the Bruun & Hjejle 10,000-vs-15,000 customer distinction all still read correctly on the current hash.
+
+## 2026-06-22 - CCAS lesson `how-on-chain-transactions-work` methodology lane cleared
+
+Re-read the literal user-pasted artifact and the repo file `generated/ccas/lessons/how-on-chain-transactions-work.json` against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020` before returning the exact-format reviewer verdict.
+
+- Repo context matched the pasted artifact, and `generated/ccas/lessons/how-on-chain-transactions-work.validation.json` was already structurally clean (`overall: pass`; 4/4 reading scenes with `citations[]`; pedagogy gate pass with 1 deep-case scene).
+- Exact user-facing methodology verdict is `AGREE`: allowed/public source discipline holds, the Colonial Pipeline scene satisfies the named deep-case requirement, the scene `teachesConcepts` stay substantively distinct, the quiz is scenario-based, and no commercial-source/IP or adult-register blocker surfaced.
+- Carry-forward: keep this lesson's methodology lane closed unless the artifact changes materially; any future review on this slug should stay separate from factual fidelity.
+
+## 2026-06-22 - CCAS lesson `how-on-chain-transactions-work` factual-fidelity lane is `DISAGREE`
+
+Re-read the literal user-pasted artifact and the repo file `generated/ccas/lessons/how-on-chain-transactions-work.json` against the DOJ `Department of Justice Seizes $2.3 Million in Cryptocurrency Paid to the Ransomware Extortionists Darkside` release, Bitcoin developer transaction docs, Ethereum transaction docs, and Bitcoin BIP 125 before returning the exact-format reviewer verdict.
+
+- The Colonial Pipeline deep-case bundle stayed materially sound on this pass: 7 May 2021 attack date, approximately 75 BTC paid, 7 June 2021 DOJ seizure announcement, approximately 63.7 BTC seized, approximately $2.3 million value at seizure, and the `private key` control point all remain in bounds on the cited public record.
+- The publication-blocking issue is the lesson's repeated overstatement of publicness / permanence. `Following a single payment`, `The life of a transaction`, and `What to carry forward` say every lifecycle stage happens in public and that source / destination / value / fee are visible to anyone `the moment` a transaction is broadcast `and permanently thereafter`.
+- That wording collapses two distinctions the lesson should keep exact: creation/signing happens in the wallet before broadcast, and unconfirmed mempool visibility is not the same thing as durable on-chain permanence. Bitcoin BIP 125 expressly allows certain unconfirmed transactions to be replaced in mempools, so the permanence claim should attach to confirmed inclusion in a block rather than to bare broadcast.
+- Carry-forward: if this lesson is revised, fix that publicness/permanence wording first and propagate the correction through the opener, lifecycle slide, and synthesis slide together so the same error does not survive in narration after the body text is fixed.
+## 2026-06-22 - CCAS lesson `keys-addresses-and-wallets` methodology rerun stayed `AGREE`
+
+- Re-read the literal user-pasted artifact, the repo copy at `generated/ccas/lessons/keys-addresses-and-wallets.json`, and the existing `generated/ccas/lessons/keys-addresses-and-wallets.validation.json` before returning the exact-format methodology verdict.
+- No delta from the earlier same-day methodology note: the repo artifact matches the pasted lesson, all reading scenes have `citations[]`, the source base remains inside allowed/public types, the QuadrigaCX scene remains a valid named deep case, and the quiz still reads as scenario-based rather than certification-format mimicry.
+- Practical reminder: if this lesson comes back, keep methodology closed unless the artifact itself changes. The live issue on this slug remains factual-fidelity only (Quadriga opening figures).
+
+## 2026-06-22 - CCAS lesson `how-on-chain-transactions-work` methodology rerun stayed `AGREE`
+
+Re-read the literal user-pasted artifact, the repo copy at `generated/ccas/lessons/how-on-chain-transactions-work.json`, and the existing `generated/ccas/lessons/how-on-chain-transactions-work.validation.json` before returning the exact-format methodology verdict.
+
+- No delta from the earlier same-day methodology note: the repo artifact matches the pasted lesson, all reading scenes have `citations[]`, the source base remains inside allowed/public types, the Colonial Pipeline scene remains a valid named deep case, and the quiz still reads as scenario-based rather than certification-format mimicry.
+- Practical reminder: if this lesson comes back, keep methodology closed unless the artifact itself changes. The live issue on this slug remains factual-fidelity only.
+
+## 2026-06-22 - CCAS lesson `how-on-chain-transactions-work` factual-fidelity exact rerun now returns `AGREE`
+
+Re-read the literal user-pasted artifact and the repo file `generated/ccas/lessons/how-on-chain-transactions-work.json` against the DOJ `Department of Justice Seizes $2.3 Million in Cryptocurrency Paid to the Ransomware Extortionists Darkside` release, Bitcoin developer transaction docs, Ethereum transaction docs, and Bitcoin BIP 125 after noticing that the stored same-day blocker no longer matched the live file.
+
+- Current verdict is `AGREE`.
+- The earlier same-day publicness / permanence blocker is stale on the live artifact: `Following a single payment`, `The life of a transaction`, and `What to carry forward` now explicitly keep creation/signing in the wallet, make only broadcast onward public, and attach permanence to confirmed inclusion in a block rather than to mere mempool broadcast.
+- The Colonial Pipeline deep-case bundle also stayed materially sound on this pass: 7 May 2021 attack date, approximately 75 BTC paid, 7 June 2021 DOJ seizure announcement, approximately 63.7 BTC seized, approximately $2.3 million value at seizure, and the `private key` control point all remain in bounds on the cited public record.
+- Carry-forward: keep this lesson closed on factual fidelity unless the artifact changes materially, and do not reuse the superseded same-day `DISAGREE` note against the current hash.
+
+## 2026-06-22 - CCAS lesson `keys-addresses-and-wallets` methodology manual exact-format close-out: no delta
+
+Re-read the literal user-pasted lesson artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the matching `generated/ccas/lessons/keys-addresses-and-wallets.validation.json` before returning the exact-format methodology verdict.
+
+- No delta from the already-recorded same-day methodology state: verdict remains `AGREE`.
+- Allowed/public source discipline still holds, every reading scene still carries `citations[]`, the QuadrigaCX scene still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, and the quiz remains scenario-based rather than certification-format mimicry.
+- Carry-forward: keep this lesson closed on methodology unless the artifact changes materially; any live issue remains in the separate factual-fidelity lane only.
+
+## 2026-06-22 - CCAS lesson `exchanges-custodians-and-the-vasp-landscape` methodology audit returns `AGREE`
+
+Re-read the literal user-pasted artifact, the repo copy at `generated/ccas/lessons/exchanges-custodians-and-the-vasp-landscape.json`, and the matching `generated/ccas/lessons/exchanges-custodians-and-the-vasp-landscape.validation.json` before returning the exact-format methodology verdict.
+
+- Current verdict is `AGREE`.
+- Allowed/public source discipline holds on the current artifact: FATF public guidance / Recommendations plus DOJ Liberty Reserve materials and original analysis, with no commercial-source or ICC/IP issue.
+- Every reading scene carries a `citations[]` array, `Worked example: Liberty Reserve and the intermediary that chose to see nothing (2013)` satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, and the quiz remains scenario-based rather than certification-format mimicry.
+- Carry-forward: keep this lesson closed on methodology unless the artifact changes materially; any future review on this slug should stay in the separate factual-fidelity lane if requested.
+
+## 2026-06-22 - CCAS lesson `exchanges-custodians-and-the-vasp-landscape` factual-fidelity lane is `DISAGREE`
+
+Re-read the literal user-pasted artifact and the repo file `generated/ccas/lessons/exchanges-custodians-and-the-vasp-landscape.json` against the maintained 2026-06-22 crypto/VASP facts reference plus DOJ Liberty Reserve primary releases before returning the exact-format reviewer verdict.
+
+- Current verdict is `DISAGREE`. The FATF VASP-perimeter teaching is materially sound on the current hash, including the `R.15` / `INR.15` framing, the five-limb VASP definition, and the high-level non-custodial-wallet / DEX boundary setup.
+- Publication-blocking issue 1: `Worked example: Liberty Reserve and the intermediary that chose to see nothing (2013)` uses a Liberty Reserve scale bundle that I could not trace cleanly to the cited DOJ materials (`more than 5.5 million user accounts`; `more than 8 billion US dollars` total transaction value). The 29 January 2016 DOJ plea release supports `more than 5 million user accounts worldwide` and `millions of transactions`; the publicly quoted 28 May 2013 charging press material reflected `at least one million users worldwide`, `at least 55 million illegal transactions`, and `more than $6 billion` laundered. Tighten the scene to one verified primary-source set before ship.
+- Publication-blocking issue 2: the same scene's second citation label misattributes the plea source to `Southern District of New York`. The guilty-plea release is an Office of Public Affairs release; only the 6 May 2016 sentencing release is SDNY. Split or relabel that source line on the next touch.
+## 2026-06-22 - CCAS lesson `decentralized-finance-and-smart-contracts` methodology exact close-out
+
+Re-read the literal user-pasted lesson artifact, the repo file `generated/ccas/lessons/decentralized-finance-and-smart-contracts.json`, the matching `.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020` before returning the exact-format methodology verdict.
+
+- Current verdict is `AGREE`.
+- No methodology blocker surfaced on the current hash: every reading scene carries `citations[]`, the source posture stays inside allowed/public types, `Worked example: Ooki DAO and the limits of 'no one is in charge' (2022-2023)` satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, and the quiz stays scenario-based rather than certification-format mimicry.
+- Carry-forward: keep any next touch on this slug narrowly in the separate factual-fidelity lane unless the artifact itself changes; do not reopen source-discipline / IP / deep-case / quiz-format arguments on the current methodology-cleared hash.
+## 2026-06-22 - CCAS lesson `decentralized-finance-and-smart-contracts` factual-fidelity exact close-out
+
+Re-read the literal user-pasted lesson artifact, the repo file `generated/ccas/lessons/decentralized-finance-and-smart-contracts.json`, the maintained 2026-06-22 crypto/VASP facts reference, and the public CFTC primary materials before returning the exact-format reviewer verdict.
+
+- Current verdict is `DISAGREE`.
+- The core lesson spine stayed in bounds on this pass: the FATF DeFi/control-or-influence framing matches the maintained facts reference, and the Ooki case chronology / identity bundle checks out against the CFTC materials (`8590-22`; CFTC Docket No. `22-31`; `8715-23`; N.D. Cal. `3:22-cv-05416-WHO`, Judge William H. Orrick, default-judgment order / judgment dated 8 June 2023, $643,542 civil penalty plus trading / registration bans and website-removal relief).
+- Publication-blocking issue 1: `Worked example: Ooki DAO and the limits of 'no one is in charge' (2022-2023)` paraphrases the CIP violation too loosely (`of the kind the law requires of such an operator`). The verified CFTC sources tie the obligation specifically to acting as an `FCM` and to `Bank Secrecy Act obligations applicable to FCMs`; the scene should preserve that scope.
+- Publication-blocking issue 2: the same scene appends a Lazarus / DeFi / bridges sentence with a specific causal claim (`precisely because the obliged-entity question there is contested`) while citing only the Ooki materials. Those cited sources do not support that example or that motive. Next touch should either delete the sentence or re-source it with an appropriate primary/public Lazarus source.
+
+## 2026-06-22 - CCAS lesson `decentralized-finance-and-smart-contracts` factual-fidelity manual rerun: older CFTC-scope note is stale on the live file
+
+Re-read the literal user-pasted lesson artifact, the repo file `generated/ccas/lessons/decentralized-finance-and-smart-contracts.json`, the `generated/ccas/review_events.jsonl` history, CFTC Release `8590-22`, CFTC Release `8715-23`, the N.D. Cal. judgment in `CFTC v. Ooki DAO`, and OFAC's `North Korea Designation Update` page dated `2022-04-14`.
+
+- `review_events.jsonl` matters here: the stored rejected cross-check for this lesson is tied to artifact hash `86b273...`, while the current repo file is a later auto-generated hash (`574b6b...`) with different wording. Treat the earlier same-day CFTC-scope rejection as historical unless the artifact changes back.
+- On the current live text, the CFTC/FCM scope wording is already in bounds. The deep-case scene now says bZeroX and its founders failed to adopt a CIP/BSA programme of the kind required of `such a registered merchant`, after expressly identifying the registered merchant as a futures commission merchant. That is materially aligned with the verified CFTC phrasing (`as required of FCMs`; `Bank Secrecy Act obligations applicable to FCMs`).
+- Current verdict still remains `DISAGREE`, but on one narrower live blocker only: the closing Lazarus sentence still says actors route stolen funds through DeFi protocols and cross-chain bridges `precisely because the obliged-entity question there is contested`, while the cited support is only the Ooki CFTC materials plus the OFAC address-designation update. Those sources do not establish that motive. If the lesson is touched again, keep the next fix tightly scoped to deleting that sentence or replacing it with a properly sourced, narrower formulation.
+- Synced `CLAUDE.md` current-state and carry-forward notes to that narrower live blocker. No lesson-content changes were made in this work block.
+## 2026-06-22 - CCAS lesson `stablecoins-nfts-and-tokenization` factual-fidelity exact rerun now returns `AGREE`
+
+Scope: exact literal user-pasted / repo artifact only (`generated/ccas/lessons/stablecoins-nfts-and-tokenization.json`), no lesson-content edits. Goal was the reviewer-format factual-fidelity verdict, and this pass was specifically to check whether the earlier same-day Tether blocker still matched the live file.
+
+Primary-source check run:
+
+- **Current-text check first:** direct repo reread confirmed the live artifact no longer contains the older `no reserves at all behind the tokens in circulation` sentence preserved in the earlier cross-check output / stale memory trail.
+- **NYAG side now reads in bounds.** The verified sources were the **17 February 2021 Settlement Agreement** and the **23 February 2021** NYAG press release. The current lesson's NYAG formulation tracks the narrower verified record: for extended periods tethers were not backed `1-to-1` by U.S. dollars held by Tether in a bank account, with reserves at times partly held elsewhere, including in a commingled account and as a receivable. The supporting mechanics remain the same verified bundle: about `USD 61 million` against about `442 million` tethers until **15 September 2017**, plus about `USD 382 million` in a commingled Bitfinex account / receivable.
+- **CFTC side remains clean** against Release `8450-21` (`CFTC Orders Tether and Bitfinex to Pay Fines Totaling $42.5 Million`, 15 Oct 2021): `USD 41 million` civil monetary penalty; sufficient fiat reserves on only `27.6%` of the days in a `26-month` sample period from 2016 through 2018.
+
+Verdict consequence:
+
+- Current lesson should now be treated as factual-fidelity **`AGREE`**. The earlier same-day `DISAGREE` note was tied to an older artifact / stored Codex output, not to the current live repo / pasted lesson.
+- No live publication-blocking citation, chronology, numeric, identity, or scope defect remained on this rerun. Keep any future review on this slug tightly scoped to the live artifact and do not recycle the stale NYAG-overstatement note unless that sentence reappears.
