@@ -5,7 +5,6 @@ import { Hero } from '@/components/landing/hero'
 import { Pitch } from '@/components/landing/pitch'
 import { HowItWorks } from '@/components/landing/how-it-works'
 import { CourseLineup } from '@/components/landing/course-lineup'
-import { Pricing } from '@/components/landing/pricing'
 import { FAQ } from '@/components/landing/faq'
 import { Footer } from '@/components/landing/footer'
 
@@ -38,7 +37,6 @@ export default function LandingPage() {
         <Pitch />
         <HowItWorks />
         <CourseLineup />
-        <Pricing />
         <FAQ />
       </main>
       <Footer />

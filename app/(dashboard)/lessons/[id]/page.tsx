@@ -5,15 +5,19 @@ import { LessonPlayer } from './lesson-player'
 import { startLessonSession, getLessonContent } from '@/lib/lesson/actions'
 import { getLecturerOpening } from '@/lib/student-model/memory'
 import { getAvatarChoice } from '@/lib/settings'
+import { isPreviewLessonId } from '@/lib/courses/preview'
 import { parseScene, type ContentRow } from '@/lib/lesson/scenes'
 
 type Props = { params: Promise<{ id: string }> }
 
 export default async function LessonPage({ params }: Props) {
   const { id } = await params
+  const isPreview = isPreviewLessonId(id)
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect(`/login?next=/lessons/${id}`)
+  // Preview lessons are signup-gated (send anonymous prospects to sign up, which
+  // captures the lead); other lessons use the normal login redirect.
+  if (!user) redirect(`/${isPreview ? 'signup' : 'login'}?next=/lessons/${id}`)
 
   const admin = createAdminClient()
 
@@ -35,7 +39,8 @@ export default async function LessonPage({ params }: Props) {
   const courseId = (lesson.module as any).course.id
   const courseSlug = (lesson.module as any).course.slug
 
-  // Confirm enrollment
+  // Confirm enrollment — except for free preview lessons, which any signed-in
+  // user may play (the buy gate is on the rest of the course).
   const { data: enrollment } = await admin
     .from('enrollments')
     .select('id')
@@ -44,7 +49,7 @@ export default async function LessonPage({ params }: Props) {
     .eq('status', 'active')
     .single()
 
-  if (!enrollment) redirect('/courses')
+  if (!enrollment && !isPreview) redirect(`/courses/${courseSlug}`)
 
   // Fetch content elements and parse them into typed scenes
   const elements = await getLessonContent(id)

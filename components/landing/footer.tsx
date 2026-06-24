@@ -5,7 +5,6 @@ import { Logo } from '@/components/brand/logo'
 const NAV = [
   { href: '#features', label: 'Features' },
   { href: '#courses', label: 'Courses' },
-  { href: '#pricing', label: 'Pricing' },
   { href: '#faq', label: 'FAQ' },
   { href: '/terms', label: 'Terms' },
   { href: '/privacy', label: 'Privacy' },

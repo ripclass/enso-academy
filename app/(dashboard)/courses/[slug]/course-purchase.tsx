@@ -17,10 +17,13 @@ export function CoursePurchase({
   courseSlug,
   priceLabel = '$299',
   included = [],
+  isAuthenticated = true,
 }: {
   courseSlug: string
   priceLabel?: string
   included?: string[]
+  /** When false (public sales page), the CTA routes to sign-up first. */
+  isAuthenticated?: boolean
 }) {
   const params = useSearchParams()
   const checkout = params.get('checkout')
@@ -28,6 +31,11 @@ export function CoursePurchase({
   const [error, setError] = useState<string | null>(null)
 
   function buy() {
+    // Anonymous visitor: capture the account first, then return here to buy.
+    if (!isAuthenticated) {
+      window.location.href = `/signup?next=/courses/${courseSlug}`
+      return
+    }
     setError(null)
     startTransition(async () => {
       try {
@@ -55,7 +63,7 @@ export function CoursePurchase({
 
       <h2 className="text-lg font-bold text-neutral-900">Get full course access</h2>
       <p className="mt-1.5 text-sm text-neutral-600 leading-relaxed">
-        One-time purchase, lifetime access.{included.length ? ' Everything below is included:' : ' The full course, the AI lecturer and classmate, 5 full exam simulations and unlimited practice mocks — all included.'}
+        One payment, lasting access.{included.length ? ' Everything below is included:' : ' The full course, the AI lecturer and classmate, 5 full exam simulations, and unlimited practice mocks.'}
       </p>
 
       {included.length > 0 && (
@@ -82,7 +90,7 @@ export function CoursePurchase({
           disabled={pending}
           className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-semibold text-white hover:bg-primary-hover transition-colors disabled:opacity-50"
         >
-          {pending ? 'Starting checkout…' : 'Get full course access'}
+          {pending ? 'Starting checkout…' : isAuthenticated ? 'Get full course access' : 'Sign up to enroll'}
         </button>
         <Link
           href={`/courses/${courseSlug}/mock`}
@@ -92,7 +100,7 @@ export function CoursePurchase({
         </Link>
       </div>
 
-      <p className="mt-4 text-xs text-neutral-500">7-day money-back guarantee. Secure checkout by Stripe.</p>
+      <p className="mt-4 text-xs text-neutral-500">14-day money-back guarantee. Secure checkout by Stripe.</p>
 
       {error && <p className="mt-3 text-sm text-accent font-medium">{error}</p>}
     </div>

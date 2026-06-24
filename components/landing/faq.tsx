@@ -7,7 +7,7 @@ const faqs = [
   {
     question: 'What is Enso Academy?',
     answer:
-      'An AI-powered preparation platform for professional certification exams in compliance and finance.',
+      'Exam prep for compliance and finance certifications, taught in an interactive AI classroom built from primary regulatory sources instead of third-party study guides.',
   },
   {
     question: 'How is it different from other exam-prep courses?',
@@ -17,11 +17,11 @@ const faqs = [
   {
     question: 'What does it cost?',
     answer:
-      '$199 per course with six months of access, or $39 per month for all-access.',
+      'A course is $299 — currently $100 off the $399 list — as a one-time purchase with lasting access. You can also sit a single full exam simulation for $14.99, and your first one is free.',
   },
   {
     question: 'Which certifications do you cover?',
-    answer: 'CAMS, CDCS, and CCAS at launch, with more in development.',
+    answer: 'CAMS is available now. CDCS and CCAS are in development.',
   },
   {
     question: 'Where does the content come from?',

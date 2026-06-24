@@ -83,10 +83,10 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
         <div className="mt-4">
           {isAvailable ? (
             <Link
-              href="/signup"
+              href={`/courses/${course.slug}`}
               className="text-xs font-bold uppercase tracking-wider text-accent hover:underline inline-flex items-center gap-1.5"
             >
-              Enroll now &rarr;
+              View course &rarr;
             </Link>
           ) : (
             <span
