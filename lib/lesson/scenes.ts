@@ -117,6 +117,22 @@ export type FlowEdge = {
   amount?: string
 }
 
+/** A labelled attribute shown on a screening record (e.g. DOB, country, ID). */
+export type ScreeningField = { label: string; value: string }
+
+/** One screening alert to adjudicate: an inbound party vs a watchlist hit. */
+export type ScreeningAlert = {
+  id: string
+  /** The inbound party being screened. */
+  party: { name: string; fields?: ScreeningField[] }
+  /** The watchlist record that triggered the alert. */
+  listEntry: { name: string; list: string; fields?: ScreeningField[] }
+  /** The correct call: clear it (false positive) or escalate (true/potential match). */
+  verdict: 'clear' | 'escalate'
+  /** Why — shown as feedback after the student decides. */
+  why: string
+}
+
 export type InteractiveSpec =
   | { kind: 'risk-classify'; prompt?: string; items: RiskClassifyItem[] }
   | { kind: 'red-flags'; prompt?: string; scenario?: string; items: RedFlagItem[] }
@@ -130,6 +146,7 @@ export type InteractiveSpec =
       /** Revealed on success — what the decoy branches were. */
       why: string
     }
+  | { kind: 'screening-match'; prompt?: string; alerts: ScreeningAlert[] }
 
 /** Narrow an unknown spec to a known interactive kind. */
 export function asInteractiveSpec(spec: unknown): InteractiveSpec | null {
@@ -144,6 +161,9 @@ export function asInteractiveSpec(spec: unknown): InteractiveSpec | null {
     Array.isArray(s.edges) &&
     Array.isArray(s.path)
   ) {
+    return spec as InteractiveSpec
+  }
+  if (s.kind === 'screening-match' && Array.isArray(s.alerts)) {
     return spec as InteractiveSpec
   }
   return null

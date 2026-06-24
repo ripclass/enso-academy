@@ -8,6 +8,7 @@ import { PlaceholderScene } from './placeholder-scene'
 import { RiskClassify } from './interactives/risk-classify'
 import { RedFlagSpot } from './interactives/red-flag-spot'
 import { FlowTrace } from './interactives/flow-trace'
+import { ScreeningMatch } from './interactives/screening-match'
 import { ProjectScene } from './pbl/project-scene'
 
 /**
@@ -66,6 +67,9 @@ export function SceneRenderer({
                 why={spec.why}
                 onComplete={report}
               />
+            )}
+            {spec.kind === 'screening-match' && (
+              <ScreeningMatch prompt={spec.prompt} alerts={spec.alerts} onComplete={report} />
             )}
           </div>
         )

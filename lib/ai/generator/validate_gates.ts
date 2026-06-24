@@ -335,8 +335,9 @@ export function gateSchema(artifact: LessonArtifact): GateResult {
         if (!isStr(d.title)) errors.push(`${ctx}.sceneData.title not a string`)
         const spec = d.spec as Record<string, unknown> | undefined
         const kind = spec?.kind
-        if (!isObj(spec) || (kind !== 'risk-classify' && kind !== 'red-flags' && kind !== 'flow-trace')) {
-          errors.push(`${ctx}.sceneData.spec.kind must be 'risk-classify', 'red-flags', or 'flow-trace'`)
+        const KINDS = ['risk-classify', 'red-flags', 'flow-trace', 'screening-match']
+        if (!isObj(spec) || typeof kind !== 'string' || !KINDS.includes(kind)) {
+          errors.push(`${ctx}.sceneData.spec.kind must be one of ${KINDS.join(', ')}`)
         } else if (kind === 'flow-trace') {
           if (!isArr(spec.nodes) || spec.nodes.length < 3) {
             errors.push(`${ctx}.sceneData.spec.nodes needs ≥ 3 nodes`)
@@ -351,6 +352,16 @@ export function gateSchema(artifact: LessonArtifact): GateResult {
             if (!(spec.path as unknown[]).every((id) => ids.has(id))) {
               errors.push(`${ctx}.sceneData.spec.path references an unknown node id`)
             }
+          }
+        } else if (kind === 'screening-match') {
+          if (!isArr(spec.alerts) || spec.alerts.length < 2) {
+            errors.push(`${ctx}.sceneData.spec.alerts needs ≥ 2 alerts`)
+          } else if (
+            !(spec.alerts as Record<string, unknown>[]).every(
+              (a) => (a.verdict === 'clear' || a.verdict === 'escalate') && isStr(a.why),
+            )
+          ) {
+            errors.push(`${ctx}.sceneData.spec.alerts each need verdict 'clear'|'escalate' and a why`)
           }
         } else if (!isArr(spec.items) || spec.items.length < 3) {
           errors.push(`${ctx}.sceneData.spec.items needs ≥ 3 items`)
