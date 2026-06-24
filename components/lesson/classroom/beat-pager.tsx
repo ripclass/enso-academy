@@ -9,7 +9,7 @@ import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
 import { SlideScene } from '@/components/lesson/scenes/slide-scene'
 
 /**
- * Beat-pagination prototype (gated by `?beats=1` in the player).
+ * Beat pagination (on by default in the player; `?beats=0` opts out).
  *
  * Breaks a scene into viewport-sized "beats" shown one at a time. For reading
  * scenes the player narrates one clip per beat and passes the authoritative

@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
-import { Hand, CornerDownLeft, ArrowLeft, MessageSquare, X, Play } from 'lucide-react'
+import { Hand, CornerDownLeft, ArrowLeft, ArrowRight, MessageSquare, X, Play } from 'lucide-react'
 import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
@@ -15,6 +15,8 @@ import { ClassmateMoment, type MomentPhase } from '@/components/lesson/classroom
 import { Avatar } from '@/components/lesson/classroom/avatar'
 import { SceneProgress } from '@/components/lesson/classroom/scene-progress'
 import { BeatPager } from '@/components/lesson/classroom/beat-pager'
+import { WrapUpPanel } from '@/components/lesson/classroom/wrap-up-panel'
+import { VoiceInput } from '@/components/lesson/classroom/voice-input'
 import { sceneContext, sceneNarration, suggestedQuestions, lecturerVariantFor, splitSentences, type Scene, type SceneType, type QuizQuestion, type PblSpec } from '@/lib/lesson/scenes'
 import { readingBeats, slideBeats } from '@/lib/lesson/beats'
 import { toast } from 'sonner'
@@ -48,6 +50,10 @@ type Props = {
   lecturerOpening?: string | null
   /** The student's chosen avatar (from settings). */
   userAvatar?: 'male' | 'female'
+  /** The student's first name, for the lecturer to address them in office hours. */
+  userName?: string | null
+  /** The next lesson in course order — "Complete lesson" advances into it. */
+  nextLessonId?: string | null
 }
 
 
@@ -63,11 +69,26 @@ const SCENE_LABEL: Record<SceneType, string> = {
 
 const SPEEDS = [1, 1.25, 1.5, 2]
 
-// Classmate cadence: a hard cap per session, a cooldown of N scenes between
-// fires, and the chance of an ambient (non-gap) question on an eligible scene.
-const MAX_CLASSMATE_FIRES = 4
-const CLASSMATE_COOLDOWN_SCENES = 2
-const AMBIENT_CLASSMATE_CHANCE = 0.6
+// Classmates hold their questions for the end of the lesson — the "office
+// hours" wrap-up below — rather than interrupting the lecture mid-flow.
+// The wrap-up runs a short sequence: lecturer opens the floor → a couple of
+// (different) classmates ask → the lecturer turns to the student → if the
+// student is quiet for a beat, the lecturer moves on.
+const WRAPUP_CLASSMATES = 2
+const USER_TURN_MS = 22000
+const WRAPUP_PROMPTS = [
+  "That's the lesson. Before you go — any questions?",
+  'That brings us to the end. Any questions before we wrap up?',
+  "That's everything for this lesson. Anything you want to ask before you go?",
+]
+const ANYONE_ELSE = ['Anyone else?', 'Good question. Anyone else?', 'Right. Anybody else?']
+const userPrompt = (name?: string | null) =>
+  name
+    ? `${name}, do you have a question?`
+    : 'And how about you — anything you want to ask?'
+const MOVE_ON = ["OK, let's move on.", 'All right — let’s wrap up there.', 'Good. Let us leave it there.']
+const pick = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)]
+const pickWrapUp = () => pick(WRAPUP_PROMPTS)
 
 // What the lecturer says to register a raised hand before answering — so the
 // lecture transitions instead of cutting off cold.
@@ -109,7 +130,7 @@ const CAST: CastMember[] = [
   { name: 'Omar' },
 ]
 
-export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, lecturerOpening, userAvatar = 'female' }: Props) {
+export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, lecturerOpening, userAvatar = 'female', userName, nextLessonId }: Props) {
   const router = useRouter()
   const lecturerVariant = lecturerVariantFor(lesson.id)
   const userAvatarSrc = `/avatars/user-${userAvatar}.webp`
@@ -140,10 +161,14 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   const [spokenIdx, setSpokenIdx] = useState(0)
   // Narration progress 0–1 for the current scene — drives beat pagination.
   const [narrationProgress, setNarrationProgress] = useState(0)
-  // Beat-pagination prototype: opt-in via ?beats=1, so the default published
-  // experience is unchanged while we trial fragmenting long scenes into beats.
-  const [beatMode] = useState(
-    () => typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('beats') === '1',
+  // Beat pagination: ON by default — scenes play "one thought at a time" with
+  // each beat narrated by its own clip, so the on-screen beat is always exactly
+  // what the lecturer is saying. `?beats=0` opts out (the old whole-scene view)
+  // for A/B comparison. Server-renders to on so the default never mismatches.
+  const [beatMode] = useState(() =>
+    typeof window === 'undefined'
+      ? true
+      : new URLSearchParams(window.location.search).get('beats') !== '0',
   )
   // Per-beat audio (reading scenes in beat mode): the active beat index, plus a
   // per-scene cache of resolved beat narration URLs so each beat plays its own
@@ -237,10 +262,18 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     inflight[index] = p
     return p
   }
-  // Classmate cadence guards (client side; the action also enforces the cap).
-  const classmateCount = useRef(0)
-  const lastClassmateIndex = useRef(-10)
+  // Whether a classmate is currently being generated (shown in the Ask panel).
   const [classmatePending, setClassmatePending] = useState(false)
+
+  // End-of-lesson office hours. `wrapUp` gates the phase; `wrapStage` walks the
+  // sequence (classmates asking → the student's turn → closing); the prompt is
+  // the lecturer's current on-panel line.
+  const [wrapUp, setWrapUp] = useState(false)
+  const [wrapStage, setWrapStage] = useState<'asking' | 'user-turn' | 'closing'>('asking')
+  const [wrapUpPrompt, setWrapUpPrompt] = useState('')
+  const wrapUpCountRef = useRef(0)
+  const wrapUpNamesRef = useRef<string[]>([]) // classmates already called on
+  const userTurnTimerRef = useRef<number | null>(null)
 
   const currentScene = scenes[currentIndex]
   const isLast = currentIndex === scenes.length - 1
@@ -250,6 +283,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   const speaking = isPlaying && audioSource.current === 'scene'
   const showPlayOverlay =
     !hasStarted &&
+    !wrapUp &&
     !!currentScene &&
     (currentScene.sceneType === 'slide' || currentScene.sceneType === 'reading')
   const suggestions = currentScene ? suggestedQuestions(currentScene) : []
@@ -398,77 +432,27 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     return { lessonContext, conceptTags }
   }
 
-  // After the student advances past a scene, give the classmate a chance to
-  // raise a hand about a concept that scene taught and the student is weak on.
-  async function runClassmateCheck(taughtIndex: number) {
-    if (momentBusyRef.current) return // a moment is in flight or on stage — never interrupt it
-    if (classmateCount.current >= MAX_CLASSMATE_FIRES) return
-    if (taughtIndex - lastClassmateIndex.current < CLASSMATE_COOLDOWN_SCENES) return
-    const taught = scenes[taughtIndex]
-    if (!taught) return
-    const taughtConceptTags = [...new Set([...taught.conceptTags, ...taught.teachesConcepts])]
-    if (taughtConceptTags.length === 0) return
-
-    // Claim the slot before the async check so a second advance can't race in.
-    momentBusyRef.current = true
-    // A grounded gap always fires; otherwise allow an ambient on-topic question
-    // most of the time, so the class feels alive without piping up every scene.
-    const allowAmbient = Math.random() < AMBIENT_CLASSMATE_CHANCE
-    const { lessonContext } = buildContext(taughtIndex)
-    const askedQuestions = messages
-      .filter((m) => m.role === 'student' || m.role === 'classmate')
-      .map((m) => m.content)
-
-    setClassmatePending(true)
-    try {
-      const result = await checkClassmateGap({
-        sessionId,
-        lessonId: lesson.id,
-        courseId,
-        taughtConceptTags,
-        lessonContext,
-        askedQuestions,
-        allowAmbient,
-      })
-      if (result.fired && result.question && result.answer) {
-        classmateCount.current += 1
-        lastClassmateIndex.current = taughtIndex
-        const who = result.classmateName ?? CAST[0].name
-        const question = result.question
-        const answer = result.answer
-        // Keep the exchange in the Ask transcript as history.
-        setMessages((prev) => [
-          ...prev,
-          { role: 'classmate', content: question, classmateName: who },
-          { role: 'lecturer', content: answer },
-        ])
-        // Bring it on stage as three beats so the lecture transitions instead
-        // of cutting off cold: the lecturer registers the hand (bridge), the
-        // peer asks (question), then the lecturer answers (answer).
-        const bridge = pickBridge(who)
-        // Remember where the lecture was so Continue can resume it.
-        const a = audioRef.current
-        if (a && audioSource.current === 'scene') lecturePosRef.current = a.currentTime
-        a?.pause()
-        setSpeakingClassmate(who)
-        setMomentPhase('bridge')
-        setClassmateMoment({ name: who, question, answer, bridge })
-        playMomentBeat(bridge, () => {
-          setMomentPhase('question')
-          momentTimerRef.current = window.setTimeout(() => {
-            setMomentPhase('answer')
-            playMomentBeat(answer, () => {})
-          }, 1800)
-        })
-      } else {
-        momentBusyRef.current = false // nothing fired — release the slot
-      }
-    } catch (err) {
-      momentBusyRef.current = false
-      console.error(err)
-    } finally {
-      setClassmatePending(false)
-    }
+  // Bring a classmate's question on stage as three beats (bridge → question →
+  // answer), keeping the exchange in the Ask transcript. Shared by the in-lesson
+  // hand-raise and the end-of-lesson office hours. The caller claims
+  // momentBusyRef before staging and releases it on dismiss.
+  function stageMoment(who: string, question: string, answer: string) {
+    setMessages((prev) => [
+      ...prev,
+      { role: 'classmate', content: question, classmateName: who },
+      { role: 'lecturer', content: answer },
+    ])
+    const bridge = pickBridge(who)
+    setSpeakingClassmate(who)
+    setMomentPhase('bridge')
+    setClassmateMoment({ name: who, question, answer, bridge })
+    playMomentBeat(bridge, () => {
+      setMomentPhase('question')
+      momentTimerRef.current = window.setTimeout(() => {
+        setMomentPhase('answer')
+        playMomentBeat(answer, () => {})
+      }, 1800)
+    })
   }
 
   // Speak one beat of a classmate moment (synthesize + play when listening,
@@ -523,33 +507,163 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     })
   }
 
-  function dismissMoment(resume = false) {
+  // Common teardown for an on-stage moment (no lecture resume, no next-up).
+  function clearMoment() {
     if (momentTimerRef.current) {
       clearTimeout(momentTimerRef.current)
       momentTimerRef.current = null
     }
     momentOnEndRef.current = null
     momentBusyRef.current = false // release the slot for the next classmate
+    if (userTurnTimerRef.current) {
+      clearTimeout(userTurnTimerRef.current)
+      userTurnTimerRef.current = null
+    }
     if (audioSource.current === 'qa') audioRef.current?.pause()
     setClassmateMoment(null)
     setMomentPhase('bridge')
     setSpeakingClassmate(null)
+  }
+
+  function dismissMoment(resume = false) {
+    clearMoment()
     if (resume) resumeLecture()
     else lecturePosRef.current = null // navigating away — drop the saved spot
   }
 
+  // Pick a classmate who hasn't been called on yet this wrap-up, so the office
+  // hours rotates across the class instead of one person asking everything.
+  function pickNextClassmate(): string {
+    const used = wrapUpNamesRef.current
+    const fresh = CAST.map((c) => c.name).filter((n) => !used.includes(n))
+    const pool = fresh.length > 0 ? fresh : CAST.map((c) => c.name)
+    const name = pool[Math.floor(Math.random() * pool.length)]
+    wrapUpNamesRef.current = [...used, name]
+    return name
+  }
+
+  // After a wrap-up classmate's answer: if the class still has questions, the
+  // lecturer invites another (different) classmate; once they're done, the
+  // lecturer turns to the student.
+  function dismissWrapUpMoment() {
+    clearMoment()
+    if (wrapUpCountRef.current < WRAPUP_CLASSMATES) {
+      momentBusyRef.current = true
+      playMomentBeat(pick(ANYONE_ELSE), () => {
+        momentBusyRef.current = false
+        void fireWrapUpClassmate()
+      })
+    } else {
+      enterUserTurn()
+    }
+  }
+
+  // Enter the end-of-lesson office hours: the lecturer opens the floor, then the
+  // first classmate raises a hand. Idempotent.
+  function enterWrapUp() {
+    if (wrapUp || momentBusyRef.current) return
+    setWrapUp(true)
+    setWrapStage('asking')
+    wrapUpCountRef.current = 0
+    wrapUpNamesRef.current = []
+    lecturePosRef.current = null
+    audioRef.current?.pause()
+    const prompt = pickWrapUp()
+    setWrapUpPrompt(prompt)
+    setSpeakingClassmate(null)
+    momentBusyRef.current = true
+    playMomentBeat(prompt, () => {
+      momentBusyRef.current = false
+      void fireWrapUpClassmate()
+    })
+  }
+
+  // A (rotating) classmate raises a hand with a closing question. Bypasses the
+  // in-lesson cap (wrapUp) and is grounded in the whole lesson's concepts.
+  async function fireWrapUpClassmate() {
+    if (momentBusyRef.current) return
+    momentBusyRef.current = true
+    const lastIndex = scenes.length - 1
+    const { lessonContext } = buildContext(lastIndex)
+    const taughtConceptTags = [
+      ...new Set(scenes.flatMap((s) => [...s.conceptTags, ...s.teachesConcepts])),
+    ].slice(0, 12)
+    const askedQuestions = messages
+      .filter((m) => m.role === 'student' || m.role === 'classmate')
+      .map((m) => m.content)
+    setClassmatePending(true)
+    try {
+      const result = await checkClassmateGap({
+        sessionId,
+        lessonId: lesson.id,
+        courseId,
+        taughtConceptTags,
+        lessonContext,
+        askedQuestions,
+        wrapUp: true,
+      })
+      if (result.fired && result.question && result.answer) {
+        wrapUpCountRef.current += 1
+        stageMoment(pickNextClassmate(), result.question, result.answer)
+      } else {
+        // Generation failed — don't strand the wrap-up; turn to the student.
+        momentBusyRef.current = false
+        enterUserTurn()
+      }
+    } catch (err) {
+      momentBusyRef.current = false
+      console.error(err)
+      enterUserTurn()
+    } finally {
+      setClassmatePending(false)
+    }
+  }
+
+  // The lecturer turns to the student by name and waits a beat. If the student
+  // asks (typed or spoken), submitQuestion handles it and then closes; if they
+  // stay quiet past USER_TURN_MS, the lecturer moves on.
+  function enterUserTurn() {
+    setWrapStage('user-turn')
+    const line = userPrompt(userName)
+    setWrapUpPrompt(line)
+    openChat() // give them the box to type or use the mic
+    momentBusyRef.current = true
+    playMomentBeat(line, () => {
+      momentBusyRef.current = false
+      if (userTurnTimerRef.current) clearTimeout(userTurnTimerRef.current)
+      userTurnTimerRef.current = window.setTimeout(() => enterClosing(), USER_TURN_MS)
+    })
+  }
+
+  // Close the office hours: the lecturer moves on; "Complete lesson" is the
+  // clear next action.
+  function enterClosing() {
+    if (userTurnTimerRef.current) {
+      clearTimeout(userTurnTimerRef.current)
+      userTurnTimerRef.current = null
+    }
+    if (wrapStage === 'closing') return
+    setWrapStage('closing')
+    const line = pick(MOVE_ON)
+    setWrapUpPrompt(line)
+    momentBusyRef.current = true
+    playMomentBeat(line, () => {
+      momentBusyRef.current = false
+    })
+  }
+
   function goNext() {
     if (currentIndex < scenes.length - 1) {
-      const taughtIndex = currentIndex
+      setWrapUp(false)
       dismissMoment()
       setActiveBeat(0)
       setCurrentIndex(currentIndex + 1)
-      void runClassmateCheck(taughtIndex)
     }
   }
 
   function goPrev() {
     if (currentIndex > 0) {
+      setWrapUp(false)
       dismissMoment()
       setActiveBeat(0)
       setCurrentIndex(currentIndex - 1)
@@ -559,6 +673,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // Jump to any scene from the chapter-tick scrubber.
   function goToScene(index: number) {
     if (index === currentIndex || index < 0 || index >= scenes.length) return
+    setWrapUp(false)
     dismissMoment()
     setActiveBeat(0)
     setCurrentIndex(index)
@@ -592,6 +707,24 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     }
     const audio = audioRef.current
     if (!audio) return
+    // Beat-mode scene: "replay" means restart from the first beat. Moving the
+    // active beat re-fires the per-beat audio effect; if we're already on beat 0
+    // (so the effect won't re-run), replay beat 0's clip directly.
+    if (beatAudio(currentScene)) {
+      if (activeBeat !== 0) {
+        setActiveBeat(0)
+      } else {
+        void resolveBeatAudio(currentScene, 0).then((url) => {
+          if (!url) return
+          audioSource.current = 'scene'
+          audio.src = url
+          audio.currentTime = 0
+          audio.playbackRate = playbackRate
+          audio.play().catch(() => {})
+        })
+      }
+      return
+    }
     void resolveSceneAudio(currentScene).then((url) => {
       if (!url) return
       audioSource.current = 'scene'
@@ -658,6 +791,13 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
 
   async function submitQuestion(question: string) {
     if (!question || askingQuestion) return
+    // If it's the student's turn in office hours, they took it — stop the
+    // move-on timer so the lecturer doesn't talk over them.
+    if (userTurnTimerRef.current) {
+      clearTimeout(userTurnTimerRef.current)
+      userTurnTimerRef.current = null
+    }
+    const wasUserTurn = wrapUp && wrapStage === 'user-turn'
     // Asking pauses the lecture so the lecturer's voice doesn't talk over you.
     // The answer comes back as TEXT (voice stays reserved for teaching); press
     // play to resume the lecture right where it left off.
@@ -682,6 +822,8 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         ...prev,
         { role: 'lecturer', content: result.answer, fromCache: result.fromCache },
       ])
+      // The student took their office-hours turn — close out afterwards.
+      if (wasUserTurn) enterClosing()
     } catch (err) {
       toast.error('Could not reach the lecturer. Try again.')
       console.error(err)
@@ -695,7 +837,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     try {
       await completeLesson(sessionId, lesson.id)
       toast.success('Lesson complete')
-      router.push(`/courses/${courseSlug}`)
+      // Advance straight into the next lesson; fall back to the course page on
+      // the last lesson of the course.
+      router.push(nextLessonId ? `/lessons/${nextLessonId}` : `/courses/${courseSlug}`)
     } catch (err) {
       toast.error('Could not save lesson completion.')
       console.error(err)
@@ -751,7 +895,16 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                 return
               }
             }
-            if (currentIndex < scenes.length - 1) goNext()
+            // Only passive scenes auto-advance. Quiz / interactive / PBL require
+            // the student to act, so narration ending must not carry them past
+            // the scene before they engage with it.
+            const passive =
+              scene?.sceneType === 'reading' || scene?.sceneType === 'slide'
+            if (passive && currentIndex < scenes.length - 1) goNext()
+            // Last passive scene finished → open the end-of-lesson office hours.
+            else if (passive && currentIndex === scenes.length - 1 && !wrapUp) {
+              enterWrapUp()
+            }
           }
         }}
         onError={() => setAudioStatus('error')}
@@ -819,7 +972,18 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
 
                 {/* Scene content */}
                 <div className="flex-1 overflow-y-auto px-8 py-10 md:px-14 md:py-12">
-                  {currentScene ? (
+                  {wrapUp ? (
+                    <WrapUpPanel
+                      lecturerVariant={lecturerVariant}
+                      prompt={wrapUpPrompt}
+                      stage={wrapStage}
+                      speaking={isPlaying && !classmateMoment}
+                      hasNext={!!nextLessonId}
+                      onAsk={(q) => (q ? askSuggested(q) : openChat())}
+                      onComplete={handleComplete}
+                      completing={completing}
+                    />
+                  ) : currentScene ? (
                     beatMode &&
                     (currentScene.sceneType === 'reading' || currentScene.sceneType === 'slide') ? (
                       <div key={currentScene.id} className="h-full animate-in fade-in duration-500">
@@ -850,6 +1014,21 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                   )}
                 </div>
 
+                {/* Last scene → a clear on-stage CTA into the end-of-lesson
+                    office hours (the lecture itself has no dock buttons). */}
+                {isLast && !wrapUp && (
+                  <div className="flex shrink-0 justify-end border-t border-neutral-200 px-8 py-3.5 md:px-14">
+                    <button
+                      type="button"
+                      onClick={enterWrapUp}
+                      className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-primary px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-hover"
+                    >
+                      Finish lesson
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
+
                 {/* Big play overlay — the invitation to begin */}
                 {showPlayOverlay && (
                   <button
@@ -878,7 +1057,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                   phase={momentPhase}
                   speaking={(momentPhase === 'bridge' || momentPhase === 'answer') && isPlaying}
                   lecturerVariant={lecturerVariant}
-                  onDismiss={() => dismissMoment(true)}
+                  onDismiss={wrapUp ? dismissWrapUpMoment : () => dismissMoment(true)}
                 />
               </div>
             )}
@@ -886,22 +1065,24 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
 
           {/* Bottom dock */}
           <footer className="shrink-0 border-t border-neutral-200 bg-white/70 px-6 pb-5 pt-3 backdrop-blur">
-            {/* Floating transport */}
-            <div className="mb-3 flex justify-center">
-              <TransportBar
-                isPlaying={isPlaying}
-                onPlayPause={handlePlayPause}
-                onPrev={goPrev}
-                onNext={goNext}
-                onReplay={handleReplay}
-                canPrev={currentIndex > 0}
-                canNext={!isLast}
-                speed={playbackRate}
-                onCycleSpeed={cycleSpeed}
-                muted={!listenMode}
-                onToggleMute={() => setListenMode((m) => !m)}
-              />
-            </div>
+            {/* Floating transport (hidden during the end-of-lesson wrap-up) */}
+            {!wrapUp && (
+              <div className="mb-3 flex justify-center">
+                <TransportBar
+                  isPlaying={isPlaying}
+                  onPlayPause={handlePlayPause}
+                  onPrev={goPrev}
+                  onNext={goNext}
+                  onReplay={handleReplay}
+                  canPrev={currentIndex > 0}
+                  canNext={!isLast}
+                  speed={playbackRate}
+                  onCycleSpeed={cycleSpeed}
+                  muted={!listenMode}
+                  onToggleMute={() => setListenMode((m) => !m)}
+                />
+              </div>
+            )}
 
             {/* Dock row: lecturer + speech bubble on the left, cast on the right */}
             <div className="flex items-center justify-between gap-6">
@@ -914,31 +1095,6 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                     speaking={speaking}
                     thinking={askingQuestion}
                   />
-                  {suggestions.length > 0 && (
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <span className="font-mono text-2xs uppercase tracking-widest text-neutral-400">Ask</span>
-                      {suggestions.slice(0, 2).map((q) => (
-                        <button
-                          key={q}
-                          type="button"
-                          onClick={() => askSuggested(q)}
-                          className="rounded-full border border-neutral-200 bg-white px-2.5 py-1 text-2xs text-neutral-600 transition-colors hover:border-primary hover:text-primary"
-                        >
-                          {q}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                  {isLast && (
-                    <button
-                      type="button"
-                      onClick={handleComplete}
-                      disabled={completing}
-                      className="inline-flex h-9 items-center rounded-md bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
-                    >
-                      {completing ? 'Saving…' : 'Complete lesson'}
-                    </button>
-                  )}
                 </div>
               </div>
 
@@ -1069,12 +1225,19 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Ask the Enso Guide a question…"
+                  placeholder="Ask the Enso Guide — type or use the mic…"
                   value={questionInput}
                   onChange={(e) => setQuestionInput(e.target.value)}
                   disabled={askingQuestion}
-                  className="w-full rounded-md border border-neutral-200 bg-white py-2.5 pl-3 pr-11 text-sm text-neutral-800 placeholder-neutral-400 focus:border-primary focus:outline-none disabled:opacity-60"
+                  className="w-full rounded-md border border-neutral-200 bg-white py-2.5 pl-3 pr-[4.75rem] text-sm text-neutral-800 placeholder-neutral-400 focus:border-primary focus:outline-none disabled:opacity-60"
                 />
+                {/* Voice note → transcript (Web Speech API; hidden where unsupported). */}
+                <div className="absolute right-9 top-1/2 -translate-y-1/2">
+                  <VoiceInput
+                    onTranscript={(t) => setQuestionInput(t)}
+                    disabled={askingQuestion}
+                  />
+                </div>
                 <button
                   type="submit"
                   disabled={askingQuestion || !questionInput.trim()}

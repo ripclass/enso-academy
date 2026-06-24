@@ -107,6 +107,12 @@ export async function checkClassmateGap(opts: {
   askedQuestions: string[]
   /** When no evidenced gap exists, allow an ambient on-topic question anyway. */
   allowAmbient?: boolean
+  /**
+   * End-of-lesson "office hours": the lecturer has asked the class for closing
+   * questions. Bypasses the in-lesson cap (so the wrap-up reliably fires) and
+   * asks a synthesis/closing question rather than a per-scene gap question.
+   */
+  wrapUp?: boolean
 }): Promise<CheckResult> {
   try {
     const supabase = await createClient()
@@ -115,26 +121,46 @@ export async function checkClassmateGap(opts: {
 
     const admin = createAdminClient()
 
-    // Cap: one classmate intervention per lesson session (server-authoritative).
-    const { count } = await admin
-      .from('classmate_interventions')
-      .select('id', { count: 'exact', head: true })
-      .eq('session_id', opts.sessionId)
-    if ((count ?? 0) >= MAX_INTERVENTIONS_PER_SESSION) return { fired: false }
+    // Cap: classmate interventions per lesson session (server-authoritative).
+    // The end-of-lesson wrap-up is exempt so it always gets to happen.
+    if (!opts.wrapUp) {
+      const { count } = await admin
+        .from('classmate_interventions')
+        .select('id', { count: 'exact', head: true })
+        .eq('session_id', opts.sessionId)
+      if ((count ?? 0) >= MAX_INTERVENTIONS_PER_SESSION) return { fired: false }
+    }
 
     // Priority 1: a grounded gap (the moat). Priority 2: an ambient on-topic
-    // question to keep the room alive — only when the player allows it.
+    // question to keep the room alive — only when the player allows it. The
+    // wrap-up always proceeds (a closing question, gap-biased when one exists).
     const gap = await detectGap(user.id, opts.courseId, opts.taughtConceptTags, admin)
-    if (!gap && !opts.allowAmbient) return { fired: false }
+    if (!gap && !opts.allowAmbient && !opts.wrapUp) return { fired: false }
 
     const classmate = await getOrCreateClassmate(opts.courseId, admin)
     if (!classmate) return { fired: false }
 
     const concept = gap ? titleize(gap.conceptTag) : null
 
-    // Generate the classmate's question (Sonnet, in character) — a gap-clarifying
-    // question when there's an evidenced weakness, else a curious on-topic one.
-    const questionSystem = concept
+    // Generate the classmate's question (Sonnet, in character). Wrap-up → a
+    // closing/synthesis question (gap-biased when one exists); otherwise a
+    // gap-clarifying question when there's an evidenced weakness, else a curious
+    // on-topic one.
+    const wrapUpFocus = concept
+      ? `The other student has seemed a little unsure about "${concept}", so a closing question that touches on it would help.`
+      : ''
+    const questionSystem = opts.wrapUp
+      ? `You are ${classmate.name}, ${CLASSMATE_PERSONA}. A professional certification lesson has just finished and the lecturer has asked the class if anyone has any final questions.
+
+Raise your hand and ask ONE genuine closing question about the lesson — synthesising what was covered, connecting it to real practice, or clarifying something that is still fuzzy now that you have seen the whole picture. ${wrapUpFocus}
+
+Rules:
+- First person, natural, conversational — a real student wrapping up, not a teacher.
+- ONE question, one or two sentences. Do not preface it with "I have a question".
+- Range over the lesson as a whole, not just the last point. Never show off.
+- Do not ask anything already asked (listed below).
+- Output only the question itself.`
+      : concept
       ? `You are ${classmate.name}, ${CLASSMATE_PERSONA}. You are sitting in a professional certification lesson alongside another student.
 
 The lesson just covered the material below. The other student has shown weakness on the concept "${concept}" but has not asked about it. Raise your hand and ask ONE question — the question a slightly-unsure student genuinely would ask to get clarity on ${concept}.
@@ -159,7 +185,7 @@ Rules:
       opts.askedQuestions.length ? opts.askedQuestions.map((q) => `- ${q}`).join('\n') : '(nothing yet)'
     }`
 
-    let qStart = Date.now()
+    const qStart = Date.now()
     const qResult = await callSonnet({
       system: questionSystem,
       messages: [{ role: 'user', content: questionUser }],
@@ -242,7 +268,7 @@ ${opts.lessonContext}`
       triggering_concept: gap ? gap.conceptTag : opts.taughtConceptTags.filter(Boolean)[0] ?? null,
       gap_evidence: gap
         ? { mastery: gap.mastery, observations: gap.observations, weak_threshold: WEAK_THRESHOLD }
-        : { mode: 'ambient' },
+        : { mode: opts.wrapUp ? 'wrap_up' : 'ambient' },
       question_asked: question,
       lecturer_response: answer,
       cached_qa_id: cachedQaId,

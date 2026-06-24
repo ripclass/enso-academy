@@ -57,6 +57,32 @@ export default async function LessonPage({ params }: Props) {
   const lecturerOpening = await getLecturerOpening(user.id, courseId, (lesson as any).name)
   const userAvatar = await getAvatarChoice()
 
+  // The student's first name, for the lecturer to address them in office hours.
+  const meta = (user.user_metadata ?? {}) as Record<string, unknown>
+  const fullName =
+    (typeof meta.full_name === 'string' && meta.full_name) ||
+    (typeof meta.name === 'string' && meta.name) ||
+    (typeof meta.given_name === 'string' && meta.given_name) ||
+    ''
+  const userName = fullName.trim().split(/\s+/)[0] || null
+
+  // The next lesson in course order (module sort_order, then lesson sort_order),
+  // so "Complete lesson" can advance straight into it. Null on the last lesson.
+  type NavModule = { sort_order: number | null; lessons: { id: string; sort_order: number | null }[] }
+  const { data: navModules } = await admin
+    .from('modules')
+    .select('sort_order, lessons(id, sort_order)')
+    .eq('course_id', courseId)
+    .order('sort_order')
+  const orderedLessonIds = ((navModules ?? []) as NavModule[]).flatMap((m) =>
+    [...(m.lessons ?? [])]
+      .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+      .map((l) => l.id),
+  )
+  const curIdx = orderedLessonIds.indexOf(id)
+  const nextLessonId =
+    curIdx >= 0 && curIdx < orderedLessonIds.length - 1 ? orderedLessonIds[curIdx + 1] : null
+
   return (
     <LessonPlayer
       sessionId={sessionId}
@@ -66,6 +92,8 @@ export default async function LessonPage({ params }: Props) {
       courseSlug={courseSlug}
       lecturerOpening={lecturerOpening}
       userAvatar={userAvatar}
+      userName={userName}
+      nextLessonId={nextLessonId}
     />
   )
 }
