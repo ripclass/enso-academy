@@ -20,7 +20,7 @@ const capabilities = [
     num: '03',
     word: 'GAPS',
     description:
-      'A consistent AI study companion raises its hand and asks the question you didn’t know you needed answered.',
+      'An AI classmate sits in on every lesson and raises its hand with the questions you’d have skipped — the ones that expose a gap before the exam does.',
   },
   {
     num: '04',
@@ -32,7 +32,7 @@ const capabilities = [
     num: '05',
     word: 'SIGNOFF',
     description:
-      'Enso tells you when you’re genuinely ready, on a bar set deliberately stricter than the real exam. It would rather tell you to study one more week than let you walk in and fail.',
+      'Enso tells you when you’re ready, on a bar set stricter than the real exam. It would rather send you back for one more week than let you walk in and fail.',
   },
   {
     num: '06',

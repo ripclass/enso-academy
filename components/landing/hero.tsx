@@ -22,7 +22,7 @@ export function Hero() {
               Enso Academy prepares compliance and finance professionals for the CAMS, CDCS, and CCAS exams in an AI classroom built from primary sources.
             </p>
             <p>
-              It tracks what you actually know, finds your weak spots, and tells you you&rsquo;re ready only when your mock results back it up.
+              It tracks what you know, finds your weak spots, and tells you you&rsquo;re ready only when your mock results back it up.
             </p>
           </div>
         </div>

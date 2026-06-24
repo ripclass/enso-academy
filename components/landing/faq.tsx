@@ -12,7 +12,7 @@ const faqs = [
   {
     question: 'How is it different from other exam-prep courses?',
     answer:
-      'It tracks what you actually know and adapts to it, it remembers you across sessions, and it tells you — conservatively — when you’re genuinely ready for the real exam.',
+      'It tracks what you know and teaches to your gaps, it remembers you between sessions, and it only calls you ready when your mock scores clear a bar set stricter than the real exam.',
   },
   {
     question: 'What does it cost?',

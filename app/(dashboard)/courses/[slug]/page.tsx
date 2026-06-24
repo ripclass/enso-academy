@@ -173,7 +173,7 @@ export default async function CourseDetailPage({ params }: Props) {
                       <p className="mt-1.5 text-sm text-neutral-600">
                         {readiness
                           ? `${readiness.mock_count} mock${readiness.mock_count === 1 ? '' : 's'} completed. Average score ${Number(readiness.average_score ?? 0)}%.`
-                          : 'Take a mock exam when you are ready to test your readiness.'}
+                          : 'Take a mock exam to see where you stand.'}
                       </p>
                     </div>
                     <Link
@@ -236,7 +236,7 @@ export default async function CourseDetailPage({ params }: Props) {
                   <div className="rounded-lg border border-neutral-200 bg-white p-6 lg:sticky lg:top-6">
                     <h2 className="text-base font-bold text-neutral-900">Your knowledge state</h2>
                     <p className="mt-1 text-xs text-neutral-400">
-                      Adaptive mastery tracking across key exam concepts.
+                      What you&rsquo;ve mastered and what still needs work, concept by concept.
                     </p>
 
                     <div className="mt-6 space-y-6">
@@ -274,7 +274,7 @@ export default async function CourseDetailPage({ params }: Props) {
                   <div className="rounded-lg border border-dashed border-neutral-200 bg-white p-6 lg:sticky lg:top-6">
                     <h2 className="text-base font-bold text-neutral-900">Your knowledge state</h2>
                     <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
-                      As you complete lessons and take mocks, your per-concept mastery model builds here.
+                      As you complete lessons and take mocks, this fills in &mdash; what you&rsquo;ve mastered, and what to review.
                     </p>
                   </div>
                 )}

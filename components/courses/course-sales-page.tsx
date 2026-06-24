@@ -38,7 +38,7 @@ const HOW_IT_WORKS = [
   {
     icon: ShieldCheck,
     title: "Know when you're ready",
-    body: 'Full-length exam simulations and unlimited practice mocks feed a model of what you actually know. The readiness signoff tells you when to book the exam, and it is set deliberately stricter than the real thing.',
+    body: 'Full-length exam simulations and unlimited practice mocks feed a model of what you know. The readiness signoff tells you when to book the exam — on a bar set stricter than the real thing.',
   },
 ]
 
