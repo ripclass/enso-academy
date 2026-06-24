@@ -8,7 +8,7 @@ const courses = [
     title: 'CDCS Prep',
     subtitle: 'Certified Documentary Credit Specialist',
     description:
-      'International trade finance, letters of credit, and bank guarantees — for bankers and trade finance professionals.',
+      'International trade finance, letters of credit, and bank guarantees, for bankers and trade-finance professionals.',
     image: '/course-cdcs.png',
     status: 'soon' as const,
   },
@@ -17,7 +17,7 @@ const courses = [
     title: 'CAMS Prep',
     subtitle: 'Certified Anti-Money Laundering Specialist',
     description:
-      'AML compliance, financial crime investigation, and regulatory reporting — built from FATF, Basel, and Wolfsberg frameworks.',
+      'AML compliance, financial crime investigation, and regulatory reporting, built from FATF, Basel, and Wolfsberg frameworks.',
     image: '/course-cams.png',
     status: 'available' as const,
   },

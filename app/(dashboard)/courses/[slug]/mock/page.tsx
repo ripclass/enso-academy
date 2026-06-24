@@ -84,7 +84,7 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
           </h1>
           <p className="mt-3 max-w-2xl text-neutral-600 leading-relaxed">
             The <strong className="text-neutral-900">full exam simulation</strong> recreates the real
-            CAMS exam exactly — 120 questions, 3.5 hours, the same domain weighting and conditions.
+            CAMS exam exactly: 120 questions, 3.5 hours, the same domain weighting and conditions.
             The <strong className="text-neutral-900">practice mock</strong> is a short, free warm-up.
           </p>
         </div>
@@ -104,7 +104,7 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
         {checkout === 'cancel' && (
           <div className="mb-8 rounded-lg border border-neutral-200 bg-white p-4">
             <p className="text-sm text-neutral-600">
-              Checkout cancelled — no payment was made. You can pick up where you left off whenever
+              Checkout cancelled. No payment was made; you can pick up where you left off whenever
               you are ready.
             </p>
           </div>
@@ -120,7 +120,7 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
               <strong className="text-neutral-900">does not pause</strong>. When it reaches zero, the
               exam submits automatically.
             </li>
-            <li>Tab-away events are tracked. Stay on the page — switching away is recorded with your attempt.</li>
+            <li>Tab-away events are tracked. Stay on the page; switching away is recorded with your attempt.</li>
             <li>You can flag questions for review and navigate freely until you submit.</li>
             <li>Set aside the full time without interruption before you begin.</li>
           </ul>
@@ -191,7 +191,7 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
         {practiceMocks.length > 0 && (
           <section>
             <h2 className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono mb-4">
-              Practice — free &amp; unlimited
+              Practice: free &amp; unlimited
             </h2>
             {isEnrolled ? (
               <div className="space-y-4">

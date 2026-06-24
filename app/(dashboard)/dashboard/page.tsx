@@ -135,7 +135,7 @@ export default async function DashboardPage() {
           <div className="rounded-lg border border-neutral-200 bg-white p-8">
             <h2 className="text-lg font-bold text-neutral-900">You&rsquo;re not enrolled in a course yet</h2>
             <p className="mt-2 max-w-xl text-sm text-neutral-600 leading-relaxed">
-              Browse the catalogue to enrol, or sit a single exam simulation first — your first one is
+              Browse the catalogue to enrol, or sit a single exam simulation first. Your first one is
               free.
             </p>
             <Link href="/courses" className={`mt-6 ${btnPrimary}`}>
@@ -182,7 +182,7 @@ export default async function DashboardPage() {
                       <div>
                         <p className="text-2xs font-mono uppercase tracking-wider text-neutral-400">Lessons</p>
                         <p className="mt-0.5 text-sm font-semibold text-neutral-800">
-                          All lessons complete — time to test yourself.
+                          All lessons complete. Time to test yourself.
                         </p>
                       </div>
                     )}
@@ -203,7 +203,7 @@ export default async function DashboardPage() {
                     <p className="text-sm text-neutral-600">
                       {readiness && (readiness.mock_count ?? 0) > 0
                         ? `${readiness.mock_count} mock${readiness.mock_count === 1 ? '' : 's'} taken · average ${Math.round(Number(readiness.average_score ?? 0))}%`
-                        : 'No mocks yet — take one to gauge your readiness.'}
+                        : 'No mocks yet. Take one to gauge your readiness.'}
                     </p>
                     <div className="flex gap-4 text-sm font-semibold">
                       <Link href={`/courses/${course.slug}`} className="text-primary hover:underline">

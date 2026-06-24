@@ -85,7 +85,7 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
   // auto-submit when the clock hits zero
   useEffect(() => {
     if (secondsRemaining === 0 && !submittedRef.current) {
-      toast.info('Time is up — submitting your mock.')
+      toast.info('Time is up. Submitting your mock.')
       void doSubmit()
     }
   }, [secondsRemaining, doSubmit])
@@ -208,7 +208,7 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
               <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5" />
               <span>
                 {answeredCount} of {total} answered
-                {unansweredCount > 0 && ` — ${unansweredCount} unanswered question(s) will be graded as incorrect`}
+                {unansweredCount > 0 && `; ${unansweredCount} unanswered question(s) will be graded as incorrect`}
                 . Click <strong>Confirm submit</strong> in the header to finalise. This cannot be undone.
               </span>
             </div>

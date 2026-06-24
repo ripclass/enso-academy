@@ -51,13 +51,13 @@ export function CoursePurchase({
     <div className="rounded-lg border-2 border-neutral-900 bg-white p-6">
       {checkout === 'success' && (
         <div className="mb-4 rounded-md border border-primary/30 bg-primary-light/40 px-4 py-3 text-sm text-neutral-800">
-          Payment received — we’re finalizing your access. This can take a moment;
+          Payment received. We’re finalizing your access. This can take a moment;
           refresh this page if the course hasn’t unlocked yet.
         </div>
       )}
       {checkout === 'cancel' && (
         <div className="mb-4 rounded-md border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-600">
-          Checkout canceled — no charge was made. You can purchase whenever you’re ready.
+          Checkout canceled. No charge was made; you can purchase whenever you’re ready.
         </div>
       )}
 

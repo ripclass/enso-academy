@@ -9,11 +9,11 @@ import { FAQ } from '@/components/landing/faq'
 import { Footer } from '@/components/landing/footer'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Enso Academy — Know you’re ready before exam day' },
+  title: { absolute: 'Enso Academy · Know you’re ready before exam day' },
   description:
-    'Exam prep for compliance and finance professionals — CAMS, CDCS, and CCAS — taught in an AI classroom built from primary sources. It adapts to what you know and tells you when you’re ready.',
+    'Exam prep for compliance and finance professionals sitting CAMS, CDCS, or CCAS, taught in an AI classroom built from primary sources. It adapts to what you know and tells you when you’re ready.',
   openGraph: {
-    title: 'Enso Academy — Know you’re ready before exam day',
+    title: 'Enso Academy · Know you’re ready before exam day',
     description:
       'An AI classroom for compliance and finance exam prep, built from primary sources.',
     type: 'website',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Enso Academy — Know you’re ready before exam day',
+    title: 'Enso Academy · Know you’re ready before exam day',
     description:
       'An AI classroom for compliance and finance exam prep, built from primary sources.',
   },

@@ -27,7 +27,7 @@ const HOW_IT_WORKS = [
   },
   {
     icon: Sparkles,
-    title: 'Ask the lecturer — and your classmates ask too',
+    title: 'Ask the lecturer, and classmates ask too',
     body: 'Ask by text or voice, any time. Named classmates raise their hands with the questions you should be asking, and the lecturer turns to you in office hours at the end of each lesson.',
   },
   {
@@ -38,7 +38,7 @@ const HOW_IT_WORKS = [
   {
     icon: ShieldCheck,
     title: "Know when you're ready",
-    body: 'Full-length exam simulations and unlimited practice mocks feed a model of what you know. The readiness signoff tells you when to book the exam — on a bar set stricter than the real thing.',
+    body: 'Full-length exam simulations and unlimited practice mocks feed a model of what you know. The readiness signoff tells you when to book the exam, on a bar set stricter than the real thing.',
   },
 ]
 
@@ -49,15 +49,15 @@ const FAQ = [
   },
   {
     q: 'What exactly do I get for the price?',
-    a: 'Full, lasting access to the complete course, the AI classroom, unlimited free practice mocks, and the full-length exam simulations with the readiness signoff. One payment — no subscription.',
+    a: 'Full, lasting access to the complete course, the AI classroom, unlimited free practice mocks, and the full-length exam simulations with the readiness signoff. One payment, no subscription.',
   },
   {
     q: 'How does the refund work?',
-    a: '14-day money-back guarantee. Within 14 days of purchase, email us for a full refund — as long as you’ve completed less than 25% of the lessons and haven’t started an exam simulation. (Single simulation purchases are non-refundable once started.)',
+    a: '14-day money-back guarantee. Within 14 days of purchase, email us for a full refund, as long as you’ve completed less than 25% of the lessons and haven’t started an exam simulation. Single simulation purchases are non-refundable once started.',
   },
   {
     q: 'What do the free preview lessons include?',
-    a: 'The real thing — full lessons with the AI lecturer, voice narration, the hands-on interactives, and the end-of-lesson office hours. A quick sign-up unlocks them so you can try before you buy.',
+    a: 'The real thing: full lessons with the AI lecturer, voice narration, the hands-on interactives, and the end-of-lesson office hours. A quick sign-up unlocks them so you can try before you buy.',
   },
   {
     q: 'What device do I need?',
@@ -119,7 +119,7 @@ export function CourseSalesPage({
                 href="#pricing"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-primary px-7 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
               >
-                Enroll — $299 <ArrowRight className="h-4 w-4" />
+                Enroll for $299 <ArrowRight className="h-4 w-4" />
               </Link>
               {firstPreview && (
                 <Link
@@ -187,7 +187,7 @@ export function CourseSalesPage({
                 Try it free
               </h2>
               <p className="mt-3 max-w-2xl text-lg leading-relaxed text-foreground/75">
-                Two full lessons, on us — the real classroom, voice and all. {isAuthenticated ? 'Jump in.' : 'A quick sign-up unlocks them.'}
+                Two full lessons, on us. The real classroom, voice and all. {isAuthenticated ? 'Jump in.' : 'A quick sign-up unlocks them.'}
               </p>
               <div className="mt-8 grid gap-5 sm:grid-cols-2">
                 {previewLessons.map((l) => (
@@ -245,8 +245,8 @@ export function CourseSalesPage({
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/70">
                   Prove where you stand. Sit the real 120-question, 3.5-hour exam simulation under exam
-                  conditions — then <span className="font-semibold text-foreground">$14.99</span> per
-                  attempt after your free one.
+                  conditions. After your free one, each attempt is{' '}
+                  <span className="font-semibold text-foreground">$14.99</span>.
                 </p>
                 <Link
                   href={isAuthenticated ? `/courses/${slug}/mock` : `/signup?next=/courses/${slug}/mock`}

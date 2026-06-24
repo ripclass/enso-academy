@@ -85,7 +85,7 @@ export function WrapUpPanel({
 
       {isUserTurn && (
         <p className="mt-3 font-mono text-2xs text-accent">
-          Your turn — type or use the mic. I’ll move on if you’re all set.
+          Your turn. Type or use the mic, and I’ll move on if you’re all set.
         </p>
       )}
 
@@ -101,8 +101,8 @@ export function WrapUpPanel({
       </button>
       <p className="mt-3 font-mono text-2xs text-neutral-400">
         {hasNext
-          ? 'Ask as many questions as you like — then continue to the next lesson.'
-          : 'Ask as many questions as you like — then complete the lesson.'}
+          ? 'Ask as many questions as you like, then continue to the next lesson.'
+          : 'Ask as many questions as you like, then complete the lesson.'}
       </p>
     </div>
   )

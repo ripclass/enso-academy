@@ -19,7 +19,7 @@ const SALES_CONTENT: Record<
   cams: {
     exam: {
       about:
-        'CAMS — Certified Anti-Money Laundering Specialist — is one of the most widely held certifications for AML/CFT professionals, administered by ACAMS. The exam tests applied judgment across the financial-crime lifecycle: the risks and methods of money laundering and terrorist financing, the FATF standards and compliance programmes, customer due diligence and the investigation process, and the tools used to fight financial crime.',
+        'CAMS, the Certified Anti-Money Laundering Specialist, is one of the most widely held certifications for AML/CFT professionals, administered by ACAMS. The exam tests applied judgment across the financial-crime lifecycle: the risks and methods of money laundering and terrorist financing, the FATF standards and compliance programmes, customer due diligence and the investigation process, and the tools used to fight financial crime.',
       facts: [
         { label: 'Format', value: '120 questions (multiple choice)' },
         { label: 'Duration', value: '3.5 hours' },
@@ -28,12 +28,12 @@ const SALES_CONTENT: Record<
       ],
     },
     whatYouGet: [
-      'The complete course — 11 modules, 49 interactive lessons built from primary regulatory sources and public enforcement actions',
+      'The complete course: 11 modules, 49 interactive lessons built from primary regulatory sources and public enforcement actions',
       'The AI lecturer that adapts to what you know, named classmates, and end-of-lesson office hours',
       'Hands-on practice: trace the money through a network, adjudicate sanctions alerts, draft a SAR for an AI examiner',
       'Full-length 120-question / 3.5-hour exam simulations with a calibrated readiness signoff',
       'Unlimited free practice mocks',
-      'One payment, lasting access — with a 14-day money-back guarantee',
+      'One payment, lasting access, with a 14-day money-back guarantee',
     ],
   },
 }
@@ -67,7 +67,7 @@ export default async function CourseDetailPage({ params }: Props) {
           </span>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900">{course.name}</h1>
           <p className="mt-4 text-neutral-600 leading-relaxed">
-            This course is launching soon. Check back shortly — or create an account and we’ll have it
+            This course is launching soon. Check back shortly, or create an account and we’ll have it
             ready for you.
           </p>
           <Link
@@ -274,7 +274,7 @@ export default async function CourseDetailPage({ params }: Props) {
                   <div className="rounded-lg border border-dashed border-neutral-200 bg-white p-6 lg:sticky lg:top-6">
                     <h2 className="text-base font-bold text-neutral-900">Your knowledge state</h2>
                     <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
-                      As you complete lessons and take mocks, this fills in &mdash; what you&rsquo;ve mastered, and what to review.
+                      As you complete lessons and take mocks, this fills in: what you&rsquo;ve mastered, and what to review.
                     </p>
                   </div>
                 )}

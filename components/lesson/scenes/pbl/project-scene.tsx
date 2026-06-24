@@ -37,7 +37,7 @@ export function ProjectScene({
     try {
       setResult(await onGrade(spec, submission))
     } catch {
-      setResult({ band: 'Reviewed', feedback: 'Could not reach the mentor just now — please try again.' })
+      setResult({ band: 'Reviewed', feedback: 'Could not reach the mentor just now. Please try again.' })
     } finally {
       setGrading(false)
     }

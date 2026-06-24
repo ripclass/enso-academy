@@ -103,7 +103,7 @@ export function RedFlagSpot({
                       {state === 'false' && <X className="mt-px h-3 w-3 shrink-0 text-rose-600" />}
                       {state === 'ok' && <Check className="mt-px h-3 w-3 shrink-0 text-neutral-400" />}
                       <span>
-                        {state === 'miss' && 'Missed — this is a red flag. '}
+                        {state === 'miss' && 'Missed. This is a red flag. '}
                         {state === 'false' && 'Not a red flag. '}
                         {it.why}
                       </span>

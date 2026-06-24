@@ -14,7 +14,7 @@ const capabilities = [
     num: '02',
     word: 'MEMORY',
     description:
-      'Come back after a week and the lecturer picks up where you left off — your goal, what you struggled with, the pace that worked.',
+      'Come back after a week and the lecturer picks up where you left off: your goal, what you struggled with, the pace that worked.',
   },
   {
     num: '03',
@@ -38,7 +38,7 @@ const capabilities = [
     num: '06',
     word: 'SOURCES',
     description:
-      'Every lesson comes from primary regulatory material — FATF, Basel, Wolfsberg, OFAC — not competitor study guides. You learn the reasoning behind the rules, not only what they say.',
+      'Every lesson comes from primary regulatory material like FATF, Basel, Wolfsberg, and OFAC, not competitor study guides. You learn the reasoning behind the rules, not only what they say.',
   },
 ]
 

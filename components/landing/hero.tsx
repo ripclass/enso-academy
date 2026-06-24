@@ -13,7 +13,7 @@ export function Hero() {
           <h1 className="lg:col-span-8 text-5xl font-extrabold uppercase leading-[0.9] tracking-tight text-foreground md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-sans">
             KNOW YOU'RE READY
             <br />
-            — BEFORE EXAM DAY.
+            BEFORE EXAM DAY.
           </h1>
 
           {/* Two-Column Small Supporting Text */}

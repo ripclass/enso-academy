@@ -14,11 +14,11 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.ensoacademy.ai'),
   title: {
-    default: 'Enso Academy — Professional certification readiness',
+    default: 'Enso Academy · Professional certification readiness',
     template: '%s · Enso Academy',
   },
   description:
-    'AI-rendered interactive classrooms with a real student knowledge model and a calibrated readiness signoff. Preparation for CAMS, CDCS, and CCAS certification exams.',
+    'An AI classroom for compliance and finance exam prep, built from primary sources. Preparation for the CAMS, CDCS, and CCAS exams.',
 }
 
 export default function RootLayout({

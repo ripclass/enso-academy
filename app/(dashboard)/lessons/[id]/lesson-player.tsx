@@ -77,7 +77,7 @@ const SPEEDS = [1, 1.25, 1.5, 2]
 const WRAPUP_CLASSMATES = 2
 const USER_TURN_MS = 22000
 const WRAPUP_PROMPTS = [
-  "That's the lesson. Before you go — any questions?",
+  "That's the lesson. Before you go, any questions?",
   'That brings us to the end. Any questions before we wrap up?',
   "That's everything for this lesson. Anything you want to ask before you go?",
 ]
@@ -85,18 +85,18 @@ const ANYONE_ELSE = ['Anyone else?', 'Good question. Anyone else?', 'Right. Anyb
 const userPrompt = (name?: string | null) =>
   name
     ? `${name}, do you have a question?`
-    : 'And how about you — anything you want to ask?'
-const MOVE_ON = ["OK, let's move on.", 'All right — let’s wrap up there.', 'Good. Let us leave it there.']
+    : 'And how about you? Anything you want to ask?'
+const MOVE_ON = ["OK, let's move on.", 'All right, let’s wrap up there.', 'Good. Let us leave it there.']
 const pick = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)]
 const pickWrapUp = () => pick(WRAPUP_PROMPTS)
 
 // What the lecturer says to register a raised hand before answering — so the
 // lecture transitions instead of cutting off cold.
 const BRIDGE_TEMPLATES = [
-  (n: string) => `Hold on — it looks like ${n} has a question. Go ahead, ${n}.`,
+  (n: string) => `Hold on, it looks like ${n} has a question. Go ahead, ${n}.`,
   (n: string) => `Yes, ${n}? Let's hear it.`,
   (n: string) => `Let me pause there for a second. ${n}, go ahead.`,
-  (n: string) => `Good timing — ${n} has a question.`,
+  (n: string) => `Good timing. ${n} has a question.`,
 ]
 const pickBridge = (name: string) =>
   BRIDGE_TEMPLATES[Math.floor(Math.random() * BRIDGE_TEMPLATES.length)](name)
@@ -1136,7 +1136,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
               {messages.length === 0 ? (
                 <div className="py-4">
                   <p className="mb-3 text-center text-sm text-neutral-400">
-                    Ask anything about this scene — or start with:
+                    Ask anything about this scene, or start with:
                   </p>
                   <div className="flex flex-col gap-2">
                     {(suggestions.length > 0
@@ -1225,7 +1225,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Ask the Enso Guide — type or use the mic…"
+                  placeholder="Ask the Enso Guide, or use the mic…"
                   value={questionInput}
                   onChange={(e) => setQuestionInput(e.target.value)}
                   disabled={askingQuestion}

@@ -40,21 +40,21 @@ export default function PrivacyPage() {
         <Section title="1. Information we collect">
           <ul className="list-disc space-y-1.5 pl-5">
             <li>
-              <strong>Account information</strong> — your name and email address, and authentication
+              <strong>Account information</strong>:your name and email address, and authentication
               data when you sign in (including via a third-party sign-in provider if you choose one).
             </li>
             <li>
-              <strong>Learning data</strong> — your progress, answers, the concept-mastery model we
+              <strong>Learning data</strong>:your progress, answers, the concept-mastery model we
               build for you, your questions to the AI tutor, and your mock-exam attempts and results.
               This is what powers the personalized experience.
             </li>
             <li>
-              <strong>Payment information</strong> — purchases are processed by Stripe. We receive
+              <strong>Payment information</strong>:purchases are processed by Stripe. We receive
               confirmation of payment and limited billing details; we do <strong>not</strong> collect
               or store your full payment-card number.
             </li>
             <li>
-              <strong>Technical data</strong> — basic device, log, and usage information needed to
+              <strong>Technical data</strong>:basic device, log, and usage information needed to
               operate and secure the service.
             </li>
           </ul>
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
 
         <Section title="2. How we use your information">
           <ul className="list-disc space-y-1.5 pl-5">
-            <li>to provide and personalize the service — including the student knowledge model, the
+            <li>to provide and personalize the service, including the student knowledge model, the
               tutor’s memory of your context, and your readiness assessment;</li>
             <li>to process purchases and provide access to what you have bought;</li>
             <li>to maintain, secure, and improve the service;</li>
@@ -77,9 +77,9 @@ export default function PrivacyPage() {
             We share data with vetted providers only as needed to run the service, including:
           </p>
           <ul className="list-disc space-y-1.5 pl-5">
-            <li><strong>Stripe</strong> — payment processing.</li>
-            <li><strong>Supabase</strong> — database, authentication, and hosting of your account and learning data.</li>
-            <li><strong>AI and text-to-speech providers</strong> (including via an API gateway) — to power the AI tutor and audio narration. Your tutor questions and the context needed to answer them are processed by these providers to generate responses.</li>
+            <li><strong>Stripe</strong>:payment processing.</li>
+            <li><strong>Supabase</strong>:database, authentication, and hosting of your account and learning data.</li>
+            <li><strong>AI and text-to-speech providers</strong> (including via an API gateway), used to power the AI tutor and audio narration. Your tutor questions and the context needed to answer them are processed by these providers to generate responses.</li>
             <li><strong>Hosting/infrastructure providers</strong> that run the application.</li>
           </ul>
           <p>These providers are bound to use the data only to provide their services to us.</p>

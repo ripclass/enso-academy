@@ -139,7 +139,7 @@ export function RiskClassify({
                         <span className="text-neutral-700">{it.label}</span>
                       </div>
                       <p className="mt-1 pl-5 text-2xs text-neutral-500">
-                        {ok ? it.why : `Better fit: ${TIER_LABEL[it.tier]} — ${it.why}`}
+                        {ok ? it.why : `Better fit: ${TIER_LABEL[it.tier]}. ${it.why}`}
                       </p>
                     </div>
                   )
@@ -156,7 +156,7 @@ export function RiskClassify({
           {correctCount} of {items.length} placed in the right tier.
           {correctCount === items.length
             ? ' Spot on.'
-            : ' Review the ones marked in red — the reasoning is what the exam tests.'}
+            : ' Review the ones marked in red. The reasoning is what the exam tests.'}
         </div>
       )}
     </div>

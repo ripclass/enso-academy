@@ -140,7 +140,7 @@ export function ScreeningMatch({
             )}
             <span>
               <span className="font-semibold">
-                {correct ? 'Correct. ' : `Not quite — the right call was to ${alert.verdict}. `}
+                {correct ? 'Correct. ' : `Not quite. The right call was to ${alert.verdict}. `}
               </span>
               {alert.why}
             </span>

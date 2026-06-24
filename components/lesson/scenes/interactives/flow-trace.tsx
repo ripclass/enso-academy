@@ -76,7 +76,7 @@ export function FlowTrace({
       {prompt && <p className="text-sm leading-relaxed text-neutral-600">{prompt}</p>}
       <p className="text-sm text-neutral-700">
         Trace how the funds get from <span className="font-semibold">{sourceLabel}</span> to{' '}
-        <span className="font-semibold">{destLabel}</span> — click each account along the path.
+        <span className="font-semibold">{destLabel}</span>. Click each account along the path.
       </p>
 
       <div className="relative mx-auto w-full max-w-xl overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50/50" style={{ aspectRatio: '5 / 3' }}>
@@ -175,7 +175,7 @@ export function FlowTrace({
             )}
             <span>
               <span className="font-semibold">{correct ? 'That follows the money. ' : 'Not the laundering route. '}</span>
-              {correct ? why : `That path doesn't reach ${destLabel} the way the funds actually moved. The red nodes are feeders or dead-ends — try again.`}
+              {correct ? why : `That path doesn't reach ${destLabel} the way the funds moved. The red nodes are feeders or dead-ends. Try again.`}
             </span>
           </div>
           <button
