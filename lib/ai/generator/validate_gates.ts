@@ -333,9 +333,25 @@ export function gateSchema(artifact: LessonArtifact): GateResult {
       case 'interactive': {
         const d = scene.sceneData as { title?: unknown; spec?: unknown }
         if (!isStr(d.title)) errors.push(`${ctx}.sceneData.title not a string`)
-        const spec = d.spec
-        if (!isObj(spec) || (spec.kind !== 'risk-classify' && spec.kind !== 'red-flags')) {
-          errors.push(`${ctx}.sceneData.spec.kind must be 'risk-classify' or 'red-flags'`)
+        const spec = d.spec as Record<string, unknown> | undefined
+        const kind = spec?.kind
+        if (!isObj(spec) || (kind !== 'risk-classify' && kind !== 'red-flags' && kind !== 'flow-trace')) {
+          errors.push(`${ctx}.sceneData.spec.kind must be 'risk-classify', 'red-flags', or 'flow-trace'`)
+        } else if (kind === 'flow-trace') {
+          if (!isArr(spec.nodes) || spec.nodes.length < 3) {
+            errors.push(`${ctx}.sceneData.spec.nodes needs ≥ 3 nodes`)
+          }
+          if (!isArr(spec.edges) || spec.edges.length < 2) {
+            errors.push(`${ctx}.sceneData.spec.edges needs ≥ 2 edges`)
+          }
+          if (!isArr(spec.path) || spec.path.length < 2) {
+            errors.push(`${ctx}.sceneData.spec.path needs ≥ 2 node ids`)
+          } else if (isArr(spec.nodes)) {
+            const ids = new Set((spec.nodes as { id?: unknown }[]).map((n) => n.id))
+            if (!(spec.path as unknown[]).every((id) => ids.has(id))) {
+              errors.push(`${ctx}.sceneData.spec.path references an unknown node id`)
+            }
+          }
         } else if (!isArr(spec.items) || spec.items.length < 3) {
           errors.push(`${ctx}.sceneData.spec.items needs ≥ 3 items`)
         }

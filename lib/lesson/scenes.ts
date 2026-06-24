@@ -98,16 +98,52 @@ export type RedFlagItem = {
   why: string
 }
 
+/** One entity in a transaction-network "follow the money" graph. */
+export type FlowNode = {
+  id: string
+  label: string
+  /** Role in the scheme — for styling/feedback (source / hop / endpoint / decoy). */
+  role?: 'source' | 'intermediary' | 'destination' | 'decoy'
+  /** Hand-laid layout, in the graph's 0–100 (x) by 0–60 (y) coordinate space. */
+  x: number
+  y: number
+}
+
+/** One directed transaction (an edge) in the flow graph. */
+export type FlowEdge = {
+  from: string
+  to: string
+  /** Optional amount label on the edge, e.g. "$50k". */
+  amount?: string
+}
+
 export type InteractiveSpec =
   | { kind: 'risk-classify'; prompt?: string; items: RiskClassifyItem[] }
   | { kind: 'red-flags'; prompt?: string; scenario?: string; items: RedFlagItem[] }
+  | {
+      kind: 'flow-trace'
+      prompt?: string
+      nodes: FlowNode[]
+      edges: FlowEdge[]
+      /** Correct ordered node ids, source → destination. */
+      path: string[]
+      /** Revealed on success — what the decoy branches were. */
+      why: string
+    }
 
 /** Narrow an unknown spec to a known interactive kind. */
 export function asInteractiveSpec(spec: unknown): InteractiveSpec | null {
   if (!spec || typeof spec !== 'object') return null
-  const kind = (spec as { kind?: unknown }).kind
-  const hasItems = Array.isArray((spec as { items?: unknown }).items)
-  if ((kind === 'risk-classify' || kind === 'red-flags') && hasItems) {
+  const s = spec as Record<string, unknown>
+  if ((s.kind === 'risk-classify' || s.kind === 'red-flags') && Array.isArray(s.items)) {
+    return spec as InteractiveSpec
+  }
+  if (
+    s.kind === 'flow-trace' &&
+    Array.isArray(s.nodes) &&
+    Array.isArray(s.edges) &&
+    Array.isArray(s.path)
+  ) {
     return spec as InteractiveSpec
   }
   return null

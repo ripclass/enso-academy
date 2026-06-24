@@ -7,6 +7,7 @@ import { QuizScene } from './quiz-scene'
 import { PlaceholderScene } from './placeholder-scene'
 import { RiskClassify } from './interactives/risk-classify'
 import { RedFlagSpot } from './interactives/red-flag-spot'
+import { FlowTrace } from './interactives/flow-trace'
 import { ProjectScene } from './pbl/project-scene'
 
 /**
@@ -53,6 +54,16 @@ export function SceneRenderer({
                 prompt={spec.prompt}
                 scenario={spec.scenario}
                 items={spec.items}
+                onComplete={report}
+              />
+            )}
+            {spec.kind === 'flow-trace' && (
+              <FlowTrace
+                prompt={spec.prompt}
+                nodes={spec.nodes}
+                edges={spec.edges}
+                path={spec.path}
+                why={spec.why}
                 onComplete={report}
               />
             )}

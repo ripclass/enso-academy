@@ -42,6 +42,11 @@ Interactive specs (sceneData.spec for "interactive"):
 - red-flags:     { "kind": "red-flags", "prompt": "string?", "scenario": "string?",
                    "items": [{ "id": "string", "label": "a statement", "flag": true|false, "why": "feedback" }] }
                    — 5-6 items, a mix of genuine flags and non-flags.
+- flow-trace:    { "kind": "flow-trace", "prompt": "string?",
+                   "nodes": [{ "id": "string", "label": "account/entity", "role": "source"|"intermediary"|"destination"|"decoy", "x": 0-100, "y": 0-60 }],
+                   "edges": [{ "from": "id", "to": "id", "amount": "$50k?" }],
+                   "path": ["source id", ...ordered..., "destination id"], "why": "what the decoy branches were" }
+                   — 5-8 nodes laid out left→right (source low x, destination high x), with x roughly 12-88 and y roughly 10-50 so labels don't clip the edges; the correct laundering route plus 1-2 feeder/decoy branches. Best for layering, structuring, TBML, correspondent/nested flows.
 
 Slide templates:
 - key-points : heading + items as point cards (icon, label, text)
@@ -84,7 +89,7 @@ Scene brief: ${lesson.sceneBrief}
 Follow the methodology above. Produce an ordered list of scenes that teach this lesson — typically an opening, the core concept(s) taught from primary sources with visible citations, one or two worked examples, a formative knowledge check, and a synthesis. Use scene types reading / slide / quiz. Every factual claim must be citable: reading scenes carry a citations array; cite primary sources by name and section. Quizzes are formative — scenario-based questions with per-question conceptTags. Professional tone for an adult practitioner; no marketing register.
 
 HANDS-ON APPLICATION SCENE. Where the lesson's material supports applying a skill (not pure recall), include exactly ONE "interactive" or "pbl" scene, placed near the end just before the synthesis:
-- "interactive" — a "risk-classify" (sort customers/scenarios into risk tiers) or "red-flags" (select the genuine indicators in a scenario) widget. Best for typologies, risk-rating, sanctions, fraud, CDD.
+- "interactive" — a "risk-classify" (sort customers/scenarios into risk tiers), "red-flags" (select the genuine indicators in a scenario), or "flow-trace" (trace the laundering route through a transaction-network graph) widget. Best for typologies, risk-rating, sanctions, fraud, CDD, and following the money through layering/TBML/correspondent flows.
 - "pbl" — a "project": a realistic brief where the student writes a deliverable (a SAR narrative, an EDD or escalation memo, a build-vs-buy recommendation, an analysis), graded by an AI mentor against the rubric. Best for SAR/STR drafting, governance, enforcement analysis, decisions.
 Author the spec fully (real, defensible items / a concrete brief with a clear rubric). Interactive/pbl scenes apply what the lesson already taught, so they do NOT introduce new statutes and carry no citations[]. Skip this scene entirely for purely conceptual or definitional lessons rather than forcing one.
 
