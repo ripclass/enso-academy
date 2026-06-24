@@ -53,7 +53,7 @@ const FAQ = [
   },
   {
     q: 'How does the refund work?',
-    a: '14-day money-back guarantee. If it’s not for you, email us within 14 days of purchase for a full refund.',
+    a: '14-day money-back guarantee. Within 14 days of purchase, email us for a full refund — as long as you’ve completed less than 25% of the lessons and haven’t started an exam simulation. (Single simulation purchases are non-refundable once started.)',
   },
   {
     q: 'What do the free preview lessons include?',
@@ -236,19 +236,24 @@ export function CourseSalesPage({
                 isAuthenticated={isAuthenticated}
                 included={[]}
               />
-              <div className="mt-4 rounded-lg border border-foreground/15 bg-background p-5">
-                <h3 className="text-sm font-bold text-foreground">Just want the exam?</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-foreground/70">
-                  Sit a full 120-question, 3.5-hour simulation under real exam conditions for{' '}
-                  <span className="font-semibold text-foreground">$14.99</span>. Your first one is free.
+              <div className="mt-5 rounded-xl border-2 border-foreground bg-background p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-base font-bold text-foreground">Not ready to commit?</h3>
+                  <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-2xs font-bold uppercase tracking-wider text-primary">
+                    First one free
+                  </span>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/70">
+                  Prove where you stand. Sit the real 120-question, 3.5-hour exam simulation under exam
+                  conditions — then <span className="font-semibold text-foreground">$14.99</span> per
+                  attempt after your free one.
                 </p>
                 <Link
                   href={isAuthenticated ? `/courses/${slug}/mock` : `/signup?next=/courses/${slug}/mock`}
-                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                  className="mt-4 inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-foreground bg-background text-sm font-semibold text-foreground transition-colors hover:bg-foreground hover:text-background"
                 >
-                  <PlayCircle className="h-4 w-4" />
-                  Try a free simulation
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <PlayCircle className="h-4 w-4" /> Take your free simulation
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
               <p className="mt-3 text-center font-mono text-2xs uppercase tracking-wider text-foreground/40">

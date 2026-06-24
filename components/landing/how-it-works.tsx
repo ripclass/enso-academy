@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { Plus } from 'lucide-react'
 
 const capabilities = [
   {
@@ -61,39 +62,43 @@ export function HowItWorks() {
               <div
                 key={item.num}
                 onClick={() => setActiveIdx(activeIdx === idx ? null : idx)}
+                aria-expanded={isExpanded}
                 style={{
                   marginTop: idx > 0 ? '-1px' : '0px',
                   zIndex: idx + 10,
                 }}
-                className="border-t border-x border-foreground last:border-b rounded-t-[32px] bg-background relative transition-all duration-300 ease-out cursor-pointer"
+                className="border-t border-x border-foreground last:border-b rounded-t-[32px] last:rounded-b-[32px] bg-background relative transition-all duration-300 ease-out cursor-pointer"
               >
-                <div className="pt-4 pb-3 px-6 md:px-8 flex flex-col md:flex-row md:items-start justify-between gap-4">
-                  
-                  {/* Left Side: Number & Giant Uppercase Word */}
-                  <div className="flex items-baseline gap-4 md:gap-6 shrink-0 md:w-1/2">
-                    <span className="font-mono text-xs font-bold text-accent shrink-0">
-                      {item.num}.
-                    </span>
-                    <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-foreground font-sans leading-none">
-                      {item.word}
-                    </span>
+                <div className="px-6 md:px-8 pt-4 pb-4">
+                  {/* Header row (the click target) */}
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-baseline gap-4 md:gap-6">
+                      <span className="font-mono text-xs font-bold text-accent shrink-0">
+                        {item.num}.
+                      </span>
+                      <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-foreground font-sans leading-none">
+                        {item.word}
+                      </span>
+                    </div>
+                    <Plus
+                      className={`h-6 w-6 shrink-0 text-foreground/55 transition-transform duration-300 ${
+                        isExpanded ? 'rotate-45' : ''
+                      }`}
+                    />
                   </div>
 
-                  {/* Right Side: Description paragraph (expands on click) */}
-                  <div className="md:w-1/2">
-                    <div
-                      className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                        isExpanded ? 'max-h-[200px] opacity-100 mt-2' : 'max-h-0 opacity-0'
-                      }`}
-                    >
-                      <div className="min-h-0">
-                        <p className="text-xs md:text-sm leading-relaxed text-foreground/80 font-sans max-w-xl pb-2">
-                          {item.description}
-                        </p>
-                      </div>
+                  {/* Drawer: full-width paragraph, opens below the title */}
+                  <div
+                    className={`grid transition-all duration-500 ease-in-out ${
+                      isExpanded ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="max-w-3xl pb-1 text-sm md:text-base leading-relaxed text-foreground/75 font-sans">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
-
                 </div>
               </div>
             )

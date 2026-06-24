@@ -100,7 +100,10 @@ export function CoursePurchase({
         </Link>
       </div>
 
-      <p className="mt-4 text-xs text-neutral-500">14-day money-back guarantee. Secure checkout by Stripe.</p>
+      <p className="mt-4 text-xs text-neutral-500">
+        14-day money-back guarantee, before you have completed 25% of the course or started an exam
+        simulation. Secure checkout by Stripe.
+      </p>
 
       {error && <p className="mt-3 text-sm text-accent font-medium">{error}</p>}
     </div>
