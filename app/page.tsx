@@ -11,11 +11,11 @@ import { Footer } from '@/components/landing/footer'
 export const metadata: Metadata = {
   title: { absolute: 'Enso Academy — Know you’re ready before exam day' },
   description:
-    'Enso Academy prepares compliance and finance professionals for CAMS, CDCS, and CCAS — with a real student knowledge model, exam-faithful mock exams, and a calibrated readiness signoff.',
+    'Exam prep for compliance and finance professionals — CAMS, CDCS, and CCAS — taught in an AI classroom built from primary sources. It adapts to what you know and tells you when you’re ready.',
   openGraph: {
     title: 'Enso Academy — Know you’re ready before exam day',
     description:
-      'AI-rendered interactive classrooms with a real student knowledge model and a calibrated readiness signoff.',
+      'An AI classroom for compliance and finance exam prep, built from primary sources.',
     type: 'website',
     url: 'https://www.ensoacademy.ai',
     siteName: 'Enso Academy',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Enso Academy — Know you’re ready before exam day',
     description:
-      'AI-rendered interactive classrooms with a real student knowledge model and a calibrated readiness signoff.',
+      'An AI classroom for compliance and finance exam prep, built from primary sources.',
   },
 }
 

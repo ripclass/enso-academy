@@ -19,10 +19,10 @@ export function Hero() {
           {/* Two-Column Small Supporting Text */}
           <div className="lg:col-span-4 grid gap-6 sm:grid-cols-2 text-xs font-semibold text-foreground/80 leading-relaxed font-sans mt-2">
             <p>
-              Enso Academy prepares compliance and finance professionals for the CAMS, CDCS, and CCAS exams in an AI classroom built from primary sources.
+              Enso Academy prepares compliance and finance professionals for the CAMS, CDCS, and CCAS exams.
             </p>
             <p>
-              It tracks what you know, finds your weak spots, and tells you you&rsquo;re ready only when your mock results back it up.
+              The lecturer adapts to what you know. You sit full mock exams, and we tell you when you&rsquo;re ready.
             </p>
           </div>
         </div>

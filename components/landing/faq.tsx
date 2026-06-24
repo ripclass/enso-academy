@@ -7,17 +7,17 @@ const faqs = [
   {
     question: 'What is Enso Academy?',
     answer:
-      'Exam prep for compliance and finance certifications, taught in an interactive AI classroom built from primary regulatory sources instead of third-party study guides.',
+      'An AI classroom for compliance and finance exam prep. You learn from the primary regulations themselves, not third-party study guides.',
   },
   {
     question: 'How is it different from other exam-prep courses?',
     answer:
-      'It tracks what you know and teaches to your gaps, it remembers you between sessions, and it only calls you ready when your mock scores clear a bar set stricter than the real exam.',
+      'It adapts to what you don’t know yet instead of replaying a fixed script, and it remembers you between sessions. It tells you you’re ready only when your mock scores clear a bar set stricter than the real exam.',
   },
   {
     question: 'What does it cost?',
     answer:
-      'A course is $299 — currently $100 off the $399 list — as a one-time purchase with lasting access. You can also sit a single full exam simulation for $14.99, and your first one is free.',
+      'Pricing is set per course, and you’ll see it on each course’s page. Anyone can also sit a single exam simulation for $14.99, and the first one is free.',
   },
   {
     question: 'Which certifications do you cover?',
@@ -26,7 +26,7 @@ const faqs = [
   {
     question: 'Where does the content come from?',
     answer:
-      'It is generated from primary regulatory sources — never from third-party study guides — so you learn the underlying reasoning.',
+      'From the primary regulations and public enforcement records, not third-party study guides. You learn the reasoning behind the rules, not only what they say.',
   },
 ]
 

@@ -8,7 +8,7 @@ const capabilities = [
     num: '01',
     word: 'MODELING',
     description:
-      'Enso builds a live model of what you know, concept by concept, from every question you answer — and the AI lecturer adapts to your gaps instead of replaying a script.',
+      'Every question you answer updates a model of what you know, concept by concept. The lecturer teaches to your weak spots instead of reading from a fixed script.',
   },
   {
     num: '02',
@@ -20,13 +20,13 @@ const capabilities = [
     num: '03',
     word: 'GAPS',
     description:
-      'An AI classmate sits in on every lesson and raises its hand with the questions you’d have skipped — the ones that expose a gap before the exam does.',
+      'An AI classmate sits in and asks the questions you’d have skipped, so a gap turns up here instead of on the exam.',
   },
   {
     num: '04',
     word: 'MOCKS',
     description:
-      'Same question count, same time limit, same pressure. The timer doesn’t pause — you learn to manage the clock before exam day, not during it.',
+      'Same question count, same time limit, same pressure. The timer doesn’t pause, so you learn to manage the clock before you sit the real thing.',
   },
   {
     num: '05',
@@ -38,7 +38,7 @@ const capabilities = [
     num: '06',
     word: 'SOURCES',
     description:
-      'Every lesson is generated from primary regulatory material — FATF, Basel, Wolfsberg, OFAC — never from competitor study guides. You learn the actual reasoning.',
+      'Every lesson comes from primary regulatory material — FATF, Basel, Wolfsberg, OFAC — not competitor study guides. You learn the reasoning behind the rules, not only what they say.',
   },
 ]
 
