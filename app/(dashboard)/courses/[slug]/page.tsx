@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, FileText } from 'lucide-react'
+import { ArrowLeft, ArrowRight, FileText } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
 import { SectionHeader, StatusBadge, ConceptMasteryRow } from '@/components/in-app/ui-kit'
 import { CourseSalesPage, type SalesPreviewLesson } from '@/components/courses/course-sales-page'
@@ -185,6 +185,31 @@ export default async function CourseDetailPage({ params }: Props) {
                     </Link>
                   </div>
                 </div>
+
+                {/* Case Mode */}
+                <Link
+                  href={`/courses/${course.slug}/cases`}
+                  className="group block rounded-lg border border-neutral-200 bg-white p-6 transition-colors hover:border-primary"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <h2 className="text-lg font-bold text-neutral-900">Case Mode</h2>
+                        <span className="rounded-full bg-accent-light px-2 py-0.5 font-mono text-2xs font-bold uppercase tracking-wider text-accent">
+                          New
+                        </span>
+                      </div>
+                      <p className="mt-1.5 text-sm text-neutral-600">
+                        Work a fresh financial-crime case: spot the red flags, adjudicate the alert,
+                        make the call. Scored on judgment, randomized, endless.
+                      </p>
+                    </div>
+                    <span className="mt-1 inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary">
+                      Work a case
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Link>
 
                 <SectionHeader title="Course modules" />
 

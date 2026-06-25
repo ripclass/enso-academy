@@ -184,6 +184,21 @@ export function CourseSalesPage({
         <section className="border-b border-foreground">
           <div className="mx-auto max-w-6xl px-6 py-16 md:px-8">
             <BlueprintCoverage guideHref={`/courses/${slug}/guide`} />
+            <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border-2 border-foreground bg-background p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 className="text-base font-bold">Try Case Mode, free</h3>
+                <p className="mt-1 text-sm leading-relaxed text-foreground/70">
+                  Work a real financial-crime case right now: spot the red flags, make the call. No
+                  sign-up.
+                </p>
+              </div>
+              <Link
+                href={`/courses/${slug}/cases`}
+                className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-6 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
+              >
+                Work a case <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </section>
 
