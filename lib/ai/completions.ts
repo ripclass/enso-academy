@@ -37,7 +37,12 @@ export async function complete(opts: CompletionOptions): Promise<CompletionResul
     max_tokens: opts.maxTokens ?? 4096,
     temperature: opts.temperature ?? 1.0,
     stop: opts.stopSequences,
-  })
+    // GLM and other reasoning models otherwise run a hidden reasoning pass on
+    // every call: added latency, and it starves our small token caps (an answer
+    // can come back empty). Disable it for those models. Anthropic Opus
+    // (offline course generation) is left untouched.
+    ...(opts.model.startsWith('z-ai/') && { reasoning: { enabled: false } }),
+  } as OpenAI.Chat.ChatCompletionCreateParamsNonStreaming)
 
   const choice = response.choices[0]
   const text = choice?.message?.content ?? ''
@@ -71,7 +76,9 @@ export async function completeStreaming(
     max_tokens: opts.maxTokens ?? 4096,
     temperature: opts.temperature ?? 1.0,
     stop: opts.stopSequences,
-  })
+    // See complete(): disable the hidden reasoning pass for GLM-class models.
+    ...(opts.model.startsWith('z-ai/') && { reasoning: { enabled: false } }),
+  } as Parameters<typeof openrouter.chat.completions.stream>[0])
 
   if (opts.onTextDelta) {
     stream.on('content', (delta: string) => opts.onTextDelta!(delta))

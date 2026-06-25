@@ -27,10 +27,12 @@ export const openrouter = new OpenAI({
 export const MODELS = {
   // Layer 1: Offline course generation
   OPUS: 'anthropic/claude-opus-4.7',
-  // Layer 2: Real-time student interaction
-  HAIKU: 'anthropic/claude-haiku-4.5',
+  // Layer 2: Real-time student interaction. Routed to GLM 5.2 on OpenRouter,
+  // which is cheaper than and at least as capable as Haiku/Sonnet for these
+  // real-time tasks. The two tiers now point at the same model.
+  HAIKU: 'z-ai/glm-5.2',
   // Layer 2/3: Escalation, grading, classmate gap-question generation
-  SONNET: 'anthropic/claude-sonnet-4.6',
+  SONNET: 'z-ai/glm-5.2',
 } as const
 
 export type ModelTier = keyof typeof MODELS
@@ -45,11 +47,12 @@ export const EMBEDDING_DIM = 1536
 // These are provider list prices. OpenRouter passes provider per-token pricing
 // through and takes its margin as a ~5-5.5% fee on credit top-ups (not per token),
 // so these are slight underestimates of true spend. Update when pricing changes.
-export const MODEL_PRICING = {
+export const MODEL_PRICING: Record<string, { input: number; output: number }> = {
   [MODELS.OPUS]: { input: 15.0, output: 75.0 },
-  [MODELS.SONNET]: { input: 3.0, output: 15.0 },
-  [MODELS.HAIKU]: { input: 0.8, output: 4.0 },
-} as const
+  // HAIKU and SONNET both resolve to GLM 5.2, so a single entry covers both.
+  // GLM 5.2 on OpenRouter: $0.95 / 1M input, $3.00 / 1M output.
+  [MODELS.HAIKU]: { input: 0.95, output: 3.0 },
+}
 
 export function estimateCostCents(
   model: ModelString,
