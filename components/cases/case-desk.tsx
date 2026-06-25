@@ -13,14 +13,23 @@ import {
   XCircle,
   Lock,
   Shuffle,
+  CalendarDays,
+  Trophy,
 } from 'lucide-react'
 import {
   generateCase,
+  generateDailyCase,
+  todaysSeed,
   buildCaseById,
   type GeneratedCase,
   type RealCaseMeta,
 } from '@/lib/cases/generate'
-import { recordCaseResult } from '@/lib/cases/actions'
+import {
+  recordCaseResult,
+  submitDailyResult,
+  getDailyLeaderboard,
+  type Leaderboard,
+} from '@/lib/cases/actions'
 import { RedFlagSpot } from '@/components/lesson/scenes/interactives/red-flag-spot'
 import { ScreeningMatch } from '@/components/lesson/scenes/interactives/screening-match'
 
@@ -54,11 +63,15 @@ export function CaseDesk({
   const [streak, setStreak] = useState(0)
   const [solved, setSolved] = useState(0)
   const [synced, setSynced] = useState<'idle' | 'saving' | 'saved' | 'anon'>('idle')
+  const [mode, setMode] = useState<'normal' | 'daily'>('normal')
+  const [board, setBoard] = useState<Leaderboard | null>(null)
 
   const deal = useCallback(
     (opts?: { caseId?: string; avoidDomain?: string }) => {
       const built = opts?.caseId ? buildCaseById(opts.caseId) : null
       setC(built ?? generateCase({ avoidDomain: opts?.avoidDomain, includeReal: unlocked }))
+      setMode('normal')
+      setBoard(null)
       setPhase('brief')
       setFlags(null)
       setScreen(null)
@@ -67,6 +80,17 @@ export function CaseDesk({
     },
     [unlocked],
   )
+
+  const dealDaily = useCallback(() => {
+    setC(generateDailyCase(todaysSeed()))
+    setMode('daily')
+    setBoard(null)
+    setPhase('brief')
+    setFlags(null)
+    setScreen(null)
+    setChoice(null)
+    setSynced('idle')
+  }, [])
 
   // First deal + restore streak (client only, avoids hydration mismatch).
   useEffect(() => {
@@ -106,18 +130,30 @@ export function CaseDesk({
     }
     setPhase('verdict')
 
-    // Record into the knowledge model (no-op if not signed in). Fire and forget.
-    setSynced('saving')
-    recordCaseResult({
+    // Record into the knowledge model (no-op if signed out). The daily case
+    // also writes the leaderboard and pulls today's board. Fire and forget.
+    const payload = {
       courseSlug,
       domain: c.domain,
       flagsCorrect: flags?.correct ?? 0,
       flagsTotal: flags?.total ?? 0,
       screeningCorrect: screen?.correct ?? 0,
       decisionCorrect: !!decisionCorrect,
-    })
-      .then((r) => setSynced(r.recorded ? 'saved' : 'anon'))
-      .catch(() => setSynced('anon'))
+    }
+    setSynced('saving')
+    if (mode === 'daily') {
+      submitDailyResult(payload)
+        .then((r) => {
+          setSynced(r.recorded ? 'saved' : 'anon')
+          return getDailyLeaderboard(courseSlug)
+        })
+        .then(setBoard)
+        .catch(() => setSynced('anon'))
+    } else {
+      recordCaseResult(payload)
+        .then((r) => setSynced(r.recorded ? 'saved' : 'anon'))
+        .catch(() => setSynced('anon'))
+    }
   }
 
   const totalCorrect = (flags?.correct ?? 0) + (screen?.correct ?? 0) + (decisionCorrect ? 1 : 0)
@@ -130,6 +166,13 @@ export function CaseDesk({
       {/* Case library */}
       <div className="flex flex-wrap items-center gap-2">
         <span className="font-mono text-2xs uppercase tracking-wider text-neutral-400">Cases</span>
+        <button
+          type="button"
+          onClick={dealDaily}
+          className="inline-flex h-8 items-center gap-1.5 rounded-full border border-accent bg-accent-light px-3 font-mono text-2xs font-semibold uppercase tracking-wider text-accent transition-colors hover:bg-accent hover:text-white"
+        >
+          <CalendarDays className="h-3 w-3" /> Daily case
+        </button>
         <button
           type="button"
           onClick={() => deal({ avoidDomain: c.domain })}
@@ -176,6 +219,11 @@ export function CaseDesk({
       {/* Desk header */}
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
+          {mode === 'daily' && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2.5 py-0.5 font-mono text-2xs font-bold uppercase tracking-wider text-white">
+              <CalendarDays className="h-3 w-3" /> Daily
+            </span>
+          )}
           {c.real && (
             <span className="inline-flex items-center rounded-full bg-primary px-2.5 py-0.5 font-mono text-2xs font-bold uppercase tracking-wider text-white">
               Real case
@@ -360,6 +408,46 @@ export function CaseDesk({
                 </span>
               </div>
             </div>
+
+            {mode === 'daily' && board && (
+              <div className="mx-auto mt-7 max-w-sm text-left">
+                <div className="flex items-center justify-between font-mono text-2xs uppercase tracking-wider text-neutral-400">
+                  <span className="inline-flex items-center gap-1.5 text-foreground">
+                    <Trophy className="h-3.5 w-3.5 text-accent" /> Today’s board
+                  </span>
+                  <span>{board.total} played</span>
+                </div>
+                <ol className="mt-2 space-y-1">
+                  {board.entries.map((e) => (
+                    <li
+                      key={e.rank}
+                      className={`flex items-center justify-between rounded-md px-3 py-1.5 text-sm ${
+                        e.isMe ? 'bg-primary-light font-semibold text-primary' : 'bg-muted text-neutral-700'
+                      }`}
+                    >
+                      <span className="flex min-w-0 items-center gap-2">
+                        <span className="w-5 shrink-0 font-mono text-2xs tabular-nums text-neutral-400">
+                          {e.rank}
+                        </span>
+                        <span className="truncate">
+                          {e.name}
+                          {e.isMe ? ' (you)' : ''}
+                        </span>
+                      </span>
+                      <span className="shrink-0 font-mono text-2xs tabular-nums">{e.score}%</span>
+                    </li>
+                  ))}
+                </ol>
+                {board.me && !board.entries.some((e) => e.isMe) && (
+                  <div className="mt-1 flex items-center justify-between rounded-md bg-primary-light px-3 py-1.5 text-sm font-semibold text-primary">
+                    <span className="flex items-center gap-2">
+                      <span className="w-5 font-mono text-2xs tabular-nums">{board.me.rank}</span> You
+                    </span>
+                    <span className="font-mono text-2xs tabular-nums">{board.me.score}%</span>
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <button

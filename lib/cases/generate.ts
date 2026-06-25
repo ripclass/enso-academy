@@ -31,7 +31,22 @@ export type GeneratedCase = {
 
 // ---- helpers ---------------------------------------------------------------
 
-const rnd = () => Math.random()
+// Swappable RNG: Math.random by default, a seeded PRNG during daily generation
+// (so the daily case is identical for everyone). The swap/restore is synchronous
+// — no await between — so it is safe even server-side.
+let _rng: () => number = Math.random
+const rnd = () => _rng()
+
+function mulberry32(seed: number): () => number {
+  let a = seed >>> 0
+  return () => {
+    a = (a + 0x6d2b79f5) | 0
+    let t = Math.imul(a ^ (a >>> 15), 1 | a)
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
 function pick<T>(arr: readonly T[]): T {
   return arr[Math.floor(rnd() * arr.length)]
 }
@@ -442,4 +457,25 @@ export function generateCase(opts?: { avoidDomain?: string; includeReal?: boolea
     c = pick(pool)()
   }
   return c
+}
+
+/** Today's seed (UTC date), so the daily case is the same for everyone. */
+export function todaysSeed(): number {
+  const d = new Date()
+  return d.getUTCFullYear() * 10000 + (d.getUTCMonth() + 1) * 100 + d.getUTCDate()
+}
+
+/**
+ * The daily case: deterministic from the seed, so every player gets the exact
+ * same case (and the same red-flag set, screening, and decision) on a given
+ * day. Drawn from the synthetic pool so it is playable by everyone, free too.
+ */
+export function generateDailyCase(seed: number): GeneratedCase {
+  const prev = _rng
+  _rng = mulberry32(seed)
+  try {
+    return SYNTHETIC[Math.floor(_rng() * SYNTHETIC.length)]()
+  } finally {
+    _rng = prev
+  }
 }
