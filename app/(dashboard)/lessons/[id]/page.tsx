@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect, notFound } from 'next/navigation'
 import { LessonPlayer } from './lesson-player'
-import { startLessonSession, getLessonContent } from '@/lib/lesson/actions'
+import { startLessonSession, getLessonContent, getResumeSceneIndex } from '@/lib/lesson/actions'
 import { getAvatarChoice } from '@/lib/settings'
 import { isPreviewLessonId } from '@/lib/courses/preview'
 import { parseScene, type ContentRow } from '@/lib/lesson/scenes'
@@ -55,7 +55,7 @@ export default async function LessonPage({ params }: Props) {
   // fetched here: it is an LLM call, so the player fetches it after mount
   // (fetchLecturerOpening) rather than blocking first paint.
   type NavModule = { sort_order: number | null; lessons: { id: string; sort_order: number | null }[] }
-  const [elements, sessionId, userAvatar, navRes] = await Promise.all([
+  const [elements, sessionId, userAvatar, navRes, resumeIndex] = await Promise.all([
     getLessonContent(id),
     startLessonSession(id),
     getAvatarChoice(),
@@ -64,8 +64,11 @@ export default async function LessonPage({ params }: Props) {
       .select('sort_order, lessons(id, sort_order)')
       .eq('course_id', courseId)
       .order('sort_order'),
+    getResumeSceneIndex(id),
   ])
   const scenes = elements.map((row) => parseScene(row as unknown as ContentRow))
+  // Resume at the last scene the student was on (clamped to the current count).
+  const initialSceneIndex = Math.min(Math.max(0, resumeIndex), Math.max(0, scenes.length - 1))
 
   // The student's first name, for the lecturer to address them in office hours.
   const meta = (user.user_metadata ?? {}) as Record<string, unknown>
@@ -94,6 +97,7 @@ export default async function LessonPage({ params }: Props) {
       scenes={scenes}
       courseId={courseId}
       courseSlug={courseSlug}
+      initialSceneIndex={initialSceneIndex}
       userAvatar={userAvatar}
       userName={userName}
       nextLessonId={nextLessonId}

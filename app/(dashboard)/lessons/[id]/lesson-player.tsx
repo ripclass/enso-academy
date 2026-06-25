@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { Hand, CornerDownLeft, ArrowLeft, ArrowRight, MessageSquare, X, Play } from 'lucide-react'
-import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission, fetchLecturerOpening } from '@/lib/lesson/actions'
+import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission, fetchLecturerOpening, recordSceneProgress } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
 import { LecturerDock, NarrationBubble, LecturerAvatar } from '@/components/lesson/classroom/lecturer-presence'
@@ -47,6 +47,8 @@ type Props = {
   scenes: Scene[]
   courseId: string
   courseSlug: string
+  /** Scene to start on, so the student resumes where they left off. */
+  initialSceneIndex?: number
   /** The student's chosen avatar (from settings). */
   userAvatar?: 'male' | 'female'
   /** The student's first name, for the lecturer to address them in office hours. */
@@ -129,11 +131,11 @@ const CAST: CastMember[] = [
   { name: 'Omar' },
 ]
 
-export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, userAvatar = 'female', userName, nextLessonId }: Props) {
+export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, initialSceneIndex = 0, userAvatar = 'female', userName, nextLessonId }: Props) {
   const router = useRouter()
   const lecturerVariant = lecturerVariantFor(lesson.id)
   const userAvatarSrc = `/avatars/user-${userAvatar}.webp`
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(initialSceneIndex)
   const [messages, setMessages] = useState<Message[]>([])
 
   // The lecturer's continuity greeting (an LLM call) is fetched after mount so it
@@ -151,6 +153,19 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
       cancelled = true
     }
   }, [courseId, lesson.name])
+
+  // If we resumed past the start, say so once so the student isn't confused
+  // about why they didn't begin at scene one.
+  useEffect(() => {
+    if (initialSceneIndex > 0) toast('Picking up where you left off.')
+  }, [initialSceneIndex])
+
+  // Persist the current scene so the student resumes here next time. The server
+  // action writes it to this session; fire-and-forget on every scene change.
+  useEffect(() => {
+    void recordSceneProgress(sessionId, currentIndex).catch(() => {})
+  }, [sessionId, currentIndex])
+
   const [questionInput, setQuestionInput] = useState('')
   const [askingQuestion, setAskingQuestion] = useState(false)
   const [completing, setCompleting] = useState(false)

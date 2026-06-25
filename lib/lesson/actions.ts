@@ -34,6 +34,47 @@ export async function fetchLecturerOpening(
 }
 
 /**
+ * Record the scene the student is currently on, so they resume there next time
+ * (cross-device). Fire-and-forget from the player on scene change. Stored on the
+ * current session's metadata, so no schema change and no row growth.
+ */
+export async function recordSceneProgress(sessionId: string, sceneIndex: number): Promise<void> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return
+  const admin = createAdminClient()
+  await admin
+    .from('sessions')
+    .update({ metadata: { last_scene_index: sceneIndex } })
+    .eq('id', sessionId)
+    .eq('student_id', user.id)
+}
+
+/**
+ * The scene index to resume a lesson at: the furthest-recorded scene from the
+ * student's most recent prior session on this lesson, or 0 if none. The session
+ * just created for this visit has no recorded index yet, so it is skipped.
+ */
+export async function getResumeSceneIndex(lessonId: string): Promise<number> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return 0
+  const admin = createAdminClient()
+  const { data } = await admin
+    .from('sessions')
+    .select('id, metadata, started_at')
+    .eq('student_id', user.id)
+    .eq('lesson_id', lessonId)
+    .order('started_at', { ascending: false })
+    .limit(20)
+  for (const s of data ?? []) {
+    const idx = (s.metadata as { last_scene_index?: number } | null)?.last_scene_index
+    if (typeof idx === 'number' && idx > 0) return idx
+  }
+  return 0
+}
+
+/**
  * Start a lesson session. Creates a sessions row and returns the session ID.
  */
 export async function startLessonSession(lessonId: string): Promise<string> {
