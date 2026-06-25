@@ -1,39 +1,29 @@
 'use client'
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
-import { Mic, Square } from 'lucide-react'
+import { Mic, Square, Loader2 } from 'lucide-react'
+import { transcribeAudio } from '@/lib/audio/transcribe'
 
-// Minimal shape of the Web Speech API we use (not in the TS DOM lib).
-type RecognitionAlternative = { transcript: string }
-type RecognitionResult = ArrayLike<RecognitionAlternative> & { isFinal: boolean }
-type RecognitionEvent = { results: ArrayLike<RecognitionResult> }
-interface SpeechRecognitionLike {
-  lang: string
-  interimResults: boolean
-  continuous: boolean
-  onresult: ((e: RecognitionEvent) => void) | null
-  onerror: (() => void) | null
-  onend: (() => void) | null
-  start: () => void
-  stop: () => void
-}
+// Auto-stop after a minute so a question stays small (and a forgotten mic does
+// not record forever).
+const MAX_MS = 60_000
 
-function getRecognitionCtor(): (new () => SpeechRecognitionLike) | null {
-  if (typeof window === 'undefined') return null
-  // The Web Speech API ctor isn't in the DOM lib types; probe both names.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const w = window as any
-  return (w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null) as
-    | (new () => SpeechRecognitionLike)
-    | null
+function blobToBase64(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onloadend = () => resolve(String(reader.result).split(',')[1] ?? '')
+    reader.onerror = () => reject(reader.error)
+    reader.readAsDataURL(blob)
+  })
 }
 
 /**
- * Mic button that dictates a question via the browser's Web Speech API — no API
- * key, fully client-side, supported in Chrome/Edge. Renders nothing where the
- * browser has no speech recognition (Firefox, most Safari), so callers can drop
- * it in unconditionally. Streams the running transcript to `onTranscript` as the
- * student speaks; `onTranscript` should set the question input's value.
+ * Mic button that records a spoken question and transcribes it via OpenRouter's
+ * Whisper (a server action). Whisper auto-detects the language, so a student can
+ * ask in any language; the lecturer answers in English. Works in any browser
+ * with MediaRecorder + getUserMedia (Chrome, Edge, Firefox, Safari); renders
+ * nothing where unsupported, so callers can drop it in unconditionally.
+ * Recording -> stop -> transcribe -> onTranscript(text) (one shot, not live).
  */
 export function VoiceInput({
   onTranscript,
@@ -44,60 +34,106 @@ export function VoiceInput({
   disabled?: boolean
   className?: string
 }) {
-  const [listening, setListening] = useState(false)
-  const recRef = useRef<SpeechRecognitionLike | null>(null)
+  const [state, setState] = useState<'idle' | 'recording' | 'transcribing'>('idle')
+  const recRef = useRef<MediaRecorder | null>(null)
+  const chunksRef = useRef<Blob[]>([])
+  const streamRef = useRef<MediaStream | null>(null)
+  const timerRef = useRef<number | null>(null)
 
-  // Read browser support without setState-in-effect or a hydration mismatch:
-  // false on the server, the real capability on the client.
+  // SSR-safe capability check: false on the server, real check on the client.
   const supported = useSyncExternalStore(
     () => () => {},
-    () => getRecognitionCtor() != null,
+    () =>
+      typeof navigator !== 'undefined' &&
+      !!navigator.mediaDevices?.getUserMedia &&
+      typeof MediaRecorder !== 'undefined',
     () => false,
   )
 
-  // Stop any in-flight recognition on unmount.
-  useEffect(() => () => recRef.current?.stop(), [])
+  // Release the mic + timer on unmount.
+  useEffect(
+    () => () => {
+      if (timerRef.current) window.clearTimeout(timerRef.current)
+      streamRef.current?.getTracks().forEach((t) => t.stop())
+    },
+    [],
+  )
 
   if (!supported) return null
 
-  function toggle() {
+  async function start() {
     if (disabled) return
-    if (listening) {
-      recRef.current?.stop()
-      return
-    }
-    const Ctor = getRecognitionCtor()
-    if (!Ctor) return
-    const rec = new Ctor()
-    rec.lang = 'en-US'
-    rec.interimResults = true
-    rec.continuous = false
-    rec.onresult = (e) => {
-      let text = ''
-      for (let i = 0; i < e.results.length; i++) {
-        text += e.results[i][0]?.transcript ?? ''
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      streamRef.current = stream
+      const mime = MediaRecorder.isTypeSupported('audio/webm')
+        ? 'audio/webm'
+        : MediaRecorder.isTypeSupported('audio/mp4')
+          ? 'audio/mp4'
+          : ''
+      const rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined)
+      chunksRef.current = []
+      rec.ondataavailable = (e) => {
+        if (e.data.size > 0) chunksRef.current.push(e.data)
       }
-      onTranscript(text.trim())
+      rec.onstop = async () => {
+        streamRef.current?.getTracks().forEach((t) => t.stop())
+        streamRef.current = null
+        const type = rec.mimeType || 'audio/webm'
+        const blob = new Blob(chunksRef.current, { type })
+        const format = type.split(';')[0].split('/')[1] || 'webm'
+        if (blob.size === 0) {
+          setState('idle')
+          return
+        }
+        setState('transcribing')
+        try {
+          const base64 = await blobToBase64(blob)
+          const result = await transcribeAudio(base64, format)
+          if ('text' in result && result.text) onTranscript(result.text)
+        } catch {
+          // Network/transcription hiccup: leave the input as it was.
+        } finally {
+          setState('idle')
+        }
+      }
+      recRef.current = rec
+      rec.start()
+      setState('recording')
+      timerRef.current = window.setTimeout(() => {
+        if (rec.state === 'recording') rec.stop()
+      }, MAX_MS)
+    } catch {
+      // Permission denied, no device, etc.
+      setState('idle')
     }
-    rec.onerror = () => setListening(false)
-    rec.onend = () => setListening(false)
-    recRef.current = rec
-    setListening(true)
-    rec.start()
   }
+
+  function stop() {
+    if (timerRef.current) {
+      window.clearTimeout(timerRef.current)
+      timerRef.current = null
+    }
+    recRef.current?.stop()
+  }
+
+  const busy = state === 'transcribing'
+  const recording = state === 'recording'
 
   return (
     <button
       type="button"
-      onClick={toggle}
-      disabled={disabled}
-      aria-label={listening ? 'Stop dictation' : 'Ask by voice'}
-      title={listening ? 'Stop' : 'Ask by voice'}
+      onClick={recording ? stop : start}
+      disabled={disabled || busy}
+      aria-label={recording ? 'Stop and transcribe' : busy ? 'Transcribing' : 'Ask by voice'}
+      title={recording ? 'Stop' : busy ? 'Transcribing…' : 'Ask by voice (any language)'}
       className={`flex h-7 w-7 items-center justify-center rounded transition-colors disabled:opacity-40 ${
-        listening ? 'bg-accent text-white' : 'text-neutral-400 hover:text-primary'
+        recording ? 'bg-accent text-white' : 'text-neutral-400 hover:text-primary'
       } ${className ?? ''}`}
     >
-      {listening ? (
+      {busy ? (
+        <Loader2 className="h-3.5 w-3.5 animate-spin" />
+      ) : recording ? (
         <Square className="h-3 w-3 fill-current" />
       ) : (
         <Mic className="h-3.5 w-3.5" />

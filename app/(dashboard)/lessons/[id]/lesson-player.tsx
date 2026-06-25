@@ -1261,7 +1261,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                   disabled={askingQuestion}
                   className="w-full rounded-md border border-neutral-200 bg-white py-2.5 pl-3 pr-[4.75rem] text-sm text-neutral-800 placeholder-neutral-400 focus:border-primary focus:outline-none disabled:opacity-60"
                 />
-                {/* Voice note → transcript (Web Speech API; hidden where unsupported). */}
+                {/* Voice question: record, then transcribe via Whisper (any language). */}
                 <div className="absolute right-9 top-1/2 -translate-y-1/2">
                   <VoiceInput
                     onTranscript={(t) => setQuestionInput(t)}
