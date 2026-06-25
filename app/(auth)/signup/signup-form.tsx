@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -13,11 +13,14 @@ import { toast } from 'sonner'
 
 export function SignupForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const next = searchParams.get('next') ?? '/dashboard'
 
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [googleLoading, setGoogleLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [verificationSent, setVerificationSent] = useState(false)
 
@@ -40,7 +43,7 @@ export function SignupForm() {
         data: {
           full_name: fullName,
         },
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=/dashboard`,
+        emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
       },
     })
 
@@ -63,8 +66,21 @@ export function SignupForm() {
     router.refresh()
   }
 
-  function handleGoogle() {
-    toast.info('Google sign-up is coming soon. Please use email and password for now.')
+  async function handleGoogle() {
+    setError(null)
+    setGoogleLoading(true)
+    const supabase = createClient()
+    const { error: oauthError } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+      },
+    })
+    // On success the browser navigates to Google, so this only runs on failure.
+    if (oauthError) {
+      setError(oauthError.message)
+      setGoogleLoading(false)
+    }
   }
 
   if (verificationSent) {
@@ -150,6 +166,7 @@ export function SignupForm() {
           variant="outline"
           className="w-full"
           onClick={handleGoogle}
+          disabled={googleLoading}
         >
           <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -157,7 +174,7 @@ export function SignupForm() {
             <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
             <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
           </svg>
-          Continue with Google
+          {googleLoading ? 'Redirecting…' : 'Continue with Google'}
         </Button>
 
         <p className="text-xs text-muted-foreground text-center leading-relaxed">
