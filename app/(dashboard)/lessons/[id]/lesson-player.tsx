@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { Hand, CornerDownLeft, ArrowLeft, ArrowRight, MessageSquare, X, Play } from 'lucide-react'
-import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission } from '@/lib/lesson/actions'
+import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission, fetchLecturerOpening } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
 import { LecturerDock, NarrationBubble, LecturerAvatar } from '@/components/lesson/classroom/lecturer-presence'
@@ -47,7 +47,6 @@ type Props = {
   scenes: Scene[]
   courseId: string
   courseSlug: string
-  lecturerOpening?: string | null
   /** The student's chosen avatar (from settings). */
   userAvatar?: 'male' | 'female'
   /** The student's first name, for the lecturer to address them in office hours. */
@@ -130,14 +129,28 @@ const CAST: CastMember[] = [
   { name: 'Omar' },
 ]
 
-export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, lecturerOpening, userAvatar = 'female', userName, nextLessonId }: Props) {
+export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, userAvatar = 'female', userName, nextLessonId }: Props) {
   const router = useRouter()
   const lecturerVariant = lecturerVariantFor(lesson.id)
   const userAvatarSrc = `/avatars/user-${userAvatar}.webp`
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [messages, setMessages] = useState<Message[]>(
-    lecturerOpening ? [{ role: 'lecturer', content: lecturerOpening }] : [],
-  )
+  const [messages, setMessages] = useState<Message[]>([])
+
+  // The lecturer's continuity greeting (an LLM call) is fetched after mount so it
+  // never blocks the lesson from rendering. Prepend it when it arrives.
+  useEffect(() => {
+    let cancelled = false
+    fetchLecturerOpening(courseId, lesson.name)
+      .then((greeting) => {
+        if (!cancelled && greeting) {
+          setMessages((prev) => [{ role: 'lecturer', content: greeting }, ...prev])
+        }
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [courseId, lesson.name])
   const [questionInput, setQuestionInput] = useState('')
   const [askingQuestion, setAskingQuestion] = useState(false)
   const [completing, setCompleting] = useState(false)
@@ -848,7 +861,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   }
 
   return (
-    <div className="flex h-screen flex-col bg-[#F4F2ED]">
+    <div className="fixed inset-0 flex flex-col overflow-hidden bg-[#F4F2ED]">
       {/* Hidden audio element — drives both narration and Q&A playback. */}
       <audio
         ref={audioRef}

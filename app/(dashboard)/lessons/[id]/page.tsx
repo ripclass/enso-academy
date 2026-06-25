@@ -3,7 +3,6 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect, notFound } from 'next/navigation'
 import { LessonPlayer } from './lesson-player'
 import { startLessonSession, getLessonContent } from '@/lib/lesson/actions'
-import { getLecturerOpening } from '@/lib/student-model/memory'
 import { getAvatarChoice } from '@/lib/settings'
 import { isPreviewLessonId } from '@/lib/courses/preview'
 import { parseScene, type ContentRow } from '@/lib/lesson/scenes'
@@ -51,16 +50,22 @@ export default async function LessonPage({ params }: Props) {
 
   if (!enrollment && !isPreview) redirect(`/courses/${courseSlug}`)
 
-  // Fetch content elements and parse them into typed scenes
-  const elements = await getLessonContent(id)
+  // Fetch the remaining inputs in parallel (independent reads/writes) so the
+  // lesson renders fast. The lecturer's continuity greeting is intentionally NOT
+  // fetched here: it is an LLM call, so the player fetches it after mount
+  // (fetchLecturerOpening) rather than blocking first paint.
+  type NavModule = { sort_order: number | null; lessons: { id: string; sort_order: number | null }[] }
+  const [elements, sessionId, userAvatar, navRes] = await Promise.all([
+    getLessonContent(id),
+    startLessonSession(id),
+    getAvatarChoice(),
+    admin
+      .from('modules')
+      .select('sort_order, lessons(id, sort_order)')
+      .eq('course_id', courseId)
+      .order('sort_order'),
+  ])
   const scenes = elements.map((row) => parseScene(row as unknown as ContentRow))
-
-  // Start session
-  const sessionId = await startLessonSession(id)
-
-  // Continuity greeting from the lecturer's memory of this student (null if none)
-  const lecturerOpening = await getLecturerOpening(user.id, courseId, (lesson as any).name)
-  const userAvatar = await getAvatarChoice()
 
   // The student's first name, for the lecturer to address them in office hours.
   const meta = (user.user_metadata ?? {}) as Record<string, unknown>
@@ -73,13 +78,7 @@ export default async function LessonPage({ params }: Props) {
 
   // The next lesson in course order (module sort_order, then lesson sort_order),
   // so "Complete lesson" can advance straight into it. Null on the last lesson.
-  type NavModule = { sort_order: number | null; lessons: { id: string; sort_order: number | null }[] }
-  const { data: navModules } = await admin
-    .from('modules')
-    .select('sort_order, lessons(id, sort_order)')
-    .eq('course_id', courseId)
-    .order('sort_order')
-  const orderedLessonIds = ((navModules ?? []) as NavModule[]).flatMap((m) =>
+  const orderedLessonIds = ((navRes.data ?? []) as NavModule[]).flatMap((m) =>
     [...(m.lessons ?? [])]
       .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
       .map((l) => l.id),
@@ -95,7 +94,6 @@ export default async function LessonPage({ params }: Props) {
       scenes={scenes}
       courseId={courseId}
       courseSlug={courseSlug}
-      lecturerOpening={lecturerOpening}
       userAvatar={userAvatar}
       userName={userName}
       nextLessonId={nextLessonId}

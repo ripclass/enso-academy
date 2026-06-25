@@ -6,7 +6,7 @@ import { callHaikuStreaming, callSonnet } from '@/lib/ai/routing'
 import { embed } from '@/lib/ai/embeddings'
 import { logAiCall } from '@/lib/ai/cost-tracking'
 import { getMasterySummary, recordEvidence } from '@/lib/student-model/knowledge'
-import { getMemoryPreamble, summarizeSessionToMemory } from '@/lib/student-model/memory'
+import { getMemoryPreamble, summarizeSessionToMemory, getLecturerOpening } from '@/lib/student-model/memory'
 import { lecturerVariantFor } from '@/lib/lesson/scenes'
 import { after } from 'next/server'
 
@@ -16,6 +16,21 @@ type AskQuestionResult = {
   cachedQaId?: string
   sessionEventId?: string
   audioUrl?: string // present if listen mode requested and TTS succeeded
+}
+
+/**
+ * The lecturer's continuity greeting for a returning student. Fetched from the
+ * client after the lesson renders, so this LLM call never blocks first paint.
+ * Returns null if the student has no memory yet.
+ */
+export async function fetchLecturerOpening(
+  courseId: string,
+  lessonName: string,
+): Promise<string | null> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return null
+  return getLecturerOpening(user.id, courseId, lessonName)
 }
 
 /**
