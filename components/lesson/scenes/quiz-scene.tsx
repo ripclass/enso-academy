@@ -51,9 +51,9 @@ export function QuizScene({
                 if (!answered) {
                   cls += ' border-border hover:border-primary/50 hover:bg-muted cursor-pointer'
                 } else if (isCorrect) {
-                  cls += ' border-green-600/50 bg-green-50 text-green-900'
+                  cls += ' border-primary/50 bg-primary-light text-primary'
                 } else if (isSelected) {
-                  cls += ' border-red-500/50 bg-red-50 text-red-900'
+                  cls += ' border-destructive/50 bg-destructive/10 text-destructive'
                 } else {
                   cls += ' border-border opacity-60'
                 }
@@ -74,7 +74,7 @@ export function QuizScene({
               <div
                 className={`rounded-md px-3 py-2 text-sm ${
                   answered === question.correctOptionId
-                    ? 'bg-green-50 text-green-900'
+                    ? 'bg-primary-light text-foreground'
                     : 'bg-muted text-foreground'
                 }`}
               >

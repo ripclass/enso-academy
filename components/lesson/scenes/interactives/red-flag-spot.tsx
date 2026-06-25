@@ -67,11 +67,11 @@ export function RedFlagSpot({
           }
           const tone =
             state === 'hit'
-              ? 'border-emerald-200 bg-emerald-50'
+              ? 'border-primary/30 bg-primary-light'
               : state === 'miss'
-                ? 'border-amber-200 bg-amber-50'
+                ? 'border-accent/30 bg-accent-light'
                 : state === 'false'
-                  ? 'border-rose-200 bg-rose-50'
+                  ? 'border-destructive/30 bg-destructive/10'
                   : state === 'ok'
                     ? 'border-neutral-200 bg-neutral-50'
                     : sel
@@ -96,11 +96,11 @@ export function RedFlagSpot({
                   <span className="text-neutral-800">{it.label}</span>
                   {checked && (
                     <span className="mt-1 flex items-start gap-1.5 text-2xs text-neutral-500">
-                      {state === 'hit' && <Check className="mt-px h-3 w-3 shrink-0 text-emerald-600" />}
+                      {state === 'hit' && <Check className="mt-px h-3 w-3 shrink-0 text-primary" />}
                       {state === 'miss' && (
-                        <AlertTriangle className="mt-px h-3 w-3 shrink-0 text-amber-600" />
+                        <AlertTriangle className="mt-px h-3 w-3 shrink-0 text-accent" />
                       )}
-                      {state === 'false' && <X className="mt-px h-3 w-3 shrink-0 text-rose-600" />}
+                      {state === 'false' && <X className="mt-px h-3 w-3 shrink-0 text-destructive" />}
                       {state === 'ok' && <Check className="mt-px h-3 w-3 shrink-0 text-neutral-400" />}
                       <span>
                         {state === 'miss' && 'Missed. This is a red flag. '}

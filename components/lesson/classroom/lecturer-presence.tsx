@@ -35,7 +35,7 @@ export function LecturerAvatar({
       </div>
       {speaking && <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-primary/15" />}
       {active && (
-        <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-white bg-emerald-400" />
+        <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-white bg-primary" />
       )}
     </div>
   )

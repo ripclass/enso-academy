@@ -114,14 +114,14 @@ export function ScreeningMatch({
           <button
             type="button"
             onClick={() => decide('clear')}
-            className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-md border border-neutral-300 text-sm font-semibold text-neutral-700 transition-colors hover:border-emerald-400 hover:text-emerald-700"
+            className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-md border border-neutral-300 text-sm font-semibold text-neutral-700 transition-colors hover:border-primary hover:text-primary"
           >
             <ShieldCheck className="h-4 w-4" /> Clear (false positive)
           </button>
           <button
             type="button"
             onClick={() => decide('escalate')}
-            className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-md border border-neutral-300 text-sm font-semibold text-neutral-700 transition-colors hover:border-rose-400 hover:text-rose-700"
+            className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-md border border-neutral-300 text-sm font-semibold text-neutral-700 transition-colors hover:border-destructive hover:text-destructive"
           >
             <ShieldAlert className="h-4 w-4" /> Escalate (true match)
           </button>
@@ -130,13 +130,13 @@ export function ScreeningMatch({
         <div className="space-y-3">
           <div
             className={`flex items-start gap-2 rounded-md px-3 py-2 text-sm ${
-              correct ? 'bg-emerald-50 text-emerald-900' : 'bg-amber-50 text-amber-900'
+              correct ? 'bg-primary-light text-foreground' : 'bg-accent-light text-foreground'
             }`}
           >
             {correct ? (
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
             ) : (
-              <X className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+              <X className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
             )}
             <span>
               <span className="font-semibold">
@@ -175,7 +175,7 @@ function Record({
   return (
     <div
       className={`rounded-lg border p-3 ${
-        tone === 'alert' ? 'border-rose-200 bg-rose-50/40' : 'border-neutral-200 bg-white'
+        tone === 'alert' ? 'border-destructive/30 bg-destructive/5' : 'border-neutral-200 bg-white'
       }`}
     >
       <div className="font-mono text-2xs uppercase tracking-widest text-neutral-400">{heading}</div>

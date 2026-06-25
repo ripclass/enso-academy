@@ -7,9 +7,9 @@ import { LecturerAvatar } from '@/components/lesson/classroom/lecturer-presence'
 import type { PblSpec } from '@/lib/lesson/scenes'
 
 const BAND_STYLE: Record<string, string> = {
-  Strong: 'bg-emerald-100 text-emerald-700',
-  Developing: 'bg-amber-100 text-amber-700',
-  'Needs work': 'bg-rose-100 text-rose-700',
+  Strong: 'bg-primary text-white',
+  Developing: 'bg-accent text-white',
+  'Needs work': 'bg-destructive text-white',
 }
 
 /**

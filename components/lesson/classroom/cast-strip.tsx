@@ -34,7 +34,7 @@ export function CastStrip({
               <Avatar seed={m.name} size={40} />
             </div>
             {/* presence dot */}
-            <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-emerald-400" />
+            <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-primary" />
           </div>
         )
       })}

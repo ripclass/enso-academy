@@ -7,9 +7,9 @@ import type { RiskClassifyItem } from '@/lib/lesson/scenes'
 type Tier = 'low' | 'medium' | 'high'
 
 const TIERS: { tier: Tier; label: string; ring: string; chip: string }[] = [
-  { tier: 'low', label: 'Lower risk', ring: 'border-emerald-300', chip: 'bg-emerald-100 text-emerald-700' },
-  { tier: 'medium', label: 'Medium risk', ring: 'border-amber-300', chip: 'bg-amber-100 text-amber-700' },
-  { tier: 'high', label: 'Higher risk', ring: 'border-rose-300', chip: 'bg-rose-100 text-rose-700' },
+  { tier: 'low', label: 'Lower risk', ring: 'border-primary/30', chip: 'bg-primary text-white' },
+  { tier: 'medium', label: 'Medium risk', ring: 'border-accent/40', chip: 'bg-accent text-white' },
+  { tier: 'high', label: 'Higher risk', ring: 'border-destructive/40', chip: 'bg-destructive text-white' },
 ]
 const TIER_LABEL: Record<Tier, string> = { low: 'Lower risk', medium: 'Medium risk', high: 'Higher risk' }
 
@@ -127,14 +127,14 @@ export function RiskClassify({
                     <div
                       key={it.id}
                       className={`rounded-md border p-2 text-xs leading-snug ${
-                        ok ? 'border-emerald-200 bg-emerald-50' : 'border-rose-200 bg-rose-50'
+                        ok ? 'border-primary/30 bg-primary-light' : 'border-destructive/30 bg-destructive/10'
                       }`}
                     >
                       <div className="flex items-start gap-1.5">
                         {ok ? (
-                          <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
+                          <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
                         ) : (
-                          <X className="mt-0.5 h-3.5 w-3.5 shrink-0 text-rose-600" />
+                          <X className="mt-0.5 h-3.5 w-3.5 shrink-0 text-destructive" />
                         )}
                         <span className="text-neutral-700">{it.label}</span>
                       </div>

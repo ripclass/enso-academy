@@ -135,7 +135,7 @@ export function FlowTrace({
           let tone =
             'border-neutral-300 bg-white text-neutral-700'
           if (inRoute) tone = 'border-primary bg-primary text-white shadow-md'
-          else if (isDecoy) tone = 'border-rose-300 bg-rose-50 text-rose-700'
+          else if (isDecoy) tone = 'border-destructive/40 bg-destructive/10 text-destructive'
           else if (clickable) tone = 'border-primary/60 bg-white text-primary ring-2 ring-primary/20'
           else if (checked) tone = 'border-neutral-200 bg-white text-neutral-400'
           return (
@@ -165,13 +165,13 @@ export function FlowTrace({
         <div className="space-y-3">
           <div
             className={`flex items-start gap-2 rounded-md px-3 py-2 text-sm ${
-              correct ? 'bg-emerald-50 text-emerald-900' : 'bg-amber-50 text-amber-900'
+              correct ? 'bg-primary-light text-foreground' : 'bg-accent-light text-foreground'
             }`}
           >
             {correct ? (
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
             ) : (
-              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
             )}
             <span>
               <span className="font-semibold">{correct ? 'That follows the money. ' : 'Not the laundering route. '}</span>
