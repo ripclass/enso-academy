@@ -114,9 +114,7 @@ export async function submitDailyResult(
     const { score, correct, total } = scoreOf(input)
     const admin = createAdminClient()
     // First attempt of the day counts; later replays do not overwrite the board.
-    // daily_case_results is not in the generated types yet; cast locally.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (admin as any).from('daily_case_results').upsert(
+    await admin.from('daily_case_results').upsert(
       {
         student_id: user.id,
         course_id: courseId,
@@ -158,8 +156,7 @@ export async function getDailyLeaderboard(courseSlug: string): Promise<Leaderboa
     }
 
     const admin = createAdminClient()
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data, count } = await (admin as any)
+    const { data, count } = await admin
       .from('daily_case_results')
       .select('student_id, score, display_name, created_at', { count: 'exact' })
       .eq('course_id', courseId)
@@ -167,11 +164,10 @@ export async function getDailyLeaderboard(courseSlug: string): Promise<Leaderboa
       .order('score', { ascending: false })
       .order('created_at', { ascending: true })
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const rows = (data ?? []) as any[]
+    const rows = data ?? []
     const ranked: LeaderboardEntry[] = rows.map((r, i) => ({
       rank: i + 1,
-      name: (r.display_name as string) || 'Analyst',
+      name: r.display_name || 'Analyst',
       score: Number(r.score),
       isMe: !!myId && r.student_id === myId,
     }))

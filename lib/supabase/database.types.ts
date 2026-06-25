@@ -779,6 +779,50 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_case_results: {
+        Row: {
+          correct: number
+          course_id: string
+          created_at: string
+          day: string
+          display_name: string | null
+          id: string
+          score: number
+          student_id: string
+          total: number
+        }
+        Insert: {
+          correct?: number
+          course_id: string
+          created_at?: string
+          day: string
+          display_name?: string | null
+          id?: string
+          score: number
+          student_id: string
+          total?: number
+        }
+        Update: {
+          correct?: number
+          course_id?: string
+          created_at?: string
+          day?: string
+          display_name?: string | null
+          id?: string
+          score?: number
+          student_id?: string
+          total?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_case_results_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       enrollments: {
         Row: {
           completed_at: string | null
@@ -2408,6 +2452,7 @@ export type Database = {
       }
       student_preferences: {
         Row: {
+          avatar_choice: string | null
           bangla_code_switch: boolean | null
           contextual_modality: Json | null
           created_at: string
@@ -2420,6 +2465,7 @@ export type Database = {
           voice_speed: number | null
         }
         Insert: {
+          avatar_choice?: string | null
           bangla_code_switch?: boolean | null
           contextual_modality?: Json | null
           created_at?: string
@@ -2432,6 +2478,7 @@ export type Database = {
           voice_speed?: number | null
         }
         Update: {
+          avatar_choice?: string | null
           bangla_code_switch?: boolean | null
           contextual_modality?: Json | null
           created_at?: string
@@ -2600,6 +2647,135 @@ export type Database = {
           student_id?: string
           trial_end?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      zz_arrow_bak_cle: {
+        Row: {
+          audio_url: string | null
+          body: string | null
+          id: string | null
+          scene_data: Json | null
+        }
+        Insert: {
+          audio_url?: string | null
+          body?: string | null
+          id?: string | null
+          scene_data?: Json | null
+        }
+        Update: {
+          audio_url?: string | null
+          body?: string | null
+          id?: string | null
+          scene_data?: Json | null
+        }
+        Relationships: []
+      }
+      zz_emdash_bak_cle: {
+        Row: {
+          body: string | null
+          id: string | null
+          scene_data: Json | null
+          title: string | null
+        }
+        Insert: {
+          body?: string | null
+          id?: string | null
+          scene_data?: Json | null
+          title?: string | null
+        }
+        Update: {
+          body?: string | null
+          id?: string | null
+          scene_data?: Json | null
+          title?: string | null
+        }
+        Relationships: []
+      }
+      zz_emdash_bak_glossary: {
+        Row: {
+          definition: string | null
+          id: string | null
+          short_definition: string | null
+          term: string | null
+        }
+        Insert: {
+          definition?: string | null
+          id?: string | null
+          short_definition?: string | null
+          term?: string | null
+        }
+        Update: {
+          definition?: string | null
+          id?: string | null
+          short_definition?: string | null
+          term?: string | null
+        }
+        Relationships: []
+      }
+      zz_emdash_bak_lessons: {
+        Row: {
+          description: string | null
+          id: string | null
+          learning_objectives: Json | null
+          name: string | null
+        }
+        Insert: {
+          description?: string | null
+          id?: string | null
+          learning_objectives?: Json | null
+          name?: string | null
+        }
+        Update: {
+          description?: string | null
+          id?: string | null
+          learning_objectives?: Json | null
+          name?: string | null
+        }
+        Relationships: []
+      }
+      zz_emdash_bak_modules: {
+        Row: {
+          description: string | null
+          id: string | null
+          learning_objectives: Json | null
+          name: string | null
+        }
+        Insert: {
+          description?: string | null
+          id?: string | null
+          learning_objectives?: Json | null
+          name?: string | null
+        }
+        Update: {
+          description?: string | null
+          id?: string | null
+          learning_objectives?: Json | null
+          name?: string | null
+        }
+        Relationships: []
+      }
+      zz_emdash_bak_qbank: {
+        Row: {
+          explanation: string | null
+          id: string | null
+          options: Json | null
+          question_text: string | null
+          wrong_answer_rationales: Json | null
+        }
+        Insert: {
+          explanation?: string | null
+          id?: string | null
+          options?: Json | null
+          question_text?: string | null
+          wrong_answer_rationales?: Json | null
+        }
+        Update: {
+          explanation?: string | null
+          id?: string | null
+          options?: Json | null
+          question_text?: string | null
+          wrong_answer_rationales?: Json | null
         }
         Relationships: []
       }
