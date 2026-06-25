@@ -156,32 +156,32 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
     void doSubmit()
   }
 
-  // "Cold Fidelity" — a sterile testing-centre palette, deliberately
-  // off-brand from the editorial surfaces.
+  // Brand palette: a focused teal exam shell, coral for the submit action and
+  // flags, teal for active/answered states. Red/amber kept only for the clock.
   const timerColor =
     secondsRemaining < 300
-      ? 'text-red-400'
+      ? 'text-red-300'
       : secondsRemaining < 600
-        ? 'text-amber-400'
-        : 'text-slate-100'
+        ? 'text-amber-300'
+        : 'text-white'
 
   const flaggedCurrent = !!current && flagged.has(current.id)
   const unansweredCount = total - answeredCount
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F0F2F5] text-slate-800 select-none">
-      {/* Sterile exam header */}
-      <header className="sticky top-0 z-10 bg-[#1E293B] border-b border-slate-700">
+    <div className="min-h-screen flex flex-col bg-background text-foreground select-none">
+      {/* Exam header */}
+      <header className="sticky top-0 z-10 bg-primary border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
           <div>
-            <span className="text-2xs font-semibold uppercase tracking-widest text-slate-400 font-mono">
+            <span className="text-2xs font-semibold uppercase tracking-widest text-white/60 font-mono">
               Enso Academy &middot; Mock exam engine
             </span>
-            <h1 className="text-sm font-bold text-slate-100">{templateName}</h1>
+            <h1 className="text-sm font-bold text-white">{templateName}</h1>
           </div>
           <div className="flex items-center gap-5">
             <div className="text-right">
-              <span className="block text-2xs font-mono uppercase tracking-wider text-slate-400">
+              <span className="block text-2xs font-mono uppercase tracking-wider text-white/60">
                 Time remaining
               </span>
               <span className={`text-lg font-bold font-mono tracking-wider tabular-nums ${timerColor}`}>
@@ -192,7 +192,7 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
               type="button"
               onClick={handleSubmitClick}
               disabled={submitting}
-              className="rounded border border-red-800 bg-red-700 px-5 py-2.5 text-xs font-bold uppercase tracking-wider font-mono text-white hover:bg-red-600 transition-colors disabled:opacity-60"
+              className="rounded bg-accent px-5 py-2.5 text-xs font-bold uppercase tracking-wider font-mono text-white hover:bg-accent-hover transition-colors disabled:opacity-60"
             >
               {submitting ? 'Submitting…' : confirmSubmit ? 'Confirm submit' : 'Submit mock'}
             </button>
@@ -204,8 +204,8 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
         {/* Question area */}
         <div className="space-y-5">
           {confirmSubmit && !submitting && (
-            <div className="flex items-start gap-3 rounded border border-amber-300 bg-amber-50 px-4 py-3 text-xs font-mono text-amber-800">
-              <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 rounded border border-accent/40 bg-accent-light px-4 py-3 text-xs font-mono text-foreground">
+              <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-accent" />
               <span>
                 {answeredCount} of {total} answered
                 {unansweredCount > 0 && `; ${unansweredCount} unanswered question(s) will be graded as incorrect`}
@@ -214,9 +214,9 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
             </div>
           )}
 
-          <div className="rounded border border-slate-300 bg-white p-8 shadow-sm">
-            <div className="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
-              <span className="text-2xs font-semibold uppercase tracking-wider text-slate-400 font-mono">
+          <div className="rounded border border-neutral-200 bg-white p-8 shadow-sm">
+            <div className="flex items-start justify-between gap-4 border-b border-neutral-100 pb-4">
+              <span className="text-2xs font-semibold uppercase tracking-wider text-neutral-400 font-mono">
                 Question {currentIndex + 1} of {total}
               </span>
               <button
@@ -224,8 +224,8 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
                 onClick={toggleFlag}
                 className={`inline-flex items-center gap-1.5 rounded border px-3 py-1.5 text-2xs font-semibold uppercase tracking-wider font-mono transition-colors ${
                   flaggedCurrent
-                    ? 'border-amber-400 bg-amber-50 text-amber-800'
-                    : 'border-slate-200 bg-white text-slate-500 hover:text-slate-700'
+                    ? 'border-accent bg-accent-light text-accent'
+                    : 'border-neutral-200 bg-white text-neutral-500 hover:text-primary'
                 }`}
               >
                 <Flag className="h-3.5 w-3.5" />
@@ -233,12 +233,12 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
               </button>
             </div>
 
-            <h2 className="mt-5 text-base font-semibold leading-relaxed text-slate-800">
+            <h2 className="mt-5 text-base font-semibold leading-relaxed text-foreground">
               {current?.question_text}
             </h2>
 
             {isMulti && (
-              <p className="mt-3 text-2xs font-semibold uppercase tracking-wider text-slate-500 font-mono">
+              <p className="mt-3 text-2xs font-semibold uppercase tracking-wider text-neutral-500 font-mono">
                 {current?.select_count && current.select_count > 1
                   ? `Select ${current.select_count}.`
                   : 'Select all that apply.'}
@@ -258,15 +258,15 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
                     onClick={() => (isMulti ? toggleAnswer(opt.id) : selectAnswer(opt.id))}
                     className={`w-full text-left text-sm rounded border px-4 py-3 transition-colors flex items-start gap-3 ${
                       selected
-                        ? 'border-slate-600 bg-slate-100 text-slate-900'
-                        : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+                        ? 'border-primary bg-primary-light text-foreground'
+                        : 'border-neutral-200 bg-white text-neutral-700 hover:border-primary/40'
                     }`}
                   >
                     <span
                       aria-hidden
                       className={`mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center border text-2xs font-bold ${
                         isMulti ? 'rounded-[3px]' : 'rounded-full'
-                      } ${selected ? 'border-slate-700 bg-slate-700 text-white' : 'border-slate-300 bg-white'}`}
+                      } ${selected ? 'border-primary bg-primary text-white' : 'border-neutral-300 bg-white'}`}
                     >
                       {selected ? (isMulti ? '✓' : '●') : ''}
                     </span>
@@ -282,7 +282,7 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
               type="button"
               onClick={() => goTo(currentIndex - 1)}
               disabled={currentIndex === 0}
-              className="inline-flex h-9 items-center gap-1 rounded border border-slate-300 bg-white px-4 text-xs font-semibold font-mono text-slate-600 hover:bg-slate-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex h-9 items-center gap-1 rounded border border-neutral-300 bg-white px-4 text-xs font-semibold font-mono text-neutral-600 hover:bg-neutral-50 hover:text-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="h-4 w-4" /> Previous
             </button>
@@ -290,7 +290,7 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
               type="button"
               onClick={() => goTo(currentIndex + 1)}
               disabled={currentIndex === total - 1}
-              className="inline-flex h-9 items-center gap-1 rounded border border-slate-300 bg-white px-4 text-xs font-semibold font-mono text-slate-600 hover:bg-slate-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex h-9 items-center gap-1 rounded border border-neutral-300 bg-white px-4 text-xs font-semibold font-mono text-neutral-600 hover:bg-neutral-50 hover:text-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Next <ChevronRight className="h-4 w-4" />
             </button>
@@ -299,8 +299,8 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
 
         {/* Question navigator */}
         <div className="lg:sticky lg:top-20 self-start">
-          <div className="rounded border border-slate-300 bg-white p-4">
-            <h2 className="text-2xs font-bold uppercase tracking-wider text-slate-400 font-mono mb-3">
+          <div className="rounded border border-neutral-200 bg-white p-4">
+            <h2 className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono mb-3">
               Question navigator
             </h2>
             <div className="grid grid-cols-6 gap-1.5">
@@ -308,10 +308,10 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
                 const answered = isAnswered(q.id)
                 const isFlagged = flagged.has(q.id)
                 const isCurrent = i === currentIndex
-                let cls = 'bg-slate-50 border-slate-200 text-slate-600'
-                if (isCurrent) cls = 'bg-blue-900 border-blue-900 text-white'
-                else if (isFlagged) cls = 'bg-amber-100 border-amber-300 text-amber-800'
-                else if (answered) cls = 'bg-slate-200 border-slate-300 text-slate-800'
+                let cls = 'bg-neutral-50 border-neutral-200 text-neutral-500'
+                if (isCurrent) cls = 'bg-primary border-primary text-white'
+                else if (isFlagged) cls = 'bg-accent-light border-accent text-accent'
+                else if (answered) cls = 'bg-primary-light border-primary/30 text-primary'
                 return (
                   <button
                     key={q.id}
@@ -321,24 +321,24 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
                   >
                     {i + 1}
                     {isFlagged && (
-                      <span className="absolute top-0.5 right-0.5 h-1.5 w-1.5 rounded-full bg-amber-500" />
+                      <span className="absolute top-0.5 right-0.5 h-1.5 w-1.5 rounded-full bg-accent" />
                     )}
                   </button>
                 )
               })}
             </div>
-            <div className="mt-4 space-y-1.5 border-t border-slate-200 pt-3 text-2xs font-mono text-slate-500">
+            <div className="mt-4 space-y-1.5 border-t border-neutral-200 pt-3 text-2xs font-mono text-neutral-500">
               <div className="flex justify-between">
                 <span>ANSWERED</span>
-                <span className="font-bold text-slate-700">{answeredCount}</span>
+                <span className="font-bold text-foreground">{answeredCount}</span>
               </div>
               <div className="flex justify-between">
                 <span>UNANSWERED</span>
-                <span className="font-bold text-slate-700">{unansweredCount}</span>
+                <span className="font-bold text-foreground">{unansweredCount}</span>
               </div>
               <div className="flex justify-between">
                 <span>FLAGGED</span>
-                <span className="font-bold text-amber-700">{flagged.size}</span>
+                <span className="font-bold text-accent">{flagged.size}</span>
               </div>
             </div>
           </div>
