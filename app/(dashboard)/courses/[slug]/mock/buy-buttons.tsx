@@ -32,7 +32,7 @@ export function BuyButtons({ courseSlug }: { courseSlug: string }) {
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="rounded-lg border border-neutral-200 bg-white p-6 flex flex-col">
           <h3 className="font-bold text-neutral-900">Single exam simulation</h3>
           <p className="mt-1 text-sm text-neutral-600 leading-relaxed flex-1">

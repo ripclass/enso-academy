@@ -82,7 +82,7 @@ export default async function MockResultsPage({ params }: Props) {
         {Object.keys(byDomain).length > 0 && (
           <div>
             <SectionHeader title="Performance by domain" />
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {Object.entries(byDomain).map(([domain, d]) => {
                 const strong = d.percent >= 80
                 const weak = d.percent < 65

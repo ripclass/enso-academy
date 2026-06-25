@@ -34,7 +34,7 @@ function SlideBody({ data, revealed }: { data: SlideSceneData; revealed: number 
   switch (data.template) {
     case 'key-points':
       return (
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {items.map((item, i) => (
             <div
               key={i}
@@ -84,7 +84,7 @@ function SlideBody({ data, revealed }: { data: SlideSceneData; revealed: number 
         col.items.push({ item, index })
       })
       return (
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {columns.map((col, i) => (
             <div key={i} className="rounded-lg border border-border p-4">
               <div className="mb-2 font-semibold text-primary">{col.label}</div>

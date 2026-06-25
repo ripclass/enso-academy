@@ -55,7 +55,7 @@ export function LecturerDock({
   return (
     <div className="flex items-center gap-3">
       <LecturerAvatar size={56} variant={variant} speaking={speaking} thinking={thinking} />
-      <div className="min-w-0">
+      <div className="hidden min-w-0 sm:block">
         <div className="truncate text-sm font-bold text-neutral-900">{name}</div>
         <div className="flex items-center gap-1.5">
           <span className="font-mono text-2xs font-semibold uppercase tracking-widest text-primary">

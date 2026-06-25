@@ -138,7 +138,7 @@ export function CourseSalesPage({
 
         {/* About the exam */}
         <section className="border-b border-foreground bg-[#F7F5F0]">
-          <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3 md:px-8">
+          <div className="mx-auto grid grid-cols-1 max-w-6xl gap-10 px-6 py-16 md:grid-cols-3 md:px-8">
             <div className="md:col-span-2">
               <h2 className="text-2xs font-bold uppercase tracking-[0.2em] text-foreground/60 font-sans">
                 About the {shortName} exam
@@ -167,7 +167,7 @@ export function CourseSalesPage({
             <h2 className="text-2xs font-bold uppercase tracking-[0.2em] text-foreground/60 font-sans">
               How the classroom works
             </h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
               {HOW_IT_WORKS.map(({ icon: Icon, title, body }) => (
                 <div key={title} className="rounded-2xl border border-foreground/15 bg-background p-6">
                   <Icon className="h-6 w-6 text-primary" />
@@ -189,7 +189,7 @@ export function CourseSalesPage({
               <p className="mt-3 max-w-2xl text-lg leading-relaxed text-foreground/75">
                 Two full lessons, on us. The real classroom, voice and all. {isAuthenticated ? 'Jump in.' : 'A quick sign-up unlocks them.'}
               </p>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+              <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {previewLessons.map((l) => (
                   <Link
                     key={l.id}
@@ -216,7 +216,7 @@ export function CourseSalesPage({
 
         {/* Pricing + what you get */}
         <section id="pricing" className="border-b border-foreground">
-          <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:px-8">
+          <div className="mx-auto grid grid-cols-1 max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:px-8">
             <div>
               <h2 className="text-2xs font-bold uppercase tracking-[0.2em] text-foreground/60 font-sans">
                 What you get

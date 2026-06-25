@@ -51,7 +51,7 @@ export default async function CoursesPage() {
         </div>
 
         {enrollments && enrollments.length > 0 && (
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {enrollments.map(enr => {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               const course = enr.course as any
@@ -97,7 +97,7 @@ export default async function CoursesPage() {
             <h2 className="text-2xs font-semibold uppercase tracking-wider text-neutral-500">
               {enrollments && enrollments.length > 0 ? 'More courses' : 'Available courses'}
             </h2>
-            <div className="mt-4 grid gap-6 md:grid-cols-2">
+            <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
               {availableCourses.map(course => (
                 <div
                   key={course.id}

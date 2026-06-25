@@ -19,11 +19,11 @@ export function CastStrip({
   activeName?: string | null
 }) {
   return (
-    <div className="flex items-center gap-2">
-      {members.slice(0, 6).map((m) => {
+    <div className="flex items-center gap-1.5 sm:gap-2">
+      {members.slice(0, 6).map((m, i) => {
         const active = activeName === m.name
         return (
-          <div key={m.name} className="group relative" title={m.name}>
+          <div key={m.name} className={`group relative ${i >= 4 ? 'hidden sm:block' : ''}`} title={m.name}>
             <div
               className={`overflow-hidden rounded-full border bg-white transition-all duration-300 ${
                 active

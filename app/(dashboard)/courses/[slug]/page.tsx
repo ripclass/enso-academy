@@ -159,13 +159,13 @@ export default async function CourseDetailPage({ params }: Props) {
               </p>
             </div>
 
-            <div className="grid gap-8 lg:grid-cols-12">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
               {/* Left: modules */}
               <div className="lg:col-span-8 space-y-6">
                 {/* Mock exams card */}
                 <div className="rounded-lg border-2 border-neutral-900 bg-white p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="min-w-0">
                       <div className="flex items-center gap-2.5">
                         <h2 className="text-lg font-bold text-neutral-900">Mock exams</h2>
                         {readinessBadge && <StatusBadge status={readinessBadge} />}
