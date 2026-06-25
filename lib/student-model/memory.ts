@@ -7,6 +7,7 @@
 import { createAdminClient } from '@/lib/supabase/admin'
 import { callSonnet, callHaiku } from '@/lib/ai/routing'
 import { logAiCall } from '@/lib/ai/cost-tracking'
+import { stripEmDashes } from '@/lib/ai/prose'
 
 const MEMORY_TYPES = ['goal', 'context', 'struggle', 'preference'] as const
 const RECENT_MEMORY_LIMIT = 10
@@ -24,14 +25,14 @@ Do NOT record:
 - trivial or one-off question topics
 - anything not durable across sessions
 
-If nothing relationship-meaningful was revealed, return an empty list — most sessions yield 0-1 facts. Quality over volume.
+If nothing relationship-meaningful was revealed, return an empty list. Most sessions yield 0-1 facts. Quality over volume.
 
 Respond with STRICT JSON only, no prose:
 {"facts": [{"type": "goal|context|struggle|preference", "content": "<one concise sentence>"}]}`
 
 const GREETING_SYSTEM = `You are the AI lecturer for Enso Academy, greeting a returning student at the start of a lesson.
 
-Given what you remember about this student and the lesson they are about to begin, write a warm, brief (1-2 sentence) greeting that references something specific you remember and invites them in. Sound like a tutor who genuinely remembers them — not saccharine, not a mechanical list of facts. Output only the greeting, nothing else.`
+Given what you remember about this student and the lesson they are about to begin, write a warm, brief (1-2 sentence) greeting that references something specific you remember and invites them in. Sound like a tutor who genuinely remembers them, not saccharine and not a mechanical list of facts. Write in plain prose and do not use em-dashes. Output only the greeting, nothing else.`
 
 type DistilledFact = { type: string; content: string }
 
@@ -145,7 +146,7 @@ export async function getMemoryPreamble(studentId: string, courseId: string): Pr
   try {
     const facts = await fetchRecentMemory(studentId, courseId)
     if (facts.length === 0) return ''
-    return `LECTURER MEMORY — what you remember about this student from past sessions:\n${facts
+    return `LECTURER MEMORY, what you remember about this student from past sessions:\n${facts
       .map((f) => `- ${f}`)
       .join('\n')}\nReference this naturally when relevant; never recite it as a list.`
   } catch (err) {
@@ -189,7 +190,7 @@ export async function getLecturerOpening(
       latencyMs,
     })
 
-    const greeting = result.text.trim()
+    const greeting = stripEmDashes(result.text.trim())
     return greeting.length > 0 ? greeting : null
   } catch (err) {
     console.error('getLecturerOpening failed:', err)

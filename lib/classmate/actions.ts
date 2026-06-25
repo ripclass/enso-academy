@@ -11,6 +11,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { callSonnet, callHaiku } from '@/lib/ai/routing'
 import { embed } from '@/lib/ai/embeddings'
 import { logAiCall } from '@/lib/ai/cost-tracking'
+import { stripEmDashes } from '@/lib/ai/prose'
 
 // Hard cap per session (server-authoritative). The player paces fires with a
 // cooldown + an ambient-question chance; this is the ceiling so a long lesson
@@ -152,10 +153,10 @@ export async function checkClassmateGap(opts: {
     const questionSystem = opts.wrapUp
       ? `You are ${classmate.name}, ${CLASSMATE_PERSONA}. A professional certification lesson has just finished and the lecturer has asked the class if anyone has any final questions.
 
-Raise your hand and ask ONE genuine closing question about the lesson — synthesising what was covered, connecting it to real practice, or clarifying something that is still fuzzy now that you have seen the whole picture. ${wrapUpFocus}
+Raise your hand and ask ONE genuine closing question about the lesson: synthesising what was covered, connecting it to real practice, or clarifying something that is still fuzzy now that you have seen the whole picture. ${wrapUpFocus}
 
 Rules:
-- First person, natural, conversational — a real student wrapping up, not a teacher.
+- First person, natural, conversational, like a real student wrapping up, not a teacher.
 - ONE question, one or two sentences. Do not preface it with "I have a question".
 - Range over the lesson as a whole, not just the last point. Never show off.
 - Do not ask anything already asked (listed below).
@@ -163,20 +164,20 @@ Rules:
       : concept
       ? `You are ${classmate.name}, ${CLASSMATE_PERSONA}. You are sitting in a professional certification lesson alongside another student.
 
-The lesson just covered the material below. The other student has shown weakness on the concept "${concept}" but has not asked about it. Raise your hand and ask ONE question — the question a slightly-unsure student genuinely would ask to get clarity on ${concept}.
+The lesson just covered the material below. The other student has shown weakness on the concept "${concept}" but has not asked about it. Raise your hand and ask ONE question, the question a slightly-unsure student genuinely would ask to get clarity on ${concept}.
 
 Rules:
-- First person, natural, conversational — a real student, not a teacher.
+- First person, natural, conversational, like a real student, not a teacher.
 - ONE question, one or two sentences. Do not preface it with "I have a question".
 - It is fine to sound a little unsure. Never show off.
 - Do not ask anything already asked (listed below).
 - Output only the question itself.`
       : `You are ${classmate.name}, ${CLASSMATE_PERSONA}. You are sitting in a professional certification lesson alongside another student.
 
-The lesson just covered the material below. Raise your hand and ask ONE genuine, on-topic question that a curious, engaged student would naturally ask here — to clarify a nuance, connect it to real practice, or probe a "what about…". Make it specific to this material, not generic.
+The lesson just covered the material below. Raise your hand and ask ONE genuine, on-topic question that a curious, engaged student would naturally ask here, to clarify a nuance, connect it to real practice, or probe a "what about…". Make it specific to this material, not generic.
 
 Rules:
-- First person, natural, conversational — a real student, not a teacher.
+- First person, natural, conversational, like a real student, not a teacher.
 - ONE question, one or two sentences. Do not preface it with "I have a question".
 - Stay on the lesson's topic. Never show off.
 - Do not ask anything already asked (listed below).
@@ -200,11 +201,11 @@ Rules:
       costCents: qResult.costCents,
       latencyMs: Date.now() - qStart,
     })
-    const question = qResult.text.trim()
+    const question = stripEmDashes(qResult.text.trim())
     if (!question) return { fired: false }
 
     // Generate the lecturer's answer to the classmate's question (Haiku, grounded).
-    const answerSystem = `You are the AI lecturer for Enso Academy. A student in the class just asked the question below. Answer it grounded in the lesson content. Be concise — 2-3 paragraphs at most.
+    const answerSystem = `You are the AI lecturer for Enso Academy. A student in the class just asked the question below. Answer it grounded in the lesson content. Be concise, 2-3 paragraphs at most. Write in plain prose and do not use em-dashes; use commas, colons, or periods.
 
 LESSON CONTENT:
 ${opts.lessonContext}`
@@ -229,7 +230,7 @@ ${opts.lessonContext}`
       costCents: aResult.costCents,
       latencyMs: Date.now() - aStart,
     })
-    const answer = aResult.text.trim()
+    const answer = stripEmDashes(aResult.text.trim())
 
     // Seed the Q&A cache, tagged classmate_asked (framework moat 4 — the
     // classmate-discovered blind-spot dataset).

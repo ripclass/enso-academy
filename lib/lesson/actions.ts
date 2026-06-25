@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server'
 import { callHaikuStreaming, callSonnet } from '@/lib/ai/routing'
 import { embed } from '@/lib/ai/embeddings'
 import { logAiCall } from '@/lib/ai/cost-tracking'
+import { stripEmDashes } from '@/lib/ai/prose'
 import { getMasterySummary, recordEvidence } from '@/lib/student-model/knowledge'
 import { getMemoryPreamble, summarizeSessionToMemory, getLecturerOpening } from '@/lib/student-model/memory'
 import { lecturerVariantFor } from '@/lib/lesson/scenes'
@@ -299,7 +300,7 @@ export async function gradeProjectSubmission(opts: {
 
 Reply in exactly this shape:
 BAND: <Strong | Developing | Needs work>
-then 2-4 short paragraphs of feedback — what they did well, what is missing or wrong, and the one or two things a strong answer must include. Grade only against the rubric and the brief. Do NOT rewrite their submission for them, and never invent facts that were not in the brief.`
+then 2-4 short paragraphs of feedback: what they did well, what is missing or wrong, and the one or two things a strong answer must include. Grade only against the rubric and the brief. Do NOT rewrite their submission for them, and never invent facts that were not in the brief.`
 
   const rubricBlock = opts.rubric.map((r) => `- ${r}`).join('\n')
   const userMsg = `PROJECT BRIEF:\n${opts.brief}\n\nTASK:\n${opts.task}\n${
@@ -328,7 +329,7 @@ then 2-4 short paragraphs of feedback — what they did well, what is missing or
     latencyMs: Date.now() - start,
   })
 
-  const text = result.text.trim()
+  const text = stripEmDashes(result.text.trim())
   const m = text.match(/^BAND:\s*(Strong|Developing|Needs work)/i)
   const band = m ? m[1] : 'Reviewed'
   const feedback = m ? text.replace(/^BAND:.*(\r?\n)?/i, '').trim() : text
@@ -413,10 +414,10 @@ export async function askLecturer(opts: {
   const mastery = await getMasterySummary(user.id, opts.courseId, opts.conceptTags ?? [])
   const memoryPreamble = await getMemoryPreamble(user.id, opts.courseId)
   const masteryBlock = mastery.preamble
-    ? `\n${mastery.preamble}\nUse this to shape your answer — explain weak concepts more thoroughly and don't over-explain strong ones. Never mention or recite the knowledge model to the student; it shapes the answer, it is not part of it.\n`
+    ? `\n${mastery.preamble}\nUse this to shape your answer: explain weak concepts more thoroughly and don't over-explain strong ones. Never mention or recite the knowledge model to the student; it shapes the answer, it is not part of it.\n`
     : ''
   const memoryBlock = memoryPreamble ? `\n${memoryPreamble}\n` : ''
-  const system = `You are the AI lecturer for Enso Academy. The student is studying the following lesson content. Answer their question grounded in this content. If the question is outside the lesson's scope, say so clearly and briefly. Be concise — 2-4 paragraphs at most.
+  const system = `You are the AI lecturer for Enso Academy. The student is studying the following lesson content. Answer their question grounded in this content. If the question is outside the lesson's scope, say so clearly and briefly. Be concise, 2-4 paragraphs at most. Write in plain prose and do not use em-dashes; use commas, colons, or periods.
 ${memoryBlock}${masteryBlock}
 LESSON CONTENT:
 ${opts.lessonContext}`
@@ -429,6 +430,7 @@ ${opts.lessonContext}`
     temperature: 0.7,
   })
   const latencyMs = Date.now() - startMs
+  const answer = stripEmDashes(result.text)
 
   // Cache the answer
   const { data: cached } = await admin
@@ -437,7 +439,7 @@ ${opts.lessonContext}`
       course_id: opts.courseId,
       lesson_id: opts.lessonId,
       question_text: opts.question,
-      answer_text: result.text,
+      answer_text: answer,
       origin: 'student_asked',
       answered_by_model: 'haiku',
       embedding: embedding.vector as any,
@@ -478,10 +480,10 @@ ${opts.lessonContext}`
   })
 
   return {
-    answer: result.text,
+    answer,
     fromCache: false,
     cachedQaId: cached?.id,
-    audioUrl: await synthesizeQaAudio(result.text, opts.sessionId, opts.listenMode, admin),
+    audioUrl: await synthesizeQaAudio(answer, opts.sessionId, opts.listenMode, admin),
   }
 }
 
