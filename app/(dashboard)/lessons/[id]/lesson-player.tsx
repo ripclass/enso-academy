@@ -320,20 +320,21 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     () => (currentScene ? splitSentences(sceneNarration(currentScene)) : []),
     [currentScene],
   )
-  // The line the lecturer is "saying" right now, for the speech bubble. In
-  // per-beat reading mode it's the active sentence of the CURRENT beat, timed
-  // off that beat's own short clip — so it tracks the voice and resets each
-  // beat (no scene-long drift). Otherwise it's the scene-narration sentence.
+  // The text the lecturer is "saying" right now, for the speech bubble. In
+  // per-beat mode it is the WHOLE current beat, the exact unit its clip narrates,
+  // so the bubble always matches the voice and never drifts (the component clamps
+  // it to a few lines). Estimating a sub-sentence position from playback progress
+  // is what made it jump ahead of the voice, so we no longer do that. Otherwise
+  // (legacy non-beat mode) it is the scene-narration sentence.
   const bubbleText = useMemo(() => {
     if (!speaking) return ''
     if (beatAudio(currentScene)) {
       const texts = beatNarrationTexts(currentScene)
-      const sents = splitSentences(texts[Math.min(activeBeat, texts.length - 1)] ?? '')
-      return sents[activeSentence(sents, narrationProgress)] ?? ''
+      return texts[Math.min(activeBeat, texts.length - 1)] ?? ''
     }
     return narrationSentences[spokenIdx] ?? ''
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [speaking, beatMode, currentScene, activeBeat, narrationProgress, narrationSentences, spokenIdx])
+  }, [speaking, beatMode, currentScene, activeBeat, narrationSentences, spokenIdx])
 
   // Auto-scroll the conversation when new messages arrive
   useEffect(() => {

@@ -399,11 +399,13 @@ export async function askLecturer(opts: {
       },
     })
 
+    // Strip em-dashes here too: answers cached before this shipped still carry them.
+    const hitAnswer = stripEmDashes(hit.answer_text)
     return {
-      answer: hit.answer_text,
+      answer: hitAnswer,
       fromCache: true,
       cachedQaId: hit.id,
-      audioUrl: await synthesizeQaAudio(hit.answer_text, opts.sessionId, opts.listenMode, admin),
+      audioUrl: await synthesizeQaAudio(hitAnswer, opts.sessionId, opts.listenMode, admin),
     }
   }
 
