@@ -3,6 +3,7 @@ import { Check, ArrowRight, PlayCircle, ShieldCheck, GraduationCap, Sparkles } f
 import { Logo } from '@/components/brand/logo'
 import { Footer } from '@/components/landing/footer'
 import { CoursePurchase } from '@/app/(dashboard)/courses/[slug]/course-purchase'
+import { BlueprintCoverage } from '@/components/courses/blueprint-coverage'
 
 export type SalesPreviewLesson = { id: string; name: string; module: string }
 
@@ -176,6 +177,13 @@ export function CourseSalesPage({
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Exam blueprint coverage */}
+        <section className="border-b border-foreground">
+          <div className="mx-auto max-w-6xl px-6 py-16 md:px-8">
+            <BlueprintCoverage />
           </div>
         </section>
 

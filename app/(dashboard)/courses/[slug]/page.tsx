@@ -6,6 +6,7 @@ import { ArrowLeft, FileText } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
 import { SectionHeader, StatusBadge, ConceptMasteryRow } from '@/components/in-app/ui-kit'
 import { CourseSalesPage, type SalesPreviewLesson } from '@/components/courses/course-sales-page'
+import { BlueprintCoverage } from '@/components/courses/blueprint-coverage'
 import { previewLessonIds } from '@/lib/courses/preview'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -279,6 +280,11 @@ export default async function CourseDetailPage({ params }: Props) {
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* Exam blueprint coverage — the "we cover the whole exam" map */}
+            <div className="mt-12 border-t border-neutral-200 pt-10">
+              <BlueprintCoverage eyebrow="Exam coverage" title="What this course covers, mapped to the exam" />
             </div>
           </main>
         </div>
