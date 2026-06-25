@@ -20,6 +20,7 @@ import {
   type GeneratedCase,
   type RealCaseMeta,
 } from '@/lib/cases/generate'
+import { recordCaseResult } from '@/lib/cases/actions'
 import { RedFlagSpot } from '@/components/lesson/scenes/interactives/red-flag-spot'
 import { ScreeningMatch } from '@/components/lesson/scenes/interactives/screening-match'
 
@@ -52,6 +53,7 @@ export function CaseDesk({
   const [choice, setChoice] = useState<string | null>(null)
   const [streak, setStreak] = useState(0)
   const [solved, setSolved] = useState(0)
+  const [synced, setSynced] = useState<'idle' | 'saving' | 'saved' | 'anon'>('idle')
 
   const deal = useCallback(
     (opts?: { caseId?: string; avoidDomain?: string }) => {
@@ -61,6 +63,7 @@ export function CaseDesk({
       setFlags(null)
       setScreen(null)
       setChoice(null)
+      setSynced('idle')
     },
     [unlocked],
   )
@@ -89,6 +92,7 @@ export function CaseDesk({
     decided && (c.decision.options.find((o) => o.id === choice)?.correct ?? false)
 
   function commitVerdict() {
+    if (!c) return
     const solvedNow = !!decisionCorrect
     const nextStreak = solvedNow ? streak + 1 : 0
     const nextSolved = solved + (solvedNow ? 1 : 0)
@@ -101,6 +105,19 @@ export function CaseDesk({
       /* ignore */
     }
     setPhase('verdict')
+
+    // Record into the knowledge model (no-op if not signed in). Fire and forget.
+    setSynced('saving')
+    recordCaseResult({
+      courseSlug,
+      domain: c.domain,
+      flagsCorrect: flags?.correct ?? 0,
+      flagsTotal: flags?.total ?? 0,
+      screeningCorrect: screen?.correct ?? 0,
+      decisionCorrect: !!decisionCorrect,
+    })
+      .then((r) => setSynced(r.recorded ? 'saved' : 'anon'))
+      .catch(() => setSynced('anon'))
   }
 
   const totalCorrect = (flags?.correct ?? 0) + (screen?.correct ?? 0) + (decisionCorrect ? 1 : 0)
@@ -359,7 +376,23 @@ export function CaseDesk({
                 Back to course
               </Link>
             </div>
-            <p className="mt-5 font-mono text-2xs uppercase tracking-wider text-neutral-400">
+            {synced === 'saved' && (
+              <p className="mt-5 inline-flex items-center gap-1.5 font-mono text-2xs uppercase tracking-wider text-primary">
+                <CheckCircle2 className="h-3 w-3" /> Counted toward your knowledge model
+              </p>
+            )}
+            {synced === 'anon' && (
+              <p className="mt-5 font-mono text-2xs uppercase tracking-wider text-neutral-400">
+                <Link
+                  href={`/login?next=/courses/${courseSlug}/cases`}
+                  className="text-primary transition-colors hover:text-primary-hover"
+                >
+                  Sign in
+                </Link>{' '}
+                to count this toward your knowledge model
+              </p>
+            )}
+            <p className="mt-3 font-mono text-2xs uppercase tracking-wider text-neutral-400">
               {streak > 0 && <span className="text-primary">{streak} in a row</span>}
               {streak > 0 && ' · '}
               {solved} cases solved
