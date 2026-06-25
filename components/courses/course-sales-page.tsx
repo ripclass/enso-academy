@@ -183,7 +183,7 @@ export function CourseSalesPage({
         {/* Exam blueprint coverage */}
         <section className="border-b border-foreground">
           <div className="mx-auto max-w-6xl px-6 py-16 md:px-8">
-            <BlueprintCoverage />
+            <BlueprintCoverage guideHref={`/courses/${slug}/guide`} />
           </div>
         </section>
 

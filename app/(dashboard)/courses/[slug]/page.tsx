@@ -284,7 +284,7 @@ export default async function CourseDetailPage({ params }: Props) {
 
             {/* Exam blueprint coverage — the "we cover the whole exam" map */}
             <div className="mt-12 border-t border-neutral-200 pt-10">
-              <BlueprintCoverage eyebrow="Exam coverage" title="What this course covers, mapped to the exam" />
+              <BlueprintCoverage eyebrow="Exam coverage" title="What this course covers, mapped to the exam" guideHref={`/courses/${course.slug}/guide`} />
             </div>
           </main>
         </div>

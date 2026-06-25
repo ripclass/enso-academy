@@ -1,4 +1,5 @@
-import { Check } from 'lucide-react'
+import Link from 'next/link'
+import { Check, BookOpen } from 'lucide-react'
 import { CAMS_BLUEPRINT, BLUEPRINT_TOTALS, BLUEPRINT_NOTE } from '@/lib/courses/blueprint'
 
 /**
@@ -10,9 +11,12 @@ import { CAMS_BLUEPRINT, BLUEPRINT_TOTALS, BLUEPRINT_NOTE } from '@/lib/courses/
 export function BlueprintCoverage({
   eyebrow = 'Exam coverage',
   title = 'Mapped to the full CAMS exam blueprint',
+  guideHref,
 }: {
   eyebrow?: string
   title?: string
+  /** When set, shows a "read the full study guide" link below the heading. */
+  guideHref?: string
 }) {
   return (
     <div>
@@ -35,6 +39,15 @@ export function BlueprintCoverage({
         <span aria-hidden>·</span>
         <span className="font-bold text-primary">100% coverage</span>
       </div>
+
+      {guideHref && (
+        <Link
+          href={guideHref}
+          className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary-hover"
+        >
+          <BookOpen className="h-4 w-4" /> Read the free study guide
+        </Link>
+      )}
 
       <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
         {CAMS_BLUEPRINT.map((d) => (
