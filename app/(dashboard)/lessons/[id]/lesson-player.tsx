@@ -320,17 +320,18 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     () => (currentScene ? splitSentences(sceneNarration(currentScene)) : []),
     [currentScene],
   )
-  // The text the lecturer is "saying" right now, for the speech bubble. In
-  // per-beat mode it is the WHOLE current beat, the exact unit its clip narrates,
-  // so the bubble always matches the voice and never drifts (the component clamps
-  // it to a few lines). Estimating a sub-sentence position from playback progress
-  // is what made it jump ahead of the voice, so we no longer do that. Otherwise
-  // (legacy non-beat mode) it is the scene-narration sentence.
+  // The lecturer's speech bubble. In per-beat mode it shows the FIRST line of the
+  // current beat: a short, stable caption that updates once per beat, so it never
+  // jumps ahead of the voice mid-beat and never truncates. The full beat text is
+  // on the stage. Estimating a sub-sentence position from playback progress is
+  // what made it jump ahead, so we no longer do that. Non-beat mode keeps the
+  // scene-narration sentence.
   const bubbleText = useMemo(() => {
     if (!speaking) return ''
     if (beatAudio(currentScene)) {
       const texts = beatNarrationTexts(currentScene)
-      return texts[Math.min(activeBeat, texts.length - 1)] ?? ''
+      const beat = texts[Math.min(activeBeat, texts.length - 1)] ?? ''
+      return splitSentences(beat)[0] ?? beat
     }
     return narrationSentences[spokenIdx] ?? ''
     // eslint-disable-next-line react-hooks/exhaustive-deps
