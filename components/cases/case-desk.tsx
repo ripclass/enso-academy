@@ -11,8 +11,15 @@ import {
   Gavel,
   CheckCircle2,
   XCircle,
+  Lock,
+  Shuffle,
 } from 'lucide-react'
-import { generateCase, type GeneratedCase } from '@/lib/cases/generate'
+import {
+  generateCase,
+  buildCaseById,
+  type GeneratedCase,
+  type RealCaseMeta,
+} from '@/lib/cases/generate'
 import { RedFlagSpot } from '@/components/lesson/scenes/interactives/red-flag-spot'
 import { ScreeningMatch } from '@/components/lesson/scenes/interactives/screening-match'
 
@@ -26,7 +33,18 @@ const STEPS: { phase: Phase; label: string; icon: typeof Briefcase }[] = [
   { phase: 'decide', label: 'The call', icon: Gavel },
 ]
 
-export function CaseDesk({ courseSlug }: { courseSlug: string }) {
+export function CaseDesk({
+  courseSlug,
+  unlocked = false,
+  realCases = [],
+  initialCaseId,
+}: {
+  courseSlug: string
+  /** Enrolled owners unlock the real-case packs; free users get synthetic only. */
+  unlocked?: boolean
+  realCases?: RealCaseMeta[]
+  initialCaseId?: string
+}) {
   const [c, setC] = useState<GeneratedCase | null>(null)
   const [phase, setPhase] = useState<Phase>('brief')
   const [flags, setFlags] = useState<Score | null>(null)
@@ -35,24 +53,28 @@ export function CaseDesk({ courseSlug }: { courseSlug: string }) {
   const [streak, setStreak] = useState(0)
   const [solved, setSolved] = useState(0)
 
-  const deal = useCallback((avoid?: string) => {
-    setC(generateCase(avoid))
-    setPhase('brief')
-    setFlags(null)
-    setScreen(null)
-    setChoice(null)
-  }, [])
+  const deal = useCallback(
+    (opts?: { caseId?: string; avoidDomain?: string }) => {
+      const built = opts?.caseId ? buildCaseById(opts.caseId) : null
+      setC(built ?? generateCase({ avoidDomain: opts?.avoidDomain, includeReal: unlocked }))
+      setPhase('brief')
+      setFlags(null)
+      setScreen(null)
+      setChoice(null)
+    },
+    [unlocked],
+  )
 
   // First deal + restore streak (client only, avoids hydration mismatch).
   useEffect(() => {
-    deal()
+    deal(initialCaseId && unlocked ? { caseId: initialCaseId } : undefined)
     try {
       setStreak(Number(localStorage.getItem('casemode_streak') || 0))
       setSolved(Number(localStorage.getItem('casemode_solved') || 0))
     } catch {
       /* ignore */
     }
-  }, [deal])
+  }, [deal, initialCaseId, unlocked])
 
   if (!c) {
     return (
@@ -88,9 +110,60 @@ export function CaseDesk({ courseSlug }: { courseSlug: string }) {
 
   return (
     <div>
+      {/* Case library */}
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="font-mono text-2xs uppercase tracking-wider text-neutral-400">Cases</span>
+        <button
+          type="button"
+          onClick={() => deal({ avoidDomain: c.domain })}
+          className="inline-flex h-8 items-center gap-1.5 rounded-full border border-primary/30 bg-primary-light px-3 font-mono text-2xs font-semibold uppercase tracking-wider text-primary transition-colors hover:border-primary"
+        >
+          <Shuffle className="h-3 w-3" /> Surprise me
+        </button>
+        {realCases.map((rc) =>
+          unlocked ? (
+            <button
+              key={rc.id}
+              type="button"
+              onClick={() => deal({ caseId: rc.id })}
+              className="inline-flex h-8 items-center gap-1.5 rounded-full border border-neutral-200 px-3 font-mono text-2xs font-semibold uppercase tracking-wider text-neutral-600 transition-colors hover:border-primary hover:text-primary"
+            >
+              {rc.title}
+            </button>
+          ) : (
+            <span
+              key={rc.id}
+              className="inline-flex h-8 cursor-default items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-3 font-mono text-2xs font-semibold uppercase tracking-wider text-neutral-400"
+              title="In the course"
+            >
+              <Lock className="h-3 w-3" /> {rc.title}
+            </span>
+          ),
+        )}
+      </div>
+
+      {!unlocked && realCases.length > 0 && (
+        <div className="mt-3 flex flex-col items-start gap-2 rounded-lg border border-neutral-200 bg-muted p-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+          <span className="text-neutral-600">
+            These are the warm-up cases. The real-case packs ({realCases.map((r) => r.title).join(', ')}) are in the course.
+          </span>
+          <Link
+            href={`/courses/${courseSlug}`}
+            className="shrink-0 font-semibold text-primary transition-colors hover:text-primary-hover"
+          >
+            Unlock them
+          </Link>
+        </div>
+      )}
+
       {/* Desk header */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
+          {c.real && (
+            <span className="inline-flex items-center rounded-full bg-primary px-2.5 py-0.5 font-mono text-2xs font-bold uppercase tracking-wider text-white">
+              Real case
+            </span>
+          )}
           <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-light px-2.5 py-0.5 font-mono text-2xs font-bold uppercase tracking-wider text-accent">
             {c.domain}
           </span>
@@ -102,7 +175,7 @@ export function CaseDesk({ courseSlug }: { courseSlug: string }) {
         </div>
         <button
           type="button"
-          onClick={() => deal(c.domain)}
+          onClick={() => deal({ avoidDomain: c.domain })}
           className="inline-flex h-8 items-center gap-1.5 rounded-md border border-neutral-200 px-3 font-mono text-2xs font-semibold uppercase tracking-wider text-neutral-500 transition-colors hover:text-primary"
         >
           <RotateCcw className="h-3 w-3" /> New case
@@ -274,7 +347,7 @@ export function CaseDesk({ courseSlug }: { courseSlug: string }) {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <button
                 type="button"
-                onClick={() => deal(c.domain)}
+                onClick={() => deal({ avoidDomain: c.domain })}
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-6 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
               >
                 Next case <ArrowRight className="h-4 w-4" />

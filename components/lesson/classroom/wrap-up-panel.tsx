@@ -1,6 +1,7 @@
 'use client'
 
-import { MessageSquare, Check, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
+import { MessageSquare, Check, ArrowRight, Swords } from 'lucide-react'
 import { LecturerAvatar, type LecturerVariant } from './lecturer-presence'
 
 const CLOSING_QUESTIONS = [
@@ -25,6 +26,7 @@ export function WrapUpPanel({
   onAsk,
   onComplete,
   completing,
+  caseHref,
 }: {
   lecturerVariant: LecturerVariant
   prompt: string
@@ -35,6 +37,8 @@ export function WrapUpPanel({
   onAsk: (question?: string) => void
   onComplete: () => void
   completing: boolean
+  /** Deep-case lessons: a link to work this same case in Case Mode. */
+  caseHref?: string
 }) {
   const isUserTurn = stage === 'user-turn'
   const completeLabel = completing
@@ -87,6 +91,16 @@ export function WrapUpPanel({
         <p className="mt-3 font-mono text-2xs text-accent">
           Your turn. Type or use the mic, and I’ll move on if you’re all set.
         </p>
+      )}
+
+      {/* Deep-case lessons: go work the same case you just studied. */}
+      {caseHref && (
+        <Link
+          href={caseHref}
+          className="mt-8 inline-flex h-11 items-center gap-2 rounded-lg border-2 border-primary bg-primary-light px-6 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+        >
+          <Swords className="h-4 w-4" /> Now work this case in Case Mode
+        </Link>
       )}
 
       {/* Terminal action */}

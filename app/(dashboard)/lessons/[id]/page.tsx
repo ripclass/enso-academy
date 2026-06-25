@@ -6,6 +6,7 @@ import { startLessonSession, getLessonContent, getResumeSceneIndex } from '@/lib
 import { getAvatarChoice } from '@/lib/settings'
 import { isPreviewLessonId } from '@/lib/courses/preview'
 import { parseScene, type ContentRow } from '@/lib/lesson/scenes'
+import { LESSON_CASE_MAP } from '@/lib/cases/generate'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -101,6 +102,11 @@ export default async function LessonPage({ params }: Props) {
       userAvatar={userAvatar}
       userName={userName}
       nextLessonId={nextLessonId}
+      caseHref={
+        LESSON_CASE_MAP[(lesson as { slug: string }).slug]
+          ? `/courses/${courseSlug}/cases?case=${LESSON_CASE_MAP[(lesson as { slug: string }).slug]}`
+          : undefined
+      }
     />
   )
 }

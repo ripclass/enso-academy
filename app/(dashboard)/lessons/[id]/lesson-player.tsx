@@ -55,6 +55,8 @@ type Props = {
   userName?: string | null
   /** The next lesson in course order — "Complete lesson" advances into it. */
   nextLessonId?: string | null
+  /** Deep-case lessons: link to work this case in Case Mode (shown in wrap-up). */
+  caseHref?: string
 }
 
 
@@ -131,7 +133,7 @@ const CAST: CastMember[] = [
   { name: 'Omar' },
 ]
 
-export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, initialSceneIndex = 0, userAvatar = 'female', userName, nextLessonId }: Props) {
+export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, initialSceneIndex = 0, userAvatar = 'female', userName, nextLessonId, caseHref }: Props) {
   const router = useRouter()
   const lecturerVariant = lecturerVariantFor(lesson.id)
   const userAvatarSrc = `/avatars/user-${userAvatar}.webp`
@@ -1012,6 +1014,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                       onAsk={(q) => (q ? askSuggested(q) : openChat())}
                       onComplete={handleComplete}
                       completing={completing}
+                      caseHref={caseHref}
                     />
                   ) : currentScene ? (
                     beatMode &&

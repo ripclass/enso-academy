@@ -17,6 +17,8 @@ export type DecisionOption = { id: string; text: string; correct: boolean; why: 
 export type GeneratedCase = {
   id: string
   domain: string
+  /** True for the real-case packs (1MDB, Danske, ...), gated to the course. */
+  real?: boolean
   title: string
   subjectName: string
   subjectLine: string
@@ -298,7 +300,7 @@ const cashIntensive: Template = () => {
   }
 }
 
-const TEMPLATES: readonly Template[] = [
+const SYNTHETIC: readonly Template[] = [
   tradeFinance,
   correspondent,
   privateBanking,
@@ -306,22 +308,138 @@ const TEMPLATES: readonly Template[] = [
   cashIntensive,
 ]
 
-/** Generate one fresh, randomized case. Avoids repeating the `avoidDomain`. */
-export function generateCase(avoidDomain?: string): GeneratedCase {
-  let t = pick(TEMPLATES)
-  let c = t()
+// ---- real-case packs (gated to enrolled students) --------------------------
+// Grounded in the public record and framed at the judgment level (no contested
+// specifics, generic invented counterparties for the screening step). The title
+// names the matter; the steps are what a practitioner would actually do. These
+// mirror the deep cases taught in the course.
+
+function caseOneMDB(): GeneratedCase {
+  return {
+    id: uid('case'),
+    domain: 'PEP / complex structures',
+    real: true,
+    title: 'Deep case: 1MDB and the fund that was looted',
+    subjectName: 'A sovereign development fund',
+    subjectLine: 'State investment fund, banking your private-banking desk',
+    brief: 'A government-owned development fund holds accounts with your private bank. A young, well-connected businessman with no official role keeps appearing between the fund and large outbound transfers, and money is moving to entities whose names echo, but are not, legitimate counterparties. This is the 1MDB pattern. Work it.',
+    redFlagScenario: 'What the review of the fund’s outbound flows turned up. Select the genuine red flags.',
+    redFlags: shuffle<RedFlagItem>([
+      { id: 'mdb1', label: 'Large sums move out of a sovereign development fund into private accounts with no investment rationale.', flag: true, why: 'Diversion of public money into private hands with no legitimate purpose is the heart of grand corruption.' },
+      { id: 'mdb2', label: 'A politically connected intermediary with no official role is directing the fund’s transactions.', flag: true, why: 'An unofficial intermediary steering sovereign money is a classic kleptocracy indicator and a reason for enhanced due diligence.' },
+      { id: 'mdb3', label: 'Payments are routed to a shell company whose name closely mimics a legitimate state-linked entity.', flag: true, why: 'A near-identical name designed to be mistaken for a real counterparty is deliberate concealment, a strong red flag.' },
+      { id: 'mdb4', label: 'The intermediary’s personal spending on property and luxury assets dwarfs any known income.', flag: true, why: 'Lifestyle wildly inconsistent with known income points to the proceeds of corruption.' },
+      { id: 'mdb5', label: 'The fund is government-owned and backed by sovereign guarantees.', flag: false, why: 'State ownership is context, not a red flag in itself. The diversion of the money is the problem.' },
+      { id: 'mdb6', label: 'The underlying bond deals were arranged by a major global investment bank.', flag: false, why: 'The identity of the arranger is not, by itself, a red flag. The unexplained flows and mimicking shell are.' },
+    ]),
+    alert: trueMatchAlert('Tarek Mansour'),
+    decision: {
+      prompt: 'Money is leaving a sovereign fund through a connected intermediary into mimicking shell companies, and a counterparty screen returned a true match. What is the right call?',
+      options: shuffle<DecisionOption>([
+        { id: 'd1', text: 'Stop the matched payment, file a report, and escalate. This is grand corruption, and the relationship requires senior review and likely exit.', correct: true, why: 'A true sanctions match must be stopped, and the diversion through mimicking shells meets the suspicion threshold. You report and escalate; you do not need to prove the theft.' },
+        { id: 'd2', text: 'Process the payments; the fund is government-backed and the deals were arranged by a major bank.', correct: false, why: 'Neither government ownership nor a reputable arranger explains money leaving the fund into mimicking shells. Processing would be a serious failure.' },
+        { id: 'd3', text: 'Ask the intermediary to clarify his role and keep the relationship running.', correct: false, why: 'Gathering more information is fine, but continuing to process while holding a formed suspicion is a reporting failure.' },
+      ]),
+    },
+  }
+}
+
+function caseDanske(): GeneratedCase {
+  return {
+    id: uid('case'),
+    domain: 'Correspondent banking',
+    real: true,
+    title: 'Deep case: Danske Estonia and the non-resident portfolio',
+    subjectName: 'A foreign branch’s non-resident portfolio',
+    subjectLine: 'Non-resident customers clearing through your correspondent account',
+    brief: 'A small foreign branch of a reputable banking group clears an enormous volume of US dollars through your correspondent account. Its customers are overwhelmingly non-resident shell companies with no connection to the branch’s own country, and the branch runs its own systems with little oversight from the group. This is the Danske Estonia pattern. Work it.',
+    redFlagScenario: 'What the correspondent review of the branch found. Select the genuine red flags.',
+    redFlags: shuffle<RedFlagItem>([
+      { id: 'dk1', label: 'A small branch clears volumes wildly out of proportion to its size, vast sums over several years.', flag: true, why: 'Clearing volume that cannot be explained by the size of the customer or branch is the core correspondent-banking red flag.' },
+      { id: 'dk2', label: 'The customers are mostly non-resident shell companies with no business nexus to the branch’s country.', flag: true, why: 'A portfolio of non-resident shells with no local connection is exactly the exposure correspondent due diligence exists to catch.' },
+      { id: 'dk3', label: 'The branch runs a separate IT and AML platform with limited oversight from the group.', flag: true, why: 'A control environment cut off from group oversight is a structural weakness that lets risk run unchecked.' },
+      { id: 'dk4', label: 'Concerns about the activity were raised internally and by counterparties and were not acted on.', flag: true, why: 'Warnings that are received and ignored turn a control gap into a governance failure.' },
+      { id: 'dk5', label: 'The branch belongs to a large, reputable banking group.', flag: false, why: 'Group reputation is mitigating context, not an indicator of risk by itself.' },
+      { id: 'dk6', label: 'Some customers provided standard account-opening documentation.', flag: false, why: 'Holding documents is not the same as understanding the customer. The documents do not clear the volume pattern.' },
+    ]),
+    alert: trueMatchAlert('Viktor Sorokin'),
+    decision: {
+      prompt: 'You found non-resident volumes far beyond the branch’s scale through a weakly-controlled platform, and a payment screen returned a true match. What is the right call?',
+      options: shuffle<DecisionOption>([
+        { id: 'd1', text: 'Freeze the matched payment, restrict the correspondent relationship pending review, and report.', correct: true, why: 'A true sanctions match must be stopped. The non-resident volumes through a weakly-controlled branch justify restricting and reviewing the whole relationship.' },
+        { id: 'd2', text: 'Keep clearing; the branch is part of a reputable group and provides documents.', correct: false, why: 'Group reputation and paperwork do not explain the volumes. Continuing to clear would be the exact failure this case is known for.' },
+        { id: 'd3', text: 'Send the branch a questionnaire and take no other action for now.', correct: false, why: 'A questionnaire is fine, but doing nothing else while a sanctions match and a clear pattern sit in front of you is a breach and a reporting failure.' },
+      ]),
+    },
+  }
+}
+
+function caseWestpac(): GeneratedCase {
+  return {
+    id: uid('case'),
+    domain: 'Transaction monitoring',
+    real: true,
+    title: 'Deep case: Westpac and the channel without the right scenario',
+    subjectName: 'A low-value international payments channel',
+    subjectLine: 'High-volume small cross-border payments product',
+    brief: 'A low-value international payments product moves large numbers of small cross-border payments. Some of the activity matches a known, serious exploitation typology, frequent small transfers to higher-risk corridors, but the monitoring scenario for that typology was never deployed on this channel, and many of the required international-transfer reports were not filed on time. This is the Westpac pattern. Work it.',
+    redFlagScenario: 'What the review of the payments channel found. Select the genuine red flags.',
+    redFlags: shuffle<RedFlagItem>([
+      { id: 'wp1', label: 'Frequent small payments to higher-risk corridors match a known serious-harm typology.', flag: true, why: 'A pattern that fits a recognised typology is a red flag regardless of the size of each payment.' },
+      { id: 'wp2', label: 'No appropriate monitoring scenario for that typology is deployed on this channel.', flag: true, why: 'A known typology with no scenario to detect it on the channel where the risk runs is the central control failure here.' },
+      { id: 'wp3', label: 'A large number of international-transfer reports were not filed within the required time.', flag: true, why: 'Late or missing regulatory reports are a reportable failure in their own right.' },
+      { id: 'wp4', label: 'Product risk was not reassessed when the channel was launched.', flag: true, why: 'Launching a channel without assessing its specific risk is how a coverage gap opens in the first place.' },
+      { id: 'wp5', label: 'The payments are individually small in value.', flag: false, why: 'Small value is the nature of the typology, not a defence. The pattern, not the size, is what matters.' },
+      { id: 'wp6', label: 'The product is a registered, lawful payments service.', flag: false, why: 'Being a lawful product says nothing about whether the channel is monitored for the risk it carries.' },
+    ]),
+    alert: falsePositiveAlert('Daniel Hughes'),
+    decision: {
+      prompt: 'The channel matches a known typology with no scenario deployed, reports are outstanding, and the sanctions screen was a false positive. What is the right call?',
+      options: shuffle<DecisionOption>([
+        { id: 'd1', text: 'Deploy the missing scenario, file the outstanding reports, and escalate the control gap.', correct: true, why: 'The failure is the missing monitoring on a known typology and the late reports. You fix the coverage, report, and escalate. The size of the payments is not the point.' },
+        { id: 'd2', text: 'Do nothing; the payments are too small to be a concern.', correct: false, why: 'Small value is exactly the typology. Treating it as harmless is the mistake at the centre of this case.' },
+        { id: 'd3', text: 'Quietly shut the product down without filing the outstanding reports.', correct: false, why: 'Closing the channel does not discharge the obligation to file the reports already due, and abandons the suspicion.' },
+      ]),
+    },
+  }
+}
+
+export type RealCaseMeta = { id: string; title: string; tag: string }
+
+const REAL_CASES: { meta: RealCaseMeta; build: () => GeneratedCase }[] = [
+  { meta: { id: '1mdb', title: '1MDB', tag: 'Grand corruption' }, build: caseOneMDB },
+  { meta: { id: 'danske', title: 'Danske Estonia', tag: 'Correspondent banking' }, build: caseDanske },
+  { meta: { id: 'westpac', title: 'Westpac / LitePay', tag: 'Monitoring failure' }, build: caseWestpac },
+]
+
+export const REAL_CASE_META: RealCaseMeta[] = REAL_CASES.map((r) => r.meta)
+
+/** Deep-case lesson slug -> real-case id, for the "work this case" lesson CTA. */
+export const LESSON_CASE_MAP: Record<string, string> = {
+  'case-study-1mdb-and-the-private-banking-failure-mode': '1mdb',
+  'case-study-the-danske-bank-estonia-affair': 'danske',
+  'case-study-westpac-and-the-litepay-channel': 'westpac',
+}
+
+/** Build a specific real case by id (for the picker and lesson deep-links). */
+export function buildCaseById(id: string): GeneratedCase | null {
+  const r = REAL_CASES.find((x) => x.meta.id === id)
+  return r ? r.build() : null
+}
+
+/**
+ * Generate a random case. `includeReal` mixes the real-case packs into the pool
+ * (enrolled students); without it, only the synthetic taster cases are dealt.
+ */
+export function generateCase(opts?: { avoidDomain?: string; includeReal?: boolean }): GeneratedCase {
+  const pool: Array<() => GeneratedCase> = [
+    ...SYNTHETIC,
+    ...(opts?.includeReal ? REAL_CASES.map((r) => r.build) : []),
+  ]
+  let c = pick(pool)()
   let guard = 0
-  while (avoidDomain && c.domain === avoidDomain && guard++ < 6) {
-    t = pick(TEMPLATES)
-    c = t()
+  while (opts?.avoidDomain && c.domain === opts.avoidDomain && guard++ < 6) {
+    c = pick(pool)()
   }
   return c
 }
-
-export const CASE_DOMAINS = [
-  'Trade finance',
-  'Correspondent banking',
-  'PEP / private banking',
-  'MSB / virtual assets',
-  'Cash-intensive business',
-]
