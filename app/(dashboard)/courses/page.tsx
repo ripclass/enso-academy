@@ -40,7 +40,7 @@ export default async function CoursesPage() {
   const availableCourses = (publishedCourses ?? []).filter(c => !enrolledCourseIds.has(c.id))
 
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50">
+    <div className="min-h-screen flex flex-col bg-background">
       <AppHeader />
 
       <main className="flex-1 mx-auto max-w-6xl px-6 py-12 w-full">

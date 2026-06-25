@@ -41,7 +41,7 @@ export default async function MockResultsPage({ params }: Props) {
     (attempt.by_domain_scores as any) ?? {}
 
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50">
+    <div className="min-h-screen flex flex-col bg-background">
       <AppHeader context="Mock result" />
 
       <main className="flex-1 mx-auto max-w-3xl px-6 py-12 w-full space-y-10">

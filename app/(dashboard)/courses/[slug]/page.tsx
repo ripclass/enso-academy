@@ -59,7 +59,7 @@ export default async function CourseDetailPage({ params }: Props) {
   // graceful "launching soon" view rather than a 404.
   if (course.status !== 'published') {
     return (
-      <div className="min-h-screen flex flex-col bg-neutral-50">
+      <div className="min-h-screen flex flex-col bg-background">
         <AppHeader context={course.short_name} />
         <main className="flex-1 mx-auto max-w-2xl px-6 py-24 w-full text-center">
           <span className="text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
@@ -137,7 +137,7 @@ export default async function CourseDetailPage({ params }: Props) {
             : null
 
       return (
-        <div className="min-h-screen flex flex-col bg-neutral-50">
+        <div className="min-h-screen flex flex-col bg-background">
           <AppHeader context={course.short_name} />
 
           <main className="flex-1 mx-auto max-w-5xl px-6 py-12 w-full">
@@ -192,7 +192,7 @@ export default async function CourseDetailPage({ params }: Props) {
                   const lessons = ((mod.lessons as any[]) ?? []).sort((a, b) => a.sort_order - b.sort_order)
                   return (
                     <div key={mod.id} className="rounded-lg border border-neutral-200 bg-white overflow-hidden">
-                      <div className="bg-neutral-50 border-b border-neutral-200 px-6 py-4">
+                      <div className="bg-muted border-b border-neutral-200 px-6 py-4">
                         <span className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono">
                           Module {modIndex + 1}
                         </span>

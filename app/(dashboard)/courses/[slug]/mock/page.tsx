@@ -64,7 +64,7 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
   const practiceMocks = all.filter((t) => isPracticeTemplate(t))
 
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50">
+    <div className="min-h-screen flex flex-col bg-background">
       <AppHeader context={course.short_name} />
 
       <main className="flex-1 mx-auto max-w-4xl px-6 py-12 w-full">

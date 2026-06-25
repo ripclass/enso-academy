@@ -117,7 +117,7 @@ export default async function DashboardPage() {
   const avatarChoice = await getAvatarChoice()
 
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50">
+    <div className="min-h-screen flex flex-col bg-background">
       <AppHeader email={user.email} />
 
       <main className="flex-1 mx-auto max-w-5xl px-6 py-12 w-full space-y-8">
@@ -172,7 +172,7 @@ export default async function DashboardPage() {
                   </div>
 
                   {/* Up next → Resume */}
-                  <div className="mt-6 flex flex-col gap-4 rounded-lg border border-neutral-200 bg-neutral-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="mt-6 flex flex-col gap-4 rounded-lg border border-neutral-200 bg-muted p-4 sm:flex-row sm:items-center sm:justify-between">
                     {next ? (
                       <div className="min-w-0">
                         <p className="text-2xs font-mono uppercase tracking-wider text-neutral-400">Up next</p>
