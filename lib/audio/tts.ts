@@ -84,6 +84,7 @@ export function textToSpeechReady(raw: string): string {
     .replace(/¶¶/g, ' paragraphs ')
     .replace(/¶/g, ' paragraph ')
     .replace(/&/g, ' and ')
+    .replace(/\s*(?:→|⟶|➔|➜|►|->)\s*/g, ', ') // arrows read aloud badly; a comma gives a natural pause
     .replace(/\[(.*?)\]\(.*?\)/g, '$1') // markdown links → their text
     .replace(/[*_`#>]/g, '') // markdown punctuation
     .replace(/\n+/g, '. ') // newlines → sentence breaks
