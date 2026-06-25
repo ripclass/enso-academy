@@ -878,7 +878,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   }
 
   return (
-    <div className="fixed inset-0 flex flex-col overflow-hidden bg-background">
+    <div className="fixed inset-0 h-[100dvh] flex flex-col overflow-hidden bg-background">
       {/* Hidden audio element — drives both narration and Q&A playback. */}
       <audio
         ref={audioRef}
