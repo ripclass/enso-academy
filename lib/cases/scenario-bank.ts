@@ -61,7 +61,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
           id: 'a',
           label: 'It serves downstream banks it will not name, whose payments would clear through your account.',
           flag: true,
-          why: 'Unnamed nested banks mean you cannot know your customer’s customers — a core correspondent red flag.',
+          why: 'Unnamed nested banks mean you cannot know your customer’s customers, a core correspondent red flag.',
         },
         {
           id: 'b',
@@ -79,7 +79,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
           id: 'd',
           label: 'It is licensed and prudentially regulated in its home country.',
           flag: false,
-          why: 'Home-country regulation is expected and reassuring — it is not, by itself, a red flag.',
+          why: 'Home-country regulation is expected and reassuring. It is not, by itself, a red flag.',
         },
         {
           id: 'e',
@@ -108,7 +108,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
         },
         {
           id: 'b',
-          text: 'Accept it — the respondent is a regulated bank, so its customers are its responsibility, not yours.',
+          text: 'Accept it: the respondent is a regulated bank, so its customers are its responsibility, not yours.',
           correct: false,
           why: 'A correspondent cannot outsource away its own monitoring duty; the payments still clear through you.',
         },
@@ -122,7 +122,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
           id: 'd',
           text: 'Raise the monitoring threshold so fewer alerts fire on the corridor.',
           correct: false,
-          why: 'Suppressing the alerts hides the risk rather than resolving it — the opposite of the required response.',
+          why: 'Suppressing the alerts hides the risk rather than resolving it, the opposite of the required response.',
         },
       ],
     },
@@ -220,7 +220,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
         },
         {
           id: 'c',
-          text: 'Leave it on its own platform indefinitely — it is profitable and locally regulated.',
+          text: 'Leave it on its own platform indefinitely. It is profitable and locally regulated.',
           correct: false,
           why: 'Profitability and local regulation do not substitute for group-wide AML oversight.',
         },
@@ -295,7 +295,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
         },
         {
           id: 'b',
-          text: 'Defer to local management — they know the customers best.',
+          text: 'Defer to local management. They know the customers best.',
           correct: false,
           why: 'Deferring to the implicated unit is how substantiated warnings get buried for years.',
         },
@@ -334,7 +334,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
         },
         {
           id: 'b',
-          text: 'Approve — the enterprise monitoring platform already covers every product.',
+          text: 'Approve: the enterprise monitoring platform already covers every product.',
           correct: false,
           why: 'Enterprise monitoring rarely has scenarios tuned to a new channel’s specific typology; “standard monitoring” is the gap.',
         },
@@ -410,7 +410,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
         },
         {
           id: 'b',
-          text: 'Onboard normally — the named beneficial owner is not personally a PEP.',
+          text: 'Onboard normally. The named beneficial owner is not personally a PEP.',
           correct: false,
           why: 'The named owner is not the whole picture; the political control of the money is what drives the risk.',
         },
@@ -457,7 +457,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
             ],
           },
           verdict: 'escalate',
-          why: 'A vehicle linked to a PEP’s associate with state-linked funds is a genuine PEP-proximity match — escalate for EDD and senior approval, do not clear.',
+          why: 'A vehicle linked to a PEP’s associate with state-linked funds is a genuine PEP-proximity match. Escalate for EDD and senior approval, do not clear.',
         },
         {
           id: 'b',
@@ -478,7 +478,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
             ],
           },
           verdict: 'clear',
-          why: 'Same common name but the DOB and country plainly differ — a false positive that should be cleared with the basis recorded.',
+          why: 'Same common name but the DOB and country plainly differ, a false positive that should be cleared with the basis recorded.',
         },
       ],
     },
@@ -497,7 +497,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
           id: 'a',
           label: 'Ownership runs through three or more layered offshore companies with nominee directors and no clear commercial rationale.',
           flag: true,
-          why: 'Layering with nominees and no business reason obscures the beneficial owner — the structure is the risk.',
+          why: 'Layering with nominees and no business reason obscures the beneficial owner. The structure is the risk.',
         },
         {
           id: 'b',
@@ -536,7 +536,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
           id: 'a',
           text: 'When did we last validate our monitoring scenarios against current typologies, and is our alert backlog inside tolerance?',
           correct: true,
-          why: 'The value of an enforcement action is the control question it puts to you — turn the finding into a self-test.',
+          why: 'The value of an enforcement action is the control question it puts to you. Turn the finding into a self-test.',
         },
         {
           id: 'b',
@@ -606,7 +606,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
           id: 'a',
           text: 'Establish beneficial ownership and source of wealth, and treat the relationship as high-risk requiring EDD and senior approval, before processing any funds.',
           correct: true,
-          why: 'Understand who owns it, where the money comes from, and the risk rating before you move money — the synthesis of every prior module.',
+          why: 'Understand who owns it, where the money comes from, and the risk rating before you move money, the synthesis of every prior module.',
         },
         {
           id: 'b',

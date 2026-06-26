@@ -128,7 +128,7 @@ export function LessonChallenge({
           {scenarios.length} quick judgments on what you just learned
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-          Not a recall quiz — these are the calls a practitioner makes. Work each one, get the
+          Not a recall quiz. These are the calls a practitioner makes. Work each one, get the
           reasoning, and it sharpens your knowledge model. There’s no penalty, and you can retry.
         </p>
         {round.adaptive && round.focus.length > 0 && (
