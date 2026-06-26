@@ -1,3 +1,771 @@
+## 2026-06-25 - CCAS lesson `customer-risk-rating-in-crypto` factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson rewrite or validation rerun. Re-read the AGENTS-required memory stack first, then checked the literal pasted artifact against the maintained crypto/VASP facts reference and primary Treasury / OFAC Chatex records.
+- Source checks used for the deep-case lane: Treasury press release `jy0471` (`8 November 2021`) and OFAC Recent Action `20211108`. They support the lesson's Chatex chronology, SDN-list entry with virtual-currency addresses, support-company names (`IZIBITS OU`, `Chatextech SIA`, `Hightrade Finance Ltd`), "over half" known-transaction exposure point, and Suex nested-exchange linkage.
+- No publication-blocking factual issue surfaced. Keep the FATF R.1 / R.10 risk-rating spine, dynamic on-chain exposure teaching, and Chatex case bundle in the materially in-bounds bucket unless the artifact changes.
+- Module 6 status is now 3/4 cleared: `the-crypto-risk-assessment`, `onboarding-and-kyc-for-crypto`, and `customer-risk-rating-in-crypto`.
+
+## 2026-06-25 - External expert audit of CAMS lesson `enhanced-due-diligence-when-and-how`
+
+- Exact user-brief review only: no lesson rewrite, no validation rerun, no DB write. Re-read the AGENTS-required memory stack first, then audited the literal user-pasted / repo-matched artifact as an independent expert reviewer rather than as the lesson author.
+- Source checks used for the factual lane:
+- FATF Recommendations page / PDF (`as amended June 2026`) for the Rec. 10 / Rec. 12 / Rec. 19 teaching spine.
+- FATF `High-Risk Jurisdictions subject to a Call for Action - 19 June 2026` for the `enhanced due diligence ... counter-measures reserved for the most serious cases` posture.
+- `31 U.S.C. § 5318(i)` and `31 CFR § 1010.620` for the narrower U.S. targeted EDD architecture (private banking / correspondent accounts, source of funds, senior foreign political figure enhanced scrutiny).
+- DOJ `13 December 2022` Danske release for the `$2 billion` / `$160 billion` / `$413 million` / `$178.6 million` bundle.
+- Current verdict best reads `Adequate` / `6/10`, not world-class. Important quality notes to preserve:
+- the lesson's core concepts are strong and the SoW / SoF distinction is taught clearly;
+- the live problems are overstatement / commercial-rigor issues, not a hard factual collapse;
+- the cleanest concrete defect is the editorial miss `How four rulebooks render EDD` while only three renderings are actually discussed;
+- the two overclaims most worth fixing are `Any one suffices` and `The practitioner's takeaway is the sameness`, because they flatten real jurisdictional nuance, especially the more fragmented U.S. EDD posture;
+- the Danske case is usable but overfit to the lesson thesis; a future revision should show the wider public-record control failures (onboarding, monitoring, governance, representations to U.S. banks), not only provenance failure;
+- the formative quiz is above average for AI-generated lesson checks but still too narrow and partly gameable by weak distractors.
+- No lesson-content edits were made in this work block. If Ripon wants this slug publication-safer, the next pass should be precision / depth / quiz redesign, not a full rewrite from zero.
+
+## 2026-06-25 - Independent expert second-opinion review of `conducting-an-on-chain-investigation`
+
+- User asked for a candid external-style review of the literal lesson JSON as a paid CCAS artifact, not a methodology-lane or repo-gate rerun.
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then checked the lesson against the live repo artifact, FATF's **October 2021** VA/VASP guidance, FATF's **2020** VA red-flag report, and the maintained crypto/VASP facts spine.
+- Review verdict landed at **Adequate / 6 out of 10**. The lesson is coherent and mostly factually in bounds, but it is not yet world-class paid prep because the off-ramp teaching is too absolute, the Bitfinex deep case is narrated rather than operationalised, the quiz distractors are cartoonishly weak, and the voice occasionally slips into rhetorical/AI-polished lines instead of staying in a professional practitioner register.
+- Important carry-forward: if this slug is revised, do **not** spend the first pass on broad rewrites. Tight next-touch scope is: (1) soften the off-ramp absolutism, (2) tighten the deep-case citation labels, (3) rebuild the Bitfinex scene into a step-by-step investigative file with evidence / inference / confidence points, and (4) replace the quiz with plausible practitioner-decision stems and distractors.
+- No lesson-content edits were made in this work block; memory only.
+
+## 2026-06-25 - CCAS lesson `mapping-crypto-rules-to-any-jurisdiction` factual-fidelity exact output-contract rerun
+
+- Re-read the AGENTS-required memory stack, confirmed the live repo lesson still matches the literal pasted artifact, and reran the factual-fidelity lane against the maintained 2026-06-22 crypto/VASP facts reference plus the Singapore Statutes Online commencement / title spot check.
+- Verdict remains `AGREE`. No new publication blocker surfaced on the live text, and the old Singapore reporting-statute-title issue remains closed: both the worked-example body and its citation label correctly use `Corruption, Drug Trafficking and Other Serious Crimes (Confiscation of Benefits) Act`.
+- Carry-forward hygiene: keep this slug closed on factual fidelity unless the artifact changes materially. If it comes back, do not recycle the stale Singapore-title objection unless the wording regresses.
+
+## 2026-06-25 - CCAS lesson `mapping-crypto-rules-to-any-jurisdiction` methodology stale-note correction
+
+- Exact user-brief methodology rerun on the literal user-pasted / repo-matched artifact after re-reading the AGENTS-required memory stack plus `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- The earlier same-day `DISAGREE` trail for this slug is stale on the current artifact. The live lesson now clearly includes a separate named deep-case reading scene, `Deep case: Japan, Coincheck, and the supervisor's response (2018)`, so the Singapore mapping scene does not have to do double duty as the lesson's deep-case payload.
+- Current methodology verdict therefore best reads `AGREE`: allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, the scene `teachesConcepts` remain substantively distinct, the quiz stays formative and scenario-based, and no IP/commercial-source or adult-register blocker surfaced. Deterministic validation is also structurally clean on the live artifact (`overall: pass`; `deepCaseCount: 2`; `validatedAt` `2026-06-25T13:04:42.126Z`).
+- No lesson-content edits were made in this work block. Keep this slug closed on methodology unless the artifact changes materially, and do not recycle the stale deep-case objection on the current text.
+
+## 2026-06-25 - CCAS lesson `mapping-crypto-rules-to-any-jurisdiction` factual-fidelity stale-note correction
+
+- Exact user-brief factual-fidelity rerun on the literal user-pasted / repo-matched artifact after re-reading the AGENTS-required memory stack plus the maintained 2026-06-22 crypto/VASP facts reference and the prior Singapore primary-law spot check.
+- The earlier same-day hard blocker is stale on the live text. The current artifact already fixes the Singapore reporting-statute title issue: both the worked-example body and the linked citation label now correctly use `Corruption, Drug Trafficking and Other Serious Crimes (Confiscation of Benefits) Act`.
+- Current verdict therefore best reads `AGREE` on factual fidelity. Keep the FATF baseline bundle, the Payment Services Act `28 January 2020` / `January 2020` shorthand, and the Binance / MAS chronology in the clean bucket on this artifact.
+- Keep the separate methodology `DISAGREE` distinct; do not recycle the stale title-level fidelity objection unless the wording regresses.
+
+## 2026-06-25 - CCAS lesson `mapping-crypto-rules-to-any-jurisdiction` methodology exact output-contract rerun
+
+- Exact user-brief methodology rerun on the literal user-pasted / repo-matched artifact after re-reading the AGENTS-required memory stack plus `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- Verdict remains `DISAGREE` with no new issue class. Allowed/public source discipline, reading-scene `citations[]`, IP posture, scene-distinctness, quiz format, and adult-professional register remain in bounds on the current text.
+- The live blocker is still the deep-case requirement only: `Worked example: Singapore mapped, and the MAS action that tested its perimeter (2021)` is structurally a method walkthrough, and the short Binance / MAS Investor Alert List paragraph does not turn it into a full named public-matter deep case with its own substantive analytical payload under the stricter v1.1 reviewer brief.
+- Deterministic validation remains structurally clean on the live artifact (`overall: pass`; `validatedAt` `2026-06-25T12:47:36.609Z`), but that stored `deepCaseCount: 1` pass is not enough for the narrower reviewer standard. No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `mapping-crypto-rules-to-any-jurisdiction` factual-fidelity carry-forward
+
+- Exact user-brief factual-fidelity audit on the literal user-pasted / repo-matched artifact after re-reading the AGENTS-required memory stack plus the maintained 2026-06-22 crypto/VASP facts reference and a Singapore primary-law spot check.
+- Current verdict best reads `DISAGREE`, but the live blocker is narrow and should stay narrowly scoped next time. The FATF / VASP baseline scenes are materially in bounds on this pass.
+- The must-fix issue is the Singapore reporting-statute title in `Worked example: mapping Singapore from its primary law` and the linked citation label: the lesson says `Corruption, Drug Trafficking and Other Serious Crimes Act`, while the authoritative statute title is `Corruption, Drug Trafficking and Other Serious Crimes (Confiscation of Benefits) Act`.
+- Next touch on this slug should not reopen the whole lesson. Fix that Singapore title-level citation precision issue first, then rerun fidelity; keep the separate methodology deep-case blocker distinct.
+
+## 2026-06-25 - CCAS lesson `mapping-crypto-rules-to-any-jurisdiction` methodology carry-forward
+
+- Exact user-brief methodology audit on the literal user-pasted / repo-matched artifact after re-reading the AGENTS-required memory stack plus `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- Current verdict best reads `DISAGREE`, not `SPLIT`. Source discipline, reading-scene `citations[]`, IP posture, scene-distinctness, quiz format, and adult register are all acceptable on the current text.
+- The blocker is the deep-case requirement only. `Worked example: mapping Singapore from its primary law` is structurally a method walkthrough; the brief Binance / MAS Investor Alert List paragraph does not make it a full named public-matter deep case with its own substantive teaching payload. This is the same pattern to avoid if a future scene tries to smuggle a deep case into an otherwise generic comparative/process walkthrough.
+- Next touch on this slug should stay tightly in the methodology lane first: rebuild that scene around one named public matter or add a dedicated deep-case reading scene, then rerun. Do not spend the first revision pass on quiz-softness or citation-mechanics preferences.
+
+## 2026-06-25 - CCAS UK crypto framework methodology exact user-brief rerun
+
+- Exact methodology-only rerun on the literal user-pasted / repo-matched `the-uk-crypto-framework` artifact after re-reading the AGENTS-required memory stack plus `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- Verdict stays `SPLIT` with no new issue class. Allowed/public source discipline, reading-scene `citations[]`, IP posture, and the named deep-case requirement remain in bounds on the current text.
+- The only live reviewer-visible softness is still quiz design: `Check for understanding` question 2 is direct framework recall and question 4 is mainly case-takeaway recall rather than a concrete practitioner decision.
+- Validation sidecar rechecked during this pass: `generated/ccas/lessons/the-uk-crypto-framework.validation.json` remains `overall: pass` with `validatedAt` `2026-06-25T11:21:24.959Z`.
+- No lesson-content edits were made in this work block. If this slug comes back on methodology, keep the next touch tightly scoped to deepening those two quiz stems and keep any non-quiz follow-up in the separate factual-fidelity lane first.
+
+## 2026-06-25 - CCAS UK crypto framework factual-fidelity rerun on current hash `5993a61d...`
+
+- Exact user-brief factual-fidelity rerun on the literal pasted / repo-matched `the-uk-crypto-framework` artifact after confirming the live file hash is `5993a61d46963efb41e424481e68e3407b4a1ad1c8734102eb944b61562230d1`.
+- Current verdict still best reads `DISAGREE`, but the earlier same-day charge-pair notes are stale on this hash. The current live scene no longer states a specific Qian charge pair; it now uses the broader summary `two offences of dealing with criminal property`.
+- The live blockers are now these two only:
+- `The UK Travel Rule, and how the parts fit together` still treats suspicious-activity reporting as part of the Money Laundering Regulations rulebook even though the lesson's own POCA scene more accurately places the external SAR / DAML machinery in POCA Part 7.
+- `Worked example: the UK's largest cryptoasset seizure and the reach of the law (2024-2025)` is still not citation-precise enough on Qian's 2025 plea / disposition because the scene uses a generic `two offences of dealing with criminal property` summary and a bundled citation label rather than one exact 2025 court-facing primary source for the plea date, court, and offence wording.
+- Carry-forward: keep the FCA-registration scope objection closed on the current artifact unless the wording changes materially; scene 2 still correctly says having a UK customer alone is not enough.
+
+## 2026-06-25 - CCAS UK crypto framework factual-fidelity exact rerun: live blockers are charge-pair precision plus SAR-source attribution
+
+- Exact user-brief factual-fidelity rerun on the literal pasted / repo-matched `the-uk-crypto-framework` artifact after rechecking the live repo JSON against the FCA `Cryptoassets: Who needs to register` page (`4 June 2026`), the FCA `Cryptoassets: AML / CTF regime` page (`12 February 2026`), the CPS `Two people imprisoned for their key roles in a largescale money laundering case` release (`11 November 2025`), the CPS `Professional money launderer is ordered to payback over £5 million after a large-scale investment fraud` release (`22 January 2026`), and the Judiciary `R -v- Jian Wen` sentencing-remarks page (`24 May 2024`).
+- Current verdict still best reads `DISAGREE`. Important stale-note correction: do **not** recycle the same-day FCA-registration-scope blocker against the current artifact. The live lesson now correctly limits the gate to exchange providers and custodian wallet providers carrying on business in the UK, and scene 2 already says having a UK customer alone is not enough.
+- The live blockers are narrower and on the actual text:
+- `Worked example: the UK's largest cryptoasset seizure and the reach of the law (2024-2025)` currently says Zhimin Qian pleaded guilty in September 2025 to `possession of criminal property` and `transferring criminal property`, but the checked CPS public record says `acquiring criminal property` and `possessing criminal property`.
+- `What the Money Laundering Regulations require` currently attributes the external SAR filing duty to the MLRs, while the lesson's own POCA scene more accurately places the reporting machinery in POCA Part 7; keep the next fix pass precise about MLR controls versus POCA reporting.
+- No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS UK crypto framework methodology exact output-contract rerun
+
+- Exact user-brief methodology rerun only on the literal pasted / repo-matched `the-uk-crypto-framework` artifact after confirming the live repo JSON still matches the user-supplied lesson.
+- Verdict remains `SPLIT`. Allowed/public source discipline, reading-scene `citations[]`, IP posture, and the named deep-case requirement all remain in bounds on the current text.
+- The only live reviewer-visible softness is still quiz design: `Check for understanding` question 2 is direct framework recall and question 4 is mainly case-takeaway recall rather than a concrete practitioner decision.
+- Refreshed validation sidecar checked during this pass: `generated/ccas/lessons/the-uk-crypto-framework.validation.json` remains `overall: pass` with `validatedAt` `2026-06-25T11:03:50.818Z`.
+- No lesson-content edits were made. If this slug comes back, keep the next methodology touch tightly scoped to deepening those two quiz stems and keep any other next touch in the separate factual-fidelity lane unless the text changes materially.
+
+## 2026-06-25 - CCAS UK crypto framework factual-fidelity rerun: stale scope-closure note corrected
+
+- Exact user-brief factual-fidelity rerun on the literal pasted / repo-matched `the-uk-crypto-framework` artifact after rechecking the live repo JSON against the FCA `Cryptoassets: Who needs to register` page (`4 June 2026`), the FCA `Cryptoassets: AML / CTF regime` page (`12 February 2026`), the Met `Two people convicted following world's largest crypto seizure` release (`29 September 2025`), the CPS `Two people imprisoned for their key roles in a largescale money laundering case` release (`11 November 2025`), the CPS `Professional money launderer is ordered to payback over £5 million after a large-scale investment fraud` release (`22 January 2026`), and the Judiciary sentencing remarks PDF.
+- Current verdict still best reads `DISAGREE`, but the live FCA-perimeter issue is narrower than older same-day notes. The current lesson **does** correctly limit the relevant business categories to exchange providers and custodian wallet providers, so the old `any crypto firm` / wrong-category blocker is closed.
+- The live scope blocker is the registration trigger wording itself. `The UK approach: registration first`, `FCA registration: a real perimeter`, and quiz `Check for understanding` question 1 still teach the gate as if serving `UK customers` or operating `in or from the UK` is enough by itself; the FCA's current `Who needs to register` guidance says the test is acting in the course of business **in the UK**, and where a firm has no UK office or other UK activity beyond simply having a UK client it is likely **not** carrying on business in the UK.
+- The deep-case blocker also remains, but now as citation / disposition precision rather than broad chronology drift: the official 2025 Qian materials are not perfectly aligned on offence labels (`acquiring` / `possessing` in CPS / Met notes versus `possession` / `transferring` in the sentencing remarks), so any next revision should pin the plea / sentence bundle to one exact court-facing primary source.
+- Carry-forward: keep the January `2020` FCA AML-regime start, the `1 September 2023` Travel Rule start, the POCA `ss 327-329` core, Wen's `22 May 2024` sentence, the Qian / Ling April `2024` arrests, and the `61,000 Bitcoin` seizure bundle in the materially-in-bounds bucket. No lesson-content edits were made.
+
+## 2026-06-25 - CCAS UK crypto framework factual-fidelity rerun: stale FCA-scope blocker closed, deep-case blocker remains
+
+- Exact user-brief factual-fidelity rerun on the literal pasted / repo-matched `the-uk-crypto-framework` artifact after rechecking the live JSON hash `2797fd04a5097886d38be4e06b703aa144fcaea5d2933a5ccdee9cdd7204501c` against the FCA `Cryptoassets: AML / CTF regime` page (`12 February 2026`), the CPS `Two people imprisoned for their key roles in a largescale money laundering case` release (`11 November 2025`), the Met `Two people convicted following world's largest crypto seizure` release (`29 September 2025`), and the Judiciary `Rex -v- Zhimin Qian and Seng Hok Ling` sentencing remarks.
+- Current verdict still best reads `DISAGREE`, but the earlier same-day registration-scope blocker is stale on the current artifact. The live lesson now correctly limits the FCA AML gate to **cryptoasset exchange providers** and **custodian wallet providers**; do not recycle the older `any cryptoasset activity` / generic `any crypto firm` objection unless that wording actually returns.
+- The live publication blocker is now the deep-case scene only. `Worked example: the UK's largest cryptoasset seizure and the reach of the law (2024-2025)` still is not citation-precise enough on Zhimin Qian's 2025 track: the scene/citation bundle says she pleaded guilty in 2025 to `acquiring and possessing criminal property`, but the exact 2025 court-facing record needs to be pinned cleanly to the **29 September 2025** Southwark pleas and the **11 November 2025** sentencing record with one exact primary source carrying the charge/disposition wording.
+- Keep the January `2020` FCA AML-regime start, the `1 September 2023` Travel Rule start, and the POCA `ss 327-329` backbone in the “materially in bounds” bucket on this hash. No lesson-content edits were made.
+
+## 2026-06-25 - CCAS UK crypto framework methodology no-delta rerun
+
+- Exact user-brief methodology rerun only on the literal pasted / repo-matched `the-uk-crypto-framework` artifact after confirming the live repo JSON still matches the user-supplied lesson.
+- Verdict remains `SPLIT`. Allowed/public source discipline, reading-scene `citations[]`, IP posture, and the named deep-case requirement all remain in bounds on the current text.
+- The only live reviewer-visible softness is still quiz design: `Check for understanding` question 2 is direct framework recall and question 4 is mainly case-takeaway recall rather than a concrete practitioner decision.
+- Refreshed validation sidecar checked during this pass: `generated/ccas/lessons/the-uk-crypto-framework.validation.json` remains `overall: pass` with `validatedAt` `2026-06-25T10:14:40.156Z`.
+- No lesson-content edits were made. If this slug comes back, keep the next methodology touch tightly scoped to deepening those two quiz stems and keep any other next touch in the separate factual-fidelity lane unless the text changes materially.
+
+## 2026-06-25 - CCAS UK crypto framework factual-fidelity carry-forward
+
+- Exact user-brief factual-fidelity audit on the literal pasted / repo-matched `the-uk-crypto-framework` artifact; no lesson rewrite was done in this work block.
+- Current verdict best reads `DISAGREE`.
+- Keep the next fidelity touch tightly scoped to two issues only:
+- narrow the registration-scope wording in `The UK approach: registration first` from generic `cryptoasset activity` / all `cryptoasset firm` language to the actual FCA/MLR in-scope perimeter (`cryptoasset exchange providers` and `custodian wallet providers`);
+- rebuild `Worked example: the largest cryptoasset seizure and the reach of the law (2024)` around the checked chronology: Jian Wen conviction/sentencing in `2024`; Zhimin Qian arrest in `April 2024`, guilty plea in `September 2025`, sentence in `November 2025`, with the disposition described as acquiring/possessing criminal property rather than a generic `possessing and laundering` bundle.
+- Carry-forward hygiene: do not recycle broader objections first. The live artifact’s January `2020` FCA AML-regime start, `1 September 2023` Travel Rule start, and POCA `ss 327-329` core are materially in bounds on this pass.
+- No lesson-content edits were made.
+
+## 2026-06-25 - CCAS UK crypto framework methodology carry-forward
+
+- Exact user-brief methodology audit only on the literal pasted / repo-matched `the-uk-crypto-framework` artifact; no fidelity pass and no lesson rewrite were done in this work block.
+- Current verdict best reads `SPLIT`: source discipline, reading-scene `citations[]`, IP posture, and the named deep-case requirement are all in bounds on the live text.
+- Keep the next methodology touch tightly scoped to quiz design only. `Check for understanding` question 2 is direct recall and question 4 is mostly case-takeaway recall, so the formative check is only partly aligned with the methodology's scenario-based standard.
+- Validation sidecar checked during this pass: `generated/ccas/lessons/the-uk-crypto-framework.validation.json` is `overall: pass` with `validatedAt` `2026-06-25T09:58:59.705Z`.
+- No lesson-content edits were made. If the slug comes back, deepen the quiz stems first and keep any other next touch in the separate factual-fidelity lane unless the text changes materially.
+
+## 2026-06-25 - CCAS lesson `the-eu-crypto-framework-mica-and-tfr` methodology no-delta rerun stays `SPLIT`
+
+- Re-read the AGENTS-required memory / methodology stack first per `AGENTS.md`, then reran the exact user-brief methodology audit on the literal user-pasted / repo-matched artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the refreshed validation sidecar.
+- No methodology delta surfaced on the current artifact: allowed/public source posture remains in bounds, all 4 reading scenes carry `citations[]`, `Worked example: De Nederlandsche Bank and the cost of operating unregistered (2023)` still satisfies the named deep-case requirement, and the scene `teachesConcepts` remain substantively distinct enough on this brief.
+- The only live reviewer-visible softness remains quiz design: `Check for understanding` questions 1 and 4 still read as thin scenario wrappers around recall rather than practitioner judgment.
+- Rechecked `generated/ccas/lessons/the-eu-crypto-framework-mica-and-tfr.validation.json`; the live sidecar remains structurally clean at `overall: pass` with `validatedAt` `2026-06-25T09:26:11.402Z`.
+- No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `the-eu-crypto-framework-mica-and-tfr` factual-fidelity no-delta rerun on the exact pasted artifact now closes `AGREE`
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / repo-matched artifact against the maintained 2026-06-22 crypto/VASP facts reference, MiCA `Regulation (EU) 2023/1114` (`Article 3(1)(6)` and `Article 143(3)`), and the checked `2023/1113` / `2024/1624` / `2024/1620` / `2024/1640` bundle.
+- Current verdict now best reads `AGREE`, not the earlier same-day `DISAGREE` trail. The live artifact's number/date bundle is clean, the MiCA transition wording is conditional in the way `Article 143(3)` requires, the TFR scene is now scoped to CASP-handled transfers, and the current quiz `question 4` correctly places wider AML duties in directive-derived national law until AMLR applies on `10 July 2027`.
+- Important stale-note correction: the earlier same-day direct-applicability, MiCA-transition, TFR-scope, ART-definition, and quiz-Q4 objections are not sustained on the current pasted text and should not be reused unless the artifact changes materially.
+- No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `the-eu-crypto-framework-mica-and-tfr` factual-fidelity no-delta rerun on the exact user-pasted artifact
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / repo-matched artifact against MiCA `Regulation (EU) 2023/1114`, TFR `Regulation (EU) 2023/1113`, TFR's amendments to Directive `(EU) 2015/849`, and AMLR `Regulation (EU) 2024/1624`.
+- Current verdict remains `DISAGREE` with no new publication blocker. The checked bundle that stays materially in bounds on the current text is unchanged: instrument numbering (`2023/1114`, `2023/1113`, `2024/1624`, `2024/1620`, `2024/1640`), MiCA staged application dates (`30 June 2024` / `30 December 2024`), the DNB / Coinbase date-and-amount bundle, and the lesson's current MiCA transitional-language bundle.
+- The live must-fix issues remain only two:
+- `MiCA: the market and prudential regime`, `What MiCA regulates`, and `What to carry forward` still teach asset-referenced tokens as if they only reference a basket of assets or currencies, which is too narrow for MiCA's statutory ART category.
+- `Check for understanding` question 4 / explanation still tell a newly authorised CASP that AMLR already governs its wider AML obligations even though the same lesson correctly says AMLR applies from `10 July 2027`; until then, the wider AML regime still runs through the directive-derived national AML framework, including the crypto amendments made by TFR to Directive `(EU) 2015/849`.
+- Carry-forward hygiene: do **not** recycle the stale same-day direct-applicability, MiCA-transition, or looser TFR-scope objections against this exact artifact unless the wording changes materially.
+- No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS EU crypto framework factual-fidelity stale-note correction
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / repo-matched `the-eu-crypto-framework-mica-and-tfr` artifact against the maintained 2026-06-22 crypto/VASP facts reference plus direct EUR-Lex checks on MiCA `Regulation (EU) 2023/1114`, TFR `Regulation (EU) 2023/1113`, AMLR `Regulation (EU) 2024/1624`, and `Directive (EU) 2024/1640`.
+- Important stale-note correction: the current repo-matched artifact no longer supports the same-day direct-applicability blocker trail in `CLAUDE.md` / `SESSION-NOTES.md`. The live text does **not** say both strands are directly applicable, and the earlier MiCA-grandfathering objection is also stale on the current wording.
+- The live ship blockers are narrower and different:
+- `MiCA: the market and prudential regime`, `What MiCA regulates`, and `What to carry forward` teach asset-referenced tokens as if they only reference a basket of assets or currencies, which is too narrow for MiCA's ART category.
+- `Check for understanding` question 4 / explanation overstate AMLR's role for a newly authorised CASP even though the same lesson correctly states AMLR applies from `10 July 2027`; pre-application wider AML obligations still run through the current directive-derived national AML regime.
+- Keep the next pass tightly scoped to those two fixes only. Do **not** relitigate the already-clean bundle first: instrument numbering (`2023/1114`, `2023/1113`, `2024/1624`, `2024/1620`, `2024/1640`), MiCA staged application dates (`30 June 2024` / `30 December 2024`), the DNB / Coinbase date-and-amount bundle, and the lesson's current MiCA transitional-language bundle are materially in bounds on the current artifact.
+- No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS EU crypto framework methodology stale-note correction
+
+- Re-read the AGENTS-required memory / methodology stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md`.
+- Exact user-brief methodology rerun on the literal user-pasted / repo-matched `the-eu-crypto-framework-mica-and-tfr` artifact still lands `SPLIT`, not `AGREE`.
+- Important stale-note correction: the current artifact does **not** contain the earlier same-day banned-register / marketing word `comprehensive`. Do not recycle that objection against the live text unless the wording actually reappears.
+- The only live reviewer-visible methodology softness is quiz design: `Check for understanding` questions 1 and 4 still read as thin scenario wrappers around recall rather than practitioner judgment.
+- Validation sidecar remains clean on the current artifact: `generated/ccas/lessons/the-eu-crypto-framework-mica-and-tfr.validation.json` is `overall: pass` with `validatedAt` `2026-06-25T08:50:58.436Z`.
+- No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `the-eu-crypto-framework-mica-and-tfr` factual-fidelity carry-forward refresh
+
+- Literal user-pasted / repo-matched lesson `the-eu-crypto-framework-mica-and-tfr` still best reads `DISAGREE` on factual fidelity.
+- Important stale-note correction: do **not** recycle the earlier same-day MiCA transitional-regime blocker against the current artifact. `MiCA: the market and prudential regime` now correctly teaches that the Article `143(3)` continuation is conditional, can end earlier on authorisation grant or refusal, may be shortened or disapplied by Member States, and runs only to `1 July 2026` at the latest.
+- The one live hard blocker on the current text is the direct-applicability compression. `The EU approach: one rulebook, directly applicable` ends by saying a crypto business must satisfy both strands `under directly-applicable law`, and the quiz intro says the market and AML strands are `both directly applicable`, even though the same lesson names `Directive (EU) 2024/1640`, which by definition requires national transposition.
+- Do not spend the next pass relitigating the already-clean bundle first: instrument numbering (`2023/1114`, `2023/1113`, `2024/1624`, `2024/1620`, `2024/1640`), MiCA staged application dates (`30 June 2024` / `30 December 2024`), the DNB / Coinbase amount/date bundle, and the lesson's current MiCA transition wording are materially in bounds on the current artifact.
+- If this lesson is touched again, fix the direct-applicability wording first, then rerun the exact-format factual-fidelity audit. No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `the-eu-crypto-framework-mica-and-tfr` factual-fidelity carry-forward
+
+- Literal user-pasted / repo-matched lesson `the-eu-crypto-framework-mica-and-tfr` currently lands `DISAGREE` on factual fidelity.
+- Do not relitigate the already-clean bundle first: instrument numbering (`2023/1114`, `2023/1113`, `2024/1624`, `2024/1620`, `2024/1640`), MiCA staged application dates (`30 June 2024` / `30 December 2024`), AMLA `2028` direct-supervision timing, and the DNB / Coinbase date-and-amount bundle are materially in bounds on the current text.
+- Live blocker 1: `Crypto inside the wider AML package` plus the quiz intro / framing compress the AML package or the two EU strands as `all directly applicable` / `both directly applicable`. That is not publication-safe once the same lesson also names `Directive (EU) 2024/1640`, which requires national transposition.
+- Live blocker 2: `MiCA: the market and prudential regime` overstates MiCA grandfathering as a uniform transitional period `ending by 1 July 2026`. MiCA `Article 143(3)` is conditional and Member States may shorten or disapply the regime.
+- Narrow residual scope issue: `The Transfer of Funds Regulation: the EU Travel Rule` says identity travels with `every crypto transfer`, which is broader than the rule's in-scope CASP-mediated perimeter. If the lesson is touched again, fix the direct-applicability compression first, then the MiCA transition wording, and only then tighten the TFR scope phrasing.
+- No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS EU crypto framework methodology carry-forward
+
+- Literal user-pasted lesson `the-eu-crypto-framework-mica-and-tfr` currently lands `SPLIT` on the v1.1 methodology brief, not `AGREE`.
+- Do not relitigate the already-cleared dimensions on the current text: allowed/public source posture is in bounds, all 4 reading scenes carry `citations[]`, and `Worked example: De Nederlandsche Bank and the cost of operating unregistered (2023)` is a valid named deep case.
+- If the lesson is touched again on methodology, keep the next pass tightly scoped to two soft issues only: remove the scene-1 marketing superlative `the most comprehensive crypto regime in the world`, and rewrite the recall-heavy quiz stems in `Check for understanding` (especially questions 1 and 4) into applied decision scenarios.
+- No factual-fidelity pass was done in this work block, and no lesson-content edits were made.
+
+## 2026-06-25 - CCAS EU crypto framework methodology stale-note cleanup
+
+- Exact user-brief methodology rerun on the literal user-pasted / repo-matched `the-eu-crypto-framework-mica-and-tfr` artifact still lands `SPLIT`.
+- Stale-note correction: the current artifact does **not** contain the banned marketing-register word `comprehensive`, so that objection should not be reused on the live text.
+- Live methodology softness remains only in `Check for understanding`: questions 1 and 4 are still scenario-wrapped, but they test recall more than practitioner judgment.
+- Validation sidecar checked again on this pass: `generated/ccas/lessons/the-eu-crypto-framework-mica-and-tfr.validation.json` is `overall: pass` with `validatedAt` `2026-06-25T08:50:58.436Z`.
+- No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `the-us-crypto-framework` factual-fidelity stale-note correction now reads `AGREE`
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / repo-matched lesson artifact `generated/ccas/lessons/the-us-crypto-framework.json` against the maintained 2026-06-22 crypto / U.S. facts spine plus direct rereads of FinCEN `FIN-2013-G001`, FinCEN `FIN-2019-G001`, FinCEN's `FinCEN Fines Ripple Labs Inc. in First Civil Enforcement Action Against a Virtual Currency Exchanger` (`5 May 2015`), DOJ NDCA's `Ripple Labs Inc. Resolves Criminal Investigation` (`5 May 2015`), and CFTC Release `7820-18`.
+- The earlier same-day `SPLIT` note is stale on the current artifact. On the live JSON, the Ripple deep-case citations already use the checked exact source titles, and the CFTC spot-market phrasing remains within the narrower derivatives plus anti-fraud / anti-manipulation formulation that the checked public record supports.
+- Current verdict now reads factual-fidelity `AGREE`. No lesson-content edits were made in this work block. If this slug comes back, first verify that the artifact text actually changed before reopening the lesson.
+
+## 2026-06-25 - CCAS lesson `the-us-crypto-framework` methodology exact no-delta rerun stays `AGREE`
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then reran the exact methodology-only audit on the literal user-pasted / repo-matched lesson artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology delta surfaced on the current artifact: all 4 reading scenes carry `citations[]`, the source posture stays within allowed/public types, `Worked example: Ripple Labs and FinCEN's first crypto enforcement (2015)` still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct enough despite recurring topical tags, and the quiz remains formative without certification-format mimicry.
+- Rechecked `generated/ccas/lessons/the-us-crypto-framework.validation.json`; the live sidecar remains structurally clean at `overall: pass` with `validatedAt` `2026-06-25T08:15:45.539Z`.
+- No lesson-content edits were made in this work block. Keep this slug closed on methodology unless the artifact changes materially; any next touch should stay in the separate factual-fidelity lane first.
+
+## 2026-06-25 - CCAS lesson `the-us-crypto-framework` factual-fidelity audit returns `SPLIT`
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then audited the literal user-pasted / repo-matched lesson artifact `generated/ccas/lessons/the-us-crypto-framework.json` against the maintained 2026-06-22 crypto / U.S. facts spine plus primary-source rereads of FinCEN `FIN-2013-G001`, FinCEN `FIN-2019-G001`, DOJ NDCA's `Ripple Labs Inc. Resolves Criminal Investigation` (`5 May 2015`), and the checked Ripple / BitLicense public record.
+- Current verdict best reads `SPLIT`. The core lesson is materially sound: FinCEN's 2013 / 2019 CVC guidance, the user-vs-administrator / exchanger distinction, BitLicense as `23 NYCRR Part 200`, and the Ripple 2015 chronology / entities / `USD 700,000` civil penalty with `USD 450,000` designated forfeiture remain in bounds on the live artifact.
+- Reviewer-visible residual 1: `Worked example: Ripple Labs and FinCEN's first crypto enforcement (2015)` cites the deep-case sources generically rather than by exact primary-source titles. The DOJ source should be labeled to the exact NDCA release `Ripple Labs Inc. Resolves Criminal Investigation` (`5 May 2015`), and the FinCEN Ripple release should likewise use its exact title rather than a paraphrase.
+- Reviewer-visible residual 2: `A regime built in layers, not a single rulebook` and `What to carry forward` compress the CFTC lane a little too broadly as if it generally regulates spot commodities / `regulates Bitcoin and Ether as commodities`; the lesson should preserve the narrower formulation it already uses elsewhere: commodity-derivatives authority plus anti-fraud / anti-manipulation authority in the spot market.
+- No lesson-content edits were made in this work block. Keep this slug closed on methodology unless the artifact changes materially; if it comes back in the factual-fidelity lane, tighten the Ripple deep-case citation labels first and then narrow the CFTC shorthand.
+
+## 2026-06-25 - CCAS lesson `the-us-crypto-framework` methodology no-delta close-out
+
+- Exact user-brief methodology audit only on the literal pasted / repo-matched artifact. No lesson rewrite and no factual-fidelity pass were done in this work block.
+- Result is `AGREE`: allowed/public source discipline remains in bounds, all 4 reading scenes carry `citations[]`, `Worked example: Ripple Labs and FinCEN's first crypto enforcement (2015)` works as the named deep case, the scene `teachesConcepts` remain substantively distinct enough, and the quiz stays formative rather than certification-format mimicry.
+- Deterministic validation is already structurally clean on `generated/ccas/lessons/the-us-crypto-framework.validation.json` at `overall: pass` with `validatedAt` `2026-06-25T08:02:54.707Z`.
+- Carry-forward: keep this slug closed on methodology unless the artifact changes materially. If it comes back, do not reopen source-discipline / IP / deep-case / quiz-format arguments first; the next touch should stay in the separate factual-fidelity lane.
+
+## 2026-06-25 - CCAS sanctions lesson exact current-turn publication rerun remains `AGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then rechecked the literal user-pasted artifact against `generated/ccas/lessons/sanctions-and-cryptoassets.json` and reran the exact factual-fidelity audit against OFAC FAQs `560` / `562` / `646`, Treasury `jy0916`, the Fifth Circuit's `Van Loon v. Department of the Treasury`, `No. 23-50669`, filed `26 November 2024`, Treasury `sb0057`, and the SDNY `23 August 2023` founders-indictment release.
+- The live lesson file still ends the Tornado Cash criminal track at the 2023 indictment. It does **not** contain the stale August-2025 Roman Storm disposition sentence that drove some earlier same-day `DISAGREE` notes, so that blocker should not be recycled against the current artifact.
+- The designated-address wording remains in bounds because the lesson ties the consequence to U.S. persons / U.S. VASPs and keeps non-direct hop exposure in a risk-based monitoring / investigation lane rather than teaching an automatic legal block for every indirect exposure.
+- No lesson-content edits were made in this work block. Keep this slug closed on factual fidelity unless the artifact changes materially; if it comes back, first ask whether the text actually changed before reopening any Tornado Cash criminal-track objection.
+
+## 2026-06-25 - CCAS lesson `sanctions-and-cryptoassets` methodology exact no-delta rerun
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md`.
+- Re-audited the literal user-pasted `sanctions-and-cryptoassets` artifact under the exact v1.1 cross-check-reviewer methodology brief. No methodology delta surfaced: all 4 reading scenes still carry `citations[]`, the source base remains within the allowed/public hierarchy, Tornado Cash still works as the named deep case, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz still avoids certification-format mimicry.
+- No lesson-content edits were made in this work block. Keep this slug closed on methodology unless the artifact changes materially; do not reopen citation-granularity / citation-bind mechanics objections on this brief, and keep any next touch in the separate factual-fidelity lane first.
+
+## 2026-06-25 - CCAS sanctions lesson fidelity rerun: stale Roman Storm blocker belongs to a different artifact state
+
+- Exact user-facing rerun on the literal pasted / repo-matched `sanctions-and-cryptoassets` artifact now lands `AGREE` on factual fidelity.
+- Key distinction: the live JSON's Tornado Cash criminal-track paragraph ends at the `23 August 2023` SDNY indictment of Roman Storm and Roman Semenov. It does **not** contain the later August-2025 Roman Storm disposition sentence that the earlier same-day `DISAGREE` notes were reacting to.
+- Primary sources checked on this rerun: OFAC `Sanctions Compliance Guidance for the Virtual Currency Industry`; OFAC virtual-currency FAQs `559` / `560` / `561` / `562` / `563` / `646` / `647`; Treasury `jy0916` (`8 August 2022` Tornado Cash designation); Fifth Circuit `Van Loon v. Department of the Treasury`, `No. 23-50669`, filed `26 November 2024`; Treasury `sb0057` (`21 March 2025` Tornado Cash delisting); SDNY Tornado Cash founders release (`23 August 2023`).
+- Reviewer note for next time: the designated-address wording is okay because the lesson pairs "address on the SDN List" with OFAC's identifier-based address treatment, and the indirect-exposure scenes keep the non-direct case in a risk-based monitoring / investigation lane rather than teaching that every few-hop exposure is legally blockable.
+- If this slug comes back, first question is whether the artifact text actually changed. If not, do not relitigate the stale Roman Storm blocker.
+
+## 2026-06-25 - CCAS lesson `sanctions-and-cryptoassets` methodology exact-format no-delta rerun
+
+- User asked for the strict methodology-only verdict on the literal pasted artifact, so I re-read the memory stack, rechecked the repo lesson file and validation sidecar, and reran against `docs/COURSE-GENERATION-PROMPT.md` v1.1 plus ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology state changed: verdict is still `AGREE`, the live artifact still has all required reading-scene `citations[]`, Tornado Cash still works as the deep case, and the quiz still stays on the formative/scenario side of the line.
+- Carry-forward: keep `sanctions-and-cryptoassets` closed on methodology unless the artifact changes materially. If it comes back, do not reopen source-discipline / IP / deep-case / quiz-format arguments first; stay in the separate factual-fidelity lane on the Roman Storm / Tornado Cash criminal-track citation precision.
+
+## 2026-06-25 - CCAS lesson `sanctions-and-cryptoassets` factual-fidelity output-contract rerun sharpened the Roman Storm carry-forward note
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / repo-matched artifact against the maintained 2026-06-22 facts reference plus the mixed public record on the `6 August 2025` Roman Storm verdict.
+- No broader blocker surfaced outside the Tornado Cash deep case, and the older FATF-current-edition note remains stale on the current JSON.
+- Important carry-forward refinement: `Worked example: Tornado Cash, the designation that tested the limits (2022 to 2025)` is not just loosely cited on the criminal track; the sentence `the remaining, more serious charges were left unresolved` also overstates certainty because checked public reporting is split on whether the sanctions-conspiracy count ended in acquittal or a hung jury.
+- Treat the scene as not publication-safe until that sentence is narrowed to an exact 2025 primary or court source. No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `sanctions-and-cryptoassets` methodology exact-format rerun
+
+- User asked for the strict methodology-only reviewer verdict on the literal pasted / repo-matched lesson artifact.
+- Rechecked `generated/ccas/lessons/sanctions-and-cryptoassets.json`, `generated/ccas/lessons/sanctions-and-cryptoassets.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+- Verdict stays `AGREE`. No methodology delta surfaced: allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, Tornado Cash still works as the named deep case, the scene `teachesConcepts` remain substantively distinct, and the quiz still avoids certification-format mimicry.
+- Validation sidecar on this rerun: `overall: pass`; `validatedAt` `2026-06-25T07:33:30.369Z`.
+- Carry-forward: keep `sanctions-and-cryptoassets` closed on methodology unless the artifact changes materially; any next touch should stay in the separate factual-fidelity lane first, where the only live blocker remains the Tornado Cash criminal-track sentence / citation precision.
+
+## 2026-06-25 - CCAS lesson `sanctions-and-cryptoassets` factual-fidelity stale-note correction narrows the live blocker to the Tornado Cash criminal track
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / repo-matched lesson artifact against the maintained 2026-06-22 facts reference plus the public Tornado Cash chronology and August-2025 Roman Storm reporting.
+- The lesson still best reads `DISAGREE`, but the live blocker set is narrower than the earlier same-day notes at the top of repo memory. The older FATF-current-edition blocker is stale on the current JSON; the live publication blocker is the deep-case criminal track only.
+- `Worked example: Tornado Cash, the designation that tested the limits (2022 to 2025)` still states the `6 August 2025` Roman Storm disposition without an exact 2025 primary or court citation, while the checked public reporting is not uniform on the sanctions-conspiracy count. Treat that scene as not publication-safe as written.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to tightening that Tornado Cash criminal-track sentence / citation first and keep the already-cleared methodology lane closed unless the artifact changes materially.
+
+## 2026-06-25 - CCAS lesson `sanctions-and-cryptoassets` methodology user-facing no-delta rerun
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then rechecked the literal user-pasted / repo-matched lesson artifact against `generated/ccas/lessons/sanctions-and-cryptoassets.json`, `generated/ccas/lessons/sanctions-and-cryptoassets.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+- Result stays `AGREE`. Allowed/public source discipline remains in bounds, all 4 reading scenes still carry `citations[]`, Tornado Cash still works as the named deep case, the scene `teachesConcepts` remain substantively distinct, and the quiz still avoids certification-format mimicry.
+- Refreshed validation sidecar checked during this pass: `generated/ccas/lessons/sanctions-and-cryptoassets.validation.json` remains `overall: pass` with `validatedAt` `2026-06-25T07:22:37.923Z`.
+- Carry-forward: keep the slug closed on methodology unless the artifact changes materially; if it comes back, the next touch should stay in the separate factual-fidelity lane first. No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `sanctions-and-cryptoassets` factual-fidelity audit returns `DISAGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then audited the literal user-pasted / repo-matched lesson artifact against the operator-maintained 2026-06-22 facts reference plus the public Tornado Cash record.
+- The high-level sanctions teaching is materially sound, and the `8 August 2022` designation, `26 November 2024` `Van Loon`, and `21 March 2025` delisting chronology remain in bounds on the live text.
+- The live blockers are narrow but real:
+- the FATF citation labels in `Sanctions are strict liability, and crypto is no exception`, `How a wallet address gets sanctioned`, and `Building the screen: the OFAC guidance in practice` use `current consolidated edition, updated June 2026`, which contradicts the operator-maintained current-facts reference for this audit (`October 2025`);
+- `Worked example: Tornado Cash, the designation that tested the limits (2022 to 2025)` is not precise enough on the criminal track because the cited DOJ / SDNY label is the 2023 founders-prosecution lane, not an exact primary-source citation for the August 2025 Roman Storm verdict, so the verdict / disposition sentence needs tightening before promotion.
+- No lesson-content edits were made in this work block. If this slug comes back, keep the next fidelity touch tightly scoped to those two repairs and do not reopen the already-cleared methodology lane unless the artifact changes materially.
+
+## 2026-06-25 - CCAS lesson `sanctions-and-cryptoassets` methodology exact audit lands `AGREE`
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then audited the literal user-pasted / repo-matched lesson artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology blocker surfaced on the current text: allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, `Worked example: Tornado Cash, the designation that tested the limits (2022 to 2025)` satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz stays formative without drifting into certification-format mimicry.
+- Rechecked `generated/ccas/lessons/sanctions-and-cryptoassets.validation.json`; the live file remains structurally clean at `overall: pass` with `validatedAt` `2026-06-25T07:09:50.434Z`.
+- No lesson-content edits were made in this work block. Keep this slug closed on methodology unless the artifact changes materially; if it comes back, the next touch should stay in the separate factual-fidelity lane first.
+
+## 2026-06-25 - CCAS lesson `the-travel-rule-r16-and-inr16` live-source stale-note correction now reads `SPLIT`
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the factual-fidelity audit on the literal user-pasted / repo-matched artifact against the current FATF Recommendations PDF (`Updated June 2026`), EUR-Lex Regulation (EU) `2023/1113`, DOJ's Binance press release, Treasury press release `jy1925`, OFAC's Binance settlement page, and the Western District of Washington Binance plea papers (`No. 23-178RAJ`).
+- Important correction to the same-day review trail: the live artifact no longer supports the earlier `DISAGREE` blocker set. The lesson stays at principle level on the FATF Travel Rule field set, the EU `2023/1113` treatment is materially in bounds, and the Binance chronology / amounts / disposition remain supportable on the checked source bundle.
+- Current verdict now best reads `SPLIT`. The only reviewer-visible residual is narrow deep-case citation precision in `Worked example: Binance and the foundation the Travel Rule depends on (2023)`: the DOJ citation label is a court-style paraphrase rather than the exact DOJ source title or full W.D. Wash. case metadata.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to tightening that Binance DOJ citation label first; do not recycle the stale FATF-current-edition or field-list objections against the current artifact unless the wording changes.
+
+## 2026-06-25 - CCAS lesson `the-travel-rule-r16-and-inr16` methodology current-turn rerun: no delta
+
+- Exact user-facing methodology rerun only on the literal pasted / repo-matched artifact; no lesson rewrite and no factual-fidelity relitigation.
+- Result stays `AGREE`: allowed/public source posture remains in bounds, all 4 reading scenes carry `citations[]`, Binance still works as the named deep case, the scene `teachesConcepts` remain substantively distinct, and the quiz still avoids certification-format mimicry.
+- Refreshed validation sidecar checked during this pass: `generated/ccas/lessons/the-travel-rule-r16-and-inr16.validation.json` remains `overall: pass` with `validatedAt` `2026-06-25T06:54:47.580Z`.
+- Carry-forward: keep the slug closed on methodology unless the artifact changes materially; if it comes back, stay in the separate factual-fidelity lane first.
+
+## 2026-06-25 - CCAS lesson `the-travel-rule-r16-and-inr16` exact live-hash re-audit corrects the stale blocker set but keeps `DISAGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then re-audited the literal user-pasted / repo-matched artifact `generated/ccas/lessons/the-travel-rule-r16-and-inr16.json` (current SHA-256 `156146c49eb7561a20150888c0284af1ef276c64ead51cfb70c1d828fa35b71e`) against the current FATF Recommendations PDF (`Updated June 2026`), EUR-Lex Regulation (EU) `2023/1113`, DOJ's Binance press release, Treasury press release `jy1925`, FinCEN Consent Order `2023-04`, and OFAC's Binance settlement page.
+- Important stale-note correction: the older same-day Travel Rule field-list blocker no longer matches the live artifact. The current lesson now stays at principle level on the required originator / beneficiary data and no longer restates the earlier compressed `name + wallet/account reference + one identifier` package; the current EU self-hosted-wallet wording is also materially in bounds.
+- Current verdict remains `DISAGREE`, but the live blockers are now citation / case precision instead. First, the FATF citation labels in `The Travel Rule: identity that moves with the money`, `Why it is hard on a blockchain`, and `The data set, the threshold, and self-hosted wallets` still call the Recommendations the `current consolidated edition, updated October 2025` even though FATF's current official Recommendations PDF is `Updated June 2026`. Second, `Worked example: Binance and the foundation the Travel Rule depends on (2023)` overcompresses the checked Binance source bundle: Treasury supports the historic `FinCEN` penalty / `OFAC` settlement / five-year monitor / complete U.S. exit, and DOJ says `one of the largest corporate penalties in U.S. history`; the scene's `largest anti-money-laundering resolution in the history of the U.S. Treasury` / `largest such penalty on record` phrasing and court-style DOJ citation label should be narrowed to the exact source-backed formulation.
+- No lesson-content edits were made in this work block. If this slug is touched again, fix the stale FATF current-edition citations first and then tighten the Binance deep-case wording; do not recycle the older same-day field-list blocker on this hash unless that wording reappears.
+
+## 2026-06-25 - CCAS lesson `the-sunrise-problem-and-counterparty-vasp-due-diligence` factual-fidelity stale-note correction now returns `AGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / repo-matched lesson artifact against the maintained 2026-06-22 crypto/VASP facts reference, FATF's 2021 VA/VASP guidance, the FATF second 12-month review, and FinCEN's Bitzlato order (`Imposition of Special Measure Prohibiting the Transmittal of Funds Involving Bitzlato`, `88 FR 3919`).
+- The earlier same-day factual-fidelity `DISAGREE` note is stale on the current file. That rejection was tied to an older draft / Codex-trace sentence saying the FinCEN order bound `persons subject to U.S. jurisdiction`; the live lesson file now correctly limits the order to covered U.S. financial institutions rather than persons generally.
+- Current verdict therefore moves back to `AGREE`. No second publication blocker surfaced on the live sunrise-problem, counterparty-VASP-due-diligence, self-hosted-wallet, or Bitzlato wording.
+- No lesson-content edits were made in this work block. If this slug comes back, keep it closed on factual fidelity unless the artifact changes materially, and do not recycle the stale FinCEN-scope rejection against the current text.
+
+## 2026-06-25 - CCAS lesson `the-sunrise-problem-and-counterparty-vasp-due-diligence` methodology exact no-delta rerun remains `AGREE`
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then reran the exact cross-check-reviewer methodology audit on the literal user-pasted / repo-matched lesson artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology delta surfaced on the current text: allowed/public source discipline still holds, all 4 reading scenes carry `citations[]`, `Worked example: Bitzlato and the counterparty you must screen out (2023)` still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz stays formative without drifting into certification-format mimicry.
+- Rechecked `generated/ccas/lessons/the-sunrise-problem-and-counterparty-vasp-due-diligence.validation.json`; the live file remains structurally clean at `overall: pass` with `validatedAt` `2026-06-25T06:16:15.779Z`.
+- No lesson-content edits were made in this work block. Keep this slug closed on methodology unless the artifact changes materially; if it comes back, the next touch should stay in the separate factual-fidelity lane first.
+
+## 2026-06-25 - CCAS lesson `the-sunrise-problem-and-counterparty-vasp-due-diligence` methodology audit lands `AGREE`
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then audited the literal user-pasted / repo-matched lesson artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology blocker surfaced on the current text: allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, `Worked example: Bitzlato and the counterparty you must screen out (2023)` satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz stays formative without drifting into certification-format mimicry.
+- Rechecked `generated/ccas/lessons/the-sunrise-problem-and-counterparty-vasp-due-diligence.validation.json`; the live file remains structurally clean at `overall: pass` with `validatedAt` `2026-06-25T06:00:32.231Z`.
+- No lesson-content edits were made in this work block. Keep this slug closed on methodology unless the artifact changes materially; if it comes back, the next touch should stay in the separate factual-fidelity lane first.
+
+## 2026-06-25 - CCAS lesson `the-travel-rule-r16-and-inr16` primary-source rerun keeps `DISAGREE` and adds a Binance case-fidelity blocker
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the factual-fidelity audit on the literal user-pasted / repo-matched artifact against the maintained 2026-06-22 crypto/VASP facts reference, the FATF Recommendations / current `R.16` text, EUR-Lex Regulation (EU) 2023/1113, DOJ's Binance press release, Treasury press release `jy1925`, and FinCEN Consent Order `2023-04`.
+- Current verdict remains `DISAGREE`. The repeated Travel Rule field-list teaching is still the first publication blocker: `What must travel with a VA transfer`, `The data set, the threshold, and self-hosted wallets`, the second quiz explanation, and `What to carry forward` still restate a compressed originator / beneficiary package as if current.
+- Additional live blocker from this rerun: `Worked example: Binance and the largest Travel Rule failure on record (2023)` overstates the checked Binance source bundle. The cited DOJ / FinCEN / OFAC materials support AML-program, MSB-registration, SAR, and sanctions failures, but on this pass they did not support presenting Binance as a proved Travel Rule enforcement matter or as the `largest Travel Rule failure on record`.
+- No lesson-content edits were made in this work block. If this slug is touched again, repair the repeated field-list teaching first and then either narrow the Binance scene to what the cited source bundle actually proves or replace it with a better-anchored Travel Rule case.
+
+## 2026-06-25 - CCAS lesson `the-travel-rule-r16-and-inr16` factual-fidelity live-hash rerun stays `DISAGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / current repo artifact `generated/ccas/lessons/the-travel-rule-r16-and-inr16.json` (current SHA-256 `f5a315dc120187ae2033c9faa2b4264d38f4061dce6baa82acfb0263fea14877`) against the maintained 2026-06-22 crypto/VASP facts reference plus a fresh EUR-Lex reread of Regulation (EU) 2023/1113.
+- No delta surfaced on the ship / no-ship call: current verdict remains `DISAGREE`.
+- The decisive live blocker is still the repeated Travel Rule field-list teaching. `What must travel with a VA transfer`, `The data set, the threshold, and self-hosted wallets`, the second quiz explanation, and `What to carry forward` still restate a compressed originator / beneficiary data package as if current (`originator` = name + wallet/account reference + one identifying detail; `beneficiary` = name + wallet/account reference) even though the facts pack for this slug marked the post-June-2025 INR.16 set `VERIFY AT GENERATION`.
+- Fresh EUR-Lex reread was enough to confirm the current EU worked-example paragraph is close enough to Regulation (EU) 2023/1113 that the earlier narrower self-hosted-wallet objection is not needed to sustain the `DISAGREE` on the live text. If this slug is touched again, repair the repeated field-list teaching first before reopening narrower EU-paraphrase questions.
+- No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `the-travel-rule-r16-and-inr16` methodology exact-format no-delta rerun stays `DISAGREE`
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then reran the exact cross-check-reviewer methodology audit on the literal user-pasted / repo-matched lesson artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology delta surfaced on the current text: allowed/public source discipline still holds, all 4 reading scenes carry `citations[]`, the scene `teachesConcepts` remain substantively distinct enough on this brief, and no commercial-source/IP or adult-register blocker surfaced.
+- The live blocker remains pedagogical structure only: `Worked example: the EU recast Transfer of Funds Regulation (2023, in force from 2024)` is a comparative implementation walkthrough, not a true deep-case scene grounded in one named public enforcement action or one specific named public matter centered on a named entity and year with substantive analysis. The brief Binance paragraph inside it does not cure that.
+- No lesson-content edits were made in this work block. If this slug is touched again, fix the deep-case gap first and keep the next pass tightly in the methodology lane until that blocker is cleared.
+
+## 2026-06-25 - CCAS lesson `the-travel-rule-r16-and-inr16` factual-fidelity audit returns `DISAGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then audited the literal user-pasted / repo-matched lesson artifact against the maintained 2026-06-22 crypto/VASP facts reference plus direct FATF / EUR-Lex spot checks.
+- Current verdict is `DISAGREE`. The live publication blocker is regulatory-text fidelity in the Travel Rule data-set teaching, not the high-level explanation of why the rule is hard on crypto rails.
+- `What must travel with a VA transfer`, `The data set, the threshold, and self-hosted wallets`, the second quiz explanation, and `What to carry forward` still teach a concrete VA Travel Rule field set as if current even though the facts pack for this slug explicitly marked the June 2025 FATF revision as `VERIFY AT GENERATION` and warned not to restate the pre-revision field list as current. The repeated formula — originator name + wallet/account reference + one identifying detail, and beneficiary name + wallet/account reference — is therefore not publication-safe as current FATF teaching.
+- Narrow secondary issue: `Worked example: the Travel Rule in operative law, the EU and the US (2023 to 2024)` compresses the EU self-hosted-wallet rule into a generic above-threshold duty to verify information about the wallet holder. Regulation (EU) 2023/1113 is more specific: for transfers above EUR 1 000 to or from a self-hosted address, the CASP verifies ownership/control of the address by the client and applies additional risk-based measures.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to the field-list repair first and then the narrower EU self-hosted-wallet wording.
+## 2026-06-25 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` exact-format factual-fidelity rerun
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact publication-verdict factual-fidelity audit on the literal user-pasted / repo-matched lesson artifact against the maintained 2026-06-22 crypto/VASP facts reference, the FATF Recommendation `15` / INR.15 text, and the already-verified FinCEN / OFAC Bittrex bundle.
+- No delta surfaced from the earlier same-day no-delta note. The Bittrex chronology / identity / disposition / numeric bundle remains clean, and the live blockers are still the same two FATF scope points only.
+- `When crypto came inside the rules (2018 to 2019)` still overstates the 2018-2019 FATF change as if it created immediate worldwide firm-level obliged-entity status, and `The gateway: no VASP operates unsupervised` plus the related quiz explanation still treat FATF's licensing expectation as if it directly binds firms worldwide independent of domestic implementation.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to those same two scope repairs only and keep the already-cleared methodology lane closed unless the artifact changes.
+
+## 2026-06-25 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` factual-fidelity exact no-delta rerun
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact publication-verdict factual-fidelity audit on the literal user-pasted / repo-matched lesson artifact against the maintained 2026-06-22 crypto/VASP facts reference and the already-verified FATF / FinCEN / OFAC source bundle.
+- No delta surfaced from the earlier same-day stale-note correction. The Bittrex chronology / identity / disposition / numeric bundle remains clean, and the live blockers are still the same two FATF scope points only.
+- `When crypto came inside the rules (2018 to 2019)` still overstates the 2018-2019 FATF change as if it created immediate worldwide firm-level obliged-entity status, and `The gateway: no VASP operates unsupervised` plus the related quiz explanation still treat FATF's licensing expectation as if it directly binds firms worldwide independent of domestic implementation.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to those two scope repairs only and keep the already-cleared methodology lane closed unless the artifact changes.
+
+## 2026-06-24 - CCAS MILESTONE: Domain 1 (11/11) + the financial-crime module (6/6) COMPLETE — 17/43 CCAS lessons cleared
+
+Milestone marker (the per-lesson cross-check verdicts below this entry are auto-written by the cross-check runs). This work block generated **9 new CCAS lessons** inline (one per turn, gates → Codex cross-check → fix → accept), taking CCAS from 8/43 to **17/43 cleared**.
+
+- **Domain 1 — Cryptoassets & Blockchain (exam weight 30%) is now 11/11 COMPLETE.** Module 2 `blockchain-analytics-and-on-chain-investigation` finished this block: `transparency-pseudonymity-and-the-tracing-premise` (AGREE/AGREE, deep case **James Zhong / Silk Road** seizure), `clustering-attribution-and-exposure-analysis` (AGREE / fidelity-SPLIT cleared-with-flag, deep case **SUEX** OFAC designation — the SUEX-illustrates-the-method framing is the residual), `conducting-an-on-chain-investigation` (AGREE/AGREE, deep case **Bitfinex / Lichtenstein & Morgan**, + Welcome-to-Video at indicator level).
+- **Module 3 `financial-crime-in-the-cryptoasset-sector` is now 6/6 COMPLETE.** `the-money-laundering-cycle-in-crypto` (AGREE/AGREE, **BTC-e / Canton Business Corporation / Vinnik**), `terrorist-financing-and-proliferation-financing-in-crypto` (AGREE/AGREE, **Lazarus Group / Ronin bridge** OFAC designation; TF kept structural per the brief), `crypto-enabled-fraud-and-scams` (cleared-with-flag, **FTX / Bankman-Fried**; FRAML nexus), `tax-evasion-and-the-crypto-afc-nexus` (cleared-with-flag, **Coinbase John Doe summons**; CARF/DAC8/US-broker reporting), `ransomware-darknet-and-illicit-marketplaces` (cleared-with-flag, **Hydra Market / Garantex** April-2022 takedown; ransom payment = a sanctions-regulated decision), `crypto-typologies-and-red-flag-indicators` (cleared-with-flag, **Bitfinex** re-read as a typology catalogue — a deliberate consolidation callback).
+- **Cleared-with-flag pattern (FOR RIPON'S REVIEW GATE):** 4 of the 6 financial-crime lessons (plus SUEX) ended methodology-AGREE / fidelity-SPLIT. In every case the Pro reviewer confirmed the substance is materially sound (chronology, numerics, scope all in bounds after fixes) and the residual is the reviewer escalating toward wanting **verbatim DOJ/Treasury release titles + docket numbers** in the deep-case citations. I deliberately did NOT fabricate exact captions (an unverifiable exact title is itself a fidelity risk); the labels accurately name agency + matter + instrument + date, matching the descriptive-citation style of every already-cleared CAMS/CCAS lesson. Genuine fidelity issues surfaced this block WERE all fixed: OFAC-scope-to-US-persons (TF/PF, tax), numeric-magnitude sourcing ("thousands of hops" → qualitative; Hydra $5.2B → the Treasury-backed $1.3B/2020), US §6045 broker scope (custodial, gross-proceeds), CARF future-tense/cross-border-vs-domestic mechanism, FTX co-founder + "millions of customers", and the nesting-vs-layering mislabel. Recurring reviewer triggers now pre-empted at generation: slide-recaps-its-reading (give the slide a distinct operational angle + retitle), OFAC claims unscoped to US persons, unsourced numeric magnitudes, present-tense for not-yet-operational regimes.
+- **Deep cases used so far (avoid over-reuse):** Terra/Luna, Mt. Gox, QuadrigaCX, Colonial Pipeline, Liberty Reserve, Ooki DAO, Tether, Helix, Zhong/Silk Road, SUEX, Bitfinex (×2 — investigation + typology-catalogue callback), BTC-e, Lazarus/Ronin, FTX, Coinbase John Doe summons, Hydra/Garantex. **Reserve for later modules:** Binance + BitMEX → enforcement (M9) / program (M6-7); Tornado Cash → sanctions lesson (M4) + M9.
+- **NEXT:** Module 4 `fatf-the-travel-rule-and-crypto-sanctions` (4 lessons: R.15/VASP-definition, the Travel-Rule R.16/INR.16, the sunrise problem / counterparty VASP DD, sanctions-and-cryptoassets). **CARRY THE TODO:** the Travel-Rule lesson must VERIFY the current revised **INR.16 VA data elements** against the live FATF text at generation (facts pack marks this VERIFY-AT-GENERATION; do not assert the pre-June-2025 field list as current). Then Module 5 (national frameworks: US/EU-MiCA-TFR/UK), then Domain 3 (M6-M9, 18 lessons). Assessment/question-bank still deferred until lessons are done.
+
+## 2026-06-24 - CCAS lesson `crypto-typologies-and-red-flag-indicators` factual-fidelity stale-note correction narrows the live issue to citation precision only
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal pasted / repo lesson artifact against the maintained 2026-06-22 crypto/VASP facts reference plus the public Bitfinex record.
+- Current verdict still best reads `SPLIT`, but the earlier same-day nesting issue is stale on the live artifact. Re-checking `generated/ccas/lessons/crypto-typologies-and-red-flag-indicators.json` confirms the current Bitfinex scene now says `Layering through services`, not `Nesting and layering through services`, so the live text no longer mislabels that conduct as nesting.
+- The remaining reviewer-visible issue is deep-case citation precision only: `Worked example: the Bitfinex laundering as a typology catalogue (2016-2022)` still uses generic DOJ source labels rather than exact release / filing titles for the 2022 seizure record and the later guilty-plea support.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to tightening the Bitfinex citation labels only; do not recycle the stale nesting objection unless that wording reappears.
+
+## 2026-06-24 - CCAS lesson `crypto-typologies-and-red-flag-indicators` methodology exact no-delta rerun remains `AGREE`
+
+- Re-read the required memory and methodology stack first per `AGENTS.md`, then reran the exact v1.1 cross-check-reviewer methodology audit on the literal pasted / repo lesson artifact.
+- No methodology delta surfaced on the current text: allowed/public source discipline still holds, all 4 reading scenes carry `citations[]`, `Worked example: the Bitfinex laundering as a typology catalogue (2016-2022)` still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz remains scenario-based rather than certification-format mimicry.
+- Rechecked `generated/ccas/lessons/crypto-typologies-and-red-flag-indicators.validation.json`; the live file remains structurally clean at `overall: pass` with `validatedAt` `2026-06-24T17:42:27.346Z`.
+- No lesson-content edits were made in this work block. Keep this slug closed on methodology unless the artifact changes materially; if it comes back, keep any next touch in the separate factual-fidelity lane first.
+
+## 2026-06-24 - CCAS lesson `crypto-typologies-and-red-flag-indicators` factual-fidelity audit lands `SPLIT`
+
+- Re-read the required memory stack first per `AGENTS.md`, then audited the literal pasted / repo lesson artifact against the maintained 2026-06-22 crypto/VASP facts reference plus the public Bitfinex record.
+- Current verdict best reads `SPLIT`. The core typology / red-flag teaching is materially sound, and the Bitfinex chronology / numeric bundle stays in bounds on the live text (`~119,754` BTC stolen in 2016; DOJ February 2022 seizure of `~94,000` BTC; Lichtenstein and Morgan later pleaded guilty in 2023).
+- The reviewer-visible issues are both in `Worked example: the Bitfinex laundering as a typology catalogue (2016-2022)`: the bullet labelled `Nesting and layering through services` describes layering through exchanges / darknet-market accounts, not the lesson's own defined `nesting` typology of a service operating inside another exchange's compliance perimeter; and the deep-case citation labels are still generic (`press release ...`; `forfeiture and statement-of-facts filings ...`) rather than exact filing / release titles.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to correcting the `nesting` label / mapping and tightening the Bitfinex citation labels; do not reopen the otherwise stable chronology / numeric bundle unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `ransomware-darknet-and-illicit-marketplaces` factual-fidelity exact no-delta rerun stays `SPLIT`
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact audit on the literal pasted / repo artifact against the maintained 2026-06-22 facts spine plus Treasury's verified `2022-04-05` Hydra / Garantex release.
+- The live substantive bundle remains in bounds: the current deep-case still uses Treasury-backed `over 1.3 billion` in 2020 for Hydra and `over 100 million` in illicit-actor / darknet-market transactions for Garantex.
+- Current verdict remains `SPLIT`, but the stale same-day operator-role note no longer matches the live artifact. The only reviewer-visible residual on the current text is citation precision: `Worked example: Hydra Market and Garantex (2022)` still uses a generic DOJ citation label rather than the exact DOJ release title.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to tightening that DOJ citation label only.
+
+## 2026-06-24 - CCAS lesson `ransomware-darknet-and-illicit-marketplaces` factual-fidelity stale-rejection correction narrows to `SPLIT`
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact audit on the literal pasted / repo artifact against the maintained 2026-06-22 facts spine plus Treasury's verified `2022-04-05` Hydra / Garantex release.
+- Important correction to the same-day trail: the current live lesson no longer contains the earlier rejected `approximately 5.2 billion US dollars` lifetime-Hydra wording. The deep-case now uses Treasury's `over 1.3 billion` in 2020 and `over 100 million` illicit-actor / darknet-market figure for Garantex, both in bounds.
+- Current verdict is `SPLIT`, not `DISAGREE`. The remaining reviewer-visible issue is narrow deep-case precision only: `Worked example: Hydra Market and Garantex (2022)` still uses a generic DOJ citation label rather than the exact release title and bakes in more-specific defendant-role wording (`alleged operator Dmitry Olegovich Pavlov`) than the lesson body itself needs.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to tightening that DOJ deep-case citation / identity phrasing only, and do not reuse the stale `5.2 billion` rejection unless the older wording reappears.
+
+## 2026-06-24 - CCAS lesson `ransomware-darknet-and-illicit-marketplaces` factual-fidelity audit returns `DISAGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then audited the literal pasted / repo lesson against the maintained 2026-06-22 facts spine plus direct public-record verification of Treasury's `2022-04-05` Hydra / Garantex release.
+- Current verdict is `DISAGREE`. The lesson's high-level ransomware / darknet / sanctions teaching remains materially sound, but the deep-case scene is not publication-safe on numeric / citation precision yet.
+- Publication-blocking issue 1: `Worked example: Hydra Market and Garantex (2022)` says Treasury stated Hydra had received `approximately 5.2 billion US dollars` over its lifetime. The verified `2022-04-05` Treasury release I checked does not itself state that figure; it supports different Hydra numerics (including `over 1.3 billion` in 2020), so the lesson's attribution / sourcing is not currently exact.
+- Publication-blocking issue 2: the same deep-case scene still uses generic source labels (`designation ...`; `public materials ...`) rather than the exact Treasury / DOJ release titles the brief expects for a high-value case scene.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to the Hydra numeric/source attribution and the deep-case citation-label precision.
+
+## 2026-06-24 - CCAS lesson `tax-evasion-and-the-crypto-afc-nexus` factual-fidelity rerun stays `SPLIT`, on softer current precision issues
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / repo lesson artifact against the maintained 2026-06-22 facts spine plus official IRS/Treasury broker-reporting pages, the OECD's `2024-10-02` CARF implementation note, and EUR-Lex for DAC8.
+- Current verdict remains `SPLIT`. The core tax-evasion / predicate-offence teaching, the section `6045` / DAC8 identifier bundle, and the Coinbase John Doe summons substance remain materially sound on the current text.
+- The live residual is narrower and softer than the earlier same-day scope objections: the Coinbase deep-case still uses generic source labels rather than the exact case / order / release titles the brief ideally wants, and the transparency-regime scenes still occasionally read as if touching a reporting intermediary makes value visible immediately even though the actual mechanisms are domestic broker reporting and periodic automatic exchange.
+- No lesson-content edits were made in this work block. If the lesson is touched again, keep the next factual-fidelity pass tightly scoped to the Coinbase citation bundle and the instantaneous-visibility wording.
+
+## 2026-06-24 - CCAS lesson `tax-evasion-and-the-crypto-afc-nexus` methodology refreshed no-delta rerun
+
+- User asked for the exact v1.1 methodology-only verdict on the literal pasted lesson artifact. Re-read the required memory stack and governing ADR / prompt set first per `AGENTS.md`, then checked the pasted lesson against the repo copy plus `generated/ccas/lessons/tax-evasion-and-the-crypto-afc-nexus.validation.json`.
+- Current methodology verdict remains `AGREE`, with no reviewer-visible delta from the earlier same-day cleared state: allowed/public source discipline remains in bounds, all 4 reading scenes carry `citations[]`, the Coinbase John Doe summons scene still satisfies the named deep-case requirement, scene-level teaching contributions remain distinct, and the quiz stays scenario-based rather than certification-format mimicry.
+- The only practical change from the earlier same-day note is the refreshed validation timestamp (`overall: pass`; `validatedAt` `2026-06-24T16:55:14.968Z`). No lesson-content edits were made; if this slug comes back, keep the next touch in the separate factual-fidelity lane first.
+
+## 2026-06-24 - CCAS lesson `tax-evasion-and-the-crypto-afc-nexus` factual-fidelity stale-rejection correction narrows to `SPLIT`
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal user-pasted / repo lesson artifact against the maintained 2026-06-22 facts spine plus a direct reread of the current generated JSON and the OECD's `2024-10-02` CARF implementation note.
+- Important stale-note correction: the earlier same-day `DISAGREE` note on this slug was tied to an earlier artifact version that still used broader U.S. broker wording and more present-tense CARF phrasing. Those specific blockers are not present on the current pasted / repo artifact.
+- Current verdict is `SPLIT`, not hard `DISAGREE`. The core tax-evasion / predicate-offence teaching and the Coinbase John Doe summons scene remain materially sound, and the current `Closing the gap: the tax-transparency regimes` scene now stays within the narrower custodial-broker / future-tense-CARF lane.
+- The live reviewer-visible residual is narrower and should be kept tightly scoped if this lesson is touched again: `Check for understanding` still groups U.S. broker reporting with CARF / DAC8 as if all three were `automatic exchange`, and `Check for understanding` plus `What to carry forward` still overstate the off-ramp thesis by saying value `must pass through` reporting intermediaries to be useful / spendable. No lesson-content edits were made in this work block.
+
+## 2026-06-24 - CCAS lesson `tax-evasion-and-the-crypto-afc-nexus` methodology exact no-delta rerun remains `AGREE`
+
+User asked for the exact v1.1 methodology audit again on the literal pasted lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then reran the exact methodology audit on the lesson against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology delta surfaced on the current text: allowed/public source discipline still holds, all 4 reading scenes carry `citations[]`, `Worked example: Coinbase and the John Doe summons (2016-2017)` still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz remains scenario-based rather than certification-format mimicry.
+- Deterministic validation remains structurally clean on the live artifact (`overall: pass`; `validatedAt` `2026-06-24T16:30:43.425Z`). No lesson-content edits were made in this work block; keep the lesson closed on methodology unless the artifact changes materially, and keep any next touch in the separate factual-fidelity lane first.
+
+## 2026-06-24 - CCAS lesson `tax-evasion-and-the-crypto-afc-nexus` factual-fidelity audit lands `DISAGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the lesson artifact `tax-evasion-and-the-crypto-afc-nexus` against the maintained 2026-06-22 facts spine plus direct public-source spot checks on the U.S. digital-asset broker-reporting / CARF / Coinbase bundle.
+- Current verdict is `DISAGREE`: the tax-evasion / predicate-offence spine and the Coinbase John Doe summons scene remain materially sound, but the regulatory-summary lane is not publication-safe on the current text.
+- Live blocker 1: `Closing the gap: the tax-transparency regimes`, `How each regime closes the evasion gap`, the related quiz explanation, and the synthesis wording overstate the current U.S. broker-reporting regime by teaching broadly that customer-facing transfer intermediaries are the covered `brokers` and that customer `gains` surface automatically. The current final rule is narrower around custodial brokers and initially turns primarily on transaction / gross-proceeds reporting.
+- Live blocker 2: the CARF comparison slide / narration is slightly ahead on chronology because it describes participating jurisdictions as already collecting and exchanging crypto customer data automatically across borders, when the framework was finalised / adopted earlier but first exchanges are expected later.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to narrowing the U.S. broker-reporting scope/effect language and softening the CARF present-tense chronology before rerunning the exact factual-fidelity audit.
+
+## 2026-06-24 - CCAS lesson `tax-evasion-and-the-crypto-afc-nexus` methodology exact audit lands `AGREE`
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then checked the lesson artifact `tax-evasion-and-the-crypto-afc-nexus` against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the live validation sidecar.
+- Current verdict is `AGREE`: allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, `Worked example: Coinbase and the John Doe summons (2016-2017)` satisfies the named deep-case requirement, the scene `teachesConcepts` make distinct substantive contributions despite recurring topical tags, and the quiz is formative and scenario-based rather than certification-format mimicry.
+- Deterministic validation is structurally clean on the live artifact (`overall: pass`; `validatedAt` `2026-06-24T16:30:43.425Z`). No lesson-content edits were made in this work block; keep the methodology lane closed on this slug unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` factual-fidelity rerun still lands `SPLIT`, with one live FTX identity-precision note
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal pasted / repo lesson against the maintained 2026-06-22 facts spine plus direct public-record spot checks on the FTX bundle.
+- The scam-typology / FRAML teaching remains materially sound and the FTX chronology / disposition bundle stays in bounds, but the live residual is slightly broader than some earlier same-day notes captured: `Worked example: FTX, when the platform is the fraud (2022)` says FTX was `founded by Samuel Bankman-Fried`, which compresses co-founder identity because Gary Wang co-founded FTX, and the same scene still uses generic agency-level complaint / press-release labels instead of exact named filing / release titles.
+- No lesson-content edits were made in this work block. If this slug is touched again, keep the next pass tightly scoped to FTX precision only: restore co-founder accuracy and tighten the deep-case citation labels before reopening any broader sourcing concerns.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` methodology exact-format rerun: still `AGREE`
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then reran the exact v1.1 methodology audit on the literal pasted / repo lesson artifact.
+- No delta from the live cleared methodology state: allowed/public source discipline remains in bounds, all 4 reading scenes still carry `citations[]`, the FTX scene still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz remains scenario-based rather than certification-format mimicry.
+- Practical carry-forward: keep this slug closed on methodology unless the artifact changes materially. If it comes back, stay in the separate factual-fidelity lane first and do not reopen source-discipline / IP / deep-case / quiz-format / adult-register arguments on the current text.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` factual-fidelity rerun: current residual is citation-label precision only
+
+- Re-read the required memory stack first per `AGENTS.md`, then rechecked the literal pasted / repo lesson against the maintained 2026-06-22 facts spine plus direct public-source spot checks on the FTX bundle.
+- Current verdict still best reads `SPLIT`, but the earlier same-day objections are now too broad for the live artifact. The fraud / FRAML spine remains materially sound, FinCEN Alert `FIN-2023-Alert005` supports the pig-butchering mechanics at the level taught, and the FTX chronology / disposition bundle is still in bounds.
+- Live reviewer-visible residuals are now citation-label issues only: the pig-butchering scene still names `Egmont Group public typology bulletins on financial intelligence and virtual assets` too generically to be a precise source label, and the FTX deep-case still uses broad agency-level complaint / press-release descriptions instead of exact named filing / release titles.
+- No lesson-content edits were made in this work block. If the lesson is touched again, keep the next pass tightly scoped to citation-label tightening only and do not recycle the stale missing-CFTC / missing-sentencing-source objections unless the artifact changes back.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` methodology exact no-delta rerun
+
+- Re-read the full required memory stack first per `AGENTS.md`, then rechecked the literal pasted lesson against the repo file, the live validation sidecar, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology delta surfaced. Verdict stays `AGREE`, and the only practical update over the earlier same-day notes is the refreshed validation timestamp on `generated/ccas/lessons/crypto-enabled-fraud-and-scams.validation.json` (`overall: pass`; `validatedAt` `2026-06-24T15:56:13.223Z`).
+- Carry-forward: keep this slug closed on methodology unless the artifact changes materially. If it comes back, stay in the separate factual-fidelity lane first and do not reopen source-discipline / IP / deep-case / quiz-format arguments on the current text.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` factual-fidelity rerun narrowed the live issue to the FTX citation bundle
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the literal pasted / repo lesson against direct primary/public support from FinCEN Alert `FIN-2023-Alert005` plus the SEC / CFTC FTX materials.
+- Important correction to the same-day trail: the pig-butchering source-anchor concern is now stale on the live artifact. FinCEN's 8 September 2023 alert itself supports the lesson's wrong-number / social-contact setup, trust-building period, fake-platform mechanics, small initial withdrawal, purported taxes / fees, billions-in-losses framing, and the criminal-enterprise / labor-trafficking context.
+- Keep the factual-fidelity verdict at `SPLIT`, but on the narrower live issue set only: `Worked example: FTX, when the platform is the fraud (2022)` is materially sound on substance, yet its citation bundle still does not specifically cover the 2024 sentencing statement and remains looser than ideal for a deep-case scene. If this slug is touched again, add the exact sentencing source first and only then reassess whether any further citation-tightening is needed.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` methodology exact rerun stayed `AGREE` on the refreshed validation file
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then reran the exact v1.1 methodology audit on the literal pasted lesson against the repo copy and the governing ADR / prompt set.
+- Confirmed the pasted artifact still matches `generated/ccas/lessons/crypto-enabled-fraud-and-scams.json`; no methodology delta surfaced on source discipline, reading-scene `citations[]`, the FTX deep-case requirement, scene-level concept distinctness, quiz format, or adult register.
+- Rechecked `generated/ccas/lessons/crypto-enabled-fraud-and-scams.validation.json`; live file is structurally clean at `overall: pass` with `validatedAt` `2026-06-24T15:48:31.653Z`. Keep this slug closed on methodology unless the artifact changes materially; any next touch should stay in the separate factual-fidelity lane.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` stale-note correction on factual fidelity
+
+- Re-read the literal pasted / repo lesson itself before close-out because the stored same-day memory on this slug had drifted from the live artifact.
+- Important correction: the current file does include a CFTC citation label in the FTX deep case, and it does not contain the stronger `most damaging ... recent years` / `scam compounds` wording reflected in some earlier same-day notes.
+- Keep the factual-fidelity verdict at `SPLIT`, but on the narrower live issue set only: FATF 2020 / 2021 plus a generic Egmont label do not precisely anchor the opener's current-years fraud-loss framing or the pig-butchering-specific scene detail, and the FTX deep-case citations are still too broad at the agency-label level for a high-value case scene.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` factual-fidelity audit returns `SPLIT`
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the literal pasted / repo lesson against the maintained 2026-06-22 crypto/VASP facts reference plus the public FTX enforcement record.
+- Current factual-fidelity verdict is `SPLIT`, not `AGREE` or `DISAGREE`. The core fraud / FRAML teaching and the FTX chronology remain materially sound on the current text, and I did not find a hard chronology / numeric / identity contradiction strong enough for a no-ship `DISAGREE`.
+- The live reviewer-visible issue class is citation precision only, but it is worth carrying forward. `Pig-butchering and investment scams` currently leans on the FATF 2020 red-flags report and a generic `Egmont Group public typology bulletins` label for stronger present-day framing (`most damaging crypto scam typology of recent years`; `run from scam compounds with many workers and many victims`) that the cited bundle does not pin down precisely enough.
+- The deep-case scene has the same precision softness in a narrower form: `Worked example: FTX, when the platform is the fraud (2022)` says Bankman-Fried was charged by DOJ, SEC, and CFTC, but the citation bundle names only generic DOJ / SEC materials. If the lesson is touched again, either add a precise CFTC primary citation or narrow the charge sentence so the authorities invoked match the authorities cited.
+- No lesson-content edits were made in this work block. Keep the methodology lane closed on this slug; any future touch should stay in the factual-fidelity lane and remain tightly scoped to the pig-butchering source anchor plus the FTX deep-case citation bundle.
+
+## 2026-06-24 - CCAS lesson `terrorist-financing-and-proliferation-financing-in-crypto` factual-fidelity stale-rejection rerun now returns `AGREE`
+
+User asked for the exact factual-fidelity audit on the literal pasted lesson artifact again, and the live repo file had already moved past the earlier rejected version.
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the literal pasted / repo lesson against the maintained 2026-06-22 crypto/VASP facts reference plus the OFAC / FATF / Ronin source bundle already in use for this slug.
+- Important stale-note correction: the earlier same-day factual-fidelity `DISAGREE` was tied to the pre-fix artifact that still overstated OFAC scope and carried an incomplete deep-case citation bundle. Those blockers are not present on the current literal pasted / repo artifact.
+- Current user-facing factual-fidelity verdict is `AGREE`. The Ronin / Lazarus chronology remains materially sound, the OFAC consequence is now correctly limited to U.S. persons / persons subject to U.S. jurisdiction in the deep case, quiz, and synthesis, and the deep-case citation set now includes the 2019 OFAC Lazarus designation point, the FBI attribution statement, and UN-reporting support for DPRK weapons-program funding.
+- No lesson-content edits were made in this work block. Keep this lesson closed on factual fidelity unless the artifact changes materially, and do not reuse the stale same-day `DISAGREE` note against the earlier version.
+
+## 2026-06-24 - CCAS lesson `terrorist-financing-and-proliferation-financing-in-crypto` methodology exact rerun on the revised scene set lands `AGREE`
+
+User asked for the exact v1.1 methodology audit on the literal pasted lesson artifact again, and the live repo file now carries a revised slide pair.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then checked the pasted / repo lesson against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the live validation sidecar.
+- Current user-facing methodology verdict is `AGREE`: allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, `Worked example: the Lazarus Group, the Ronin bridge, and theft as statecraft (2022)` satisfies the named deep-case requirement, the quiz is formative and scenario-based rather than certification-format mimicry, and `generated/ccas/lessons/terrorist-financing-and-proliferation-financing-in-crypto.validation.json` is structurally clean (`overall: pass`; `validatedAt` `2026-06-24T15:10:47.435Z`).
+- Important stale-note correction: the earlier same-day methodology `SPLIT` note was tied to the superseded slide pair `Origin, purpose, programme: three crimes compared` / `Why small-value flows defeat laundering-tuned monitoring`. The current slide pair `What each crime looks like on the chain` / `Building detection that catches small-value flows` now makes distinct scene-level contributions by shifting from concept comparison to on-chain signature/control mapping and from typology diagnosis to concrete monitoring design.
+- No lesson-content edits were made in this work block. Keep the next pass on this slug in the separate factual-fidelity lane unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `terrorist-financing-and-proliferation-financing-in-crypto` methodology exact audit lands `SPLIT`
+
+User asked for the exact v1.1 methodology audit on the literal pasted lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then checked the pasted / repo lesson against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the live validation sidecar.
+- Current user-facing methodology verdict is `SPLIT`: allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, `Worked example: the Lazarus Group, the Ronin bridge, and theft as statecraft (2022)` satisfies the named deep-case requirement, the quiz is formative and scenario-based rather than certification-format mimicry, and `generated/ccas/lessons/terrorist-financing-and-proliferation-financing-in-crypto.validation.json` is structurally clean (`overall: pass`; `validatedAt` `2026-06-24T14:52:53.431Z`).
+- The reviewer-visible issue is pedagogical-structure softness only: `Origin, purpose, programme: three crimes compared` still substantially re-teaches `Three problems, not one: laundering, terrorist financing, proliferation financing`, and `Why small-value flows defeat laundering-tuned monitoring` still largely re-states `Terrorist financing in crypto: small value, many flows`.
+- No lesson-content edits were made in this work block. If this lesson is touched again, keep the next methodology pass narrowly on differentiating or compressing those paired recap slides rather than reopening source / IP / deep-case arguments.
+
+## 2026-06-24 - CCAS lesson `the-money-laundering-cycle-in-crypto` factual-fidelity stale-hash correction now returns `AGREE`
+
+User asked for the exact factual-fidelity audit on the literal lesson artifact again, but the live repo file had already moved past the earlier rejected hash.
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the literal pasted / repo lesson on live hash `40CACFEB8AD226DD0E04FC25BDEC203E6BB295C1F50026AAE2C9815AC50CEF70` against the maintained 2026-06-22 crypto/VASP facts reference plus FinCEN / DOJ BTC-e primary materials dated `2017-07-26`, `2022-08-05`, and `2024-05-03`.
+- Important stale-note correction: the earlier same-day `DISAGREE` notes on this slug were tied to the superseded rejected hash `788fa4253154fa32f5845b12141d75ce7333faec6a83fc72b46170d36d137ada`, which still contained the unsupported `many thousands of hops in minutes` line and stronger mandatory off-ramp wording. Those lines are not present on the current literal pasted / repo artifact.
+- Current user-facing factual-fidelity verdict is `AGREE`. The BTC-e bundle remains materially sound on chronology / identity / disposition (`Canton Business Corporation`; 26 July 2017 FinCEN penalties of about `USD 110 million` and `USD 12 million`; Vinnik's 2024 U.S. guilty plea to money-laundering conspiracy), and the regulated-perimeter thesis is now framed with `usually` / `most often` plus explicit caveats for peer-to-peer, self-hosted, and non-compliant paths, which keeps it inside the acceptable fidelity boundary.
+- Soft reviewer-visible precision point only: if the lesson is touched later, the DOJ citation label could be made more exact by naming the specific 2024 plea release rather than generic Northern District of California `public materials`, but that is not a publication blocker on the current artifact.
+- No lesson-content edits were made in this work block. Keep this lesson closed on factual fidelity unless the artifact changes materially, and do not reuse the stale `many thousands of hops` rejection against the current hash.
+
+## 2026-06-24 - CCAS lesson `the-money-laundering-cycle-in-crypto` methodology no-delta rerun stays `AGREE`
+
+User asked for the exact methodology audit again on the literal lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then reran the v1.1 methodology audit on the pasted artifact itself.
+- No methodology delta surfaced on the current text: the source base stays inside allowed/public types, all 4 reading scenes carry `citations[]`, `Worked example: BTC-e, the exchange that chose to launder (2017)` remains a valid named deep case, the scene contributions stay substantively distinct on this brief, and the quiz remains scenario-based rather than certification-format mimicry.
+- No lesson-content edits were made in this work block. Keep the slug closed on methodology unless the artifact changes materially; any further touch should stay in the separate factual-fidelity lane.
+
+## 2026-06-24 - CCAS lesson `the-money-laundering-cycle-in-crypto` factual-fidelity exact audit: `DISAGREE`
+
+User asked for the exact factual-fidelity audit on the literal lesson artifact.
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the pasted / repo lesson against the maintained 2026-06-22 crypto/VASP facts reference plus DOJ BTC-e primary materials dated `2017-07-26`, `2022-08-05`, and `2024-05-03`.
+- The BTC-e deep-case bundle itself is materially sound on chronology / identity / disposition: `Canton Business Corporation`; 26 July 2017 FinCEN penalties of about `USD 110 million` and `USD 12 million`; Vinnik's 2024 U.S. guilty plea to money-laundering conspiracy.
+- Current user-facing factual-fidelity verdict is `DISAGREE`, not `SPLIT`, because the live artifact still has two must-fix issues.
+- Publication-blocking issue 1: the lesson repeatedly turns a vivid but unanchored magnitude into fact by saying crypto layering can involve `thousands` or `many thousands of hops in minutes`. The cited FATF 2020/2021 materials support rapid chain-hopping / mixing / automation, but not that specific numeric claim as written here.
+- Publication-blocking issue 2: `Where it touches the regulated world: on-ramps and off-ramps`, the layering scenes, the quiz, and the synthesis slide overstate scope by saying illicit value `almost always has to enter and exit through a regulated intermediary` and `must still exit at a finite number of regulated off-ramps`. That is a useful operational thesis, but it is too categorical for peer-to-peer / self-hosted / other non-VASP use or cash-out paths.
+- No lesson-content edits were made in this work block. If this lesson is touched again, keep the next fidelity pass tightly scoped to sourcing or cutting the `thousands of hops` magnitude and softening the off-ramp universality language; do not reopen the already-cleared methodology lane unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `the-money-laundering-cycle-in-crypto` methodology exact audit: `AGREE`
+
+User asked for the exact v1.1 methodology audit on the literal lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then checked the pasted / repo lesson against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the live validation sidecar.
+- Current user-facing methodology verdict is `AGREE`: allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, `Worked example: BTC-e, the exchange that chose to launder (2017)` satisfies the named deep-case requirement, the scene-level teaching contributions remain distinct on this brief, and the quiz is formative and scenario-based rather than certification-format mimicry.
+- Validation sidecar is structurally clean on the live artifact (`overall: pass`; `validatedAt` `2026-06-24T08:35:44.472Z`).
+- No lesson-content edits were made in this work block. Keep this slug closed on methodology unless the artifact changes materially; any later review should stay in the separate factual-fidelity lane.
+
+## 2026-06-24 - CCAS lesson `conducting-an-on-chain-investigation` factual-fidelity rerun on current artifact hash `d1531245766490d8e1db269580f1d4839e1249d0696f0f7b1bbdeb48af696bfb` now returns `AGREE`
+
+User asked for the exact factual-fidelity audit on the literal pasted lesson artifact.
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the literal pasted lesson and live repo file against the maintained 2026-06-22 crypto/VASP facts reference, FinCEN `FIN-2013-G001`, and the public Bitfinex / Welcome to Video record.
+- Important stale-note correction: the current live artifact hash `d1531245766490d8e1db269580f1d4839e1249d0696f0f7b1bbdeb48af696bfb` is newer than the rejected hashes already recorded in `generated/ccas/review_events.jsonl`, so those older cross-check rejections are historical unless the lesson wording changes back.
+- The old Bitfinex no-ship issue is stale on the current text. The live scene no longer says exchanges generally keep `know-your-customer` records `under the Bank Secrecy Act`; it now keeps the U.S. point at the narrower MSB / money-transmitter AML-program / recordkeeping / SAR lane and separately locates broader customer-due-diligence duties in FATF-aligned VASP regimes across jurisdictions.
+- The older Welcome to Video residual is also stale on the current text: the scene says exchange records helped identify the site's `operator and its users`, not plural `administrators`.
+- Current factual-fidelity verdict is `AGREE`. No lesson-content edits were made in this work block; memory only. Keep the lesson closed on factual fidelity unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `conducting-an-on-chain-investigation` factual-fidelity rerun: Welcome-to-Video note stale, Bitfinex scope issue still live
+
+User asked for another exact factual-fidelity verdict on the literal pasted / repo `conducting-an-on-chain-investigation` artifact.
+
+- Re-read the required memory stack first per `AGENTS.md`, then rechecked the live lesson against DOJ's **8 February 2022** Bitfinex release, FinCEN **FIN-2013-G001**, and the contemporaneous public record on the **16 October 2019** Welcome to Video announcement.
+- Important stale-note correction: the current lesson does **not** say Welcome to Video exchange records identified plural `administrators`. The live text already uses the narrower and supportable `operator and its users` formulation.
+- Current factual-fidelity verdict still remains `DISAGREE`, but now on one must-fix issue only: `Worked example: the Bitfinex bitcoin, traced through years of layering (2016-2022)` overstates the U.S. legal point by saying exchange anchors in the trace are `know-your-customer` records kept under the Bank Secrecy Act. The maintained U.S. crypto/VASP facts and FinCEN guidance support the narrower U.S. MSB / CVC-exchanger AML-program, recordkeeping, and SAR lane instead.
+- No lesson-content edits were made in this work block. If this lesson is touched again, keep the next fidelity pass tightly scoped to that Bitfinex BSA/MSB sentence and do not recycle the stale Welcome to Video issue unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `conducting-an-on-chain-investigation` methodology rerun: no delta on the live artifact
+
+User asked for another exact v1.1 methodology verdict on the literal pasted / repo `conducting-an-on-chain-investigation` lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then reran the exact methodology audit on the lesson against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and `generated/ccas/lessons/conducting-an-on-chain-investigation.validation.json`.
+- Result is still `SPLIT`, not `AGREE` or `DISAGREE`. Allowed/public source discipline remains in bounds, all 4 reading scenes still carry `citations[]`, the Bitfinex scene still satisfies the named deep-case requirement, and the quiz remains scenario-based rather than certification-format mimicry.
+- No new methodology issue class surfaced. The carry-forward remains the same pedagogical-structure softness only: `The five moves of an investigation` still substantially re-teaches `The shape of an on-chain investigation`, and `Trace, then compel: the off-ramp as the unmasking point` still substantially re-states `The identity bridge: where on-chain meets off-chain`.
+- Validation sidecar is still structurally clean on the live artifact (`overall: pass`; `validatedAt` `2026-06-24T08:08:01.034Z`). No lesson-content edits were made in this work block.
+
+## 2026-06-24 - CCAS lesson `conducting-an-on-chain-investigation` factual-fidelity audit lands `DISAGREE`
+
+User asked for the exact factual-fidelity audit on the literal pasted / repo `conducting-an-on-chain-investigation` lesson artifact.
+
+- Re-read `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, and the relevant ADRs first per `AGENTS.md`, then checked the live artifact against the maintained 2026-06-22 crypto/VASP facts reference plus the public Bitfinex / Welcome to Video record.
+- The lesson's main workflow spine is still sound, and the hard Bitfinex bundle remains in bounds on chronology / numerics (`August 2016` theft, about `119,754` bitcoin stolen, `8 February 2022` seizure announcement, about `94,000` bitcoin seized, over `USD 3.6 billion` at seizure, later guilty pleas).
+- Current user-facing fidelity verdict is `DISAGREE`, not `SPLIT`, because one scope error is must-fix and one narrower case-precision issue is still live.
+- Publication-blocking issue 1: `Worked example: the Bitfinex bitcoin, traced through years of layering (2016-2022)` says that when funds touched a regulated virtual-currency exchange, `under the Bank Secrecy Act those exchanges must keep know-your-customer records`. That is too broad on both scope and legal framing. The maintained U.S. crypto-regime facts support the narrower U.S. MSB / CVC-exchanger AML-program, recordkeeping, and SAR lane; the scene should not present all exchanges touched in a global trace as BSA-governed KYC chokepoints.
+- Publication-blocking issue 2: `From trace to action: seizure, reporting, referral` says Welcome to Video exchange records identified `site administrators and users across many countries`. The public record cleanly supports the operator plus many users; plural `administrators` are not clearly supported by the cited public-record lane as labeled, so that wording should be narrowed or re-sourced.
+- No lesson-content edits were made in this work block. If this lesson is touched again, keep the next fidelity pass tightly scoped to those two points first and do not reopen the already-cleared methodology lane unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `conducting-an-on-chain-investigation` methodology audit lands `SPLIT`
+
+User asked for the exact v1.1 methodology audit on the literal pasted / repo `conducting-an-on-chain-investigation` lesson artifact.
+
+- Re-read `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md` before answering.
+- Rechecked `generated/ccas/lessons/conducting-an-on-chain-investigation.validation.json`; live file is structurally clean (`overall: pass`) with 4/4 reading scenes carrying `citations[]` (`validatedAt` `2026-06-24T07:51:34.549Z`).
+- Methodology call is `SPLIT`, not `DISAGREE`: allowed/public source discipline holds, no commercial-source / IP or adult-register blocker surfaced, the Bitfinex scene is a valid named deep case, and the quiz remains formative rather than certification-format mimicry.
+- The live methodology issue is narrow and pedagogical only: `The five moves of an investigation` mostly repeats `The shape of an on-chain investigation`, and `Trace, then compel: the off-ramp as the unmasking point` mostly repeats `The identity bridge: where on-chain meets off-chain`. Treat that as a distinct-scene-contribution softness, not a source-discipline or deep-case failure.
+- Carry-forward: if this lesson is touched again, keep the next methodology pass tightly scoped to differentiating or compressing those paired recap slides; do not reopen the cleared source-discipline / IP / deep-case / quiz-format arguments unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `clustering-attribution-and-exposure-analysis` factual-fidelity user-facing rerun: external-source confirmation keeps the live issue narrow
+
+User asked for another exact factual-fidelity verdict on the literal pasted / repo `clustering-attribution-and-exposure-analysis` artifact.
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the live lesson again against the U.S. Treasury SUEX press release (`2021-09-21`) and the FATF 2021 VA/VASP guidance.
+- Treasury still cleanly supports the hard case bundle the lesson teaches: first sanctions designation against a virtual-currency exchange, `21 September 2021`, `over 40%` illicit-association finding, and `at least eight ransomware variants`.
+- FATF also supports the general counterparty-risk expectation lane: the 2021 guidance says a VASP must identify its counterparty VASP and conduct due diligence on that counterparty to avoid dealing unknowingly with illicit or sanctioned actors.
+- Result stays `SPLIT`, but the reviewer-visible issue remains only the SUEX proof-vs-illustration overclaim: the deep-case scene, the matching quiz explanation, and the synthesis slide still read Treasury's published finding as a firmer demonstration of OFAC's exact cluster-attribution-exposure method than the cited Treasury release itself actually discloses.
+- No lesson-content edits were made in this work block. If this lesson is touched again, keep the next pass tightly scoped to toning down that SUEX method-proof phrasing and do not reopen the already-supported general exposure-expectation lane unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `clustering-attribution-and-exposure-analysis` methodology exact rerun on live validation timestamp `2026-06-24T06:27:28.976Z`
+
+User asked for another exact-format methodology verdict on the literal pasted / repo `clustering-attribution-and-exposure-analysis` artifact.
+
+- Re-read `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md` before answering.
+- Rechecked `generated/ccas/lessons/clustering-attribution-and-exposure-analysis.validation.json`; live file still reads `overall: pass` with 4/4 reading scenes carrying `citations[]`, now at `validatedAt` `2026-06-24T06:27:28.976Z`.
+- User-facing methodology verdict stays `AGREE`; no new source-discipline, IP, pedagogy, citation-structure, or adult-register issue surfaced.
+- No lesson-content edits were made. Keep future work on this slug out of the methodology lane unless the artifact changes materially; only the separate factual-fidelity soft-`SPLIT` on the SUEX framing remains live if requested again.
+
+## 2026-06-24 - CCAS lesson `clustering-attribution-and-exposure-analysis` factual-fidelity rerun: FATF supports the expectation lane; only the SUEX proof claim stays soft-`SPLIT`
+
+User asked for another exact factual-fidelity pass on the literal pasted / repo `clustering-attribution-and-exposure-analysis` artifact.
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the live repo lesson text directly against the U.S. Treasury SUEX press release (`2021-09-21`) and the FATF 2021 VA/VASP guidance.
+- Important correction to some earlier same-day phrasing: the general lesson claim that a VASP program is expected to assess counterparty / exposure risk is supportable on the cited standards base. FATF says VASPs should identify and conduct due diligence on counterparty VASPs to avoid dealing with illicit or sanctioned actors unknowingly, and separately notes blockchain analytics are widely used by VASPs to monitor their own exposure to risk.
+- Current reviewer-visible issue is therefore narrower than before: `Worked example: SUEX and the exposure that triggered a designation (2021)` says the regulator did `exactly` what the lesson asks a program to do, but the same scene later correctly says Treasury did not disclose OFAC's exact analytic method. That makes the live issue a softer proof-vs-illustration overclaim, not a failure of the general compliance-expectation lane.
+- Result stays factual-fidelity `SPLIT`, not `AGREE`, because the opening SUEX framing still slightly outruns what the cited Treasury release itself proves. No lesson-content edits were made in this work block.
+
+## 2026-06-24 - CCAS lesson `clustering-attribution-and-exposure-analysis` methodology no-delta rerun
+
+User asked for another exact-format methodology verdict on the literal pasted / repo lesson artifact only.
+
+- Re-read `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md` before answering.
+- Rechecked the live validation artifact too: `generated/ccas/lessons/clustering-attribution-and-exposure-analysis.validation.json` still reads `overall: pass` with 4/4 reading scenes carrying `citations[]` (`validatedAt` `2026-06-24T06:18:53.550Z`).
+- User-facing methodology verdict stays `AGREE`; no new source-discipline, IP, pedagogy, citation-structure, or register issue surfaced.
+- No lesson-content edits were made. Keep future work on this slug out of the methodology lane unless the artifact changes materially; only the separate factual-fidelity soft-`SPLIT` on the SUEX framing remains live if requested again.
+
+## 2026-06-24 - CCAS lesson `clustering-attribution-and-exposure-analysis` factual-fidelity rerun: deposit-address note stale, SUEX framing still soft-`SPLIT`
+
+User asked for another exact factual-fidelity pass on the literal pasted / repo `clustering-attribution-and-exposure-analysis` artifact.
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the live repo lesson text directly against the U.S. Treasury SUEX press release (`2021-09-21`).
+- Important stale-note correction: the current lesson does **not** say a regulated exchange gives a `unique deposit address`. The live text already says `commonly one assigned to your account` and expressly notes shared-address / memo-tag flows. Do not recycle the older deposit-address residual against the current hash unless the wording changes back.
+- Current reviewer-visible issue is narrower: the SUEX scene, the SUEX quiz answer/explanation, and the synthesis slide treat Treasury's `over 40%` finding as if OFAC/Treasury demonstrably used *exactly* the lesson's exposure-analysis method and as if that is the same analysis a VASP is `expected` to run on counterparties. That is a plausible pedagogical reading, but it goes beyond what the cited Treasury release itself states, so the lesson stays factual-fidelity `SPLIT`, not `AGREE`.
+- No lesson-content edits were made in this work block. Repo was already dirty in unrelated UI / memory files; left those untouched except for the required memory updates here.
+
+## 2026-06-24 - CCAS lesson `clustering-attribution-and-exposure-analysis` methodology exact no-delta rerun
+
+User asked for the strict v1.1 methodology audit again on the pasted `clustering-attribution-and-exposure-analysis` lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md`.
+- Confirmed the repo artifact still matches the pasted lesson and that `generated/ccas/lessons/clustering-attribution-and-exposure-analysis.validation.json` remains structurally clean (`overall: pass`; 4/4 reading scenes with `citations[]`).
+- Exact user-facing methodology verdict remains `AGREE`: allowed/public source discipline holds, the SUEX scene remains a valid named deep case, the scene `teachesConcepts` stay substantively distinct, and the quiz remains formative rather than certification-format mimicry.
+- No lesson-content edits were made in this work block. Repo was already dirty in `CLAUDE.md`, `docs/PROGRESS.md`, `app/(dashboard)/lessons/[id]/lesson-player.tsx`, `components/lesson/classroom/beat-pager.tsx`, and other unrelated UI files; left untouched except for the required memory updates.
+- Carry-forward: keep this lesson closed on methodology unless the artifact changes materially; any next touch on this slug should stay in the separate factual-fidelity lane if requested.
+
+## 2026-06-24 - CCAS lesson `clustering-attribution-and-exposure-analysis` factual-fidelity exact rerun
+
+User asked for the strict factual-fidelity audit on the pasted `clustering-attribution-and-exposure-analysis` lesson artifact.
+
+- Re-read the required memory stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, and ADR `0015` / `0016` / `0019` / `0020`.
+- Confirmed the repo artifact `generated/ccas/lessons/clustering-attribution-and-exposure-analysis.json` matches the pasted lesson; methodology state already cleared separately on the matching validation file.
+- Source posture for this rerun: maintained 2026-06-22 crypto/VASP facts reference + the U.S. Treasury press release `Treasury Takes Robust Actions to Counter Ransomware` dated `2021-09-21` (`jy0364`).
+- Factual verdict lands `SPLIT`, not `AGREE` or `DISAGREE`. The live lesson keeps the concrete SUEX bundle materially right: first OFAC designation of a virtual-currency exchange, `21 September 2021` designation date, and Treasury's `over 40%` / `at least eight ransomware variants` findings all align with the public record.
+- Reviewer-visible residual 1: `Attribution: putting real-world names to clusters` says a regulated exchange gives a `unique deposit address`. That overstates the mechanism; some services reuse deposit addresses or use shared addresses plus memo/tag instructions. If touched again, keep the attribution point but soften the uniqueness claim.
+- Reviewer-visible residual 2: `Worked example: SUEX and the exposure that triggered a designation (2021)` turns Treasury's public finding into a more specific methodological/regulatory claim by calling the 40% figure an `exposure score` and saying it is the same analysis a VASP is `expected` to run on counterparties. That is a plausible pedagogical inference, but it goes beyond what the cited Treasury release itself states.
+- No lesson-content edits were made in this work block. Repo was already dirty in `app/(dashboard)/lessons/[id]/lesson-player.tsx` and `components/lesson/classroom/beat-pager.tsx`; left untouched.
+
+## 2026-06-24 - CCAS lesson `clustering-attribution-and-exposure-analysis` methodology exact rerun
+
+User asked for the strict v1.1 methodology audit on the pasted `clustering-attribution-and-exposure-analysis` lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md`.
+- Confirmed the repo artifact already exists at `generated/ccas/lessons/clustering-attribution-and-exposure-analysis.json`; the matching validation artifact is clean (`overall: pass`, `validatedAt` `2026-06-24T05:50:34.746Z`) with 4/4 reading scenes carrying `citations[]`.
+- Manual methodology verdict is `AGREE` on the current hash: allowed/public source discipline holds, `Worked example: SUEX and the exposure that triggered a designation (2021)` satisfies the named deep-case requirement, repeated topical tags do not amount to redundant reteaching, and the quiz remains formative rather than certification-format mimicry.
+- Carry-forward: this closes the methodology lane on the current artifact unless the lesson changes materially. The separate factual-fidelity pass is still needed before Module 2 Lesson 2 is fully cleared; after that, the next generation / review target in sequence is `conducting-an-on-chain-investigation`.
+- No lesson-content edits were made in this work block. Repo was already dirty in `app/(dashboard)/lessons/[id]/lesson-player.tsx` and `components/lesson/classroom/beat-pager.tsx`; left untouched.
+
+## 2026-06-24 - CCAS lesson `transparency-pseudonymity-and-the-tracing-premise` factual-fidelity exact rerun now returns `AGREE`
+
+User asked for the strict factual-fidelity audit on the pasted `transparency-pseudonymity-and-the-tracing-premise` lesson artifact.
+
+- Re-read the required memory stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, and ADR `0015` / `0016` / `0019` / `0020`.
+- Confirmed the repo artifact `generated/ccas/lessons/transparency-pseudonymity-and-the-tracing-premise.json` matches the pasted lesson; the matching validation file remains structurally clean (`overall: pass`).
+- Source posture for this rerun: maintained 2026-06-22 crypto/VASP facts reference + SDNY James Zhong primary releases dated `2022-11-07` and `2023-04-14`.
+- Factual verdict now lands `AGREE`. The core lesson spine holds, and the concrete Zhong chronology / numbers remain materially right (`September 2012` fraud; `9 November 2021` search; approximately `50,676` bitcoin seized; over `USD 3.3 billion` at seizure; November `2022` guilty plea; `2023` sentencing).
+- The earlier same-day `SPLIT` note is stale and tied to the pre-fix artifact that said the coins `simply sat, largely untouched` and called them a `trove of dormant coins`; the live repo / pasted lesson now correctly says Zhong moved and consolidated the bitcoin and, in August `2017`, used the Bitcoin Cash fork proceeds through an overseas exchange to obtain roughly `3,500` additional bitcoin.
+- No lesson-content edits were made in this work block. Repo was already dirty in `app/(dashboard)/lessons/[id]/lesson-player.tsx` and `components/lesson/classroom/beat-pager.tsx`; left untouched.
+
+## 2026-06-24 - CCAS lesson `transparency-pseudonymity-and-the-tracing-premise` methodology exact rerun
+
+User asked for the strict v1.1 methodology audit on the pasted `transparency-pseudonymity-and-the-tracing-premise` lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md`.
+- Confirmed the repo artifact already exists at `generated/ccas/lessons/transparency-pseudonymity-and-the-tracing-premise.json`; the matching validation artifact is clean (`overall: pass`, `validatedAt` `2026-06-24T05:24:09.728Z`) with 4/4 reading scenes carrying `citations[]`.
+- Manual methodology verdict is `AGREE` on the current hash: allowed/public source discipline holds, `Worked example: the Silk Road bitcoin, traced across a decade (2012-2022)` satisfies the named deep-case requirement, repeated topical tags do not amount to redundant reteaching, and the quiz remains formative rather than certification-format mimicry.
+- Carry-forward: this closes the methodology lane on the current artifact unless the lesson changes materially. The separate factual-fidelity pass is still needed before Module 2 Lesson 1 is fully cleared.
+- No lesson-content edits were made in this work block. Repo was already dirty in `app/(dashboard)/lessons/[id]/lesson-player.tsx` and `components/lesson/classroom/beat-pager.tsx`; left untouched.
+
 ## 2026-06-23 - CCAS lesson `keys-addresses-and-wallets` factual-fidelity exact rerun
 
 User asked for the strict factual-fidelity audit on the pasted `keys-addresses-and-wallets` lesson artifact.
@@ -4314,6 +5082,21 @@ Re-read the literal user-pasted artifact, the repo copy at `generated/ccas/lesso
 Re-read the literal user-pasted artifact and the repo file `generated/ccas/lessons/how-on-chain-transactions-work.json` against the DOJ `Department of Justice Seizes $2.3 Million in Cryptocurrency Paid to the Ransomware Extortionists Darkside` release, Bitcoin developer transaction docs, Ethereum transaction docs, and Bitcoin BIP 125 after noticing that the stored same-day blocker no longer matched the live file.
 
 - Current verdict is `AGREE`.
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` methodology exact rerun: `AGREE`
+
+User asked for the strict v1.1 methodology audit on the literal pasted lesson artifact.
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`: `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md`.
+- Checked the live repo artifact `generated/ccas/lessons/crypto-enabled-fraud-and-scams.json` and the matching `generated/ccas/lessons/crypto-enabled-fraud-and-scams.validation.json`; current validation remains structurally clean (`overall: pass`; `validatedAt` `2026-06-24T15:27:16.374Z`).
+- Exact methodology verdict is `AGREE`: allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, the FTX scene satisfies the named deep-case requirement, recurring topical tags do not amount to redundant reteaching on this scene set, and the quiz remains formative / scenario-based rather than certification-format mimicry.
+- Carry-forward: keep this lesson closed on methodology unless the artifact changes materially. If it comes back, scope the next pass to factual fidelity if requested rather than reopening source-discipline / IP / deep-case / quiz-format arguments.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` methodology exact no-delta rerun
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then checked the literal pasted / repo lesson against `docs/COURSE-GENERATION-PROMPT.md` v1.1, ADR `0015` / `0016` / `0019` / `0020`, and the refreshed validation sidecar.
+- Verdict stays `AGREE`. Allowed/public source discipline remains in bounds, all 4 reading scenes still carry `citations[]`, the FTX scene still satisfies the named deep-case requirement, recurring topical tags still do not amount to redundant reteaching on this scene set, and the quiz remains scenario-based rather than certification-format mimicry.
+- Validation sidecar is structurally clean on the live artifact (`overall: pass`; `validatedAt` `2026-06-24T15:38:12.245Z`). No lesson-content edits were made in this work block; keep any future touch on this slug in the separate factual-fidelity lane unless the artifact changes materially.
+
 - The earlier same-day publicness / permanence blocker is stale on the live artifact: `Following a single payment`, `The life of a transaction`, and `What to carry forward` now explicitly keep creation/signing in the wallet, make only broadcast onward public, and attach permanence to confirmed inclusion in a block rather than to mere mempool broadcast.
 - The Colonial Pipeline deep-case bundle also stayed materially sound on this pass: 7 May 2021 attack date, approximately 75 BTC paid, 7 June 2021 DOJ seizure announcement, approximately 63.7 BTC seized, approximately $2.3 million value at seizure, and the `private key` control point all remain in bounds on the cited public record.
 - Carry-forward: keep this lesson closed on factual fidelity unless the artifact changes materially, and do not reuse the superseded same-day `DISAGREE` note against the current hash.
@@ -4380,3 +5163,246 @@ Verdict consequence:
 
 - Current lesson should now be treated as factual-fidelity **`AGREE`**. The earlier same-day `DISAGREE` note was tied to an older artifact / stored Codex output, not to the current live repo / pasted lesson.
 - No live publication-blocking citation, chronology, numeric, identity, or scope defect remained on this rerun. Keep any future review on this slug tightly scoped to the live artifact and do not recycle the stale NYAG-overstatement note unless that sentence reappears.
+## 2026-06-24 - `conducting-an-on-chain-investigation` methodology stale-note correction
+
+- The exact pasted artifact for `conducting-an-on-chain-investigation` now audits `AGREE` on methodology under the v1.1 cross-check-reviewer brief.
+- Do not inherit the earlier same-day `SPLIT` note that referenced slide titles `The five moves of an investigation` / `Trace, then compel: the off-ramp as the unmasking point`; that objection does not fit the current pasted scene set (`Forward, backward, and through the breaks` / `How hard is the identity bridge to build?`).
+- Factual lane remains separate and still carries the Bitfinex BSA/KYC scope issue only; the Welcome to Video `administrators` note is stale on the current text.
+- No lesson-content edits were made; only memory files were updated in this block.
+
+## 2026-06-24 - CCAS lesson `terrorist-financing-and-proliferation-financing-in-crypto` factual-fidelity audit lands `DISAGREE`
+
+- Re-read the literal pasted / repo lesson plus the maintained 2026-06-22 crypto/VASP facts reference, then checked the sanctions-scope point against OFAC FAQ `11` and the SDN FAQ topic page.
+- The lesson's FATF `R.6` / `R.7` split and the Ronin/Lazarus chronology are in bounds. The live blockers are narrower and both sit in the deep-case lane.
+- Blocker 1: `Worked example: the Lazarus Group, the Ronin bridge, and theft as statecraft (2022)`, the second quiz explanation, and `What to carry forward` teach the OFAC consequence too globally by saying `any dealing` with the designated address is prohibited / `dealing with a designated address is prohibited regardless of intent` without limiting that to U.S. persons / persons subject to U.S. jurisdiction.
+- Blocker 2: the deep-case citation labels are too loose for the authorities invoked. The scene cites only the `14 April 2022` OFAC update and FATF's 2021 PF guidance, but the body also leans on the 2019 Lazarus designation point, an FBI attribution statement, and UN-reporting support for weapons-program funding.
+- No lesson-content edits were made. If this slug comes back, fix the OFAC-scope wording first, then split/add the deep-case citations to match the actual authorities used.
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` methodology exact no-delta rerun
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then checked the literal pasted / repo lesson again under the current exact-format cross-check-reviewer brief.
+- Verdict stays `AGREE`. Allowed/public source discipline remains in bounds, all 4 reading scenes still carry `citations[]`, the FTX scene still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz remains scenario-based rather than certification-format mimicry.
+- Rechecked `generated/ccas/lessons/crypto-enabled-fraud-and-scams.validation.json`; live file remains structurally clean at `overall: pass` with `validatedAt` `2026-06-24T16:18:18.381Z`.
+- Carry-forward: keep this slug closed on methodology unless the artifact changes materially; if it comes back, keep the next pass in the separate factual-fidelity lane first.
+
+## 2026-06-24 - CCAS lesson `crypto-enabled-fraud-and-scams` factual-fidelity rerun narrowed to the FTX deep-case only
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal pasted / repo lesson artifact against the maintained 2026-06-22 facts spine plus direct public-record spot checks on the FTX bundle.
+- Current verdict still best reads `SPLIT`, but the broader earlier same-day sourcing objections should not be recycled against the live artifact. FinCEN Alert `FIN-2023-Alert005` is enough for the pig-butchering mechanics as currently taught, and no wider chronology / typology defect surfaced elsewhere in the lesson.
+- The remaining reviewer-visible issues are both in `Worked example: FTX, when the platform is the fraud (2022)`: the deep-case source labels remain generic rather than exact named DOJ / SEC / CFTC filing or release titles, and the phrase `millions of customers` is not cleanly anchored by the public-record support checked in this pass.
+- Carry-forward: if this slug is touched again, keep the next fidelity pass tightly scoped to tightening the FTX source labels and either sourcing or softening the customer-count phrase; do not reopen the cleared pig-butchering / FRAML substance lane unless the artifact changes materially.
+
+## 2026-06-24 - CCAS lesson `ransomware-darknet-and-illicit-marketplaces` methodology audit returns `AGREE`
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then audited the literal pasted / repo lesson artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- Current verdict is `AGREE`. Allowed/public source discipline holds, all 4 reading scenes carry `citations[]`, `Worked example: Hydra Market and Garantex (2022)` satisfies the named deep-case requirement, the scene `teachesConcepts` make substantively distinct contributions despite recurring topical tags, and the quiz remains scenario-based rather than certification-format mimicry.
+- Rechecked `generated/ccas/lessons/ransomware-darknet-and-illicit-marketplaces.validation.json`; the live file is structurally clean at `overall: pass` with `validatedAt` `2026-06-24T17:01:19.964Z`.
+- Carry-forward: keep this slug closed on methodology unless the artifact changes materially; if it comes back, keep any next touch in the separate factual-fidelity lane first. No lesson-content edits were made in this work block.
+## 2026-06-24 - Methodology no-delta rerun for `ransomware-darknet-and-illicit-marketplaces`
+
+- Exact cross-check-reviewer methodology rerun only; no factual-fidelity relitigation and no lesson-content edits.
+- Live artifact still clears on the same grounds as the earlier same-day methodology note: allowed/public source types only, all 4 reading scenes carry `citations[]`, Hydra/Garantex remains the named deep case, scene-level teaching contributions remain distinct, and the quiz stays formative / scenario-based.
+- Refreshed validation sidecar checked during this pass: `generated/ccas/lessons/ransomware-darknet-and-illicit-marketplaces.validation.json` now shows `overall: pass` with `validatedAt` `2026-06-24T17:17:55.942Z`.
+- Carry-forward: keep this slug closed on methodology unless the artifact changes materially; if it returns, next touch should stay in the separate factual-fidelity lane first.
+
+## 2026-06-24 - CCAS lesson `ransomware-darknet-and-illicit-marketplaces` methodology rerun stayed `AGREE` on refreshed validation
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then reran the exact v1.1 methodology audit on the literal pasted / repo lesson artifact against `docs/COURSE-GENERATION-PROMPT.md` and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology delta surfaced on the live artifact: allowed/public source discipline still holds, all 4 reading scenes carry `citations[]`, `Worked example: Hydra Market and Garantex (2022)` still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, and the quiz remains scenario-based rather than certification-format mimicry.
+- Rechecked `generated/ccas/lessons/ransomware-darknet-and-illicit-marketplaces.validation.json`; live file remains structurally clean at `overall: pass` with `validatedAt` `2026-06-24T17:26:09.141Z`.
+- Also corrected the stale current-state / carry-forward memory for this slug from factual-fidelity `DISAGREE` to the current narrower `SPLIT`: the old `approximately 5.2 billion US dollars` Hydra objection no longer matches the live artifact, and the remaining fidelity residual is only deep-case precision on the DOJ citation label / operator-role phrasing. No lesson-content edits were made in this work block.
+## 2026-06-24 - CCAS lesson `crypto-typologies-and-red-flag-indicators` methodology audit lands `AGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then checked the literal pasted lesson against the repo copy plus `generated/ccas/lessons/crypto-typologies-and-red-flag-indicators.validation.json`.
+- No methodology delta surfaced on the current artifact: allowed/public source discipline remains in bounds, all 4 reading scenes carry `citations[]`, the Bitfinex scene satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz stays scenario-based rather than certification-format mimicry.
+- Carry-forward: keep this slug closed on methodology unless the artifact changes materially. If it comes back, stay in the separate factual-fidelity lane first and do not reopen the cleared source-discipline / IP / deep-case / quiz-format / adult-register arguments on the current text.
+## 2026-06-25 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` methodology close-out
+
+- Exact user brief only: methodology audit on the literal pasted artifact, not a repo-file fidelity pass and not a lesson rewrite.
+- Verdict is `AGREE`. The current artifact stays inside the cleared methodology boundary: allowed/public source types only, all 4 reading scenes carry `citations[]`, the Bittrex scene works as the named deep case, scene-level teaching contributions remain distinct, and the quiz does not drift into certification-format mimicry.
+- Carry-forward: keep this slug closed on methodology unless the artifact changes materially. If it returns, next touch should stay in the separate factual-fidelity lane first.
+
+## 2026-06-25 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` factual-fidelity close-out
+
+- Re-read the required memory stack first per `AGENTS.md`, then audited the literal pasted / repo artifact against the maintained 2026-06-22 crypto/VASP facts reference plus direct FATF / FinCEN / OFAC primary-source rereads.
+- Current verdict is `DISAGREE`. Important scope note: the Bittrex scene itself is largely clean on the public record (`29,280,829.20` FinCEN CMP; `24,280,829.20` OFAC settlement; `1,730` accounts; `116,421` transactions; about `USD 263.45 million`; FinCEN credit structure). The must-fix issues sit in the FATF teaching arc instead.
+- Live blockers to preserve for the next touch:
+- `When crypto came inside the rules (2018 to 2019)` / `What to carry forward` overstate the 2018-2019 FATF changes as the moment crypto became `formally regulated worldwide`, rather than the point at which FATF set the global standard and required countries to implement it.
+- `What INR.15 requires of a VASP`, `The gateway: no VASP operates unsupervised`, and the related quiz/explanations compress INR.15 paragraph 3 to only the `jurisdiction where [the VASP] is created`; the current FATF text says `at a minimum` there and also allows licensing / registration where services are offered to customers or operations are conducted.
+- The Recommendation 12 mapping in the preventive-measures reading / slide / quiz over-teaches enhanced PEP measures as if they apply to PEP relationships generally; preserve the foreign-vs-domestic/international-organisation distinction on the next revision.
+- The INR.15 risk-based-approach descriptions omit the current proliferation-financing limb.
+- No lesson-content edits were made in this work block. If this slug comes back, keep the next pass tightly scoped to those FATF-scope repairs and do not reopen the already-cleared methodology lane unless the artifact changes materially.
+## 2026-06-25 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` methodology no-delta rerun
+
+- Exact user brief only: methodology audit on the literal pasted artifact, not a repo-file fidelity pass and not a lesson rewrite.
+- Reran the methodology lane against the same pasted / repo-matched lesson plus `generated/ccas/lessons/fatf-recommendation-15-and-the-vasp-definition.validation.json`; verdict remains `AGREE` with no methodology delta.
+- Carry-forward: keep this slug closed on methodology unless the artifact changes materially. Deterministic validation is still clean on the live file (`overall: pass`; `validatedAt` `2026-06-25T04:45:00.625Z`), and any next touch should stay in the separate factual-fidelity lane first.
+## 2026-06-25 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` factual-fidelity stale-note correction
+
+- Re-read the required memory stack first per `AGENTS.md`, then reran the exact factual-fidelity audit on the literal pasted / repo lesson artifact against the maintained 2026-06-22 crypto/VASP facts reference plus direct FATF / FinCEN / OFAC primary-source rereads.
+- The current artifact still returns `DISAGREE`, but the live blocker set is narrower than the earlier same-day note. The Bittrex bundle is clean on chronology / identity / disposition / numerics, and the prior objections on `created-jurisdiction compression`, `Recommendation 12 mapping`, and a missing proliferation-financing limb are stale on the current wording.
+- The live blockers are scope only: `When crypto came inside the rules (2018 to 2019)` overstates the FATF 2018-2019 change as if any `crypto business` became an obliged entity, and `The gateway: no VASP operates unsupervised` plus the related quiz explanation treat FATF's licensing expectation as if it directly binds firms worldwide even where a jurisdiction has not implemented it.
+- No lesson-content edits were made. If this slug is touched again, keep the next pass tightly scoped to those scope repairs and do not recycle the stale PEP / PF / licensing-compression objections unless the wording changes.
+## 2026-06-25 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` methodology pasted-artifact rerun: no delta
+
+- Exact user brief only: methodology audit on the literal pasted / repo-matched lesson artifact, not a lesson rewrite and not a fresh factual-fidelity pass.
+- Current verdict remains `AGREE`. Allowed/public source discipline still holds, all 4 reading scenes carry `citations[]`, the Bittrex scene still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct, and the quiz remains scenario-based rather than certification-format mimicry.
+- Refreshed sidecar checked during this pass: `generated/ccas/lessons/fatf-recommendation-15-and-the-vasp-definition.validation.json` remains `overall: pass` with `validatedAt` `2026-06-25T04:58:31.675Z`.
+- Carry-forward: keep this slug closed on methodology unless the artifact changes materially; if it comes back, the next live touch remains the separate factual-fidelity lane on the two scope issues only. No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` exact user-brief methodology rerun: still no delta
+
+- User asked for the strict cross-check-reviewer methodology verdict on the literal pasted lesson artifact only. Re-read the AGENTS-required memory stack plus ADR `0015` / `0016` / `0019` / `0020`; repo memory already matched the live result.
+- Verdict remains `AGREE` with no new issue class: allowed/public source discipline holds, all 4 reading scenes still carry `citations[]`, Bittrex remains a valid named deep case, scene-level teaching contributions remain distinct, and the quiz still avoids certification-format mimicry.
+- No lesson-content edits and no review-state change. Keep the next touch on this slug in the separate factual-fidelity lane only; do not reopen methodology on the current artifact unless the text changes materially.
+## 2026-06-25 - CCAS lesson `the-travel-rule-r16-and-inr16` methodology audit lands `DISAGREE`
+
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then audited the literal user-pasted / repo-matched lesson artifact against `docs/COURSE-GENERATION-PROMPT.md` v1.1 and ADR `0015` / `0016` / `0019` / `0020`.
+- Current verdict is `DISAGREE`. The allowed/public source posture is in bounds, all 4 reading scenes carry `citations[]`, the scene `teachesConcepts` remain substantively distinct enough on this brief, and no commercial-source/IP or adult-register blocker surfaced.
+- The live blocker is pedagogical structure only: `Worked example: the Travel Rule in operative law, the EU and the US (2023 to 2024)` is not a true deep-case scene under the stricter reviewer brief. It is a comparative implementation walkthrough of EU and US law, and the one-paragraph Binance reference inside it does not convert it into a named enforcement-action or named public-matter deep case with its own substantive teaching payload.
+- Carry-forward: if this slug is touched again, fix the deep-case gap first. Either (1) rebuild that worked-example scene around one named public matter or one public enforcement action with year + entity + analysis, or (2) add a dedicated deep-case reading scene and leave the EU/US comparative law material as a separate implementation scene. Do not spend the next pass relitigating source-discipline / IP / citation-granularity arguments on the current text; those dimensions are already clean enough on this brief.
+- No lesson-content edits were made in this work block.
+## 2026-06-25 - CCAS lesson `the-sunrise-problem-and-counterparty-vasp-due-diligence` factual-fidelity exact audit now reads `DISAGREE`
+
+- Re-read the required memory stack first per `AGENTS.md`, then rechecked the literal pasted / repo lesson artifact against the FATF 2021 VA/VASP guidance, the FATF second 12-month review, and the FinCEN Bitzlato order (`88 FR 3919`).
+- Important stale-note correction: the earlier same-day trail that treated this slug as factual-fidelity `AGREE` should not be reused on the current wording.
+- The sunrise-problem, counterparty-due-diligence, and self-hosted-wallet teaching remains materially in bounds. The live blocker is in `Worked example: Bitzlato and the counterparty you must screen out (2023)`, which says the FinCEN Bitzlato order `bound U.S. financial institutions and persons subject to U.S. jurisdiction`.
+- The checked order is narrower: it prohibits certain transmittals of funds by `covered financial institution[s]` and is not written as a prohibition on persons generally subject to U.S. jurisdiction. Keep any next fidelity touch tightly scoped to that sentence first.
+- No lesson-content edits were made in this work block.
+## 2026-06-25 - Travel Rule methodology memory correction
+
+- `generated/ccas/lessons/the-travel-rule-r16-and-inr16.json` currently matches the user-pasted artifact with the Binance deep-case reading scene, not the older EU/US comparative worked-example wording that some stale repo memory still described.
+- Methodology on the live artifact is `AGREE`, not `DISAGREE`: allowed/public source posture is clean, all 4 reading scenes carry `citations[]`, Binance satisfies the deep-case requirement, the scene `teachesConcepts` are distinct enough, and `generated/ccas/lessons/the-travel-rule-r16-and-inr16.validation.json` is `overall: pass` (`validatedAt` `2026-06-25T06:11:06.019Z`).
+- Factual-fidelity remains separately `DISAGREE` on the repeated post-June-2025 Travel Rule field-list teaching. If this slug comes back, keep the next touch in the factual-fidelity lane first and do not reopen the stale methodology/deep-case objection unless the lesson text changes back.
+## 2026-06-25 - CCAS lesson `the-travel-rule-r16-and-inr16` methodology no-delta rerun stays `AGREE`
+
+- User asked for the strict cross-check-reviewer methodology verdict on the literal pasted lesson artifact only.
+- Re-read the required memory / methodology stack first per `AGENTS.md`, then checked the pasted JSON against `generated/ccas/lessons/the-travel-rule-r16-and-inr16.json`, `generated/ccas/lessons/the-travel-rule-r16-and-inr16.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology delta surfaced on the live text: allowed/public source discipline still holds, all 4 reading scenes carry `citations[]`, `Worked example: Binance and the foundation the Travel Rule depends on (2023)` still satisfies the named deep-case requirement, the scene `teachesConcepts` remain substantively distinct despite recurring topical tags, and the quiz remains formative without drifting into certification-format mimicry.
+- Deterministic validation remains structurally clean on the live artifact at `overall: pass` with `validatedAt` `2026-06-25T06:30:27.210Z`.
+- Important stale-note hygiene: do not recycle older same-day methodology `DISAGREE` notes tied to the superseded EU/US comparative-worked-example artifact. The current repo / pasted lesson carries the Binance deep-case reading scene and remains methodology-safe on the current text.
+- No lesson-content edits were made in this work block. Keep the next touch on this slug in the separate factual-fidelity lane first unless the artifact changes materially.
+## 2026-06-25 - CCAS EU crypto framework methodology carry-forward refresh
+
+- Literal user-pasted / repo-matched lesson `the-eu-crypto-framework-mica-and-tfr` still best reads `SPLIT` on the v1.1 methodology brief.
+- Do not relitigate the already-cleared dimensions on the current text: allowed/public source posture is in bounds, all 4 reading scenes carry `citations[]`, `Worked example: De Nederlandsche Bank and the cost of operating unregistered (2023)` satisfies the named deep-case requirement, and the scene `teachesConcepts` remain distinct enough.
+- If this slug is touched again on methodology, keep the next pass tightly scoped to two soft issue clusters only:
+- remove the marketing-register word `comprehensive` from `The EU approach: one rulebook, directly applicable` and `What to carry forward`;
+- deepen `Check for understanding` questions 1 and 4 so they test practitioner judgment more clearly rather than functioning as thin scenario-wrapped recall.
+- Validation sidecar remains clean on the current artifact: `generated/ccas/lessons/the-eu-crypto-framework-mica-and-tfr.validation.json` is `overall: pass` with `validatedAt` `2026-06-25T08:41:09.749Z`.
+- No factual-fidelity pass was done in this work block, and no lesson-content edits were made.
+## 2026-06-25 - CCAS lesson `the-uk-crypto-framework` methodology exact rerun: still `SPLIT`, no new issue class
+
+- Re-read the AGENTS-required memory / methodology stack first per `AGENTS.md`, then reran the exact user-brief methodology audit on the literal user-pasted / repo-matched artifact against `generated/ccas/lessons/the-uk-crypto-framework.json`, the refreshed `.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+- No hard methodology blocker surfaced on the current artifact. Allowed/public source posture remains in bounds, all 4 reading scenes carry `citations[]`, `Worked example: the UK's largest cryptoasset seizure and the reach of the law (2024-2025)` still satisfies the named deep-case requirement, and the scene `teachesConcepts` remain substantively distinct enough on this brief.
+- The only live reviewer-visible softness is unchanged: `Check for understanding` question 2 is direct framework recall and question 4 mainly asks for the case takeaway rather than putting the learner in a concrete practitioner decision.
+- Rechecked `generated/ccas/lessons/the-uk-crypto-framework.validation.json`; the live sidecar remains structurally clean at `overall: pass` with `validatedAt` `2026-06-25T11:21:24.959Z`.
+- No lesson-content edits were made in this work block. Keep any next methodology touch on this slug tightly scoped to deepening those two quiz stems; do not reopen source-discipline / IP / deep-case / citation-mechanics arguments on the current artifact unless the text changes materially.
+## 2026-06-25 - CCAS UK crypto framework factual-fidelity publication rerun: deep-case citation precision remains no-ship
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then reran the exact user-brief factual-fidelity audit on the literal user-pasted / repo-matched `the-uk-crypto-framework` artifact against the FCA `Cryptoassets: Who needs to register` page (`4 June 2026`), the FCA `Cryptoassets: AML / CTF regime` page (`12 February 2026`), the Met `Two people convicted following world's largest crypto seizure` release (`29 September 2025`), the CPS `Two people imprisoned for their key roles in a largescale money laundering case` release (`11 November 2025`), and the Judiciary `Rex -v- Zhimin Qian and Seng Hok Ling` sentencing remarks (`11 November 2025`).
+- Current verdict still best reads `DISAGREE`, but the literal current text closes several stale same-day objections. The framework scenes remain materially in bounds: the lesson now correctly limits the FCA AML gate to exchange providers and custodian wallet providers carrying on business in the UK, keeps the January `2020` start, the `1 September 2023` Travel Rule start, and the POCA `ss 327-329` spine clean, and the pasted artifact does not support the older SAR-source blocker.
+- The live blocker is the deep-case citation bundle only. `Worked example: the UK's largest cryptoasset seizure and the reach of the law (2024-2025)` cites the Judiciary sentencing remarks for Qian's plea/disposition wording (`possession` + `transferring`), but the Met/CPS public releases allocate the counts differently (`acquiring` + `possessing` for Qian, with different wording again for Ling). The same citation label also blends in the Met-only `61,000 bitcoin` seizure fact while naming the source as Judiciary and shortens `Seng Hok Ling` to `Seng Ling`.
+- Next touch on this slug should stay tightly in the factual-fidelity lane: pin the Qian/Ling plea-disposition wording and the seizure numeric to exact primary sources without source blending, then rerun the publication verdict. No lesson-content edits were made in this work block.
+
+## 2026-06-25 - CCAS lesson `the-crypto-risk-assessment` methodology audit returns `AGREE`
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then audited the literal user-pasted / repo-matched artifact against `generated/ccas/lessons/the-crypto-risk-assessment.json`, `generated/ccas/lessons/the-crypto-risk-assessment.validation.json`, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+- No methodology blocker surfaced on the current artifact. Allowed/public source posture stays in bounds, all 3 reading scenes carry `citations[]`, `Deep case: Coinbase and a program that did not keep pace (2023)` is a valid named public-enforcement deep case, the scene `teachesConcepts` remain substantively distinct, the quiz remains scenario-based rather than certification-format mimicry, and no IP/commercial-source or adult-register issue appeared.
+- Rechecked `generated/ccas/lessons/the-crypto-risk-assessment.validation.json`; the live sidecar remains structurally clean at `overall: pass` with `validatedAt` `2026-06-25T14:02:21.683Z`.
+- No lesson-content edits were made in this work block. Keep this slug out of further methodology relitigation unless the artifact changes materially; any next touch should stay in the separate factual-fidelity lane first.
+
+## 2026-06-25 - CCAS lesson `the-crypto-risk-assessment` factual-fidelity audit returns `DISAGREE`
+
+- Re-read the AGENTS-required memory stack first per `AGENTS.md`, then audited the literal user-pasted / repo-matched artifact against the maintained 2026-06-25 crypto/VASP facts reference plus current public Coinbase / NYDFS settlement reporting.
+- Current verdict best reads `DISAGREE`, and the blocker is narrow but publication-significant in the deep-case scene. The FATF Recommendation `1` / four-dimensions / inherent-vs-residual-risk teaching remains materially in bounds on this pass.
+- Must-fix issue 1: `Deep case: Coinbase and a program that did not keep pace (2023)` overstates what the `100,000+` alert backlog means by saying each unreviewed alert was `suspicious activity never reported` that never reached the FIU / Egmont network. The checked public record supports a backlog of unreviewed transaction-monitoring alerts and delayed suspicious-activity handling; it does not support treating every alert as a reportable SAR-equivalent.
+- Must-fix issue 2: the same deep-case scene blends monitor chronology. The citation label pins the source to the `4 January 2023` NYDFS consent order / settlement, while the body adds that the independent monitor's engagement `was extended`. On the checked source base, the January 2023 settlement supports the monitor requirement itself; the extension point is not cleanly supported by the cited January 2023 source as written, so the scene is not citation-precise enough for publication.
+- No lesson-content edits were made in this work block. If this slug is revised, keep the next pass tightly scoped to narrowing those two deep-case sentences first, then rerun the factual-fidelity audit.
+## 2026-06-25 - Independent expert review of CAMS `case-study-the-danske-bank-estonia-affair`
+
+- User asked for a candid second-opinion audit of the literal lesson artifact as paid cert-prep content, not a rewrite. Re-read the AGENTS-required memory stack first, then the house methodology bar in `docs/COURSE-GENERATION-PROMPT.md` v1.1 plus ADR `0015` / `0016` / `0019` / `0020`.
+- Public-record spot checks used for the audit: DOJ archived press release `Danske Bank Pleads Guilty to Fraud on U.S. Banks in Multi-Billion Dollar Scheme to Access the U.S. Financial System` (`13 December 2022`) for the plea / charge / `$2.059 billion` / `$160 billion` / SEC-`$413 million` bundle; WSJ `18 September 2024` on the French settlement as evidence that a lesson claiming to tell the chronology `end to end` is now stale if it treats 2022 as the final reckoning.
+- Review outcome recorded for carry-forward: `Adequate` / `6/10`. Strongest asset is the five-act chronology and clear governance throughline. Biggest weaknesses are premium-quality, not basic-comprehension, issues: bundled citations instead of claim-level anchors, prose that is too writerly / self-referential for cert-prep, quiz distractors that are too implausible and visibly shorter than the keyed answers, and chronology staleness because the case is framed as ending in Washington in 2022.
+- If Ripon revisits this slug, fix in this order: (1) chronology currency beyond 2022, (2) pinpoint source attribution by claim, (3) one document-led evidence scene/table instead of more synthesis rhetoric, (4) quiz distractor rewrite so the formative check feels like serious professional assessment rather than a signposted house-style essay question.
+## 2026-06-25 - Independent external-review note on CCAS lesson `the-travel-rule-r16-and-inr16`
+
+- Fresh second-opinion review under a world-class paid-cert-prep bar lands the literal user-pasted / repo-matched artifact at `Below-bar` / `4/10`, even though the gross chronology is mostly in bounds.
+- Keep the key distinction visible for any future rewrite: the current artifact's weakness is no longer mainly stale FATF chronology; it is that the lesson is too slogan-led and not operational enough for a premium CCAS product.
+- Practitioner-visible blockers to preserve:
+- `identity travels with the transfer, or the transfer should not happen` is too absolute for the current FATF `R.16` posture, which uses risk-based execute / reject / suspend procedures for missing required information.
+- `Beneficiary VASP: screen and decide` folds sanctions screening / red-flag review into the Travel Rule itself instead of separating Travel Rule duties from broader AML / sanctions controls.
+- `Worked example: Binance and the foundation the Travel Rule depends on (2023)` is not a strong Travel Rule deep case; the checked public materials support AML-program, registration, SAR, and sanctions failures, so the scene teaches foundation failure more than Travel Rule implementation.
+- Quiz quality is a live commercial issue: Q1 and Q3 are thin recall, distractors are too easy, and the bank does not test the harder judgment calls a CCAS learner actually needs (missing data handling, jurisdictional divergence, counterparty-VASP capability, self-hosted-wallet controls, or Travel Rule vs sanctions boundaries).
+- No lesson-content edits were made in this work block.
+## 2026-06-25 - CCAS `conducting-an-on-chain-investigation` review-only audit
+
+- Literal pasted-lesson review only; no generated lesson file was edited.
+- Broad commercial-quality verdict: `Adequate` / `6/10`, not world-standard yet. The Bitfinex and Welcome to Video factual backbone is largely supportable, but the current text blurs private-firm vs law-enforcement compulsion, overstates the clean-off-ramp identity bridge, lacks paragraph/docket-level citations, and gives quiz questions with implausible wrong answers.
+- Most important next fix: turn the lesson from a polished conceptual narrative into a case-file exercise with trace outputs, confidence levels, off-chain record requests, and action decisions.
+## 2026-06-25 - Independent reviewer audit: CCAS Travel Rule lesson
+
+- Re-read the AGENTS-required memory stack first, including `CLAUDE.md`, `docs/ARCHITECTURE.md`, `docs/PROGRESS.md`, `docs/SESSION-NOTES.md`, ADR `0015` / `0016` / `0019` / `0020`, and `docs/COURSE-GENERATION-PROMPT.md`.
+- Audited the literal user-pasted / repo-matched `the-travel-rule-r16-and-inr16` lesson as an independent paid-course reviewer, checking current primary sources: FATF Recommendations updated June 2026, FATF VA/VASP Guidance 2021, DOJ / Treasury / FinCEN / OFAC Binance materials, and the EU TFR posture already tracked in repo facts.
+- External-review verdict to give the user: `Below-bar` for world-class paid cert prep, `5/10`. Core concept is materially sound and current enough, but the lesson avoids teaching the current concrete field set, uses Binance as an indirect foundation case rather than a Travel-Rule implementation case, and has a weak quiz with all correct answers at option `b` plus obvious distractors.
+- No lesson-content edits were made in this work block.
+## 2026-06-25 - External expert audit notes: CAMS lesson `case-study-the-danske-bank-estonia-affair`
+
+- Exact user-brief review only: no lesson rewrite, no validation rerun, no DB write. Re-read the AGENTS-required memory stack first, then audited the literal user-pasted / repo-matched artifact as an independent expert reviewer.
+- Source checks used for the factual lane: DOJ archived press release / resolution summary dated 13 December 2022, and the Danish FSA translated memorandum dated 3 May 2018 on Danske Bank management/governance in the Estonia matter.
+- Clean / materially supported: DOJ guilty plea and approximately USD 2B resolution; SEC USD 178.6M civil penalty within approximately USD 413M total SEC settlement; USD 160B through U.S. banks for the NRP; fraud-on-U.S.-banks / conspiracy-to-commit-bank-fraud theory; 2013 USD correspondent termination; high earnings on non-resident customers; three-lines / weak group risk-management integration; whistleblower specificity and later GIA confirmation; Estonian FSA critical 2014 draft report.
+- Publication-relevant issues to preserve: the repeated "portfolio closed/wound down in 2015" phrasing conflicts with the Danish FSA chronology that says the close down was completed in January 2016 after acceleration in Q3 2015; the lesson overclaims comparative certainty with "field's most completely documented major failure" and "Few failures of any kind"; the "four control failures" are a useful Enso synthesis but should not be attributed as a literal DOJ/Danish-FSA taxonomy; citation labels are too bundled for source-traceability; and the quiz is not assessment-clean because all keyed answers are `b` and the correct answers are the longest / most obviously sophisticated choices.
+## 2026-06-25 - CCAS lesson `the-crypto-risk-assessment` factual-fidelity stale-note correction
+
+- Exact user-brief factual-fidelity rerun on the literal user-pasted / repo-matched artifact after re-reading the AGENTS-required memory stack.
+- Source checks used for the decisive case lane: NYDFS press release and consent order for Coinbase, Inc. (`4 January 2023`) plus public FCA CB Payments Limited reporting (`July 2024`) for the UK strand.
+- Verdict now reads `AGREE` on the current text. The prior alert-equals-SAR / FIU objection and monitor-extension objection are stale: the live scene now says unreviewed alerts are potential suspicious-activity signals that cannot be escalated or reported where warranted, and it only states the Department-selected independent monitor requirement supported by the January 2023 source. The FCA `GBP 3.5m` / high-risk-customer voluntary-requirement strand remains materially supported.
+- No lesson-content edits were made in this work block.
+## 2026-06-25 - CCAS `onboarding-and-kyc-for-crypto` methodology audit
+
+- Exact user-brief methodology audit on the literal pasted artifact after re-reading the required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+- Verdict prepared for the user: `SPLIT`. Source/IP posture, reading-scene citation arrays, the OKX named deep case, concept distinctness, and scenario-based quiz design are acceptable.
+- Soft issue only: `Wallet attribution` says the crypto-specific step is `genuinely powerful`, using a banned marketing-register word from the prompt. No lesson-content edits were made.
+## 2026-06-25 - CCAS `onboarding-and-kyc-for-crypto` factual-fidelity audit
+
+- Exact user-brief factual-fidelity audit on the literal pasted artifact after re-reading the AGENTS-required memory stack and checking the OKX deep-case spine against the DOJ SDNY `24 February 2025` press release, Information, and plea agreement.
+- Verdict prepared for the user: `DISAGREE`. The FATF CDD / digital onboarding / wallet-attribution / source-of-funds teaching is materially in bounds, and the OKX plea amount bundle is correct (`more than USD 504m`, with about `USD 420.3m` forfeiture and `USD 84.4m` fine).
+- Publication blocker: `Deep case: OKX and the KYC that could be skipped (2025)` says the conduct ran roughly `2017 to 2022`, but the DOJ Information defines the charged relevant period as in/about `2018` through at least `early 2024`; the no-KYC retail-account option through roughly November `2022` was only one strand, with existing-account / non-disclosure-broker / employee-circumvention conduct continuing into `2023-2024`. No lesson-content edits were made.
+
+## 2026-06-25 - CCAS `onboarding-and-kyc-for-crypto` methodology stale-note correction
+
+- Exact user-brief methodology rerun on the literal current pasted artifact after re-reading the required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+- Verdict prepared for the user: `AGREE`. The earlier `SPLIT` note was tied to superseded wording in `Wallet attribution` (`genuinely powerful`), which is absent from the current artifact.
+- Source/IP posture, reading-scene citation arrays, the OKX named deep case, concept distinctness, adult-professional register, and scenario-based quiz design are acceptable. No lesson-content edits were made.
+## 2026-06-25 - CCAS lesson `customer-risk-rating-in-crypto` factual-fidelity audit
+
+- Exact user-brief factual-fidelity audit on the literal pasted artifact after re-reading the required memory stack.
+- Source checks used for the decisive case lane: Treasury press release `jy0471` (`8 November 2021`), OFAC recent action `20211108`, and the live OFAC SDN XML.
+- Verdict prepared for the user: `DISAGREE`. The general FATF/RBA customer-risk-rating teaching and the Chatex `over half` / SUEX-nesting / support-entity bundle are materially supported, but the deep-case scene is not publication-safe.
+- Must-fix issues: the lesson says OFAC named `57` cryptocurrency addresses associated with Chatex, while the dated OFAC action lists `30` digital-currency addresses for `CHATEX` (current SDN XML lists `29`); and the `$77.5m` received / `$17m+` illicit-source bitcoin figures are not in the cited Treasury/OFAC source bundle.
+- No lesson-content edits were made.
+
+## 2026-06-25 - CCAS `customer-risk-rating-in-crypto` methodology exact rerun
+
+- Exact user-brief methodology audit on the literal pasted artifact after re-reading the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`.
+- Verdict prepared for the user: `AGREE`. Source/IP posture is acceptable, all three reading scenes carry `citations[]`, the Chatex 2021 OFAC/Treasury designation is a named public-enforcement deep case with substantive risk-rating analysis, `teachesConcepts` are distinct enough, and the quiz is scenario-based rather than certification-format mimicry.
+- Important boundary: the Chatex numeric/address issues already logged in the separate factual-fidelity lane remain fidelity blockers, not methodology blockers under this user brief. No lesson-content edits were made.
+## 2026-06-25 - CCAS `the-regulatory-perimeter-and-licensing` methodology audit
+
+- Exact user-brief methodology audit only; no lesson rewrite, validation rerun, DB write, or factual-fidelity pass. Re-read the AGENTS-required memory stack first, then checked the pasted lesson against the v1.1 methodology.
+- Prepared verdict: `AGREE`. The artifact uses allowed source types, avoids prohibited commercial / ICC material, gives every reading scene a `citations[]` array, includes a valid named deep case (`Deep case: regulatory arbitrage and why it fails (KuCoin, 2025)`), keeps scene teaching roles distinct, and uses a scenario-based quiz rather than certification-format mimicry.
+- Carry-forward: any future factual concerns about KuCoin dates/amounts, US state licensing scope, MiCA-vs-AML trigger phrasing, or UK registration nexus belong in the separate factual-fidelity lane, not this methodology pass.
+## 2026-06-25 - CCAS lesson `the-regulatory-perimeter-and-licensing` factual-fidelity audit
+
+- Exact user-brief factual-fidelity audit only; no lesson rewrite or validation rerun. Re-read the AGENTS-required memory stack first.
+- Source checks used for the decisive case/scope lanes: DOJ SDNY `Kucoin Pleads Guilty To Unlicensed Money Transmission Charge And Agrees To Pay Penalties Totaling Nearly $300 Million` (`27 January 2025`) and FCA `Cryptoassets: Who needs to register` / `Cryptoassets: AML / CTF regime`.
+- Verdict prepared for the user: `DISAGREE`. KuCoin / Peken Global Limited is materially supported on the checked facts: plea, USD 297m-plus resolution, USD 184.5m forfeiture, about USD 112.9m fine, FinCEN non-registration / AML-KYC / SAR failures, and at-least-two-year U.S. market exit.
+- Must-fix issue: the artifact overstates UK scope by saying the perimeter follows users and that serving UK users requires FCA registration. Current FCA guidance turns MLR registration on in-scope cryptoasset services carried on by way of business in the UK; merely having a UK client, without UK office or other UK activity, is not automatically carrying on business in the UK. Fix the general perimeter scenes, quiz Q3/explanation, and synthesis accordingly.
+- No lesson-content edits were made.
+
+## 2026-06-26 - Audit + quiz-roll session notes / gotchas
+
+- Quiz-fix method (proven, scalable): per module, extract lesson quizzes to JSON, dispatch ONE general-purpose agent with the strict spec (trim correct option to 110-210 chars / move nuance to explanation; rewrite all 3 distractors as plausible practitioner-grade wrong answers; a distractor longest in ~half the questions; explanations refute by CONTENT not letter; NO em-dashes; keep prompt+correctId EXACT; preserve factual accuracy), then apply deterministically (scripts/apply-quiz-rewrite.js) and validate.
+- GOTCHA: a 3-way-parallel agent dispatch hit a transient server rate limit ("not your usage limit"); the agents wrote files but SKIPPED the correct-option trim. ALWAYS verify the rewrite file's correct-is-longest count + avg correct length before trusting the agent self-report; redo if not trimmed. Keep parallel dispatches <= 3.
+- EM-DASH (Ripon's #1 AI-tell): lessons carry ~70-150 em-dashes each; the Danske rebuild and all CCAS quiz rewrites are em-dash-free (rule added mid-roll); CAMS M0-M7 quiz rewrites still hold ~128. Deterministic strip pending (numeric/statute ranges -> hyphen; other em/en-dashes -> comma; cleanup; spot-check readability).
+- 9.5-10 ASYMPTOTE: define "done/world-class" as no-substantive-defects + gates pass + auditor-confirms-substance, NOT a literal 9.5-10 from one adversarial reviewer; a multi-judge panel would give a more trustworthy signal.
+- The 286 quiz rewrites + Danske rebuild live in gitignored generated/ and are NOT in this commit (local-only).

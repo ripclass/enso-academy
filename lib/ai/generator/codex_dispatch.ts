@@ -56,6 +56,8 @@ export type CodexVerdict = {
 export type DispatchOptions = {
   /** Override codex CLI binary; defaults to `codex`. */
   codexBinary?: string
+  /** Codex model slug. Defaults to DEFAULT_CODEX_MODEL (gpt-5.5). */
+  model?: string
   /** Timeout for the codex exec call, in milliseconds. Default 20 minutes. */
   timeoutMs?: number
   /** Extra args to pass to `codex exec` — appended after the defaults. */
@@ -77,6 +79,13 @@ const DEFAULT_TIMEOUT_MS = 20 * 60 * 1000
  *  to find it (or `shell: true`, which has quoting hazards on Windows). */
 const DEFAULT_CODEX_BINARY = process.platform === 'win32' ? 'codex.cmd' : 'codex'
 
+/** Codex reviewer model, pinned here so the cross-check model is explicit and
+ *  version-controlled rather than inherited from ~/.codex/config.toml. gpt-5.5
+ *  (released 2026-04-23) is OpenAI's recommended Codex model and supersedes the
+ *  gpt-5.4 the CLI config defaulted to. Reasoning effort still comes from config
+ *  (xhigh). Override per call via DispatchOptions.model. */
+const DEFAULT_CODEX_MODEL = 'gpt-5.5'
+
 /** Invoke `codex exec` non-interactively with the given brief via stdin.
  *  Always pipes the brief through a temp file — never command-line arg —
  *  to remove the shell-argument-size failure mode end-to-end. */
@@ -84,6 +93,7 @@ export async function dispatchCodex(args: { brief: string } & DispatchOptions): 
   const {
     brief,
     codexBinary = DEFAULT_CODEX_BINARY,
+    model = DEFAULT_CODEX_MODEL,
     timeoutMs = DEFAULT_TIMEOUT_MS,
     extraArgs = [],
     maxAttempts = 2,
@@ -110,7 +120,7 @@ export async function dispatchCodex(args: { brief: string } & DispatchOptions): 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       // Per-attempt output file so a prior attempt's file can't be misread.
       const outputPath = join(workDir, `output.${attempt}.txt`)
-      const cliArgs = ['exec', '--skip-git-repo-check', '--output-last-message', outputPath, ...extraArgs]
+      const cliArgs = ['exec', '--skip-git-repo-check', '--model', model, '--output-last-message', outputPath, ...extraArgs]
       const finalCliArgs = isWindows
         ? cliArgs.map((a) => (/\s/.test(a) ? `"${a.replace(/"/g, '\\"')}"` : a))
         : cliArgs
