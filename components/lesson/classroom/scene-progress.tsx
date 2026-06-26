@@ -8,6 +8,7 @@ const TYPE_LABEL: Record<SceneType, string> = {
   quiz: 'Knowledge check',
   interactive: 'Interactive',
   pbl: 'Project',
+  challenge: 'Apply it',
 }
 
 /**

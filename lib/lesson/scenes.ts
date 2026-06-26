@@ -66,6 +66,20 @@ export type QuizSceneData = {
 }
 
 /**
+ * `challenge` — the end-of-lesson "Apply it" round. A thin marker: the adaptive
+ * scenario set is assembled at render by getLessonChallenge (it reads the
+ * student model), so the scene only carries the lesson identity + the concepts
+ * to target. Injected immediately before the synthesis scene; see
+ * docs/SPEC-lesson-challenge.md.
+ */
+export type ChallengeSceneData = {
+  lessonSlug: string
+  conceptTags: string[]
+  /** Optional override for how many judgments the round contains. */
+  n?: number
+}
+
+/**
  * `interactive` / `pbl` payload. `spec` carries the renderer-specific build
  * data; when it names a known interactive `kind`, that widget renders, else the
  * scene falls back to a title + summary placeholder.
@@ -219,6 +233,7 @@ export type Scene = SceneBase & (
   | { sceneType: 'quiz'; data: QuizSceneData }
   | { sceneType: 'interactive'; data: PlaceholderSceneData }
   | { sceneType: 'pbl'; data: PlaceholderSceneData }
+  | { sceneType: 'challenge'; data: ChallengeSceneData }
 )
 
 export type SceneType = Scene['sceneType']
@@ -295,6 +310,7 @@ export function sceneNarration(scene: Scene): string {
     case 'quiz': return scene.data.intro ?? ''
     case 'interactive':
     case 'pbl': return scene.data.summary
+    case 'challenge': return ''
   }
 }
 
@@ -339,6 +355,7 @@ export function suggestedQuestions(scene: Scene): string[] {
     case 'pbl':
       return ['What should I do here?', 'Give me a hint']
     case 'quiz':
+    case 'challenge':
       return []
   }
 }
@@ -359,5 +376,7 @@ export function sceneContext(scene: Scene): string {
     case 'interactive':
     case 'pbl':
       return t + scene.data.summary
+    case 'challenge':
+      return t + 'Apply it: a short end-of-lesson challenge.'
   }
 }

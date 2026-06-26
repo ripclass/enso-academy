@@ -5,8 +5,9 @@ import { LessonPlayer } from './lesson-player'
 import { startLessonSession, getLessonContent, getResumeSceneIndex } from '@/lib/lesson/actions'
 import { getAvatarChoice } from '@/lib/settings'
 import { isPreviewLessonId } from '@/lib/courses/preview'
-import { parseScene, type ContentRow } from '@/lib/lesson/scenes'
+import { parseScene, type ContentRow, type Scene } from '@/lib/lesson/scenes'
 import { LESSON_CASE_MAP } from '@/lib/cases/generate'
+import { lessonHasChallenge } from '@/lib/lesson/challenge-config'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -67,7 +68,38 @@ export default async function LessonPage({ params }: Props) {
       .order('sort_order'),
     getResumeSceneIndex(id),
   ])
-  const scenes = elements.map((row) => parseScene(row as unknown as ContentRow))
+  const baseScenes = elements.map((row) => parseScene(row as unknown as ContentRow))
+
+  // Lesson Challenge ("Apply it"): for pilot lessons (Module 9), inject an
+  // adaptive applied round immediately before the synthesis scene. This is
+  // player-side only — it writes nothing to the lesson content in the DB; the
+  // round itself is assembled at render by getLessonChallenge from a code-side
+  // scenario bank. See docs/SPEC-lesson-challenge.md.
+  const lessonSlug = (lesson as { slug: string }).slug
+  let scenes = baseScenes
+  if (lessonHasChallenge(lessonSlug) && baseScenes.length > 1) {
+    const conceptTags = [...new Set(baseScenes.flatMap((s) => s.conceptTags))]
+    // Insert before the "What to carry forward" synthesis scene; fall back to
+    // before the final scene when it is the closing slide.
+    const byTitle = baseScenes.findIndex((s) => /what to carry forward/i.test(s.title ?? ''))
+    const lastIdx = baseScenes.length - 1
+    const synthIdx =
+      byTitle > 0 ? byTitle : baseScenes[lastIdx]?.sceneType === 'slide' ? lastIdx : -1
+    if (synthIdx > 0 && conceptTags.length > 0) {
+      const challengeScene: Scene = {
+        id: `challenge-${(lesson as { id: string }).id}`,
+        title: 'Apply it',
+        conceptTags,
+        teachesConcepts: [],
+        audioUrl: null,
+        estimatedSeconds: null,
+        sceneType: 'challenge',
+        data: { lessonSlug, conceptTags },
+      }
+      scenes = [...baseScenes.slice(0, synthIdx), challengeScene, ...baseScenes.slice(synthIdx)]
+    }
+  }
+
   // Resume at the last scene the student was on (clamped to the current count).
   const initialSceneIndex = Math.min(Math.max(0, resumeIndex), Math.max(0, scenes.length - 1))
 

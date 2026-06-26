@@ -8,6 +8,7 @@ import { Hand, CornerDownLeft, ArrowLeft, ArrowRight, MessageSquare, X, Play } f
 import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission, fetchLecturerOpening, recordSceneProgress } from '@/lib/lesson/actions'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
+import { LessonChallenge } from '@/components/lesson/challenge/lesson-challenge'
 import { LecturerDock, NarrationBubble, LecturerAvatar } from '@/components/lesson/classroom/lecturer-presence'
 import { TransportBar } from '@/components/lesson/classroom/transport-bar'
 import { CastStrip, type CastMember } from '@/components/lesson/classroom/cast-strip'
@@ -68,6 +69,7 @@ const SCENE_LABEL: Record<SceneType, string> = {
   quiz: 'Knowledge check',
   interactive: 'Interactive',
   pbl: 'Project',
+  challenge: 'Apply it',
 }
 
 const SPEEDS = [1, 1.25, 1.5, 2]
@@ -354,6 +356,10 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     const scene = currentScene
     if (!audio || !scene) return
     if (beatAudio(scene)) return // per-beat reading is driven by the beat-audio effect
+    if (scene.sceneType === 'challenge') {
+      setAudioStatus('idle') // the Apply-it round has no narration
+      return
+    }
     let cancelled = false
     // Stop the previous scene's narration immediately so it never plays over
     // the new slide while the new audio resolves (synthesis/cache lookup).
@@ -1017,7 +1023,16 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                       caseHref={caseHref}
                     />
                   ) : currentScene ? (
-                    beatMode &&
+                    currentScene.sceneType === 'challenge' ? (
+                      <div key={currentScene.id} className="animate-in fade-in duration-500">
+                        <LessonChallenge
+                          courseId={courseId}
+                          lessonSlug={currentScene.data.lessonSlug}
+                          conceptTags={currentScene.data.conceptTags}
+                          onResult={handleInteractiveComplete}
+                        />
+                      </div>
+                    ) : beatMode &&
                     (currentScene.sceneType === 'reading' || currentScene.sceneType === 'slide') ? (
                       <div key={currentScene.id} className="h-full animate-in fade-in duration-500">
                         <BeatPager

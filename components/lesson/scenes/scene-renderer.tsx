@@ -90,5 +90,10 @@ export function SceneRenderer({
       }
       return <PlaceholderScene kind="pbl" data={scene.data} />
     }
+    case 'challenge':
+      // The lesson player renders the LessonChallenge for this scene type
+      // directly (it needs courseId/lessonId + the knowledge-write path), so the
+      // renderer never reaches here in practice.
+      return null
   }
 }
