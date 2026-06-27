@@ -12,10 +12,20 @@ import {
 } from 'lucide-react'
 import { getLessonChallenge } from '@/lib/lesson/challenge'
 import type { ChallengeRound } from '@/lib/lesson/challenge-config'
-import type { ChallengeScenario, DecisionSpec } from '@/lib/cases/scenario-bank'
+import type {
+  ChallengeScenario,
+  DecisionSpec,
+  RedFlagsSpec,
+  RiskClassifySpec,
+  ScreeningSpec,
+} from '@/lib/cases/scenario-bank'
 import { RedFlagSpot } from '@/components/lesson/scenes/interactives/red-flag-spot'
 import { ScreeningMatch } from '@/components/lesson/scenes/interactives/screening-match'
 import { RiskClassify } from '@/components/lesson/scenes/interactives/risk-classify'
+import { SequenceOrder } from '@/components/lesson/challenge/conceptual/sequence-order'
+import { MatchPairs } from '@/components/lesson/challenge/conceptual/match-pairs'
+import { SortBuckets } from '@/components/lesson/challenge/conceptual/sort-buckets'
+import { shuffle } from '@/components/lesson/challenge/conceptual/shuffle'
 
 type Result = { correct: number; total: number }
 
@@ -273,6 +283,12 @@ export function LessonChallenge({
 }
 
 // ── Mechanic dispatch ─────────────────────────────────────────────────────────
+// The applied widgets (red-flags / risk-classify / screening) are shared with
+// the in-lesson interactive scenes, so we shuffle their inputs HERE rather than
+// editing the widgets: this removes the answer-position tell (e.g. the red flags
+// always being the first items) for the challenge surface only. The conceptual
+// widgets (sequence / match / sort) shuffle internally. ScenarioPlayer remounts
+// per scenario and per retry, so every mount reshuffles.
 
 function ScenarioPlayer({
   scenario,
@@ -284,24 +300,47 @@ function ScenarioPlayer({
   const spec = scenario.spec
   switch (spec.kind) {
     case 'red-flags':
+      return <RedFlagsStep spec={spec} onComplete={onComplete} />
+    case 'screening-match':
+      return <ScreeningStep spec={spec} onComplete={onComplete} />
+    case 'risk-classify':
+      return <RiskClassifyStep spec={spec} onComplete={onComplete} />
+    case 'decision':
+      return <DecisionStep spec={spec} onComplete={onComplete} />
+    case 'sequence':
+      return <SequenceOrder prompt={spec.prompt} steps={spec.steps} onComplete={onComplete} />
+    case 'match':
+      return <MatchPairs prompt={spec.prompt} pairs={spec.pairs} onComplete={onComplete} />
+    case 'sort':
       return (
-        <RedFlagSpot
+        <SortBuckets
           prompt={spec.prompt}
-          scenario={spec.scenario}
+          buckets={spec.buckets}
           items={spec.items}
           onComplete={onComplete}
         />
       )
-    case 'screening-match':
-      return <ScreeningMatch prompt={spec.prompt} alerts={spec.alerts} onComplete={onComplete} />
-    case 'risk-classify':
-      return <RiskClassify prompt={spec.prompt} items={spec.items} onComplete={onComplete} />
-    case 'decision':
-      return <DecisionStep spec={spec} onComplete={onComplete} />
   }
 }
 
-// The single-best-call step (mirrors Case Mode's decision phase).
+// Thin shuffling wrappers around the shared applied widgets (see note above).
+function RedFlagsStep({ spec, onComplete }: { spec: RedFlagsSpec; onComplete: (c: number, t: number) => void }) {
+  const items = useMemo(() => shuffle(spec.items), [spec])
+  return (
+    <RedFlagSpot prompt={spec.prompt} scenario={spec.scenario} items={items} onComplete={onComplete} />
+  )
+}
+function RiskClassifyStep({ spec, onComplete }: { spec: RiskClassifySpec; onComplete: (c: number, t: number) => void }) {
+  const items = useMemo(() => shuffle(spec.items), [spec])
+  return <RiskClassify prompt={spec.prompt} items={items} onComplete={onComplete} />
+}
+function ScreeningStep({ spec, onComplete }: { spec: ScreeningSpec; onComplete: (c: number, t: number) => void }) {
+  const alerts = useMemo(() => shuffle(spec.alerts), [spec])
+  return <ScreeningMatch prompt={spec.prompt} alerts={alerts} onComplete={onComplete} />
+}
+
+// The single-best-call step (mirrors Case Mode's decision phase). Options are
+// shuffled per mount so the correct answer is not memorizable by position.
 function DecisionStep({
   spec,
   onComplete,
@@ -309,13 +348,14 @@ function DecisionStep({
   spec: DecisionSpec
   onComplete: (correct: number, total: number) => void
 }) {
+  const options = useMemo(() => shuffle(spec.options), [spec])
   const [choice, setChoice] = useState<string | null>(null)
   const decided = choice != null
 
   function pick(id: string) {
     if (decided) return
     setChoice(id)
-    const correct = spec.options.find((o) => o.id === id)?.correct ?? false
+    const correct = options.find((o) => o.id === id)?.correct ?? false
     onComplete(correct ? 1 : 0, 1)
   }
 
@@ -326,7 +366,7 @@ function DecisionStep({
         <span>{spec.prompt}</span>
       </p>
       <div className="space-y-2">
-        {spec.options.map((o) => {
+        {options.map((o) => {
           const isChoice = choice === o.id
           let cls = 'w-full text-left rounded-md border px-4 py-3 text-sm transition-colors'
           if (!decided) cls += ' border-neutral-200 hover:border-primary/50 hover:bg-muted cursor-pointer'

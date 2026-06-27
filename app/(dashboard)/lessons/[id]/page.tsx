@@ -79,12 +79,14 @@ export default async function LessonPage({ params }: Props) {
   let scenes = baseScenes
   if (lessonHasChallenge(lessonSlug) && baseScenes.length > 1) {
     const conceptTags = [...new Set(baseScenes.flatMap((s) => s.conceptTags))]
-    // Insert before the "What to carry forward" synthesis scene; fall back to
-    // before the final scene when it is the closing slide.
-    const byTitle = baseScenes.findIndex((s) => /what to carry forward/i.test(s.title ?? ''))
+    // Insert before the lesson's closing synthesis. Prefer a "What to carry
+    // forward" scene anywhere; otherwise fall back to the final scene when it is
+    // a synthesis reading or a closing slide (some lessons end either way).
+    const carryIdx = baseScenes.findIndex((s) => /what to carry forward/i.test(s.title ?? ''))
     const lastIdx = baseScenes.length - 1
-    const synthIdx =
-      byTitle > 0 ? byTitle : baseScenes[lastIdx]?.sceneType === 'slide' ? lastIdx : -1
+    const last = baseScenes[lastIdx]
+    const lastIsSynthesis = !!last && (/synthesis/i.test(last.title ?? '') || last.sceneType === 'slide')
+    const synthIdx = carryIdx > 0 ? carryIdx : lastIsSynthesis ? lastIdx : -1
     if (synthIdx > 0 && conceptTags.length > 0) {
       const challengeScene: Scene = {
         id: `challenge-${(lesson as { id: string }).id}`,

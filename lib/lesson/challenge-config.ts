@@ -8,16 +8,31 @@
 import { SCENARIO_BANK, scenariosForConcepts, type ChallengeScenario } from '@/lib/cases/scenario-bank'
 
 /**
- * Lessons that carry an end-of-lesson challenge. PILOT: Module 9 ("Learning
- * from Enforcement"). Expand deliberately as the scenario bank grows.
+ * Lessons that carry an end-of-lesson challenge. Expand deliberately as the
+ * scenario bank grows; a lesson appears here only once its concepts are covered
+ * by SCENARIO_BANK.
+ *  - Module 9 ("Learning from Enforcement") was the applied-case-study pilot.
+ *  - Modules 1 (Foundations) and 2 (FATF / RBA) are the conceptual rollout,
+ *    led by the sequence / match / sort mechanics.
  */
 export const CHALLENGE_LESSON_SLUGS = new Set<string>([
+  // Module 9 — applied case studies (pilot)
   'how-to-read-an-enforcement-action',
   'case-study-correspondent-banking-failures',
   'case-study-the-danske-bank-estonia-affair',
   'case-study-westpac-and-the-litepay-channel',
   'case-study-1mdb-and-the-private-banking-failure-mode',
   'course-synthesis-and-exam-preparation',
+  // Module 1 — Foundations of ML/TF (conceptual)
+  'what-money-laundering-actually-is',
+  'what-terrorist-financing-actually-is',
+  'why-states-regulate-financial-institutions',
+  'the-global-architecture-fatf-fius-supervisors',
+  // Module 2 — FATF Framework and the Risk-Based Approach (conceptual)
+  'structure-of-the-40-recommendations',
+  'risk-based-approach-as-operating-principle',
+  'enterprise-wide-risk-assessment',
+  'customer-risk-rating-models',
 ])
 
 export function lessonHasChallenge(slug: string): boolean {
