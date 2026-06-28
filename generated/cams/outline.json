@@ -1,0 +1,1400 @@
+{
+  "course": {
+    "slug": "aml-cft-compliance-cams-preparation",
+    "name": "AML/CFT Compliance: CAMS Exam Preparation",
+    "shortName": "CAMS",
+    "description": "A rigorous preparation course in anti-money-laundering and counter-financing-of-terrorism compliance, built from primary regulatory sources and public enforcement actions. Prepares working practitioners to sit the CAMS examination and to operate competently as AML/CFT compliance professionals.",
+    "certifyingBody": "Association of Certified Anti-Money Laundering Specialists (ACAMS)",
+    "estimatedStudyHours": 120,
+    "learningObjectives": [
+      "Articulate the structure, purpose, and authority of the FATF Recommendations and the global AML/CFT regime they anchor",
+      "Apply the risk-based approach to customer onboarding, ongoing monitoring, and product and jurisdictional risk assessment",
+      "Conduct customer due diligence, enhanced due diligence, and beneficial ownership investigation to a standard that withstands regulatory scrutiny",
+      "Identify suspicious activity, draft a defensible suspicious transaction report, and understand the lifecycle of financial intelligence",
+      "Operate sanctions screening and management programs against OFAC, UN, EU, UK, and national sanctions regimes",
+      "Recognise and investigate typologies including trade-based money laundering, correspondent banking abuse, virtual asset laundering, and politically exposed person risk",
+      "Apply the AML/CFT frameworks of the United States, United Kingdom, European Union, and a chosen home jurisdiction to real practitioner decisions",
+      "Design and evaluate AML/CFT governance arrangements, including the compliance function, independent audit, training, and board oversight",
+      "Analyse public enforcement actions to extract operational lessons and apply them to the candidate's own institution",
+      "Defend AML/CFT decisions in front of a regulator, auditor, or court by citing the specific regulatory basis for each judgment"
+    ]
+  },
+  "sources": [
+    {
+      "sourceName": "FATF Recommendations (International Standards on Combating Money Laundering and the Financing of Terrorism & Proliferation)",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceUrl": "https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Fatf-recommendations.html",
+      "sourceYear": 2023
+    },
+    {
+      "sourceName": "FATF Methodology for Assessing Technical Compliance with the FATF Recommendations and the Effectiveness of AML/CFT Systems",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceUrl": "https://www.fatf-gafi.org/en/publications/Mutualevaluations/Fatf-methodology.html",
+      "sourceYear": 2022
+    },
+    {
+      "sourceName": "FATF Guidance for a Risk-Based Approach: The Banking Sector",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceYear": 2014
+    },
+    {
+      "sourceName": "FATF Guidance on Beneficial Ownership for Legal Persons",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceYear": 2023
+    },
+    {
+      "sourceName": "FATF Guidance on Politically Exposed Persons (Recommendations 12 and 22)",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceYear": 2013
+    },
+    {
+      "sourceName": "FATF Updated Guidance for a Risk-Based Approach to Virtual Assets and Virtual Asset Service Providers",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceYear": 2021
+    },
+    {
+      "sourceName": "FATF Trade-Based Money Laundering: Trends and Developments",
+      "sourceOrganization": "Financial Action Task Force / Egmont Group",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "FATF Report on Money Laundering and Terrorist Financing through the Real Estate Sector",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceYear": 2022
+    },
+    {
+      "sourceName": "Bank Secrecy Act (31 U.S.C. 5311 et seq.) and implementing regulations (31 CFR Chapter X)",
+      "sourceOrganization": "United States Congress / FinCEN",
+      "sourceUrl": "https://www.ecfr.gov/current/title-31/subtitle-B/chapter-X",
+      "sourceYear": 1970
+    },
+    {
+      "sourceName": "USA PATRIOT Act, Title III (International Money Laundering Abatement and Anti-Terrorist Financing Act)",
+      "sourceOrganization": "United States Congress",
+      "sourceYear": 2001
+    },
+    {
+      "sourceName": "FinCEN Customer Due Diligence Requirements for Financial Institutions (31 CFR 1010.230)",
+      "sourceOrganization": "Financial Crimes Enforcement Network",
+      "sourceYear": 2018
+    },
+    {
+      "sourceName": "Anti-Money Laundering Act of 2020 and Corporate Transparency Act",
+      "sourceOrganization": "United States Congress",
+      "sourceYear": 2021
+    },
+    {
+      "sourceName": "Proceeds of Crime Act 2002 (POCA)",
+      "sourceOrganization": "United Kingdom Parliament",
+      "sourceUrl": "https://www.legislation.gov.uk/ukpga/2002/29/contents",
+      "sourceYear": 2002
+    },
+    {
+      "sourceName": "Money Laundering, Terrorist Financing and Transfer of Funds (Information on the Payer) Regulations 2017",
+      "sourceOrganization": "United Kingdom Government",
+      "sourceUrl": "https://www.legislation.gov.uk/uksi/2017/692/contents",
+      "sourceYear": 2017
+    },
+    {
+      "sourceName": "Joint Money Laundering Steering Group (JMLSG) Guidance for the UK Financial Sector",
+      "sourceOrganization": "JMLSG",
+      "sourceYear": 2023
+    },
+    {
+      "sourceName": "Directive (EU) 2015/849 (4th AMLD), Directive (EU) 2018/843 (5th AMLD), and Directive (EU) 2018/1673 (6th AMLD)",
+      "sourceOrganization": "European Parliament and Council",
+      "sourceYear": 2018
+    },
+    {
+      "sourceName": "EU AML Package: Regulation (EU) 2024/1624, Directive (EU) 2024/1640, and AMLA Regulation (EU) 2024/1620",
+      "sourceOrganization": "European Parliament and Council",
+      "sourceYear": 2024
+    },
+    {
+      "sourceName": "European Banking Authority Guidelines on ML/TF Risk Factors (EBA/GL/2021/02)",
+      "sourceOrganization": "European Banking Authority",
+      "sourceYear": 2021
+    },
+    {
+      "sourceName": "Wolfsberg Principles for Correspondent Banking",
+      "sourceOrganization": "Wolfsberg Group",
+      "sourceUrl": "https://www.wolfsberg-group.org/",
+      "sourceYear": 2022
+    },
+    {
+      "sourceName": "Wolfsberg Statement on Source of Wealth and Source of Funds",
+      "sourceOrganization": "Wolfsberg Group",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "Wolfsberg Anti-Bribery and Corruption Compliance Programme Guidance",
+      "sourceOrganization": "Wolfsberg Group",
+      "sourceYear": 2017
+    },
+    {
+      "sourceName": "Basel Committee Guidelines on Sound Management of Risks Related to Money Laundering and Financing of Terrorism",
+      "sourceOrganization": "Basel Committee on Banking Supervision",
+      "sourceUrl": "https://www.bis.org/bcbs/publ/d505.htm",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "Egmont Group Public Bulletin on Financial Intelligence Unit Operational Typologies",
+      "sourceOrganization": "Egmont Group of Financial Intelligence Units",
+      "sourceYear": 2023
+    },
+    {
+      "sourceName": "OFAC Sanctions Compliance Guidance and A Framework for OFAC Compliance Commitments",
+      "sourceOrganization": "US Department of the Treasury, Office of Foreign Assets Control",
+      "sourceUrl": "https://ofac.treasury.gov/",
+      "sourceYear": 2019
+    },
+    {
+      "sourceName": "UN Security Council Consolidated Sanctions List and underlying Resolutions (notably UNSCR 1267, 1373, 1540, 2231)",
+      "sourceOrganization": "United Nations Security Council",
+      "sourceYear": 2024
+    },
+    {
+      "sourceName": "UK Financial Sanctions Guidance (OFSI)",
+      "sourceOrganization": "Office of Financial Sanctions Implementation, HM Treasury",
+      "sourceYear": 2023
+    },
+    {
+      "sourceName": "Bangladesh Money Laundering Prevention Act 2012 (as amended)",
+      "sourceOrganization": "Government of the People's Republic of Bangladesh",
+      "sourceYear": 2015
+    },
+    {
+      "sourceName": "Bangladesh Anti-Terrorism Act 2009 (as amended)",
+      "sourceOrganization": "Government of the People's Republic of Bangladesh",
+      "sourceYear": 2013
+    },
+    {
+      "sourceName": "BFIU Master Circular No. 26 on AML/CFT obligations of scheduled banks",
+      "sourceOrganization": "Bangladesh Financial Intelligence Unit, Bangladesh Bank",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "BFIU Guidelines on Prevention of Trade-Based Money Laundering",
+      "sourceOrganization": "Bangladesh Financial Intelligence Unit",
+      "sourceYear": 2019
+    },
+    {
+      "sourceName": "Standard Chartered Bank Order to Cease and Desist and related settlement documents",
+      "sourceOrganization": "US Department of the Treasury / FinCEN / NYDFS",
+      "sourceYear": 2012
+    },
+    {
+      "sourceName": "HSBC Holdings plc Deferred Prosecution Agreement",
+      "sourceOrganization": "US Department of Justice",
+      "sourceYear": 2012
+    },
+    {
+      "sourceName": "Danske Bank Estonia Branch Report on the Non-Resident Portfolio (Bruun & Hjejle independent report) and US DOJ resolution",
+      "sourceOrganization": "Danske Bank A/S / US Department of Justice",
+      "sourceYear": 2022
+    },
+    {
+      "sourceName": "Westpac Banking Corporation AUSTRAC Statement of Agreed Facts and Civil Penalty Order",
+      "sourceOrganization": "AUSTRAC / Federal Court of Australia",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "Commerzbank AG Final Notice",
+      "sourceOrganization": "UK Financial Conduct Authority",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "1MDB-related Goldman Sachs Deferred Prosecution Agreement and Malaysian settlement",
+      "sourceOrganization": "US Department of Justice / Government of Malaysia",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "FinCEN Files investigative reporting and underlying Suspicious Activity Reports analysis",
+      "sourceOrganization": "International Consortium of Investigative Journalists",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "FATF, Opportunities and Challenges of New Technologies for AML/CFT",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceUrl": "https://www.fatf-gafi.org/en/publications/Digitaltransformation/Opportunities-challenges-new-technologies-for-aml-cft.html",
+      "sourceYear": 2021
+    },
+    {
+      "sourceName": "Wolfsberg Group Statement on Developing an Effective AML/CFT Programme",
+      "sourceOrganization": "The Wolfsberg Group",
+      "sourceUrl": "https://www.wolfsberg-group.org/",
+      "sourceYear": 2019
+    },
+    {
+      "sourceName": "Wolfsberg Group Statement on Effectiveness",
+      "sourceOrganization": "The Wolfsberg Group",
+      "sourceUrl": "https://www.wolfsberg-group.org/",
+      "sourceYear": 2019
+    },
+    {
+      "sourceName": "Financial Conduct Authority Final Notice — Commerzbank AG London Branch (17 June 2020)",
+      "sourceOrganization": "Financial Conduct Authority",
+      "sourceUrl": "https://www.fca.org.uk/publication/final-notices/commerzbank-ag-2020.pdf",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "FATF Guidance on Digital Identity",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceUrl": "https://www.fatf-gafi.org/en/publications/Financialinclusionandnpoissues/Digital-identity-guidance.html",
+      "sourceYear": 2020
+    },
+    {
+      "sourceName": "Wolfsberg Group Guidance on Sanctions Screening",
+      "sourceOrganization": "The Wolfsberg Group",
+      "sourceUrl": "https://www.wolfsberg-group.org/",
+      "sourceYear": 2019
+    },
+    {
+      "sourceName": "FATF, Stocktake on Data Pooling, Collaborative Analytics and Data Protection",
+      "sourceOrganization": "Financial Action Task Force",
+      "sourceUrl": "https://www.fatf-gafi.org/en/publications/Digitaltransformation/Data-pooling-collaborative-analytics-data-protection.html",
+      "sourceYear": 2021
+    },
+    {
+      "sourceName": "Office of Foreign Assets Control, A Framework for OFAC Compliance Commitments",
+      "sourceOrganization": "U.S. Department of the Treasury, OFAC",
+      "sourceUrl": "https://ofac.treasury.gov/media/16331/download",
+      "sourceYear": 2019
+    },
+    {
+      "sourceName": "FATF Recommendations",
+      "sourceOrganization": "Financial Action Task Force"
+    },
+    {
+      "sourceName": "FATF and Egmont Group",
+      "sourceOrganization": "Financial Action Task Force / Egmont Group"
+    },
+    {
+      "sourceName": "FBI Internet Crime Complaint Center",
+      "sourceOrganization": "U.S. Federal Bureau of Investigation"
+    },
+    {
+      "sourceName": "U.S. Department of Justice",
+      "sourceOrganization": "U.S. Department of Justice"
+    },
+    {
+      "sourceName": "18 U.S.C.",
+      "sourceOrganization": "United States Code"
+    },
+    {
+      "sourceName": "U.S. Foreign Corrupt Practices Act",
+      "sourceOrganization": "United States Code (15 U.S.C.)"
+    },
+    {
+      "sourceName": "UK Bribery Act 2010",
+      "sourceOrganization": "United Kingdom"
+    },
+    {
+      "sourceName": "OECD Convention on Combating Bribery",
+      "sourceOrganization": "Organisation for Economic Co-operation and Development"
+    },
+    {
+      "sourceName": "U.S. Securities and Exchange Commission",
+      "sourceOrganization": "U.S. Securities and Exchange Commission"
+    },
+    {
+      "sourceName": "15 U.S.C.",
+      "sourceOrganization": "United States Code"
+    },
+    {
+      "sourceName": "OECD Common Reporting Standard",
+      "sourceOrganization": "Organisation for Economic Co-operation and Development"
+    },
+    {
+      "sourceName": "Foreign Account Tax Compliance Act",
+      "sourceOrganization": "United States (FATCA)"
+    },
+    {
+      "sourceName": "U.S. Internal Revenue Service",
+      "sourceOrganization": "U.S. Internal Revenue Service"
+    },
+    {
+      "sourceName": "Financial Crimes Enforcement Network",
+      "sourceOrganization": "U.S. Financial Crimes Enforcement Network (FinCEN)"
+    }
+  ],
+  "modules": [
+    {
+      "slug": "foundations-of-money-laundering-and-terrorist-financing",
+      "name": "Foundations of Money Laundering and Terrorist Financing",
+      "description": "Establishes a precise working understanding of what money laundering and terrorist financing are, how they differ, and why states regulate them. Grounds the rest of the course in the underlying criminal phenomena that the AML/CFT framework exists to address.",
+      "objective": "Students can define money laundering and terrorist financing in legal and operational terms, distinguish them, and explain why financial institutions are placed at the centre of the global response.",
+      "sourceNames": [
+        "FATF Recommendations (International Standards on Combating Money Laundering and the Financing of Terrorism & Proliferation)",
+        "FATF Methodology for Assessing Technical Compliance with the FATF Recommendations and the Effectiveness of AML/CFT Systems",
+        "Bank Secrecy Act (31 U.S.C. 5311 et seq.) and implementing regulations (31 CFR Chapter X)",
+        "Proceeds of Crime Act 2002 (POCA)",
+        "Bangladesh Money Laundering Prevention Act 2012 (as amended)",
+        "Bangladesh Anti-Terrorism Act 2009 (as amended)",
+        "Egmont Group Public Bulletin on Financial Intelligence Unit Operational Typologies"
+      ],
+      "estimatedMinutes": 480,
+      "lessons": [
+        {
+          "slug": "what-money-laundering-actually-is",
+          "name": "What Money Laundering Actually Is",
+          "description": "Defines money laundering from primary statutory texts and the FATF Glossary, separating the colloquial use of the term from its precise legal meaning.",
+          "conceptTags": [
+            "money_laundering_definition",
+            "predicate_offences",
+            "proceeds_of_crime",
+            "concealment"
+          ],
+          "learningObjectives": [
+            "Recite the statutory definition of money laundering under at least three jurisdictions",
+            "Identify the three classical stages and explain their limitations as a model",
+            "Distinguish money laundering from tax evasion, fraud, and corruption while recognising their connections"
+          ],
+          "sceneBrief": "Open with the question every new analyst gets wrong: is moving cash through accounts money laundering? Walk the student through the statutory definitions in the US Bank Secrecy Act (18 USC 1956 and 1957), the UK Proceeds of Crime Act 2002 (sections 327, 328, 329), and Bangladesh's Money Laundering Prevention Act 2012, section 2. Show that all three converge on the same elements: a predicate offence, proceeds derived from it, and an act of concealment, transfer, conversion, or use. Introduce the three-stage model (placement, layering, integration) but explicitly mark it as a teaching simplification rather than a legal test — the FATF itself has moved away from it. Use a worked example based on a real public case (the Danske Bank Estonia non-resident portfolio, summarised from the public Bruun & Hjejle report) to show how the stages blur in practice. Check for understanding with a scenario: a customer deposits cash from an unlicensed money-changing business and remits it abroad — ask the student to identify which statutory provision is triggered in each jurisdiction and why."
+        },
+        {
+          "slug": "what-terrorist-financing-actually-is",
+          "name": "What Terrorist Financing Actually Is",
+          "description": "Separates terrorist financing from money laundering as a distinct offence with distinct indicators, grounded in UN, FATF, and national counter-terrorism financing law.",
+          "conceptTags": [
+            "terrorist_financing",
+            "unscr_1373",
+            "proliferation_financing",
+            "small_value_flows"
+          ],
+          "learningObjectives": [
+            "State the legal definition of terrorist financing under UN Security Council Resolution 1373 and national implementing law",
+            "Explain why terrorist financing is often harder to detect than money laundering",
+            "Distinguish terrorist financing from proliferation financing"
+          ],
+          "sceneBrief": "Begin with the central pedagogical point: money laundering hides dirty money; terrorist financing can use clean money for a dirty purpose. Cite UNSCR 1373 and FATF Recommendation 5 as the foundational instruments, then walk through Bangladesh's Anti-Terrorism Act 2009 (as amended in 2013), specifically the financing provisions, alongside the UK Terrorism Act 2000 and US 18 USC 2339A/B. Explain proliferation financing as a separate concept under UNSCR 1540 and FATF Recommendation 7, distinguishing it from terrorist financing. Use the well-documented pattern of small-value remittances funding operational cells (drawing on Egmont Group public typology bulletins, not on specific live intelligence) to show why transaction-monitoring thresholds calibrated for money laundering often fail against terrorist financing. Check for understanding with a comparison scenario: two near-identical wire transfers, one of which is ML and one of which is TF — ask the student to identify what facts would push them toward each conclusion."
+        },
+        {
+          "slug": "why-states-regulate-financial-institutions",
+          "name": "Why States Regulate Financial Institutions",
+          "description": "Explains the policy logic that places banks, money service businesses, and other gatekeepers at the centre of AML/CFT enforcement, rather than relying solely on criminal prosecution after the fact.",
+          "conceptTags": [
+            "gatekeeper_model",
+            "preventive_regime",
+            "regulated_sector",
+            "compliance_burden"
+          ],
+          "learningObjectives": [
+            "Explain the preventive logic of the AML/CFT regime",
+            "Identify the categories of regulated person under FATF Recommendations 22 and 23",
+            "Articulate why banks bear disproportionate compliance burden and what this means for the practitioner"
+          ],
+          "sceneBrief": "Open with the historical pivot: pre-1970, AML was a matter for police investigating criminal proceeds after a crime. The Bank Secrecy Act of 1970 changed this by recruiting banks as preventive gatekeepers. Trace the logic forward to FATF Recommendation 1 (risk-based approach by regulated entities), Recommendations 9-23 (preventive measures), and Recommendations 22-23 (designated non-financial businesses and professions — DNFBPs). Discuss the implications: banks become quasi-law-enforcement actors, with associated tensions around customer relationships, privacy, and cost. Use the FinCEN Files reporting as an illustration of what happens when the preventive regime relies on filings without action — a public-domain example of structural critique that students need to understand to be credible practitioners. Check for understanding with a discussion prompt: should a virtual asset service provider face the same obligations as a Tier-1 bank, and what does FATF Recommendation 15 say?"
+        },
+        {
+          "slug": "the-global-architecture-fatf-fius-supervisors",
+          "name": "The Global Architecture: FATF, FIUs, and Supervisors",
+          "description": "Maps the institutional architecture of international AML/CFT: FATF and its regional bodies, financial intelligence units, the Egmont Group, and national supervisors.",
+          "conceptTags": [
+            "fatf",
+            "fsrb",
+            "fiu",
+            "egmont_group",
+            "mutual_evaluation"
+          ],
+          "learningObjectives": [
+            "Describe the role of FATF, FATF-style regional bodies (FSRBs), and the mutual evaluation process",
+            "Explain what a financial intelligence unit does and how Egmont Group membership matters",
+            "Identify the supervisory authorities in at least three jurisdictions and the laws under which they operate"
+          ],
+          "sceneBrief": "Build the architecture as a layered diagram on the whiteboard: at the top, FATF sets standards; FSRBs (APG for Asia-Pacific including Bangladesh, MONEYVAL for Europe, GAFILAT for Latin America, etc.) conduct peer evaluations; at the national level, FIUs receive and analyse suspicious reports; supervisors enforce obligations on regulated entities. Cite FATF Recommendations 26-29 (regulation and supervision) and Recommendation 29 (FIUs). Walk through the FATF mutual evaluation methodology — the difference between technical compliance and effectiveness, and the consequences of grey-listing or black-listing (use Bangladesh's own past on the FATF process via the APG as a teaching example, drawn from the public APG mutual evaluation reports). Introduce Egmont Group secure information sharing. Check for understanding with a navigation exercise: given a particular AML question in Bangladesh, which authority does the student approach, and what is the legal basis for that authority's jurisdiction?"
+        }
+      ],
+      "domain": "A - Understanding the Risks and Methods of Financial Crime"
+    },
+    {
+      "slug": "the-fatf-framework-and-the-risk-based-approach",
+      "name": "The FATF Framework and the Risk-Based Approach",
+      "description": "Examines the FATF Recommendations as the global AML/CFT standard and develops the risk-based approach as the central operating principle of modern compliance.",
+      "objective": "Students can navigate the FATF Recommendations and apply risk-based thinking to customers, products, channels, and jurisdictions.",
+      "sourceNames": [
+        "FATF Recommendations (International Standards on Combating Money Laundering and the Financing of Terrorism & Proliferation)",
+        "FATF Methodology for Assessing Technical Compliance with the FATF Recommendations and the Effectiveness of AML/CFT Systems",
+        "FATF Guidance for a Risk-Based Approach: The Banking Sector",
+        "European Banking Authority Guidelines on ML/TF Risk Factors (EBA/GL/2021/02)",
+        "Basel Committee Guidelines on Sound Management of Risks Related to Money Laundering and Financing of Terrorism",
+        "BFIU Master Circular No. 26 on AML/CFT obligations of scheduled banks",
+        "Standard Chartered Bank Order to Cease and Desist and related settlement documents"
+      ],
+      "estimatedMinutes": 540,
+      "lessons": [
+        {
+          "slug": "structure-of-the-40-recommendations",
+          "name": "Structure of the 40 Recommendations",
+          "description": "Walks through the 40 FATF Recommendations as an organised whole rather than a checklist, so the student can navigate the framework rather than memorise it.",
+          "conceptTags": [
+            "fatf_recommendations",
+            "interpretive_notes",
+            "policy_groupings"
+          ],
+          "learningObjectives": [
+            "Identify the seven thematic groupings of the FATF Recommendations",
+            "Distinguish Recommendations from Interpretive Notes and explain why the latter often carry the operational detail",
+            "Locate the specific Recommendation that governs a given AML/CFT question"
+          ],
+          "sceneBrief": "Present the seven groupings of the Recommendations as a navigable map: (A) AML/CFT policies and coordination (R.1-2), (B) money laundering and confiscation (R.3-4), (C) terrorist financing and proliferation financing (R.5-8), (D) preventive measures (R.9-23), (E) transparency and beneficial ownership (R.24-25), (F) powers and responsibilities of competent authorities (R.26-35), (G) international cooperation (R.36-40). For each grouping, give one example Recommendation and the question it answers. Stress that the Interpretive Notes are not optional commentary — they carry the binding operational standard for mutual evaluation. Walk through one Recommendation in full (R.10 on CDD) including its Interpretive Note as an example of how to read the framework. Check for understanding with a lookup exercise: given five practitioner questions, the student identifies the Recommendation number that governs each."
+        },
+        {
+          "slug": "risk-based-approach-as-operating-principle",
+          "name": "Risk-Based Approach as Operating Principle",
+          "description": "Develops the risk-based approach from its origin in Recommendation 1 to its operational meaning in the institution.",
+          "conceptTags": [
+            "risk_based_approach",
+            "rba",
+            "proportionality",
+            "risk_assessment"
+          ],
+          "learningObjectives": [
+            "Articulate what the risk-based approach requires and what it does not require",
+            "Distinguish risk-based from rule-based compliance, with specific examples",
+            "Explain the supervisory expectation that risk-based decisions are documented and defensible"
+          ],
+          "sceneBrief": "Begin with the central misconception: risk-based does not mean discretionary, and it does not mean light-touch for low-risk customers. Cite Recommendation 1 and its Interpretive Note directly. Develop the principle that the obligation to mitigate ML/TF risk is constant; what varies is the intensity of measures. Use the FATF Risk-Based Approach Guidance for the Banking Sector (2014) as the operational reference. Show the contrast with rule-based regimes through a worked example: a US$10,000 cash transaction reporting threshold (rule-based) versus a duty to identify suspicious activity at any value (risk-based). Reference the Standard Chartered 2012 NYDFS and OFAC settlements as a public example of what happens when an institution claims risk-based judgment but cannot document the basis. Check for understanding with a defensibility exercise: the student must take a hypothetical risk-based decision (e.g., to reduce monitoring frequency on a long-standing corporate customer) and write the two-paragraph justification a regulator would expect."
+        },
+        {
+          "slug": "enterprise-wide-risk-assessment",
+          "name": "Enterprise-Wide Risk Assessment",
+          "description": "Teaches how an institution conducts its enterprise-wide ML/TF risk assessment as required by Recommendation 1 and national equivalents.",
+          "conceptTags": [
+            "ewra",
+            "inherent_risk",
+            "residual_risk",
+            "control_effectiveness"
+          ],
+          "learningObjectives": [
+            "Design the methodology for an enterprise-wide ML/TF risk assessment",
+            "Distinguish inherent risk, control effectiveness, and residual risk",
+            "Translate the EWRA into operational consequences for policies, monitoring, and resourcing"
+          ],
+          "sceneBrief": "Build the EWRA framework from the Basel Committee's Sound Management Guidelines and the EBA ML/TF Risk Factors Guidelines, both of which articulate the methodology in operational detail. Walk through the four risk dimensions (customer, product/service, geography, delivery channel) and show how each contributes to inherent risk scoring. Then introduce control effectiveness assessment — how the institution evaluates whether its controls actually mitigate inherent risk — and derive residual risk. Use a Bangladesh-targeted worked example: a mid-tier commercial bank with a large RMG-sector exposure, growing MFS partnership business, and limited correspondent banking — score its inherent risk dimensions and discuss how BFIU Circular 26's risk assessment requirements apply. Check for understanding with a critique exercise: present a poorly constructed EWRA (all dimensions scored 'medium' with no rationale) and ask the student to identify the specific failings against the EBA Guidelines."
+        },
+        {
+          "slug": "customer-risk-rating-models",
+          "name": "Customer Risk Rating Models",
+          "description": "Examines how institutions translate the risk-based approach into a workable customer risk rating, including the trade-offs in model design.",
+          "conceptTags": [
+            "customer_risk_rating",
+            "risk_factors",
+            "model_calibration",
+            "high_risk_customer"
+          ],
+          "learningObjectives": [
+            "Construct a customer risk rating model with defensible factor weightings",
+            "Identify the risk factors specified or implied by FATF, EBA, and national guidance",
+            "Recognise common failure modes in customer risk rating and how they appear in enforcement actions"
+          ],
+          "sceneBrief": "Open with the practitioner reality: every regulated institution has a customer risk rating model, and most of them are wrong in instructive ways. Build the model from the risk factors specified in EBA Guidelines (customer type, business activity, jurisdiction, products used, channel) and BFIU Circular 26 (similar but with local risk factor emphasis on, for example, certain trade corridors). Discuss the design trade-off between granularity and operability — a five-factor model is easier to operate but loses signal; a fifty-factor model captures signal but invites inconsistent application. Use the Commerzbank FCA Final Notice (2020) as a case where customer risk rating failures contributed to systemic failure. Demonstrate scoring a customer file (a mid-size import-export company in Chattogram with PEP-adjacent ownership and trade flows to a higher-risk jurisdiction). Check for understanding with a recalibration exercise: given regulator feedback that the institution's high-risk customer rate is implausibly low, the student adjusts factor weightings and justifies each change."
+        }
+      ],
+      "domain": "B - Global AFC Frameworks, Governance, and Regulations"
+    },
+    {
+      "slug": "customer-due-diligence-and-beneficial-ownership",
+      "name": "Customer Due Diligence and Beneficial Ownership",
+      "description": "Develops the operational core of preventive AML: identifying who the customer is, who ultimately owns and controls them, and what level of due diligence is required.",
+      "objective": "Students can conduct CDD, EDD, and beneficial ownership investigation to a standard that withstands regulatory scrutiny and supports a defensible audit trail.",
+      "sourceNames": [
+        "FATF Recommendations (International Standards on Combating Money Laundering and the Financing of Terrorism & Proliferation)",
+        "FATF Guidance on Beneficial Ownership for Legal Persons",
+        "FinCEN Customer Due Diligence Requirements for Financial Institutions (31 CFR 1010.230)",
+        "Anti-Money Laundering Act of 2020 and Corporate Transparency Act",
+        "Money Laundering, Terrorist Financing and Transfer of Funds (Information on the Payer) Regulations 2017",
+        "Directive (EU) 2015/849 (4th AMLD), Directive (EU) 2018/843 (5th AMLD), and Directive (EU) 2018/1673 (6th AMLD)",
+        "Wolfsberg Statement on Source of Wealth and Source of Funds",
+        "BFIU Master Circular No. 26 on AML/CFT obligations of scheduled banks"
+      ],
+      "estimatedMinutes": 600,
+      "lessons": [
+        {
+          "slug": "cdd-fundamentals-identifying-the-customer",
+          "name": "CDD Fundamentals: Identifying the Customer",
+          "description": "Establishes the four pillars of customer due diligence under Recommendation 10 and shows how they manifest in national rules.",
+          "conceptTags": [
+            "cdd",
+            "identification",
+            "verification",
+            "purpose_of_relationship",
+            "ongoing_monitoring"
+          ],
+          "learningObjectives": [
+            "List the four pillars of CDD under FATF Recommendation 10",
+            "Identify when CDD must be performed, refreshed, or escalated",
+            "Apply CDD requirements under the US, UK, EU, and Bangladesh frameworks to a sample customer"
+          ],
+          "sceneBrief": "Start from Recommendation 10 and its Interpretive Note: identify the customer, verify identity using reliable independent source documents, understand the purpose and intended nature of the relationship, and conduct ongoing monitoring. Build out the national implementations: FinCEN's CDD Rule (31 CFR 1010.230) with its four-element requirement plus beneficial ownership; UK MLR 2017 regulations 27-28; EU AMLD 5 articles on CDD; BFIU Circular 26 paragraph 5 on KYC. Use a worked example of opening a corporate account for a Bangladeshi garment exporter with foreign shareholders — walk through document collection (Trade Licence, NID of directors, Memorandum and Articles, RJSC certificate), identity verification, purpose understanding, and the initial monitoring expectations. Check for understanding with a CDD adequacy review: present a customer file and ask the student to identify which of the four pillars is incomplete and what is needed to remedy it."
+        },
+        {
+          "slug": "enhanced-due-diligence-when-and-how",
+          "name": "Enhanced Due Diligence: When and How",
+          "description": "Distinguishes EDD from standard CDD and develops the operational toolkit for high-risk customer onboarding and review.",
+          "conceptTags": [
+            "edd",
+            "high_risk_customer",
+            "source_of_wealth",
+            "source_of_funds",
+            "senior_approval"
+          ],
+          "learningObjectives": [
+            "Identify the triggers for EDD under FATF Recommendation 10 and national implementations",
+            "Distinguish source of wealth from source of funds and articulate how each is established",
+            "Specify the additional documentation, approvals, and monitoring that EDD entails"
+          ],
+          "sceneBrief": "Build EDD as a layered intensification of CDD, triggered by customer risk rating, PEP status, high-risk jurisdiction nexus, complex ownership structures, or specific product risk. Cite Recommendation 10 (high-risk situations), Recommendation 12 (PEPs), and the Wolfsberg Statement on Source of Wealth and Source of Funds as the operational reference. Work through the SoW/SoF distinction with care because it is widely confused: source of wealth is the origin of the customer's total assets (e.g., 25-year career in real estate development); source of funds is the origin of the specific funds entering the account (e.g., sale proceeds of a particular property documented by deed and bank statement). Use a worked example: a wealthy individual from a high-risk jurisdiction opening a private banking account — walk through the SoW evidence package (audited financials of family business, public records of company sales, tax filings) and SoF evidence (specific transaction documents). Reference the Danske Bank Estonia case as an example of SoW/SoF failures at scale. Check for understanding with an evidence-evaluation exercise."
+        },
+        {
+          "slug": "beneficial-ownership-investigation",
+          "name": "Beneficial Ownership Investigation",
+          "description": "Develops the practitioner skill of identifying ultimate beneficial owners through complex corporate structures.",
+          "conceptTags": [
+            "beneficial_ownership",
+            "ubo",
+            "control_test",
+            "ownership_test",
+            "corporate_layering"
+          ],
+          "learningObjectives": [
+            "State the FATF and national definitions of beneficial owner",
+            "Apply ownership and control tests to multi-layered corporate structures",
+            "Identify red flags of beneficial ownership opacity and the appropriate response"
+          ],
+          "sceneBrief": "Cite FATF Recommendation 24 and 25 and the FATF Guidance on Beneficial Ownership for Legal Persons (2023). Explain the two-test approach: ownership (typically 25% or more, though jurisdictions vary) and control (regardless of ownership percentage). Walk through national variations: the US Corporate Transparency Act's 25% or substantial control test (15 USC 5336), the UK PSC regime (Persons with Significant Control register), the EU central beneficial ownership registers under AMLD 5, and Bangladesh's approach under BFIU Circular 26 and recent Companies Act amendments. Demonstrate UBO unwinding through a worked example: a customer is a Bangladesh-incorporated company, owned by a Singapore holding company, owned by a BVI entity, with two named individual shareholders and a nominee director — walk through the documents needed at each layer (RJSC filings, ACRA records, BVI registry searches, nominee declarations) and the points at which control vests despite formal ownership being elsewhere. Use the 1MDB case as an illustration of beneficial ownership concealment at scale. Check for understanding with a UBO mapping exercise."
+        },
+        {
+          "slug": "ongoing-monitoring-and-cdd-refresh",
+          "name": "Ongoing Monitoring and CDD Refresh",
+          "description": "Treats the often-neglected obligation to keep CDD current and to monitor the relationship throughout its life.",
+          "conceptTags": [
+            "ongoing_monitoring",
+            "periodic_review",
+            "trigger_event_review",
+            "kyc_refresh"
+          ],
+          "learningObjectives": [
+            "Articulate the obligation to maintain current CDD throughout the relationship",
+            "Design a risk-based periodic review cycle and trigger event framework",
+            "Recognise the enforcement pattern around stale or absent ongoing monitoring"
+          ],
+          "sceneBrief": "Start from the Recommendation 10 obligation to conduct ongoing due diligence including 'scrutiny of transactions undertaken throughout the course of that relationship'. Develop the institutional response: periodic review cycles calibrated to customer risk (high-risk annually, medium-risk every two to three years, low-risk every five years, with national variation), supplemented by trigger event reviews (significant change in transaction pattern, adverse media, change in ownership, change in jurisdictions of activity). Cite BFIU Circular 26's specific periodic review requirements and the JMLSG Guidance on ongoing monitoring in the UK. Use the Westpac AUSTRAC case (2020) as a public example of the consequences of failing to maintain monitoring on identified high-risk customer types (in that case, the LitePay product and child exploitation risk indicators). Check for understanding with a periodic review design exercise: given a portfolio of 50,000 customers segmented by risk, the student designs a workable review cycle with resourcing implications."
+        },
+        {
+          "slug": "reliance-on-third-parties-and-introduced-business",
+          "name": "Reliance on Third Parties and Introduced Business",
+          "description": "Addresses the specific case of relying on a third party (intra-group or external) for CDD performance.",
+          "conceptTags": [
+            "third_party_reliance",
+            "introduced_business",
+            "outsourcing",
+            "intra_group_reliance"
+          ],
+          "learningObjectives": [
+            "State the conditions under which reliance on a third party is permitted under Recommendation 17",
+            "Distinguish reliance from outsourcing and articulate why this matters legally",
+            "Evaluate the adequacy of a third-party reliance arrangement"
+          ],
+          "sceneBrief": "Open with the practical reality: introducers, intra-group customers, and correspondent relationships all involve some form of dependence on another entity's CDD. Cite Recommendation 17 (reliance on third parties) and its Interpretive Note, then walk through the conditions: the third party must be regulated and supervised, CDD information must be obtainable on request without delay, and ultimate responsibility remains with the reliant institution. Show the distinction from outsourcing under Recommendation 18 (where the outsourced party acts as agent of the institution rather than as an independent regulated entity). Discuss intra-group reliance specifically — its attraction and its enforcement risk, with the Standard Chartered case again instructive on group-level oversight failures. Check for understanding with a contractual review: present a third-party reliance clause and ask the student to identify what is missing under R.17 requirements."
+        }
+      ],
+      "domain": "C - Building an Anti-Financial Crime Compliance Program"
+    },
+    {
+      "slug": "suspicious-activity-monitoring-and-reporting",
+      "name": "Suspicious Activity Monitoring and Reporting",
+      "description": "Builds the practitioner capability to identify, investigate, and report suspicious activity through the lifecycle from detection to financial intelligence unit submission.",
+      "objective": "Students can detect, investigate, and report suspicious transactions to a standard that produces actionable intelligence and withstands supervisory review.",
+      "sourceNames": [
+        "FATF Recommendations (International Standards on Combating Money Laundering and the Financing of Terrorism & Proliferation)",
+        "Bank Secrecy Act (31 U.S.C. 5311 et seq.) and implementing regulations (31 CFR Chapter X)",
+        "Proceeds of Crime Act 2002 (POCA)",
+        "Money Laundering, Terrorist Financing and Transfer of Funds (Information on the Payer) Regulations 2017",
+        "Directive (EU) 2015/849 (4th AMLD), Directive (EU) 2018/843 (5th AMLD), and Directive (EU) 2018/1673 (6th AMLD)",
+        "BFIU Master Circular No. 26 on AML/CFT obligations of scheduled banks",
+        "Egmont Group Public Bulletin on Financial Intelligence Unit Operational Typologies",
+        "Westpac Banking Corporation AUSTRAC Statement of Agreed Facts and Civil Penalty Order",
+        "FinCEN Files investigative reporting and underlying Suspicious Activity Reports analysis"
+      ],
+      "estimatedMinutes": 540,
+      "lessons": [
+        {
+          "slug": "transaction-monitoring-systems-and-rules",
+          "name": "Transaction Monitoring Systems and Rules",
+          "description": "Demystifies how transaction monitoring actually works, including the design of rules and scenarios and the failure modes endemic to the function.",
+          "conceptTags": [
+            "transaction_monitoring",
+            "monitoring_rules",
+            "false_positives",
+            "scenario_design"
+          ],
+          "learningObjectives": [
+            "Describe how a transaction monitoring system processes activity against scenarios",
+            "Identify the major scenario categories and the typologies each addresses",
+            "Diagnose common monitoring failures (calibration, coverage, escalation)"
+          ],
+          "sceneBrief": "Open with what a transaction monitoring system actually is: a rules engine that compares activity against parameters and generates alerts. Walk through the major scenario categories: threshold-based (large cash, unusual wire activity), pattern-based (structuring, rapid movement), peer-group deviation (activity inconsistent with stated customer profile or peer behaviour), velocity-based, and network-based. Cite the EBA Guidelines and FATF Risk-Based Approach Guidance as authority for the monitoring obligation. Discuss the calibration problem: rules too tight produce unmanageable alert volumes (and predictable triage failures); rules too loose miss obvious activity. Use the Westpac AUSTRAC case (2020) as a public example where specific monitoring gaps (notably around the LitePay channel and certain high-risk corridors) produced AUD 1.3 billion in civil penalty. Check for understanding with a scenario-design exercise: given the institution's risk profile, design a monitoring scenario for one specific typology and specify its parameters."
+        },
+        {
+          "slug": "from-alert-to-investigation",
+          "name": "From Alert to Investigation",
+          "description": "Develops the analyst workflow from alert receipt through investigation, documentation, and decision.",
+          "conceptTags": [
+            "alert_disposition",
+            "analyst_investigation",
+            "documentation",
+            "rfi"
+          ],
+          "learningObjectives": [
+            "Conduct an alert investigation that produces a defensible disposition",
+            "Use internal and external sources (transaction history, CDD file, adverse media, RFI to customer or correspondent) appropriately",
+            "Document an investigation to the standard expected by supervisors and FIUs"
+          ],
+          "sceneBrief": "Frame the lesson around the working analyst's day: alerts arrive, each must be dispositioned, the volume is high, and every disposition is auditable. Walk through the investigation workflow: review the alert, pull the customer file and CDD, examine recent transaction history for context, conduct adverse media and sanctions checks, raise a request for information (RFI) to the customer or correspondent where warranted, evaluate the responses, and reach a disposition (close as not suspicious, escalate to suspicious transaction reporting, or refer for relationship review). Stress documentation: every step of reasoning must be recorded such that a supervisor reading the file six months later can follow the analysis. Use a worked investigation: an alert on unusual cross-border wires to a higher-risk jurisdiction from a long-standing corporate customer. Reference the public FinCEN Files reporting as a cautionary tale on what happens when investigations are box-ticking rather than substantive. Check for understanding with an investigation-documentation exercise."
+        },
+        {
+          "slug": "drafting-the-suspicious-transaction-report",
+          "name": "Drafting the Suspicious Transaction Report",
+          "description": "Teaches how to draft a STR/SAR that produces actionable intelligence for the FIU and demonstrates the institution's competence.",
+          "conceptTags": [
+            "str",
+            "sar",
+            "narrative_drafting",
+            "fiu_submission",
+            "tipping_off"
+          ],
+          "learningObjectives": [
+            "Draft an STR/SAR narrative that conveys the five Ws clearly and concisely",
+            "Identify the legal obligation to report and the protections that attach to good-faith reporting",
+            "State and apply the tipping-off prohibition"
+          ],
+          "sceneBrief": "Open with the FATF Recommendation 20 obligation: where there are reasonable grounds to suspect that funds are the proceeds of criminal activity or related to terrorist financing, the institution must report promptly to the FIU. Walk through national variations: US 31 CFR 1020.320 SARs, UK POCA section 330 SARs to the NCA, EU AMLD 5 reporting to national FIUs, BFIU STR submission requirements. Develop the narrative drafting standard: who is the subject, what is the activity, when did it occur, where (which accounts, which corridors), why is it suspicious. Stress that the narrative must be self-contained — the FIU analyst should not need to call the institution to understand the report. Show a strong narrative and a weak narrative side by side. Cover the legal protections (safe harbour for good-faith reporting under most regimes) and the absolute prohibition on tipping off the subject (POCA section 333A, BFIU Circular 26, FinCEN regulations). Check for understanding with a narrative drafting exercise based on the prior lesson's worked investigation."
+        },
+        {
+          "slug": "the-life-of-a-financial-intelligence-product",
+          "name": "The Life of a Financial Intelligence Product",
+          "description": "Follows what happens after submission: how FIUs analyse, disseminate, and share intelligence, and what feedback the institution can expect.",
+          "conceptTags": [
+            "financial_intelligence",
+            "fiu_analysis",
+            "international_information_sharing",
+            "feedback_loops"
+          ],
+          "learningObjectives": [
+            "Describe FIU analytical workflows and the types of intelligence products they produce",
+            "Explain Egmont Group secure information sharing and its operational use",
+            "Identify the feedback mechanisms (or their absence) and how institutions should respond"
+          ],
+          "sceneBrief": "Take the student behind the FIU door, drawing on Egmont Group public bulletins on FIU operations and the FATF Methodology requirements for Recommendation 29. Walk through what an FIU does with a submitted STR: triage, contextualise against other reports and intelligence, conduct further enquiries with the reporting institution, share with domestic law enforcement or with foreign FIUs through Egmont secure channels, or close. Discuss the practitioner reality of limited feedback — institutions often submit hundreds of STRs and receive no specific feedback on any of them — and how to interpret this. Show how typology reports from FIUs and the Egmont Group flow back to inform institutional monitoring. Use a worked example based on a published Egmont typology bulletin. Check for understanding with a feedback-loop exercise: how should the institution improve its monitoring if it learns from public enforcement that it failed to detect a particular pattern?"
+        }
+      ],
+      "domain": "C - Building an Anti-Financial Crime Compliance Program"
+    },
+    {
+      "slug": "sanctions-compliance",
+      "name": "Sanctions Compliance",
+      "description": "Treats sanctions as a discipline distinct from but adjacent to AML/CFT, including screening, evasion typologies, and the multi-regime nature of sanctions risk.",
+      "objective": "Students can operate a sanctions compliance program against the major regimes (OFAC, UN, EU, UK, national) and recognise evasion techniques.",
+      "sourceNames": [
+        "OFAC Sanctions Compliance Guidance and A Framework for OFAC Compliance Commitments",
+        "UN Security Council Consolidated Sanctions List and underlying Resolutions (notably UNSCR 1267, 1373, 1540, 2231)",
+        "UK Financial Sanctions Guidance (OFSI)",
+        "FATF Recommendations (International Standards on Combating Money Laundering and the Financing of Terrorism & Proliferation)",
+        "Standard Chartered Bank Order to Cease and Desist and related settlement documents",
+        "HSBC Holdings plc Deferred Prosecution Agreement",
+        "Commerzbank AG Final Notice"
+      ],
+      "estimatedMinutes": 480,
+      "lessons": [
+        {
+          "slug": "the-multi-regime-landscape-of-sanctions",
+          "name": "The Multi-Regime Landscape of Sanctions",
+          "description": "Maps the major sanctions regimes and the principles by which they interact (and conflict).",
+          "conceptTags": [
+            "sanctions_regimes",
+            "ofac",
+            "un_sanctions",
+            "eu_sanctions",
+            "ofsi",
+            "extraterritoriality"
+          ],
+          "learningObjectives": [
+            "Identify the major sanctions regimes and the legal basis of each",
+            "Explain extraterritorial application and its practical consequences",
+            "Recognise where regimes conflict and how institutions navigate them"
+          ],
+          "sceneBrief": "Build the map: UN sanctions binding on all member states via UNSCR; OFAC sanctions under IEEPA and TWEA with broad extraterritorial reach (US-person nexus, US-dollar clearing nexus, US-origin goods nexus); EU sanctions under Council Decisions and Regulations; UK sanctions under the Sanctions and Anti-Money Laundering Act 2018 administered by OFSI; national sanctions in jurisdictions like Bangladesh implementing UN obligations under the Anti-Terrorism Act 2009. Explain extraterritoriality through the BNP Paribas precedent and the Standard Chartered settlements, where US-dollar clearing exposure created OFAC liability for non-US banks. Address regime conflict (e.g., EU Blocking Regulation versus US secondary sanctions on Iran) without prescribing a position. Check for understanding with a nexus-mapping exercise: given a transaction, identify which regimes apply and on what basis."
+        },
+        {
+          "slug": "sanctions-screening-mechanics-and-design",
+          "name": "Sanctions Screening Mechanics and Design",
+          "description": "Develops practitioner understanding of how sanctions screening works, including list management, matching algorithms, and false-positive handling.",
+          "conceptTags": [
+            "sanctions_screening",
+            "list_management",
+            "fuzzy_matching",
+            "name_screening"
+          ],
+          "learningObjectives": [
+            "Explain the components of a sanctions screening system (lists, matching, alert disposition)",
+            "Evaluate matching algorithm calibration trade-offs",
+            "Design a screening program that covers customers, counterparties, and payments"
+          ],
+          "sceneBrief": "Walk through the architecture of a screening program: list ingestion (OFAC SDN List structure, UN Consolidated List, EU and UK lists, plus internal watchlists), matching engines (exact, phonetic, fuzzy, transliteration-aware), and alert workflow. Discuss the calibration problem: too tight produces missed hits on legitimate variants (a real OFAC concern); too loose produces unmanageable volumes. Address the specific complexities of name screening across scripts and transliterations (an Arabic name romanised three different ways), and of entity screening where 50% rule blocked-property analysis applies under OFAC. Use the Commerzbank FCA Final Notice and Standard Chartered OFAC settlement as public examples of screening failures and remediation costs. Check for understanding with a calibration exercise: given a sample of alerts and dispositions, the student diagnoses the system's calibration problem."
+        },
+        {
+          "slug": "sanctions-evasion-typologies",
+          "name": "Sanctions Evasion Typologies",
+          "description": "Examines how sanctioned persons and jurisdictions evade controls, so that the student can recognise the patterns.",
+          "conceptTags": [
+            "sanctions_evasion",
+            "front_companies",
+            "ship_to_ship_transfers",
+            "stripping",
+            "obscuration"
+          ],
+          "learningObjectives": [
+            "Identify the principal sanctions evasion typologies",
+            "Recognise red flags of evasion in payment messages, trade documents, and corporate structures",
+            "Apply OFAC and FATF guidance on evasion to a sample scenario"
+          ],
+          "sceneBrief": "Draw from the OFAC public advisories on Iran, North Korea, Russia, and Venezuela evasion, plus the FATF reports on sanctions evasion typologies. Walk through the principal techniques: wire-stripping (removing sanctioned-party references from MT103 messages, the Standard Chartered and HSBC pattern), front and shell companies in third jurisdictions, ship-to-ship transfers and AIS manipulation in maritime trade, gold and commodity laundering, virtual asset use, and the abuse of professional intermediaries. For each, identify the red flags an institution can realistically detect. Use the public Standard Chartered and HSBC settlement documents (2012) and more recent OFAC advisories as the worked sources. Check for understanding with a red-flag-detection exercise: given a payment message and supporting documents, the student identifies the evasion indicators present."
+        },
+        {
+          "slug": "sanctions-program-governance",
+          "name": "Sanctions Program Governance",
+          "description": "Translates the OFAC Framework for Compliance Commitments and equivalent guidance into the institution's governance arrangements.",
+          "conceptTags": [
+            "sanctions_compliance_program",
+            "scp",
+            "ofac_framework",
+            "voluntary_self_disclosure"
+          ],
+          "learningObjectives": [
+            "Articulate the five elements of an effective sanctions compliance program under OFAC's Framework",
+            "Design the institution's sanctions governance, including roles and escalation",
+            "Apply the OFAC voluntary self-disclosure framework to a hypothetical breach"
+          ],
+          "sceneBrief": "Use OFAC's 'A Framework for OFAC Compliance Commitments' (2019) as the structuring document: management commitment, risk assessment, internal controls, testing and auditing, training. Show how UK OFSI guidance and EU enforcement expectations align broadly with the same elements. Discuss the institution's governance arrangements — where sanctions sits relative to AML, who owns it, the board reporting line. Cover the voluntary self-disclosure incentive: when a breach is identified, the OFAC framework provides for mitigation in penalty calculation where the institution self-discloses, cooperates, and remediates. Use the Standard Chartered settlement as a worked example of what cooperation and non-cooperation look like in practice. Check for understanding with a self-disclosure decision exercise."
+        }
+      ],
+      "domain": "C - Building an Anti-Financial Crime Compliance Program"
+    },
+    {
+      "slug": "high-risk-categories-and-typologies",
+      "name": "High-Risk Categories and Typologies",
+      "description": "Examines the customer categories, products, and channels that receive sustained regulatory and FATF attention, and the typologies that animate that attention.",
+      "objective": "Students can identify and mitigate the risks specific to PEPs, correspondent banking, virtual assets, real estate, trade finance, and other elevated-risk categories.",
+      "sourceNames": [
+        "FATF Guidance on Politically Exposed Persons (Recommendations 12 and 22)",
+        "FATF Updated Guidance for a Risk-Based Approach to Virtual Assets and Virtual Asset Service Providers",
+        "FATF Trade-Based Money Laundering: Trends and Developments",
+        "FATF Report on Money Laundering and Terrorist Financing through the Real Estate Sector",
+        "Wolfsberg Principles for Correspondent Banking",
+        "Wolfsberg Anti-Bribery and Corruption Compliance Programme Guidance",
+        "BFIU Guidelines on Prevention of Trade-Based Money Laundering",
+        "1MDB-related Goldman Sachs Deferred Prosecution Agreement and Malaysian settlement",
+        "HSBC Holdings plc Deferred Prosecution Agreement"
+      ],
+      "estimatedMinutes": 720,
+      "lessons": [
+        {
+          "slug": "politically-exposed-persons",
+          "name": "Politically Exposed Persons",
+          "description": "Develops the PEP framework from FATF Recommendations 12 and 22 through to operational onboarding and review.",
+          "conceptTags": [
+            "pep",
+            "foreign_pep",
+            "domestic_pep",
+            "international_organisation_pep",
+            "rcas"
+          ],
+          "learningObjectives": [
+            "Define foreign PEP, domestic PEP, and international organisation PEP and identify relatives and close associates (RCAs)",
+            "Apply the senior management approval and SoW requirements under R.12",
+            "Recognise the PEP-related corruption typologies in public enforcement actions"
+          ],
+          "sceneBrief": "Cite FATF Recommendations 12 and 22 and the 2013 FATF PEP Guidance directly. Define the categories with care: foreign PEPs trigger automatic EDD; domestic and international organisation PEPs trigger EDD on a risk-sensitive basis (this nuance is widely misapplied). Walk through RCA identification, which is the practical hard problem — spouses, children, parents, in-laws, close business associates, and the documentary difficulty of confirming these relationships. Show the operational consequences: senior management approval to onboard or continue, SoW evidence to the standard discussed in the EDD lesson, enhanced ongoing monitoring. Use the 1MDB case (Goldman Sachs DPA and Malaysian settlements) as the worked example of PEP-related corruption and the institutional failures that enabled it. Check for understanding with a PEP-screening scenario: a prospective customer's beneficial owner is the niece of a former finance minister — work through the classification and the onboarding decision."
+        },
+        {
+          "slug": "correspondent-banking-risk",
+          "name": "Correspondent Banking Risk",
+          "description": "Treats correspondent banking as a category that imports another institution's risk and develops the controls required to manage it.",
+          "conceptTags": [
+            "correspondent_banking",
+            "respondent_due_diligence",
+            "nested_relationships",
+            "payable_through_accounts",
+            "de_risking"
+          ],
+          "learningObjectives": [
+            "Apply FATF Recommendation 13 and the Wolfsberg Correspondent Banking Principles to a respondent relationship",
+            "Identify nested relationships and payable-through-account risks",
+            "Evaluate the de-risking trade-off between exiting relationships and managing them"
+          ],
+          "sceneBrief": "Build the framework from Recommendation 13 and the Wolfsberg Principles for Correspondent Banking (latest version). Walk through respondent due diligence: management and ownership, AML/CFT program adequacy, supervisory regime in the respondent's home jurisdiction, business purpose, products offered. Discuss nested relationships (where a respondent provides correspondent services to its own respondents) and payable-through-accounts as specific elevated-risk patterns. Address the de-risking dilemma — the wholesale exit from regions or respondent types — and the FATF Plenary and FSB statements that have warned against it. Use the HSBC 2012 DPA as the central case study, particularly the Mexico correspondent failures, and reference the Wachovia 2010 deferred prosecution. Check for understanding with a respondent-onboarding decision: present a prospective respondent and ask the student to identify the questions to ask and the documents to obtain before approving the relationship."
+        },
+        {
+          "slug": "trade-based-money-laundering",
+          "name": "Trade-Based Money Laundering",
+          "description": "Treats TBML as the most operationally complex AML topic, with specific attention to the Bangladesh context given its trade-heavy economy.",
+          "conceptTags": [
+            "tbml",
+            "over_invoicing",
+            "under_invoicing",
+            "phantom_shipments",
+            "ucp600_context"
+          ],
+          "learningObjectives": [
+            "Identify the principal TBML typologies",
+            "Recognise red flags in trade documents and trade-related payments",
+            "Apply BFIU TBML Guidelines and FATF TBML guidance to a trade finance transaction"
+          ],
+          "sceneBrief": "Open with the scale: the FATF/Egmont 2020 report estimates TBML as one of the principal money laundering channels globally, and Bangladesh's trade-heavy economy makes it locally salient. Walk through the typologies from the FATF report and the BFIU TBML Guidelines (2019): over- and under-invoicing of goods, multiple invoicing, phantom shipments, falsely described goods, and the use of trade finance instruments to layer value. Reference UCP 600 and ICC trade rules only nominatively — the lesson teaches the underlying commercial reality of how documentary credits, collections, and open account trade work, not the ICC text. Develop the red flags: pricing inconsistencies with market benchmarks, vessel and route anomalies, dual-use goods, shipping document inconsistencies, payment terms inconsistent with industry norms. Use a worked example: a Bangladeshi importer of capital machinery showing pricing 40% above market with the supplier being a recently-incorporated entity in a higher-risk jurisdiction. Check for understanding with a TBML detection exercise: given a set of trade documents, identify the indicators and the further enquiries warranted."
+        },
+        {
+          "slug": "virtual-assets-and-vasps",
+          "name": "Virtual Assets and VASPs",
+          "description": "Develops the AML/CFT framework for virtual assets and the institutions that handle them, including the Travel Rule.",
+          "conceptTags": [
+            "virtual_assets",
+            "vasp",
+            "travel_rule",
+            "wallet_attribution",
+            "mixers_and_privacy_coins"
+          ],
+          "learningObjectives": [
+            "State the FATF Recommendation 15 obligation as it applies to virtual assets and VASPs",
+            "Explain the Travel Rule and its implementation challenges",
+            "Identify high-risk patterns including mixer use, chain-hopping, and exchange laundering"
+          ],
+          "sceneBrief": "Cite FATF Recommendation 15 as extended in 2018-2019 to cover virtual assets and VASPs, and the FATF Updated Guidance (2021). Walk through the VASP definition (exchange between virtual assets and fiat, exchange between virtual assets, transfer, custody, participation in financial services related to issuance). Develop the Travel Rule obligation (originator and beneficiary information accompanying transfers above threshold) and its operational difficulty across uncoordinated jurisdictions. Address national variation: jurisdictions with comprehensive VASP regimes (Singapore, EU under MiCA), jurisdictions in transition, and jurisdictions like Bangladesh where virtual asset transactions remain restricted under Bangladesh Bank circulars. Discuss the typology toolkit: mixers and tumblers, privacy coins, chain-hopping, the use of decentralised exchanges to evade KYC, and wallet attribution techniques. Use public OFAC enforcement actions against mixer operators (Tornado Cash designation) as the worked example. Check for understanding with a transaction-pattern analysis exercise."
+        },
+        {
+          "slug": "real-estate-cash-intensive-businesses-and-luxury-goods",
+          "name": "Real Estate, Cash-Intensive Businesses, and Luxury Goods",
+          "description": "Covers the non-bank channels that absorb significant illicit value and the patterns that practitioners need to recognise in connected bank accounts.",
+          "conceptTags": [
+            "real_estate_ml",
+            "cash_intensive_business",
+            "luxury_goods",
+            "dnfbps"
+          ],
+          "learningObjectives": [
+            "Identify the typologies of money laundering through real estate, cash businesses, and luxury goods",
+            "Apply FATF Recommendation 22 obligations on DNFBPs",
+            "Recognise the bank-side indicators of these typologies even when the bank itself is not the gatekeeper"
+          ],
+          "sceneBrief": "Draw from the FATF Real Estate Report (2022) and the typology bulletins from FIUs in jurisdictions with significant real estate ML concerns. Walk through the techniques: cash purchases through corporate vehicles, layered ownership, undervalued and overvalued transactions, renovation expenditure as a laundering vehicle, rental income as integration. Cover cash-intensive businesses (restaurants, car washes, parking garages, certain retail) and the commingling problem. Address luxury goods (art, jewellery, luxury vehicles, yachts) and the role of intermediaries. Cite Recommendation 22 on DNFBPs (lawyers, accountants, trust and company service providers, real estate agents, dealers in precious metals and stones) and the typical national implementation gaps. Even where the bank is not the gatekeeper, the proceeds and the integration touch the bank — develop the practitioner's eye for the indicators visible in the bank's own data. Check for understanding with an indicator-recognition exercise."
+        }
+      ],
+      "domain": "A - Understanding the Risks and Methods of Financial Crime"
+    },
+    {
+      "slug": "national-frameworks-in-depth",
+      "name": "National Frameworks in Depth",
+      "description": "Develops working knowledge of the United States, United Kingdom, European Union, and Bangladesh frameworks as comparative cases.",
+      "objective": "Students can navigate the AML/CFT framework of four major jurisdictions and apply each to practitioner decisions.",
+      "sourceNames": [
+        "Bank Secrecy Act (31 U.S.C. 5311 et seq.) and implementing regulations (31 CFR Chapter X)",
+        "USA PATRIOT Act, Title III (International Money Laundering Abatement and Anti-Terrorist Financing Act)",
+        "FinCEN Customer Due Diligence Requirements for Financial Institutions (31 CFR 1010.230)",
+        "Anti-Money Laundering Act of 2020 and Corporate Transparency Act",
+        "Proceeds of Crime Act 2002 (POCA)",
+        "Money Laundering, Terrorist Financing and Transfer of Funds (Information on the Payer) Regulations 2017",
+        "Joint Money Laundering Steering Group (JMLSG) Guidance for the UK Financial Sector",
+        "Directive (EU) 2015/849 (4th AMLD), Directive (EU) 2018/843 (5th AMLD), and Directive (EU) 2018/1673 (6th AMLD)",
+        "EU AML Package: Regulation (EU) 2024/1624, Directive (EU) 2024/1640, and AMLA Regulation (EU) 2024/1620",
+        "European Banking Authority Guidelines on ML/TF Risk Factors (EBA/GL/2021/02)",
+        "Bangladesh Money Laundering Prevention Act 2012 (as amended)",
+        "Bangladesh Anti-Terrorism Act 2009 (as amended)",
+        "BFIU Master Circular No. 26 on AML/CFT obligations of scheduled banks",
+        "BFIU Guidelines on Prevention of Trade-Based Money Laundering"
+      ],
+      "estimatedMinutes": 600,
+      "lessons": [
+        {
+          "slug": "the-us-framework",
+          "name": "The US Framework",
+          "description": "Maps the US AML/CFT framework from the BSA through the AMLA 2020 and CTA, with attention to the agencies and their tools.",
+          "conceptTags": [
+            "bsa",
+            "usa_patriot_act",
+            "fincen",
+            "amla_2020",
+            "cta",
+            "ofac"
+          ],
+          "learningObjectives": [
+            "Trace the principal US AML/CFT statutes and their key obligations",
+            "Identify the roles of FinCEN, OFAC, federal banking regulators, and the DOJ",
+            "Apply major US-specific obligations (CTR, SAR, Section 311, 314(a) and 314(b))"
+          ],
+          "sceneBrief": "Build the US framework as a layered structure: BSA (1970) as the foundation, USA PATRIOT Act (2001) Title III as the post-9/11 expansion, AMLA 2020 and the Corporate Transparency Act as the contemporary modernisation. Walk through the obligations: CTR for cash transactions above US$10,000 (31 CFR 1010.311), SAR requirements (31 CFR 1020.320), the CDD Rule including beneficial ownership (31 CFR 1010.230), Section 311 special measures, Section 314(a) law enforcement requests, Section 314(b) voluntary information sharing among financial institutions. Map the agencies: FinCEN as the FIU and rule-maker, OFAC for sanctions, OCC and Federal Reserve for prudential AML supervision, DOJ for criminal enforcement. Use the HSBC 2012 DPA as the central worked case, walking through which US authorities had jurisdiction over which conduct. Check for understanding with a regulatory-mapping exercise: given a hypothetical violation, identify which US authority would lead and under which statute."
+        },
+        {
+          "slug": "the-uk-framework",
+          "name": "The UK Framework",
+          "description": "Maps the UK AML/CFT framework with attention to its principal statutes, the regulator landscape, and the JMLSG guidance role.",
+          "conceptTags": [
+            "poca",
+            "mlr_2017",
+            "jmlsg",
+            "fca",
+            "nca",
+            "ofsi"
+          ],
+          "learningObjectives": [
+            "State the principal POCA offences and the MLR 2017 obligations",
+            "Identify the roles of the FCA, NCA, OFSI, and HM Treasury",
+            "Apply UK-specific concepts including the regulated sector definition and the Defence Against Money Laundering (DAML)"
+          ],
+          "sceneBrief": "Build the UK framework from POCA 2002 sections 327-329 (principal money laundering offences applicable to all persons) and sections 330-333A (regulated sector offences including failure to disclose and tipping off). Walk through MLR 2017 as the preventive regulation: customer due diligence, beneficial ownership, enhanced measures, and the role of the JMLSG Guidance (which is non-binding but considered by courts and regulators). Map the authorities: FCA as the principal AML supervisor for financial services, HMRC for sectors outside FCA scope, the NCA as the FIU receiving SARs, OFSI for financial sanctions, HM Treasury for policy. Develop the DAML concept (Defence Against Money Laundering, formerly consent SAR) — the mechanism by which a regulated person can proceed with a transaction that would otherwise be a section 328 offence. Reference Standard Chartered and Commerzbank as UK enforcement cases. Check for understanding with a POCA-application exercise."
+        },
+        {
+          "slug": "the-eu-framework-and-the-aml-package",
+          "name": "The EU Framework and the AML Package",
+          "description": "Maps the EU AML framework through the directives and the 2024 AML Package transition to direct-effect regulation and a central authority.",
+          "conceptTags": [
+            "amld_4",
+            "amld_5",
+            "amld_6",
+            "aml_package_2024",
+            "amla",
+            "single_rulebook"
+          ],
+          "learningObjectives": [
+            "Trace the AML Directives and the principal obligations introduced by each",
+            "Explain the structural shift from directive-based to regulation-based EU AML law under the 2024 Package",
+            "Identify the role of AMLA and the new EU-level supervisory architecture"
+          ],
+          "sceneBrief": "Walk through the directives: AMLD 4 (2015) establishing the modern risk-based framework, AMLD 5 (2018) extending to virtual currencies and tightening beneficial ownership transparency, AMLD 6 (2018) harmonising criminal offences. Then introduce the 2024 AML Package: Regulation (EU) 2024/1624 (the single rulebook directly applicable across member states, replacing much of the directive-based regime), Directive (EU) 2024/1640 (organisational and supervisory provisions remaining directive-based), and Regulation (EU) 2024/1620 establishing AMLA as the central EU AML authority based in Frankfurt. Discuss the implications: harmonised customer due diligence rules across the EU, direct supervision of selected high-risk obliged entities by AMLA, a unified rulebook reducing fragmentation. Reference EBA Guidelines on ML/TF Risk Factors as the operational guidance. Use the Danske Bank Estonia case to illustrate why the EU concluded that directive-based fragmentation was inadequate. Check for understanding with a regulation-versus-directive exercise."
+        },
+        {
+          "slug": "the-bangladesh-framework",
+          "name": "The Bangladesh Framework",
+          "description": "Develops detailed working knowledge of the Bangladesh AML/CFT framework, with particular attention to BFIU Circular 26 as the operational instrument.",
+          "conceptTags": [
+            "mlpa_2012",
+            "ata_2009",
+            "bfiu_circular_26",
+            "tbml_guidelines",
+            "ctr_str_bangladesh"
+          ],
+          "learningObjectives": [
+            "State the principal offences under the MLPA 2012 and the ATA 2009 (financing provisions)",
+            "Apply BFIU Master Circular 26 to a Bangladesh bank's AML/CFT obligations",
+            "Identify the BFIU's role and the supervisory architecture under Bangladesh Bank"
+          ],
+          "sceneBrief": "Build the Bangladesh framework from the Money Laundering Prevention Act 2012 (sections 2 definitions, 4 offences, 5 penalties, 23 BFIU powers) and the Anti-Terrorism Act 2009 as amended in 2013 (financing of terrorism offences). Develop BFIU Master Circular 26 as the operational reference: paragraph 5 on KYC (which closely parallels FATF Recommendation 10 with local adaptations including NID verification, Trade Licence verification, sector-specific source of funds expectations), risk classification requirements, STR and CTR thresholds (Tk 10 lakh CTR threshold), record retention, training, and the AML compliance officer (CCO) role. Cover the BFIU TBML Guidelines as the specialised reference for trade. Map the supervisory architecture: BFIU as the FIU and AML supervisor, Bangladesh Bank as the prudential regulator with AML responsibilities, the Anti-Corruption Commission's parallel jurisdiction over predicate offences in the public sector. Use a worked example of a scheduled bank operating in Dhaka with mixed retail, RMG-sector corporate, and inward remittance business. Check for understanding with a Circular 26 application exercise."
+        }
+      ],
+      "domain": "B - Global AFC Frameworks, Governance, and Regulations"
+    },
+    {
+      "slug": "governance-audit-and-the-compliance-function",
+      "name": "Governance, Audit, and the Compliance Function",
+      "description": "Treats AML/CFT as an institutional discipline that requires governance, independent audit, training, and a credible compliance function.",
+      "objective": "Students can design and evaluate AML/CFT governance arrangements including the compliance function, independent audit, training, and board oversight.",
+      "sourceNames": [
+        "FATF Recommendations (International Standards on Combating Money Laundering and the Financing of Terrorism & Proliferation)",
+        "Basel Committee Guidelines on Sound Management of Risks Related to Money Laundering and Financing of Terrorism",
+        "European Banking Authority Guidelines on ML/TF Risk Factors (EBA/GL/2021/02)",
+        "BFIU Master Circular No. 26 on AML/CFT obligations of scheduled banks",
+        "Joint Money Laundering Steering Group (JMLSG) Guidance for the UK Financial Sector",
+        "Westpac Banking Corporation AUSTRAC Statement of Agreed Facts and Civil Penalty Order",
+        "Danske Bank Estonia Branch Report on the Non-Resident Portfolio (Bruun & Hjejle independent report) and US DOJ resolution"
+      ],
+      "estimatedMinutes": 420,
+      "lessons": [
+        {
+          "slug": "the-three-lines-of-defence",
+          "name": "The Three Lines of Defence",
+          "description": "Applies the three-lines-of-defence model to AML/CFT specifically, including the responsibilities of business, compliance, and audit.",
+          "conceptTags": [
+            "three_lines_of_defence",
+            "first_line",
+            "second_line",
+            "third_line",
+            "ownership_of_risk"
+          ],
+          "learningObjectives": [
+            "Articulate the three-lines model as applied to AML/CFT",
+            "Identify common failure patterns at each line",
+            "Distinguish 'ownership of risk' from 'oversight of risk'"
+          ],
+          "sceneBrief": "Build the three lines from the Basel Committee Sound Management Guidelines: first line is the business (relationship managers, operations, payments staff) which owns the risk and operates day-to-day controls; second line is compliance which oversees, advises, and challenges; third line is internal audit which provides independent assurance. Stress that 'oversight' is not 'ownership' — when compliance is treated as the owner of AML risk, the first line disengages and controls fail. Use the Danske Bank Estonia case (Bruun & Hjejle report) as the worked example, showing how first-line ownership of the non-resident portfolio risk was effectively absent and how second-line escalations went unactioned. Check for understanding with a responsibility-mapping exercise: given a specific control failure, allocate responsibility across the three lines."
+        },
+        {
+          "slug": "the-mlro-cco-role-and-the-compliance-function",
+          "name": "The MLRO/CCO Role and the Compliance Function",
+          "description": "Develops the role of the designated compliance officer (MLRO in the UK, CCO under BFIU regime, BSA Officer in the US) and the compliance function around them.",
+          "conceptTags": [
+            "mlro",
+            "cco",
+            "bsa_officer",
+            "compliance_function",
+            "personal_liability"
+          ],
+          "learningObjectives": [
+            "Identify the legal designation of the AML compliance officer in three jurisdictions and the obligations attached",
+            "Articulate the personal liability exposure of the role",
+            "Design a compliance function that is independent, adequately resourced, and effective"
+          ],
+          "sceneBrief": "Walk through the role across regimes: MLRO under UK MLR 2017 regulation 21, BSA Officer under 31 CFR 1020.210, AML Compliance Officer (CCO) under BFIU Circular 26 with a designated Deputy CCO. Discuss the requirements that travel with the role: seniority, independence, access to information, direct reporting line to the board or board committee, and personal liability exposure (which in some jurisdictions includes criminal liability for institutional failures attributable to the officer). Discuss resourcing — the FATF Methodology effectiveness assessment specifically considers whether compliance is adequately resourced for institutional risk. Use the Westpac AUSTRAC case as an example where compliance escalations existed but were not actioned at the level required. Check for understanding with a resourcing-analysis exercise: given an institutional profile, the student justifies a proposed compliance function structure and budget."
+        },
+        {
+          "slug": "independent-audit-of-aml-cft",
+          "name": "Independent Audit of AML/CFT",
+          "description": "Develops the third-line audit function for AML/CFT, including scope, frequency, and what good looks like.",
+          "conceptTags": [
+            "aml_audit",
+            "independent_testing",
+            "audit_scope",
+            "audit_findings"
+          ],
+          "learningObjectives": [
+            "State the FATF and national requirements for independent AML/CFT audit",
+            "Design an audit scope covering the principal AML/CFT controls",
+            "Distinguish substantive testing from process testing and apply both appropriately"
+          ],
+          "sceneBrief": "Cite FATF Recommendation 18 (internal controls and foreign branches and subsidiaries) including the requirement for an independent audit function. Walk through national implementations: US 31 CFR 1020.210 requiring independent testing, UK MLR 2017 regulation 21(1)(c), BFIU Circular 26 requirements for periodic AML audit. Develop audit scope: governance and tone from the top, EWRA adequacy, policies and procedures, customer due diligence sampling, transaction monitoring effectiveness (including substantive testing of monitoring scenarios), sanctions screening effectiveness, training adequacy, regulatory reporting completeness. Discuss frequency calibrated to risk and the trade-off between internal audit and external independent reviewers. Use a sanitised audit finding from public enforcement remediation orders as a worked example of well-articulated audit findings. Check for understanding with an audit-planning exercise."
+        },
+        {
+          "slug": "training-and-culture",
+          "name": "Training and Culture",
+          "description": "Treats training and culture as the controls that determine whether documented procedures actually operate.",
+          "conceptTags": [
+            "aml_training",
+            "role_based_training",
+            "compliance_culture",
+            "tone_from_the_top"
+          ],
+          "learningObjectives": [
+            "Design a role-based AML/CFT training program",
+            "Identify the cultural indicators that predict AML/CFT control effectiveness",
+            "Recognise the enforcement attention to culture in major settlements"
+          ],
+          "sceneBrief": "Cite Recommendation 18 again as the training basis, and walk through what role-based training means: a relationship manager needs different content from a payment processor, and both need different content from a trade finance officer. Build a training matrix showing role, content, frequency, and assessment. Address compliance culture as a distinct topic — the Basel Committee Guidelines emphasise tone from the top and the integration of AML/CFT into business decision-making. Reference the Westpac and Danske Bank cases where culture failings were identified as root cause. Discuss measurable culture indicators: speak-up rates, override rates on monitoring alerts, frequency of compliance challenge accepted at first line, board attention. Check for understanding with a culture-diagnosis exercise: given a set of institutional behaviours, identify the culture warning signs."
+        }
+      ],
+      "domain": "C - Building an Anti-Financial Crime Compliance Program"
+    },
+    {
+      "slug": "learning-from-enforcement",
+      "name": "Learning from Enforcement",
+      "description": "Closes the course by reading major enforcement actions as detailed teaching texts, extracting transferable lessons for the practitioner's own institution.",
+      "objective": "Students can analyse a public enforcement action, extract the operational lessons, and apply them to their own institution.",
+      "sourceNames": [
+        "Standard Chartered Bank Order to Cease and Desist and related settlement documents",
+        "HSBC Holdings plc Deferred Prosecution Agreement",
+        "Danske Bank Estonia Branch Report on the Non-Resident Portfolio (Bruun & Hjejle independent report) and US DOJ resolution",
+        "Westpac Banking Corporation AUSTRAC Statement of Agreed Facts and Civil Penalty Order",
+        "1MDB-related Goldman Sachs Deferred Prosecution Agreement and Malaysian settlement",
+        "Commerzbank AG Final Notice",
+        "FinCEN Files investigative reporting and underlying Suspicious Activity Reports analysis"
+      ],
+      "estimatedMinutes": 480,
+      "lessons": [
+        {
+          "slug": "how-to-read-an-enforcement-action",
+          "name": "How to Read an Enforcement Action",
+          "description": "Develops the practitioner skill of reading a public enforcement document for operational lessons rather than for headline figures.",
+          "conceptTags": [
+            "enforcement_analysis",
+            "consent_order",
+            "dpa",
+            "final_notice",
+            "root_cause"
+          ],
+          "learningObjectives": [
+            "Identify the structural sections of major enforcement documents and what each tells you",
+            "Distinguish the conduct findings, the control failures, and the remediation obligations",
+            "Extract transferable lessons that apply beyond the specific institution"
+          ],
+          "sceneBrief": "Treat the lesson as a reading methodology. Use the Commerzbank FCA Final Notice (2020) as the worked text because it is publicly available, well-structured, and instructive. Walk through the sections: factual background, conduct findings, contraventions identified, mitigating factors, penalty calculation, remediation obligations. Show the student how to read past the headline figure (the penalty) to the structural findings (the EWRA was inadequate, customer risk rating was misapplied, EDD was not performed where required, monitoring was inadequately calibrated). Develop the question to ask of every enforcement action: 'is the same control weakness present in my institution?' Check for understanding with a reading-comprehension exercise on a paragraph of the Final Notice."
+        },
+        {
+          "slug": "case-study-correspondent-banking-failures",
+          "name": "Case Study: Correspondent Banking Failures",
+          "description": "Deep reading of the HSBC 2012 DPA and the Standard Chartered settlements as the foundational correspondent banking enforcement cases.",
+          "conceptTags": [
+            "hsbc_dpa",
+            "standard_chartered",
+            "correspondent_failures",
+            "wire_stripping",
+            "mexico_corridor"
+          ],
+          "learningObjectives": [
+            "Trace the specific control failures identified in the HSBC and Standard Chartered settlements",
+            "Identify the transferable lessons for correspondent banking risk management",
+            "Articulate how the same patterns continue to appear in subsequent enforcement"
+          ],
+          "sceneBrief": "Read the HSBC 2012 DPA (DOJ) and Statement of Facts in detail, focusing on the Mexico and US bulk-cash and correspondent failures. Layer in the Standard Chartered 2012 NYDFS and OFAC settlements on Iran-related wire-stripping. Identify the recurring patterns: respondent due diligence gaps, ineffective oversight of correspondent activity, payment message manipulation, governance failures in escalating known issues. Connect to the controls developed in the correspondent banking lesson — show how each control would have addressed each finding. Discuss why, despite these landmark settlements, similar issues have surfaced in subsequent cases (de-risking, the persistence of nested relationships). Check for understanding with a transferable-lesson exercise: identify three operational changes a mid-tier Bangladeshi bank should make in light of the HSBC findings."
+        },
+        {
+          "slug": "case-study-the-danske-bank-estonia-affair",
+          "name": "Case Study: The Danske Bank Estonia Affair",
+          "description": "Reads the Bruun & Hjejle independent report and the US DOJ resolution as the foundational case on non-resident portfolio risk and governance failure.",
+          "conceptTags": [
+            "danske_estonia",
+            "non_resident_portfolio",
+            "governance_failure",
+            "whistleblower"
+          ],
+          "learningObjectives": [
+            "Reconstruct the Danske Estonia control and governance failures from the Bruun & Hjejle report",
+            "Identify the whistleblower role and how internal warnings were mishandled",
+            "Apply the lessons to non-resident customer portfolios and branch oversight"
+          ],
+          "sceneBrief": "The Bruun & Hjejle independent report is a 95-page open document that reads as the most detailed publicly available autopsy of a major AML failure. Walk through the chronology: acquisition of the Estonian branch from Sampo Bank in 2007, the non-resident portfolio growth, the 2013-2014 internal audit and external warnings, the 2017-2018 unwinding, the 2022 US guilty plea. Identify the specific failures: EWRA never captured the Estonian non-resident risk; group oversight assumed local control was operating; customer risk rating was not applied consistently to non-residents; monitoring scenarios did not catch the patterns visible to a whistleblower with limited analytical tools. Develop the meta-lesson: control failure is most often a governance failure. Check for understanding with a governance-redesign exercise: given the Danske facts, redesign the parent-branch oversight arrangement that should have existed."
+        },
+        {
+          "slug": "case-study-westpac-and-the-litepay-channel",
+          "name": "Case Study: Westpac and the LitePay Channel",
+          "description": "Reads the AUSTRAC Statement of Agreed Facts as a case on product-specific risk and the catastrophic consequences of inadequate monitoring scenarios.",
+          "conceptTags": [
+            "westpac_austrac",
+            "litepay",
+            "product_risk_assessment",
+            "child_exploitation_indicators"
+          ],
+          "learningObjectives": [
+            "Identify the specific product risk and monitoring failures in the Westpac LitePay product",
+            "Articulate the lessons on product launch risk assessment",
+            "Recognise the enforcement attention to specific typologies (in this case, financial flows associated with child exploitation)"
+          ],
+          "sceneBrief": "The AUSTRAC Westpac Statement of Agreed Facts (2020) and the AUD 1.3 billion civil penalty are public record. Walk through the LitePay product specifics: a low-value cross-border payment channel through correspondent banks, launched without adequate ML/TF risk assessment, and used in patterns that matched known indicators of financial flows associated with child exploitation in particular corridors. Develop the lessons: new product approval requires substantive ML/TF risk assessment; channel-specific monitoring scenarios are required where channel features differ from base products; specific typologies (in this case, the public indicators of exploitation-related financial flows) must be reflected in monitoring. This case sits uncomfortably for many students because of the underlying conduct enabled — that discomfort is part of why the case is taught. Check for understanding with a product-launch-review exercise."
+        },
+        {
+          "slug": "case-study-1mdb-and-the-private-banking-failure-mode",
+          "name": "Case Study: 1MDB and the Private Banking Failure Mode",
+          "description": "Reads the Goldman Sachs DPA and the related public materials as a case on PEP, source of wealth, and complex-structure failures in private banking.",
+          "conceptTags": [
+            "1mdb",
+            "goldman_dpa",
+            "private_banking_failures",
+            "pep_failures",
+            "shell_companies"
+          ],
+          "learningObjectives": [
+            "Reconstruct the 1MDB scheme from public sources",
+            "Identify the institutional failures across multiple banks and intermediaries",
+            "Apply the lessons to PEP onboarding and complex-structure CDD"
+          ],
+          "sceneBrief": "Build the case from the public Goldman Sachs DPA (2020), the Malaysian government settlements, and the related civil forfeiture filings by the US DOJ that documented the flow of funds. Trace the scheme: the diversion of approximately US$4.5 billion from 1MDB through layered transactions, shell companies, and intermediary banks in multiple jurisdictions, with proceeds traceable to real estate, art, film financing, and luxury assets. Identify the institutional failures: PEP risk inadequately recognised, source of wealth and source of funds inadequately evidenced, shell company beneficial ownership inadequately investigated, suspicious activity recognised by some institutions but not by others. Connect to every prior module — this case touches PEP, EDD, beneficial ownership, monitoring, correspondent banking, real estate, and luxury goods. Check for understanding with a synthesis exercise: identify which prior course module would have caught which element of the 1MDB scheme if its lessons had been applied."
+        },
+        {
+          "slug": "course-synthesis-and-exam-preparation",
+          "name": "Course Synthesis and Exam Preparation",
+          "description": "Closes the course by synthesising the discipline and preparing the student for the certification examination format.",
+          "conceptTags": [
+            "synthesis",
+            "exam_strategy",
+            "scenario_judgment",
+            "continuing_education"
+          ],
+          "learningObjectives": [
+            "Articulate the AML/CFT discipline as a coherent whole",
+            "Apply scenario judgment under the time constraints of an examination",
+            "Plan continuing professional development beyond the certification"
+          ],
+          "sceneBrief": "Open by returning to the opening question of the course: what does a competent AML/CFT practitioner do? Synthesise the answer from the journey of the course — they identify risk, they investigate, they document, they report, they continuously improve. Walk through the examination format at a structural level (multiple-choice scenario judgment, time-pressured application of frameworks to facts) without using any commercial practice questions. Provide three original full-length scenarios in the style the examination uses — each scenario grounded in primary sources, each answer fully cited to a Recommendation or statute. Stress that the examination is one milestone; the discipline continues through monitoring of FATF updates, national regulatory changes, enforcement actions, and Egmont typology bulletins. Conclude with the disclaimer that Enso Academy is not affiliated with ACAMS and that the CAMS designation is issued by ACAMS upon their own examination process. Check for understanding with the three scenarios as a final assessment."
+        }
+      ],
+      "domain": "C - Building an Anti-Financial Crime Compliance Program"
+    },
+    {
+      "slug": "tools-and-technologies-to-fight-financial-crime",
+      "name": "Tools and Technologies to Fight Financial Crime",
+      "description": "How anti-financial-crime controls are operationalised through technology across the customer lifecycle, onboarding, screening, monitoring, investigation, and how practitioners select, integrate, govern, and prioritise those tools by risk. Maps to CAMS Domain D.",
+      "objective": "Students can map the AFC technology stack to the customer lifecycle, reason about the build/buy/configure decision and tool selection, and apply a risk-based approach to technology investment and operational effectiveness.",
+      "sourceNames": [
+        "FATF, Opportunities and Challenges of New Technologies for AML/CFT",
+        "Wolfsberg Group Statement on Developing an Effective AML/CFT Programme",
+        "Wolfsberg Group Statement on Effectiveness",
+        "Basel Committee on Banking Supervision, Sound management of risks related to money laundering and financing of terrorism",
+        "Financial Conduct Authority Final Notice — Commerzbank AG London Branch (17 June 2020)"
+      ],
+      "estimatedMinutes": 480,
+      "lessons": [
+        {
+          "slug": "the-afc-technology-landscape-and-the-build-buy-decision",
+          "name": "The AFC Technology Landscape and the Build/Buy Decision",
+          "description": "Maps the anti-financial-crime technology stack to the customer lifecycle and develops the practitioner judgment behind selecting, integrating, governing, and prioritising those tools by risk.",
+          "conceptTags": [
+            "afc_technology",
+            "regtech",
+            "build_vs_buy",
+            "tool_selection",
+            "operational_effectiveness"
+          ],
+          "learningObjectives": [
+            "Map the AFC technology stack across the customer lifecycle (onboarding, screening, monitoring, investigation, reporting)",
+            "Reason about the build/buy/configure decision and the criteria for selecting and integrating AFC tools",
+            "Apply a risk-based approach to technology investment and judge operational effectiveness over activity"
+          ]
+        },
+        {
+          "slug": "identity-and-onboarding-technology",
+          "name": "Identity and Onboarding Technology",
+          "description": "How digital identity, e-KYC, biometrics and external data sources operationalise customer due diligence at the gate, and how they fail when the verification does not keep pace with the risk.",
+          "conceptTags": [
+            "digital_identity",
+            "e_kyc",
+            "onboarding_technology",
+            "biometrics",
+            "external_data"
+          ],
+          "learningObjectives": [
+            "Explain how digital onboarding, e-KYC, digital identity and biometric verification deliver CDD at scale",
+            "Evaluate external data sources (beneficial-ownership registers, adverse media, government identity) and their limits",
+            "Judge when identity and onboarding technology is fit to the risk it must manage"
+          ]
+        },
+        {
+          "slug": "screening-systems-sanctions-watchlists-and-fuzzy-matching",
+          "name": "Screening Systems: Sanctions, Watchlists and Fuzzy Matching",
+          "description": "How name and customer screening engines, list management, fuzzy matching and adverse-media screening interdict prohibited and high-risk parties, and why a screening tool only works if the data reaches it and the lists are maintained.",
+          "conceptTags": [
+            "screening_technology",
+            "fuzzy_matching",
+            "list_management",
+            "adverse_media",
+            "sanctions_screening"
+          ],
+          "learningObjectives": [
+            "Explain how name/customer screening, list management and fuzzy matching operate and trade recall against precision",
+            "Assess adverse-media and payment screening and the role of AI/ML in screening",
+            "Judge screening effectiveness, including the data-integrity dependency that determines whether the engine sees anything"
+          ]
+        },
+        {
+          "slug": "transaction-monitoring-systems-rules-scenarios-and-model-risk",
+          "name": "Transaction-Monitoring Systems: Rules, Scenarios and Model Risk",
+          "description": "How rules-based transaction-monitoring systems are designed, calibrated and governed, segmentation, scenario coverage, threshold setting, statistical testing and model risk management, and how scenario gaps become enforcement.",
+          "conceptTags": [
+            "transaction_monitoring",
+            "scenario_coverage",
+            "threshold_setting",
+            "model_risk",
+            "tuning"
+          ],
+          "learningObjectives": [
+            "Explain how rules-based transaction monitoring is built: segmentation, scenarios, thresholds and tuning",
+            "Apply above-the-line/below-the-line testing and model risk management to a monitoring system",
+            "Diagnose scenario-coverage gaps as the design failure they are"
+          ]
+        },
+        {
+          "slug": "ai-ml-network-analytics-and-investigation-tooling",
+          "name": "AI/ML, Network Analytics and Investigation Tooling",
+          "description": "How institutions move from rules to AI/ML detection, use network and link analysis to see relationships rules miss, and equip investigators with open-source and automation tooling, within the privacy and explainability limits the technology carries.",
+          "conceptTags": [
+            "machine_learning",
+            "network_analysis",
+            "investigation_tooling",
+            "explainability",
+            "data_protection"
+          ],
+          "learningObjectives": [
+            "Explain the transition from rules-based to AI/ML detection and the explainability and model-risk constraints it carries",
+            "Explain how network and link analysis surfaces relationships rules-based monitoring misses",
+            "Reason about investigation tooling and the privacy/data-protection limits on AFC technology"
+          ]
+        }
+      ],
+      "domain": "D - Tools and Technologies to Fight Financial Crime"
+    },
+    {
+      "slug": "the-broader-financial-crime-landscape",
+      "name": "The Broader Financial-Crime Landscape",
+      "description": "Extends the course beyond money laundering into the wider anti-financial-crime perimeter the current CAMS/AFC blueprint names under Domain A: fraud, bribery and corruption, tax evasion, and the under-covered high-risk sectors.",
+      "objective": "Equip the practitioner to recognise and reason about the major non-laundering financial crimes, fraud, bribery and corruption, and tax evasion, both as predicate offences and as disciplines in their own right, and to apply sector-specific money-laundering risk indicators across insurance, gaming, money services businesses, and the professions.",
+      "sourceNames": [
+        "FATF Recommendations",
+        "FATF and Egmont Group typologies and reports",
+        "US Foreign Corrupt Practices Act (FCPA)",
+        "UK Bribery Act 2010",
+        "OECD Anti-Bribery Convention",
+        "OECD Common Reporting Standard (CRS)",
+        "US Foreign Account Tax Compliance Act (FATCA)",
+        "US Department of Justice public enforcement records",
+        "US Securities and Exchange Commission public enforcement records"
+      ],
+      "estimatedMinutes": 85,
+      "lessons": [
+        {
+          "slug": "fraud-and-the-fraud-aml-nexus-framl",
+          "name": "Fraud and the Fraud-AML Nexus (FRAML)",
+          "description": "Develops fraud as a financial-crime discipline in its own right and as an AML predicate: the major fraud typologies (identity, payment, authorized push payment, investment, and business email compromise) and the operational convergence of fraud and AML controls (FRAML).",
+          "conceptTags": [
+            "fraud_typologies",
+            "app_fraud",
+            "business_email_compromise",
+            "fraud_as_predicate",
+            "framl_convergence"
+          ],
+          "learningObjectives": [
+            "Distinguish the major fraud typologies (identity, payment, APP, investment, BEC) and how each generates illicit proceeds",
+            "Explain fraud as a predicate offence for money laundering and how the proceeds enter the laundering cycle",
+            "Reason about fraud-AML convergence (FRAML): shared data, shared signals, and the case for integrated detection"
+          ]
+        },
+        {
+          "slug": "bribery-and-corruption-abc",
+          "name": "Bribery and Corruption (ABC)",
+          "description": "Covers the anti-bribery and corruption framework and its money-laundering nexus: the FCPA and the UK Bribery Act, corruption typologies, facilitation payments, third-party and intermediary risk, and the link between grand corruption, kleptocracy, and politically exposed persons.",
+          "conceptTags": [
+            "bribery_corruption",
+            "fcpa",
+            "uk_bribery_act",
+            "facilitation_payments",
+            "kleptocracy_pep_link"
+          ],
+          "learningObjectives": [
+            "Compare the FCPA and the UK Bribery Act, including their extraterritorial reach and the facilitation-payments distinction",
+            "Recognise corruption typologies — bribery, third-party intermediaries, concealment vehicles — and their laundering footprint",
+            "Connect grand corruption and kleptocracy to PEP risk and the AML controls that detect proceeds of corruption"
+          ]
+        },
+        {
+          "slug": "tax-evasion-and-financial-crime",
+          "name": "Tax Evasion and Financial Crime",
+          "description": "Treats tax evasion as a financial crime and AML predicate: the distinction between evasion and lawful avoidance, the AML-tax nexus, offshore structuring and concealment, and the transparency regimes (CRS, FATCA) built to counter cross-border tax evasion.",
+          "conceptTags": [
+            "tax_evasion",
+            "tax_as_predicate",
+            "offshore_structuring",
+            "crs_fatca",
+            "aml_tax_nexus"
+          ],
+          "learningObjectives": [
+            "Distinguish tax evasion from lawful avoidance and explain why evasion is a money-laundering predicate offence",
+            "Recognise offshore structuring and concealment typologies used to evade tax and hide the proceeds",
+            "Explain how CRS and FATCA automatic-exchange-of-information regimes counter cross-border tax evasion"
+          ]
+        },
+        {
+          "slug": "sector-risk-deep-dives",
+          "name": "Sector Risk Deep-Dives: Insurance, Gaming, MSBs/PSPs and the Professions",
+          "description": "Examines the money-laundering risk profiles and red-flag indicators of sectors the core course under-covers: life insurance, casinos and gaming, money services businesses and payment service providers, and the accountancy profession as gatekeepers.",
+          "conceptTags": [
+            "insurance_ml_risk",
+            "casino_gaming_risk",
+            "msb_psp_risk",
+            "accountants_gatekeepers",
+            "sector_red_flags"
+          ],
+          "learningObjectives": [
+            "Identify the ML/TF risk profile and red-flag indicators of life insurance and the gaming/casino sector",
+            "Explain the money-laundering risk profile of money services businesses and payment service providers in the payments chain",
+            "Apply the gatekeeper concept to the accountancy profession and recognise sector-specific risk indicators"
+          ]
+        }
+      ],
+      "domain": "A - Understanding the Risks and Methods of Financial Crime"
+    }
+  ]
+}
