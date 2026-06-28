@@ -286,6 +286,50 @@ export type Database = {
           },
         ]
       }
+      challenge_scenarios: {
+        Row: {
+          concept_tags: string[]
+          course_id: string
+          created_at: string
+          id: string
+          mechanic: string
+          sort_order: number
+          spec: Json
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          concept_tags?: string[]
+          course_id: string
+          created_at?: string
+          id: string
+          mechanic: string
+          sort_order?: number
+          spec: Json
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          concept_tags?: string[]
+          course_id?: string
+          created_at?: string
+          id?: string
+          mechanic?: string
+          sort_order?: number
+          spec?: Json
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challenge_scenarios_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       classmate_interventions: {
         Row: {
           cached_qa_id: string | null
