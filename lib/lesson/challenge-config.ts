@@ -33,6 +33,49 @@ export const CHALLENGE_LESSON_SLUGS = new Set<string>([
   'risk-based-approach-as-operating-principle',
   'enterprise-wide-risk-assessment',
   'customer-risk-rating-models',
+  // Module 3: Customer Due Diligence and Beneficial Ownership
+  'cdd-fundamentals-identifying-the-customer',
+  'enhanced-due-diligence-when-and-how',
+  'beneficial-ownership-investigation',
+  'ongoing-monitoring-and-cdd-refresh',
+  'reliance-on-third-parties-and-introduced-business',
+  // Module 4: Suspicious Activity Monitoring and Reporting
+  'transaction-monitoring-systems-and-rules',
+  'from-alert-to-investigation',
+  'drafting-the-suspicious-transaction-report',
+  'the-life-of-a-financial-intelligence-product',
+  // Module 5: Sanctions Compliance
+  'the-multi-regime-landscape-of-sanctions',
+  'sanctions-screening-mechanics-and-design',
+  'sanctions-evasion-typologies',
+  'sanctions-program-governance',
+  // Module 6: High-Risk Categories and Typologies
+  'politically-exposed-persons',
+  'correspondent-banking-risk',
+  'trade-based-money-laundering',
+  'virtual-assets-and-vasps',
+  'real-estate-cash-intensive-businesses-and-luxury-goods',
+  // Module 7: National Frameworks in Depth
+  'the-us-framework',
+  'the-uk-framework',
+  'the-eu-framework-and-the-aml-package',
+  'the-bangladesh-framework',
+  // Module 8: Governance, Audit, and the Compliance Function
+  'the-three-lines-of-defence',
+  'the-mlro-cco-role-and-the-compliance-function',
+  'independent-audit-of-aml-cft',
+  'training-and-culture',
+  // Module 10: Tools and Technologies to Fight Financial Crime
+  'the-afc-technology-landscape-and-the-build-buy-decision',
+  'identity-and-onboarding-technology',
+  'screening-systems-sanctions-watchlists-and-fuzzy-matching',
+  'transaction-monitoring-systems-rules-scenarios-and-model-risk',
+  'ai-ml-network-analytics-and-investigation-tooling',
+  // Module 11: The Broader Financial-Crime Landscape
+  'fraud-and-the-fraud-aml-nexus-framl',
+  'bribery-and-corruption-abc',
+  'tax-evasion-and-financial-crime',
+  'sector-risk-deep-dives',
 ])
 
 export function lessonHasChallenge(slug: string): boolean {

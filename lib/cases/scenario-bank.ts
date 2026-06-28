@@ -17,6 +17,7 @@
 // best call), so the round renders with the widgets the player already ships.
 
 import type { RedFlagItem, RiskClassifyItem, ScreeningAlert } from '@/lib/lesson/scenes'
+import { ROLLOUT_SCENARIOS } from './scenarios-rollout'
 
 export type ChallengeMechanic =
   | 'red-flags'
@@ -1133,6 +1134,10 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
       ],
     },
   },
+  // Rollout modules (CDD, monitoring, sanctions, typologies, frameworks,
+  // governance, tools, broader landscape) live in scenarios-rollout.ts to keep
+  // this file readable.
+  ...ROLLOUT_SCENARIOS,
 ]
 
 /** All scenarios whose concepts intersect the given lesson concepts. */
