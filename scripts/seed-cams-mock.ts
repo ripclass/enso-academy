@@ -10,11 +10,16 @@
 //
 //   pnpm tsx scripts/seed-cams-mock.ts
 //
-// NOTE on faithfulness: the real exam's pass mark is SCALED (≈75% equivalent)
-// and the exact multiple-response proportion should be confirmed against the
-// current ACAMS candidate handbook. Those two values are the only operator
-// checks; the structure (120 items / 210 min / A30·B20·C30·D20) is the AFC
-// blueprint we have re-locked from the handbook.
+// NOTE on faithfulness (blueprint verified 2026-06-28 against ACAMS's current
+// AFC certificate structure + multiple current prep sources): the structure
+// (120 items / 210 min / A30·B20·C30·D20, single-best PLUS select-all items) is
+// the current AFC blueprint. The real pass mark is SCALED (pass = 75 scaled,
+// roughly 62.5% raw), NOT a raw percent, so pass_score_percent below is only a
+// conservative readiness target; the results page presents a scaled-readiness
+// BAND (see lib/mock/readiness-band.ts), not a raw pass/fail headline. The one
+// value still worth an operator check against the official handbook is whether
+// Domain B should be 24 (30/20 A/B split) or 30 (25/25); C=30% and D=20% are
+// confirmed.
 
 import { config } from 'dotenv'
 config({ path: '.env.local' })

@@ -5,6 +5,7 @@ import { ArrowLeft, CheckCircle2, XCircle, MinusCircle } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
 import { SectionHeader } from '@/components/in-app/ui-kit'
 import { getAttemptResults } from '@/lib/mock/actions'
+import { readinessBand } from '@/lib/mock/readiness-band'
 
 type Props = { params: Promise<{ slug: string; attemptId: string }> }
 
@@ -20,12 +21,17 @@ export default async function MockResultsPage({ params }: Props) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect(`/login?next=/courses/${slug}/mock/results/${attemptId}`)
 
-  const { attempt, questions, qbankMap, passScorePercent } = await getAttemptResults(attemptId)
+  const { attempt, questions, qbankMap } = await getAttemptResults(attemptId)
 
   const score = Number(attempt.score_percent ?? 0)
   const correct = attempt.correct_count ?? 0
   const total = attempt.total_questions ?? questions.length
-  const passed = score >= passScorePercent
+  const band = readinessBand(score)
+  const tone = {
+    pass: 'text-primary',
+    warn: 'text-neutral-700',
+    fail: 'text-accent',
+  }[band.tone]
   const answers: Record<string, string | string[]> =
     (attempt.answers as Record<string, string | string[]>) ?? {}
 
@@ -52,30 +58,26 @@ export default async function MockResultsPage({ params }: Props) {
           <ArrowLeft className="h-3 w-3" /> Back to course
         </Link>
 
-        {/* Score */}
+        {/* Readiness band (leads with a verdict, not a bare raw %) */}
         <div className="rounded-lg border-2 border-neutral-900 bg-white p-8 text-center">
           <div className="text-2xs font-semibold uppercase tracking-widest text-neutral-400 font-mono">
-            Mock exam result
+            Mock exam readiness
           </div>
-          <div
-            className={`mt-3 text-6xl font-extrabold font-mono ${passed ? 'text-primary' : 'text-accent'}`}
-          >
-            {score}%
+          <div className={`mt-3 text-5xl font-extrabold tracking-tight ${tone}`}>
+            {band.label}
           </div>
-          <p className="mt-2 text-2xs font-mono text-neutral-500 uppercase tracking-wider">
-            {correct} / {total} correct
+          <p className="mx-auto mt-3 max-w-md text-sm text-neutral-600 leading-relaxed">
+            {band.blurb}
           </p>
-          <div className="mt-4">
-            <span
-              className={`inline-flex items-center rounded border px-2.5 py-1 text-2xs font-semibold uppercase tracking-wider font-mono ${
-                passed
-                  ? 'bg-primary-light text-primary border-primary/20'
-                  : 'bg-accent-light text-accent border-accent/20'
-              }`}
-            >
-              {passed ? 'Target met' : 'Target not met'} &middot; {passScorePercent}% to pass
-            </span>
+          <div className="mt-5 flex items-center justify-center gap-2 text-2xs font-mono text-neutral-500 uppercase tracking-wider">
+            <span>{correct} / {total} correct</span>
+            <span className="text-neutral-300">&middot;</span>
+            <span>{score}% raw</span>
           </div>
+          <p className="mx-auto mt-4 max-w-md border-t border-neutral-100 pt-3 text-2xs text-neutral-400 leading-relaxed">
+            The real CAMS exam is reported as a scaled score with a pass mark of 75 (scaled), not a
+            raw percentage. This band maps your practice result to that standard.
+          </p>
         </div>
 
         {/* By domain */}
