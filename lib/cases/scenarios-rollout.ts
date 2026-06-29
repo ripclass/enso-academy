@@ -203,7 +203,7 @@ export const ROLLOUT_SCENARIOS: ChallengeScenario[] = [
       prompt: 'How should a bank set the cadence for periodic CDD refresh across its customer base?',
       options: [
         { id: 'a', text: 'Set review frequency by customer risk rating, with higher-risk customers reviewed more often.', correct: true, why: 'Risk-based periodic review concentrates effort where risk is greatest and works alongside event-driven reviews.' },
-        { id: 'b', text: 'Review every customer on the same fixed annual cycle regardless of risk rating.', correct: false, why: 'A flat cycle over-services low-risk files while under-covering the highest-risk ones.' },
+        { id: 'b', text: 'Review every customer on the same fixed annual cycle, applying one uniform refresh schedule regardless of risk rating.', correct: false, why: 'A flat cycle over-services low-risk files while under-covering the highest-risk ones.' },
         { id: 'c', text: 'Refresh CDD only when the customer initiates a change to their own account.', correct: false, why: 'This misses bank-detected and external triggers and leaves the cadence in the customer hands.' },
         { id: 'd', text: 'Rely on the onboarding CDD and refresh only when a regulator requests it.', correct: false, why: 'CDD must be kept current proactively, not only in reaction to a regulator.' }
       ]
@@ -235,7 +235,7 @@ export const ROLLOUT_SCENARIOS: ChallengeScenario[] = [
       prompt: 'Your firm wants to rely on an introducing firm CDD for a shared customer under FATF Recommendation 17. Which arrangement is compliant?',
       options: [
         { id: 'a', text: 'Obtain the CDD information immediately, keep underlying documents available on request, and stay responsible.', correct: true, why: 'Recommendation 17 lets you rely while obtaining the information at once and retaining ultimate responsibility.' },
-        { id: 'b', text: 'Treat the introducer checks as final because it is a regulated firm in the same sector.', correct: false, why: 'Reliance never transfers responsibility; the relying firm remains accountable for the CDD.' },
+        { id: 'b', text: 'Treat the introducing firm’s checks as final and conclusive, on the basis that it is itself a regulated firm in the same sector.', correct: false, why: 'Reliance never transfers responsibility; the relying firm remains accountable for the CDD.' },
         { id: 'c', text: 'Accept the customer now and collect the CDD information at the next scheduled review.', correct: false, why: 'The information must be obtained immediately, not deferred to a later review.' },
         { id: 'd', text: 'Rely on the introducer and obtain the documents only if a regulator later asks.', correct: false, why: 'The relying firm must be able to get the underlying documents on request, not only when a regulator demands.' }
       ]
@@ -290,7 +290,7 @@ export const ROLLOUT_SCENARIOS: ChallengeScenario[] = [
       options: [
         { id: 'a', text: 'Analyse the false positives, then recalibrate the rule thresholds and segmentation while keeping coverage of the risk.', correct: true, why: 'Tuning thresholds and segmentation against real data cuts noise without creating a blind spot in the risk the rule covers.' },
         { id: 'b', text: 'Switch the rule off entirely so the team can clear the large alert backlog quickly.', correct: false, why: 'Disabling a rule removes coverage of the risk it was built to detect, which is a control failure, not a fix.' },
-        { id: 'c', text: 'Raise the threshold sharply so the rule almost never fires and the alert queue stays small.', correct: false, why: 'An extreme threshold trades a smaller queue for missed genuine activity, replacing false positives with false negatives.' },
+        { id: 'c', text: 'Raise the threshold sharply so the rule almost never fires, on the basis that a small, manageable alert queue is the real objective here.', correct: false, why: 'An extreme threshold trades a smaller queue for missed genuine activity, replacing false positives with false negatives.' },
         { id: 'd', text: 'Leave the rule unchanged and add more analysts to work through the alert volume faster.', correct: false, why: 'Adding capacity treats the symptom and leaves a poorly designed rule generating the same waste indefinitely.' }
       ]
     }
@@ -540,7 +540,7 @@ export const ROLLOUT_SCENARIOS: ChallengeScenario[] = [
       prompt: 'A US-dollar payment between two non-US companies for ordinary goods clears through a US correspondent bank, and one company is on the SDN List. Which statement is correct?',
       options: [
         { id: 'a', text: 'The US-dollar clearing through a US bank creates a US nexus, so OFAC measures reach the payment though both traders are non-US.', correct: true, why: 'A US nexus such as USD clearing through a US bank can bring a transaction within OFAC jurisdiction.' },
-        { id: 'b', text: 'With no US person among the trading parties, the payment must fall outside every sanctions regime entirely.', correct: false, why: 'This ignores the US nexus from the dollar clearing and the possibility of other regimes applying.' },
+        { id: 'b', text: 'With no US person among the trading parties, the payment must fall outside every sanctions regime, since none of the companies is American.', correct: false, why: 'This ignores the US nexus from the dollar clearing and the possibility of other regimes applying.' },
         { id: 'c', text: 'OFAC rules bind every bank in the world by default, so checking for a specific US nexus here adds nothing.', correct: false, why: 'OFAC is not globally binding on everyone; jurisdiction turns on a US nexus, which is exactly what must be checked.' },
         { id: 'd', text: 'Only EU or UK measures could ever apply, because US sanctions never reach a non-US party in any case.', correct: false, why: 'US measures can reach non-US parties where a nexus like USD clearing exists.' }
       ]
@@ -780,7 +780,7 @@ export const ROLLOUT_SCENARIOS: ChallengeScenario[] = [
       prompt: 'A respondent bank sees its monthly dollar wires to a higher-risk corridor triple within one quarter, with no notice. What is the appropriate first response?',
       options: [
         { id: 'a', text: 'Ask the respondent to explain the change, then update the risk assessment before deciding whether any restriction is warranted.', correct: true, why: 'Seeking an explanation and re-rating the relationship is the proportionate, risk-based first step.' },
-        { id: 'b', text: 'Terminate the correspondent relationship immediately to strip out the new exposure without further enquiry.', correct: false, why: 'Reflexive exit is unjustified de-risking and forgoes the chance to understand the activity.' },
+        { id: 'b', text: 'Terminate the correspondent relationship immediately to strip out the new exposure, without waiting to understand what is driving the change.', correct: false, why: 'Reflexive exit is unjustified de-risking and forgoes the chance to understand the activity.' },
         { id: 'c', text: 'Take no action and rely on its own transaction monitoring, since it is a regulated bank.', correct: false, why: 'You import that risk and cannot outsource your own monitoring duty to it.' },
         { id: 'd', text: 'File a report and keep clearing the wires without seeking any explanation for the change.', correct: false, why: 'Reporting does not replace the due diligence needed to understand and manage the relationship.' }
       ]
@@ -1397,7 +1397,7 @@ export const ROLLOUT_SCENARIOS: ChallengeScenario[] = [
       options: [
         { id: 'a', text: 'Buy an established screening tool, then govern its tuning and integration against firm-wide risk.', correct: true, why: 'Buying fits the short timeline and thin team while leaving the firm accountable for calibration and oversight.' },
         { id: 'b', text: 'Build a bespoke engine in-house so the logic fits the risk of the firm exactly.', correct: false, why: 'A custom build is hard to deliver and maintain in two quarters with a small team.' },
-        { id: 'c', text: 'Buy the tool and run it on the vendor default settings to avoid configuration delay.', correct: false, why: 'A vendor default is not calibrated to the risk of the firm and shifts judgement to the supplier.' },
+        { id: 'c', text: 'Buy the tool and run it on the vendor’s default settings out of the box, to avoid any configuration delay before go-live.', correct: false, why: 'A vendor default is not calibrated to the risk of the firm and shifts judgement to the supplier.' },
         { id: 'd', text: 'Delay screening and add more analysts to review payments manually in the interim.', correct: false, why: 'Manual review does not substitute for the real-time interdiction a screening control provides.' }
       ]
     }
@@ -1520,7 +1520,7 @@ export const ROLLOUT_SCENARIOS: ChallengeScenario[] = [
       prompt: 'A screening tool failed to flag a payment to a newly designated party. The matching logic is well tuned. What is the most likely cause?',
       options: [
         { id: 'a', text: 'The list feed was not refreshed, so the new designation never reached the engine.', correct: true, why: 'A tool can only match against the data it holds, so a stale list misses fresh designations.' },
-        { id: 'b', text: 'The fuzzy threshold was set too high and suppressed the alert.', correct: false, why: 'A well-tuned threshold would still match an entry the engine actually had.' },
+        { id: 'b', text: 'The fuzzy-matching threshold was set too high, so a close name variant was suppressed below the alerting cut-off.', correct: false, why: 'A well-tuned threshold would still match an entry the engine actually had.' },
         { id: 'c', text: 'The tool needs more analysts assigned to clear its alert queue.', correct: false, why: 'No alert was generated, so queue capacity is not the issue here.' },
         { id: 'd', text: 'The payment value fell below the screening monetary threshold.', correct: false, why: 'Sanctions screening interdicts prohibited parties regardless of amount.' }
       ]
@@ -1606,7 +1606,7 @@ export const ROLLOUT_SCENARIOS: ChallengeScenario[] = [
       prompt: 'A team wants to replace rules with a machine-learning model that scores customers but cannot explain why. What should govern the decision?',
       options: [
         { id: 'a', text: 'Require the model to produce explainable outputs investigators and regulators can follow.', correct: true, why: 'Decisions affecting customers must be explainable to be defensible and reviewable.' },
-        { id: 'b', text: 'Deploy it as-is because its detection rate beats the current rules.', correct: false, why: 'A higher hit rate does not excuse outputs no one can justify or challenge.' },
+        { id: 'b', text: 'Deploy it as-is, on the basis that its measured detection rate already beats the current rules in testing.', correct: false, why: 'A higher hit rate does not excuse outputs no one can justify or challenge.' },
         { id: 'c', text: 'Run it silently in the background and act only on its highest scores.', correct: false, why: 'Acting on opaque scores still produces decisions that cannot be explained.' },
         { id: 'd', text: 'Keep the model unexplained but add more analysts to review its alerts.', correct: false, why: 'Reviewers cannot validate an alert when the model gives no reason for it.' }
       ]

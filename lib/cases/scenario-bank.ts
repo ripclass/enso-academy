@@ -241,9 +241,9 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
       options: [
         {
           id: 'a',
-          text: 'Bring the book onto group monitoring to a board-approved date, and until then run it as a named, time-boxed exception with direct group sampling.',
+          text: 'Bring the book onto group monitoring to a board-approved date, running it as a time-boxed exception until then.',
           correct: true,
-          why: 'Group-wide oversight must reach the branch; an explicit, time-boxed, escalated exception is how you bridge to it.',
+          why: 'Group-wide oversight must reach the branch; an explicit, time-boxed, escalated exception with direct group sampling is how you bridge to it.',
         },
         {
           id: 'b',
@@ -253,7 +253,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
         },
         {
           id: 'c',
-          text: 'Leave it on its own platform indefinitely. It is profitable and locally regulated.',
+          text: 'Leave the book on its own platform indefinitely, on the basis that it is already profitable and the branch is regulated by its own competent authority.',
           correct: false,
           why: 'Profitability and local regulation do not substitute for group-wide AML oversight.',
         },
@@ -322,9 +322,9 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
       options: [
         {
           id: 'a',
-          text: 'Treat the report as a risk signal: investigate independently of local management, preserve the records, escalate to group audit and the board, and protect the reporter.',
+          text: 'Investigate it independently of local management, escalate to group audit and the board, and protect the reporter.',
           correct: true,
-          why: 'An escalation about the very unit implicated cannot be cleared by that unit; it needs independent review and board visibility.',
+          why: 'An escalation about the very unit implicated cannot be cleared by that unit; preserve the records, get independent review, and give the board visibility.',
         },
         {
           id: 'b',
@@ -340,7 +340,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
         },
         {
           id: 'd',
-          text: 'Hold the report for the branch’s next scheduled audit, where it can be examined alongside the rest of the cycle.',
+          text: 'Hold the report for the branch’s next scheduled internal audit, where it can be examined in context alongside the rest of the cycle’s findings.',
           correct: false,
           why: 'Parking a credible warning until a routine audit lets the activity continue and treats it as housekeeping, not a risk signal.',
         },
@@ -361,7 +361,7 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
       options: [
         {
           id: 'a',
-          text: 'Do not approve until a product-specific risk assessment identifies the channel’s typologies and the detection scenarios that would catch them are built and tested for it.',
+          text: 'Do not approve until a product-specific risk assessment maps the channel’s typologies and tailored detection scenarios are built and tested for it.',
           correct: true,
           why: 'A new channel needs its own risk assessment and its own monitoring coverage before launch, not a generic assurance.',
         },
@@ -437,13 +437,13 @@ export const SCENARIO_BANK: ChallengeScenario[] = [
       options: [
         {
           id: 'a',
-          text: 'Apply PEP-grade enhanced due diligence: establish source of wealth and funds, get senior sign-off, and decline if source of wealth cannot be established.',
+          text: 'Apply PEP-grade enhanced due diligence, and decline if source of wealth cannot be credibly established.',
           correct: true,
-          why: 'Political control of the funds pulls in PEP-grade EDD and senior sign-off regardless of the named owner.',
+          why: 'Political control of the funds pulls in PEP-grade EDD, source-of-wealth and source-of-funds work, and senior sign-off regardless of the named owner.',
         },
         {
           id: 'b',
-          text: 'Onboard normally. The named beneficial owner is not personally a PEP.',
+          text: 'Onboard at standard risk, on the basis that the named beneficial owner is a private businessman and does not personally hold a prominent public function.',
           correct: false,
           why: 'The named owner is not the whole picture; the political control of the money is what drives the risk.',
         },
