@@ -5,10 +5,7 @@ import { ReadingScene } from './reading-scene'
 import { SlideScene } from './slide-scene'
 import { QuizScene } from './quiz-scene'
 import { PlaceholderScene } from './placeholder-scene'
-import { RiskClassify } from './interactives/risk-classify'
-import { RedFlagSpot } from './interactives/red-flag-spot'
-import { FlowTrace } from './interactives/flow-trace'
-import { ScreeningMatch } from './interactives/screening-match'
+import { InteractiveScene } from './interactive-scene'
 import { ProjectScene } from './pbl/project-scene'
 
 /**
@@ -42,36 +39,12 @@ export function SceneRenderer({
         const report = (correct: number, total: number) =>
           onInteractiveComplete?.(scene.conceptTags ?? [], total > 0 && correct / total >= 0.6)
         return (
-          <div className="space-y-5">
-            <div className="space-y-1">
-              <h2 className="text-2xl font-semibold tracking-tight text-primary">{scene.data.title}</h2>
-              {scene.data.summary && <p className="text-sm text-muted-foreground">{scene.data.summary}</p>}
-            </div>
-            {spec.kind === 'risk-classify' && (
-              <RiskClassify prompt={spec.prompt} items={spec.items} onComplete={report} />
-            )}
-            {spec.kind === 'red-flags' && (
-              <RedFlagSpot
-                prompt={spec.prompt}
-                scenario={spec.scenario}
-                items={spec.items}
-                onComplete={report}
-              />
-            )}
-            {spec.kind === 'flow-trace' && (
-              <FlowTrace
-                prompt={spec.prompt}
-                nodes={spec.nodes}
-                edges={spec.edges}
-                path={spec.path}
-                why={spec.why}
-                onComplete={report}
-              />
-            )}
-            {spec.kind === 'screening-match' && (
-              <ScreeningMatch prompt={spec.prompt} alerts={spec.alerts} onComplete={report} />
-            )}
-          </div>
+          <InteractiveScene
+            title={scene.data.title}
+            summary={scene.data.summary}
+            spec={spec}
+            onComplete={report}
+          />
         )
       }
       return <PlaceholderScene kind="interactive" data={scene.data} />
