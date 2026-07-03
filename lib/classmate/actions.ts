@@ -114,6 +114,13 @@ export async function checkClassmateGap(opts: {
    * asks a synthesis/closing question rather than a per-scene gap question.
    */
   wrapUp?: boolean
+  /**
+   * Concepts the student answered WRONG in this very session (the player
+   * tracks them live). They outrank the model's global weakest concept for
+   * the wrap-up focus: the classmate should ask about what the student missed
+   * today, not what they missed last month.
+   */
+  sessionMissedConcepts?: string[]
 }): Promise<CheckResult> {
   try {
     const supabase = await createClient()
@@ -135,7 +142,15 @@ export async function checkClassmateGap(opts: {
     // Priority 1: a grounded gap (the moat). Priority 2: an ambient on-topic
     // question to keep the room alive — only when the player allows it. The
     // wrap-up always proceeds (a closing question, gap-biased when one exists).
-    const gap = await detectGap(user.id, opts.courseId, opts.taughtConceptTags, admin)
+    // A concept missed IN THIS SESSION outranks the model's global weakest:
+    // today's confusion is the most useful thing to surface in office hours.
+    let gap = await detectGap(user.id, opts.courseId, opts.taughtConceptTags, admin)
+    const sessionMiss = (opts.sessionMissedConcepts ?? []).find(
+      (c) => c && opts.taughtConceptTags.includes(c),
+    )
+    if (opts.wrapUp && sessionMiss) {
+      gap = { conceptTag: sessionMiss, mastery: gap?.mastery ?? 0, observations: gap?.observations ?? 1 }
+    }
     if (!gap && !opts.allowAmbient && !opts.wrapUp) return { fired: false }
 
     const classmate = await getOrCreateClassmate(opts.courseId, admin)

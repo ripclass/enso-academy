@@ -308,6 +308,12 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // The NEXT office-hours Q&A, generated while the current one plays so the
   // class never sits in minutes of silence between questions.
   const wrapNextRef = useRef<Promise<{ question: string; answer: string } | null> | null>(null)
+  // Live remediation state: consecutive wrong answers this session, concepts
+  // missed this session (feeds the wrap-up focus), and how many times the
+  // lecturer has already stepped in (capped so it never nags).
+  const wrongStreakRef = useRef(0)
+  const missedConceptsRef = useRef<Set<string>>(new Set())
+  const remediationCountRef = useRef(0)
   const userTurnTimerRef = useRef<number | null>(null)
 
   const currentScene = scenes[currentIndex]
@@ -629,6 +635,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         lessonContext,
         askedQuestions,
         wrapUp: true,
+        sessionMissedConcepts: [...missedConceptsRef.current],
       })
       if (result.fired && result.question && result.answer) {
         return { question: result.question, answer: result.answer }
@@ -809,18 +816,39 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   }
 
   // A quiz-scene answer feeds the student knowledge model (same model the mock
-  // engine writes to). Fire-and-forget — never blocks the UI.
+  // engine writes to). Fire-and-forget — never blocks the UI. Wrong answers
+  // also feed the session's live miss-tracking: a two-in-a-row wrong streak
+  // triggers the lecturer's remediation interjection, and every missed concept
+  // is carried into the office-hours question at the end.
   function handleQuizAnswer(question: QuizQuestion, _selectedOptionId: string, correct: boolean) {
     void recordQuizEvidence({
       courseId,
       conceptTags: question.conceptTags ?? [],
       correct,
     }).catch(() => {})
+    if (correct) {
+      wrongStreakRef.current = 0
+      return
+    }
+    for (const t of question.conceptTags ?? []) missedConceptsRef.current.add(t)
+    wrongStreakRef.current += 1
+    if (wrongStreakRef.current >= 2 && remediationCountRef.current < 1 && !wrapUp) {
+      remediationCountRef.current += 1
+      wrongStreakRef.current = 0
+      // The lecturer steps in, in the student's own voice — an honest chat
+      // exchange through the normal Q&A path (pauses the lecture, shows in the
+      // panel, answer shaped by the student model's mastery preamble).
+      askSuggested(
+        'I have gotten two of these wrong in a row. Can you slow down and explain the key idea here differently, with one concrete example?',
+      )
+    }
   }
 
-  // An interactive scene's result also feeds the student knowledge model.
+  // An interactive scene's result also feeds the student knowledge model, and
+  // a below-bar result marks its concepts as missed for the wrap-up.
   function handleInteractiveComplete(conceptTags: string[], correct: boolean) {
     void recordQuizEvidence({ courseId, conceptTags, correct }).catch(() => {})
+    if (!correct) for (const t of conceptTags) missedConceptsRef.current.add(t)
   }
 
   // Grade a PBL project submission via the AI mentor.
