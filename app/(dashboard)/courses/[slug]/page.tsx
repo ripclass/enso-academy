@@ -9,7 +9,7 @@ import { AppHeader } from '@/components/in-app/app-header'
 import { SectionHeader, StatusBadge, ConceptMasteryRow } from '@/components/in-app/ui-kit'
 import { CourseSalesPage, type SalesPreviewLesson } from '@/components/courses/course-sales-page'
 import { BlueprintCoverage } from '@/components/courses/blueprint-coverage'
-import { previewLessonIds } from '@/lib/courses/preview'
+import { previewLessonSlugs } from '@/lib/courses/preview'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -371,18 +371,23 @@ export default async function CourseDetailPage({ params }: Props) {
 
   // Anonymous visitor, or a signed-in user who doesn't own the course → the
   // public sales page (pricing, about the exam, how it works, free preview).
-  const ids = previewLessonIds(course.slug)
+  const slugs = previewLessonSlugs(course.slug)
   let previewLessons: SalesPreviewLesson[] = []
-  if (ids.length) {
+  if (slugs.length) {
+    // Resolve preview slugs to current lesson ids at render time: ids change on
+    // every course re-promote, slugs do not.
     const { data: pv } = await admin
       .from('lessons')
-      .select('id, name, module:modules!inner(name)')
-      .in('id', ids)
-    previewLessons = ids
-      .map((id) => {
+      .select('id, slug, name, module:modules!inner(name, course_id)')
+      .in('slug', slugs)
+      .eq('module.course_id', course.id)
+    previewLessons = slugs
+      .map((lessonSlug) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const row = (pv as any[] | null)?.find((r) => r.id === id)
-        return row ? { id, name: row.name as string, module: (row.module?.name as string) ?? '' } : null
+        const row = (pv as any[] | null)?.find((r) => r.slug === lessonSlug)
+        return row
+          ? { id: row.id as string, name: row.name as string, module: (row.module?.name as string) ?? '' }
+          : null
       })
       .filter((x): x is SalesPreviewLesson => x !== null)
   }

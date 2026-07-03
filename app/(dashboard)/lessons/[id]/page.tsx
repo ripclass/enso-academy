@@ -4,7 +4,7 @@ import { redirect, notFound } from 'next/navigation'
 import { LessonPlayer } from './lesson-player'
 import { startLessonSession, getLessonContent, getResumeSceneIndex } from '@/lib/lesson/actions'
 import { getAvatarChoice } from '@/lib/settings'
-import { isPreviewLessonId } from '@/lib/courses/preview'
+import { isPreviewLessonSlug } from '@/lib/courses/preview'
 import { parseScene, type ContentRow, type Scene } from '@/lib/lesson/scenes'
 import { LESSON_CASE_MAP } from '@/lib/cases/generate'
 import { lessonHasChallenge } from '@/lib/lesson/challenge-config'
@@ -13,16 +13,10 @@ type Props = { params: Promise<{ id: string }> }
 
 export default async function LessonPage({ params }: Props) {
   const { id } = await params
-  const isPreview = isPreviewLessonId(id)
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  // Preview lessons are signup-gated (send anonymous prospects to sign up, which
-  // captures the lead); other lessons use the normal login redirect.
-  if (!user) redirect(`/${isPreview ? 'signup' : 'login'}?next=/lessons/${id}`)
-
   const admin = createAdminClient()
 
-  // Fetch lesson with course context
+  // Fetch lesson with course context first: preview status is keyed off the
+  // lesson's slug (stable across course re-promotes, unlike its id).
   const { data: lesson } = await admin
     .from('lessons')
     .select(`
@@ -36,6 +30,13 @@ export default async function LessonPage({ params }: Props) {
     .single()
 
   if (!lesson) notFound()
+
+  const isPreview = isPreviewLessonSlug(lesson.slug)
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  // Preview lessons are signup-gated (send anonymous prospects to sign up, which
+  // captures the lead); other lessons use the normal login redirect.
+  if (!user) redirect(`/${isPreview ? 'signup' : 'login'}?next=/lessons/${id}`)
 
   const courseId = (lesson.module as any).course.id
   const courseSlug = (lesson.module as any).course.slug

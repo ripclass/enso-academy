@@ -9,7 +9,7 @@ import { stripEmDashes } from '@/lib/ai/prose'
 import { getMasterySummary, recordEvidence } from '@/lib/student-model/knowledge'
 import { getMemoryPreamble, summarizeSessionToMemory, getLecturerOpening } from '@/lib/student-model/memory'
 import { lecturerVariantFor } from '@/lib/lesson/scenes'
-import { isPreviewLessonId } from '@/lib/courses/preview'
+import { isPreviewLessonSlug } from '@/lib/courses/preview'
 import { after } from 'next/server'
 
 type AskQuestionResult = {
@@ -89,7 +89,7 @@ export async function startLessonSession(lessonId: string): Promise<string> {
   // Find the lesson and its course
   const { data: lesson } = await admin
     .from('lessons')
-    .select('id, module:modules!inner (course_id)')
+    .select('id, slug, module:modules!inner (course_id)')
     .eq('id', lessonId)
     .single()
 
@@ -109,7 +109,7 @@ export async function startLessonSession(lessonId: string): Promise<string> {
     .eq('status', 'active')
     .single()
 
-  if (!enrollment && !isPreviewLessonId(lessonId)) throw new Error('Not enrolled in this course')
+  if (!enrollment && !isPreviewLessonSlug(lesson.slug)) throw new Error('Not enrolled in this course')
 
   const { data: session, error } = await admin
     .from('sessions')
