@@ -191,16 +191,35 @@ export type InteractiveSpec =
       why: string
     }
   | { kind: 'screening-match'; prompt?: string; alerts: ScreeningAlert[] }
-  | {
+  | ({
       kind: 'case-file'
-      /** The matter, e.g. "The Bitfinex file, 2016 to 2022". */
-      caseTitle: string
-      /** Optional framing shown above the first evidence card. */
-      intro?: string
-      steps: CaseFileStep[]
-      /** Closing debrief shown after the last reveal — the confidence recap. */
-      debrief: string
-    }
+      /**
+       * Alternate fully-authored cases teaching the same concepts. When
+       * present, ONE of [the primary case, ...alternates] is selected per
+       * lesson visit (seeded by the session), so a retake works a different
+       * real matter. Every alternate is verified content, never generated.
+       */
+      alternates?: CaseFileCase[]
+    } & CaseFileCase)
+
+/** One complete case-file case (the primary spec fields, or an alternate). */
+export type CaseFileCase = {
+  /** The matter, e.g. "The Bitfinex file, 2016 to 2022". */
+  caseTitle: string
+  /** Optional framing shown above the first evidence card. */
+  intro?: string
+  steps: CaseFileStep[]
+  /** Closing debrief shown after the last reveal — the confidence recap. */
+  debrief: string
+}
+
+/** Deterministic small hash → index, for SSR-stable per-visit case selection. */
+export function caseVariantIndex(seed: string | undefined, count: number): number {
+  if (!seed || count <= 1) return 0
+  let h = 0
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) | 0
+  return Math.abs(h) % count
+}
 
 /** Narrow an unknown spec to a known interactive kind. */
 export function asInteractiveSpec(spec: unknown): InteractiveSpec | null {

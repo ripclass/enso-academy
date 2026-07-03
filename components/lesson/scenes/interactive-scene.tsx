@@ -25,6 +25,7 @@ export function InteractiveScene({
   onComplete,
   onContinue,
   onSpeak,
+  seed,
 }: {
   title: string
   summary?: string
@@ -34,6 +35,8 @@ export function InteractiveScene({
   onContinue?: () => void
   /** Narrate widget-driven text through the lesson's voice (case-file cards). */
   onSpeak?: (text: string) => void
+  /** Per-visit variant seed (case-file rotation across retakes). */
+  seed?: string
 }) {
   return (
     <div className="space-y-5">
@@ -60,6 +63,8 @@ export function InteractiveScene({
           intro={spec.intro}
           steps={spec.steps}
           debrief={spec.debrief}
+          alternates={spec.alternates}
+          seed={seed}
           onComplete={onComplete}
           onContinue={onContinue}
           onSpeak={onSpeak}

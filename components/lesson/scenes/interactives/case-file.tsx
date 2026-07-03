@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Check, X, ArrowRight, FolderOpen, Scale, RotateCcw } from 'lucide-react'
-import type { CaseFileStep } from '@/lib/lesson/scenes'
+import { caseVariantIndex, type CaseFileStep, type CaseFileCase } from '@/lib/lesson/scenes'
 import { useShuffled } from '../use-shuffled'
 
 /**
@@ -17,6 +17,8 @@ export function CaseFile({
   intro,
   steps,
   debrief,
+  alternates,
+  seed,
   onComplete,
   onContinue,
   onSpeak,
@@ -25,19 +27,33 @@ export function CaseFile({
   intro?: string
   steps: CaseFileStep[]
   debrief: string
+  /** Alternate fully-authored cases; one of [primary, ...alternates] is chosen per visit. */
+  alternates?: CaseFileCase[]
+  /** Per-visit selection seed (the lesson session id) — SSR-stable rotation across retakes. */
+  seed?: string
   onComplete?: (correct: number, total: number) => void
   /** Advance the lesson — rendered as a Continue button on the closing debrief. */
   onContinue?: () => void
   /** Narrate widget text through the lesson's voice (no-op outside listen mode). */
   onSpeak?: (text: string) => void
 }) {
+  // Select this visit's case. Seeded by the session id (a new session per
+  // lesson visit), so a retake rotates to a different verified matter while
+  // server and client render the same choice.
+  const activeCase = useMemo<CaseFileCase>(() => {
+    const cases: CaseFileCase[] = [{ caseTitle, intro, steps, debrief }, ...(alternates ?? [])]
+    return cases[caseVariantIndex(seed, cases.length)]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seed])
+  const { caseTitle: title, intro: caseIntro, steps: caseSteps, debrief: caseDebrief } = activeCase
+
   const [idx, setIdx] = useState(0)
   const [picked, setPicked] = useState<string | null>(null)
   const [score, setScore] = useState(0)
   const [finished, setFinished] = useState(false)
 
-  const step = steps[idx]
-  const isLast = idx === steps.length - 1
+  const step = caseSteps[idx]
+  const isLast = idx === caseSteps.length - 1
   const correct = picked != null && picked === step?.decision.correctOptionId
 
   // Narration follows the file: each evidence card is read as it appears
@@ -46,10 +62,10 @@ export function CaseFile({
   // lesson's shared voice — silent when the student is in read mode.
   useEffect(() => {
     if (finished) {
-      onSpeak?.(`The file is closed. ${debrief}`)
+      onSpeak?.(`The file is closed. ${caseDebrief}`)
       return
     }
-    const s = steps[idx]
+    const s = caseSteps[idx]
     if (!s) return
     if (picked == null) {
       onSpeak?.(
@@ -73,7 +89,7 @@ export function CaseFile({
   function next() {
     if (isLast) {
       setFinished(true)
-      onComplete?.(score, steps.length)
+      onComplete?.(score, caseSteps.length)
       return
     }
     setIdx((i) => i + 1)
@@ -94,10 +110,10 @@ export function CaseFile({
           <div className="flex items-center gap-2">
             <Scale className="h-5 w-5 shrink-0 text-primary" />
             <p className="text-lg font-semibold text-neutral-800">
-              The file is closed. {score} of {steps.length} calls matched the investigators&rsquo;.
+              The file is closed. {score} of {caseSteps.length} calls matched the investigators&rsquo;.
             </p>
           </div>
-          <p className="mt-3 text-sm leading-relaxed text-neutral-600">{debrief}</p>
+          <p className="mt-3 text-sm leading-relaxed text-neutral-600">{caseDebrief}</p>
         </div>
         <div className="flex items-center justify-between gap-3">
           <button
@@ -130,16 +146,16 @@ export function CaseFile({
         <div className="flex min-w-0 items-center gap-2">
           <FolderOpen className="h-4 w-4 shrink-0 text-accent" />
           <span className="truncate font-mono text-2xs uppercase tracking-widest text-neutral-500">
-            {caseTitle}
+            {title}
           </span>
         </div>
         <span className="shrink-0 font-mono text-2xs uppercase tracking-widest text-neutral-400">
-          Item {idx + 1} of {steps.length}
+          Item {idx + 1} of {caseSteps.length}
         </span>
       </div>
 
-      {intro && idx === 0 && !picked && (
-        <p className="text-sm leading-relaxed text-neutral-600">{intro}</p>
+      {caseIntro && idx === 0 && !picked && (
+        <p className="text-sm leading-relaxed text-neutral-600">{caseIntro}</p>
       )}
 
       {/* The evidence card — examiner's-file discipline, field by field */}

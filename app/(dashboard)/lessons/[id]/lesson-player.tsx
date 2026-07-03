@@ -1123,6 +1123,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                           onInteractiveComplete={handleInteractiveComplete}
                           onGradeProject={handleGradeProject}
                           onSpeak={speakWidgetText}
+                          caseSeed={sessionId}
                           revealed={currentScene.sceneType === 'slide' ? revealedCount : undefined}
                         />
                       </div>

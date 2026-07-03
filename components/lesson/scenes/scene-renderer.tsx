@@ -19,6 +19,7 @@ export function SceneRenderer({
   onInteractiveComplete,
   onGradeProject,
   onSpeak,
+  caseSeed,
   revealed,
 }: {
   scene: Scene
@@ -29,6 +30,8 @@ export function SceneRenderer({
   onGradeProject?: (spec: PblSpec, submission: string) => Promise<{ band: string; feedback: string }>
   /** Narrate widget-driven text through the lesson's voice (case-file cards). */
   onSpeak?: (text: string) => void
+  /** Per-visit variant seed (case-file rotation across retakes). */
+  caseSeed?: string
   /** Progressive reveal count for slide scenes (driven by narration progress). */
   revealed?: number
 }) {
@@ -52,6 +55,7 @@ export function SceneRenderer({
             onComplete={report}
             onContinue={onQuizContinue}
             onSpeak={onSpeak}
+            seed={caseSeed}
           />
         )
       }

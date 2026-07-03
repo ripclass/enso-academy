@@ -364,13 +364,16 @@ export function gateSchema(artifact: LessonArtifact): GateResult {
             errors.push(`${ctx}.sceneData.spec.alerts each need verdict 'clear'|'escalate' and a why`)
           }
         } else if (kind === 'case-file') {
-          if (!isStr(spec.caseTitle)) errors.push(`${ctx}.sceneData.spec.caseTitle not a string`)
-          if (!isStr(spec.debrief)) errors.push(`${ctx}.sceneData.spec.debrief not a string`)
-          if (!isArr(spec.steps) || spec.steps.length < 2) {
-            errors.push(`${ctx}.sceneData.spec.steps needs ≥ 2 steps`)
-          } else {
-            for (const [i, raw] of (spec.steps as Record<string, unknown>[]).entries()) {
-              const sctx = `${ctx}.sceneData.spec.steps[${i}]`
+          // Validate the primary case plus every alternate with the same rules.
+          const checkCase = (c: Record<string, unknown>, cctx: string) => {
+            if (!isStr(c.caseTitle)) errors.push(`${cctx}.caseTitle not a string`)
+            if (!isStr(c.debrief)) errors.push(`${cctx}.debrief not a string`)
+            if (!isArr(c.steps) || (c.steps as unknown[]).length < 2) {
+              errors.push(`${cctx}.steps needs ≥ 2 steps`)
+              return
+            }
+            for (const [i, raw] of (c.steps as Record<string, unknown>[]).entries()) {
+              const sctx = `${cctx}.steps[${i}]`
               const ev = raw.evidence as Record<string, unknown> | undefined
               if (!isObj(ev) || !isStr(ev.observed) || !isStr(ev.source) || !isStr(ev.inference) || !isStr(ev.confidence)) {
                 errors.push(`${sctx}.evidence needs observed/source/inference/confidence strings`)
@@ -384,6 +387,16 @@ export function gateSchema(artifact: LessonArtifact): GateResult {
                 errors.push(`${sctx}.decision.correctOptionId not among options`)
               }
               if (!isStr(raw.reveal)) errors.push(`${sctx}.reveal not a string`)
+            }
+          }
+          checkCase(spec as Record<string, unknown>, `${ctx}.sceneData.spec`)
+          if (spec.alternates !== undefined) {
+            if (!isArr(spec.alternates)) {
+              errors.push(`${ctx}.sceneData.spec.alternates must be an array when present`)
+            } else {
+              for (const [ai, alt] of (spec.alternates as Record<string, unknown>[]).entries()) {
+                checkCase(alt, `${ctx}.sceneData.spec.alternates[${ai}]`)
+              }
             }
           }
         } else if (!isArr(spec.items) || spec.items.length < 3) {
