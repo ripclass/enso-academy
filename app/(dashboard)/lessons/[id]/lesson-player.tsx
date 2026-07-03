@@ -305,6 +305,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   const [wrapUpPrompt, setWrapUpPrompt] = useState('')
   const wrapUpCountRef = useRef(0)
   const wrapUpNamesRef = useRef<string[]>([]) // classmates already called on
+  // The NEXT office-hours Q&A, generated while the current one plays so the
+  // class never sits in minutes of silence between questions.
+  const wrapNextRef = useRef<Promise<{ question: string; answer: string } | null> | null>(null)
   const userTurnTimerRef = useRef<number | null>(null)
 
   const currentScene = scenes[currentIndex]
@@ -582,22 +585,63 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
 
   // After a wrap-up classmate's answer: if the class still has questions, the
   // lecturer invites another (different) classmate; once they're done, the
-  // lecturer turns to the student.
+  // lecturer turns to the student. The next Q&A was prefetched while this one
+  // played, so the handoff is near-instant instead of a full LLM round-trip.
   function dismissWrapUpMoment() {
     clearMoment()
     if (wrapUpCountRef.current < WRAPUP_CLASSMATES) {
       momentBusyRef.current = true
+      const prefetched = wrapNextRef.current
+      wrapNextRef.current = null
       playMomentBeat(pick(ANYONE_ELSE), () => {
         momentBusyRef.current = false
-        void fireWrapUpClassmate()
+        void fireWrapUpClassmate(prefetched ?? undefined)
       })
     } else {
       enterUserTurn()
     }
   }
 
+  // Generate one office-hours classmate Q&A (question + lecturer answer),
+  // grounded in the whole lesson's concepts. `extraAsked` carries questions
+  // already staged but not yet in `messages` (the prefetch case), so a
+  // prefetched question never duplicates the one currently playing.
+  async function generateWrapUpQA(
+    extraAsked: string[],
+  ): Promise<{ question: string; answer: string } | null> {
+    const lastIndex = scenes.length - 1
+    const { lessonContext } = buildContext(lastIndex)
+    const taughtConceptTags = [
+      ...new Set(scenes.flatMap((s) => [...s.conceptTags, ...s.teachesConcepts])),
+    ].slice(0, 12)
+    const askedQuestions = [
+      ...messages
+        .filter((m) => m.role === 'student' || m.role === 'classmate')
+        .map((m) => m.content),
+      ...extraAsked,
+    ]
+    try {
+      const result = await checkClassmateGap({
+        sessionId,
+        lessonId: lesson.id,
+        courseId,
+        taughtConceptTags,
+        lessonContext,
+        askedQuestions,
+        wrapUp: true,
+      })
+      if (result.fired && result.question && result.answer) {
+        return { question: result.question, answer: result.answer }
+      }
+    } catch (err) {
+      console.error(err)
+    }
+    return null
+  }
+
   // Enter the end-of-lesson office hours: the lecturer opens the floor, then the
-  // first classmate raises a hand. Idempotent.
+  // first classmate raises a hand. The first Q&A starts generating immediately,
+  // overlapping the lecturer's opening line. Idempotent.
   function enterWrapUp() {
     if (wrapUp || momentBusyRef.current) return
     setWrapUp(true)
@@ -610,50 +654,31 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     setWrapUpPrompt(prompt)
     setSpeakingClassmate(null)
     momentBusyRef.current = true
+    const first = generateWrapUpQA([])
     playMomentBeat(prompt, () => {
       momentBusyRef.current = false
-      void fireWrapUpClassmate()
+      void fireWrapUpClassmate(first)
     })
   }
 
-  // A (rotating) classmate raises a hand with a closing question. Bypasses the
-  // in-lesson cap (wrapUp) and is grounded in the whole lesson's concepts.
-  async function fireWrapUpClassmate() {
+  // A (rotating) classmate raises a hand with a closing question. Uses the
+  // prefetched Q&A when one is ready; kicks off the NEXT prefetch as soon as
+  // this one goes on stage, so generation always overlaps playback.
+  async function fireWrapUpClassmate(prefetched?: Promise<{ question: string; answer: string } | null>) {
     if (momentBusyRef.current) return
     momentBusyRef.current = true
-    const lastIndex = scenes.length - 1
-    const { lessonContext } = buildContext(lastIndex)
-    const taughtConceptTags = [
-      ...new Set(scenes.flatMap((s) => [...s.conceptTags, ...s.teachesConcepts])),
-    ].slice(0, 12)
-    const askedQuestions = messages
-      .filter((m) => m.role === 'student' || m.role === 'classmate')
-      .map((m) => m.content)
     setClassmatePending(true)
-    try {
-      const result = await checkClassmateGap({
-        sessionId,
-        lessonId: lesson.id,
-        courseId,
-        taughtConceptTags,
-        lessonContext,
-        askedQuestions,
-        wrapUp: true,
-      })
-      if (result.fired && result.question && result.answer) {
-        wrapUpCountRef.current += 1
-        stageMoment(pickNextClassmate(), result.question, result.answer)
-      } else {
-        // Generation failed — don't strand the wrap-up; turn to the student.
-        momentBusyRef.current = false
-        enterUserTurn()
-      }
-    } catch (err) {
+    const qa = await (prefetched ?? generateWrapUpQA([]))
+    setClassmatePending(false)
+    if (qa) {
+      wrapUpCountRef.current += 1
+      wrapNextRef.current =
+        wrapUpCountRef.current < WRAPUP_CLASSMATES ? generateWrapUpQA([qa.question]) : null
+      stageMoment(pickNextClassmate(), qa.question, qa.answer)
+    } else {
+      // Generation failed — don't strand the wrap-up; turn to the student.
       momentBusyRef.current = false
-      console.error(err)
       enterUserTurn()
-    } finally {
-      setClassmatePending(false)
     }
   }
 
