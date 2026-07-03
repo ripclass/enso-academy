@@ -267,8 +267,8 @@ export function CourseSalesPage({
                   </span>
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/70">
-                  Prove where you stand. Sit the real 120-question, 3.5-hour exam simulation under exam
-                  conditions. After your free one, each attempt is{' '}
+                  Prove where you stand. Sit the full-length {shortName} exam simulation under real
+                  exam conditions. After your free one, each attempt is{' '}
                   <span className="font-semibold text-foreground">$14.99</span>.
                 </p>
                 <Link
