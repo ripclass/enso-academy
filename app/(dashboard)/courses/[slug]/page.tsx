@@ -263,6 +263,31 @@ export default async function CourseDetailPage({ params }: Props) {
                   </div>
                 </Link>
 
+                {/* Flashcards */}
+                <Link
+                  href={`/courses/${course.slug}/flashcards`}
+                  className="group block rounded-lg border border-neutral-200 bg-white p-6 transition-colors hover:border-primary"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <h2 className="text-lg font-bold text-neutral-900">Flashcards</h2>
+                        <span className="rounded-full bg-accent-light px-2 py-0.5 font-mono text-2xs font-bold uppercase tracking-wider text-accent">
+                          New
+                        </span>
+                      </div>
+                      <p className="mt-1.5 text-sm text-neutral-600">
+                        Drill the course vocabulary. Spaced repetition brings the terms you find hard
+                        back sooner, and lets the ones you know drift away.
+                      </p>
+                    </div>
+                    <span className="mt-1 inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary">
+                      Study
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Link>
+
                 <SectionHeader title="Course modules" />
 
                 {modules?.map((mod, modIndex) => {

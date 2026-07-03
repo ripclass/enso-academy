@@ -1207,6 +1207,63 @@ export type Database = {
         }
         Relationships: []
       }
+      flashcard_reviews: {
+        Row: {
+          box: number
+          course_id: string
+          created_at: string
+          due_at: string
+          glossary_id: string
+          id: string
+          lapses: number
+          last_reviewed_at: string | null
+          reps: number
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          box?: number
+          course_id: string
+          created_at?: string
+          due_at?: string
+          glossary_id: string
+          id?: string
+          lapses?: number
+          last_reviewed_at?: string | null
+          reps?: number
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          box?: number
+          course_id?: string
+          created_at?: string
+          due_at?: string
+          glossary_id?: string
+          id?: string
+          lapses?: number
+          last_reviewed_at?: string | null
+          reps?: number
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "flashcard_reviews_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "flashcard_reviews_glossary_id_fkey"
+            columns: ["glossary_id"]
+            isOneToOne: false
+            referencedRelation: "glossary"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       glossary: {
         Row: {
           aliases: string[] | null
