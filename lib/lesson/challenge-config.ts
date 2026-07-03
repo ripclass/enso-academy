@@ -87,6 +87,50 @@ export const CHALLENGE_LESSON_SLUGS = new Set<string>([
   // Module 3: Blockchain Analytics and On-Chain Investigation (pilot)
   'transparency-pseudonymity-and-the-tracing-premise',
   'clustering-attribution-and-exposure-analysis',
+  // Module 2: The Crypto Ecosystem
+  'exchanges-custodians-and-the-vasp-landscape',
+  'decentralized-finance-and-smart-contracts',
+  'stablecoins-nfts-and-tokenization',
+  'privacy-coins-mixers-and-obfuscation',
+  // Module 4: Financial Crime in the Cryptoasset Sector
+  'the-money-laundering-cycle-in-crypto',
+  'terrorist-financing-and-proliferation-financing-in-crypto',
+  'crypto-enabled-fraud-and-scams',
+  'tax-evasion-and-the-crypto-afc-nexus',
+  'ransomware-darknet-and-illicit-marketplaces',
+  'crypto-typologies-and-red-flag-indicators',
+  // Module 5: FATF, the Travel Rule, and Crypto Sanctions
+  'fatf-recommendation-15-and-the-vasp-definition',
+  'the-travel-rule-r16-and-inr16',
+  'the-sunrise-problem-and-counterparty-vasp-due-diligence',
+  'sanctions-and-cryptoassets',
+  // Module 6: National and Regional Crypto Frameworks
+  'the-us-crypto-framework',
+  'the-eu-crypto-framework-mica-and-tfr',
+  'the-uk-crypto-framework',
+  'mapping-crypto-rules-to-any-jurisdiction',
+  // Module 7: Building a Cryptoasset AFC Program
+  'the-crypto-risk-assessment',
+  'onboarding-and-kyc-for-crypto',
+  'customer-risk-rating-in-crypto',
+  'the-regulatory-perimeter-and-licensing',
+  // Module 8: Monitoring, Screening, and Reporting
+  'wallet-and-transaction-monitoring',
+  'sanctions-and-watchlist-screening-for-crypto',
+  'travel-rule-implementation-operationally',
+  'suspicious-activity-investigation-and-reporting-in-crypto',
+  // Module 9: Governance, Audit, and Emerging Risk
+  'governance-roles-and-the-three-lines-in-crypto',
+  'independent-testing-training-and-vendor-risk',
+  'emerging-risks-defi-daos-and-the-horizon',
+  'incident-response-and-program-resilience',
+  // Module 10: Learning from Enforcement and Synthesis
+  'how-to-read-a-crypto-enforcement-action',
+  'case-tornado-cash',
+  'case-binance-2023',
+  'case-bitmex',
+  'case-lazarus-dprk',
+  'course-synthesis-and-exam-preparation',
 ])
 
 export function lessonHasChallenge(slug: string): boolean {

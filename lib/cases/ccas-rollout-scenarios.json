@@ -1,0 +1,4727 @@
+[
+  {
+    "id": "ccas-enf-read-1",
+    "conceptTags": [
+      "reading-method",
+      "transferable-lesson",
+      "program-application"
+    ],
+    "mechanic": "decision",
+    "title": "Why you read an enforcement action",
+    "spec": {
+      "kind": "decision",
+      "prompt": "You read a crypto exchange enforcement action to strengthen your own program. What should your primary goal be while reading it?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Extract the transferable control lesson and check whether your own program has the same gap.",
+          "correct": true,
+          "why": "The transferable control lesson is what actually improves your own program."
+        },
+        {
+          "id": "b",
+          "text": "Memorize the penalty figure and the named executives so you can quote the matter in future training decks.",
+          "correct": false,
+          "why": "Penalty figures and names are trivia, not a test of your controls."
+        },
+        {
+          "id": "c",
+          "text": "Confirm the firm operated in a different jurisdiction from yours.",
+          "correct": false,
+          "why": "Jurisdiction differences do not exempt you from the same gap."
+        },
+        {
+          "id": "d",
+          "text": "Note the settlement date so you can track the timeline.",
+          "correct": false,
+          "why": "The settlement date has no bearing on your control gaps."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-enf-read-2",
+    "conceptTags": [
+      "failed-control-identification",
+      "control-failure-anatomy",
+      "root-cause"
+    ],
+    "mechanic": "red-flags",
+    "title": "Spotting the control failure in the text",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A regulator's published action describes a crypto business that grew quickly.",
+      "prompt": "Which statements in the action point to an actual control failure you should test your own program against?",
+      "items": [
+        {
+          "id": "a",
+          "label": "The firm processed transactions for years with no automated monitoring rules configured.",
+          "flag": true,
+          "why": "Years without monitoring rules is a clear control failure."
+        },
+        {
+          "id": "b",
+          "label": "The firm let accounts transact before identity verification was completed.",
+          "flag": true,
+          "why": "Transacting before verification defeats the onboarding control."
+        },
+        {
+          "id": "c",
+          "label": "The firm never assigned anyone to review screening alerts.",
+          "flag": true,
+          "why": "Unassigned alert review means screening is not really operating."
+        },
+        {
+          "id": "d",
+          "label": "The firm was headquartered in a major financial center.",
+          "flag": false,
+          "why": "Location alone is not a control failure."
+        },
+        {
+          "id": "e",
+          "label": "The firm expanded its user base rapidly in its first two years.",
+          "flag": false,
+          "why": "Growth by itself does not indicate a failed control."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-enf-read-3",
+    "conceptTags": [
+      "reading-method",
+      "document-types",
+      "enforcement-action-as-source"
+    ],
+    "mechanic": "sequence",
+    "title": "The reading method, in order",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Order the steps for reading an enforcement action so it improves your program.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Identify the document type and the authority that issued it.",
+          "why": "Document type sets how much weight the findings carry."
+        },
+        {
+          "id": "s2",
+          "label": "Find the specific conduct and the control that failed.",
+          "why": "You must locate the failed control before anything else."
+        },
+        {
+          "id": "s3",
+          "label": "Trace the root cause behind that failed control.",
+          "why": "Root cause tells you what actually needs fixing."
+        },
+        {
+          "id": "s4",
+          "label": "Map the transferable lesson onto a test of your own program.",
+          "why": "The whole point of reading is to test your own program."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tornado-1",
+    "conceptTags": [
+      "two-tracks",
+      "service-vs-operator",
+      "ofac-designation",
+      "operator-prosecution"
+    ],
+    "mechanic": "sort",
+    "title": "Two enforcement tracks",
+    "spec": {
+      "kind": "sort",
+      "prompt": "A mixing service and its builders both face enforcement. Sort each consequence into the track it belongs to.",
+      "buckets": [
+        {
+          "id": "a",
+          "label": "Sanctions and designation track"
+        },
+        {
+          "id": "b",
+          "label": "Operator criminal-prosecution track"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "The service's addresses are added to a sanctions list, so dealing with them is prohibited.",
+          "bucket": "a",
+          "why": "Designation restricts dealings, which is a sanctions consequence."
+        },
+        {
+          "id": "i2",
+          "label": "The individuals who built and ran the service are criminally charged.",
+          "bucket": "b",
+          "why": "Charging the builders is the criminal track."
+        },
+        {
+          "id": "i3",
+          "label": "A screening obligation now attaches to any exposure to the listed addresses.",
+          "bucket": "a",
+          "why": "The screening duty flows from the designation."
+        },
+        {
+          "id": "i4",
+          "label": "Prosecutors allege the operators knowingly moved criminal proceeds.",
+          "bucket": "b",
+          "why": "Proving intent to launder is a prosecution element."
+        },
+        {
+          "id": "i5",
+          "label": "A later court and agency decision revisits whether the addresses stay listed.",
+          "bucket": "a",
+          "why": "Delisting revisits the sanctions listing itself."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tornado-2",
+    "conceptTags": [
+      "mixer-sanctions",
+      "crypto-sanctions",
+      "delisting",
+      "operator-prosecution"
+    ],
+    "mechanic": "match",
+    "title": "Mixer sanctions vocabulary",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each term to its correct description.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Mixer designation",
+          "right": "Adding an obfuscation service to a sanctions list so dealings with it are restricted",
+          "why": "A designation restricts dealing with the service."
+        },
+        {
+          "id": "p2",
+          "left": "Delisting",
+          "right": "Removing an entry from a sanctions list after review",
+          "why": "Delisting is removal from the list after review."
+        },
+        {
+          "id": "p3",
+          "left": "Operator prosecution",
+          "right": "Criminal charges against the people who built and ran a service",
+          "why": "Prosecution targets the human operators."
+        },
+        {
+          "id": "p4",
+          "left": "Screening exposure",
+          "right": "Detecting when a customer's funds touched a sanctioned service",
+          "why": "Screening detects contact with a sanctioned service."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tornado-3",
+    "conceptTags": [
+      "mixer-exposure",
+      "screening-duty",
+      "risk-assessment"
+    ],
+    "mechanic": "decision",
+    "title": "Exposure to a sanctioned mixer",
+    "spec": {
+      "kind": "decision",
+      "prompt": "Blockchain analytics flags that a customer withdrawal passed through a sanctioned mixing service two hops before reaching you. What is the correct first response?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Treat it as sanctions exposure, hold pending review, and escalate per your screening procedures.",
+          "correct": true,
+          "why": "Indirect exposure is still sanctions exposure to escalate."
+        },
+        {
+          "id": "b",
+          "text": "Ignore it, since the customer did not personally operate the sanctioned mixing service and cannot fairly be blamed.",
+          "correct": false,
+          "why": "Operating the mixer is not required for exposure to matter."
+        },
+        {
+          "id": "c",
+          "text": "Clear it automatically because the funds moved through more than one address.",
+          "correct": false,
+          "why": "Extra hops do not clear sanctions exposure."
+        },
+        {
+          "id": "d",
+          "text": "Reclassify the customer as low risk since mixing is a privacy feature.",
+          "correct": false,
+          "why": "Mixer exposure raises risk, it does not lower it."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-binance-1",
+    "conceptTags": [
+      "five-controls",
+      "control-mapping",
+      "kyc",
+      "sanctions-screening"
+    ],
+    "mechanic": "match",
+    "title": "Mapping the five control failures",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each control area to the failure a large exchange enforcement matter typically reveals.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "KYC and onboarding",
+          "right": "Users transacted with little or no verified identity",
+          "why": "Weak identity checks are the KYC failure."
+        },
+        {
+          "id": "p2",
+          "left": "Sanctions screening",
+          "right": "Customers in prohibited jurisdictions were not blocked",
+          "why": "Unblocked prohibited jurisdictions is a screening failure."
+        },
+        {
+          "id": "p3",
+          "left": "Transaction monitoring",
+          "right": "Suspicious activity produced few or no reports",
+          "why": "Few reports despite volume is a monitoring failure."
+        },
+        {
+          "id": "p4",
+          "left": "Registration perimeter",
+          "right": "The business served users without registering where required",
+          "why": "Serving users unregistered is a perimeter failure."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-binance-2",
+    "conceptTags": [
+      "scale-without-controls",
+      "recurring-failure-mode",
+      "governance"
+    ],
+    "mechanic": "red-flags",
+    "title": "Scale without controls",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A crypto exchange is onboarding users very quickly across many markets.",
+      "prompt": "Which observations signal the scale-without-controls failure mode?",
+      "items": [
+        {
+          "id": "a",
+          "label": "User growth is far outpacing investment in compliance staffing and tooling.",
+          "flag": true,
+          "why": "Growth outpacing compliance is the core failure mode."
+        },
+        {
+          "id": "b",
+          "label": "Leadership treats compliance obligations as optional in high-growth markets.",
+          "flag": true,
+          "why": "Treating obligations as optional is a governance failure."
+        },
+        {
+          "id": "c",
+          "label": "Sanctions and monitoring controls have not been extended to new products.",
+          "flag": true,
+          "why": "New products without controls widen the gap."
+        },
+        {
+          "id": "d",
+          "label": "The exchange publishes a quarterly transparency report.",
+          "flag": false,
+          "why": "A transparency report is not a control failure."
+        },
+        {
+          "id": "e",
+          "label": "The exchange lists a large number of trading pairs.",
+          "flag": false,
+          "why": "Many trading pairs alone is not a control failure."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-binance-3",
+    "conceptTags": [
+      "compliance-monitor",
+      "governance",
+      "monitoring-and-reporting"
+    ],
+    "mechanic": "sort",
+    "title": "Sorting the remediation",
+    "spec": {
+      "kind": "sort",
+      "prompt": "After a major resolution, sort each remediation measure by the type of gap it addresses.",
+      "buckets": [
+        {
+          "id": "a",
+          "label": "Fixes a governance or accountability gap"
+        },
+        {
+          "id": "b",
+          "label": "Fixes an operational control gap"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "Appoint an independent compliance monitor to oversee the program.",
+          "bucket": "a",
+          "why": "A monitor addresses accountability and oversight."
+        },
+        {
+          "id": "i2",
+          "label": "Give the compliance function real authority and board reporting lines.",
+          "bucket": "a",
+          "why": "Compliance authority and board lines are governance."
+        },
+        {
+          "id": "i3",
+          "label": "Configure transaction-monitoring rules and staff an alert-review team.",
+          "bucket": "b",
+          "why": "Monitoring rules and reviewers are operational controls."
+        },
+        {
+          "id": "i4",
+          "label": "Deploy sanctions screening across all customer jurisdictions.",
+          "bucket": "b",
+          "why": "Screening deployment is an operational control."
+        },
+        {
+          "id": "i5",
+          "label": "Establish clear senior accountability for AML outcomes.",
+          "bucket": "a",
+          "why": "Senior accountability is a governance fix."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-bitmex-1",
+    "conceptTags": [
+      "registration-perimeter",
+      "aml-program",
+      "minimum-afc-program"
+    ],
+    "mechanic": "decision",
+    "title": "The core failure",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A derivatives platform served customers in a regulated market but ran no AML program and required almost no identity verification. What is the core failure?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It operated inside a regulated perimeter without the minimum required AFC program.",
+          "correct": true,
+          "why": "Being in scope with no program is the core failure."
+        },
+        {
+          "id": "b",
+          "text": "It offered leveraged products that some retail customers did not fully understand or use safely.",
+          "correct": false,
+          "why": "Product complexity is a conduct issue, not the AML failure."
+        },
+        {
+          "id": "c",
+          "text": "It used an offshore corporate structure to hold its operating entity.",
+          "correct": false,
+          "why": "Corporate structure is not the AML program gap."
+        },
+        {
+          "id": "d",
+          "text": "It grew faster than its competitors in the same market.",
+          "correct": false,
+          "why": "Growth speed is not itself the failure."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-bitmex-2",
+    "conceptTags": [
+      "minimum-afc-program",
+      "onboarding",
+      "aml-program",
+      "missing-controls"
+    ],
+    "mechanic": "sequence",
+    "title": "Standing up a minimum program",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Order the steps to stand up a minimum viable AFC program for an exchange that has none.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Determine the regulatory perimeter and where you must register.",
+          "why": "The perimeter defines your obligations first."
+        },
+        {
+          "id": "s2",
+          "label": "Build customer onboarding with identity verification.",
+          "why": "Onboarding verification is the entry control."
+        },
+        {
+          "id": "s3",
+          "label": "Add transaction monitoring and sanctions screening.",
+          "why": "Monitoring and screening watch ongoing activity."
+        },
+        {
+          "id": "s4",
+          "label": "Assign accountability and file reports when required.",
+          "why": "Accountability and reporting close the loop."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-bitmex-3",
+    "conceptTags": [
+      "missing-controls",
+      "kyc",
+      "personal-liability"
+    ],
+    "mechanic": "red-flags",
+    "title": "A compliance-light platform",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "You are reviewing a fast-growing platform that leadership proudly calls compliance-light.",
+      "prompt": "Which findings are genuine red flags of a missing AML program?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Accounts can trade at full size with no identity verification.",
+          "flag": true,
+          "why": "No verification at full size is a KYC failure."
+        },
+        {
+          "id": "b",
+          "label": "No one is designated as responsible for AML controls.",
+          "flag": true,
+          "why": "No AML owner is a real program gap and a liability risk."
+        },
+        {
+          "id": "c",
+          "label": "No suspicious activity has ever been reported despite high volumes.",
+          "flag": true,
+          "why": "Zero reports at high volume signals broken monitoring."
+        },
+        {
+          "id": "d",
+          "label": "The platform uses a well-known cloud hosting provider.",
+          "flag": false,
+          "why": "A cloud provider is not a control failure."
+        },
+        {
+          "id": "e",
+          "label": "The platform offers customer support in several languages.",
+          "flag": false,
+          "why": "Multilingual support is not a control failure."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-lazarus-1",
+    "conceptTags": [
+      "cross_border_laundering",
+      "mixers_and_tumblers",
+      "transaction_monitoring",
+      "address_screening"
+    ],
+    "mechanic": "sort",
+    "title": "Technique or control",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each item by whether it is a laundering technique the illicit actor uses or a defensive control the program uses.",
+      "buckets": [
+        {
+          "id": "a",
+          "label": "Technique the illicit actor uses"
+        },
+        {
+          "id": "b",
+          "label": "Control the program uses to counter it"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "Passing stolen funds through mixers and tumblers to break the trail.",
+          "bucket": "a",
+          "why": "Mixers are a laundering technique."
+        },
+        {
+          "id": "i2",
+          "label": "Rapid cross-chain and cross-border hops to obscure origin.",
+          "bucket": "a",
+          "why": "Cross-border hops obscure origin, a technique."
+        },
+        {
+          "id": "i3",
+          "label": "Screening incoming deposits against designated addresses.",
+          "bucket": "b",
+          "why": "Screening deposits is a defensive control."
+        },
+        {
+          "id": "i4",
+          "label": "Behavioral transaction monitoring tuned for rapid layering.",
+          "bucket": "b",
+          "why": "Behavioral monitoring is a defensive control."
+        },
+        {
+          "id": "i5",
+          "label": "Chaining many freshly created wallets to fragment the flow.",
+          "bucket": "a",
+          "why": "Chaining fresh wallets is a laundering technique."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-lazarus-2",
+    "conceptTags": [
+      "proliferation_financing",
+      "state_sponsored_theft",
+      "designated_addresses",
+      "ofac_obligations"
+    ],
+    "mechanic": "match",
+    "title": "State-linked theft vocabulary",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each term to its correct description.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "State-sponsored theft",
+          "right": "A nation-state directing hacks of crypto platforms to raise funds",
+          "why": "A state directing hacks is state-sponsored theft."
+        },
+        {
+          "id": "p2",
+          "left": "Proliferation financing",
+          "right": "Raising or moving funds to support weapons programs",
+          "why": "Funding weapons programs is proliferation financing."
+        },
+        {
+          "id": "p3",
+          "left": "Designated addresses",
+          "right": "Wallets placed on a sanctions list that must not be dealt with",
+          "why": "Listed wallets must not be dealt with."
+        },
+        {
+          "id": "p4",
+          "left": "OFAC obligation",
+          "right": "The duty to block and report dealings with sanctioned parties",
+          "why": "Blocking and reporting is the core sanctions duty."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-lazarus-3",
+    "conceptTags": [
+      "investigation_workflow",
+      "transaction_monitoring",
+      "address_screening",
+      "program_resilience"
+    ],
+    "mechanic": "sequence",
+    "title": "Tracing a suspected state-linked theft",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Order the steps to investigate a suspected state-linked theft flowing into your platform.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Detect the inbound deposit through a monitoring or screening alert.",
+          "why": "Detection is where the case starts."
+        },
+        {
+          "id": "s2",
+          "label": "Trace the funds back across hops to the source of the theft.",
+          "why": "Tracing back finds the source."
+        },
+        {
+          "id": "s3",
+          "label": "Check the trail against designated addresses and known typologies.",
+          "why": "Checking lists and typologies confirms the risk."
+        },
+        {
+          "id": "s4",
+          "label": "Freeze, report to the relevant authority, and preserve the evidence.",
+          "why": "Freezing and reporting is the required action."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-synthesis-1",
+    "conceptTags": [
+      "integrated_judgment",
+      "practitioner_decision_making",
+      "scenario_judgment"
+    ],
+    "mechanic": "decision",
+    "title": "An integrated onboarding call",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A new customer deposits from a wallet with recent indirect exposure to a sanctioned mixer, uses a self-hosted wallet, and gives a vague source of funds. What is the best integrated response?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apply enhanced due diligence, document source of funds, and set monitoring before deciding.",
+          "correct": true,
+          "why": "EDD, documentation, and monitoring is the balanced response."
+        },
+        {
+          "id": "b",
+          "text": "Reject immediately, because any indirect exposure to a mixer always means the customer is a criminal actor.",
+          "correct": false,
+          "why": "Indirect exposure alone does not prove criminality."
+        },
+        {
+          "id": "c",
+          "text": "Approve with standard onboarding since self-hosted wallets are common and low risk.",
+          "correct": false,
+          "why": "Standard onboarding ignores the combined risk signals."
+        },
+        {
+          "id": "d",
+          "text": "Approve but flag the account for closure in twelve months regardless of findings.",
+          "correct": false,
+          "why": "A fixed closure date is not risk-based judgment."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-synthesis-2",
+    "conceptTags": [
+      "scenario_judgment",
+      "integrated_judgment",
+      "exam_application"
+    ],
+    "mechanic": "red-flags",
+    "title": "Triage under time pressure",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "You are triaging one onboarding case under time pressure.",
+      "prompt": "Which factors genuinely raise the customer's risk and warrant escalation?",
+      "items": [
+        {
+          "id": "a",
+          "label": "The deposit traces two hops from a sanctioned service.",
+          "flag": true,
+          "why": "Two hops from a sanctioned service is real exposure."
+        },
+        {
+          "id": "b",
+          "label": "The stated source of wealth cannot be reconciled with on-chain history.",
+          "flag": true,
+          "why": "Unreconcilable source of wealth is a genuine flag."
+        },
+        {
+          "id": "c",
+          "label": "The customer resists explaining the purpose of the account.",
+          "flag": true,
+          "why": "Refusing to explain purpose raises risk."
+        },
+        {
+          "id": "d",
+          "label": "The customer uses a hardware wallet to hold their assets.",
+          "flag": false,
+          "why": "A hardware wallet is a normal custody choice."
+        },
+        {
+          "id": "e",
+          "label": "The customer asks about withdrawal fees during onboarding.",
+          "flag": false,
+          "why": "Asking about fees is ordinary customer behavior."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-synthesis-3",
+    "conceptTags": [
+      "course_synthesis",
+      "integrated_judgment",
+      "practitioner_decision_making"
+    ],
+    "mechanic": "match",
+    "title": "Failure mode to control",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each recurring failure mode to the control that would have prevented it.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Serving users without registering",
+          "right": "Mapping and respecting the regulatory perimeter",
+          "why": "Perimeter mapping prevents unregistered operation."
+        },
+        {
+          "id": "p2",
+          "left": "Onboarding without verified identity",
+          "right": "Enforced KYC at account opening",
+          "why": "Enforced KYC prevents unverified onboarding."
+        },
+        {
+          "id": "p3",
+          "left": "Missing sanctioned-address exposure",
+          "right": "Screening deposits and withdrawals against lists",
+          "why": "Screening prevents missed sanctioned exposure."
+        },
+        {
+          "id": "p4",
+          "left": "Alerts generated but never worked",
+          "right": "Staffed monitoring with escalation and reporting",
+          "why": "Staffed monitoring prevents unworked alerts."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-vasp-1",
+    "conceptTags": [
+      "vasp_definition",
+      "vasp_control_point"
+    ],
+    "mechanic": "decision",
+    "title": "Which one is a VASP?",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A regulator asks your team to identify which of these actors is a virtual asset service provider (VASP) subject to AML obligations. Which one qualifies?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A custodial exchange that holds customer cryptoassets and executes trades on customers' behalf.",
+          "correct": true,
+          "why": "It conducts a covered activity as a business for and on behalf of others."
+        },
+        {
+          "id": "b",
+          "text": "A person who buys crypto solely for their own long-term personal investment.",
+          "correct": false,
+          "why": "Acting only for oneself is not a service provided to others."
+        },
+        {
+          "id": "c",
+          "text": "A developer who publishes open-source smart-contract code to a public repository but never takes custody of, controls, or transfers any customer assets.",
+          "correct": false,
+          "why": "Publishing code alone, without any covered activity, is not VASP conduct."
+        },
+        {
+          "id": "d",
+          "text": "A merchant that accepts crypto only as payment for its own products and services.",
+          "correct": false,
+          "why": "Accepting payment for one's own goods is not a covered service."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-vasp-2",
+    "conceptTags": [
+      "custodians_and_otc",
+      "fiat_ramps",
+      "crypto_atms"
+    ],
+    "mechanic": "red-flags",
+    "title": "ATM and OTC desk review",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A compliance analyst reviews recent activity across the firm's crypto ATM network and its over-the-counter (OTC) trading desk.",
+      "prompt": "Select the genuine AML red flags.",
+      "items": [
+        {
+          "id": "a",
+          "label": "A single customer makes many just-below-threshold cash deposits at several different crypto ATMs on the same day.",
+          "flag": true,
+          "why": "This pattern suggests structuring to evade reporting thresholds."
+        },
+        {
+          "id": "b",
+          "label": "An OTC counterparty refuses to provide any beneficial-owner information for a large trade.",
+          "flag": true,
+          "why": "Refusing beneficial-owner details blocks required due diligence."
+        },
+        {
+          "id": "c",
+          "label": "A customer completes standard identity verification and provides a consistent, documented source of funds.",
+          "flag": false,
+          "why": "Complete verification and clear sourcing is expected normal conduct."
+        },
+        {
+          "id": "d",
+          "label": "The crypto ATM operator publishes its per-transaction fees on its website.",
+          "flag": false,
+          "why": "Transparent fee disclosure is ordinary business practice."
+        },
+        {
+          "id": "e",
+          "label": "A new customer buys crypto at an ATM and immediately sends it to a mixing service.",
+          "flag": true,
+          "why": "Immediate routing to a mixer signals intent to obscure the trail."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-vasp-3",
+    "conceptTags": [
+      "centralized_vs_decentralized_exchange",
+      "vasp_control_point",
+      "vasp_landscape"
+    ],
+    "mechanic": "sort",
+    "title": "Where is the control point?",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each arrangement by whether an intermediary exists that can screen, freeze, or report activity.",
+      "buckets": [
+        {
+          "id": "control",
+          "label": "Clear VASP control point"
+        },
+        {
+          "id": "no-control",
+          "label": "No single VASP control point"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "A centralized custodial exchange holding user funds",
+          "bucket": "control",
+          "why": "A custodian intermediary can screen and freeze accounts."
+        },
+        {
+          "id": "i2",
+          "label": "A custodial OTC desk executing trades for clients",
+          "bucket": "control",
+          "why": "The desk holds funds and can apply controls on clients."
+        },
+        {
+          "id": "i3",
+          "label": "A crypto ATM operated by a registered money services business",
+          "bucket": "control",
+          "why": "The registered operator is an intermediary that can apply KYC."
+        },
+        {
+          "id": "i4",
+          "label": "A peer-to-peer swap between two self-hosted wallets with no intermediary",
+          "bucket": "no-control",
+          "why": "No service provider sits between the two parties."
+        },
+        {
+          "id": "i5",
+          "label": "A fully non-custodial automated exchange protocol with no operator taking custody",
+          "bucket": "no-control",
+          "why": "No custodial operator holds funds or controls the flow."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-defi-1",
+    "conceptTags": [
+      "decentralized_finance",
+      "smart_contracts",
+      "liquidity_pools",
+      "daos"
+    ],
+    "mechanic": "match",
+    "title": "DeFi building blocks",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each DeFi concept to its correct description.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Liquidity pool",
+          "right": "A smart-contract reserve of paired tokens that traders swap against",
+          "why": "Pools supply the on-chain liquidity that swaps draw from."
+        },
+        {
+          "id": "p2",
+          "left": "DAO",
+          "right": "A member-governed organization that votes on protocol changes using tokens",
+          "why": "DAOs coordinate decisions through token-weighted voting."
+        },
+        {
+          "id": "p3",
+          "left": "Smart contract",
+          "right": "Self-executing code that runs automatically when its conditions are met",
+          "why": "Smart contracts enforce logic without a human intermediary."
+        },
+        {
+          "id": "p4",
+          "left": "Chain of swaps across protocols",
+          "right": "A layering method that moves value through several decentralized services",
+          "why": "Sequential swaps fragment the value trail across venues."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-defi-2",
+    "conceptTags": [
+      "defi_layering",
+      "decentralized_finance",
+      "liquidity_pools"
+    ],
+    "mechanic": "sequence",
+    "title": "A DeFi layering flow",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Put the stages of a typical DeFi layering flow in the correct order.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Illicit funds enter DeFi through a token swap on a decentralized exchange",
+          "why": "Entry converts the funds into an on-chain tradable token."
+        },
+        {
+          "id": "s2",
+          "label": "Value is routed through a liquidity pool into a different token",
+          "why": "Swapping tokens begins to distance value from its origin."
+        },
+        {
+          "id": "s3",
+          "label": "Assets are moved across several lending and swap protocols to fragment the trail",
+          "why": "Multiple hops complicate tracing across services."
+        },
+        {
+          "id": "s4",
+          "label": "Cleaned value is consolidated and withdrawn to an off-ramp for conversion",
+          "why": "Consolidation prepares the value to exit for cash-out."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-defi-3",
+    "conceptTags": [
+      "control_or_influence",
+      "obliged_entity",
+      "daos"
+    ],
+    "mechanic": "decision",
+    "title": "When is DeFi an obliged entity?",
+    "spec": {
+      "kind": "decision",
+      "prompt": "Under the FATF 'control or sufficient influence' approach, when might a self-described DeFi arrangement be treated as a VASP and an obliged entity?",
+      "options": [
+        {
+          "id": "a",
+          "text": "When identifiable persons retain control or sufficient influence over the service, they may qualify as a VASP.",
+          "correct": true,
+          "why": "Owners or operators with control can carry VASP obligations."
+        },
+        {
+          "id": "b",
+          "text": "Never, because any arrangement labeled 'decentralized' is automatically outside all AML obligations.",
+          "correct": false,
+          "why": "A label does not determine regulatory status; conduct does."
+        },
+        {
+          "id": "c",
+          "text": "Only if the smart contract contains a bug that lets an administrator pause trading during an emergency shutdown of the entire protocol.",
+          "correct": false,
+          "why": "A bug is not the test; ongoing control or influence is."
+        },
+        {
+          "id": "d",
+          "text": "Only when the protocol charges no fees to any of its users at any point in time.",
+          "correct": false,
+          "why": "Fee levels are irrelevant to the control-or-influence test."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-token-1",
+    "conceptTags": [
+      "asset_risk_profile",
+      "issuer_freeze",
+      "stablecoins",
+      "tokenization"
+    ],
+    "mechanic": "sort",
+    "title": "Who can freeze the token?",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each asset by whether a central issuer can freeze or blocklist tokens.",
+      "buckets": [
+        {
+          "id": "freeze",
+          "label": "Issuer can freeze or blocklist"
+        },
+        {
+          "id": "no-freeze",
+          "label": "No issuer freeze capability"
+        }
+      ],
+      "items": [
+        {
+          "id": "t1",
+          "label": "A fiat-backed stablecoin with a central issuer that maintains a blocklist",
+          "bucket": "freeze",
+          "why": "The issuer can block flagged addresses at will."
+        },
+        {
+          "id": "t2",
+          "label": "A centrally issued tokenized security with a transfer-agent contract",
+          "bucket": "freeze",
+          "why": "The transfer agent can restrict or reverse transfers."
+        },
+        {
+          "id": "t3",
+          "label": "A permissioned stablecoin whose issuer can pause all transfers",
+          "bucket": "freeze",
+          "why": "A pause control gives the issuer freeze capability."
+        },
+        {
+          "id": "t4",
+          "label": "A decentralized native coin with no central issuer",
+          "bucket": "no-freeze",
+          "why": "There is no operator able to freeze holdings."
+        },
+        {
+          "id": "t5",
+          "label": "A non-custodial NFT minted on a permissionless chain with no admin controls",
+          "bucket": "no-freeze",
+          "why": "No admin key exists to seize or block the token."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-token-2",
+    "conceptTags": [
+      "nfts",
+      "wash_trading",
+      "tokenization"
+    ],
+    "mechanic": "red-flags",
+    "title": "NFT marketplace monitoring",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "An analyst reviews trading activity across an NFT marketplace for signs of manipulation and laundering.",
+      "prompt": "Select the genuine red flags.",
+      "items": [
+        {
+          "id": "a",
+          "label": "The same cluster of wallets repeatedly buys and sells one NFT among themselves at escalating prices.",
+          "flag": true,
+          "why": "Self-dealing among linked wallets indicates wash trading."
+        },
+        {
+          "id": "b",
+          "label": "An NFT is sold once at a market-consistent price to an unrelated buyer.",
+          "flag": false,
+          "why": "A single arm's-length sale is ordinary market activity."
+        },
+        {
+          "id": "c",
+          "label": "High-value NFT trades are funded from wallets with direct exposure to a sanctioned mixer.",
+          "flag": true,
+          "why": "Funding tied to a mixer signals illicit-source value."
+        },
+        {
+          "id": "d",
+          "label": "A creator lists a new collection with publicly disclosed royalty terms.",
+          "flag": false,
+          "why": "Disclosed royalties are a normal, transparent practice."
+        },
+        {
+          "id": "e",
+          "label": "Rapid round-trip trades generate volume but no change in net beneficial ownership.",
+          "flag": true,
+          "why": "Volume without ownership change points to wash trading."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-token-3",
+    "conceptTags": [
+      "stablecoin_backing",
+      "stablecoins",
+      "issuer_freeze",
+      "asset_risk_profile"
+    ],
+    "mechanic": "match",
+    "title": "Stablecoin mechanics",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each stablecoin concept to its correct description.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Fiat-backed stablecoin",
+          "right": "Claims one-to-one reserves of cash and cash-equivalents held by an issuer",
+          "why": "Its peg rests on held reserves backing each token."
+        },
+        {
+          "id": "p2",
+          "left": "Algorithmic stablecoin",
+          "right": "Maintains its peg through code and market incentives rather than reserves",
+          "why": "It relies on mechanisms, not custodied backing assets."
+        },
+        {
+          "id": "p3",
+          "left": "Issuer freeze function",
+          "right": "Lets a central operator block or seize tokens at a flagged address",
+          "why": "This control enables the issuer to halt illicit movement."
+        },
+        {
+          "id": "p4",
+          "left": "Reserve attestation",
+          "right": "A report used to test whether backing claims match actual holdings",
+          "why": "Attestations probe whether reserves really exist."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-priv-1",
+    "conceptTags": [
+      "obfuscation_overview",
+      "mixers_and_tumblers",
+      "chain_hopping",
+      "cross_chain_bridges"
+    ],
+    "mechanic": "sequence",
+    "title": "An obfuscation flow",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Put the stages of a common obfuscation flow in the correct order.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Illicit funds are deposited into a mixing service to break the deposit-to-withdrawal link",
+          "why": "Mixing severs the direct on-chain connection first."
+        },
+        {
+          "id": "s2",
+          "label": "Withdrawn funds are swapped into a privacy coin to further obscure the trail",
+          "why": "Privacy coins reduce on-chain visibility of the value."
+        },
+        {
+          "id": "s3",
+          "label": "Value is bridged across chains to fragment tracing across separate ledgers",
+          "why": "Cross-chain hops split the trail over multiple ledgers."
+        },
+        {
+          "id": "s4",
+          "label": "Assets are consolidated and cashed out at an off-ramp",
+          "why": "Cash-out converts the obscured value back to usable funds."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-priv-2",
+    "conceptTags": [
+      "tracing_after_obfuscation",
+      "obfuscation_response",
+      "mixers_and_tumblers"
+    ],
+    "mechanic": "decision",
+    "title": "Deposit from a mixer",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A customer's incoming deposit was withdrawn from a mixing service shortly before it reached your exchange. What is the most appropriate response?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Treat the mixer exposure as elevated risk, apply enhanced due diligence, and escalate or report as warranted.",
+          "correct": true,
+          "why": "Mixer exposure raises risk and calls for EDD and reporting."
+        },
+        {
+          "id": "b",
+          "text": "Accept the deposit without review because a mixer makes the funds untraceable and therefore low risk.",
+          "correct": false,
+          "why": "Obscured origin raises risk; it does not lower it."
+        },
+        {
+          "id": "c",
+          "text": "Immediately close every account that has ever received any transaction indirectly connected to any privacy tool, regardless of context or amount.",
+          "correct": false,
+          "why": "Blanket de-risking ignores risk-based, proportionate handling."
+        },
+        {
+          "id": "d",
+          "text": "Ignore the exposure since on-chain analytics can never say anything useful after a mixer.",
+          "correct": false,
+          "why": "Analytics can still surface exposure and next-hop signals."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-priv-3",
+    "conceptTags": [
+      "obfuscation_indicators",
+      "privacy_coins",
+      "chain_hopping",
+      "on_chain_transparency"
+    ],
+    "mechanic": "red-flags",
+    "title": "Spotting obfuscation indicators",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "An analyst monitors wallet activity for signs that a customer is deliberately obscuring value flows.",
+      "prompt": "Select the genuine obfuscation red flags.",
+      "items": [
+        {
+          "id": "a",
+          "label": "A customer rapidly converts incoming funds into a privacy coin and immediately moves them off-platform.",
+          "flag": true,
+          "why": "Fast conversion and exit suggests intent to obscure."
+        },
+        {
+          "id": "b",
+          "label": "Funds are chain-hopped across multiple bridges within minutes of receipt for no economic reason.",
+          "flag": true,
+          "why": "Rapid, purposeless bridging is a layering indicator."
+        },
+        {
+          "id": "c",
+          "label": "A customer holds a diversified portfolio and trades a few times a month on transparent chains.",
+          "flag": false,
+          "why": "Ordinary, visible activity is not an obfuscation signal."
+        },
+        {
+          "id": "d",
+          "label": "Incoming deposits have direct exposure to a known tumbler cluster.",
+          "flag": true,
+          "why": "Direct tumbler exposure ties value to obscuring services."
+        },
+        {
+          "id": "e",
+          "label": "A customer occasionally uses a well-known transparent public blockchain for routine transfers.",
+          "flag": false,
+          "why": "Routine transparent-chain use is normal behavior."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-mlcycle-1",
+    "conceptTags": [
+      "placement_layering_integration",
+      "money_laundering_in_crypto",
+      "fiat_on_off_ramps"
+    ],
+    "mechanic": "sort",
+    "title": "Placement, layering, or integration",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each crypto-related action into the money-laundering stage it best represents.",
+      "buckets": [
+        {
+          "id": "a",
+          "label": "Placement"
+        },
+        {
+          "id": "b",
+          "label": "Layering"
+        },
+        {
+          "id": "c",
+          "label": "Integration"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "Illicit cash is used to buy stablecoins over the counter through an unregistered broker",
+          "bucket": "a",
+          "why": "Converting dirty cash into crypto is the entry point that introduces illicit value into the system."
+        },
+        {
+          "id": "i2",
+          "label": "Coins are split across dozens of wallets and swapped through several tokens on a decentralized exchange",
+          "bucket": "b",
+          "why": "Rapid splitting and swapping is layering designed to obscure the trail."
+        },
+        {
+          "id": "i3",
+          "label": "Laundered proceeds are cashed out at a compliant exchange and used to buy a legitimately titled property",
+          "bucket": "c",
+          "why": "Returning cleaned value to the legitimate economy as an asset is integration."
+        },
+        {
+          "id": "i4",
+          "label": "Funds move through a mixing service and then across a cross-chain bridge to a new blockchain",
+          "bucket": "b",
+          "why": "Mixers and bridge hops break the on-chain link, a classic layering move."
+        },
+        {
+          "id": "i5",
+          "label": "Crypto is converted to fiat and paid as an apparently normal salary into a controlled company",
+          "bucket": "c",
+          "why": "Dressing proceeds as legitimate income reintroduces them as clean funds, which is integration."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-mlcycle-2",
+    "conceptTags": [
+      "layering_through_defi",
+      "money_laundering_in_crypto"
+    ],
+    "mechanic": "red-flags",
+    "title": "Reading a layering pattern",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A newly funded customer account at a virtual asset service provider receives a large stablecoin deposit and immediately begins moving value.",
+      "prompt": "Which behaviors are genuine layering red flags rather than ordinary activity?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Within minutes, deposits are routed through a mixer and then across three separate cross-chain bridges",
+          "flag": true,
+          "why": "Immediate mixing and multi-chain hopping is a deliberate obfuscation pattern."
+        },
+        {
+          "id": "b",
+          "label": "The customer swaps between several low-liquidity tokens on a decentralized exchange with no economic rationale",
+          "flag": true,
+          "why": "Purposeless chain-swapping through DeFi is used to break the transaction trail."
+        },
+        {
+          "id": "c",
+          "label": "The customer withdraws a portion to a hardware wallet they control and hold long term",
+          "flag": false,
+          "why": "Self-custody for long-term holding is common and not inherently suspicious."
+        },
+        {
+          "id": "d",
+          "label": "Value is split into many equal amounts sent to freshly created wallets seconds apart",
+          "flag": true,
+          "why": "Automated fan-out into new wallets is a layering signature."
+        },
+        {
+          "id": "e",
+          "label": "The customer pays a small network fee that matches current market gas prices",
+          "flag": false,
+          "why": "Paying prevailing gas fees is normal and expected."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-mlcycle-3",
+    "conceptTags": [
+      "fiat_on_off_ramps",
+      "money_laundering_in_crypto"
+    ],
+    "mechanic": "decision",
+    "title": "Where control bites hardest",
+    "spec": {
+      "kind": "decision",
+      "prompt": "Illicit crypto can hop across many wallets, but where does an AML program most reliably identify the beneficiaries behind laundered value?",
+      "options": [
+        {
+          "id": "a",
+          "text": "At the fiat on-ramp and off-ramp points, where regulated intermediaries perform identity checks",
+          "correct": true,
+          "why": "Regulated ramps are the chokepoints where pseudonymous value meets verified identity."
+        },
+        {
+          "id": "b",
+          "text": "At each intermediate self-hosted wallet, because every hop must be individually reported to regulators",
+          "correct": false,
+          "why": "Intermediate self-hosted wallets carry no reporting duty and are pseudonymous."
+        },
+        {
+          "id": "c",
+          "text": "During the layering stage, since mixing services are required to keep and share customer records",
+          "correct": false,
+          "why": "Mixers are designed to obscure and typically do not maintain verified records."
+        },
+        {
+          "id": "d",
+          "text": "Only on the underlying blockchain, because addresses always resolve automatically to real-world names",
+          "correct": false,
+          "why": "Blockchain addresses are pseudonymous and do not resolve to identities on their own."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tf-pf-1",
+    "conceptTags": [
+      "terrorist_financing_crypto",
+      "small_value_flows"
+    ],
+    "mechanic": "decision",
+    "title": "Small flows, laundering-tuned rules",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A monitoring system tuned for large-value laundering keeps missing suspected terrorist-financing activity. What best explains the gap?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Terrorist financing often moves in small, low-value amounts that fall below thresholds set for large laundering flows",
+          "correct": true,
+          "why": "TF value is frequently small, so amount-based thresholds designed for laundering miss it."
+        },
+        {
+          "id": "b",
+          "text": "Terrorist financing only ever uses privacy coins, so transparent chains never carry any relevant activity",
+          "correct": false,
+          "why": "TF uses many asset types, including transparent chains, not only privacy coins."
+        },
+        {
+          "id": "c",
+          "text": "Terrorist financing is always a single large transfer, so splitting logic is unnecessary for detection",
+          "correct": false,
+          "why": "TF is typically many small flows, not one large transfer."
+        },
+        {
+          "id": "d",
+          "text": "Terrorist financing can only ever originate from funds that are themselves the proceeds of a prior serious predicate crime, never from clean or legitimately earned money",
+          "correct": false,
+          "why": "TF can be funded by legitimate sources, unlike laundering which starts with illicit proceeds."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tf-pf-2",
+    "conceptTags": [
+      "proliferation_financing",
+      "state_sponsored_theft",
+      "terrorist_financing_crypto"
+    ],
+    "mechanic": "match",
+    "title": "Match the financing crime to its signature",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each financing concept to the characteristic that best distinguishes it.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Terrorist financing",
+          "right": "Value, which may be legitimately sourced, is directed toward acts of violence",
+          "why": "TF is defined by destination and purpose, not by the source being illicit."
+        },
+        {
+          "id": "p2",
+          "left": "Proliferation financing",
+          "right": "Funds support weapons programs in breach of international sanctions and controls",
+          "why": "PF concerns funding of weapons of mass destruction programs against sanctions."
+        },
+        {
+          "id": "p3",
+          "left": "State-sponsored theft",
+          "right": "A nation-state actor steals crypto to fund its own strategic objectives",
+          "why": "This treats large-scale hacking as statecraft to raise revenue."
+        },
+        {
+          "id": "p4",
+          "left": "Money laundering",
+          "right": "Illicitly obtained value is disguised so it appears to have a lawful origin",
+          "why": "Laundering starts from illicit proceeds and hides their criminal source."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tf-pf-3",
+    "conceptTags": [
+      "proliferation_financing",
+      "small_value_flows"
+    ],
+    "mechanic": "red-flags",
+    "title": "Spotting proliferation and TF signals",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "An analyst reviews a cluster of crypto activity tied to a customer operating across several high-risk corridors.",
+      "prompt": "Which observations are genuine proliferation or terrorist-financing red flags?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Wallet exposure traces back to addresses linked to a sanctioned jurisdiction's procurement network",
+          "flag": true,
+          "why": "Exposure to sanctioned procurement infrastructure is a proliferation-financing indicator."
+        },
+        {
+          "id": "b",
+          "label": "Frequent small transfers to fundraising addresses previously flagged in violent-extremist appeals",
+          "flag": true,
+          "why": "Repeated small donations to flagged appeal addresses is a TF signature."
+        },
+        {
+          "id": "c",
+          "label": "The customer occasionally pays a mainstream merchant for legitimate goods in stablecoins",
+          "flag": false,
+          "why": "Ordinary retail spending is not a financing red flag on its own."
+        },
+        {
+          "id": "d",
+          "label": "Structured purchases of dual-use components routed through opaque intermediary wallets",
+          "flag": true,
+          "why": "Concealed dual-use procurement is a proliferation-financing concern."
+        },
+        {
+          "id": "e",
+          "label": "The customer holds a diversified portfolio across several major cryptoassets",
+          "flag": false,
+          "why": "Holding a diversified portfolio is normal investor behavior."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-fraud-1",
+    "conceptTags": [
+      "pig_butchering",
+      "crypto_fraud"
+    ],
+    "mechanic": "sequence",
+    "title": "How a pig-butchering scam unfolds",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Put the stages of a typical pig-butchering investment scam in the order they occur.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "The scammer initiates contact through a social or messaging platform and builds a trusting relationship",
+          "why": "Grooming and trust-building is the entry stage of the scam."
+        },
+        {
+          "id": "s2",
+          "label": "The victim is introduced to a fake investment platform showing fabricated but attractive returns",
+          "why": "The staged platform manufactures false confidence to draw deposits."
+        },
+        {
+          "id": "s3",
+          "label": "The victim is encouraged to deposit increasing amounts as the displayed balance appears to grow",
+          "why": "Fattening the victim escalates the sums before extraction."
+        },
+        {
+          "id": "s4",
+          "label": "Withdrawals are blocked behind invented fees and taxes, and the operators disappear with the funds",
+          "why": "The exit stage extracts the maximum and cuts off the victim."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-fraud-2",
+    "conceptTags": [
+      "rug_pulls_and_ponzi",
+      "crypto_fraud"
+    ],
+    "mechanic": "red-flags",
+    "title": "Rug pull or legitimate token launch",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A customer asks about investing in a newly launched token that is being heavily promoted online.",
+      "prompt": "Which features are genuine rug-pull or Ponzi red flags rather than ordinary launch traits?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Anonymous developers hold a large concentrated share of supply with no lock-up",
+          "flag": true,
+          "why": "Concentrated insider supply with no lock enables a sudden dump."
+        },
+        {
+          "id": "b",
+          "label": "Returns are promised as guaranteed and paid to early holders from new deposits",
+          "flag": true,
+          "why": "Guaranteed returns funded by new money is the Ponzi mechanic."
+        },
+        {
+          "id": "c",
+          "label": "The project publishes an audited contract and a public, verifiable team",
+          "flag": false,
+          "why": "Audits and identifiable teams reduce rather than raise suspicion."
+        },
+        {
+          "id": "d",
+          "label": "Liquidity can be withdrawn by the creators at any time with no locking mechanism",
+          "flag": true,
+          "why": "Removable liquidity lets creators drain the pool, the core rug-pull risk."
+        },
+        {
+          "id": "e",
+          "label": "The token trades on venues with normal spreads and organic volume over time",
+          "flag": false,
+          "why": "Organic, sustained trading is a sign of genuine market activity."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-fraud-3",
+    "conceptTags": [
+      "fraud_aml_nexus",
+      "crypto_fraud"
+    ],
+    "mechanic": "decision",
+    "title": "The fraud-AML nexus",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A victim's stolen crypto lands in an account at your platform and is being moved onward. Why does fraud matter to the AML function, not just fraud prevention?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Fraud proceeds are criminal property, so moving them through the platform can constitute money laundering that must be detected and reported",
+          "correct": true,
+          "why": "Handling fraud proceeds triggers AML obligations because they are criminal property."
+        },
+        {
+          "id": "b",
+          "text": "Fraud is handled only by law enforcement after the fact, so a crypto platform that merely moves the funds onward has no reason to file any internal suspicious-activity report",
+          "correct": false,
+          "why": "Platforms still owe suspicious-activity reporting duties on fraud proceeds."
+        },
+        {
+          "id": "c",
+          "text": "Fraud losses are the victim's responsibility alone, so the receiving platform faces no laundering exposure",
+          "correct": false,
+          "why": "The receiving platform can be laundering the proceeds regardless of victim fault."
+        },
+        {
+          "id": "d",
+          "text": "Fraud proceeds stop being criminal property the moment they are converted between different cryptoassets",
+          "correct": false,
+          "why": "Conversion does not cleanse criminal property; it remains within scope."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tax-1",
+    "conceptTags": [
+      "tax_evasion",
+      "predicate_offence"
+    ],
+    "mechanic": "decision",
+    "title": "Tax evasion as a predicate",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A customer routes trading gains through hidden wallets to avoid declaring them. Why is this an AML concern and not purely a tax matter?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tax evasion is a predicate offence, so the undeclared proceeds are criminal property that can be laundered",
+          "correct": true,
+          "why": "Where tax evasion is a predicate, its proceeds fall within AML scope."
+        },
+        {
+          "id": "b",
+          "text": "Tax matters are always outside AML scope because a separate authority collects the revenue involved",
+          "correct": false,
+          "why": "Predicate tax offences bring proceeds squarely into AML scope."
+        },
+        {
+          "id": "c",
+          "text": "Only cash-based evasion counts, so gains held or moved as cryptoassets can never be a predicate offence",
+          "correct": false,
+          "why": "The form of the asset does not exclude crypto proceeds from being predicate proceeds."
+        },
+        {
+          "id": "d",
+          "text": "Tax evasion becomes reportable only after a court has already convicted the customer of the underlying offence",
+          "correct": false,
+          "why": "Suspicion, not a prior conviction, is what triggers reporting duties."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tax-2",
+    "conceptTags": [
+      "offshore_structuring",
+      "tax_evasion"
+    ],
+    "mechanic": "red-flags",
+    "title": "Offshore structuring signals",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A customer onboards using a chain of entities and wallets spread across several jurisdictions.",
+      "prompt": "Which features suggest offshore structuring to conceal taxable crypto activity rather than legitimate arrangements?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Beneficial ownership is buried behind shell entities in secrecy jurisdictions with no clear business purpose",
+          "flag": true,
+          "why": "Opaque shell layering with no purpose is a structuring red flag."
+        },
+        {
+          "id": "b",
+          "label": "Trading profits are routed to a nominee-held wallet that the customer directs but does not appear to own",
+          "flag": true,
+          "why": "Nominee control that hides ownership is a concealment indicator."
+        },
+        {
+          "id": "c",
+          "label": "The customer files consistent tax residency information matching their verified documents",
+          "flag": false,
+          "why": "Consistent, verifiable residency information is not suspicious."
+        },
+        {
+          "id": "d",
+          "label": "Value is deliberately fragmented across jurisdictions to stay below any single reporting trigger",
+          "flag": true,
+          "why": "Fragmenting to defeat reporting thresholds is structuring."
+        },
+        {
+          "id": "e",
+          "label": "A genuine operating company holds crypto on a published, audited balance sheet",
+          "flag": false,
+          "why": "Transparent corporate holding is legitimate treasury activity."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tax-3",
+    "conceptTags": [
+      "crypto_tax_reporting",
+      "offshore_structuring"
+    ],
+    "mechanic": "match",
+    "title": "Match the transparency measure",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each concept to what it does in closing the crypto tax gap.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Crypto tax reporting frameworks",
+          "right": "Require intermediaries to report customer crypto activity to tax authorities",
+          "why": "Reporting rules make previously hidden activity visible to revenue authorities."
+        },
+        {
+          "id": "p2",
+          "left": "Offshore structuring",
+          "right": "Uses cross-border entities and wallets to hide who ultimately controls the value",
+          "why": "Structuring is the concealment method these frameworks aim to defeat."
+        },
+        {
+          "id": "p3",
+          "left": "Beneficial ownership transparency",
+          "right": "Identifies the natural person who actually controls a structure",
+          "why": "Ownership transparency pierces nominee and shell arrangements."
+        },
+        {
+          "id": "p4",
+          "left": "Automatic exchange of information",
+          "right": "Shares reported account data between jurisdictions on a periodic basis",
+          "why": "Cross-border data sharing reduces the value of hiding assets abroad."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-ransom-1",
+    "conceptTags": [
+      "ransomware",
+      "ransom_payment_risk",
+      "sanctioned_exchanges"
+    ],
+    "mechanic": "sequence",
+    "title": "A ransom payment's path",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Order the stages of a typical ransomware extortion payment and its aftermath.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Attackers encrypt a victim's systems and demand payment in crypto to a specified address",
+          "why": "The demand stage sets the extortion in motion."
+        },
+        {
+          "id": "s2",
+          "label": "The victim, often via an intermediary, sends the ransom to the attacker-controlled address",
+          "why": "Payment transfers value to the attacker and creates sanctions exposure risk."
+        },
+        {
+          "id": "s3",
+          "label": "The attackers layer the funds through mixers and multiple wallets to obscure the trail",
+          "why": "Layering hides the proceeds before cash-out."
+        },
+        {
+          "id": "s4",
+          "label": "The proceeds are cashed out through a high-risk or sanctioned exchange with weak controls",
+          "why": "Complicit off-ramps convert the laundered ransom into usable value."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-ransom-2",
+    "conceptTags": [
+      "ransom_payment_risk",
+      "sanctioned_exchanges"
+    ],
+    "mechanic": "decision",
+    "title": "Facilitating a ransom payment",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A client asks your firm to help transmit a ransomware payment quickly. Beyond the extortion itself, what is the key AFC risk to weigh?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The payment may go to a sanctioned party, creating sanctions-breach and facilitation exposure regardless of urgency",
+          "correct": true,
+          "why": "Ransom recipients may be sanctioned, so paying risks a sanctions violation."
+        },
+        {
+          "id": "b",
+          "text": "There is no risk at all provided the client is the genuine victim of the attack",
+          "correct": false,
+          "why": "Victim status does not remove sanctions and facilitation exposure."
+        },
+        {
+          "id": "c",
+          "text": "The only concern is whether the network fee is high enough for the transfer to confirm quickly",
+          "correct": false,
+          "why": "Fee sizing is trivial next to sanctions and reporting risk."
+        },
+        {
+          "id": "d",
+          "text": "Sanctions rules never apply to a ransomware payment, because the payer is acting entirely under duress at the time and that duress removes any strict-liability sanctions exposure",
+          "correct": false,
+          "why": "Duress does not automatically exempt a payment from sanctions rules."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-ransom-3",
+    "conceptTags": [
+      "darknet_markets",
+      "sanctioned_exchanges",
+      "ransomware"
+    ],
+    "mechanic": "sort",
+    "title": "Classify the illicit venue or actor",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each element into the category it best fits within the illicit-marketplace and ransomware landscape.",
+      "buckets": [
+        {
+          "id": "a",
+          "label": "Darknet marketplace"
+        },
+        {
+          "id": "b",
+          "label": "Complicit cash-out venue"
+        },
+        {
+          "id": "c",
+          "label": "Ransomware operation"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "A hidden-service site selling illegal goods for crypto with escrow between buyers and vendors",
+          "bucket": "a",
+          "why": "An anonymized marketplace with crypto escrow is a darknet market."
+        },
+        {
+          "id": "i2",
+          "label": "An exchange repeatedly processing proceeds for known criminal actors despite designation",
+          "bucket": "b",
+          "why": "A designated exchange knowingly cashing out proceeds is a complicit off-ramp."
+        },
+        {
+          "id": "i3",
+          "label": "A group deploying encryption malware and demanding crypto to restore access",
+          "bucket": "c",
+          "why": "Encrypt-and-extort for crypto defines a ransomware operation."
+        },
+        {
+          "id": "i4",
+          "label": "A vendor storefront accepting crypto for stolen data behind an anonymity network",
+          "bucket": "a",
+          "why": "Anonymous storefronts selling illicit data are darknet-market activity."
+        },
+        {
+          "id": "i5",
+          "label": "A nested service inside a larger exchange used to obscure the origin of tainted funds",
+          "bucket": "b",
+          "why": "Nested cash-out services function as complicit laundering off-ramps."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-typ-1",
+    "conceptTags": [
+      "peel_chains_and_nesting",
+      "crypto_typologies"
+    ],
+    "mechanic": "match",
+    "title": "Match the typology to its mechanic",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each crypto laundering typology to how it actually works.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Peel chain",
+          "right": "Small amounts are peeled off across a long sequence of hops while a remainder moves on",
+          "why": "Peel chains shed value gradually to obscure the main flow."
+        },
+        {
+          "id": "p2",
+          "left": "Nesting",
+          "right": "A smaller service operates inside a larger exchange to piggyback on its access",
+          "why": "Nesting hides illicit flows within a host exchange's activity."
+        },
+        {
+          "id": "p3",
+          "left": "Structuring and smurfing",
+          "right": "Value is broken into many sub-threshold amounts across accounts or wallets",
+          "why": "Structuring defeats reporting thresholds through fragmentation."
+        },
+        {
+          "id": "p4",
+          "left": "Chain-hopping",
+          "right": "Value is swapped across different blockchains to break the on-chain trail",
+          "why": "Moving between chains frustrates single-ledger tracing."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-typ-2",
+    "conceptTags": [
+      "structuring_and_smurfing",
+      "red_flag_indicators"
+    ],
+    "mechanic": "red-flags",
+    "title": "Structuring in the numbers",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "An analyst reviews deposit and withdrawal patterns across a set of linked customer accounts.",
+      "prompt": "Which patterns are genuine structuring or smurfing red flags?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Many deposits sit just below a reporting threshold and cluster tightly in time",
+          "flag": true,
+          "why": "Repeated just-under-threshold amounts is the structuring signature."
+        },
+        {
+          "id": "b",
+          "label": "Multiple accounts controlled by apparent proxies send equal amounts to one gathering wallet",
+          "flag": true,
+          "why": "Coordinated equal transfers from proxies into one wallet is smurfing."
+        },
+        {
+          "id": "c",
+          "label": "A single customer makes one large, fully documented transfer for a stated business purpose",
+          "flag": false,
+          "why": "A transparent, well-documented large transfer is not structuring."
+        },
+        {
+          "id": "d",
+          "label": "A customer suddenly fragments a known large balance into dozens of smaller outbound sends",
+          "flag": true,
+          "why": "Deliberate fragmentation of a large balance points to structuring."
+        },
+        {
+          "id": "e",
+          "label": "A customer's monthly deposit varies naturally with their disclosed salary payments",
+          "flag": false,
+          "why": "Ordinary income variation is expected, not a red flag."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-typ-3",
+    "conceptTags": [
+      "red_flag_indicators",
+      "crypto_typologies",
+      "peel_chains_and_nesting"
+    ],
+    "mechanic": "decision",
+    "title": "Reading a red-flag cluster",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A wallet receives a large deposit, then peels off small amounts through a long hop sequence before the remainder reaches a nested service. What is the best analyst conclusion?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The combined peel-chain and nesting pattern warrants escalation and investigation as likely layering",
+          "correct": true,
+          "why": "Peel chains feeding a nested service is a strong layering indicator that should be escalated."
+        },
+        {
+          "id": "b",
+          "text": "No action is needed because each individual small transfer sits below a reporting threshold on its own",
+          "correct": false,
+          "why": "Individual sub-threshold amounts do not neutralize an overall structuring and layering pattern."
+        },
+        {
+          "id": "c",
+          "text": "The activity is automatically clean because it all occurred on a single transparent public blockchain",
+          "correct": false,
+          "why": "Transparency of the ledger does not make an obfuscation pattern legitimate."
+        },
+        {
+          "id": "d",
+          "text": "It can be dismissed as ordinary trading since the wallet paid standard network fees on every hop",
+          "correct": false,
+          "why": "Normal fees say nothing about the legitimacy of the underlying flow."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-r15-1",
+    "conceptTags": [
+      "vasp_definition",
+      "recommendation_15",
+      "inr15"
+    ],
+    "mechanic": "decision",
+    "title": "Is publishing code a VASP activity?",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A software developer publishes open-source code for a peer-to-peer trading protocol. They host no service, hold no customer funds, control no keys, and conduct no transfers for anyone. How should this be characterized under FATF Recommendation 15 and INR.15?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The developer is not a VASP for publishing code alone, since they do not conduct covered VASP activities as a business for or on behalf of others.",
+          "correct": true,
+          "why": "The VASP definition turns on conducting covered activities for others as a business, not on merely writing software."
+        },
+        {
+          "id": "b",
+          "text": "The developer is automatically a VASP, because any software that touches virtual assets falls within the VASP definition.",
+          "correct": false,
+          "why": "There is no rule that any software touching virtual assets is a VASP; the covered activities test still applies."
+        },
+        {
+          "id": "c",
+          "text": "The developer is a VASP because writing and publishing code that other people later choose to use to transfer value is itself the covered VASP activity of transferring virtual assets on behalf of others.",
+          "correct": false,
+          "why": "Publishing code is not the same as transferring virtual assets for others; the developer performs no transfer for a customer."
+        },
+        {
+          "id": "d",
+          "text": "The developer is permanently exempt from all AML obligations, so no future facts could ever bring them within scope.",
+          "correct": false,
+          "why": "Scope depends on conduct, so later activity such as running a hosted service could bring them in."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-r15-2",
+    "conceptTags": [
+      "vasp_definition",
+      "vasp_obligations_in_practice",
+      "preventive_measures"
+    ],
+    "mechanic": "sort",
+    "title": "In scope as a VASP activity?",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each activity by whether it is a covered VASP activity under the FATF definition.",
+      "buckets": [
+        {
+          "id": "in",
+          "label": "Covered VASP activity"
+        },
+        {
+          "id": "out",
+          "label": "Not a VASP activity"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "A business exchanges customers' fiat currency for virtual assets.",
+          "bucket": "in",
+          "why": "Exchange between virtual assets and fiat currency is a covered VASP activity."
+        },
+        {
+          "id": "i2",
+          "label": "A business safekeeps virtual assets and holds the private keys on behalf of its customers.",
+          "bucket": "in",
+          "why": "Safekeeping or administration of assets or instruments enabling control is a covered VASP activity."
+        },
+        {
+          "id": "i3",
+          "label": "An individual buys crypto with their own money and holds it long term for themselves.",
+          "bucket": "out",
+          "why": "Acting for oneself, not as a business for others, is outside the VASP definition."
+        },
+        {
+          "id": "i4",
+          "label": "A business transfers virtual assets between wallets on behalf of its customers.",
+          "bucket": "in",
+          "why": "Transfer of virtual assets on behalf of others is a covered VASP activity."
+        },
+        {
+          "id": "i5",
+          "label": "A merchant accepts virtual assets as payment for goods but does not exchange or transfer them for others.",
+          "bucket": "out",
+          "why": "Simply accepting an asset as payment is not itself a covered VASP activity."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-r15-3",
+    "conceptTags": [
+      "recommendation_15",
+      "vasp_licensing",
+      "vasp_supervision",
+      "recommendation_mapping"
+    ],
+    "mechanic": "match",
+    "title": "R.15 obligations to their meaning",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each Recommendation 15 / INR.15 obligation to its correct description.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Licensing or registration",
+          "right": "VASPs must be licensed or registered in the jurisdiction where they are created or established.",
+          "why": "INR.15 requires VASPs to be licensed or registered, not merely self-declared."
+        },
+        {
+          "id": "p2",
+          "left": "AML/CFT supervision",
+          "right": "A competent authority monitors and supervises VASPs for compliance, not a self-regulation-only model.",
+          "why": "VASPs must be subject to effective systems for supervision by a competent authority."
+        },
+        {
+          "id": "p3",
+          "left": "Preventive measures",
+          "right": "VASPs apply customer due diligence, recordkeeping, and suspicious transaction reporting.",
+          "why": "VASPs are subject to the same preventive measures as other reporting institutions."
+        },
+        {
+          "id": "p4",
+          "left": "Risk assessment",
+          "right": "Countries and VASPs identify, assess, and mitigate the ML/TF risks of virtual asset activities.",
+          "why": "R.15 requires understanding and mitigating the risks of virtual asset activities."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tr16-1",
+    "conceptTags": [
+      "travel_rule",
+      "recommendation_16",
+      "travel_rule_mechanics",
+      "originating_vs_beneficiary_vasp"
+    ],
+    "mechanic": "sequence",
+    "title": "Order a compliant Travel Rule transfer",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Put the steps of a compliant Travel Rule transfer between two VASPs in the correct order.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "The originating VASP collects and verifies the required originator information and the required beneficiary information.",
+          "why": "The originating VASP must obtain and hold the required data before the transfer."
+        },
+        {
+          "id": "s2",
+          "label": "The originating VASP transmits the required data set securely to the beneficiary VASP, at or before the transfer.",
+          "why": "The data must travel immediately and securely with the transfer."
+        },
+        {
+          "id": "s3",
+          "label": "The beneficiary VASP receives the data and screens the parties and information for sanctions and suspicious indicators.",
+          "why": "The beneficiary VASP must review the received information on receipt."
+        },
+        {
+          "id": "s4",
+          "label": "The beneficiary VASP records the information and releases the funds or acts further if red flags arise.",
+          "why": "The beneficiary VASP must hold the data and take risk-based action."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tr16-2",
+    "conceptTags": [
+      "travel_rule_data_set",
+      "originator_beneficiary_information",
+      "inr16_data_elements",
+      "travel_rule_in_practice"
+    ],
+    "mechanic": "red-flags",
+    "title": "Red flags in a received Travel Rule message",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "Your VASP receives an incoming above-threshold transfer together with its accompanying originator and beneficiary data.",
+      "prompt": "Which of these are genuine Travel Rule red flags?",
+      "items": [
+        {
+          "id": "a",
+          "label": "The originator name field is blank for an above-threshold transfer.",
+          "flag": true,
+          "why": "Missing required originator information is a core Travel Rule deficiency."
+        },
+        {
+          "id": "b",
+          "label": "The message carries the originator name and wallet address but omits the required physical address or ID number.",
+          "flag": true,
+          "why": "Above-threshold transfers require the fuller originator data set, not just name and address."
+        },
+        {
+          "id": "c",
+          "label": "The beneficiary name in the message does not match the account holder receiving the funds.",
+          "flag": true,
+          "why": "A beneficiary mismatch signals possible misdirection or false information."
+        },
+        {
+          "id": "d",
+          "label": "The message includes a complete, verified originator data set that matches the transfer.",
+          "flag": false,
+          "why": "A complete and consistent data set is exactly what compliance expects."
+        },
+        {
+          "id": "e",
+          "label": "The transfer settled in a widely used stablecoin rather than the network's native coin.",
+          "flag": false,
+          "why": "The asset type alone is not a Travel Rule red flag."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-tr16-3",
+    "conceptTags": [
+      "originating_vs_beneficiary_vasp",
+      "inr16_data_elements",
+      "originator_beneficiary_information"
+    ],
+    "mechanic": "match",
+    "title": "Match the Travel Rule duty to the party",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each Travel Rule element or duty to what it correctly describes.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Originator name and originator wallet address",
+          "right": "Required originator information the originating VASP must obtain and hold.",
+          "why": "These identify the sender and are part of the required originator data."
+        },
+        {
+          "id": "p2",
+          "left": "Beneficiary name and beneficiary wallet address",
+          "right": "Required beneficiary information transmitted to the beneficiary VASP.",
+          "why": "These identify the recipient and travel with the transfer."
+        },
+        {
+          "id": "p3",
+          "left": "Transmit the data set immediately and securely",
+          "right": "Obligation of the originating VASP at the time of the transfer.",
+          "why": "The originating VASP must submit the data securely when the transfer is made."
+        },
+        {
+          "id": "p4",
+          "left": "Obtain, hold, and screen the received information",
+          "right": "Obligation of the beneficiary VASP on receipt.",
+          "why": "The beneficiary VASP must keep and check the information it receives."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-sunrise-1",
+    "conceptTags": [
+      "sunrise_problem",
+      "counterparty_vasp_due_diligence",
+      "travel_rule_interoperability"
+    ],
+    "mechanic": "decision",
+    "title": "Sending into a non-implementing jurisdiction",
+    "spec": {
+      "kind": "decision",
+      "prompt": "Your VASP must send a cross-border transfer to a counterparty VASP in a jurisdiction that has not yet implemented the Travel Rule and cannot receive the required data set. What is the appropriate risk-based approach?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Still collect and retain the required originator and beneficiary information, apply a counterparty and transaction risk assessment, and decide whether to proceed, delay, or decline.",
+          "correct": true,
+          "why": "Your own obligation to obtain and hold data persists, and residual risk is managed case by case."
+        },
+        {
+          "id": "b",
+          "text": "Proceed automatically with no data collection at all, because the receiving jurisdiction has not implemented the rule, and that gap completely removes your own obligation to obtain and hold originator information.",
+          "correct": false,
+          "why": "The counterparty's gap does not erase your own collection and retention duties."
+        },
+        {
+          "id": "c",
+          "text": "Refuse every transfer to any jurisdiction that has not yet implemented the Travel Rule, without any risk assessment.",
+          "correct": false,
+          "why": "A blanket refusal ignores the required risk-based approach."
+        },
+        {
+          "id": "d",
+          "text": "Send the funds and email the data to any address you find, without verifying it belongs to the counterparty.",
+          "correct": false,
+          "why": "Transmitting data to an unverified recipient creates its own compliance and security risk."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-sunrise-2",
+    "conceptTags": [
+      "counterparty_risk_in_practice",
+      "unhosted_wallets",
+      "counterparty_vasp_due_diligence"
+    ],
+    "mechanic": "sort",
+    "title": "Counterparty VASP or unhosted wallet?",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each outgoing transfer by whether it goes to a counterparty VASP or to an unhosted wallet.",
+      "buckets": [
+        {
+          "id": "vasp",
+          "label": "Transfer to a counterparty VASP"
+        },
+        {
+          "id": "unhosted",
+          "label": "Transfer to an unhosted wallet"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "Transfer to a customer account held at another regulated exchange.",
+          "bucket": "vasp",
+          "why": "The receiving account sits at a VASP, so counterparty VASP due diligence applies."
+        },
+        {
+          "id": "i2",
+          "label": "Transfer to a self-hosted wallet controlled directly by your own customer, with no institution involved.",
+          "bucket": "unhosted",
+          "why": "No intermediary VASP is present, so risk-based unhosted-wallet measures apply."
+        },
+        {
+          "id": "i3",
+          "label": "Transfer to a hosted account at a custodian that holds keys for its users.",
+          "bucket": "vasp",
+          "why": "A custodian holding keys for users is a VASP counterparty."
+        },
+        {
+          "id": "i4",
+          "label": "Transfer to a wallet an individual controls with their own private keys, not through any service.",
+          "bucket": "unhosted",
+          "why": "A wallet controlled directly by a person with no service is unhosted."
+        },
+        {
+          "id": "i5",
+          "label": "Transfer to a beneficiary account at an overseas exchange identified through its Travel Rule participation.",
+          "bucket": "vasp",
+          "why": "The overseas exchange is a counterparty VASP that exchanges Travel Rule data."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-sunrise-3",
+    "conceptTags": [
+      "counterparty_due_diligence_checklist",
+      "counterparty_vasp_due_diligence",
+      "counterparty_risk_in_practice"
+    ],
+    "mechanic": "red-flags",
+    "title": "Counterparty VASP due diligence red flags",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "You are performing due diligence on a counterparty VASP before enabling transfers to it.",
+      "prompt": "Which findings are genuine counterparty due diligence red flags?",
+      "items": [
+        {
+          "id": "a",
+          "label": "The counterparty cannot demonstrate any license or registration in the jurisdiction where it operates.",
+          "flag": true,
+          "why": "An unlicensed or unregistered counterparty is a significant risk indicator."
+        },
+        {
+          "id": "b",
+          "label": "The counterparty advertises that it performs no customer identification and permits fully anonymous accounts.",
+          "flag": true,
+          "why": "Absence of customer identification signals weak or missing AML controls."
+        },
+        {
+          "id": "c",
+          "label": "The counterparty is unwilling to exchange required Travel Rule information or to name its regulator.",
+          "flag": true,
+          "why": "Refusing to share required data or identify a regulator undermines counterparty trust."
+        },
+        {
+          "id": "d",
+          "label": "The counterparty uses a different Travel Rule messaging protocol but supports an interoperability bridge.",
+          "flag": false,
+          "why": "Protocol differences are a solvable interoperability matter, not a control failure."
+        },
+        {
+          "id": "e",
+          "label": "The counterparty is incorporated in a different country from yours.",
+          "flag": false,
+          "why": "Cross-border operation alone is not a red flag."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-sanctions-1",
+    "conceptTags": [
+      "designated_addresses",
+      "crypto_sanctions",
+      "ofac_obligations",
+      "address_screening"
+    ],
+    "mechanic": "decision",
+    "title": "A hit on a designated address",
+    "spec": {
+      "kind": "decision",
+      "prompt": "Your screening flags that an incoming transfer originates from a wallet address that appears on the sanctions authority's designated (SDN-type) list. Under a strict-liability sanctions regime, what must you do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Block or reject the transaction consistent with your obligations and report the blocked property to the relevant authority, rather than processing it.",
+          "correct": true,
+          "why": "Dealings tied to a designated address must be blocked or rejected and reported."
+        },
+        {
+          "id": "b",
+          "text": "Process the transfer normally, because the customer receiving the funds is not themselves a designated person, so the designated origin address does not create any obligation for you.",
+          "correct": false,
+          "why": "The designated origin triggers obligations regardless of whether your customer is listed."
+        },
+        {
+          "id": "c",
+          "text": "Return the funds quietly to the originating address with no report, so the customer is not inconvenienced.",
+          "correct": false,
+          "why": "Returning funds to a sanctioned source without reporting defeats the sanctions obligation."
+        },
+        {
+          "id": "d",
+          "text": "Ignore the alert, because sanctions rules apply only to fiat currency and never to virtual assets.",
+          "correct": false,
+          "why": "Sanctions apply to virtual assets the same as to fiat value."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-sanctions-2",
+    "conceptTags": [
+      "address_screening",
+      "crypto_sanctions_in_practice",
+      "designated_addresses"
+    ],
+    "mechanic": "red-flags",
+    "title": "Sanctions red flags in on-chain activity",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "You review a customer's on-chain activity for sanctions exposure.",
+      "prompt": "Which observations are genuine sanctions red flags?",
+      "items": [
+        {
+          "id": "a",
+          "label": "A deposit received directly from an address on the sanctions authority's designated list.",
+          "flag": true,
+          "why": "A direct link to a designated address is a clear sanctions exposure."
+        },
+        {
+          "id": "b",
+          "label": "Value routed through a mixer immediately before reaching your platform, apparently to obscure a designated-address origin.",
+          "flag": true,
+          "why": "Deliberate obfuscation of a designated origin is a strong sanctions-evasion signal."
+        },
+        {
+          "id": "c",
+          "label": "Wallet and access patterns indicating the customer is transacting from a comprehensively sanctioned jurisdiction.",
+          "flag": true,
+          "why": "Activity from a comprehensively sanctioned jurisdiction raises direct sanctions risk."
+        },
+        {
+          "id": "d",
+          "label": "The customer occasionally moves assets to a hardware wallet for self-custody between trades.",
+          "flag": false,
+          "why": "Ordinary self-custody is not a sanctions indicator by itself."
+        },
+        {
+          "id": "e",
+          "label": "The customer's transfers settle in a major stablecoin widely used across the market.",
+          "flag": false,
+          "why": "Using a common stablecoin is not a sanctions red flag."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-sanctions-3",
+    "conceptTags": [
+      "crypto_sanctions",
+      "designated_addresses",
+      "ofac_obligations",
+      "address_screening"
+    ],
+    "mechanic": "match",
+    "title": "Match the sanctions concept to its meaning",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each crypto sanctions concept to its correct meaning.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Strict liability",
+          "right": "Violations can arise without intent or knowledge, so screening controls must be robust.",
+          "why": "Strict-liability regimes do not require intent, raising the bar for controls."
+        },
+        {
+          "id": "p2",
+          "left": "Designated address",
+          "right": "A wallet address associated with a sanctioned person or entity that must be blocked or rejected.",
+          "why": "Designated addresses carry the same restrictions as the listed party."
+        },
+        {
+          "id": "p3",
+          "left": "Blocking",
+          "right": "Freezing the property and reporting it, rather than returning the funds to the sender.",
+          "why": "Blocking holds the property and reports it, unlike a return or rejection."
+        },
+        {
+          "id": "p4",
+          "left": "Address screening",
+          "right": "Checking wallet addresses in transactions against current sanctions lists before processing.",
+          "why": "Screening addresses before processing prevents prohibited dealings."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-us-1-user-or-transmitter",
+    "conceptTags": [
+      "money_transmitter",
+      "fincen_cvc_guidance"
+    ],
+    "mechanic": "decision",
+    "title": "User or money transmitter?",
+    "spec": {
+      "kind": "decision",
+      "prompt": "Two crypto businesses ask whether FinCEN's rules make them money transmitters. One runs an online platform that exchanges customers' bitcoin for US dollars and back. The other is a software company that buys crypto only for its own treasury and never handles customer funds. Under FinCEN's 2013 convertible-virtual-currency guidance, which is right?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The exchange platform is a money transmitter and must register with FinCEN; the software firm, using crypto only for itself, is a user and is not.",
+          "correct": true,
+          "why": "An exchanger transmits value for others; a firm using crypto for itself is a user."
+        },
+        {
+          "id": "b",
+          "text": "Both are money transmitters, because any business that so much as touches convertible virtual currency falls inside FinCEN's money-services-business rules, whatever it actually does with the funds.",
+          "correct": false,
+          "why": "Only transmitting or exchanging value for others triggers the rule, not any contact with crypto."
+        },
+        {
+          "id": "c",
+          "text": "Neither is regulated, because FinCEN's 2013 guidance was only interpretive and reaches banks alone.",
+          "correct": false,
+          "why": "The 2013 guidance applied money-services-business rules to crypto exchangers, not only banks."
+        },
+        {
+          "id": "d",
+          "text": "Only the software firm is a money transmitter, since holding crypto on its own balance sheet is the regulated act.",
+          "correct": false,
+          "why": "Holding crypto on your own balance sheet is a user act, not transmission."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-us-2-which-authority",
+    "conceptTags": [
+      "sec_cftc_split",
+      "money_transmitter",
+      "bitlicense",
+      "fincen_cvc_guidance"
+    ],
+    "mechanic": "match",
+    "title": "Which US authority reaches it?",
+    "spec": {
+      "kind": "match",
+      "prompt": "The US regime is layers, each run by a different authority. Match each question to the authority whose layer answers it.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Whether a token is a security subject to registration and disclosure",
+          "right": "The SEC, which regulates assets that are securities",
+          "why": "Securities fall to the SEC."
+        },
+        {
+          "id": "p2",
+          "left": "Crypto commodity derivatives such as futures",
+          "right": "The CFTC, which also reaches the spot market through anti-fraud and anti-manipulation powers",
+          "why": "Commodity derivatives, and spot-market fraud, fall to the CFTC."
+        },
+        {
+          "id": "p3",
+          "left": "AML duties of a business exchanging crypto for customers",
+          "right": "FinCEN, under the Bank Secrecy Act money-transmitter rules",
+          "why": "AML for exchangers is FinCEN's layer."
+        },
+        {
+          "id": "p4",
+          "left": "Virtual-currency business activity involving a New York resident",
+          "right": "New York's Department of Financial Services, through the BitLicense",
+          "why": "New York draws its own perimeter with the BitLicense."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-us-3-exposure-red-flags",
+    "conceptTags": [
+      "fincen_enforcement_in_practice",
+      "money_transmitter",
+      "bitlicense"
+    ],
+    "mechanic": "red-flags",
+    "title": "Exposed to FinCEN and the DOJ?",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A crypto exchange operates from abroad but actively markets to and serves US customers, including residents of New York. A reviewer checks its compliance posture.",
+      "prompt": "Which of these are genuine red flags that the business is exposed to FinCEN civil penalties or a DOJ criminal case?",
+      "items": [
+        {
+          "id": "a",
+          "label": "It exchanges crypto for US customers but has never registered with FinCEN as a money services business.",
+          "flag": true,
+          "why": "Exchanging for US customers without FinCEN registration is unlawful transmission."
+        },
+        {
+          "id": "b",
+          "label": "It has no written anti-money-laundering program and files no suspicious activity reports.",
+          "flag": true,
+          "why": "No AML program and no reports breach core Bank Secrecy Act duties."
+        },
+        {
+          "id": "c",
+          "label": "It serves New York residents' virtual-currency business activity but holds no BitLicense.",
+          "flag": true,
+          "why": "Serving New York residents' virtual-currency activity needs a BitLicense."
+        },
+        {
+          "id": "d",
+          "label": "It publishes audited financial statements and lists its corporate officers on its website.",
+          "flag": false,
+          "why": "Publishing accounts and naming officers is transparency, not a violation."
+        },
+        {
+          "id": "e",
+          "label": "It converts part of its own corporate profits into bitcoin as a treasury reserve.",
+          "flag": false,
+          "why": "Holding crypto for its own treasury is a user act, not transmission."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-eu-1-mica-or-aml",
+    "conceptTags": [
+      "mica",
+      "casp_authorisation",
+      "transfer_of_funds_regulation",
+      "eu_aml_package"
+    ],
+    "mechanic": "sort",
+    "title": "MiCA, or the AML strand?",
+    "spec": {
+      "kind": "sort",
+      "prompt": "The EU keeps two strands separate: MiCA for market and prudential rules, and the AML framework for financial crime. Sort each obligation into the strand it belongs to.",
+      "buckets": [
+        {
+          "id": "mica",
+          "label": "MiCA (market and prudential regulation)"
+        },
+        {
+          "id": "aml",
+          "label": "The AML framework (financial crime)"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "Authorising a firm to provide crypto services and passport them across the EU",
+          "bucket": "mica",
+          "why": "Authorising and passporting CASPs is MiCA's market-access job."
+        },
+        {
+          "id": "i2",
+          "label": "The rules on how a stablecoin is issued, backed by reserves, and disclosed",
+          "bucket": "mica",
+          "why": "Stablecoin issuance and reserves are MiCA rules."
+        },
+        {
+          "id": "i3",
+          "label": "Conduct and disclosure rules for public offers of crypto-assets",
+          "bucket": "mica",
+          "why": "Public-offer conduct and disclosure sit in MiCA."
+        },
+        {
+          "id": "i4",
+          "label": "Requiring originator and beneficiary information to travel with a crypto transfer",
+          "bucket": "aml",
+          "why": "The Travel Rule sits in the Transfer of Funds Regulation, the AML strand."
+        },
+        {
+          "id": "i5",
+          "label": "Customer due diligence and suspicious-activity reporting by obliged entities",
+          "bucket": "aml",
+          "why": "CDD and reporting are AML-package obligations, not MiCA."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-eu-2-casp-passport",
+    "conceptTags": [
+      "casp_authorisation",
+      "mica"
+    ],
+    "mechanic": "decision",
+    "title": "One authorisation, whole EU?",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A crypto-asset service provider is authorised as a CASP by the national competent authority in one EU member state and now wants to serve customers in several other member states. What does MiCA let it do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Passport its services across the whole EU on that single authorisation, without a separate licence in each member state.",
+          "correct": true,
+          "why": "A single authorisation passports across the whole EU."
+        },
+        {
+          "id": "b",
+          "text": "It must apply again for a fresh standalone authorisation from the competent authority of every member state where it wants even one customer, because a MiCA authorisation is valid only inside the issuing country.",
+          "correct": false,
+          "why": "MiCA is a Regulation, so one authorisation is EU-wide, not per country."
+        },
+        {
+          "id": "c",
+          "text": "It may serve other member states only after each national parliament transposes MiCA into its own domestic statute.",
+          "correct": false,
+          "why": "A Regulation is directly applicable and needs no national transposition."
+        },
+        {
+          "id": "d",
+          "text": "It gains market access everywhere but is exempt from the EU Travel Rule on cross-border transfers.",
+          "correct": false,
+          "why": "Market access does not exempt a CASP from the EU Travel Rule."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-eu-3-regime-in-order",
+    "conceptTags": [
+      "mica",
+      "eu_aml_package"
+    ],
+    "mechanic": "sequence",
+    "title": "The EU regime, in order",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Put these EU crypto-regime milestones in the order they take effect.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "MiCA's stablecoin rules take effect, regulating how asset-referenced and e-money tokens are issued and backed.",
+          "why": "The stablecoin strand of MiCA applied first."
+        },
+        {
+          "id": "s2",
+          "label": "MiCA's CASP authorisation and broader market rules take effect.",
+          "why": "CASP authorisation followed the stablecoin rules."
+        },
+        {
+          "id": "s3",
+          "label": "The AML Regulation single rulebook takes effect, harmonising customer due diligence and reporting across the bloc.",
+          "why": "The directly applicable AML rulebook applies later."
+        },
+        {
+          "id": "s4",
+          "label": "AMLA begins directly supervising selected high-risk cross-border financial-sector firms.",
+          "why": "EU-level direct supervision begins last."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-uk-1-gate-rulebook-law",
+    "conceptTags": [
+      "fca_cryptoasset_registration",
+      "uk_money_laundering_regulations",
+      "poca",
+      "uk_travel_rule"
+    ],
+    "mechanic": "match",
+    "title": "Gate, rulebook, and law",
+    "spec": {
+      "kind": "match",
+      "prompt": "The UK regime fits together as a gate, a rulebook, and the law behind them, plus one separate regime. Match each part to its role.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "FCA registration",
+          "right": "The gate: a firm in scope cannot lawfully carry on cryptoasset business in the UK without it",
+          "why": "Registration is the perimeter's gate."
+        },
+        {
+          "id": "p2",
+          "left": "The Money Laundering Regulations",
+          "right": "The rulebook: once registered, a firm runs due diligence, monitoring, records, and the Travel Rule",
+          "why": "The regulations are the operating rulebook."
+        },
+        {
+          "id": "p3",
+          "left": "The Proceeds of Crime Act",
+          "right": "The law behind it: it defines the money-laundering offences and channels suspicions through the SAR and consent regime",
+          "why": "POCA is the criminal law and reporting channel."
+        },
+        {
+          "id": "p4",
+          "left": "The financial-promotions rules",
+          "right": "A separate regime protecting consumers from misleading crypto marketing, not about money laundering",
+          "why": "Promotions rules are consumer protection, not AML."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-uk-2-must-register",
+    "conceptTags": [
+      "fca_cryptoasset_registration",
+      "uk_money_laundering_regulations",
+      "uk_enforcement_in_practice"
+    ],
+    "mechanic": "red-flags",
+    "title": "Must it be FCA-registered?",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A reviewer looks at several crypto businesses active around the UK. FCA registration is the gate, and carrying on in-scope business without it is a criminal offence.",
+      "prompt": "Which of these are genuine red flags of an unlawful, unregistered posture under the Money Laundering Regulations?",
+      "items": [
+        {
+          "id": "a",
+          "label": "It operates cryptoasset ATMs in the UK exchanging cash for crypto, but has never registered with the FCA.",
+          "flag": true,
+          "why": "A crypto ATM is exchange activity, and unregistered operation is a criminal offence."
+        },
+        {
+          "id": "b",
+          "label": "It safeguards UK customers' cryptoassets and the private keys to them as a business, without FCA registration.",
+          "flag": true,
+          "why": "Safeguarding customers' crypto or keys is custodian activity that must be registered."
+        },
+        {
+          "id": "c",
+          "label": "It carries on cryptoasset exchange as a business in the UK after its FCA application was refused.",
+          "flag": true,
+          "why": "Carrying on the business after a refused application is unlawful."
+        },
+        {
+          "id": "d",
+          "label": "It holds FCA registration for AML supervision and has not sought a separate full market authorisation.",
+          "flag": false,
+          "why": "FCA registration is AML supervision, not a full market authorisation, so this is correct."
+        },
+        {
+          "id": "e",
+          "label": "It has one UK-resident customer but conducts all its exchange activity, staff, and systems entirely outside the UK.",
+          "flag": false,
+          "why": "Merely having a UK customer, with all activity abroad, may not be carrying on business in the UK."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-uk-3-does-poca-reach",
+    "conceptTags": [
+      "poca",
+      "uk_enforcement_in_practice"
+    ],
+    "mechanic": "decision",
+    "title": "Does POCA reach it?",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A person converts the proceeds of a fraud into bitcoin abroad, brings the value to the UK in self-hosted wallets, and a UK-based associate helps convert it into property. Under UK law, what is the position?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dealing with criminal property to conceal or convert it is money laundering under the Proceeds of Crime Act, so the associate commits an offence and the value can be seized.",
+          "correct": true,
+          "why": "Dealing with criminal property to conceal or convert it is POCA money laundering."
+        },
+        {
+          "id": "b",
+          "text": "Because the underlying fraud happened abroad and the value sits in self-hosted wallets rather than a bank account, the Proceeds of Crime Act cannot reach it and no money-laundering offence arises in the UK at all.",
+          "correct": false,
+          "why": "POCA reaches criminal property in crypto form, wherever the value sits."
+        },
+        {
+          "id": "c",
+          "text": "It is only a breach of the Money Laundering Regulations, handled by an FCA fine rather than a criminal prosecution.",
+          "correct": false,
+          "why": "This is a POCA criminal matter, not merely a supervisory breach."
+        },
+        {
+          "id": "d",
+          "text": "No offence arises until the crypto is converted back into pounds through a registered exchange.",
+          "correct": false,
+          "why": "The offence does not wait for conversion back into pounds."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-map-1-mapping-method",
+    "conceptTags": [
+      "comparative_method",
+      "jurisdictional_mapping",
+      "fatf_baseline"
+    ],
+    "mechanic": "sequence",
+    "title": "Mapping an unfamiliar regime",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "You must locate the crypto obligations of a jurisdiction you have never studied. Put the steps of the mapping method in order.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Recognise that the jurisdiction implements the shared FATF baseline, so its core obligations will be familiar.",
+          "why": "Start from the baseline every regime implements."
+        },
+        {
+          "id": "s2",
+          "label": "Go to the primary law and find the licensing or registration regime and the supervisor.",
+          "why": "Locate the gate and the authority first."
+        },
+        {
+          "id": "s3",
+          "label": "Read how that law defines a VASP and which activities fall inside the perimeter.",
+          "why": "Scope is where regimes differ most, so pin it down."
+        },
+        {
+          "id": "s4",
+          "label": "Locate the Travel Rule, the reporting channel to the financial intelligence unit, and the sanctions duties.",
+          "why": "Finish with the specific preventive obligations."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-map-2-baseline-or-divergence",
+    "conceptTags": [
+      "comparative_method",
+      "fatf_baseline",
+      "regulatory_perimeter"
+    ],
+    "mechanic": "sort",
+    "title": "Baseline, or divergence?",
+    "spec": {
+      "kind": "sort",
+      "prompt": "When you map a new jurisdiction, some things are broadly the same everywhere because they come from the FATF baseline, and some are the points where regimes genuinely differ. Sort each item.",
+      "buckets": [
+        {
+          "id": "shared",
+          "label": "Shared FATF baseline (expect it everywhere)"
+        },
+        {
+          "id": "diverge",
+          "label": "Point of divergence (read carefully)"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "That VASPs must be licensed or registered and supervised for AML",
+          "bucket": "shared",
+          "why": "Recommendation 15 and INR.15 set this everywhere."
+        },
+        {
+          "id": "i2",
+          "label": "That customer due diligence and suspicious-transaction reporting to the FIU are required",
+          "bucket": "shared",
+          "why": "These preventive measures are part of the baseline."
+        },
+        {
+          "id": "i3",
+          "label": "Exactly which originator and beneficiary fields must travel, and whether a low-value exemption applies",
+          "bucket": "diverge",
+          "why": "The Travel Rule threshold and data set are set locally."
+        },
+        {
+          "id": "i4",
+          "label": "Whether in-scope activity reaches decentralised-finance arrangements",
+          "bucket": "diverge",
+          "why": "Regimes draw the VASP and DeFi line differently."
+        },
+        {
+          "id": "i5",
+          "label": "Whether market and prudential regulation is bundled with AML or kept separate",
+          "bucket": "diverge",
+          "why": "The three regimes each answered this differently."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-map-3-where-vasp-sits",
+    "conceptTags": [
+      "fatf_baseline",
+      "regulatory_perimeter",
+      "jurisdictional_mapping"
+    ],
+    "mechanic": "decision",
+    "title": "Where does the VASP sit?",
+    "spec": {
+      "kind": "decision",
+      "prompt": "Mapping an unfamiliar jurisdiction, you find a business that, for its customers, exchanges one virtual asset for another and safekeeps their virtual assets. A colleague says to check the recommendations written for banks. Where does the FATF baseline actually place this business?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is a VASP, defined by activity, and its regulation sits under Recommendation 15 and INR.15, not the recommendations written for banks.",
+          "correct": true,
+          "why": "VASPs sit under Recommendation 15 and INR.15, defined by activity."
+        },
+        {
+          "id": "b",
+          "text": "Because it handles customer assets much like a deposit-taking institution, its obligations are found in the recommendations for banks, and the virtual-asset recommendation applies only to firms that issue their own new tokens.",
+          "correct": false,
+          "why": "VASP regulation is not the bank recommendations, and it covers exchange and custody, not only issuance."
+        },
+        {
+          "id": "c",
+          "text": "It falls outside FATF entirely, because exchanging one virtual asset for another is not a regulated activity.",
+          "correct": false,
+          "why": "Exchanging one virtual asset for another is squarely in the VASP activity list."
+        },
+        {
+          "id": "d",
+          "text": "It is a VASP only if it also exchanges virtual assets for money; crypto-to-crypto exchange alone is out of scope.",
+          "correct": false,
+          "why": "The FATF activity list includes crypto-to-crypto exchange, not only crypto-to-fiat."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-cra-1",
+    "conceptTags": [
+      "inherent_vs_residual_risk",
+      "crypto_risk_assessment"
+    ],
+    "mechanic": "decision",
+    "title": "Reading a residual risk score",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A crypto exchange rates the inherent ML/TF risk of its privacy-coin trading pair as high. After adding blockchain analytics screening, enhanced monitoring, and withdrawal limits, its assessment shows the residual risk as medium. What does this movement from high to medium tell you?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The controls are reducing the risk that remains after mitigation, but the underlying activity is still inherently high risk.",
+          "correct": true,
+          "why": "Residual risk is the inherent risk left over once controls are applied."
+        },
+        {
+          "id": "b",
+          "text": "The inherent risk has been permanently lowered to medium, so the privacy-coin pair can now be treated as a standard low-attention product with no special handling.",
+          "correct": false,
+          "why": "Controls change the residual score, not the inherent risk of the activity itself."
+        },
+        {
+          "id": "c",
+          "text": "Residual risk being medium means no further controls are ever needed here.",
+          "correct": false,
+          "why": "Residual risk still needs monitoring and may exceed the firm's appetite."
+        },
+        {
+          "id": "d",
+          "text": "The medium score means the analytics tool failed and the risk was overstated.",
+          "correct": false,
+          "why": "A lower residual score reflects controls working, not a tool failure."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-cra-2",
+    "conceptTags": [
+      "risk_factors",
+      "crypto_risk_assessment"
+    ],
+    "mechanic": "red-flags",
+    "title": "What raises inherent risk",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "You are scoping the inherent ML/TF risk of a new retail crypto brokerage before any controls are designed.",
+      "prompt": "Which of these product and customer characteristics raise the inherent risk that belongs in the risk assessment?",
+      "items": [
+        {
+          "id": "a",
+          "label": "The platform will support deposits and withdrawals to and from self-hosted wallets with no counterparty attribution.",
+          "flag": true,
+          "why": "Unattributed self-hosted transfers raise laundering exposure."
+        },
+        {
+          "id": "b",
+          "label": "A significant share of target customers are based in jurisdictions with weak or absent VASP supervision.",
+          "flag": true,
+          "why": "Weak-supervision geographies elevate inherent risk."
+        },
+        {
+          "id": "c",
+          "label": "The product roadmap includes support for anonymity-enhanced privacy coins.",
+          "flag": true,
+          "why": "Privacy coins obscure the transaction trail."
+        },
+        {
+          "id": "d",
+          "label": "The firm plans to require government-ID and liveness verification for every account at onboarding.",
+          "flag": false,
+          "why": "That is a control that lowers residual risk, not an inherent risk driver."
+        },
+        {
+          "id": "e",
+          "label": "The firm will publish an annual transparency report about law-enforcement requests.",
+          "flag": false,
+          "why": "Disclosure practices do not raise inherent ML/TF risk."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-cra-3",
+    "conceptTags": [
+      "crypto_risk_assessment",
+      "risk_factors"
+    ],
+    "mechanic": "sort",
+    "title": "Which risk dimension",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each factor into the risk-assessment dimension it primarily belongs to.",
+      "buckets": [
+        {
+          "id": "customer",
+          "label": "Customer risk"
+        },
+        {
+          "id": "product",
+          "label": "Product and service risk"
+        },
+        {
+          "id": "geography",
+          "label": "Geographic risk"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "A high proportion of accounts held by politically exposed persons",
+          "bucket": "customer",
+          "why": "Customer type is a customer-dimension factor."
+        },
+        {
+          "id": "i2",
+          "label": "Offering an anonymous crypto prepaid card that spends directly from wallet balances",
+          "bucket": "product",
+          "why": "The feature is a product and service characteristic."
+        },
+        {
+          "id": "i3",
+          "label": "Serving customers resident in a FATF grey-listed jurisdiction",
+          "bucket": "geography",
+          "why": "The jurisdiction of the customer base is geographic."
+        },
+        {
+          "id": "i4",
+          "label": "Adding support for instant cross-chain bridge swaps inside the app",
+          "bucket": "product",
+          "why": "A bridging feature is a product-dimension factor."
+        },
+        {
+          "id": "i5",
+          "label": "Onboarding legal-entity customers with opaque, multi-layered ownership structures",
+          "bucket": "customer",
+          "why": "Ownership opacity is a customer characteristic."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-okc-1",
+    "conceptTags": [
+      "wallet_attribution",
+      "identity_verification"
+    ],
+    "mechanic": "match",
+    "title": "What the technique establishes",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each onboarding technique to what it is designed to establish.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Asking the customer to sign a message from the wallet's private key",
+          "right": "Proof that the customer controls the wallet",
+          "why": "A valid signature proves control of the key."
+        },
+        {
+          "id": "p2",
+          "left": "A small verification transfer from the customer's stated wallet",
+          "right": "Confirmation that the depositing wallet is the customer's",
+          "why": "The transfer links the wallet to the account."
+        },
+        {
+          "id": "p3",
+          "left": "A liveness and document check at sign-up",
+          "right": "Confirmation the person is genuine and present",
+          "why": "Liveness defeats non-face-to-face impersonation."
+        },
+        {
+          "id": "p4",
+          "left": "Running the deposit address through blockchain analytics",
+          "right": "Assessment of the address's exposure to illicit funds",
+          "why": "Analytics reveal exposure to risky clusters."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-okc-2",
+    "conceptTags": [
+      "crypto_cdd",
+      "wallet_attribution",
+      "source_of_funds_on_chain"
+    ],
+    "mechanic": "sequence",
+    "title": "Onboarding a self-hosted-wallet customer",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Order the steps for onboarding a high-net-worth customer who intends to fund the account from a large self-hosted wallet balance.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Verify the customer's identity with a document and liveness check",
+          "why": "Identity must be established first."
+        },
+        {
+          "id": "s2",
+          "label": "Establish that the customer controls the funding wallet via a signed message or verification transfer",
+          "why": "Control links the wallet to the verified customer."
+        },
+        {
+          "id": "s3",
+          "label": "Screen the wallet and deposit address for exposure using blockchain analytics",
+          "why": "Exposure screening flags illicit-linked funds."
+        },
+        {
+          "id": "s4",
+          "label": "Test the stated source of funds against the wallet's on-chain history and document the conclusion",
+          "why": "Source of funds must be evidenced to a documented standard."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-okc-3",
+    "conceptTags": [
+      "source_of_funds_on_chain",
+      "crypto_cdd"
+    ],
+    "mechanic": "decision",
+    "title": "Testing on-chain wealth",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A new customer wants to deposit a large crypto balance and explains their wealth by saying, 'I bought very early and just held.' How should you handle source of funds for this on-chain wealth?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Test the claim against the wallet's on-chain history, seeking evidence consistent with early acquisition, and document the conclusion to a reasonable standard.",
+          "correct": true,
+          "why": "On-chain wealth can be evidenced against the public ledger."
+        },
+        {
+          "id": "b",
+          "text": "Accept the explanation as given, because self-custodied crypto wealth predates any exchange records and therefore cannot be verified by any means available to the firm at all.",
+          "correct": false,
+          "why": "The blockchain itself provides a verifiable transaction history."
+        },
+        {
+          "id": "c",
+          "text": "Reject the customer outright, since early holdings are always a laundering indicator.",
+          "correct": false,
+          "why": "Early acquisition is not itself an illicit signal."
+        },
+        {
+          "id": "d",
+          "text": "Ask only for a bank statement showing the original fiat purchase years ago.",
+          "correct": false,
+          "why": "A single stale document is not sufficient testing."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-crr-1",
+    "conceptTags": [
+      "customer_risk_rating",
+      "on_chain_exposure",
+      "high_risk_customer"
+    ],
+    "mechanic": "red-flags",
+    "title": "What raises the rating",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "You are reviewing a retail customer's risk rating during a periodic refresh.",
+      "prompt": "Which findings should push this customer's risk rating higher?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Recent deposits show direct exposure to a wallet cluster attributed to a darknet market",
+          "flag": true,
+          "why": "Direct illicit exposure elevates risk."
+        },
+        {
+          "id": "b",
+          "label": "The customer recently moved residence to a jurisdiction under FATF increased monitoring",
+          "flag": true,
+          "why": "Higher-risk geography raises the rating."
+        },
+        {
+          "id": "c",
+          "label": "Withdrawal patterns show repeated transfers to a known mixing service",
+          "flag": true,
+          "why": "Mixer use is an obfuscation signal."
+        },
+        {
+          "id": "d",
+          "label": "The customer logs in from the same device and verified phone each month",
+          "flag": false,
+          "why": "Stable, verified access is not a risk elevator."
+        },
+        {
+          "id": "e",
+          "label": "The customer's trading volume rose modestly in line with a documented salary increase",
+          "flag": false,
+          "why": "Explained, proportionate growth is not a flag."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-crr-2",
+    "conceptTags": [
+      "on_chain_exposure",
+      "customer_risk_rating"
+    ],
+    "mechanic": "sort",
+    "title": "Direct or indirect exposure",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each on-chain exposure finding by whether it is direct or indirect exposure.",
+      "buckets": [
+        {
+          "id": "direct",
+          "label": "Direct exposure"
+        },
+        {
+          "id": "indirect",
+          "label": "Indirect exposure"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "A deposit received straight from an address on a sanctions list",
+          "bucket": "direct",
+          "why": "The counterparty is the illicit entity itself."
+        },
+        {
+          "id": "i2",
+          "label": "Funds that reached the customer after passing through three intermediary wallets from a darknet cluster",
+          "bucket": "indirect",
+          "why": "Intervening hops make the exposure indirect."
+        },
+        {
+          "id": "i3",
+          "label": "A withdrawal sent directly to a mixing service's deposit address",
+          "bucket": "direct",
+          "why": "The counterparty is the illicit service directly."
+        },
+        {
+          "id": "i4",
+          "label": "Incoming value that is two hops removed from a ransomware-linked wallet",
+          "bucket": "indirect",
+          "why": "Separation by hops is indirect exposure."
+        },
+        {
+          "id": "i5",
+          "label": "Value received from an intermediary wallet that was itself funded by a scam-linked address",
+          "bucket": "indirect",
+          "why": "The direct counterparty is an intermediary, so exposure is indirect."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-crr-3",
+    "conceptTags": [
+      "dynamic_risk_scoring",
+      "on_chain_exposure",
+      "high_risk_customer"
+    ],
+    "mechanic": "decision",
+    "title": "Re-rating on an event",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A customer rated low risk at onboarding just received a deposit that blockchain analytics place two hops from a sanctioned cluster. Your model re-rates on events, not only on a calendar. What is the right response?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Adjust the rating to reflect the weighted indirect exposure and trigger the monitoring consequences that the higher band now requires.",
+          "correct": true,
+          "why": "Event-driven re-rating updates the score immediately."
+        },
+        {
+          "id": "b",
+          "text": "Leave the rating unchanged until the customer's next scheduled annual review, because a single deposit is never enough to alter a risk score that was set at onboarding.",
+          "correct": false,
+          "why": "Dynamic scoring re-rates on events, not by the calendar."
+        },
+        {
+          "id": "c",
+          "text": "Immediately close the account, since any sanctioned-cluster proximity is a direct hit.",
+          "correct": false,
+          "why": "Indirect exposure is weighted, not an automatic block."
+        },
+        {
+          "id": "d",
+          "text": "Treat the exposure as direct and file as if the customer transacted with the sanctioned entity.",
+          "correct": false,
+          "why": "Two hops is indirect, not a direct counterparty."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-rpl-1",
+    "conceptTags": [
+      "regulatory_perimeter",
+      "regulatory_arbitrage",
+      "licensing_and_registration"
+    ],
+    "mechanic": "decision",
+    "title": "Can the offshore flag escape the rules",
+    "spec": {
+      "kind": "decision",
+      "prompt": "An exchange incorporated in an offshore jurisdiction with no crypto licensing regime actively serves retail customers in the US and the EU and carries on cryptoasset business in the UK. Its counsel argues that only its home jurisdiction's rules apply. Is that correct?",
+      "options": [
+        {
+          "id": "a",
+          "text": "No. Obligations attach where the activity is carried on, so it can trigger US registration, EU authorisation, and UK registration despite the offshore incorporation.",
+          "correct": true,
+          "why": "The perimeter follows the activity and its nexus, not the flag of incorporation."
+        },
+        {
+          "id": "b",
+          "text": "Yes, because a firm is only ever subject to the financial-crime rules of the single jurisdiction in which it is legally incorporated, and choosing a light-touch home base lawfully removes all other obligations.",
+          "correct": false,
+          "why": "Incorporating offshore does not escape the perimeter where business is carried on."
+        },
+        {
+          "id": "c",
+          "text": "Yes, provided the exchange adds a disclaimer that it does not intend to serve those markets.",
+          "correct": false,
+          "why": "A disclaimer does not override actual activity in a market."
+        },
+        {
+          "id": "d",
+          "text": "No, but only the US rules can ever apply beyond the home jurisdiction.",
+          "correct": false,
+          "why": "The EU and UK regimes also reach this activity."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-rpl-2",
+    "conceptTags": [
+      "licensing_and_registration",
+      "vasp_obligations",
+      "regulatory_perimeter"
+    ],
+    "mechanic": "match",
+    "title": "Jurisdiction to its gate",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each jurisdiction or standard to the gate a crypto business must pass to operate there.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "United States (federal plus state)",
+          "right": "FinCEN MSB registration plus state money-transmitter licences where required",
+          "why": "The US layers federal registration and state licensing."
+        },
+        {
+          "id": "p2",
+          "left": "European Union",
+          "right": "MiCA CASP authorisation, with AML and Travel Rule duties coming separately from the EU AML framework",
+          "why": "MiCA is market authorisation; AML duties sit in the AML framework."
+        },
+        {
+          "id": "p3",
+          "left": "United Kingdom",
+          "right": "FCA registration for carrying on cryptoasset business in the UK",
+          "why": "The UK trigger is a facts-based business test."
+        },
+        {
+          "id": "p4",
+          "left": "FATF global baseline",
+          "right": "The Recommendation 15 and INR.15 VASP perimeter that jurisdictions implement",
+          "why": "FATF sets the standard others transpose into law."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-rpl-3",
+    "conceptTags": [
+      "regulatory_perimeter",
+      "licensing_and_registration",
+      "vasp_obligations"
+    ],
+    "mechanic": "sequence",
+    "title": "Scoping the perimeter before launch",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Order the steps a new crypto business should follow to scope its regulatory perimeter before launch.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Identify the specific activities you will perform and whether they are regulated VASP or CASP activities",
+          "why": "Scope starts with what you actually do."
+        },
+        {
+          "id": "s2",
+          "label": "Determine every jurisdiction where you have a nexus through establishment or the customers you serve",
+          "why": "Nexus determines which regimes reach you."
+        },
+        {
+          "id": "s3",
+          "label": "Map the registration or authorisation gate each of those jurisdictions imposes",
+          "why": "Each jurisdiction has its own gate."
+        },
+        {
+          "id": "s4",
+          "label": "Obtain the required authorisations and stand up the AML obligations before you begin operating",
+          "why": "Authorisation must precede operating."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-txmon-1",
+    "conceptTags": [
+      "threshold_tuning",
+      "exposure_scoring",
+      "model_risk_discipline"
+    ],
+    "mechanic": "decision",
+    "title": "Tuning a noisy exposure scenario",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A crypto exchange's deposit-monitoring scenario fires an alert whenever a customer receives value with any indirect exposure to a high-risk cluster. Analysts close about 95 percent of these alerts as no concern, and the backlog is growing. What is the most defensible response?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Raise the exposure threshold so only direct or one-hop exposure to the cluster triggers an alert, then validate the change against known true positives before deploying it.",
+          "correct": true,
+          "why": "Risk-based tuning plus validation preserves detection while cutting noise, which is sound model risk discipline."
+        },
+        {
+          "id": "b",
+          "text": "Turn the scenario off entirely until the backlog clears, since the alerts are almost all false positives anyway.",
+          "correct": false,
+          "why": "Disabling a control creates a coverage gap and removes detection for genuine exposure."
+        },
+        {
+          "id": "c",
+          "text": "Instruct analysts to automatically close every indirect-exposure alert without any review, so the backlog clears quickly and the team can move on to other queues across the business.",
+          "correct": false,
+          "why": "Blanket auto-closing without review means real suspicious activity is dispositioned as clean."
+        },
+        {
+          "id": "d",
+          "text": "Lower the exposure threshold further so even more alerts fire, on the theory that broader coverage is always safer for the program.",
+          "correct": false,
+          "why": "More noise worsens the backlog and buries true positives rather than improving detection."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-txmon-2",
+    "conceptTags": [
+      "behavioural_monitoring",
+      "on_chain_monitoring",
+      "wallet_screening"
+    ],
+    "mechanic": "red-flags",
+    "title": "First two weeks of a new account",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A newly onboarded retail customer's account shows the following activity in its first two weeks.",
+      "prompt": "Which items are genuine monitoring red flags?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Deposits arrive from a self-hosted wallet and are immediately withdrawn to a different self-hosted wallet, repeated several times with no trading in between.",
+          "flag": true,
+          "why": "Rapid in-and-out pass-through with no economic purpose is classic layering behaviour."
+        },
+        {
+          "id": "b",
+          "label": "Incoming deposits trace back within two hops to an address cluster attributed to a darknet marketplace.",
+          "flag": true,
+          "why": "Close on-chain exposure to illicit clusters is a direct monitoring concern."
+        },
+        {
+          "id": "c",
+          "label": "The customer completed identity verification and enabled two-factor authentication at signup.",
+          "flag": false,
+          "why": "These are normal, expected onboarding security steps, not indicators of risk."
+        },
+        {
+          "id": "d",
+          "label": "Deposit amounts are consistently set just below the exchange's enhanced-review threshold.",
+          "flag": true,
+          "why": "Amounts hugging a threshold suggest deliberate structuring to avoid scrutiny."
+        },
+        {
+          "id": "e",
+          "label": "Some deposits arrive from a well-known regulated exchange where the customer also holds a verified account.",
+          "flag": false,
+          "why": "Transfers between a customer's own regulated accounts are ordinary and low concern by themselves."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-txmon-3",
+    "conceptTags": [
+      "above_below_the_line_testing",
+      "scenario_coverage",
+      "monitoring_governance",
+      "model_risk_discipline"
+    ],
+    "mechanic": "sort",
+    "title": "Above-the-line or below-the-line testing",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each monitoring-assurance activity into the type of testing it represents.",
+      "buckets": [
+        {
+          "id": "atl",
+          "label": "Above-the-line testing"
+        },
+        {
+          "id": "btl",
+          "label": "Below-the-line testing"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "Reviewing a sample of alerts the system generated to confirm they were correctly escalated or closed.",
+          "bucket": "atl",
+          "why": "Above-the-line testing examines the alerts that actually fired."
+        },
+        {
+          "id": "i2",
+          "label": "Sampling transactions that fell just under a scenario threshold to check whether any should have alerted.",
+          "bucket": "btl",
+          "why": "Below-the-line testing probes activity that did not alert for missed coverage."
+        },
+        {
+          "id": "i3",
+          "label": "Testing whether a lowered threshold would have caught known laundering typologies that produced no alert.",
+          "bucket": "btl",
+          "why": "Checking for undetected typologies looks below the current alerting line."
+        },
+        {
+          "id": "i4",
+          "label": "Auditing closed alerts to confirm analysts documented a sound disposition rationale.",
+          "bucket": "atl",
+          "why": "Assessing the quality of dispositioned alerts is above-the-line assurance."
+        },
+        {
+          "id": "i5",
+          "label": "Selecting customers with no alerts in a period and re-running their activity against updated detection logic.",
+          "bucket": "btl",
+          "why": "Re-running non-alerting populations tests for gaps beneath the threshold."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-screen-1",
+    "conceptTags": [
+      "fuzzy_matching",
+      "address_screening",
+      "geolocation_screening",
+      "transliteration"
+    ],
+    "mechanic": "match",
+    "title": "Screening techniques and what they do",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each screening technique to what it does.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Fuzzy matching",
+          "right": "Flags near-identical names despite spelling variants, so a variant can still match a designated name.",
+          "why": "Fuzzy matching tolerates minor spelling differences to avoid missed hits."
+        },
+        {
+          "id": "p2",
+          "left": "Address screening",
+          "right": "Checks a blockchain address against lists of designated wallet identifiers before releasing a transfer.",
+          "why": "Address screening compares on-chain identifiers to sanctioned-wallet references."
+        },
+        {
+          "id": "p3",
+          "left": "Geolocation screening",
+          "right": "Uses IP and device signals to detect access from a sanctioned jurisdiction.",
+          "why": "Geolocation screening targets jurisdictional exposure rather than names."
+        },
+        {
+          "id": "p4",
+          "left": "Transliteration handling",
+          "right": "Normalises names written in different scripts to a common form before comparison.",
+          "why": "Transliteration handling aligns cross-script names so they can be compared."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-screen-2",
+    "conceptTags": [
+      "name_screening",
+      "address_screening",
+      "screening_failure",
+      "list_management"
+    ],
+    "mechanic": "red-flags",
+    "title": "Reviewing a screening setup",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A compliance officer reviews a crypto firm's sanctions-screening configuration.",
+      "prompt": "Which items are genuine screening weaknesses?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Name screening performs exact-string matching only, so any spelling variant or transliteration passes through.",
+          "flag": true,
+          "why": "Exact-only matching misses variant spellings of designated names."
+        },
+        {
+          "id": "b",
+          "label": "Wallet-address screening runs at onboarding only, not on each incoming or outgoing transfer.",
+          "flag": true,
+          "why": "Point-in-time address screening misses newly designated wallets in live flows."
+        },
+        {
+          "id": "c",
+          "label": "The match threshold is set so tight that clear phonetic variants of designated names never generate a hit.",
+          "flag": true,
+          "why": "An over-tight threshold suppresses true matches and lowers recall."
+        },
+        {
+          "id": "d",
+          "label": "The firm re-screens its full customer base within a day whenever a sanctions list is updated.",
+          "flag": false,
+          "why": "Prompt re-screening after list updates is sound practice, not a weakness."
+        },
+        {
+          "id": "e",
+          "label": "Screening lists are refreshed automatically each day from the official designated-party sources.",
+          "flag": false,
+          "why": "Automated refresh from official sources is good list management."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-screen-3",
+    "conceptTags": [
+      "recall_precision_tradeoff",
+      "fuzzy_matching",
+      "match_scoring"
+    ],
+    "mechanic": "decision",
+    "title": "Balancing recall and precision",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A crypto firm's name-screening engine is missing designated persons whose names appear with alternate spellings, but leadership also complains about false positives. Which adjustment best balances recall and precision?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Lower the match-score threshold to raise recall, then use secondary data such as date of birth to filter the extra hits.",
+          "correct": true,
+          "why": "Wider matching plus corroborating attributes recovers missed hits without flooding review with noise."
+        },
+        {
+          "id": "b",
+          "text": "Raise the match-score threshold so fewer alerts fire, accepting that some designated persons with spelling variants will keep passing through screening.",
+          "correct": false,
+          "why": "Tightening the threshold worsens the recall gap and lets true matches escape."
+        },
+        {
+          "id": "c",
+          "text": "Keep the current threshold exactly as it is and simply hire additional analysts to work through whichever alerts the existing configuration happens to produce for the team each day.",
+          "correct": false,
+          "why": "More staff cannot review alerts the engine never generated for the missed names."
+        },
+        {
+          "id": "d",
+          "text": "Disable fuzzy matching and rely on exact matching only, since exact matching produces the fewest false positives for the review team.",
+          "correct": false,
+          "why": "Exact-only matching maximises missed variants, which is the failure being reported."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-travel-1",
+    "conceptTags": [
+      "sunrise_workflow",
+      "counterparty_identification",
+      "ivms101_messaging",
+      "travel_rule_operationalisation"
+    ],
+    "mechanic": "sequence",
+    "title": "Handling an outbound transfer under the Travel Rule",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Put the operational steps for an outbound VASP transfer under the Travel Rule in the correct order.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Determine whether the transfer meets or exceeds the applicable Travel Rule value threshold.",
+          "why": "The threshold determines whether Travel Rule data-sharing obligations apply at all."
+        },
+        {
+          "id": "s2",
+          "label": "Identify the counterparty VASP that controls the beneficiary address.",
+          "why": "You must know who the receiving institution is before you can send data to it."
+        },
+        {
+          "id": "s3",
+          "label": "Confirm the counterparty VASP can securely receive Travel Rule data and assess any sunrise gap.",
+          "why": "Checking readiness drives the sunrise decision on whether and how to proceed."
+        },
+        {
+          "id": "s4",
+          "label": "Transmit the required originator and beneficiary information in a structured IVMS 101 message with the transfer.",
+          "why": "Sending interoperable data with the transfer completes the obligation."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-travel-2",
+    "conceptTags": [
+      "sunrise_in_practice",
+      "self_hosted_wallet_handling",
+      "ivms101_messaging",
+      "counterparty_identification"
+    ],
+    "mechanic": "match",
+    "title": "Matching Travel Rule situations to handling",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each Travel Rule situation to the correct operational handling.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "The beneficiary VASP is in a jurisdiction that has not yet implemented the Travel Rule.",
+          "right": "Apply a risk-based sunrise policy, deciding whether to send data, hold, or proceed with mitigations.",
+          "why": "The sunrise gap requires a documented risk-based decision, not automatic transmission."
+        },
+        {
+          "id": "p2",
+          "left": "The withdrawal is to a self-hosted wallet the customer controls.",
+          "right": "Collect and, on a risk basis, verify the required customer information rather than exchange data with a counterparty VASP.",
+          "why": "There is no receiving institution, so the duty shifts to customer-side data collection."
+        },
+        {
+          "id": "p3",
+          "left": "Originator and beneficiary data must be structured for interoperable transmission.",
+          "right": "Encode the details in the IVMS 101 data standard.",
+          "why": "IVMS 101 is the common format that lets VASPs exchange data reliably."
+        },
+        {
+          "id": "p4",
+          "left": "You cannot tell which VASP, if any, controls the destination address.",
+          "right": "Attempt counterparty identification before releasing the transfer.",
+          "why": "You must resolve the counterparty before you can meet the data-sharing duty."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-travel-3",
+    "conceptTags": [
+      "self_hosted_wallet_handling",
+      "sunrise_in_practice",
+      "travel_rule_operationalisation"
+    ],
+    "mechanic": "decision",
+    "title": "Withdrawal to a self-hosted wallet",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A customer requests a withdrawal above the Travel Rule threshold to an address your attribution tools indicate is a self-hosted wallet the customer controls. What is the correct operational handling?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Collect and, on a risk basis, verify the required beneficiary information for the self-hosted wallet, since there is no counterparty VASP to exchange data with.",
+          "correct": true,
+          "why": "Self-hosted destinations shift the obligation to gathering customer-side beneficiary information."
+        },
+        {
+          "id": "b",
+          "text": "Refuse the withdrawal outright, because Travel Rule transfers can only ever be sent to another registered VASP and never to self-hosted wallets.",
+          "correct": false,
+          "why": "The Travel Rule does not ban self-hosted-wallet withdrawals; it requires appropriate handling."
+        },
+        {
+          "id": "c",
+          "text": "Send a full IVMS 101 message to the destination address itself and wait for the wallet to acknowledge receipt of the originator and beneficiary data before releasing any funds.",
+          "correct": false,
+          "why": "A self-hosted wallet is not a VASP and cannot receive or acknowledge IVMS 101 messages."
+        },
+        {
+          "id": "d",
+          "text": "Treat it as a standard VASP-to-VASP transfer and query counterparty directories for the institution that operates the address.",
+          "correct": false,
+          "why": "No operating institution controls a self-hosted wallet, so counterparty lookup does not apply."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-sar-1",
+    "conceptTags": [
+      "on_chain_evidence",
+      "off_chain_evidence",
+      "crypto_alert_investigation"
+    ],
+    "mechanic": "sort",
+    "title": "On-chain or off-chain evidence",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each piece of investigation evidence into on-chain or off-chain.",
+      "buckets": [
+        {
+          "id": "onchain",
+          "label": "On-chain evidence"
+        },
+        {
+          "id": "offchain",
+          "label": "Off-chain evidence"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "Blockchain-analytics tracing showing the deposit came within two hops of a sanctioned cluster.",
+          "bucket": "onchain",
+          "why": "Ledger tracing of hops between addresses is on-chain evidence."
+        },
+        {
+          "id": "i2",
+          "label": "The customer's KYC file and stated source of funds recorded at onboarding.",
+          "bucket": "offchain",
+          "why": "Identity and onboarding records live off the ledger in firm systems."
+        },
+        {
+          "id": "i3",
+          "label": "A cluster attribution linking the destination address to a known illicit-services operator.",
+          "bucket": "onchain",
+          "why": "Address attribution is derived from on-chain data and analytics."
+        },
+        {
+          "id": "i4",
+          "label": "Support-ticket messages where the customer explained the purpose of a transfer.",
+          "bucket": "offchain",
+          "why": "Customer communications are off-chain, firm-held records."
+        },
+        {
+          "id": "i5",
+          "label": "The transaction hash, timestamps, and amounts recorded on the ledger.",
+          "bucket": "onchain",
+          "why": "Transaction details written to the ledger are on-chain evidence."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-sar-2",
+    "conceptTags": [
+      "alert_triage",
+      "crypto_alert_investigation",
+      "suspicious_activity_reporting",
+      "fiu_filing"
+    ],
+    "mechanic": "sequence",
+    "title": "From alert to filing",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Put the steps from monitoring alert to regulatory filing in the correct order.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Triage the alert to confirm it reflects genuinely unusual activity rather than a false positive.",
+          "why": "Triage separates noise from cases worth a full investigation."
+        },
+        {
+          "id": "s2",
+          "label": "Investigate by gathering on-chain tracing and off-chain customer evidence.",
+          "why": "Evidence-building establishes what actually happened before any conclusion."
+        },
+        {
+          "id": "s3",
+          "label": "Reach and document a reasoned suspicion determination.",
+          "why": "A documented determination is the basis for deciding whether to report."
+        },
+        {
+          "id": "s4",
+          "label": "File a suspicious activity report with the relevant financial intelligence unit within the required timeframe.",
+          "why": "Timely filing to the FIU completes the reporting obligation."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-sar-3",
+    "conceptTags": [
+      "tipping_off",
+      "confidentiality",
+      "open_investigation_handling",
+      "reporting_failure"
+    ],
+    "mechanic": "decision",
+    "title": "The customer asks about a delay",
+    "spec": {
+      "kind": "decision",
+      "prompt": "After a suspicious activity report is filed, the customer contacts support asking why a withdrawal is delayed. An analyst wants to keep the customer informed. What is the correct handling?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Do not disclose that a report has been filed or that an investigation is underway; respond only within approved, neutral service messaging.",
+          "correct": true,
+          "why": "Withholding the report and investigation avoids tipping off while maintaining lawful contact."
+        },
+        {
+          "id": "b",
+          "text": "Explain that a suspicious activity report was filed so the customer can provide documents to clear the matter quickly.",
+          "correct": false,
+          "why": "Revealing that a report was filed is prohibited tipping off."
+        },
+        {
+          "id": "c",
+          "text": "Tell the customer the account is under review by the financial intelligence unit and share the report reference number so they can follow up on the status themselves.",
+          "correct": false,
+          "why": "Disclosing the FIU review and a report reference is a clear tipping-off breach."
+        },
+        {
+          "id": "d",
+          "text": "Close the account immediately without any communication, since any contact with the customer after filing is strictly prohibited.",
+          "correct": false,
+          "why": "Neutral service contact is allowed; abrupt closure can itself signal a filing."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-3lod-1",
+    "conceptTags": [
+      "three_lines_of_defence",
+      "first_line",
+      "second_line",
+      "third_line"
+    ],
+    "mechanic": "sort",
+    "title": "Which line owns the work?",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each activity at a crypto exchange into the line of defence that owns it.",
+      "buckets": [
+        {
+          "id": "first",
+          "label": "First line (owns and runs the control)"
+        },
+        {
+          "id": "second",
+          "label": "Second line (compliance and MLRO oversight)"
+        },
+        {
+          "id": "third",
+          "label": "Third line (independent audit assurance)"
+        }
+      ],
+      "items": [
+        {
+          "id": "a",
+          "label": "An onboarding analyst screens a new customer's deposit address and clears the account",
+          "bucket": "first",
+          "why": "Running a day-to-day control on live activity is a first-line task."
+        },
+        {
+          "id": "b",
+          "label": "The compliance team writes the wallet-screening policy and reviews the desk's exception reports",
+          "bucket": "second",
+          "why": "Setting policy and providing oversight and challenge is second-line work."
+        },
+        {
+          "id": "c",
+          "label": "Internal audit tests whether the desk actually followed the wallet-screening policy over the past year",
+          "bucket": "third",
+          "why": "Independent testing of control effectiveness for the board is third-line assurance."
+        },
+        {
+          "id": "d",
+          "label": "The MLRO decides whether to file a suspicious activity report after an escalation",
+          "bucket": "second",
+          "why": "The MLRO sits in the second line and owns the reporting decision."
+        },
+        {
+          "id": "e",
+          "label": "The withdrawals operations team applies the daily transaction limits set out in policy",
+          "bucket": "first",
+          "why": "Applying controls in operations is first-line ownership of the risk."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-3lod-2",
+    "conceptTags": [
+      "board_oversight",
+      "risk_appetite",
+      "product_velocity"
+    ],
+    "mechanic": "decision",
+    "title": "Launch pressure versus risk appetite",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A business team wants to launch a new privacy-focused token pairing next week to beat competitors. The board's approved risk appetite statement says the firm will not onboard products whose AML controls have not been independently assessed. What should the board do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Hold the launch until the second line assesses the AML control design and independent testing confirms the controls work, in line with the approved risk appetite.",
+          "correct": true,
+          "why": "Board oversight means enforcing the risk appetite even under commercial pressure."
+        },
+        {
+          "id": "b",
+          "text": "Approve the launch immediately because speed to market is a commercial priority, and instruct compliance to retrofit monitoring rules and complete the control assessment at some point after customers have already begun trading the new pairing.",
+          "correct": false,
+          "why": "Launching before assessment breaches the stated risk appetite and inverts control."
+        },
+        {
+          "id": "c",
+          "text": "Delegate the whole go or no-go decision to the first-line business team, since they best understand the product.",
+          "correct": false,
+          "why": "The board cannot delegate away its accountability for AML risk."
+        },
+        {
+          "id": "d",
+          "text": "Approve the launch but switch off transaction monitoring on the new pairing to keep false positives low.",
+          "correct": false,
+          "why": "Disabling monitoring removes the very control the appetite requires."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-3lod-3",
+    "conceptTags": [
+      "three_lines_of_defence",
+      "mlro_role",
+      "board_oversight",
+      "governance"
+    ],
+    "mechanic": "match",
+    "title": "Who is accountable for what",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each part of the governance structure to the responsibility it holds.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "First line",
+          "right": "Owns and manages the risk in day-to-day operations",
+          "why": "The business units run and own the controls."
+        },
+        {
+          "id": "p2",
+          "left": "Second line (compliance and MLRO)",
+          "right": "Sets AML policy, provides challenge, and owns the reporting decision",
+          "why": "Compliance oversees the first line and the MLRO decides on reports."
+        },
+        {
+          "id": "p3",
+          "left": "Third line (internal audit)",
+          "right": "Provides independent assurance to the board on control effectiveness",
+          "why": "Audit is independent of the functions it reviews."
+        },
+        {
+          "id": "p4",
+          "left": "Board",
+          "right": "Sets the risk appetite and holds ultimate accountability for the program",
+          "why": "Ultimate governance accountability rests with the board."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-2it-1",
+    "conceptTags": [
+      "insider_threat",
+      "vendor_over_reliance",
+      "analytics_limits",
+      "assurance"
+    ],
+    "mechanic": "red-flags",
+    "title": "Assurance gaps and insider signals",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "An exchange outsources most transaction screening to a single blockchain-analytics vendor and relies on the vendor's output without much internal checking.",
+      "prompt": "Which of the following are genuine red flags a reviewer should raise?",
+      "items": [
+        {
+          "id": "a",
+          "label": "A privileged compliance-operations employee repeatedly reopens and closes alerts for one cluster of accounts outside normal hours",
+          "flag": true,
+          "why": "Unusual privileged access to case data suggests an insider threat."
+        },
+        {
+          "id": "b",
+          "label": "The firm has never tested the vendor's screening output against a known set of sanctioned addresses and accepts results without validation",
+          "flag": true,
+          "why": "Accepting vendor output unchecked is over-reliance and an assurance failure."
+        },
+        {
+          "id": "c",
+          "label": "The firm rotates its independent testing to a different qualified team each cycle and documents the scope",
+          "flag": false,
+          "why": "Documented, independent, rotating testing is sound practice."
+        },
+        {
+          "id": "d",
+          "label": "The vendor's attribution data has known coverage gaps on newer chains, and there is no compensating manual review",
+          "flag": true,
+          "why": "Uncovered analytics limits with no compensating control leave blind spots."
+        },
+        {
+          "id": "e",
+          "label": "New monitoring hires pass a role-specific competency check before handling live alerts",
+          "flag": false,
+          "why": "Verified training effectiveness is a control strength, not a flaw."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-2it-2",
+    "conceptTags": [
+      "independent_testing",
+      "third_line",
+      "assurance",
+      "audit_scope"
+    ],
+    "mechanic": "decision",
+    "title": "Who should test the controls",
+    "spec": {
+      "kind": "decision",
+      "prompt": "The board wants assurance over the AML program. The head of AML compliance offers to run the review herself, since she knows the controls best. What is the correct approach?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Have the review performed by a party independent of the AML function, such as internal audit or a qualified external firm, so the assurance is objective.",
+          "correct": true,
+          "why": "Independent testing requires a reviewer separate from the function assessed."
+        },
+        {
+          "id": "b",
+          "text": "Let the head of AML compliance run the review because she has the deepest knowledge of the controls, and simply ask her to note in the report that she designed and operated many of the controls she is now assessing so readers understand the context.",
+          "correct": false,
+          "why": "Self-review is not independent, and a disclosure note does not cure it."
+        },
+        {
+          "id": "c",
+          "text": "Skip the independent test this cycle because the controls were tested when first built.",
+          "correct": false,
+          "why": "Assurance must be periodic, not a one-time event."
+        },
+        {
+          "id": "d",
+          "text": "Ask the first-line onboarding team to review the AML controls instead.",
+          "correct": false,
+          "why": "The first line owns the controls and cannot independently assure them."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-2it-3",
+    "conceptTags": [
+      "vendor_risk",
+      "third_party_risk",
+      "independent_testing"
+    ],
+    "mechanic": "sequence",
+    "title": "Onboarding a screening vendor",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Put the steps for onboarding and governing a new blockchain-analytics vendor in the correct order.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Perform risk-based due diligence on the vendor, covering data coverage, security, and ownership",
+          "why": "Due diligence establishes whether the vendor is fit before any commitment."
+        },
+        {
+          "id": "s2",
+          "label": "Agree contractual service levels, data-quality expectations, and audit rights",
+          "why": "Contract terms lock in accountability before go-live."
+        },
+        {
+          "id": "s3",
+          "label": "Independently validate the vendor's output against known test cases before going live",
+          "why": "Validation confirms the tool works before reliance begins."
+        },
+        {
+          "id": "s4",
+          "label": "Schedule ongoing performance monitoring and periodic re-validation of results",
+          "why": "Vendor risk is continuous and must be reviewed over time."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-emerg-1",
+    "conceptTags": [
+      "cross_chain_bridges",
+      "cbdc",
+      "rwa_tokenisation",
+      "dao"
+    ],
+    "mechanic": "match",
+    "title": "Naming the emerging risk",
+    "spec": {
+      "kind": "match",
+      "prompt": "Match each emerging concept to the description that best fits it.",
+      "pairs": [
+        {
+          "id": "p1",
+          "left": "Cross-chain bridge",
+          "right": "Moves value between blockchains, breaking a single-chain trace and forcing analysts to follow value across ledgers",
+          "why": "Bridges fragment the audit trail across networks."
+        },
+        {
+          "id": "p2",
+          "left": "CBDC",
+          "right": "A central-bank-issued digital form of sovereign currency, distinct from a decentralized cryptoasset",
+          "why": "A CBDC is state-issued, not a permissionless token."
+        },
+        {
+          "id": "p3",
+          "left": "RWA tokenisation",
+          "right": "Represents ownership of an off-chain asset as an on-chain token, linking real-world value to a ledger",
+          "why": "Tokenisation ties a physical or financial asset to a chain."
+        },
+        {
+          "id": "p4",
+          "left": "DAO",
+          "right": "A member-governed on-chain organization where control may run through governance tokens rather than a company",
+          "why": "A DAO distributes control across token holders."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-emerg-2",
+    "conceptTags": [
+      "defi",
+      "control_or_influence",
+      "obliged_entity",
+      "frontier_enforcement"
+    ],
+    "mechanic": "decision",
+    "title": "How decentralized is it, really",
+    "spec": {
+      "kind": "decision",
+      "prompt": "A lending protocol is marketed as fully autonomous, but a small founding team holds admin keys and can change fees, pause the protocol, and control the treasury. A regulator is assessing whether AML obligations apply. What is the most defensible position?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Where identifiable persons keep control or sufficient influence over the service, they can fall within scope as an obliged entity despite the decentralized label.",
+          "correct": true,
+          "why": "Substance over label: retained control can create obligations."
+        },
+        {
+          "id": "b",
+          "text": "Because the protocol describes itself as decentralized and runs on smart contracts, no natural or legal person can be treated as an obliged entity, so AML obligations cannot attach to anyone involved in launching, maintaining, or profiting from the service.",
+          "correct": false,
+          "why": "A label does not remove obligations where real control persists."
+        },
+        {
+          "id": "c",
+          "text": "The protocol is automatically exempt because software cannot be a regulated person.",
+          "correct": false,
+          "why": "Obligations attach to the people behind the software, not the code."
+        },
+        {
+          "id": "d",
+          "text": "AML obligations apply only to the users who borrow and lend, never to the operators.",
+          "correct": false,
+          "why": "Operators with control can themselves be in scope."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-emerg-3",
+    "conceptTags": [
+      "emerging_risk",
+      "privacy_technology",
+      "cross_chain_bridges",
+      "rwa_tokenisation"
+    ],
+    "mechanic": "red-flags",
+    "title": "Horizon-scanning a new product line",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A firm is horizon-scanning risks across a new DeFi and cross-chain product line.",
+      "prompt": "Which observations are genuine emerging AFC risk indicators to escalate?",
+      "items": [
+        {
+          "id": "a",
+          "label": "Customer inflows are routinely routed through a cross-chain bridge and a mixing service immediately before reaching the firm",
+          "flag": true,
+          "why": "Layered bridge-and-mixer routing obscures fund origin."
+        },
+        {
+          "id": "b",
+          "label": "A counterparty protocol claims decentralization but one team controls upgrades and can redirect user funds",
+          "flag": true,
+          "why": "Concentrated hidden control is an emerging governance risk."
+        },
+        {
+          "id": "c",
+          "label": "The firm publishes a periodic horizon-scanning report reviewed by the second line",
+          "flag": false,
+          "why": "Structured horizon scanning is good governance, not a risk."
+        },
+        {
+          "id": "d",
+          "label": "Tokenised real-world assets are onboarded with no check on the off-chain asset's provenance or issuer",
+          "flag": true,
+          "why": "Unverified RWA provenance can mask illicit value on-chain."
+        },
+        {
+          "id": "e",
+          "label": "A customer uses a mainstream, well-attributed exchange with full KYC for fiat off-ramps",
+          "flag": false,
+          "why": "A transparent, KYC'd off-ramp is not itself a red flag."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-ir-1",
+    "conceptTags": [
+      "incident_response",
+      "response_sequence",
+      "tracing",
+      "stolen_funds"
+    ],
+    "mechanic": "sequence",
+    "title": "Responding to a hot-wallet drain",
+    "spec": {
+      "kind": "sequence",
+      "prompt": "Attackers have drained a hot wallet and are moving stolen funds on-chain. Put the response steps in the correct order.",
+      "steps": [
+        {
+          "id": "s1",
+          "label": "Contain the incident: isolate affected systems and halt further outflows",
+          "why": "Stopping ongoing loss comes first."
+        },
+        {
+          "id": "s2",
+          "label": "Trace the stolen funds on-chain and identify off-ramp chokepoints",
+          "why": "Tracing locates where value can still be intercepted."
+        },
+        {
+          "id": "s3",
+          "label": "Notify authorities, file required reports, and request freezing at cooperating exchanges",
+          "why": "Reporting and freezing requests enable recovery and compliance."
+        },
+        {
+          "id": "s4",
+          "label": "Run a post-incident review and feed lessons learned back into controls",
+          "why": "Learning from the event builds resilience."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-ir-2",
+    "conceptTags": [
+      "hack_theft",
+      "incident_response_in_practice",
+      "stolen_funds",
+      "tracing"
+    ],
+    "mechanic": "red-flags",
+    "title": "Is this an active incident",
+    "spec": {
+      "kind": "red-flags",
+      "scenario": "A monitoring team reviews signals during a suspected security incident at a custodial wallet service.",
+      "prompt": "Which observations warrant treating this as an active incident and escalating?",
+      "items": [
+        {
+          "id": "a",
+          "label": "A large batch of withdrawals to newly created external addresses executes far outside normal patterns and volumes",
+          "flag": true,
+          "why": "Abnormal mass outflows signal a possible drain."
+        },
+        {
+          "id": "b",
+          "label": "The outgoing funds are being split and routed through a mixer and a cross-chain bridge",
+          "flag": true,
+          "why": "Rapid layering of outflows indicates laundering of stolen funds."
+        },
+        {
+          "id": "c",
+          "label": "Scheduled maintenance produced a brief, expected dip in successful logins overnight",
+          "flag": false,
+          "why": "A planned, explained dip is benign."
+        },
+        {
+          "id": "d",
+          "label": "An internal admin account approves withdrawals from an unusual location at an unusual hour",
+          "flag": true,
+          "why": "Anomalous admin behavior suggests compromise or insider abuse."
+        },
+        {
+          "id": "e",
+          "label": "The daily reconciliation of hot-wallet balances matches the ledger exactly",
+          "flag": false,
+          "why": "A clean reconciliation is reassuring, not a warning sign."
+        }
+      ]
+    }
+  },
+  {
+    "id": "ccas-ir-3",
+    "conceptTags": [
+      "incident_response",
+      "freezing",
+      "lessons_learned",
+      "resilience"
+    ],
+    "mechanic": "sort",
+    "title": "Now versus after",
+    "spec": {
+      "kind": "sort",
+      "prompt": "Sort each action into whether it belongs to the active response or to post-incident resilience work.",
+      "buckets": [
+        {
+          "id": "during",
+          "label": "During the incident (active response)"
+        },
+        {
+          "id": "after",
+          "label": "After the incident (resilience and learning)"
+        }
+      ],
+      "items": [
+        {
+          "id": "a",
+          "label": "Freeze internal withdrawal processing to stop further loss",
+          "bucket": "during",
+          "why": "Containment is an immediate response action."
+        },
+        {
+          "id": "b",
+          "label": "File the required regulatory report and notify law enforcement",
+          "bucket": "during",
+          "why": "Prompt reporting is part of managing a live incident."
+        },
+        {
+          "id": "c",
+          "label": "Update the incident-response playbook based on what went wrong",
+          "bucket": "after",
+          "why": "Revising the playbook is a lessons-learned activity."
+        },
+        {
+          "id": "d",
+          "label": "Trace stolen funds to an off-ramp and ask the receiving exchange to freeze them",
+          "bucket": "during",
+          "why": "Tracing and freezing requests happen while funds are still recoverable."
+        },
+        {
+          "id": "e",
+          "label": "Add new detection rules and strengthen key management uncovered by the review",
+          "bucket": "after",
+          "why": "Hardening controls afterward builds resilience."
+        }
+      ]
+    }
+  }
+]
