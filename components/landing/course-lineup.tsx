@@ -21,7 +21,7 @@ const courses = [
     description:
       'Blockchain compliance, crypto transaction monitoring, DeFi risk assessment, and the global cryptoasset regulatory landscape.',
     image: '/course-ccas.png',
-    status: 'launching' as CourseStatus,
+    status: 'available' as CourseStatus,
   },
   {
     slug: 'cdcs',

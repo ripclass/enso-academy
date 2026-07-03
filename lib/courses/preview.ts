@@ -19,6 +19,10 @@ export const PREVIEW_LESSON_SLUGS: Record<string, string[]> = {
     'what-money-laundering-actually-is', // M1.1 — the opener; has an interactive
     'correspondent-banking-risk', // M6.2 — flow-trace + office hours showcase
   ],
+  ccas: [
+    'what-cryptoassets-are', // M1.1 — the opener
+    'conducting-an-on-chain-investigation', // M3 — the strongest showcase lesson
+  ],
 }
 
 /** The preview lesson slugs for a course slug (empty if none). */

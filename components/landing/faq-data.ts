@@ -20,7 +20,7 @@ export const faqs = [
   },
   {
     question: 'Which certifications do you cover?',
-    answer: 'CAMS is available now. CCAS is launching soon, and CDCS is in development.',
+    answer: 'CAMS and CCAS are available now. CDCS is in development.',
   },
   {
     question: 'Where does the content come from?',
