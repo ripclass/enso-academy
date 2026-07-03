@@ -36,8 +36,7 @@ export function BuyButtons({ courseSlug }: { courseSlug: string }) {
         <div className="rounded-lg border border-neutral-200 bg-white p-6 flex flex-col">
           <h3 className="font-bold text-neutral-900">Single exam simulation</h3>
           <p className="mt-1 text-sm text-neutral-600 leading-relaxed flex-1">
-            One full 3.5-hour, 120-question exam simulation under real exam conditions. No course
-            purchase required.
+            One full-length exam simulation under real exam conditions. No course purchase required.
           </p>
           <p className="mt-3 text-2xl font-bold font-mono text-neutral-900">$14.99</p>
           <button
@@ -53,7 +52,7 @@ export function BuyButtons({ courseSlug }: { courseSlug: string }) {
           <div className="flex items-center justify-between gap-2">
             <h3 className="font-bold text-neutral-900">Full course access</h3>
             <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-bold uppercase tracking-wider text-white">
-              $100 off
+              Launch price
             </span>
           </div>
           <p className="mt-1 text-sm text-neutral-600 leading-relaxed flex-1">
@@ -62,8 +61,6 @@ export function BuyButtons({ courseSlug }: { courseSlug: string }) {
           </p>
           <p className="mt-3 flex items-baseline gap-2">
             <span className="text-2xl font-bold font-mono text-neutral-900">$299</span>
-            <span className="text-sm font-mono text-neutral-400 line-through">$399</span>
-            <span className="text-2xs font-semibold uppercase tracking-wider text-accent">limited</span>
           </p>
           <button
             onClick={() => go('course')}

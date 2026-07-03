@@ -37,8 +37,16 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-10 border-t border-foreground/15 pt-8 text-center text-2xs font-mono uppercase tracking-wider text-foreground/40">
-          &copy; {currentYear} Enso Academy. All rights reserved.
+        <div className="mt-10 border-t border-foreground/15 pt-8 text-center">
+          <p className="mx-auto max-w-3xl text-2xs leading-relaxed text-foreground/45">
+            Enso Academy is an independent exam-preparation provider. It is not affiliated with,
+            authorised by, or endorsed by ACAMS or any other certification body. CAMS, CCAS, and
+            CDCS are trademarks of their respective owners, used here only to identify the exams
+            our courses prepare you for.
+          </p>
+          <p className="mt-4 text-2xs font-mono uppercase tracking-wider text-foreground/40">
+            &copy; {currentYear} Enso Academy. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function Hero() {
   return (
@@ -25,6 +26,22 @@ export function Hero() {
               The lecturer adapts to what you know. You sit full mock exams, and we tell you when you&rsquo;re ready.
             </p>
           </div>
+        </div>
+
+        {/* Primary conversion row: the live course, and the zero-friction taste */}
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+          <Link
+            href="/courses/cams"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-foreground px-6 py-3 text-xs font-bold uppercase tracking-wider text-background transition-colors hover:bg-primary hover:border-primary"
+          >
+            Explore the CAMS course &rarr;
+          </Link>
+          <Link
+            href="/courses/cams/cases"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-foreground px-6 py-3 text-xs font-bold uppercase tracking-wider text-foreground transition-colors hover:bg-foreground hover:text-background"
+          >
+            Work a real case free · no signup
+          </Link>
         </div>
 
         {/* Wide Grayscale Editorial Photograph */}

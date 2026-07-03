@@ -132,7 +132,7 @@ export function CourseSalesPage({
               )}
             </div>
             <p className="mt-4 font-mono text-2xs uppercase tracking-wider text-foreground/45">
-              $100 off (was $399) · 14-day money-back · one payment, lasting access
+              Launch price · 14-day money-back · one payment, lasting access
             </p>
           </div>
         </section>
@@ -183,7 +183,7 @@ export function CourseSalesPage({
         {/* Exam blueprint coverage */}
         <section className="border-b border-foreground">
           <div className="mx-auto max-w-6xl px-6 py-16 md:px-8">
-            <BlueprintCoverage guideHref={`/courses/${slug}/guide`} />
+            <BlueprintCoverage slug={slug} guideHref={`/courses/${slug}/guide`} />
             <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border-2 border-foreground bg-background p-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h3 className="text-base font-bold">Try Case Mode, free</h3>

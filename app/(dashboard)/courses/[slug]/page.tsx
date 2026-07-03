@@ -1,6 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+import { PRODUCTS } from '@/lib/stripe/client'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, FileText } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
@@ -10,6 +12,36 @@ import { BlueprintCoverage } from '@/components/courses/blueprint-coverage'
 import { previewLessonIds } from '@/lib/courses/preview'
 
 type Props = { params: Promise<{ slug: string }> }
+
+// The sales page is the highest-intent public page on the site: give it real
+// metadata (title, description, canonical, OG) derived from the course row.
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const admin = createAdminClient()
+  const { data: course } = await admin
+    .from('courses')
+    .select('name, short_name, description, status')
+    .eq('slug', slug)
+    .maybeSingle()
+  if (!course || course.status !== 'published') return {}
+  const title = `${course.short_name} exam prep · ${course.name}`
+  const description =
+    course.description ??
+    `Prepare for the ${course.short_name} exam in an AI classroom built from primary sources, with full exam simulations and a calibrated readiness signoff.`
+  return {
+    title,
+    description,
+    alternates: { canonical: `/courses/${slug}` },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: `https://www.ensoacademy.ai/courses/${slug}`,
+      siteName: 'Enso Academy',
+    },
+    twitter: { card: 'summary_large_image', title, description },
+  }
+}
 
 // Per-course marketing content for the public sales page. Add an entry per
 // course; falls back to the course's own description for any course not listed.
@@ -33,6 +65,26 @@ const SALES_CONTENT: Record<
       'The AI lecturer that adapts to what you know, named classmates, and end-of-lesson office hours',
       'Hands-on practice: trace the money through a network, adjudicate sanctions alerts, draft a SAR for an AI examiner',
       'Full-length 120-question / 3.5-hour exam simulations with a calibrated readiness signoff',
+      'Unlimited free practice mocks',
+      'One payment, lasting access, with a 14-day money-back guarantee',
+    ],
+  },
+  ccas: {
+    exam: {
+      about:
+        'CCAS, the Certified Cryptoasset Anti-Financial Crime Specialist, is ACAMS’s specialist certification for professionals fighting financial crime in the cryptoasset sector. The exam tests applied judgment across three domains: how cryptoassets and blockchains actually work, the AML foundations for crypto including the FATF standards, the Travel Rule, and sanctions, and how to build and run a cryptoasset anti-financial-crime programme through monitoring, screening, investigation, and governance.',
+      facts: [
+        { label: 'Format', value: '100 questions (multiple choice)' },
+        { label: 'Duration', value: '2 hours 55 minutes' },
+        { label: 'Administered by', value: 'ACAMS' },
+        { label: 'This course', value: '10 modules · 43 lessons' },
+      ],
+    },
+    whatYouGet: [
+      'The complete course: 10 modules, 43 interactive lessons built from primary regulatory sources and public enforcement actions',
+      'The AI lecturer that adapts to what you know, named classmates, and end-of-lesson office hours',
+      'Worked enforcement cases and scenario-based practice across every module, from on-chain tracing to sanctions and Travel Rule decisions',
+      'Full-length 100-question / 175-minute exam simulations with a calibrated readiness signoff',
       'Unlimited free practice mocks',
       'One payment, lasting access, with a 14-day money-back guarantee',
     ],
@@ -309,7 +361,7 @@ export default async function CourseDetailPage({ params }: Props) {
 
             {/* Exam blueprint coverage — the "we cover the whole exam" map */}
             <div className="mt-12 border-t border-neutral-200 pt-10">
-              <BlueprintCoverage eyebrow="Exam coverage" title="What this course covers, mapped to the exam" guideHref={`/courses/${course.slug}/guide`} />
+              <BlueprintCoverage slug={course.slug} eyebrow="Exam coverage" title="What this course covers, mapped to the exam" guideHref={`/courses/${course.slug}/guide`} />
             </div>
           </main>
         </div>
@@ -340,17 +392,54 @@ export default async function CourseDetailPage({ params }: Props) {
     whatYouGet: [],
   }
 
+  // Course structured data for search rich results. Offer only present when
+  // the course has a configured price.
+  const price = PRODUCTS[course.slug]?.course
+  const courseJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: `${course.short_name} Exam Preparation`,
+    description: course.description ?? content.exam.about,
+    provider: {
+      '@type': 'Organization',
+      name: 'Enso Academy',
+      url: 'https://www.ensoacademy.ai',
+    },
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: 'Online',
+      courseWorkload: course.estimated_study_hours ? `PT${course.estimated_study_hours}H` : undefined,
+    },
+    ...(price
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: (price.amountCents / 100).toFixed(2),
+            priceCurrency: price.currency.toUpperCase(),
+            availability: 'https://schema.org/InStock',
+            url: `https://www.ensoacademy.ai/courses/${course.slug}`,
+          },
+        }
+      : {}),
+  }
+
   return (
-    <CourseSalesPage
-      slug={course.slug}
-      name={course.name}
-      shortName={course.short_name}
-      description={course.description ?? ''}
-      certifyingBody={course.certifying_body}
-      isAuthenticated={!!user}
-      previewLessons={previewLessons}
-      exam={content.exam}
-      whatYouGet={content.whatYouGet}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
+      <CourseSalesPage
+        slug={course.slug}
+        name={course.name}
+        shortName={course.short_name}
+        description={course.description ?? ''}
+        certifyingBody={course.certifying_body}
+        isAuthenticated={!!user}
+        previewLessons={previewLessons}
+        exam={content.exam}
+        whatYouGet={content.whatYouGet}
+      />
+    </>
   )
 }

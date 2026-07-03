@@ -2,16 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+type CourseStatus = 'available' | 'launching' | 'soon'
+
 const courses = [
-  {
-    slug: 'cdcs',
-    title: 'CDCS Prep',
-    subtitle: 'Certified Documentary Credit Specialist',
-    description:
-      'International trade finance, letters of credit, and bank guarantees, for bankers and trade-finance professionals.',
-    image: '/course-cdcs.png',
-    status: 'soon' as const,
-  },
   {
     slug: 'cams',
     title: 'CAMS Prep',
@@ -19,27 +12,32 @@ const courses = [
     description:
       'AML compliance, financial crime investigation, and regulatory reporting, built from FATF, Basel, and Wolfsberg frameworks.',
     image: '/course-cams.png',
-    status: 'available' as const,
+    status: 'available' as CourseStatus,
   },
   {
     slug: 'ccas',
     title: 'CCAS Prep',
-    subtitle: 'Certified Cryptoasset Specialist',
+    subtitle: 'Certified Cryptoasset AFC Specialist',
     description:
       'Blockchain compliance, crypto transaction monitoring, DeFi risk assessment, and the global cryptoasset regulatory landscape.',
     image: '/course-ccas.png',
-    status: 'soon' as const,
+    status: 'launching' as CourseStatus,
   },
   {
-    slug: 'fccs',
-    title: 'FCCS Prep',
-    subtitle: 'Financial Crime Compliance Specialist',
+    slug: 'cdcs',
+    title: 'CDCS Prep',
+    subtitle: 'Certified Documentary Credit Specialist',
     description:
-      'Advanced transaction monitoring logic, correspondent banking risk audits, and automated control frameworks.',
-    image: '/study_environment.png',
-    status: 'soon' as const,
+      'International trade finance, letters of credit, and bank guarantees, for bankers and trade-finance professionals.',
+    image: '/course-cdcs.png',
+    status: 'soon' as CourseStatus,
   },
 ]
+
+const STATUS_BADGE: Record<Exclude<CourseStatus, 'available'>, string> = {
+  launching: 'Launching soon',
+  soon: 'In development',
+}
 
 function CourseCard({ course }: { course: (typeof courses)[number] }) {
   const isAvailable = course.status === 'available'
@@ -57,7 +55,7 @@ function CourseCard({ course }: { course: (typeof courses)[number] }) {
         />
         {!isAvailable && (
           <span className="absolute right-3 top-3 rounded-full bg-background/90 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-foreground/60 backdrop-blur-sm">
-            Coming soon
+            {STATUS_BADGE[course.status as Exclude<CourseStatus, 'available'>]}
           </span>
         )}
       </div>
@@ -77,7 +75,7 @@ function CourseCard({ course }: { course: (typeof courses)[number] }) {
           </span>
         ) : (
           <span className="mt-5 inline-block text-[10px] font-mono uppercase tracking-widest text-foreground/40">
-            Coming soon
+            {STATUS_BADGE[course.status as Exclude<CourseStatus, 'available'>]}
           </span>
         )}
       </div>
@@ -105,8 +103,8 @@ export function CourseLineup() {
           OUR PROGRAM
         </span>
 
-        {/* 4-Card Grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
+        {/* Course Grid */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
           {courses.map((course) => (
             <CourseCard key={course.slug} course={course} />
           ))}

@@ -9,6 +9,7 @@ import { stripEmDashes } from '@/lib/ai/prose'
 import { getMasterySummary, recordEvidence } from '@/lib/student-model/knowledge'
 import { getMemoryPreamble, summarizeSessionToMemory, getLecturerOpening } from '@/lib/student-model/memory'
 import { lecturerVariantFor } from '@/lib/lesson/scenes'
+import { isPreviewLessonId } from '@/lib/courses/preview'
 import { after } from 'next/server'
 
 type AskQuestionResult = {
@@ -96,7 +97,10 @@ export async function startLessonSession(lessonId: string): Promise<string> {
 
   const courseId = (lesson.module as any).course_id
 
-  // Find the enrollment
+  // Find the enrollment. Free preview lessons are playable by any signed-in
+  // user (the buy gate is on the rest of the course), so a missing enrollment
+  // is only fatal for non-preview lessons; preview sessions record with a null
+  // enrollment_id.
   const { data: enrollment } = await admin
     .from('enrollments')
     .select('id')
@@ -105,14 +109,14 @@ export async function startLessonSession(lessonId: string): Promise<string> {
     .eq('status', 'active')
     .single()
 
-  if (!enrollment) throw new Error('Not enrolled in this course')
+  if (!enrollment && !isPreviewLessonId(lessonId)) throw new Error('Not enrolled in this course')
 
   const { data: session, error } = await admin
     .from('sessions')
     .insert({
       student_id: user.id,
       course_id: courseId,
-      enrollment_id: enrollment.id,
+      enrollment_id: enrollment?.id ?? null,
       session_type: 'lesson',
       modality: 'standard',
       lesson_id: lessonId,

@@ -2,6 +2,7 @@ import { GeistMono } from 'geist/font/mono'
 import { Outfit } from 'next/font/google'
 import type { Metadata } from 'next'
 import { Toaster } from '@/components/ui/sonner'
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 // Outfit — the clean display/UI typeface to match the design reference.
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   )

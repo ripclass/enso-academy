@@ -80,9 +80,8 @@ export function CoursePurchase({
       <div className="mt-6 flex flex-wrap items-center gap-4">
         <span className="flex items-baseline gap-2.5">
           <span className="text-3xl font-bold font-mono text-neutral-900">{priceLabel}</span>
-          <span className="text-lg font-mono text-neutral-400 line-through">$399</span>
           <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-bold uppercase tracking-wider text-white">
-            $100 off · limited
+            Launch price
           </span>
         </span>
         <button
