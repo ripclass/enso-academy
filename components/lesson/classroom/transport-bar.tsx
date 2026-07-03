@@ -10,6 +10,7 @@ import { Play, Pause, SkipBack, SkipForward, RotateCcw, Volume2, VolumeX } from 
  */
 export function TransportBar({
   isPlaying,
+  loading,
   onPlayPause,
   onPrev,
   onNext,
@@ -22,6 +23,8 @@ export function TransportBar({
   onToggleMute,
 }: {
   isPlaying: boolean
+  /** Narration is being synthesized/fetched — the play button shows a spinner. */
+  loading?: boolean
   onPlayPause: () => void
   onPrev: () => void
   onNext: () => void
@@ -52,14 +55,20 @@ export function TransportBar({
         <SkipBack className="h-4 w-4" />
       </IconBtn>
 
-      {/* Primary play / pause */}
+      {/* Primary play / pause (spinner while narration synthesizes) */}
       <button
         type="button"
         onClick={onPlayPause}
-        aria-label={isPlaying ? 'Pause' : 'Play'}
+        aria-label={loading ? 'Loading narration' : isPlaying ? 'Pause' : 'Play'}
         className="mx-0.5 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-sm transition-colors hover:bg-primary-hover"
       >
-        {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="ml-0.5 h-5 w-5" />}
+        {loading ? (
+          <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+        ) : isPlaying ? (
+          <Pause className="h-5 w-5" />
+        ) : (
+          <Play className="ml-0.5 h-5 w-5" />
+        )}
       </button>
 
       <IconBtn label="Next scene" onClick={onNext} disabled={!canNext}>

@@ -46,21 +46,32 @@ export function LecturerDock({
   variant = 'female',
   speaking,
   thinking,
+  preparing,
 }: {
   name?: string
   variant?: LecturerVariant
   speaking: boolean
   thinking?: boolean
+  /** Narration audio is being synthesized/fetched — shown, so a slow start
+   *  reads as "getting ready" instead of "frozen". */
+  preparing?: boolean
 }) {
   return (
     <div className="flex items-center gap-3">
-      <LecturerAvatar size={56} variant={variant} speaking={speaking} thinking={thinking} />
+      <LecturerAvatar size={56} variant={variant} speaking={speaking} thinking={thinking || preparing} />
       <div className="hidden min-w-0 sm:block">
         <div className="truncate text-sm font-bold text-neutral-900">{name}</div>
         <div className="flex items-center gap-1.5">
-          <span className="font-mono text-2xs font-semibold uppercase tracking-widest text-primary">
-            Lecturer
-          </span>
+          {preparing && !speaking ? (
+            <span className="inline-flex items-center gap-1.5 font-mono text-2xs font-semibold uppercase tracking-widest text-primary">
+              <span className="h-2.5 w-2.5 animate-spin rounded-full border border-primary border-t-transparent" />
+              Preparing
+            </span>
+          ) : (
+            <span className="font-mono text-2xs font-semibold uppercase tracking-widest text-primary">
+              Lecturer
+            </span>
+          )}
           {speaking && <SpeakingBars />}
         </div>
       </div>

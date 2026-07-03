@@ -26,9 +26,15 @@ export type SlideBeat = { from: number; to: number; narration: string }
  * the narration (split by sentences, proportional to the pages). Returns one
  * beat per page; `narration` is '' for a page when the script can't be split
  * that finely (the caller then falls back to a single clip).
+ *
+ * Comparison slides are NEVER split across pages: the item cap would cut a
+ * column set mid-column (e.g. a US/UK/EU statute comparison showing only US
+ * and UK on page one). They render whole, with progressive reveal doing the
+ * pacing instead.
  */
-export function slideBeats(narration: string, itemCount: number): SlideBeat[] {
-  const pages = Math.max(1, Math.ceil(itemCount / SLIDE_ITEMS_PER_BEAT))
+export function slideBeats(narration: string, itemCount: number, template?: string): SlideBeat[] {
+  const pages =
+    template === 'comparison' ? 1 : Math.max(1, Math.ceil(itemCount / SLIDE_ITEMS_PER_BEAT))
   const sents = splitSentences(narration ?? '')
   const beats: SlideBeat[] = []
   for (let p = 0; p < pages; p++) {

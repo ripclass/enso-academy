@@ -256,7 +256,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     if (!s) return []
     if (s.sceneType === 'reading') return readingBeats(s.data.body)
     if (s.sceneType === 'slide') {
-      return slideBeats(s.data.narration, s.data.items?.length ?? 0).map((b) => b.narration)
+      return slideBeats(s.data.narration, s.data.items?.length ?? 0, s.data.template).map((b) => b.narration)
     }
     return []
   }
@@ -1188,6 +1188,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
               <div className="mb-3 flex justify-center">
                 <TransportBar
                   isPlaying={isPlaying}
+                  loading={audioStatus === 'loading'}
                   onPlayPause={handlePlayPause}
                   onPrev={goPrev}
                   onNext={goNext}
@@ -1205,7 +1206,12 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
             {/* Dock row: lecturer + speech bubble on the left, cast on the right */}
             <div className="flex items-center justify-between gap-6">
               <div className="flex min-w-0 flex-1 items-center gap-3">
-                <LecturerDock variant={lecturerVariant} speaking={speaking} thinking={askingQuestion} />
+                <LecturerDock
+                  variant={lecturerVariant}
+                  speaking={speaking}
+                  thinking={askingQuestion}
+                  preparing={audioStatus === 'loading'}
+                />
 
                 <div className="hidden min-w-0 flex-1 space-y-2 sm:block">
                   <NarrationBubble

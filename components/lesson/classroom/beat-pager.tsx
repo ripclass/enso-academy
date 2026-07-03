@@ -41,7 +41,7 @@ function buildBeats(scene: Scene): Beat[] {
   }
   if (scene.sceneType === 'slide') {
     const n = scene.data.items?.length ?? 0
-    return slideBeats(scene.data.narration, n).map((b) => ({
+    return slideBeats(scene.data.narration, n, scene.data.template).map((b) => ({
       kind: 'slideItems' as const,
       from: b.from,
       to: b.to,
@@ -53,7 +53,15 @@ function buildBeats(scene: Scene): Beat[] {
 /** Whether this scene is eligible for (and benefits from) beat pagination. */
 export function paginates(scene: Scene): boolean {
   if (scene.sceneType === 'reading') return readingBeats(scene.data.body).length > 1
-  if (scene.sceneType === 'slide') return (scene.data.items?.length ?? 0) > SLIDE_ITEMS_PER_BEAT
+  // Comparison slides never paginate: the item cap would split a column set
+  // mid-column (US/UK shown, EU stranded on page two). They render whole,
+  // with progressive reveal doing the pacing.
+  if (scene.sceneType === 'slide') {
+    return (
+      scene.data.template !== 'comparison' &&
+      (scene.data.items?.length ?? 0) > SLIDE_ITEMS_PER_BEAT
+    )
+  }
   return false
 }
 
@@ -174,7 +182,13 @@ export function BeatPager({
           ) : scene.sceneType === 'slide' ? (
             <SlideScene
               data={{ ...scene.data, items: (scene.data.items ?? []).slice(beat.from, beat.to) }}
-              revealed={Infinity}
+              // Within the page, items build in as the page's clip plays (the
+              // lecturer walks them one by one); reading silently shows all.
+              revealed={
+                playing
+                  ? Math.max(1, Math.ceil((progress || 0) * (beat.to - beat.from)))
+                  : Infinity
+              }
             />
           ) : null}
         </div>

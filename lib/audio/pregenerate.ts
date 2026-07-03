@@ -170,7 +170,8 @@ export async function pregenerateBeatAudio(opts: {
     } else if (s.scene_type === 'slide') {
       const narration = typeof sd?.narration === 'string' ? sd.narration : ''
       const itemCount = Array.isArray(sd?.items) ? (sd.items as unknown[]).length : 0
-      texts = slideBeats(narration, itemCount).map((b) => b.narration)
+      const template = typeof sd?.template === 'string' ? sd.template : undefined
+      texts = slideBeats(narration, itemCount, template).map((b) => b.narration)
     }
     // Only multi-beat scenes whose every beat has narration use per-beat audio
     // (mirrors the player's beatAudio() guard); the rest use a single clip.
