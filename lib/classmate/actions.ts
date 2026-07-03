@@ -216,7 +216,11 @@ Rules:
       costCents: qResult.costCents,
       latencyMs: Date.now() - qStart,
     })
+    // Drop any leaked roleplay stage direction (e.g. "*raises hand*") — the
+    // prompt asks for the question only, but models occasionally add one.
     const question = stripEmDashes(qResult.text.trim())
+      .replace(/^\s*\*[^*\n]{0,60}\*\s*/, '')
+      .trim()
     if (!question) return { fired: false }
 
     // Generate the lecturer's answer to the classmate's question (Haiku, grounded).
