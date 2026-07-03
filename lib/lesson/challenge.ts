@@ -15,7 +15,13 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { getMasterySummary } from '@/lib/student-model/knowledge'
 import type { ChallengeScenario, ChallengeMechanic, ChallengeSpec } from '@/lib/cases/scenario-bank'
-import { CHALLENGE_SIZE, poolForLesson, selectScenarios, type ChallengeRound } from './challenge-config'
+import {
+  CHALLENGE_SIZE,
+  IN_CODE_BANK_COURSE,
+  poolForLesson,
+  selectScenarios,
+  type ChallengeRound,
+} from './challenge-config'
 
 const KNOWN_MECHANICS: ChallengeMechanic[] = [
   'red-flags',
@@ -84,6 +90,17 @@ async function fetchDbScenarios(courseId: string, concepts: string[]): Promise<C
   }
 }
 
+/** Resolve a course's slug from its id (to decide whether the in-code floor applies). */
+async function courseSlugFor(courseId: string): Promise<string | null> {
+  try {
+    const admin = createAdminClient()
+    const { data } = await admin.from('courses').select('slug').eq('id', courseId).maybeSingle()
+    return (data as { slug?: string } | null)?.slug ?? null
+  } catch {
+    return null
+  }
+}
+
 export async function getLessonChallenge(opts: {
   courseId: string
   lessonSlug: string
@@ -93,12 +110,18 @@ export async function getLessonChallenge(opts: {
   const n = opts.n ?? CHALLENGE_SIZE
   const concepts = [...new Set(opts.conceptTags.filter(Boolean))]
 
-  // Union DB-served scenarios OVER the in-code floor (DB wins by id). The floor
-  // (poolForLesson) already broadens to the whole in-code bank when too few
-  // match, so coverage is always at least the in-code behavior.
-  const dbPool = await fetchDbScenarios(opts.courseId, concepts)
+  // Union DB-served scenarios OVER the in-code floor (DB wins by id). The in-code
+  // SCENARIO_BANK is CAMS-only, and poolForLesson broadens to the whole bank when
+  // too few match, so the floor is applied ONLY for the in-code course; other
+  // courses (e.g. CCAS) are served purely from the DB to avoid cross-course leak.
+  const [dbPool, courseSlug] = await Promise.all([
+    fetchDbScenarios(opts.courseId, concepts),
+    courseSlugFor(opts.courseId),
+  ])
   const byId = new Map<string, ChallengeScenario>()
-  for (const s of poolForLesson(concepts, n)) byId.set(s.id, s)
+  if (courseSlug === IN_CODE_BANK_COURSE) {
+    for (const s of poolForLesson(concepts, n)) byId.set(s.id, s)
+  }
   for (const s of dbPool) byId.set(s.id, s) // DB precedence
   const pool = [...byId.values()]
 

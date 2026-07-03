@@ -76,6 +76,13 @@ export const CHALLENGE_LESSON_SLUGS = new Set<string>([
   'bribery-and-corruption-abc',
   'tax-evasion-and-financial-crime',
   'sector-risk-deep-dives',
+
+  // ── CCAS (Cryptoasset AFC) ────────────────────────────────────────────────
+  // Module 3 pilot: Blockchain Analytics and On-Chain Investigation. The third
+  // Module 3 lesson, conducting-an-on-chain-investigation, is a FREE PREVIEW
+  // lesson and is intentionally left out of the pilot.
+  'transparency-pseudonymity-and-the-tracing-premise',
+  'clustering-attribution-and-exposure-analysis',
 ])
 
 export function lessonHasChallenge(slug: string): boolean {
@@ -84,6 +91,15 @@ export function lessonHasChallenge(slug: string): boolean {
 
 /** Default number of judgments in a round. */
 export const CHALLENGE_SIZE = 3
+
+/**
+ * The course whose scenarios the in-code SCENARIO_BANK holds (CAMS). Other
+ * courses (e.g. CCAS) are served purely from the DB-backed challenge_scenarios
+ * table, so the in-code floor must NOT apply to them: poolForLesson broadens to
+ * the whole (CAMS) bank when too few match, which would leak CAMS scenarios into
+ * another course's lesson. getLessonChallenge gates the floor on this slug.
+ */
+export const IN_CODE_BANK_COURSE = 'cams'
 
 export type ChallengeRound = {
   scenarios: ChallengeScenario[]
