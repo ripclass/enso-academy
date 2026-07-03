@@ -1,3 +1,417 @@
+## 2026-07-02 - CCAS module `learning-from-enforcement-and-synthesis` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack and `docs/COURSE-GENERATION-PROMPT.md` v1.1, then evaluated the pasted Learning from Enforcement and Synthesis assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and named public enforcement references are durable historical anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "3 - Risk Management Programs for Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-02 - CCAS module `national-and-regional-crypto-frameworks` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADR context, then evaluated the pasted National and Regional Crypto Frameworks assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the statutory/regulatory and public-record references are durable rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "2 - AML Foundations for Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-02 - CCAS module `fatf-the-travel-rule-and-crypto-sanctions` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADR context, then evaluated the pasted FATF / Travel Rule / Crypto Sanctions assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the standards/history plus public-case references are durable rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "2 - AML Foundations for Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-02 - CCAS module `financial-crime-in-the-cryptoasset-sector` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADR context, then evaluated the pasted Financial Crime in the Cryptoasset Sector assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and named public-record references are durable historical anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "2 - AML Foundations for Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-02 - CCAS module `governance-audit-and-emerging-risk` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADR context, then evaluated the pasted Governance, Audit, and Emerging Risk assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and no volatile current-fact dependency surfaced.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "3 - Risk Management Programs for Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-02 - CCAS module `monitoring-screening-and-reporting` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADR context, then evaluated the pasted Monitoring, Screening, and Reporting assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the Silvergate, Kraken, and Robinhood references are durable historical public-record anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "3 - Risk Management Programs for Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-02 - CCAS module `building-a-cryptoasset-afc-program` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or factual-fidelity primary-source pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADR context, then evaluated the pasted Building a Cryptoasset AFC Program assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the OKX, Chatex, and KuCoin/Peken references are durable historical public-record anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "3 - Risk Management Programs for Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-02 - CCAS module `fatf-the-travel-rule-and-crypto-sanctions` assessment factual-fidelity rerun returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack and evaluated the pasted FATF / Travel Rule / Crypto Sanctions assessment set against the supplied 2026-06-25 facts reference.
+- Current verdict best reads `AGREE`: no answer-key defect, defensible second correct answer, missing multiple-response correct option, misleading distractor rationale, or stem/option/explanation factual contradiction surfaced.
+- The earlier same-module above-threshold legal-person field-list blocker is not present in this pasted assessment set; the current R.15 / INR.15, Travel Rule mechanics, self-hosted-wallet, sunrise/counterparty-diligence, strict-liability sanctions, designated-address, indirect-exposure, Van Loon/Tornado Cash, and multiple-response items are materially clean.
+
+## 2026-07-02 - CCAS module `financial-crime-in-the-cryptoasset-sector` assessment factual-fidelity rerun returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, current methodology/source ADR context, and the current 2026-06-25 facts reference, then evaluated the pasted Financial Crime in the Cryptoasset Sector assessment set.
+- Current verdict best reads `AGREE`: no answer-key defect, defensible second correct answer, missing multiple-response correct option, misleading distractor rationale, or stem/option/explanation factual contradiction surfaced.
+- Targeted spot checks covered BTC-e / Vinnik, Hydra / Garantex, OECD CARF / DAC8 posture, US digital-asset broker reporting, FATF R.6/R.7 mapping, Ronin / Lazarus proliferation-financing framing, Tornado Cash historical designation posture, ransomware payment risk, and the FATF virtual-asset red-flag categories.
+
+## 2026-07-02 - CCAS module `the-crypto-ecosystem-vasps-defi-and-token-types` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADR context, then evaluated the pasted VASPs / DeFi / token-types assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the Ooki DAO / Helix / Tether references are durable historical public-record anchors rather than volatile current-list facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "1 - Cryptoassets and Blockchain"` is this module's listed exam-domain label.
+
+## 2026-07-02 - CCAS module `cryptoasset-and-blockchain-foundations` assessment factual-fidelity rerun returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, then evaluated the pasted Cryptoasset and Blockchain Foundations assessment set against the maintained CCAS facts reference.
+- Current verdict best reads `AGREE`: no answer-key defect, defensible second correct answer, missing multiple-response correct option, misleading distractor rationale, or stem/option/explanation factual contradiction surfaced.
+- Checked coverage includes FATF virtual-asset exclusions for CBDCs and tokenised securities; privately issued stablecoins, native coins, and privacy coins in scope; custody and self-hosted-wallet control points; pseudonymity versus anonymity; consensus and immutability mechanics; UTXO/account-model tracing; mempool/finality; chain-hopping, mixers, and privacy coins; and high-level historical examples including Colonial Pipeline, QuadrigaCX, and Mt. Gox.
+
+## 2026-07-02 - CCAS module `cryptoasset-and-blockchain-foundations` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology/source ADR context, then evaluated the pasted Cryptoasset and Blockchain Foundations assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the Terra/Luna / Colonial Pipeline / QuadrigaCX / Mt. Gox references are durable historical public-record anchors rather than volatile current facts.
+- This supersedes the stale 2026-07-01 methodology `DISAGREE` that applied an older A/B/C/D domain rubric: under the current brief, all question `conceptTags` are within the supplied module tag set and `domain: "1 - Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-02 - CCAS module `blockchain-analytics-and-on-chain-investigation` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology/source ADR context, then evaluated the pasted Blockchain Analytics and On-Chain Investigation assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the SUEX / James Zhong / Welcome to Video references are durable historical public-record anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "1 - Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-01 - CCAS module `fatf-the-travel-rule-and-crypto-sanctions` assessment methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology/source ADR context, then evaluated the pasted FATF / Travel Rule / Crypto Sanctions assessment set against the user's IP/originality, durability, format, domain/tag, and adult-professional-register instructions.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the standards/history plus public-case references are durable enough for this module rather than volatile list/status facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "2 - AML Foundations for Cryptoassets and Blockchain"` is the module's own listed exam-domain label.
+
+## 2026-07-01 - CCAS module `fatf-the-travel-rule-and-crypto-sanctions` assessment factual-fidelity rerun returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack and current assessment/source ADR context, then evaluated the exact current pasted FATF / Travel Rule / Crypto Sanctions question set against the maintained CCAS facts reference.
+- Current verdict best reads `AGREE`: all keyed single-answer and multiple-response answers are correct, with no defensible second correct answer, missing correct option, misleading distractor rationale, or stem/option/explanation factual contradiction surfaced.
+- This current pasted set does not include the earlier same-module above-threshold legal-person-beneficiary field-list blocker; the remaining Travel Rule, self-hosted wallet, counterparty due diligence, sanctions, designated-address, indirect-exposure, Tornado Cash, and VASP-definition items are materially clean.
+
+## 2026-07-01 - CCAS module `the-crypto-ecosystem-vasps-defi-and-token-types` assessment factual-fidelity rerun returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack and current assessment/source ADR context, then evaluated the exact current pasted VASPs / DeFi / token-types assessment set against the maintained CCAS facts reference plus targeted public-record case points.
+- Current verdict best reads `AGREE`: all keyed single-answer and multiple-response answers are correct, with no defensible second correct answer, missing correct option, misleading distractor rationale, or stem/option/explanation factual contradiction surfaced.
+- This supersedes the older same-day soft `SPLIT` note for the current wording: the smart-contract item includes the needed "unless coded in" qualification, and the traceability-design item no longer overstates ordinary VASPs as fully traceable.
+
+## 2026-07-01 - CCAS module `the-crypto-ecosystem-vasps-defi-and-token-types` assessment methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADR context, then evaluated the pasted VASPs / DeFi / token-types assessment set against the user's current brief.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and historical public-case references are durable rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "1 - Cryptoassets and Blockchain"` is this module's listed exam-domain label.
+
+## 2026-07-01 - CCAS module `learning-from-enforcement-and-synthesis` assessment factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, then evaluated the pasted Learning from Enforcement and Synthesis assessment set against the maintained CCAS facts reference and targeted public-record spot checks.
+- Current verdict best reads `AGREE`: no answer-key defect, defensible second correct answer, missing multiple-response correct option, wrong distractor rationale, or factual contradiction surfaced.
+- Checked coverage includes Tornado Cash designation / Van Loon / delisting, Binance SAR / registration / sanctions-control lessons, BitMEX KYC / perimeter / founder-liability lessons, Ronin-Lazarus blocked-property framing, and the sanctions-hit versus analytics-risk distinction.
+
+## 2026-07-01 - CCAS module `learning-from-enforcement-and-synthesis` assessment methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADRs, then evaluated the pasted Learning from Enforcement and Synthesis assessment set against the user's current brief.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the named enforcement references are durable historical public-record anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "3 - Risk Management Programs for Cryptoassets and Blockchain"` is this module's listed exam-domain label.
+
+## 2026-07-01 - CCAS module `governance-audit-and-emerging-risk` assessment methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADRs, then evaluated the pasted Governance, Audit, and Emerging Risk assessment set against the user's current brief.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and no volatile-current-fact dependency surfaced.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "3 - Risk Management Programs for Cryptoassets and Blockchain"` is this module's listed exam-domain label.
+
+## 2026-07-01 - CCAS module `monitoring-screening-and-reporting` assessment factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack and current assessment/source ADR context, then evaluated the pasted Monitoring, Screening, and Reporting assessment set against the maintained CCAS facts reference and targeted primary-source spot checks.
+- Current verdict best reads `AGREE`: no answer-key defect, defensible second correct answer, missing multiple-response correct option, wrong distractor rationale, or factual contradiction surfaced.
+- Checked coverage includes on-chain analytics plus behavioural monitoring, direct designated-address sanctions hard stops, indirect mixer exposure, peel-chain scenarios, above/below-the-line testing, Silvergate monitoring coverage, screening calibration, Kraken geolocation controls, IVMS101/off-chain Travel Rule operations, sunrise and self-hosted-wallet handling, SAR evidence/narrative discipline, tipping-off, and Robinhood Crypto alert-backlog/reporting facts.
+
+## 2026-07-01 - CCAS module `monitoring-screening-and-reporting` assessment methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current methodology ADRs, then evaluated the pasted Monitoring, Screening, and Reporting assessment set against the user's current brief.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the Silvergate, Kraken, and Robinhood references are durable historical public-record anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "3 - Risk Management Programs for Cryptoassets and Blockchain"` is this module's listed exam-domain label.
+
+## 2026-07-01 - CCAS module `building-a-cryptoasset-afc-program` assessment factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack and current assessment/source ADR context, then evaluated the pasted Building a Cryptoasset AFC Program assessment set against the maintained CCAS facts reference and targeted primary-source spot checks.
+- Current verdict best reads `AGREE`: no answer-key defect, defensible second correct answer, missing multiple-response correct option, wrong distractor rationale, or factual contradiction surfaced.
+- Checked coverage includes risk-assessment foundation, inherent / residual risk, risk appetite, crypto CDD, remote IDV, self-hosted-wallet attribution, source-of-wealth testing, OKX KYC enforcement facts, customer risk rating, on-chain exposure and dynamic cadence, Chatex designation facts, U.S. MSB / state licensing, EU MiCA-vs-AML/TFR separation, UK registration framing, and KuCoin/Peken regulatory-arbitrage facts.
+
+## 2026-07-01 - CCAS module `building-a-cryptoasset-afc-program` assessment methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current assessment/source ADR context, then evaluated the pasted Building a Cryptoasset AFC Program assessment set against the user's current brief.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or accepted multiple-response items, and the OKX, Chatex, and KuCoin references are durable historical public-record anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "3 - Risk Management Programs for Cryptoassets and Blockchain"` is the module's own listed exam-domain label in the user's course taxonomy.
+
+## 2026-07-01 - CCAS module `national-and-regional-crypto-frameworks` assessment factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, then evaluated the pasted National and Regional Crypto Frameworks assessment set against the maintained CCAS facts reference and targeted public-record spot checks.
+- Current verdict best reads `AGREE`: no answer-key defect, defensible second correct answer, missing multiple-response correct option, wrong distractor rationale, or factual contradiction surfaced.
+- Checked coverage includes FinCEN CVC guidance, U.S. layered crypto regulation, Ripple 2015, MiCA / TFR / EU AML package numbers and dates, DNB Coinbase, UK FCA registration and POCA SAR framing, Jian Wen / Zhimin Qian, FATF R.15 / INR.15 scope, CBDC exclusion, and jurisdiction-mapping method.
+
+## 2026-07-01 - CCAS module `fatf-the-travel-rule-and-crypto-sanctions` assessment factual-fidelity audit returns `DISAGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current assessment/source ADR context, then evaluated the pasted FATF, Travel Rule, and Crypto Sanctions assessment set against the maintained CCAS facts reference and FATF Recommendations current consolidated PDF (`Updated October 2025`).
+- Current verdict best reads `DISAGREE`: most keyed answers, multiple-response sets, distractors, and sanctions / VASP scope points are materially correct, but one current R.16 data-field item is not publication-safe.
+- Publication blocker: `Your customer is sending an above-threshold cryptoasset transfer to a company...` keys an incomplete legal-person beneficiary field set. FATF INR.16 paragraph 9 requires the beneficiary's country and town name (or nearest alternative) in addition to name, account/transaction reference, and any BIC/LEI/unique official identifier for a legal-person beneficiary.
+
+## 2026-07-01 - CCAS module `fatf-the-travel-rule-and-crypto-sanctions` assessment methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current assessment/source ADR context, then evaluated the pasted FATF, Travel Rule, and Crypto Sanctions assessment set against the user's current brief.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or acceptable multiple-response items, and the FATF / sanctions case references are durable standards or historical public-record anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "2 - AML Foundations for Cryptoassets and Blockchain"` is the module's own listed exam-domain label in the user's course taxonomy.
+
+## 2026-07-01 - CCAS module `financial-crime-in-the-cryptoasset-sector` assessment factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current assessment/source ADR context, then evaluated the pasted Financial Crime in the Cryptoasset Sector assessment set against the maintained CCAS facts reference and targeted public-record case checks.
+- Current verdict best reads `AGREE`: no answer-key defect, defensible second correct answer, missing multiple-response correct option, wrong distractor rationale, or factual contradiction surfaced.
+- Checked coverage includes crypto laundering-cycle mapping, control-point logic, BTC-e, Ronin / Lazarus proliferation-financing framing, CARF / Coinbase John Doe summons, ransomware payment and exposure handling, Hydra/Garantex, FATF red-flag indicator use, and scam-collection / mule typology logic.
+
+## 2026-07-01 - CCAS module `financial-crime-in-the-cryptoasset-sector` assessment methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current assessment/source ADR context, then evaluated the pasted Financial Crime in the Cryptoasset Sector assessment set against the user's current brief.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or acceptable multiple-response items, and the public case references are durable historical anchors rather than volatile current facts.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "2 - AML Foundations for Cryptoassets and Blockchain"` is the module's own listed exam-domain label in the user's course taxonomy.
+
+## 2026-07-01 - CCAS module `blockchain-analytics-and-on-chain-investigation` assessment methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and current assessment/source ADR context, then evaluated the pasted Blockchain Analytics and On-Chain Investigation question set against the user's current brief.
+- Current verdict best reads `AGREE`: no prohibited commercial-prep / certification-body / ICC-source mimicry surfaced, the questions are original scenario or acceptable multiple-response items, and the SUEX historical enforcement reference is durable rather than a volatile current fact.
+- Domain and tag sanity are clean under this request: all question `conceptTags` are within the supplied module tag set, and `domain: "1 - Cryptoassets and Blockchain"` is the module's own listed exam-domain label in the user's course taxonomy.
+
+## 2026-07-01 - CCAS module `the-crypto-ecosystem-vasps-defi-and-token-types` assessment factual-fidelity audit returns `SPLIT`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack and current methodology/source ADRs, then evaluated the pasted VASPs / DeFi / token-types assessment set against the maintained CCAS facts reference.
+- Current verdict best reads `SPLIT`: all keyed single-answer and multiple-response answers are materially correct, and no missing correct option or defensible second correct answer surfaced.
+- Soft reviewer-visible wording issues: the smart-contract question should avoid the absolute "refuses nothing" formulation, because contracts can revert or block if coded to do so; the traceability-design multiple-response explanation should avoid saying licensed exchanges/custodial wallets are "fully traceable," because internal VASP ledger activity is not on-chain traceable to outsiders even though those services are not designed to defeat traceability.
+
+## 2026-07-01 - CCAS Module 1 assessment factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity / answer-key audit only; no assessment artifact edits, validation rerun, DB write, or external primary-source browse.
+- Re-read the AGENTS-required memory stack plus relevant assessment/content ADRs, then evaluated the pasted `Cryptoasset and Blockchain Foundations` assessment set against the maintained CCAS facts reference.
+- Current verdict best reads `AGREE`: no answer-key defect, defensible second correct answer, missing multiple-response correct option, wrong distractor rationale, or explanation contradiction surfaced.
+- Checked coverage includes FATF virtual-asset exclusions for CBDCs and tokenised securities; stablecoin / privacy-coin / native-coin scope; custodial versus self-hosted wallet obligations; pseudonymity and identity attribution; UTXO/change and transaction-fee interpretation; mempool/confirmation status; and mixer/privacy-coin trace degradation.
+
+## 2026-06-29 - CCAS lesson `the-regulatory-perimeter-and-licensing` factual-fidelity rerun returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack and reconciled the stale 2026-06-25 same-slug UK-scope blocker against the literal pasted artifact.
+- Current verdict best reads `AGREE`: the lesson now correctly frames the UK registration nexus as carrying on cryptoasset business in the UK, not merely having a UK customer; U.S. FinCEN/MSB and state licensing framing, EU MiCA/TFR/AML separation, and FATF R.15 / INR.15 VASP licensing framing are materially in bounds.
+- KuCoin / Peken Global Limited case facts are supported by DOJ SDNY's 27 January 2025 release: guilty plea to one unlicensed-money-transmission count, more than USD 297m penalties, USD 184.5m forfeiture, about USD 112.9m fine, FinCEN non-registration / AML-KYC / SAR failures, and at-least-two-year U.S. market exit.
+
+## 2026-06-29 - CCAS lesson `the-uk-crypto-framework` factual-fidelity rerun returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack and reconciled the stale same-slug 2026-06-25 note against the literal pasted artifact.
+- Current verdict best reads `AGREE`: the FCA AML-registration perimeter, January 2020 start, UK "carrying on business" scope nuance, 1 September 2023 Travel Rule, POCA ss 327-329 framing, and Jian Wen / Zhimin Qian case chronology and numbers are materially supported.
+- The earlier deep-case citation-bundle blocker is not live on this pasted text because the Judiciary sentencing remarks are used for Qian's exact possession / transferring count wording, while the 61,000+ BTC seizure fact is separately attributed to the Metropolitan Police.
+
+## 2026-06-29 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then evaluated the literal pasted artifact against the maintained CCAS facts reference and primary-source spot checks.
+- Current verdict best reads `AGREE`: FATF R.15 / INR.15 chronology and scope, the VASP definition, licensing / registration perimeter, preventive-measures mapping, R.12 PEP nuance, R.6/R.7 sanctions mapping, and Bittrex 2022 FinCEN / OFAC facts are materially supported.
+- Checked Bittrex figures include the FinCEN `USD 29,280,829.20` civil money penalty, OFAC `USD 24,280,829.20` settlement credit, February 2014 to December 2018 AML-program period, no SARs through May 2017, and more than 116,000 sanctioned-jurisdiction transactions worth more than USD 260m. No publication-blocking factual-fidelity issue surfaced.
+
+## 2026-06-29 - CCAS lesson `fatf-recommendation-15-and-the-vasp-definition` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then evaluated the literal pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: all reading scenes carry `citations[]`, no prohibited commercial / ICC source issue surfaced, source posture is allowed FATF standards/guidance plus FinCEN/OFAC Bittrex public-enforcement material and original analysis, the Bittrex 2022 scene satisfies the named deep-case requirement, `teachesConcepts` are distinct enough, the quiz is formative and not certification-format mimicry, and register is acceptable.
+- Keep exact Bittrex chronology, amounts, and FATF obligation phrasing in the separate factual-fidelity lane if requested.
+
+## 2026-06-29 - CCAS lesson `course-synthesis-and-exam-preparation` factual-fidelity rerun returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then evaluated the revised literal pasted artifact against the maintained CCAS facts reference and primary-source spot checks for Binance and the EU AML/crypto instruments.
+- Current verdict best reads `AGREE`: the earlier sanctions-property blocker is fixed in this artifact, which now distinguishes FATF standards from OFAC/national sanctions implementation and treats virtual-currency addresses as identifiers associated with blocked persons rather than FATF itself treating addresses as property.
+- Binance chronology / component amounts, FinCEN monitor and U.S. exit undertaking, OFAC settlement figure, EU instrument numbers, R.15/R.16 scoping, scenario sanctions-vs-suspicion handling, and ACAMS disclaimer posture are materially in bounds. No publication-blocking factual-fidelity issue surfaced.
+
+## 2026-06-29 - CCAS lesson `course-synthesis-and-exam-preparation` factual-fidelity audit returns `DISAGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then evaluated the literal pasted synthesis artifact against the maintained CCAS facts reference and prior Binance / sanctions audit spine.
+- Current verdict best reads `DISAGREE`: the Binance deep-case chronology, component amounts, FinCEN/OFAC monitor and penalty posture, EU instrument numbers, MiCA/TFR dates, and ACAMS disclaimer posture are materially in bounds.
+- Publication blocker: `The chain, end to end` misstates sanctions scope by saying FATF "applied sanctions to addresses exactly as to any other property." Revise to distinguish FATF standards from national sanctions implementation and to treat virtual-currency addresses as sanctions-list identifiers tied to blocked persons, while blocking applies to property and interests in property.
+
+## 2026-06-29 - CCAS lesson `case-lazarus-dprk` factual-fidelity audit returns `DISAGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then evaluated the literal pasted artifact against the maintained CCAS facts reference and the public-record enforcement / sanctions spine.
+- Current verdict best reads `DISAGREE`: the Ronin Bridge timeline, Lazarus attribution, Blender.io / Tornado Cash historical designation figures, Bangladesh Bank heist spine, and FATF R.7 proliferation-financing framing are mostly materially supported.
+- Publication blocker: the lesson overstates OFAC sanctions scope by treating every wallet touched by Lazarus, analytics-derived DPRK clusters, and a few-hop trace as automatically sanctioned property / a strict-liability block-and-report event. Next revision should distinguish listed addresses and property or interests in property of blocked persons from analytics taint or exposure, and should keep OFAC/competent-authority blocking reports separate from FIU suspicious-activity reporting.
+
+## 2026-06-29 - CCAS lesson `case-lazarus-dprk` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: all reading scenes carry `citations[]`, no prohibited commercial / ICC source issue surfaced, source posture is allowed public OFAC / FBI / DOJ / UN / FATF / government-source material plus original operational analysis, the Ronin Bridge 2022 and Bangladesh Bank 2016 public matters satisfy the named deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based, and register is acceptable.
+- Keep exact Ronin amounts, OFAC chronology, mixer-designation figures, Bangladesh Bank recovery facts, and sanctions-property wording in the separate factual-fidelity lane if requested.
+
+## 2026-06-28 - CCAS lesson `case-bitmex` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: all reading scenes carry `citations[]`, no prohibited commercial / ICC source issue surfaced, source posture is allowed public CFTC / FinCEN / DOJ enforcement material plus original operational analysis and the DOJ Binance public-enforcement comparator, the BitMEX 2021-2022 matter satisfies the named public-enforcement deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based, and register is acceptable.
+- Keep exact BitMEX amounts, founder dispositions, statutory characterization, and Binance comparison facts in the separate factual-fidelity lane if requested.
+
+## 2026-06-28 - CCAS lesson `case-binance-2023` factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack first, then checked the pasted artifact against the maintained CCAS facts reference plus the primary DOJ, Treasury, FinCEN, OFAC, and CFTC Binance materials from `21 November 2023`.
+- Current verdict best reads `AGREE`: the lesson is materially supported on the plea / settlement chronology, charge summary, control-failure mapping, SAR/KYC findings, sanctions period, component penalties, FinCEN monitorship and U.S. exit undertaking, and CFTC parallel action.
+- No publication-blocking numeric, timeline, identity, regulatory-scope, or citation-precision issue surfaced.
+
+## 2026-06-28 - CCAS lesson `case-binance-2023` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: all reading scenes carry `citations[]`, no prohibited commercial / ICC source issue surfaced, source posture is allowed public DOJ / Treasury / FinCEN / OFAC / CFTC enforcement material plus FATF and original operational analysis, the Binance 2023 resolution satisfies the named public-enforcement deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based, and register is acceptable.
+- Keep exact Binance dates, component penalties, plea-count wording, agency allocation, monitor terms, and undertakings in the separate factual-fidelity lane if requested.
+
+## 2026-06-28 - CCAS lesson `case-tornado-cash` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: all reading scenes carry `citations[]`, no prohibited commercial / ICC source issue surfaced, source posture is allowed public Treasury / OFAC / DOJ / court / statute material plus original operational analysis, the Tornado Cash 2022-2025 public matter satisfies the deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based, and register is acceptable.
+- Keep exact Tornado Cash dates, amounts, Van Loon source-text fidelity, delisting rationale, and DOJ trial/prosecution details in the separate factual-fidelity lane if requested.
+
+## 2026-06-28 - CCAS lesson `how-to-read-a-crypto-enforcement-action` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: all reading scenes carry `citations[]`, no prohibited commercial / ICC source issue surfaced, source posture is allowed-public-enforcement/government-source/original-analysis, the named Bittrex 2022 public-enforcement matter satisfies the deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based, and register is acceptable.
+- Keep exact Bittrex date/amount/source-text accuracy in the separate factual-fidelity lane if requested.
+
+## 2026-06-28 - CCAS lesson `incident-response-and-program-resilience` factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack first, then checked the current pasted artifact against the maintained CCAS facts reference, FATF R.15 / R.20 scope, OFAC virtual-currency sanctions posture, and DOJ's `7 June 2021` Colonial Pipeline ransom seizure release.
+- Current verdict best reads `AGREE`: incident-response sequencing is appropriately jurisdiction-qualified, the FATF reporting bridge through R.15 / INR.15 is materially in bounds, and the sanctioned-address block-and-report language is limited to persons subject to the relevant jurisdiction.
+- The Colonial deep-case bundle is supported by the DOJ source: approximately `75 BTC` ransom paid to DarkSide, `63.7 BTC` seized, about `USD 2.3m` value, warrant authorized by U.S. Magistrate Judge Laurel Beeler in the Northern District of California, and tracing via the Bitcoin public ledger with the FBI holding the private key. No publication-blocking factual issue surfaced.
+
+## 2026-06-28 - CCAS lesson `incident-response-and-program-resilience` methodology rerun returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the current pasted artifact against the methodology-only brief.
+- This current artifact differs materially from the earlier same-slug Poly Network version: the deep case is now `Deep case: the Colonial Pipeline ransom, traced and recovered (2021)`, grounded in a DOJ public release / public seizure matter and FATF VA/VASP guidance.
+- Current verdict best reads `AGREE`: all reading scenes carry `citations[]`, no prohibited commercial / ICC source issue surfaced, source posture is allowed-public/government-standard/original-analysis, the named Colonial Pipeline public matter satisfies the deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based, and register is acceptable.
+- Keep exact Colonial fact/source-text accuracy in the separate factual-fidelity lane if requested.
+
+## 2026-06-28 - CCAS lesson `incident-response-and-program-resilience` methodology audit returns `DISAGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Most methodology dimensions are acceptable: all reading scenes carry `citations[]`, no prohibited commercial / ICC source issue surfaced, scene `teachesConcepts` are distinct enough, the quiz is scenario-based rather than certification-format mimicry, and the adult-professional register is acceptable.
+- Publication blocker: `Deep case: Poly Network and the chokepoints that froze a theft (2021)` grounds its substantive incident facts in an undefined "Public record of the Poly Network exploit" source label. That is not an allowed source type under v1.1 source discipline and reads like an unspecified public/news incident summary. Next touch should anchor the Poly facts to allowed source material / clear original on-chain analysis, or replace the deep case with a public enforcement / government-record matter.
+
+## 2026-06-28 - CCAS lesson `emerging-risks-defi-daos-and-the-horizon` factual-fidelity audit returns `DISAGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack first, then checked the pasted artifact against the maintained CCAS facts reference, FATF 2021 `Updated Guidance for a Risk-Based Approach to Virtual Assets and Virtual Asset Service Providers`, and DOJ SDNY Samourai Wallet charge / plea records.
+- Current verdict best reads `DISAGREE`: the general FATF DeFi / CBDC / R.15 framing is materially supported, and the April 2024 Samourai charge allegations are in bounds.
+- Publication blocker: `Deep case: Samourai Wallet and the limits of no intermediary (2024-2025)` and quiz Q4 disposition language overstate the guilty pleas as covering both money-transmission and money-laundering conspiracy. DOJ's 6 Aug 2025 plea release says Rodriguez and Hill pleaded guilty on 30 Jul 2025 to one count of conspiracy to operate a money transmitting business knowing it transmitted crime proceeds.
+
+## 2026-06-28 - CCAS lesson `emerging-risks-defi-daos-and-the-horizon` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: allowed/public source posture holds, all reading scenes carry `citations[]`, the Samourai Wallet 2024-2025 DOJ matter satisfies the named public-enforcement deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based rather than certification-format mimicry, and no prohibited-source/IP or adult-register issue surfaced.
+- Keep exact Samourai facts, amounts, plea/sentencing chronology, and source-text accuracy in the separate factual-fidelity lane.
+
+## 2026-06-27 - CCAS lesson `independent-testing-training-and-vendor-risk` factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack first, then checked the current pasted artifact against the maintained CCAS facts reference, FATF R.18 / R.15-INR.15 scoping, Basel Committee `Sound management of risks related to money laundering and financing of terrorism`, and FinCEN's `9 December 2025` consent order for `Paxful, Inc. and Paxful USA, Inc.`.
+- Current verdict best reads `AGREE`: the standards/scoping backbone is materially correct, the vendor-risk teaching is not misstated, and the Paxful deep-case facts are in bounds after the prior cleanup.
+- Closed prior Paxful issues on this text: the lesson no longer says no designated compliance officer before November 2018, no longer pins unsupported exact no-training/no-testing dates to FinCEN, and now uses the full FinCEN respondent caption. Keep `USD 3.5m`, `974 days`, no written AML program until `July 2019`, only a single independent test, no SARs until `November 2019`, and more than `USD 500m` suspicious activity in the supported bucket.
+
+## 2026-06-27 - CCAS lesson `independent-testing-training-and-vendor-risk` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: allowed/public source posture holds, all reading scenes carry `citations[]`, the Paxful 2025 FinCEN/DOJ scene satisfies the named public-enforcement deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based rather than certification-format mimicry, and no prohibited-source/IP or adult-register issue surfaced.
+- Keep exact Paxful factual fidelity and citation accuracy questions in the separate factual-fidelity lane.
+
+## 2026-06-27 - CCAS lesson `governance-roles-and-the-three-lines-in-crypto` factual-fidelity audit returns `SPLIT`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack first, then checked the pasted artifact against the maintained CCAS facts reference, current FATF Recommendations, Basel Committee three-lines guidance, John J. Ray III's FTX first-day declaration, and Ray's 13 December 2022 House Financial Services testimony.
+- Current verdict best reads `SPLIT`: the core governance/three-lines teaching and FTX deep-case facts are materially in bounds, with no publication-blocking FTX chronology, identity, court, or numeric issue surfaced.
+- Reviewer-visible softness: FATF R.18 citation labels should add the R.15/INR.15 bridge for VASPs, and the compliance-officer/MLRO scene should avoid implying that SAR decision authority and personal accountability are identical across jurisdictions.
+
+## 2026-06-27 - CCAS lesson `suspicious-activity-investigation-and-reporting-in-crypto` factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack first, then checked the pasted artifact against the maintained crypto/VASP facts reference, FATF's 2021 VA/VASP guidance, and the NYDFS Robinhood Crypto consent order / press release.
+- Current verdict best reads `AGREE`: FATF R.20 / R.15-INR.15 reporting scope is materially in bounds; the U.S. FinCEN and UK NCA/POCA reporting references are acceptable; the tipping-off / consent-process teaching remains appropriately jurisdiction-generic; and the Robinhood deep-case figures / chronology match the public order.
+- No publication-blocking factual issue surfaced.
+
+## 2026-06-27 - CCAS lesson `suspicious-activity-investigation-and-reporting-in-crypto` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: allowed/public source posture holds, all four reading scenes carry `citations[]`, the Robinhood Crypto 2022 NYDFS consent-order scene satisfies the named public-enforcement deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based rather than certification-format mimicry, and no prohibited-source/IP or adult-register issue surfaced.
+- Keep citation mechanics and exact Robinhood / reporting-law source-fidelity questions in the separate gate or factual-fidelity lane.
+
+## 2026-06-27 - CCAS lesson `travel-rule-implementation-operationally` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the pasted artifact against the methodology-only brief.
+- Current verdict best reads `AGREE`: allowed/public source posture holds, all four reading scenes carry `citations[]`, the FATF 2025 measured sunrise-problem scene satisfies the named public-matter deep-case requirement, `teachesConcepts` are distinct enough, the quiz is scenario-based rather than certification-format mimicry, and no prohibited-source/IP or adult-register issue surfaced.
+- Keep citation mechanics and exact statutory/source-fidelity questions in the separate gate or factual-fidelity lane.
+
+## 2026-06-26 - CCAS lesson `sanctions-and-watchlist-screening-for-crypto` factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson-content edits, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack first, then checked the pasted artifact against the maintained crypto/VASP facts reference, OFAC's Sanctions Compliance Guidance for the Virtual Currency Industry, and OFAC's 28 November 2022 Payward/Kraken enforcement release.
+- Current verdict best reads `AGREE`: the FATF R.15 / INR.15 and R.16 / INR.15 mappings are materially in bounds; the OFAC strict-liability, designated-address, sanctions-list, fuzzy screening, geolocation, and re-screening posture is supported; and the Kraken deep-case figures / chronology / aggravating-factor bundle is accurate.
+- No publication-blocking factual issue surfaced.
+
+## 2026-06-26 - CCAS lesson `sanctions-and-watchlist-screening-for-crypto` methodology audit returns `AGREE`
+
+- Exact user-brief methodology audit only; no lesson-content edits, validation rerun, DB write, or factual-fidelity pass.
+- Re-read the AGENTS-required memory stack, `docs/COURSE-GENERATION-PROMPT.md` v1.1, and ADR `0015` / `0016` / `0019` / `0020`, then checked the literal pasted / repo-matched lesson.
+- Current methodology verdict best reads `AGREE`: allowed/public source posture holds, all four reading scenes carry `citations[]`, the Kraken 2022 OFAC settlement scene is a valid named public-enforcement deep case with substantive geolocation-screening analysis, `teachesConcepts` are distinct enough, the quiz is scenario-based rather than certification-format mimicry, and no prohibited-source/IP or adult-register issue surfaced.
+- Keep citation mechanics and any exact Kraken / OFAC factual-fidelity questions in the separate factual-fidelity lane.
+
+## 2026-06-26 - CCAS lesson `wallet-and-transaction-monitoring` factual-fidelity audit returns `AGREE`
+
+- Exact user-brief factual-fidelity audit only; no lesson rewrite, validation rerun, DB write, or generated artifact edit.
+- Re-read the AGENTS-required memory stack first, then checked the pasted / repo-matched lesson against the maintained crypto/VASP facts reference, FATF R.10 / 2021 VA-VASP guidance / 2020 VA red-flag source posture, OFAC virtual-currency sanctions guidance, and the Silvergate public enforcement bundle.
+- Current verdict best reads `AGREE`: FATF R.10 ongoing-monitoring use is materially in bounds, the OFAC sanctions hard-stop / wallet-screening teaching is supportable, and the Silvergate deep-case figures and chronology are materially supported (Fed `USD 43m`, Fed+DFPI `USD 63m`, SEC `USD 50m`, SEC allegations of more than `USD 1tn` in inadequately monitored SEN activity and nearly `USD 9bn` in suspicious FTX-related transfers).
+- No publication-blocking fidelity issue surfaced.
+
 ## 2026-06-25 - CCAS Module 6 lesson 2 factual-fidelity cleared
 
 - Cross-check audit for `customer-risk-rating-in-crypto` returned `AGREE` on factual fidelity.
@@ -5097,3 +5511,16 @@ Built the commerce layer so the faithful mock can be a standalone freemium produ
 
 - Stripped em/en-dashes catalog-wide (scripts/strip-emdashes.js): numeric/statute ranges (digit-dash-digit) -> hyphen; all other em/en-dashes -> comma (comma-only, since a capital->period heuristic wrongly fragmented proper-noun appositives); then cleanup. Removed em-dashes from 1884 strings/49 CAMS files + 281 strings/17 CCAS files; 0 left catalog-wide. Full re-validation: CAMS 45 PASS / 4 pre-existing FLAG / 0 FAIL; CCAS 29 PASS / 0 FAIL; readability spot-checked.
 - This completes the CHEAP CATALOG-WIDE PASS (286-question quiz integrity + em-dash strip), the low-risk high-leverage layer from the audit. Edits are in gitignored generated/ (local-only). REMAINING: marquee full-rebuilds (1MDB/Westpac/correspondent case studies, first lessons, weakest CCAS e.g. Travel Rule); CAMS re-promote (needs its own careful session - the writer refuses to overwrite a published course, so it requires unpublish/republish or surgical SQL).
+
+## 2026-07-03 - Revenue-readiness sweep: funnel fixes, GTM playbook, security cleanup
+
+- Market + codebase audit (three parallel passes: funnel/trust, content state, external market research). Verdict recorded in docs/GTM-PLAYBOOK.md: the $199-$2,000 CAMS prep slot is empty (dumps below, $2,095+ official package above), 65k+ CAMS-certified / ~4-5k net new per year, YouTube CAMS content is thin slideware, CCAS prep is a zero-competitor niche. Product gap to revenue is trust + distribution, not content quality.
+- FIXED the "Try 2 lessons free" crash: startLessonSession threw 'Not enrolled' for every non-enrolled preview visitor (lib/lesson/actions.ts). Preview lessons now create sessions with null enrollment_id. The headline conversion path works for real prospects for the first time.
+- Removed the fictitious "$399 / $100 off / limited" price anchor (never a real price; FTC fictitious-former-price pattern) across course-sales-page, course-purchase, and mock buy-buttons. Now honest "Launch price $299".
+- Landing trust layer: hero got its first CTA row (Explore CAMS + no-signup Case Mode); course lineup reordered CAMS-first, FCCS card removed, CCAS marked "Launching soon", CDCS "In development"; footer got the ACAMS non-affiliation disclaimer; FAQ updated (CCAS launching soon).
+- SEO/share infrastructure: app/sitemap.ts (DB-driven, published courses), app/robots.ts, app/opengraph-image.tsx (branded card; shares no longer render blank), JSON-LD (Organization + FAQPage on landing, Course + Offer on sales pages), canonical URLs, generateMetadata on the course sales page (it previously had NO metadata export).
+- Analytics: @vercel/analytics installed and mounted (operator: enable Web Analytics in the Vercel dashboard).
+- Committed the parked per-course pricing refactor (PRODUCTS keyed by slug, getProduct fail-safe, CCAS priced + sales content + blueprint) and scripts/seed-ccas-mock.ts.
+- Security: dropped the six zz_* backup tables (incl. the full 502-question bank with answers) that had been publicly readable until RLS was enabled 2026-07-03; migration 20260703120000 recorded.
+- Local build was broken by a corrupted picocolors package (empty husk from the Jul 2 interrupted session); pnpm install --force repaired it; production build green.
+- STILL OPERATOR-ONLY: rotate the transcript-exposed sk_live_ Stripe key; one real-card purchase + refund; enable Vercel Web Analytics; then CCAS promote+publish.
