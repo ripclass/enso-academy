@@ -78,9 +78,13 @@ export const CHALLENGE_LESSON_SLUGS = new Set<string>([
   'sector-risk-deep-dives',
 
   // ── CCAS (Cryptoasset AFC) ────────────────────────────────────────────────
-  // Module 3 pilot: Blockchain Analytics and On-Chain Investigation. The third
-  // Module 3 lesson, conducting-an-on-chain-investigation, is a FREE PREVIEW
-  // lesson and is intentionally left out of the pilot.
+  // The two CCAS free-preview lessons (what-cryptoassets-are M1.1 and
+  // conducting-an-on-chain-investigation M3) are intentionally excluded.
+  // Module 1: Cryptoasset and Blockchain Foundations
+  'how-blockchains-work',
+  'keys-addresses-and-wallets',
+  'how-on-chain-transactions-work',
+  // Module 3: Blockchain Analytics and On-Chain Investigation (pilot)
   'transparency-pseudonymity-and-the-tracing-premise',
   'clustering-attribution-and-exposure-analysis',
 ])
