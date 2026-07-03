@@ -3,6 +3,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { PRODUCTS } from '@/lib/stripe/client'
+import { resolveCoursePrice } from '@/lib/stripe/pricing'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, FileText } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
@@ -422,8 +423,11 @@ export default async function CourseDetailPage({ params }: Props) {
     whatYouGet: [],
   }
 
+  // Current display-ready price (CCAS launch tier by seats, or static).
+  const resolvedPrice = await resolveCoursePrice(course.slug)
+
   // Course structured data for search rich results. Offer only present when
-  // the course has a configured price.
+  // the course has a configured price; advertise the CURRENT price, not the list.
   const price = PRODUCTS[course.slug]?.course
   const courseJsonLd = {
     '@context': 'https://schema.org',
@@ -444,7 +448,7 @@ export default async function CourseDetailPage({ params }: Props) {
       ? {
           offers: {
             '@type': 'Offer',
-            price: (price.amountCents / 100).toFixed(2),
+            price: (resolvedPrice.amountCents / 100).toFixed(2),
             priceCurrency: price.currency.toUpperCase(),
             availability: 'https://schema.org/InStock',
             url: `https://www.ensoacademy.ai/courses/${course.slug}`,
@@ -469,6 +473,7 @@ export default async function CourseDetailPage({ params }: Props) {
         previewLessons={previewLessons}
         exam={content.exam}
         whatYouGet={content.whatYouGet}
+        price={{ priceLabel: resolvedPrice.priceLabel, badge: resolvedPrice.badge }}
       />
     </>
   )

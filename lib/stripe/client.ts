@@ -54,6 +54,56 @@ export function getProduct(courseSlug: string, kind: ProductKind): Price {
   return course[kind]
 }
 
+// ---------------------------------------------------------------------------
+// CCAS launch pricing — tiered by the number of PAID seats sold (completed
+// `course_purchases` rows), then capped by a hard cutoff date after which the
+// list price applies. The pure function below is the single source of truth for
+// the amount; the seat count + "now" are supplied by the server resolver in
+// `lib/stripe/pricing.ts`.
+//
+//   Founding (seats 1-15):                 $149
+//   Early (seats 16-40, the next 25):      $199
+//   Launch window (seats 41+, until cutoff): $299
+//   List (on/after the cutoff date):       $349
+//
+// Launch window closes end of 30 Sep 2026; the $349 list price begins 1 Oct.
+// ---------------------------------------------------------------------------
+export const CCAS_LAUNCH_CUTOFF_ISO = '2026-09-30T23:59:59.000Z'
+export const CCAS_COURSE_LIST_CENTS = 34900
+
+type CcasTier = { label: string; capSeats: number; amountCents: number }
+const CCAS_COURSE_TIERS: CcasTier[] = [
+  { label: 'Founding', capSeats: 15, amountCents: 14900 },
+  { label: 'Early', capSeats: 40, amountCents: 19900 },
+  { label: 'Launch', capSeats: Number.POSITIVE_INFINITY, amountCents: 29900 },
+]
+
+export type CcasCoursePrice = {
+  amountCents: number
+  tierLabel: 'Founding' | 'Early' | 'Launch' | 'List'
+  /** Seats remaining in the current seat-capped tier, or null for uncapped/list. */
+  seatsLeftInTier: number | null
+}
+
+/** Resolve the CCAS course price from paid seats sold and the current time. */
+export function ccasCoursePrice(seatsSold: number, nowIso: string): CcasCoursePrice {
+  // ISO-8601 UTC strings sort lexicographically, so a string compare is a valid
+  // date compare here (both are `...Z`).
+  if (nowIso >= CCAS_LAUNCH_CUTOFF_ISO) {
+    return { amountCents: CCAS_COURSE_LIST_CENTS, tierLabel: 'List', seatsLeftInTier: null }
+  }
+  for (const t of CCAS_COURSE_TIERS) {
+    if (seatsSold < t.capSeats) {
+      return {
+        amountCents: t.amountCents,
+        tierLabel: t.label as CcasCoursePrice['tierLabel'],
+        seatsLeftInTier: Number.isFinite(t.capSeats) ? t.capSeats - seatsSold : null,
+      }
+    }
+  }
+  return { amountCents: 29900, tierLabel: 'Launch', seatsLeftInTier: null }
+}
+
 /** Mock attempts bundled with a course purchase. */
 export const COURSE_INCLUDED_MOCKS = 5
 /** The free "taste" allowance every authenticated user gets per course. */

@@ -3,6 +3,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { getStripe, getProduct, type ProductKind } from './client'
+import { resolveCoursePrice } from './pricing'
 
 /**
  * Stripe Checkout creators (server actions).
@@ -69,7 +70,12 @@ async function createCheckout(kind: ProductKind, courseSlug: string): Promise<{ 
     .single()
   if (!course) throw new Error('Course not found')
 
+  // Name/currency come from the static product config; the course AMOUNT is
+  // resolved dynamically (CCAS launch tiers by seats sold + cutoff date), so the
+  // charge always matches what the sales page shows. Mock amount stays static.
   const product = getProduct(courseSlug, kind)
+  const amountCents =
+    kind === 'course' ? (await resolveCoursePrice(courseSlug)).amountCents : product.amountCents
   const customerId = await getOrCreateStripeCustomer(user.id, user.email)
 
   const base = appUrl()
@@ -85,7 +91,7 @@ async function createCheckout(kind: ProductKind, courseSlug: string): Promise<{ 
         quantity: 1,
         price_data: {
           currency: product.currency,
-          unit_amount: product.amountCents,
+          unit_amount: amountCents,
           product_data: { name: product.name },
         },
       },

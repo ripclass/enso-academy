@@ -8,7 +8,13 @@ import { createCourseCheckout, createMockCheckout } from '@/lib/stripe/checkout'
  * a server action that creates a Stripe Checkout Session (amount set SERVER-SIDE)
  * and returns its URL, then redirects the browser to Stripe.
  */
-export function BuyButtons({ courseSlug }: { courseSlug: string }) {
+export function BuyButtons({
+  courseSlug,
+  coursePriceLabel = '$299',
+}: {
+  courseSlug: string
+  coursePriceLabel?: string
+}) {
   const [pending, startTransition] = useTransition()
   const [which, setWhich] = useState<'mock' | 'course' | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -60,7 +66,7 @@ export function BuyButtons({ courseSlug }: { courseSlug: string }) {
             value if you are studying for the exam.
           </p>
           <p className="mt-3 flex items-baseline gap-2">
-            <span className="text-2xl font-bold font-mono text-neutral-900">$299</span>
+            <span className="text-2xl font-bold font-mono text-neutral-900">{coursePriceLabel}</span>
           </p>
           <button
             onClick={() => go('course')}

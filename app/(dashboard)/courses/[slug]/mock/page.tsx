@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
 import { ensureBaselineEntitlement, getMockEntitlement } from '@/lib/stripe/entitlements'
+import { resolveCoursePrice } from '@/lib/stripe/pricing'
 import { BuyButtons } from './buy-buttons'
 
 type Props = {
@@ -64,6 +65,7 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
   const practiceMocks = all.filter((t) => isPracticeTemplate(t))
   const sim = simulations[0]
   const simHours = sim ? (Number(sim.time_limit_minutes) / 60).toFixed(1) : null
+  const coursePrice = await resolveCoursePrice(course.slug)
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -186,7 +188,7 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
                   full course access (5 simulations + unlimited practice included) to keep going.
                 </p>
               </div>
-              <BuyButtons courseSlug={course.slug} />
+              <BuyButtons courseSlug={course.slug} coursePriceLabel={coursePrice.priceLabel} />
             </div>
           )}
         </section>

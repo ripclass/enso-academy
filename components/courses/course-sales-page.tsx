@@ -18,6 +18,8 @@ type Props = {
   /** Facts about the exam this course prepares for. */
   exam: { about: string; facts: { label: string; value: string }[] }
   whatYouGet: string[]
+  /** Current, display-ready price (CCAS launch tier or static). */
+  price: { priceLabel: string; badge: string | null }
 }
 
 const HOW_IT_WORKS = [
@@ -76,6 +78,7 @@ export function CourseSalesPage({
   previewLessons,
   exam,
   whatYouGet,
+  price,
 }: Props) {
   const previewHref = (id: string) =>
     isAuthenticated ? `/lessons/${id}` : `/signup?next=/lessons/${id}`
@@ -120,7 +123,7 @@ export function CourseSalesPage({
                 href="#pricing"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-primary px-7 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
               >
-                Enroll for $299 <ArrowRight className="h-4 w-4" />
+                Enroll for {price.priceLabel} <ArrowRight className="h-4 w-4" />
               </Link>
               {firstPreview && (
                 <Link
@@ -256,6 +259,8 @@ export function CourseSalesPage({
             <div>
               <CoursePurchase
                 courseSlug={slug}
+                priceLabel={price.priceLabel}
+                badge={price.badge}
                 isAuthenticated={isAuthenticated}
                 included={[]}
               />

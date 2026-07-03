@@ -16,11 +16,14 @@ import { createCourseCheckout } from '@/lib/stripe/checkout'
 export function CoursePurchase({
   courseSlug,
   priceLabel = '$299',
+  badge = 'Launch price',
   included = [],
   isAuthenticated = true,
 }: {
   courseSlug: string
   priceLabel?: string
+  /** Small badge next to the price, e.g. "Founding · 12 of 15 left". */
+  badge?: string | null
   included?: string[]
   /** When false (public sales page), the CTA routes to sign-up first. */
   isAuthenticated?: boolean
@@ -80,9 +83,11 @@ export function CoursePurchase({
       <div className="mt-6 flex flex-wrap items-center gap-4">
         <span className="flex items-baseline gap-2.5">
           <span className="text-3xl font-bold font-mono text-neutral-900">{priceLabel}</span>
-          <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-bold uppercase tracking-wider text-white">
-            Launch price
-          </span>
+          {badge && (
+            <span className="rounded-full bg-accent px-2 py-0.5 text-2xs font-bold uppercase tracking-wider text-white">
+              {badge}
+            </span>
+          )}
         </span>
         <button
           onClick={buy}
