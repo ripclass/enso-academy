@@ -62,6 +62,8 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
   const all = templates ?? []
   const simulations = all.filter((t) => !isPracticeTemplate(t))
   const practiceMocks = all.filter((t) => isPracticeTemplate(t))
+  const sim = simulations[0]
+  const simHours = sim ? (Number(sim.time_limit_minutes) / 60).toFixed(1) : null
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -83,9 +85,11 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
             Exam simulation &amp; practice
           </h1>
           <p className="mt-3 max-w-2xl text-neutral-600 leading-relaxed">
-            The <strong className="text-neutral-900">full exam simulation</strong> recreates the real
-            CAMS exam exactly: 120 questions, 3.5 hours, the same domain weighting and conditions.
-            The <strong className="text-neutral-900">practice mock</strong> is a short, free warm-up.
+            The <strong className="text-neutral-900">full exam simulation</strong> recreates the real{' '}
+            {course.short_name} exam exactly
+            {sim ? `: ${sim.question_count} questions, ${simHours} hours,` : ','} the same domain
+            weighting and conditions. The{' '}
+            <strong className="text-neutral-900">practice mock</strong> is a short, free warm-up.
           </p>
         </div>
 

@@ -27,13 +27,31 @@ export function getStripe(): Stripe {
 }
 
 export type ProductKind = 'course' | 'mock'
+type Price = { amountCents: number; currency: string; name: string }
 
-export const PRODUCTS: Record<
-  ProductKind,
-  { amountCents: number; currency: string; name: string }
-> = {
-  course: { amountCents: 29900, currency: 'usd', name: 'CAMS Full Course Access' },
-  mock: { amountCents: 1499, currency: 'usd', name: 'CAMS Mock Exam (single attempt)' },
+/**
+ * PER-COURSE pricing, keyed by course slug then product kind. A course that is
+ * not listed here has no purchase path (getProduct throws), so an unpriced
+ * course fails safe rather than silently charging another course's price.
+ */
+export const PRODUCTS: Record<string, Record<ProductKind, Price>> = {
+  cams: {
+    course: { amountCents: 29900, currency: 'usd', name: 'CAMS Full Course Access' },
+    mock: { amountCents: 1499, currency: 'usd', name: 'CAMS Mock Exam (single attempt)' },
+  },
+  // CCAS mirrors CAMS pricing (sibling ACAMS certificate, comparable scope).
+  // Adjust here if CCAS should be priced differently.
+  ccas: {
+    course: { amountCents: 29900, currency: 'usd', name: 'CCAS Full Course Access' },
+    mock: { amountCents: 1499, currency: 'usd', name: 'CCAS Mock Exam (single attempt)' },
+  },
+}
+
+/** Resolve the server-side price for a course+kind, or throw if unpriced. */
+export function getProduct(courseSlug: string, kind: ProductKind): Price {
+  const course = PRODUCTS[courseSlug]
+  if (!course) throw new Error(`No pricing configured for course "${courseSlug}"`)
+  return course[kind]
 }
 
 /** Mock attempts bundled with a course purchase. */

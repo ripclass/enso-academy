@@ -24,7 +24,7 @@ import type {
 
 // The first course — CAMS (AML/CFT). IP-clean: abundant free primary sources.
 const COURSE = {
-  slug: 'cams',
+  slug: process.env.COURSE_SLUG ?? 'cams',
   certification: 'CAMS',
   subject: 'Anti-money-laundering and counter-financing-of-terrorism (AML/CFT) compliance',
   learnerProfile:

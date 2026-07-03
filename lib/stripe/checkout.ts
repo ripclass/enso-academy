@@ -2,7 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
-import { getStripe, PRODUCTS, type ProductKind } from './client'
+import { getStripe, getProduct, type ProductKind } from './client'
 
 /**
  * Stripe Checkout creators (server actions).
@@ -69,7 +69,7 @@ async function createCheckout(kind: ProductKind, courseSlug: string): Promise<{ 
     .single()
   if (!course) throw new Error('Course not found')
 
-  const product = PRODUCTS[kind]
+  const product = getProduct(courseSlug, kind)
   const customerId = await getOrCreateStripeCustomer(user.id, user.email)
 
   const base = appUrl()

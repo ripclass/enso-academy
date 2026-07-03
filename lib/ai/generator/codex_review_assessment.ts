@@ -101,7 +101,32 @@ ${JSON.stringify(ctx.artifact, null, 2)}
 ${OUTPUT_FORMAT}`
 }
 
+/** Distinct exam-domain labels across the course's outline modules. The
+ *  `domain` field is course-specific runtime data (e.g. CAMS "A - ..." or
+ *  CCAS "1 - ..."), so derive the expected set from the outline rather than
+ *  hardcoding one course's taxonomy. */
+function courseDomains(outline: OutlineArtifact): string[] {
+  const seen = new Set<string>()
+  const out: string[] = []
+  for (const m of outline.modules) {
+    const d = (m as { domain?: string }).domain
+    if (d && !seen.has(d)) {
+      seen.add(d)
+      out.push(d)
+    }
+  }
+  return out
+}
+
 export function buildAssessmentMethodologyBrief(ctx: AssessmentBriefContext): string {
+  const domains = courseDomains(ctx.outline)
+  const thisDomain = (ctx.module as { domain?: string }).domain ?? '(unspecified)'
+  const domainBlock =
+    domains.length > 0
+      ? `This module belongs to the exam domain "${thisDomain}". The course's exam domains are:\n${domains
+          .map((d) => `   - ${d}`)
+          .join('\n')}`
+      : `This course does not label its modules by exam domain, so do not flag domain values.`
   const prior = ctx.priorMethodologyFeedback
     ? `\nPRIOR CROSS-CHECK DISAGREEMENT (your earlier review of an earlier draft):\n${ctx.priorMethodologyFeedback}\n\nThe set has been revised. Confirm whether the issues are resolved and whether new ones appeared.\n`
     : ''
@@ -123,7 +148,8 @@ YOUR JOB — methodology audit of the question set below:
    - **Multiple-response** (\`questionType\` 'multiple_choice'): the real certification exam includes "select N" / "select all that apply" items, so these are legitimate and faithful, NOT certification-format mimicry. They normally carry 4–6 options with two or more correct (\`correctOptionIds\`), a clear select-count instruction in the stem, an explanation, and rationales for the incorrect options. A 5- or 6-option "select THREE" checklist is the expected shape here, NOT a format violation.
    "Certification-format mimicry" means copying a prep provider's proprietary question wording/content or its house style — it does NOT mean using the standard single-answer or multiple-response MCQ formats. "All of the following EXCEPT" / "Which of the following is NOT" / pure trivia-recall stems remain red flags. Multiple-response items may be knowledge-anchored (e.g. "select the THREE characteristics of …") or scenario-framed; prefer scenario framing where natural, but do not reject a knowledge-anchored multiple-response item on format grounds alone.
 
-4. **Domain + tag sanity.** Each question's \`domain\` should be appropriate to its content (A = risks & methods of financial crime; B = global AFC frameworks/governance/regulations; C = building an AFC compliance program; D = tools & technologies), and its \`conceptTags\` should be drawn from the module's tag set above. Flag a clear domain misassignment or out-of-scope tags.
+4. **Domain + tag sanity.** Each question's \`domain\` should be one of THIS course's exam domains (listed below) and appropriate to its content; its \`conceptTags\` should be drawn from the module's tag set above. ${domainBlock}
+   Questions in this set almost always belong to this module's own domain. Flag a clear domain misassignment (a question whose content plainly belongs to a different listed domain) or out-of-scope tags. Do NOT flag a question merely for using this course's own domain labels rather than another course's.
 
 5. **Adult-professional register.** No marketing language, condescension, undefined jargon, or made-up statistics.
 

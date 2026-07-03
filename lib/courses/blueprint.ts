@@ -78,3 +78,72 @@ export const BLUEPRINT_TOTALS = {
 
 export const BLUEPRINT_NOTE =
   'Domain structure follows the CAMS exam blueprint; confirm exam weighting against the current ACAMS candidate handbook. Enso Academy is independent and is not affiliated with, authorised by, or endorsed by ACAMS.'
+
+// The CCAS (Certified Cryptoasset Anti-Financial Crime Specialist) exam
+// blueprint. Weights are the confirmed 30 / 35 / 35 domain split.
+export const CCAS_BLUEPRINT: BlueprintDomain[] = [
+  {
+    id: '1',
+    name: 'Cryptoassets and Blockchain',
+    weight: '30%',
+    summary:
+      'How cryptoassets and blockchains actually work: what cryptoassets are, how ledgers, keys, and transactions function, the ecosystem of exchanges, custodians, DeFi, and token types, and how blockchain analytics traces value on-chain.',
+    modules: [
+      { name: 'Cryptoasset and Blockchain Foundations', lessons: 4 },
+      { name: 'The Crypto Ecosystem: VASPs, DeFi, and Token Types', lessons: 4 },
+      { name: 'Blockchain Analytics and On-Chain Investigation', lessons: 3 },
+    ],
+  },
+  {
+    id: '2',
+    name: 'AML Foundations for Cryptoassets and Blockchain',
+    weight: '35%',
+    summary:
+      'The AML foundations for crypto: the money-laundering cycle, terrorist and proliferation financing, fraud and typologies, the FATF standards, the Travel Rule and crypto sanctions, and the US, EU, and UK regulatory frameworks.',
+    modules: [
+      { name: 'Financial Crime in the Cryptoasset Sector', lessons: 6 },
+      { name: 'FATF, the Travel Rule, and Crypto Sanctions', lessons: 4 },
+      { name: 'National and Regional Crypto Frameworks', lessons: 4 },
+    ],
+  },
+  {
+    id: '3',
+    name: 'Risk Management Programs for Cryptoassets and Blockchain',
+    weight: '35%',
+    summary:
+      'Building and running a cryptoasset anti-financial-crime programme: risk assessment, onboarding and KYC, customer risk rating, monitoring, screening and reporting, governance and audit, emerging risk, and lessons from enforcement.',
+    modules: [
+      { name: 'Building a Cryptoasset AFC Program', lessons: 4 },
+      { name: 'Monitoring, Screening, and Reporting', lessons: 4 },
+      { name: 'Governance, Audit, and Emerging Risk', lessons: 4 },
+      { name: 'Learning from Enforcement and Synthesis', lessons: 6 },
+    ],
+  },
+]
+
+export type CourseBlueprint = {
+  examName: string
+  domains: BlueprintDomain[]
+  totals: { domains: number; modules: number; lessons: number }
+  note: string
+}
+
+function totalsFor(domains: BlueprintDomain[]) {
+  return {
+    domains: domains.length,
+    modules: domains.reduce((n, d) => n + d.modules.length, 0),
+    lessons: domains.reduce((n, d) => n + d.modules.reduce((m, x) => m + x.lessons, 0), 0),
+  }
+}
+
+const CCAS_NOTE =
+  'Domain structure and weighting follow the ACAMS CCAS exam blueprint (30 / 35 / 35). Enso Academy is independent and is not affiliated with, authorised by, or endorsed by ACAMS.'
+
+/** The exam blueprint for a course slug, or null if the course has none defined. */
+export function getBlueprint(slug: string): CourseBlueprint | null {
+  if (slug === 'cams')
+    return { examName: 'CAMS', domains: CAMS_BLUEPRINT, totals: BLUEPRINT_TOTALS, note: BLUEPRINT_NOTE }
+  if (slug === 'ccas')
+    return { examName: 'CCAS', domains: CCAS_BLUEPRINT, totals: totalsFor(CCAS_BLUEPRINT), note: CCAS_NOTE }
+  return null
+}

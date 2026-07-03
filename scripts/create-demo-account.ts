@@ -13,6 +13,8 @@ config({ path: '.env.local' })
 
 // COURSE_INCLUDED_MOCKS in lib/stripe/client.ts (the per-course bundle).
 const INCLUDED_MOCKS = 5
+// Which course to grant access to. Default CAMS; override with DEMO_COURSE_SLUG.
+const SLUG = process.env.DEMO_COURSE_SLUG ?? 'cams'
 
 function genPassword(): string {
   const words = ['Falcon', 'Harbor', 'Ledger', 'Compass', 'Summit', 'Anchor', 'Cobalt', 'Beacon']
@@ -36,9 +38,9 @@ async function main() {
   const { data: course, error: cErr } = await admin
     .from('courses')
     .select('id, name')
-    .eq('slug', 'cams')
+    .eq('slug', SLUG)
     .single()
-  if (cErr || !course) throw new Error('CAMS course not found: ' + (cErr?.message ?? 'missing'))
+  if (cErr || !course) throw new Error(`${SLUG} course not found: ` + (cErr?.message ?? 'missing'))
 
   // 1) Create (or reuse) the auth user, email pre-confirmed so they can log in now.
   let userId = ''
@@ -72,13 +74,13 @@ async function main() {
     if (existing.status !== 'active') {
       await admin.from('enrollments').update({ status: 'active' }).eq('id', existing.id)
     }
-    console.log('• CAMS enrolment already present')
+    console.log(`• ${course.name} enrolment already present`)
   } else {
     const { error: enErr } = await admin
       .from('enrollments')
       .insert({ student_id: userId, course_id: course.id, status: 'active' })
     if (enErr) throw new Error('enrol failed: ' + enErr.message)
-    console.log('• enrolled in CAMS')
+    console.log(`• enrolled in ${course.name}`)
   }
 
   // 3) Grant the course bundle of full exam simulations.
@@ -95,7 +97,7 @@ async function main() {
   console.log('  Sign in: https://www.ensoacademy.ai/login')
   console.log('  Email:    ' + email)
   console.log('  Password: ' + password)
-  console.log('  Access:   CAMS only (full course + ' + INCLUDED_MOCKS + ' exam simulations + unlimited practice mocks)')
+  console.log(`  Access:   ${course.name} (full course + ${INCLUDED_MOCKS} exam simulations + unlimited practice mocks)`)
 }
 
 main().catch((e) => {

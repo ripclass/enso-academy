@@ -116,7 +116,7 @@ export default async function GuidePage({ params }: Props) {
 
         {/* The exam at a glance */}
         <section className="mt-14 border-t border-neutral-200 pt-10 print:mt-8 print:break-before-page">
-          <BlueprintCoverage eyebrow="Part 1 · The exam at a glance" title="What the exam tests" />
+          <BlueprintCoverage slug={slug} eyebrow="Part 1 · The exam at a glance" title="What the exam tests" />
         </section>
 
         {/* The syllabus */}

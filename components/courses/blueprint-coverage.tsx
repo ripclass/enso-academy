@@ -1,41 +1,48 @@
 import Link from 'next/link'
 import { Check, BookOpen } from 'lucide-react'
-import { CAMS_BLUEPRINT, BLUEPRINT_TOTALS, BLUEPRINT_NOTE } from '@/lib/courses/blueprint'
+import { getBlueprint } from '@/lib/courses/blueprint'
 
 /**
- * The exam-coverage map: every CAMS knowledge domain shown against the modules
- * that teach it. The candidate's "does this cover everything I'm tested on?"
- * answered visibly — mapped to the exam's own blueprint, built from primary
- * sources. `heading` lets the host page set the eyebrow/title tone.
+ * The exam-coverage map: every knowledge domain of the course's exam shown
+ * against the modules that teach it. The candidate's "does this cover everything
+ * I'm tested on?" answered visibly — mapped to the exam's own blueprint, built
+ * from primary sources. Renders nothing for a course with no blueprint defined.
  */
 export function BlueprintCoverage({
+  slug,
   eyebrow = 'Exam coverage',
-  title = 'Mapped to the full CAMS exam blueprint',
+  title,
   guideHref,
 }: {
+  /** Course slug, selects the blueprint (cams, ccas, ...). */
+  slug: string
   eyebrow?: string
   title?: string
   /** When set, shows a "read the full study guide" link below the heading. */
   guideHref?: string
 }) {
+  const bp = getBlueprint(slug)
+  if (!bp) return null
+  const { examName, domains, totals, note } = bp
+  const heading = title ?? `Mapped to the full ${examName} exam blueprint`
   return (
     <div>
       <span className="text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
         {eyebrow}
       </span>
-      <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{title}</h2>
+      <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{heading}</h2>
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 sm:text-base">
-        Every domain the CAMS exam tests, taught from the primary sources the exam itself is built
-        on: FATF, the regulators, and real enforcement actions. Not a rehash of a third-party study
-        guide.
+        Every domain the {examName} exam tests, taught from the primary sources the exam itself is
+        built on: FATF, the regulators, and real enforcement actions. Not a rehash of a third-party
+        study guide.
       </p>
 
       <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-2xs uppercase tracking-wider text-neutral-500">
-        <span className="font-bold text-primary">{BLUEPRINT_TOTALS.domains} domains</span>
+        <span className="font-bold text-primary">{totals.domains} domains</span>
         <span aria-hidden>·</span>
-        <span>{BLUEPRINT_TOTALS.modules} modules</span>
+        <span>{totals.modules} modules</span>
         <span aria-hidden>·</span>
-        <span>{BLUEPRINT_TOTALS.lessons} lessons</span>
+        <span>{totals.lessons} lessons</span>
         <span aria-hidden>·</span>
         <span className="font-bold text-primary">100% coverage</span>
       </div>
@@ -50,7 +57,7 @@ export function BlueprintCoverage({
       )}
 
       <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
-        {CAMS_BLUEPRINT.map((d) => (
+        {domains.map((d) => (
           <div
             key={d.id}
             className="flex flex-col rounded-lg border border-neutral-200 bg-white p-5"
@@ -91,7 +98,7 @@ export function BlueprintCoverage({
         ))}
       </div>
 
-      <p className="mt-6 max-w-3xl text-2xs leading-relaxed text-neutral-400">{BLUEPRINT_NOTE}</p>
+      <p className="mt-6 max-w-3xl text-2xs leading-relaxed text-neutral-400">{note}</p>
     </div>
   )
 }
