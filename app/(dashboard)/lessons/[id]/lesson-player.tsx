@@ -1089,6 +1089,12 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                       onComplete={handleComplete}
                       completing={completing}
                       caseHref={caseHref}
+                      // Personal chips from THIS session's misses (max two) —
+                      // the student's own gaps lead the generic closers.
+                      missedPrompts={[...missedConceptsRef.current].slice(0, 2).map(
+                        (tag) =>
+                          `Can you go over ${tag.replace(/_/g, ' ')} once more? I kept getting it wrong today.`,
+                      )}
                     />
                   ) : currentScene ? (
                     currentScene.sceneType === 'challenge' ? (

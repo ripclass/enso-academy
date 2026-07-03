@@ -22,22 +22,16 @@ import { SlideScene } from '@/components/lesson/scenes/slide-scene'
 const PROSE =
   "prose prose-sm max-w-none leading-relaxed text-foreground [&_p]:mb-3 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_em]:italic [&_ul]:my-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_h3]:font-medium [&_h3]:mt-4 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-xs"
 
-type ReadingCitations = { label: string; url?: string }[]
-
 type Beat =
-  | { kind: 'reading'; body: string; citations?: ReadingCitations }
+  | { kind: 'reading'; body: string }
   | { kind: 'slideItems'; from: number; to: number }
 
 function buildBeats(scene: Scene): Beat[] {
   if (scene.sceneType === 'reading') {
     const chunks = readingBeats(scene.data.body)
-    const cites = scene.data.citations
-    return chunks.map((body, i) => ({
-      kind: 'reading' as const,
-      body,
-      // attach citations to the final beat so sources are never dropped
-      citations: i === chunks.length - 1 ? cites : undefined,
-    }))
+    // Citations render in a slim footer under the stage (every beat), not
+    // inside the beat card — they crowd the content otherwise.
+    return chunks.map((body) => ({ kind: 'reading' as const, body }))
   }
   if (scene.sceneType === 'slide') {
     const n = scene.data.items?.length ?? 0
@@ -160,24 +154,6 @@ export function BeatPager({
               <div className={PROSE}>
                 <ReactMarkdown>{beat.body}</ReactMarkdown>
               </div>
-              {beat.citations && beat.citations.length > 0 && (
-                <div className="space-y-1.5 border-t border-border pt-3">
-                  <div className="text-xs uppercase tracking-wide text-muted-foreground">Sources</div>
-                  <ul className="space-y-1 text-xs text-muted-foreground">
-                    {beat.citations.map((c, i) => (
-                      <li key={i}>
-                        {c.url ? (
-                          <a href={c.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
-                            {c.label}
-                          </a>
-                        ) : (
-                          c.label
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
             </div>
           ) : scene.sceneType === 'slide' ? (
             <SlideScene
@@ -234,6 +210,37 @@ export function BeatPager({
           )}
         </div>
       </div>
+
+      {/* Sources: a slim footer under the stage, out of the content's way but
+          always in view (previously crowded the final beat's card). */}
+      {scene.sceneType === 'reading' &&
+        (scene.data.citations?.length ?? 0) > 0 &&
+        !showFull && (
+          <div className="mt-5 border-t border-neutral-200/70 pt-2.5">
+            <span className="mr-2 font-mono text-2xs uppercase tracking-widest text-neutral-400">
+              Sources
+            </span>
+            <span className="text-xs leading-relaxed text-neutral-400">
+              {scene.data.citations!.map((c, i) => (
+                <span key={i}>
+                  {i > 0 && <span aria-hidden> · </span>}
+                  {c.url ? (
+                    <a
+                      href={c.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-neutral-300 underline-offset-2 hover:text-neutral-600"
+                    >
+                      {c.label}
+                    </a>
+                  ) : (
+                    c.label
+                  )}
+                </span>
+              ))}
+            </span>
+          </div>
+        )}
     </div>
   )
 }

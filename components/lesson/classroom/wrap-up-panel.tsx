@@ -27,6 +27,7 @@ export function WrapUpPanel({
   onComplete,
   completing,
   caseHref,
+  missedPrompts = [],
 }: {
   lecturerVariant: LecturerVariant
   prompt: string
@@ -39,6 +40,9 @@ export function WrapUpPanel({
   completing: boolean
   /** Deep-case lessons: a link to work this same case in Case Mode. */
   caseHref?: string
+  /** Personal chips built from the concepts THIS session got wrong — shown
+   *  ahead of the generic closers so the student's own gaps lead. */
+  missedPrompts?: string[]
 }) {
   const isUserTurn = stage === 'user-turn'
   const completeLabel = completing
@@ -75,6 +79,16 @@ export function WrapUpPanel({
           <MessageSquare className="h-3.5 w-3.5" />
           {isUserTurn ? 'Ask the lecturer' : 'Ask a question'}
         </button>
+        {missedPrompts.map((q) => (
+          <button
+            key={q}
+            type="button"
+            onClick={() => onAsk(q)}
+            className="rounded-full border border-accent/40 bg-accent-light/60 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+          >
+            {q}
+          </button>
+        ))}
         {CLOSING_QUESTIONS.map((q) => (
           <button
             key={q}
