@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Check, X, ArrowRight, FolderOpen, Scale, RotateCcw } from 'lucide-react'
 import type { CaseFileStep } from '@/lib/lesson/scenes'
 import { useShuffled } from '../use-shuffled'
@@ -19,6 +19,7 @@ export function CaseFile({
   debrief,
   onComplete,
   onContinue,
+  onSpeak,
 }: {
   caseTitle: string
   intro?: string
@@ -27,6 +28,8 @@ export function CaseFile({
   onComplete?: (correct: number, total: number) => void
   /** Advance the lesson — rendered as a Continue button on the closing debrief. */
   onContinue?: () => void
+  /** Narrate widget text through the lesson's voice (no-op outside listen mode). */
+  onSpeak?: (text: string) => void
 }) {
   const [idx, setIdx] = useState(0)
   const [picked, setPicked] = useState<string | null>(null)
@@ -36,6 +39,30 @@ export function CaseFile({
   const step = steps[idx]
   const isLast = idx === steps.length - 1
   const correct = picked != null && picked === step?.decision.correctOptionId
+
+  // Narration follows the file: each evidence card is read as it appears
+  // (fields in examiner's order, ending on the decision prompt), each reveal
+  // as it unlocks, and the debrief when the file closes. All through the
+  // lesson's shared voice — silent when the student is in read mode.
+  useEffect(() => {
+    if (finished) {
+      onSpeak?.(`The file is closed. ${debrief}`)
+      return
+    }
+    const s = steps[idx]
+    if (!s) return
+    if (picked == null) {
+      onSpeak?.(
+        `${s.heading}. Observed: ${s.evidence.observed} The source: ${s.evidence.source} The inference: ${s.evidence.inference} Confidence: ${s.evidence.confidence} ${s.decision.prompt}`,
+      )
+    } else {
+      const verdict = picked === s.decision.correctOptionId ? 'Your call stands.' : 'Not the call.'
+      onSpeak?.(
+        `${verdict} ${s.decision.explanation} Here is what the investigators did. ${s.reveal}`,
+      )
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idx, picked, finished])
 
   function pick(id: string) {
     if (picked || !step) return

@@ -195,8 +195,10 @@ export async function getSceneAudio(elementId: string): Promise<{ url: string | 
       ? (row.scene_data as Record<string, unknown>)
       : {})
     let raw = ''
+    const specKind = (data.spec as { kind?: string } | undefined)?.kind
     if (type === 'slide' && typeof data.narration === 'string') raw = data.narration
     else if (type === 'quiz' && typeof data.intro === 'string') raw = data.intro
+    else if (type === 'interactive' && specKind === 'case-file') raw = '' // narrates itself card by card
     else if ((type === 'interactive' || type === 'pbl') && typeof data.summary === 'string') raw = data.summary
     else raw = row.body ?? ''
 

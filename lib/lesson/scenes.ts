@@ -351,7 +351,13 @@ export function sceneNarration(scene: Scene): string {
     case 'reading': return scene.data.body
     case 'slide': return scene.data.narration
     case 'quiz': return scene.data.intro ?? ''
-    case 'interactive':
+    case 'interactive': {
+      // A case-file narrates itself card by card inside the widget; a
+      // scene-level summary clip would talk over it.
+      const spec = scene.data.spec as { kind?: string } | undefined
+      if (spec?.kind === 'case-file') return ''
+      return scene.data.summary
+    }
     case 'pbl': return scene.data.summary
     case 'challenge': return ''
   }

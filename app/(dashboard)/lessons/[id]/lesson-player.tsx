@@ -529,6 +529,21 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     })
   }
 
+  // Speak widget-driven text (case-file evidence cards / reveals) through the
+  // lesson's shared voice. Listen-mode only; a newer call simply replaces the
+  // playing clip, so the voice always follows the card on screen.
+  function speakWidgetText(text: string) {
+    if (!listenMode || !audioRef.current || !text.trim()) return
+    void synthesizeText(text, lecturerVariant).then(({ url }) => {
+      const audio = audioRef.current
+      if (!url || !audio) return
+      audioSource.current = 'qa'
+      audio.src = url
+      audio.playbackRate = playbackRate
+      audio.play().catch(() => {})
+    })
+  }
+
   // Resume the lecture narration from where a hand interrupted it.
   function resumeLecture() {
     const audio = audioRef.current
@@ -1107,6 +1122,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                           onQuizContinue={currentIndex < scenes.length - 1 ? goNext : undefined}
                           onInteractiveComplete={handleInteractiveComplete}
                           onGradeProject={handleGradeProject}
+                          onSpeak={speakWidgetText}
                           revealed={currentScene.sceneType === 'slide' ? revealedCount : undefined}
                         />
                       </div>

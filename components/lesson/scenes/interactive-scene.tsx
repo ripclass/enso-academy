@@ -24,6 +24,7 @@ export function InteractiveScene({
   spec,
   onComplete,
   onContinue,
+  onSpeak,
 }: {
   title: string
   summary?: string
@@ -31,6 +32,8 @@ export function InteractiveScene({
   onComplete: (correct: number, total: number) => void
   /** Advance the lesson from a widget's completion state (case-file debrief). */
   onContinue?: () => void
+  /** Narrate widget-driven text through the lesson's voice (case-file cards). */
+  onSpeak?: (text: string) => void
 }) {
   return (
     <div className="space-y-5">
@@ -59,6 +62,7 @@ export function InteractiveScene({
           debrief={spec.debrief}
           onComplete={onComplete}
           onContinue={onContinue}
+          onSpeak={onSpeak}
         />
       )}
     </div>
