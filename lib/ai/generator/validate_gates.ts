@@ -335,7 +335,7 @@ export function gateSchema(artifact: LessonArtifact): GateResult {
         if (!isStr(d.title)) errors.push(`${ctx}.sceneData.title not a string`)
         const spec = d.spec as Record<string, unknown> | undefined
         const kind = spec?.kind
-        const KINDS = ['risk-classify', 'red-flags', 'flow-trace', 'screening-match']
+        const KINDS = ['risk-classify', 'red-flags', 'flow-trace', 'screening-match', 'case-file']
         if (!isObj(spec) || typeof kind !== 'string' || !KINDS.includes(kind)) {
           errors.push(`${ctx}.sceneData.spec.kind must be one of ${KINDS.join(', ')}`)
         } else if (kind === 'flow-trace') {
@@ -362,6 +362,29 @@ export function gateSchema(artifact: LessonArtifact): GateResult {
             )
           ) {
             errors.push(`${ctx}.sceneData.spec.alerts each need verdict 'clear'|'escalate' and a why`)
+          }
+        } else if (kind === 'case-file') {
+          if (!isStr(spec.caseTitle)) errors.push(`${ctx}.sceneData.spec.caseTitle not a string`)
+          if (!isStr(spec.debrief)) errors.push(`${ctx}.sceneData.spec.debrief not a string`)
+          if (!isArr(spec.steps) || spec.steps.length < 2) {
+            errors.push(`${ctx}.sceneData.spec.steps needs ≥ 2 steps`)
+          } else {
+            for (const [i, raw] of (spec.steps as Record<string, unknown>[]).entries()) {
+              const sctx = `${ctx}.sceneData.spec.steps[${i}]`
+              const ev = raw.evidence as Record<string, unknown> | undefined
+              if (!isObj(ev) || !isStr(ev.observed) || !isStr(ev.source) || !isStr(ev.inference) || !isStr(ev.confidence)) {
+                errors.push(`${sctx}.evidence needs observed/source/inference/confidence strings`)
+              }
+              const dec = raw.decision as Record<string, unknown> | undefined
+              if (!isObj(dec) || !isStr(dec.prompt) || !isStr(dec.explanation) || !isArr(dec.options) || (dec.options as unknown[]).length < 3) {
+                errors.push(`${sctx}.decision needs prompt/explanation and ≥ 3 options`)
+              } else if (
+                !(dec.options as Record<string, unknown>[]).some((o) => o.id === dec.correctOptionId)
+              ) {
+                errors.push(`${sctx}.decision.correctOptionId not among options`)
+              }
+              if (!isStr(raw.reveal)) errors.push(`${sctx}.reveal not a string`)
+            }
           }
         } else if (!isArr(spec.items) || spec.items.length < 3) {
           errors.push(`${ctx}.sceneData.spec.items needs ≥ 3 items`)

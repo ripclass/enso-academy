@@ -8,6 +8,8 @@ import { isPreviewLessonSlug } from '@/lib/courses/preview'
 import { parseScene, type ContentRow, type Scene } from '@/lib/lesson/scenes'
 import { LESSON_CASE_MAP } from '@/lib/cases/generate'
 import { lessonHasChallenge } from '@/lib/lesson/challenge-config'
+import { lessonHasWarmup } from '@/lib/lesson/warmup-config'
+import { getLessonWarmup } from '@/lib/lesson/warmup'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -100,6 +102,27 @@ export default async function LessonPage({ params }: Props) {
         data: { lessonSlug, conceptTags },
       }
       scenes = [...baseScenes.slice(0, synthIdx), challengeScene, ...baseScenes.slice(synthIdx)]
+    }
+  }
+
+  // Session warm-up: for pilot-format lessons, open with a short retrieval
+  // round on the student's weakest observed concepts (assembled at render from
+  // the student model + question bank; nothing is written to lesson content).
+  // Inserted after the cover scene so the lesson still opens with its framing.
+  if (lessonHasWarmup(lessonSlug) && scenes.length > 1) {
+    const warmup = await getLessonWarmup({ userId: user.id, courseId })
+    if (warmup) {
+      const warmupScene: Scene = {
+        id: `warmup-${(lesson as { id: string }).id}`,
+        title: 'Warm-up: three calls before the file',
+        conceptTags: [...new Set(warmup.questions.flatMap((q) => q.conceptTags))],
+        teachesConcepts: [],
+        audioUrl: null,
+        estimatedSeconds: null,
+        sceneType: 'quiz',
+        data: warmup,
+      }
+      scenes = [scenes[0], warmupScene, ...scenes.slice(1)]
     }
   }
 

@@ -147,6 +147,36 @@ export type ScreeningAlert = {
   why: string
 }
 
+/**
+ * One evidence item in a case-file investigation. The student reads the
+ * structured evidence card, commits to a decision, and only then sees the
+ * reveal (what investigators actually did) — evidence, decision, reveal,
+ * in that order, every step.
+ */
+export type CaseFileStep = {
+  id: string
+  /** Card heading, e.g. "Evidence item 1: the theft". */
+  heading: string
+  /** The structured evidence card, in examiner's-file discipline. */
+  evidence: {
+    observed: string
+    source: string
+    inference: string
+    /** Stated confidence with its justification, e.g. "High. The movement sits on the public ledger…". */
+    confidence: string
+  }
+  /** The decision the student must commit to before the reveal. */
+  decision: {
+    prompt: string
+    options: { id: string; text: string }[]
+    correctOptionId: string
+    /** Feedback on the choice — why the right call is right. */
+    explanation: string
+  }
+  /** After the decision: what the investigators actually did / what happened next. */
+  reveal: string
+}
+
 export type InteractiveSpec =
   | { kind: 'risk-classify'; prompt?: string; items: RiskClassifyItem[] }
   | { kind: 'red-flags'; prompt?: string; scenario?: string; items: RedFlagItem[] }
@@ -161,6 +191,16 @@ export type InteractiveSpec =
       why: string
     }
   | { kind: 'screening-match'; prompt?: string; alerts: ScreeningAlert[] }
+  | {
+      kind: 'case-file'
+      /** The matter, e.g. "The Bitfinex file, 2016 to 2022". */
+      caseTitle: string
+      /** Optional framing shown above the first evidence card. */
+      intro?: string
+      steps: CaseFileStep[]
+      /** Closing debrief shown after the last reveal — the confidence recap. */
+      debrief: string
+    }
 
 /** Narrow an unknown spec to a known interactive kind. */
 export function asInteractiveSpec(spec: unknown): InteractiveSpec | null {
@@ -178,6 +218,9 @@ export function asInteractiveSpec(spec: unknown): InteractiveSpec | null {
     return spec as InteractiveSpec
   }
   if (s.kind === 'screening-match' && Array.isArray(s.alerts)) {
+    return spec as InteractiveSpec
+  }
+  if (s.kind === 'case-file' && Array.isArray(s.steps) && typeof s.debrief === 'string') {
     return spec as InteractiveSpec
   }
   return null

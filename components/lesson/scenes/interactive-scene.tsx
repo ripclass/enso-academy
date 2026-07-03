@@ -5,6 +5,7 @@ import { RiskClassify } from './interactives/risk-classify'
 import { RedFlagSpot } from './interactives/red-flag-spot'
 import { FlowTrace } from './interactives/flow-trace'
 import { ScreeningMatch } from './interactives/screening-match'
+import { CaseFile } from './interactives/case-file'
 import { useShuffled } from './use-shuffled'
 
 /**
@@ -44,6 +45,15 @@ export function InteractiveScene({
           edges={spec.edges}
           path={spec.path}
           why={spec.why}
+          onComplete={onComplete}
+        />
+      )}
+      {spec.kind === 'case-file' && (
+        <CaseFile
+          caseTitle={spec.caseTitle}
+          intro={spec.intro}
+          steps={spec.steps}
+          debrief={spec.debrief}
           onComplete={onComplete}
         />
       )}
