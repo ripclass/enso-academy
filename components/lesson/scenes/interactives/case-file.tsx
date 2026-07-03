@@ -18,12 +18,15 @@ export function CaseFile({
   steps,
   debrief,
   onComplete,
+  onContinue,
 }: {
   caseTitle: string
   intro?: string
   steps: CaseFileStep[]
   debrief: string
   onComplete?: (correct: number, total: number) => void
+  /** Advance the lesson — rendered as a Continue button on the closing debrief. */
+  onContinue?: () => void
 }) {
   const [idx, setIdx] = useState(0)
   const [picked, setPicked] = useState<string | null>(null)
@@ -69,13 +72,25 @@ export function CaseFile({
           </div>
           <p className="mt-3 text-sm leading-relaxed text-neutral-600">{debrief}</p>
         </div>
-        <button
-          type="button"
-          onClick={restart}
-          className="inline-flex h-8 items-center gap-1.5 rounded-md border border-neutral-200 px-3 text-xs font-semibold text-neutral-600 transition-colors hover:text-primary"
-        >
-          <RotateCcw className="h-3.5 w-3.5" /> Work the file again
-        </button>
+        <div className="flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={restart}
+            className="inline-flex h-8 items-center gap-1.5 rounded-md border border-neutral-200 px-3 text-xs font-semibold text-neutral-600 transition-colors hover:text-primary"
+          >
+            <RotateCcw className="h-3.5 w-3.5" /> Work the file again
+          </button>
+          {onContinue && (
+            <button
+              type="button"
+              onClick={onContinue}
+              className="inline-flex h-10 items-center gap-1.5 rounded-md bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
+            >
+              Continue
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          )}
+        </div>
       </div>
     )
   }

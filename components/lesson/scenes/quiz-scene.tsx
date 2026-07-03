@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 import type { QuizSceneData, QuizQuestion } from '@/lib/lesson/scenes'
 import { useShuffled } from './use-shuffled'
 
@@ -13,14 +14,29 @@ import { useShuffled } from './use-shuffled'
  * Each question's options are shuffled per mount (useShuffled), so the correct
  * answer does not sit in its authored slot and is not memorisable by position
  * on a retake. Scoring keys on the option id, never its position.
+ *
+ * Once every question is answered, an in-flow Continue button advances the
+ * lesson (when the player provides `onContinue`) — without it, the only way
+ * forward was the transport bar's next arrow, which students did not find.
  */
 export function QuizScene({
   data,
   onAnswer,
+  onContinue,
 }: {
   data: QuizSceneData
   onAnswer?: (question: QuizQuestion, selectedOptionId: string, correct: boolean) => void
+  /** Advance the lesson — rendered as a Continue button after all questions are answered. */
+  onContinue?: () => void
 }) {
+  const [answeredCount, setAnsweredCount] = useState(0)
+  const allAnswered = answeredCount >= data.questions.length
+
+  function handleAnswer(question: QuizQuestion, selectedOptionId: string, correct: boolean) {
+    setAnsweredCount((n) => n + 1)
+    onAnswer?.(question, selectedOptionId, correct)
+  }
+
   return (
     <div className="space-y-5">
       <div className="space-y-1">
@@ -31,8 +47,21 @@ export function QuizScene({
       </div>
 
       {data.questions.map((question, qi) => (
-        <QuizQuestionCard key={qi} index={qi} question={question} onAnswer={onAnswer} />
+        <QuizQuestionCard key={qi} index={qi} question={question} onAnswer={handleAnswer} />
       ))}
+
+      {allAnswered && onContinue && (
+        <div className="flex justify-end animate-in fade-in duration-500">
+          <button
+            type="button"
+            onClick={onContinue}
+            className="inline-flex h-10 items-center gap-1.5 rounded-md bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
+          >
+            Continue
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      )}
     </div>
   )
 }

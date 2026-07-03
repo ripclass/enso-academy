@@ -1051,6 +1051,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                         <SceneRenderer
                           scene={currentScene}
                           onQuizAnswer={handleQuizAnswer}
+                          onQuizContinue={currentIndex < scenes.length - 1 ? goNext : undefined}
                           onInteractiveComplete={handleInteractiveComplete}
                           onGradeProject={handleGradeProject}
                           revealed={currentScene.sceneType === 'slide' ? revealedCount : undefined}

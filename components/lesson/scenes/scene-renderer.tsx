@@ -15,12 +15,15 @@ import { ProjectScene } from './pbl/project-scene'
 export function SceneRenderer({
   scene,
   onQuizAnswer,
+  onQuizContinue,
   onInteractiveComplete,
   onGradeProject,
   revealed,
 }: {
   scene: Scene
   onQuizAnswer?: (question: QuizQuestion, selectedOptionId: string, correct: boolean) => void
+  /** Advance past a fully-answered quiz scene (renders its Continue button). */
+  onQuizContinue?: () => void
   onInteractiveComplete?: (conceptTags: string[], correct: boolean) => void
   onGradeProject?: (spec: PblSpec, submission: string) => Promise<{ band: string; feedback: string }>
   /** Progressive reveal count for slide scenes (driven by narration progress). */
@@ -32,7 +35,7 @@ export function SceneRenderer({
     case 'slide':
       return <SlideScene data={scene.data} revealed={revealed} />
     case 'quiz':
-      return <QuizScene data={scene.data} onAnswer={onQuizAnswer} />
+      return <QuizScene data={scene.data} onAnswer={onQuizAnswer} onContinue={onQuizContinue} />
     case 'interactive': {
       const spec = asInteractiveSpec(scene.data.spec)
       if (spec) {
@@ -44,6 +47,7 @@ export function SceneRenderer({
             summary={scene.data.summary}
             spec={spec}
             onComplete={report}
+            onContinue={onQuizContinue}
           />
         )
       }
