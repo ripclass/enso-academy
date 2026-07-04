@@ -26,15 +26,14 @@ function lessonExcerpt(lessonPath) {
   for (const s of scenes) {
     const d = s.sceneData ?? s.data ?? s
     const title = s.title ?? d.title ?? ''
-    const body = d.body ?? d.narration ?? ''
-    if (typeof body === 'string' && body.length > 0) parts.push(`### ${title}\n${body}`)
-    // Quiz explanations also carry verified facts.
-    for (const q of d.questions ?? []) {
-      if (q.explanation) parts.push(`### (quiz explanation) ${title}\n${q.explanation}`)
-    }
+    // Serialize the WHOLE scene payload: bodies, slide items, quiz explanations,
+    // citations (their labels carry dates and dockets), and interactive case-file
+    // specs are all verified content a bank case may legitimately draw on.
+    // A narrower body-only extract caused false "unsupported" verdicts.
+    parts.push(`### ${title}\n${JSON.stringify(d, null, 1)}`)
   }
   const text = parts.join('\n\n')
-  return text.length > 45000 ? text.slice(0, 45000) + '\n\n[truncated]' : text
+  return text.length > 60000 ? text.slice(0, 60000) + '\n\n[truncated]' : text
 }
 
 function buildBrief(entry) {
@@ -48,7 +47,7 @@ function buildBrief(entry) {
 
 REVIEW IT ON EXACTLY TWO LANES:
 
-LANE 1, FACTUAL FIDELITY (decisive): every specific claim in the case JSON (entity names, amounts, dates, counts, charges, dispositions, and allegation-vs-admitted framing) must be supported by the SOURCE LESSON text below. Flag any specific that the source does not support, any distortion, and any place an allegation is stated as an admitted fact or vice versa. The case may compress or paraphrase; it may NOT add or alter specifics.
+LANE 1, FACTUAL FIDELITY (decisive): every specific claim in the case's STUDENT-FACING content (the "case" object: intro, steps, decisions, reveals, debrief, and the sources list) regarding entity names, amounts, dates, counts, charges, dispositions, and allegation-vs-admitted framing must be supported by the SOURCE LESSON text below (including its citation labels, slide items, and interactive scene content, which are all verified). Flag any specific the source does not support, any distortion, and any place an allegation is stated as an admitted fact or vice versa. The case may compress or paraphrase; it may NOT add or alter specifics. Do NOT flag the wrapper metadata fields (id, matter, jurisdictions, caseType, courses, conceptTags, factBasis): they are internal routing labels, never shown to students.
 
 LANE 2, DECISION QUALITY: each of the 3 decisions must have exactly one clearly-best option; no distractor may be a defensible second correct answer; distractors must be plausible competing practitioner actions, not strawmen; explanations must not reference options by letter; register must be adult-professional; no em-dashes.
 
