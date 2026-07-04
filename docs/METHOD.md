@@ -6,7 +6,7 @@
 
 ---
 
-## PART 1 — THE THESIS
+## PART 1, THE THESIS
 
 **The student is a working professional with a booked exam and pass anxiety, not a curious browser.** Sessions are 25-45 minutes. The exam (CAMS, CCAS, CGSS, CFE) is reasoning-based multiple choice: it tests recognition, discrimination, and defensible judgment under uncertainty, not recall.
 
@@ -23,7 +23,7 @@
 
 **The commercial thesis this serves:** the product's core promise is the calibrated readiness signoff, deliberately conservative (framework commitment: we would rather hold a student at "approaching" than call them ready and be wrong). Every system below either trains the student or sharpens that signoff.
 
-## PART 2 — THE EVIDENCE BASE (why this works)
+## PART 2, THE EVIDENCE BASE (why this works)
 
 The format is built on the strongest replicated effects in learning science:
 
@@ -41,7 +41,7 @@ The format is built on the strongest replicated effects in learning science:
 
 **The structural risk the method carries (named by the external review, accepted and countered):** brittle transfer. A student can feel skilled inside a well-framed lesson and fail when concepts arrive mixed, time-boxed, and stripped of scaffolding. The counterweights are Desk Mix (disorder), the ladder (time pressure), full simulations (fidelity), and the autopsy (feedback on the transfer failures themselves).
 
-## PART 3 — THE EXTERNAL REVIEW (what an independent expert said)
+## PART 3, THE EXTERNAL REVIEW (what an independent expert said)
 
 Three gpt-5.5 review lanes ran on the finished format (2026-07-04):
 
@@ -53,7 +53,7 @@ Three gpt-5.5 review lanes ran on the finished format (2026-07-04):
 
 **The standing rule from this experience:** external review is cheap relative to what it catches. Every lesson gets the codex audit regardless of who drafted it; the auditor's claims are verified against primary sources before editing, because the auditor is sometimes wrong too.
 
-## PART 4 — THE LESSON (how we teach)
+## PART 4, THE LESSON (how we teach)
 
 Canonical mechanics in `docs/SPEC-simulator-lesson-format.md`. The shape:
 
@@ -72,7 +72,7 @@ Canonical mechanics in `docs/SPEC-simulator-lesson-format.md`. The shape:
 
 **The classroom around it:** lecturer voice (per-beat TTS, self-caching), the visible preparing state, named classmates, end-of-lesson office hours where classmate questions are biased to THIS session's misses, personal ask-chips from the student's own gaps, a remediation interjection after two consecutive wrong answers, and a session calibration line ("7 committed decisions, 2 certain-but-wrong").
 
-## PART 5 — THE TRAINING LOOP (beyond the lesson)
+## PART 5, THE TRAINING LOOP (beyond the lesson)
 
 The systems compose into one closed loop; no piece stands alone:
 
@@ -80,7 +80,7 @@ lessons capture decisions and confidence -> the student model updates per concep
 
 **The guarantee aligns with the method:** ready-means-ready. If the signoff said ready and the student fails, access extends free until they pass.
 
-## PART 6 — REAL CASES (how we curate)
+## PART 6, REAL CASES (how we curate)
 
 **The iron rule: never generate case facts. Ever.** Every case file is built from the verified public record or it is not built.
 
@@ -90,7 +90,7 @@ lessons capture decisions and confidence -> the student model updates per concep
 - **Citations carry URLs** to official sources (govinfo for USC, eCFR for CFR, EUR-Lex ELI for EU law, legislation.gov.uk, agency press pages), verified live before shipping.
 - **The case bank** grows toward 100+ verified case files, tagged by course, concepts, jurisdiction, and type, reused across courses (Danske serves CAMS and CFCS; Bitfinex serves CCAS and CAMS). Rotation: each lesson's case-file can carry alternates; a visit-seeded draw gives retakes a different real matter. Alternates never block a lesson and are never invented. Where a domain has no enforcement record (CDCS documentary credits), court judgments get the verified treatment and practice document sets are clearly labeled constructed exercises: nothing pretends to be real.
 
-## PART 7 — ASSESSMENT (quizzes, the bank, mocks)
+## PART 7, ASSESSMENT (quizzes, the bank, mocks)
 
 **Three assessment layers, three jobs:**
 
@@ -109,7 +109,7 @@ lessons capture decisions and confidence -> the student model updates per concep
 
 **Faithful mocks:** question count, duration, domain weights, and pass standard verified against the certifying body's CURRENT candidate handbook BEFORE seeding (recorded per course); results reported as a scaled-readiness band, not a raw percentage; the free practice mock is unlimited for owners; the first full simulation is the lead magnet.
 
-## PART 8 — THE BIRTH PATH FOR A NEW COURSE (CGSS onward)
+## PART 8, THE BIRTH PATH FOR A NEW COURSE (CGSS onward)
 
 A new course is BORN in this method. The sequence, in order, with its gates:
 
@@ -124,7 +124,7 @@ A new course is BORN in this method. The sequence, in order, with its gates:
 9. **Previews are the storefront.** Two free preview lessons per course, always in full simulator format with a case file (rotating if an alternate exists): they are what prospects judge.
 10. **Measure.** First-cohort metrics: lesson completion, cold-open wrongness (target 50-70%), time-to-return, calibration trends, refunds. Every conversion and every lesson keeps a one-command revert (.bak files); the metrics can halt a roll at any time.
 
-## PART 9 — THE QUALITY SYSTEM (summary of every gate a lesson passes)
+## PART 9, THE QUALITY SYSTEM (summary of every gate a lesson passes)
 
 A shipped lesson has survived, in order:
 1. Verified sourcing (facts pack + primary sources + live URLs).
@@ -137,7 +137,7 @@ A shipped lesson has survived, in order:
 
 **The division of labor that keeps this scalable:** the judgment layer (blueprints, line-review of every new decision, integrity diffs, sign-off) is separated from the legwork (source-verification sweeps and builder drafting by cheaper agents, returning compact tables). The external gate never varies with authorship.
 
-## PART 10 — DOCUMENT MAP
+## PART 10, DOCUMENT MAP
 
 | Document | Governs |
 |---|---|
