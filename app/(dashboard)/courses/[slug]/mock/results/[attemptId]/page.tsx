@@ -1,12 +1,12 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle2, XCircle, MinusCircle } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
 import { SectionHeader } from '@/components/in-app/ui-kit'
 import { getAttemptResults } from '@/lib/mock/actions'
 import { AutopsyPanel, type AutopsyMiss } from '@/components/mock/autopsy-panel'
-import { QuestionQa } from '@/components/mock/question-qa'
+import { QuestionReview, type ReviewItem } from '@/components/mock/question-review'
 import { readinessBand } from '@/lib/mock/readiness-band'
 
 type Props = {
@@ -74,6 +74,33 @@ export default async function MockResultsPage({ params, searchParams }: Props) {
       prompt: String(q.question_text ?? qbankMap[q.id]?.question_text ?? ''),
       domain: (q.domain ?? qbankMap[q.id]?.domain ?? null) as string | null,
     }))
+
+  // Build the serializable review items the client accordion renders.
+  const reviewItems: ReviewItem[] = questions.map((q, i) => {
+    const qb = qbankMap[q.id]
+    // Prefer the snapshot's option order (the order the student saw,
+    // shuffled per attempt), so the review matches the exam.
+    const options = q.options ?? qb?.options ?? []
+    const studentSet = toIdSet(answers[q.id])
+    const correctSet = toIdSet(qb?.correct_answer)
+    const skipped = studentSet.size === 0
+    // All-or-nothing: the student's selected id set equals the correct id set.
+    const isCorrect =
+      !skipped &&
+      studentSet.size === correctSet.size &&
+      [...correctSet].every((id) => studentSet.has(id))
+    return {
+      questionId: q.id,
+      index: i,
+      questionText: String(q.question_text ?? qb?.question_text ?? ''),
+      options,
+      correctIds: [...correctSet],
+      studentIds: [...studentSet],
+      outcome: skipped ? 'skipped' : isCorrect ? 'correct' : 'incorrect',
+      explanation: qb?.explanation ?? null,
+      rationales: qb?.wrong_answer_rationales ?? null,
+    }
+  })
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -150,89 +177,7 @@ export default async function MockResultsPage({ params, searchParams }: Props) {
         {/* Per-question review */}
         <div>
           <SectionHeader title="Question review" />
-          <div className="space-y-4">
-            {questions.map((q, i) => {
-              const qb = qbankMap[q.id]
-              // Prefer the snapshot's option order — the order the student saw
-              // (shuffled per attempt) — so the review matches the exam.
-              const options = q.options ?? qb?.options
-              const studentSet = toIdSet(answers[q.id])
-              const correctSet = toIdSet(qb?.correct_answer)
-              const skipped = studentSet.size === 0
-              // All-or-nothing: the student's selected id set equals the correct id set.
-              const isCorrect =
-                !skipped &&
-                studentSet.size === correctSet.size &&
-                [...correctSet].every((id) => studentSet.has(id))
-              return (
-                <div key={q.id} className="rounded-lg border border-neutral-200 bg-white p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="text-sm font-semibold leading-relaxed text-neutral-800">
-                      <span className="text-2xs font-mono text-neutral-400 mr-2 tabular-nums">
-                        Q{i + 1}
-                      </span>
-                      {q.question_text}
-                    </div>
-                    <span className="shrink-0">
-                      {skipped ? (
-                        <MinusCircle className="h-5 w-5 text-neutral-400" />
-                      ) : isCorrect ? (
-                        <CheckCircle2 className="h-5 w-5 text-primary" />
-                      ) : (
-                        <XCircle className="h-5 w-5 text-accent" />
-                      )}
-                    </span>
-                  </div>
-                  <div className="mt-4 space-y-2">
-                    {options.map((opt) => {
-                      const isCorrectOpt = correctSet.has(opt.id)
-                      const isStudentPick = studentSet.has(opt.id)
-                      const isStudentWrong = isStudentPick && !isCorrectOpt
-                      // The rationale for a wrong option the student actually picked:
-                      // shown beneath that option so the miss is explained in place.
-                      const wrongRationale = isStudentWrong
-                        ? qb?.wrong_answer_rationales?.[opt.id]
-                        : undefined
-                      return (
-                        <div key={opt.id}>
-                          <div
-                            className={`text-sm rounded border px-3 py-2 flex items-start gap-2 ${
-                              isCorrectOpt
-                                ? 'border-primary/30 bg-primary-light/40 text-neutral-900'
-                                : isStudentWrong
-                                  ? 'border-accent/30 bg-accent-light/40 text-neutral-900'
-                                  : 'border-neutral-200 text-neutral-600'
-                            }`}
-                          >
-                            <span className="shrink-0 w-4 text-center font-mono text-xs" aria-hidden>
-                              {isCorrectOpt ? '✓' : isStudentWrong ? '✗' : ''}
-                            </span>
-                            <span>{opt.text}</span>
-                          </div>
-                          {wrongRationale && (
-                            <div className="mt-1.5 pl-9">
-                              <div className="text-2xs font-mono uppercase tracking-widest text-accent/70">
-                                Why this is wrong
-                              </div>
-                              <p className="mt-0.5 text-sm text-neutral-600 leading-relaxed">
-                                {wrongRationale}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      )
-                    })}
-                  </div>
-                  {qb?.explanation && (
-                    <p className="mt-4 border-t border-neutral-100 pt-3 text-sm text-neutral-600 leading-relaxed">
-                      {qb.explanation}
-                    </p>
-                  )}
-                  <QuestionQa attemptId={attemptId} questionId={q.id} />
-                </div>
-              )
-            })}
-          </div>
+          <QuestionReview attemptId={attemptId} items={reviewItems} />
         </div>
 
         <div className="flex justify-center">
