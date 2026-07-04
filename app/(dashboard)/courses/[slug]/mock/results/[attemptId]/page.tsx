@@ -112,7 +112,7 @@ export default async function MockResultsPage({ params, searchParams }: Props) {
             <span>{score}% raw</span>
           </div>
           <p className="mx-auto mt-4 max-w-md border-t border-neutral-100 pt-3 text-2xs text-neutral-400 leading-relaxed">
-            The real CAMS exam is reported as a scaled score with a pass mark of 75 (scaled), not a
+            The real exam is reported as a scaled score with a pass mark of 75 (scaled), not a
             raw percentage. This band maps your practice result to that standard.
           </p>
         </div>

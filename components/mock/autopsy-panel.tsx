@@ -87,9 +87,9 @@ export function AutopsyPanel({
         <>
           <p className="mt-1.5 text-sm leading-relaxed text-neutral-600">
             {required
-              ? 'Your next simulation unlocks after this. '
-              : 'Before your next simulation: '}
-            classify each miss honestly. A wrong answer is only useful once you know
+              ? 'Your next simulation unlocks after this.'
+              : 'Before your next simulation:'}{' '}
+            Classify each miss honestly. A wrong answer is only useful once you know
             which kind of wrong it was.
           </p>
           <div className="mt-5 space-y-4">
