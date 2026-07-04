@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { Flag, ChevronLeft, ChevronRight, AlertTriangle } from 'lucide-react'
-import { submitMockExam } from '@/lib/mock/actions'
+import { saveMockProgress, submitMockExam } from '@/lib/mock/actions'
 import { type MockQuestion } from '@/lib/mock/types'
 import { toast } from 'sonner'
 
@@ -11,7 +11,11 @@ type Props = {
   attemptId: string
   templateName: string
   questions: MockQuestion[]
-  timeLimitMinutes: number
+  /** Seconds left on the clock: the full limit for a fresh attempt, less on resume. */
+  secondsRemaining: number
+  /** Autosaved state restored when resuming an in-progress attempt. */
+  savedAnswers: Record<string, string | string[]>
+  savedFlags: string[]
   courseSlug: string
 }
 
@@ -23,13 +27,21 @@ function formatTime(totalSeconds: number): string {
   return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`
 }
 
-export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes, courseSlug }: Props) {
+export function MockTaker({
+  attemptId,
+  templateName,
+  questions,
+  secondsRemaining: initialSecondsRemaining,
+  savedAnswers,
+  savedFlags,
+  courseSlug,
+}: Props) {
   const router = useRouter()
 
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [answers, setAnswers] = useState<Record<string, string | string[]>>({})
-  const [flagged, setFlagged] = useState<Set<string>>(new Set())
-  const [secondsRemaining, setSecondsRemaining] = useState(timeLimitMinutes * 60)
+  const [answers, setAnswers] = useState<Record<string, string | string[]>>(savedAnswers ?? {})
+  const [flagged, setFlagged] = useState<Set<string>>(new Set(savedFlags ?? []))
+  const [secondsRemaining, setSecondsRemaining] = useState(initialSecondsRemaining)
   const [submitting, setSubmitting] = useState(false)
   const [confirmSubmit, setConfirmSubmit] = useState(false)
 
@@ -90,6 +102,18 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
     }
   }, [secondsRemaining, doSubmit])
 
+  // --- autosave (debounced) so a refresh or crash resumes with answers intact
+  useEffect(() => {
+    if (submittedRef.current) return
+    const t = setTimeout(() => {
+      if (Object.keys(answers).length === 0 && flagged.size === 0) return
+      void saveMockProgress(attemptId, answers, Array.from(flagged)).catch(() => {
+        // Best-effort: a failed autosave must never interrupt the sitting.
+      })
+    }, 2000)
+    return () => clearTimeout(t)
+  }, [answers, flagged, attemptId])
+
   // --- focus/blur tracking --------------------------------------------------
   useEffect(() => {
     function onBlur() {
@@ -119,14 +143,22 @@ export function MockTaker({ attemptId, templateName, questions, timeLimitMinutes
   }
 
   // Multi-select: add/remove the option id from the question's id array.
+  // Selection is capped at select_count, matching the real exam interface,
+  // which will not accept more answers than the stem instructs.
   function toggleAnswer(optionId: string) {
     if (!current) return
+    const cap = current.select_count && current.select_count > 1 ? current.select_count : Infinity
+    const existing = answers[current.id]
+    const arr = Array.isArray(existing) ? existing : []
+    if (!arr.includes(optionId) && arr.length >= cap) {
+      toast.info(`Select only ${cap}. Deselect an answer first.`)
+      return
+    }
     setAnswers((prev) => {
-      const existing = prev[current.id]
-      const arr = Array.isArray(existing) ? existing : []
-      const next = arr.includes(optionId)
-        ? arr.filter((id) => id !== optionId)
-        : [...arr, optionId]
+      const prevArr = Array.isArray(prev[current.id]) ? (prev[current.id] as string[]) : []
+      const next = prevArr.includes(optionId)
+        ? prevArr.filter((id) => id !== optionId)
+        : [...prevArr, optionId]
       return { ...prev, [current.id]: next }
     })
   }

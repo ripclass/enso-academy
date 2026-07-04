@@ -32,14 +32,16 @@ export default async function MockTakePage({ params }: Props) {
     }
     throw err
   }
-  const { attemptId, templateName, questions, timeLimitMinutes } = result
+  const { attemptId, templateName, questions, secondsRemaining, savedAnswers, savedFlags } = result
 
   return (
     <MockTaker
       attemptId={attemptId}
       templateName={templateName}
       questions={questions}
-      timeLimitMinutes={timeLimitMinutes}
+      secondsRemaining={secondsRemaining}
+      savedAnswers={savedAnswers}
+      savedFlags={savedFlags}
       courseSlug={slug}
     />
   )

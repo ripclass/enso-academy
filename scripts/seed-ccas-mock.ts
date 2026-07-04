@@ -10,14 +10,18 @@
 //
 //   pnpm tsx scripts/seed-ccas-mock.ts
 //
-// Blueprint (verified 2026-07-01 against the ACAMS CCAS product page, the CCAS
-// candidate-handbook summary, and independent prep sources; see
-// generated/ccas/BLUEPRINT.md): 100 items / 175 min, single-best PLUS select-all
-// items, domains weighted 30 / 35 / 35. The real pass mark is SCALED (pass = 75
-// scaled, roughly ~62.5% raw), NOT a raw percent, so pass_score_percent below is
-// only a conservative readiness target; the results page presents a scaled
-// readiness BAND (lib/mock/readiness-band.ts, anchored to the ACAMS scaled
-// convention), not a raw pass/fail headline.
+// Blueprint (verified 2026-07-04 against the OFFICIAL CCAS Candidate Handbook,
+// acams.org/en/media/document/31416, retrieved directly; see
+// generated/ccas/BLUEPRINT.md): 100 "multiple choice and multiple response"
+// items / 175 minutes, domains I 30% / II 35% / III 35% — all confirmed
+// verbatim. The handbook notes the exam "may include unscored questions" that
+// are not identified (not simulated here; all 100 count). It states "the
+// passing score ... is 75" with no unit; Pearson VUE score reports denominate
+// it in scaled-score units (~62.5% raw by the team's estimate), so
+// pass_score_percent below is only a conservative readiness target; the
+// results page presents a readiness BAND (lib/mock/readiness-band.ts), not a
+// raw pass/fail headline. No official multi-response proportion is published;
+// the ~10% slice is a product choice.
 
 import { config } from 'dotenv'
 config({ path: '.env.local' })

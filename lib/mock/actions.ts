@@ -11,6 +11,11 @@ type StartMockResult = {
   templateName: string
   questions: MockQuestion[]
   timeLimitMinutes: number
+  /** Seconds left on the clock (full limit for a new attempt; less on resume). */
+  secondsRemaining: number
+  /** Autosaved answers/flags when resuming an in-progress attempt. */
+  savedAnswers: Record<string, string | string[]>
+  savedFlags: string[]
 }
 
 // Single answers are an option id string; multi-select answers are an array of ids.
@@ -130,6 +135,42 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
 
   if (!template || !template.is_published) throw new Error('Mock template not found')
 
+  // Resume an unexpired in-progress attempt instead of creating (and charging)
+  // a second one: a mid-exam refresh or back-navigation must not burn another
+  // credit or discard the sitting. Answers autosaved via saveMockProgress come
+  // back so the student continues where they left off.
+  const { data: openAttempt } = await admin
+    .from('mock_exam_attempts')
+    .select('id, started_at, questions_snapshot, answers, flags')
+    .eq('student_id', user.id)
+    .eq('template_id', template.id)
+    .eq('status', 'in_progress')
+    .order('started_at', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+  if (openAttempt) {
+    const startedMs = new Date(openAttempt.started_at as string).getTime()
+    const remaining = template.time_limit_minutes * 60 - Math.floor((Date.now() - startedMs) / 1000)
+    if (remaining > 10) {
+      return {
+        attemptId: openAttempt.id,
+        templateName: template.name,
+        questions: (openAttempt.questions_snapshot as MockQuestion[]) ?? [],
+        timeLimitMinutes: template.time_limit_minutes,
+        secondsRemaining: remaining,
+        savedAnswers: (openAttempt.answers as Record<string, string | string[]>) ?? {},
+        savedFlags: (openAttempt.flags as string[]) ?? [],
+      }
+    }
+    // The clock ran out on an unfinished sitting: close it so it stops
+    // resuming. Answers beyond the autosave cannot be recovered, so the honest
+    // disposition is abandoned, not submitted.
+    await admin
+      .from('mock_exam_attempts')
+      .update({ status: 'abandoned', invalidation_reason: 'Timer expired without submission' })
+      .eq('id', openAttempt.id)
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const criteria = (template.selection_criteria as any) ?? {}
   // 'mock' = free, unlimited PRACTICE — a course benefit (no attempt consumed),
@@ -176,6 +217,27 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
     const consumed = await consumeMockAttempt(user.id, template.course_id)
     if (!consumed) throw new Error(MOCK_PAYWALL)
   }
+
+  // Prefer-unseen: question ids this student has already met in prior attempts
+  // for this course. Fresh questions come first; repeats are backfill only, so
+  // retakes stay fresh for as long as the pool lasts.
+  const { data: priorAttempts } = await admin
+    .from('mock_exam_attempts')
+    .select('questions_snapshot')
+    .eq('student_id', user.id)
+    .eq('course_id', template.course_id)
+    .neq('status', 'in_progress')
+    .order('started_at', { ascending: false })
+    .limit(12)
+  const seenIds = new Set<string>()
+  for (const a of priorAttempts ?? []) {
+    for (const q of ((a.questions_snapshot as MockQuestion[] | null) ?? [])) seenIds.add(q.id)
+  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const preferUnseen = (pool: any[]): any[] => [
+    ...shuffle(pool.filter((q) => !seenIds.has(q.id))),
+    ...shuffle(pool.filter((q) => seenIds.has(q.id))),
+  ]
 
   // Selection criteria: per-domain counts (by_domain), plus an optional
   // multi_response_count that guarantees ~that many multiple-response items in
@@ -236,8 +298,8 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
     const wantMulti = domainMulti[domain] ?? 0
     let picked: typeof all
     if (wantMulti > 0) {
-      const multiPool = shuffle(all.filter((q) => q.question_type === 'multiple_choice'))
-      const singlePool = shuffle(all.filter((q) => q.question_type !== 'multiple_choice'))
+      const multiPool = preferUnseen(all.filter((q) => q.question_type === 'multiple_choice'))
+      const singlePool = preferUnseen(all.filter((q) => q.question_type !== 'multiple_choice'))
       const takeMulti = multiPool.slice(0, Math.min(wantMulti, multiPool.length))
       const takeSingle = singlePool.slice(0, Math.max(0, count - takeMulti.length))
       picked = [...takeMulti, ...takeSingle]
@@ -248,7 +310,7 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
       }
       picked = shuffle(picked)
     } else {
-      picked = shuffle(all).slice(0, count)
+      picked = preferUnseen(all).slice(0, count)
     }
     for (const q of picked) selected.push(toMock(q))
   }
@@ -303,7 +365,32 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
     templateName: template.name,
     questions,
     timeLimitMinutes: template.time_limit_minutes,
+    secondsRemaining: template.time_limit_minutes * 60,
+    savedAnswers: {},
+    savedFlags: [],
   }
+}
+
+/**
+ * Autosave an in-progress attempt's answers and flags so a refresh, crash, or
+ * network drop resumes the sitting instead of losing it. No grading happens
+ * here; writes are guarded to the attempt owner and to in_progress status.
+ */
+export async function saveMockProgress(
+  attemptId: string,
+  answers: Record<string, string | string[]>,
+  flags: string[],
+): Promise<void> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return
+  const admin = createAdminClient()
+  await admin
+    .from('mock_exam_attempts')
+    .update({ answers, flags })
+    .eq('id', attemptId)
+    .eq('student_id', user.id)
+    .eq('status', 'in_progress')
 }
 
 /**

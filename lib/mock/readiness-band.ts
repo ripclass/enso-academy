@@ -1,12 +1,14 @@
 // lib/mock/readiness-band.ts
 //
 // Maps a raw practice-mock percentage to an exam-readiness band anchored to the
-// REAL ACAMS standard. ACAMS reports a SCALED score with a pass mark of 75
-// (scaled), not a raw percentage; the team's scaled-to-raw estimate puts the
-// real pass line around 62.5% raw. The bands below are deliberately
-// conservative: we would rather under-call readiness than tell a candidate they
-// will pass and be wrong. A bare raw percent (e.g. "68%") styled like the real
-// score misleads in both directions, so the results page leads with the band.
+// REAL ACAMS standard. The official candidate handbooks (verified 2026-07-04)
+// state "the passing score ... is 75" without naming a unit; candidate Pearson
+// VUE score reports denominate it in scaled-score units, and the team's
+// scaled-to-raw estimate puts the real pass line around 62.5% raw. The bands
+// below are deliberately conservative: we would rather under-call readiness
+// than tell a candidate they will pass and be wrong. A bare raw percent (e.g.
+// "68%") styled like the real score misleads in both directions, so the
+// results page leads with the band.
 
 export type ReadinessBandKey = 'ready' | 'on-track' | 'borderline' | 'not-ready'
 
