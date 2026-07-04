@@ -529,6 +529,7 @@ export async function recordQuizEvidence(opts: {
  */
 export async function recordDecisionConfidence(opts: {
   sessionId: string
+  courseId: string
   conceptTags: string[]
   correct: boolean
   confidence: 'low' | 'med' | 'high'
@@ -543,6 +544,7 @@ export async function recordDecisionConfidence(opts: {
       student_id: user.id,
       event_type: 'decision_confidence',
       payload: {
+        course_id: opts.courseId,
         concept_tags: opts.conceptTags,
         correct: opts.correct,
         confidence: opts.confidence,

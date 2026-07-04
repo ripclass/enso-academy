@@ -5,9 +5,13 @@ import { ArrowLeft, CheckCircle2, XCircle, MinusCircle } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
 import { SectionHeader } from '@/components/in-app/ui-kit'
 import { getAttemptResults } from '@/lib/mock/actions'
+import { AutopsyPanel, type AutopsyMiss } from '@/components/mock/autopsy-panel'
 import { readinessBand } from '@/lib/mock/readiness-band'
 
-type Props = { params: Promise<{ slug: string; attemptId: string }> }
+type Props = {
+  params: Promise<{ slug: string; attemptId: string }>
+  searchParams: Promise<{ autopsy?: string }>
+}
 
 export const metadata = { title: 'Mock results' }
 
@@ -15,8 +19,9 @@ function titleize(s: string): string {
   return s.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
-export default async function MockResultsPage({ params }: Props) {
+export default async function MockResultsPage({ params, searchParams }: Props) {
   const { slug, attemptId } = await params
+  const { autopsy: autopsyParam } = await searchParams
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect(`/login?next=/courses/${slug}/mock/results/${attemptId}`)
@@ -46,6 +51,29 @@ export default async function MockResultsPage({ params }: Props) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (attempt.by_domain_scores as any) ?? {}
 
+  // The autopsy: every ANSWERED-wrong question, classified before the next
+  // simulation unlocks. Skipped questions are a pacing signal, not a
+  // misconception, so they stay out of the classification list.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const attemptMeta = (attempt.metadata ?? {}) as any
+  const isSimulation = attemptMeta.kind === 'simulation'
+  const existingRepairs: string[] | null = attemptMeta.autopsy?.repairs ?? null
+  const misses: AutopsyMiss[] = questions
+    .filter((q) => {
+      const qb = qbankMap[q.id]
+      const studentSet = toIdSet(answers[q.id])
+      const correctSet = toIdSet(qb?.correct_answer)
+      if (studentSet.size === 0) return false
+      return !(
+        studentSet.size === correctSet.size && [...correctSet].every((id) => studentSet.has(id))
+      )
+    })
+    .map((q) => ({
+      questionId: q.id,
+      prompt: String(q.question_text ?? qbankMap[q.id]?.question_text ?? ''),
+      domain: (q.domain ?? qbankMap[q.id]?.domain ?? null) as string | null,
+    }))
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <AppHeader context="Mock result" />
@@ -57,6 +85,15 @@ export default async function MockResultsPage({ params }: Props) {
         >
           <ArrowLeft className="h-3 w-3" /> Back to course
         </Link>
+
+        {(isSimulation || existingRepairs) && (
+          <AutopsyPanel
+            attemptId={attemptId}
+            misses={misses}
+            existing={existingRepairs}
+            required={autopsyParam === 'required'}
+          />
+        )}
 
         {/* Readiness band (leads with a verdict, not a bare raw %) */}
         <div className="rounded-lg border-2 border-neutral-900 bg-white p-8 text-center">

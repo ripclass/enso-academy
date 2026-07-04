@@ -877,7 +877,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
     c.total += 1
     if (confidence === 'high' && !correct) c.over += 1
     if (confidence === 'low' && correct) c.under += 1
-    void recordDecisionConfidence({ sessionId, conceptTags, correct, confidence }).catch(() => {})
+    void recordDecisionConfidence({ sessionId, courseId, conceptTags, correct, confidence }).catch(() => {})
   }
 
   // A case-file committed decision reports its confidence here (the widget's

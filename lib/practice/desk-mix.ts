@@ -54,16 +54,25 @@ export async function startDeskMix(
     .maybeSingle()
   if (!enrollment) return null
 
-  // The student's weakest observed concepts (same signal the warm-up uses).
+  // The student's repair targets: the error ledger first (repeat misses),
+  // then lowest mastery. "Same trap, new facts": the ledger's concepts get
+  // resurfaced in fresh questions rather than replayed.
   const { data: weak } = await admin
     .from('student_knowledge_state')
-    .select('concept_tag')
+    .select('concept_tag, mastery_probability, incorrect_count')
     .eq('student_id', user.id)
     .eq('course_id', course.id)
     .gte('observation_count', 1)
     .order('mastery_probability', { ascending: true })
-    .limit(6)
-  const weakConcepts = (weak ?? []).map((w) => w.concept_tag)
+    .limit(24)
+  const weakConcepts = [...(weak ?? [])]
+    .sort(
+      (a, b) =>
+        Number(b.incorrect_count ?? 0) - Number(a.incorrect_count ?? 0) ||
+        Number(a.mastery_probability) - Number(b.mastery_probability),
+    )
+    .slice(0, 6)
+    .map((w) => w.concept_tag)
 
   // A wide random-ish pool: quiz-eligible, single-answer, across domains.
   const { data: bank } = await admin

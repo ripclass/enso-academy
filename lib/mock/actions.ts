@@ -149,6 +149,28 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
     // practice to owners). Reuse MOCK_PAYWALL so the page routes to purchase.
     if (!enrollment) throw new Error(MOCK_PAYWALL)
   } else {
+    // Autopsy gate: a full simulation does not unlock until the previous
+    // simulation's misses have been classified (repeating mocks without an
+    // autopsy is fluency theater). Applies only to attempts that carry the
+    // kind marker (older attempts are grandfathered) and had wrong answers.
+    const { data: lastSim } = await admin
+      .from('mock_exam_attempts')
+      .select('id, incorrect_count, metadata')
+      .eq('student_id', user.id)
+      .eq('course_id', template.course_id)
+      .eq('status', 'submitted')
+      .order('submitted_at', { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    const lastMeta = (lastSim?.metadata ?? {}) as { kind?: string; autopsy?: unknown }
+    if (
+      lastSim &&
+      lastMeta.kind === 'simulation' &&
+      Number(lastSim.incorrect_count ?? 0) > 0 &&
+      !lastMeta.autopsy
+    ) {
+      throw new Error(`AUTOPSY_REQUIRED:${lastSim.id}`)
+    }
     // Entitlement-gated. The atomic consume_mock_attempt RPC is race-safe (it
     // increments `used` only when an attempt is available).
     const consumed = await consumeMockAttempt(user.id, template.course_id)
@@ -242,6 +264,7 @@ export async function startMockExam(templateId: string): Promise<StartMockResult
       status: 'in_progress',
       total_questions: questions.length,
       questions_snapshot: questions,
+      metadata: { kind: isPractice ? 'mock' : 'simulation' },
     })
     .select('id')
     .single()
@@ -430,6 +453,79 @@ export async function submitMockExam(opts: SubmitMockOptions): Promise<SubmitMoc
  * The bias is deliberate: hold at "approaching" rather than falsely call
  * "ready". criteria_met carries a human-readable `reason` for the UI.
  */
+/**
+ * The mock autopsy: after a full simulation, every miss gets classified before
+ * the next simulation unlocks. Repeating mocks without an autopsy is fluency
+ * theater; the classification turns lost points into named repair targets.
+ * Returns the "next 3 repairs" derived from the classification.
+ */
+export async function submitMockAutopsy(
+  attemptId: string,
+  classifications: Record<string, string>,
+): Promise<{ repairs: string[] }> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+
+  const admin = createAdminClient()
+  const { data: attempt } = await admin
+    .from('mock_exam_attempts')
+    .select('id, student_id, course_id, status, metadata, questions_snapshot, answers, by_domain_scores')
+    .eq('id', attemptId)
+    .single()
+  if (!attempt || attempt.student_id !== user.id) throw new Error('Attempt not found')
+  if (attempt.status !== 'submitted') throw new Error('Attempt not submitted')
+
+  // Category counts drive the repair plan.
+  const counts: Record<string, number> = {}
+  for (const cat of Object.values(classifications)) {
+    counts[cat] = (counts[cat] ?? 0) + 1
+  }
+  const total = Object.values(counts).reduce((s, n) => s + n, 0)
+
+  // Weakest domain from this attempt, for the knowledge-gap repair target.
+  const byDomain = (attempt.by_domain_scores ?? {}) as Record<string, { percent?: number }>
+  let weakDomain: string | null = null
+  let weakPct: number | null = null
+  for (const [d, v] of Object.entries(byDomain)) {
+    const pct = Number(v?.percent ?? 100)
+    if (weakPct === null || pct < weakPct) {
+      weakPct = pct
+      weakDomain = d
+    }
+  }
+
+  const REPAIR: Record<string, string> = {
+    knowledge: weakDomain
+      ? `Revisit the material: most misses were knowledge gaps. Re-study your weakest domain (${weakDomain}) and run a Desk Mix on it before the next simulation.`
+      : 'Revisit the material: most misses were knowledge gaps. Re-study the weakest topics and run a Desk Mix before the next simulation.',
+    misread: 'Slow the first read: you misread stems. On every question, restate what is being asked in your own words before looking at the options.',
+    overthink: 'Trust the first disciplined read: you talked yourself out of correct answers. Answer, flag, and only revisit flagged questions with a concrete reason.',
+    time: 'Run the pressure ladder: time cost you points. Do a Sprint (5 questions, 7 minutes) daily until pacing is automatic, then a Pace check.',
+    confidence: 'Recalibrate: you were certain and wrong. In lessons and Desk Mix, keep answering with the confidence step and review every certain-but-wrong reveal twice.',
+  }
+  const repairs = Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([cat, n]) => `${REPAIR[cat] ?? 'Review these misses with a colleague.'} (${n} of ${total} misses)`)
+
+  const metadata = {
+    ...((attempt.metadata ?? {}) as Record<string, unknown>),
+    autopsy: {
+      classifications,
+      repairs,
+      completed_at: new Date().toISOString(),
+    },
+  }
+  const { error } = await admin
+    .from('mock_exam_attempts')
+    .update({ metadata })
+    .eq('id', attemptId)
+  if (error) throw new Error('Failed to save autopsy: ' + error.message)
+
+  return { repairs }
+}
+
 async function updateReadiness(
   studentId: string,
   courseId: string,
@@ -505,6 +601,30 @@ async function updateReadiness(
   const decliningSharply = attempts.length >= 2 && mostRecent < average - 8
   const allDomainsClear = weakestScore === null || weakestScore >= domainFloor
 
+  // Calibration: lesson-decision confidence from the calibration layer. A
+  // student who scores well while repeatedly CERTAIN-and-wrong is the exam's
+  // most dangerous profile, so heavy overconfidence caps readiness at
+  // "approaching" until the calibration recovers.
+  const { data: confEvents } = await admin
+    .from('session_events')
+    .select('payload')
+    .eq('student_id', studentId)
+    .eq('event_type', 'decision_confidence')
+    .contains('payload', { course_id: courseId })
+    .order('occurred_at', { ascending: false })
+    .limit(200)
+  let certainCalls = 0
+  let certainWrong = 0
+  for (const e of confEvents ?? []) {
+    const p = e.payload as { confidence?: string; correct?: boolean }
+    if (p?.confidence === 'high') {
+      certainCalls += 1
+      if (p.correct === false) certainWrong += 1
+    }
+  }
+  const overconfidenceRate = certainCalls >= 8 ? certainWrong / certainCalls : null
+  const badlyOverconfident = overconfidenceRate !== null && overconfidenceRate > 0.25
+
   // READY is deliberately conservative — every condition must hold. We would
   // rather hold someone at "approaching" than tell them they are ready and be
   // wrong (the signoff is meant to mean something).
@@ -515,7 +635,8 @@ async function updateReadiness(
     average >= readyAvgTarget &&  // averaging comfortably above pass
     minimum >= passMark &&        // no recent attempt below the pass line
     allDomainsClear &&            // no domain dragging risk
-    !decliningSharply             // not on a downward slide
+    !decliningSharply &&          // not on a downward slide
+    !badlyOverconfident           // calibration: certain-but-wrong under control
   ) {
     status = 'ready'
   } else if (mockCount >= 3 && average >= passMark) {
@@ -531,6 +652,10 @@ async function updateReadiness(
   if (minimum < passMark) gaps.push('clear the pass mark on every recent mock')
   if (!allDomainsClear && weakestDomain) gaps.push(`lift ${weakestDomain} above ${domainFloor}% (now ${round2(weakestScore ?? 0)}%)`)
   if (decliningSharply) gaps.push('recover from a recent dip in your scores')
+  if (badlyOverconfident)
+    gaps.push(
+      `bring your certain-but-wrong rate down (${Math.round((overconfidenceRate ?? 0) * 100)}% of your "certain" calls in lessons were wrong)`,
+    )
 
   const reason =
     status === 'ready'
@@ -549,6 +674,9 @@ async function updateReadiness(
     declining_sharply: decliningSharply,
     weakest_domain: weakestDomain,
     weakest_domain_score: weakestScore === null ? null : round2(weakestScore),
+    calibration_certain_calls: certainCalls,
+    calibration_overconfidence_rate:
+      overconfidenceRate === null ? null : round2(overconfidenceRate),
     reason,
     thresholds: {
       ready: `count>=5, last-3-passes, avg>=${readyAvgTarget} (pass+5), min>=${passMark}, every domain>=${domainFloor}, no sharp decline`,

@@ -11,6 +11,7 @@ import { SectionHeader, StatusBadge, ConceptMasteryRow } from '@/components/in-a
 import { CourseSalesPage, type SalesPreviewLesson } from '@/components/courses/course-sales-page'
 import { BlueprintCoverage } from '@/components/courses/blueprint-coverage'
 import { previewLessonSlugs } from '@/lib/courses/preview'
+import { FlightPlanCard } from '@/components/practice/flight-plan-card'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -139,7 +140,7 @@ export default async function CourseDetailPage({ params }: Props) {
   if (user) {
     const { data: enrollment } = await admin
       .from('enrollments')
-      .select('id, status')
+      .select('id, status, metadata, progress_percent')
       .eq('student_id', user.id)
       .eq('course_id', course.id)
       .maybeSingle()
@@ -164,7 +165,7 @@ export default async function CourseDetailPage({ params }: Props) {
 
       const { data: knowledge } = await admin
         .from('student_knowledge_state')
-        .select('concept_tag, mastery_probability, observation_count')
+        .select('concept_tag, mastery_probability, observation_count, incorrect_count, last_observed_at')
         .eq('student_id', user.id)
         .eq('course_id', course.id)
 
@@ -182,6 +183,26 @@ export default async function CourseDetailPage({ params }: Props) {
         .slice(0, 6)
         .map((k) => ({ name: titleize(k.concept_tag), score: Number(k.mastery_probability) * 100 }))
       const showKnowledge = strongConcepts.length > 0 || reviewConcepts.length > 0
+      // The error ledger: repeat offenders by miss count (the persistent
+      // mistake file). Two or more misses = a named target, not noise.
+      const repeatOffenders = knowledgeRows
+        .filter((k) => Number(k.incorrect_count ?? 0) >= 2)
+        .sort(
+          (a, b) =>
+            Number(b.incorrect_count ?? 0) - Number(a.incorrect_count ?? 0) ||
+            String(b.last_observed_at ?? '').localeCompare(String(a.last_observed_at ?? '')),
+        )
+        .slice(0, 5)
+        .map((k) => ({ name: titleize(k.concept_tag), misses: Number(k.incorrect_count) }))
+      // Flight-plan inputs: the exam date (enrollment metadata) and a lesson
+      // count derived from progress, so the plan can pace the remaining build.
+      const examDate =
+        ((enrollment.metadata ?? {}) as { exam_date?: string | null }).exam_date ?? null
+      const totalLessons = (modules ?? []).reduce((n, m) => n + (m.lessons?.length ?? 0), 0)
+      const lessonsRemaining = Math.max(
+        0,
+        Math.round(totalLessons * (1 - Number(enrollment.progress_percent ?? 0) / 100)),
+      )
 
       const readinessBadge =
         readiness?.status === 'ready'
@@ -216,6 +237,14 @@ export default async function CourseDetailPage({ params }: Props) {
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
               {/* Left: modules */}
               <div className="lg:col-span-8 space-y-6">
+                {/* The flight plan: everything works backward from the exam date */}
+                <FlightPlanCard
+                  courseSlug={course.slug}
+                  examDate={examDate}
+                  lessonsRemaining={lessonsRemaining}
+                  readinessStatus={readiness?.status ?? null}
+                />
+
                 {/* Mock exams card */}
                 <div className="rounded-lg border-2 border-neutral-900 bg-white p-6">
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -401,6 +430,33 @@ export default async function CourseDetailPage({ params }: Props) {
                     <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
                       As you complete lessons and take mocks, this fills in: what you&rsquo;ve mastered, and what to review.
                     </p>
+                  </div>
+                )}
+
+                {/* The error ledger: your repeat offenders, straight to a rep */}
+                {repeatOffenders.length > 0 && (
+                  <div className="mt-6 rounded-lg border border-accent/30 bg-accent-light/30 p-6">
+                    <h2 className="text-base font-bold text-neutral-900">Your error ledger</h2>
+                    <p className="mt-1 text-xs text-neutral-500 leading-relaxed">
+                      The concepts you keep missing, across lessons, mixes, and mocks. The Desk
+                      Mix draws on these first.
+                    </p>
+                    <ul className="mt-4 space-y-2">
+                      {repeatOffenders.map((r) => (
+                        <li key={r.name} className="flex items-center justify-between gap-3 text-sm">
+                          <span className="min-w-0 truncate text-neutral-800">{r.name}</span>
+                          <span className="shrink-0 font-mono text-2xs font-bold uppercase tracking-wider text-accent">
+                            {r.misses} misses
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      href={`/courses/${course.slug}/desk-mix`}
+                      className="mt-4 inline-flex h-9 items-center rounded-md border border-accent px-4 text-xs font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
+                    >
+                      Work them: run a Desk Mix
+                    </Link>
                   </div>
                 )}
               </div>

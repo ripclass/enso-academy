@@ -24,6 +24,12 @@ export default async function MockTakePage({ params }: Props) {
     if (err instanceof Error && err.message === MOCK_PAYWALL) {
       redirect(`/courses/${slug}/mock`)
     }
+    // The previous simulation's misses are not yet classified — the next
+    // simulation unlocks after the autopsy (no attempt was consumed).
+    if (err instanceof Error && err.message.startsWith('AUTOPSY_REQUIRED:')) {
+      const attemptId = err.message.split(':')[1]
+      redirect(`/courses/${slug}/mock/results/${attemptId}?autopsy=required`)
+    }
     throw err
   }
   const { attemptId, templateName, questions, timeLimitMinutes } = result
