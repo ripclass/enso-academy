@@ -40,7 +40,7 @@ export default async function DeskMixPage({
           <h1 className="text-2xl font-bold tracking-tight text-neutral-900">Desk Mix</h1>
           <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-neutral-600">
             Eight decisions from across the whole course, in no order, with no lesson around
-            them. You find out what ground you were on after you commit — because that is how
+            them. You find out what ground you were on after you commit, because that is how
             the exam asks.
           </p>
         </div>

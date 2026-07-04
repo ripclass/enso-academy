@@ -1,11 +1,12 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, Shuffle, RotateCcw, Check, X } from 'lucide-react'
 import { recordQuizEvidence } from '@/lib/lesson/actions'
 import { ConfidenceChips, type Confidence } from '@/components/lesson/scenes/confidence-chips'
+import { useShuffled } from '@/components/lesson/scenes/use-shuffled'
 import type { DeskMixQuestion } from '@/lib/practice/desk-mix'
 
 /**
@@ -34,12 +35,9 @@ export function DeskMixSession({
 
   const q = questions[idx]
   const isLast = idx === questions.length - 1
-  // Shuffle options once per question index (stable across re-renders).
-  const options = useMemo(
-    () => (q ? [...q.options].sort(() => Math.random() - 0.5) : []),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [idx],
-  )
+  // SSR-safe shuffle: source order on the server paint, shuffled after mount
+  // (a render-time Math.random() order diverges between server and client).
+  const options = useShuffled(q?.options ?? [])
   const correct = committed != null && committed === q?.correctOptionId
 
   function commit(confidence: Confidence) {
@@ -79,10 +77,10 @@ export function DeskMixSession({
             {tally.over > 0 && (
               <>
                 <span className="font-semibold text-accent">{tally.over} certain-but-wrong</span>
-                {' — those are the exam’s most dangerous misses; the model has them now. '}
+                {': those are the exam’s most dangerous misses; the model has them now. '}
               </>
             )}
-            {tally.under > 0 && <>{tally.under} unsure-but-right — trust your reads more. </>}
+            {tally.under > 0 && <>{tally.under} unsure-but-right; trust your reads more. </>}
             {missed.length > 0 ? (
               <>Missed ground: {[...new Set(missed)].slice(0, 4).map((t) => t.replace(/_/g, ' ')).join(', ')}.</>
             ) : (
