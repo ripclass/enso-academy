@@ -239,6 +239,27 @@ export default async function CourseDetailPage({ params }: Props) {
                   </div>
                 </div>
 
+                {/* Desk Mix — mixed-domain decisions, the lesson-to-mock bridge */}
+                <Link
+                  href={`/courses/${course.slug}/desk-mix`}
+                  className="group block rounded-lg border border-neutral-200 bg-white p-6 transition-colors hover:border-primary"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="min-w-0">
+                      <h2 className="text-base font-bold text-neutral-900 group-hover:text-primary transition-colors">
+                        Desk Mix
+                      </h2>
+                      <p className="mt-1 text-sm text-neutral-600 leading-relaxed">
+                        Eight decisions from across the course, mixed and unlabelled, the way
+                        the exam asks. You learn what ground you were on after you commit.
+                      </p>
+                    </div>
+                    <span className="shrink-0 font-mono text-2xs font-bold uppercase tracking-widest text-accent">
+                      ~10 min
+                    </span>
+                  </div>
+                </Link>
+
                 {/* Case Mode */}
                 <Link
                   href={`/courses/${course.slug}/cases`}

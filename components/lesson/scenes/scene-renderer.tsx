@@ -6,6 +6,7 @@ import { SlideScene } from './slide-scene'
 import { QuizScene } from './quiz-scene'
 import { PlaceholderScene } from './placeholder-scene'
 import { InteractiveScene } from './interactive-scene'
+import type { Confidence } from './confidence-chips'
 import { ProjectScene } from './pbl/project-scene'
 
 /**
@@ -19,6 +20,7 @@ export function SceneRenderer({
   onInteractiveComplete,
   onGradeProject,
   onSpeak,
+  onDecision,
   caseSeed,
   revealed,
 }: {
@@ -30,6 +32,8 @@ export function SceneRenderer({
   onGradeProject?: (spec: PblSpec, submission: string) => Promise<{ band: string; feedback: string }>
   /** Narrate widget-driven text through the lesson's voice (case-file cards). */
   onSpeak?: (text: string) => void
+  /** Per-decision calibration report (case-file committed decisions). */
+  onDecision?: (correct: boolean, confidence: Confidence) => void
   /** Per-visit variant seed (case-file rotation across retakes). */
   caseSeed?: string
   /** Progressive reveal count for slide scenes (driven by narration progress). */
@@ -55,6 +59,7 @@ export function SceneRenderer({
             onComplete={report}
             onContinue={onQuizContinue}
             onSpeak={onSpeak}
+            onDecision={onDecision}
             seed={caseSeed}
           />
         )

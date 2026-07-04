@@ -1,6 +1,7 @@
 'use client'
 
 import type { InteractiveSpec } from '@/lib/lesson/scenes'
+import type { Confidence } from './confidence-chips'
 import { RiskClassify } from './interactives/risk-classify'
 import { RedFlagSpot } from './interactives/red-flag-spot'
 import { FlowTrace } from './interactives/flow-trace'
@@ -25,6 +26,7 @@ export function InteractiveScene({
   onComplete,
   onContinue,
   onSpeak,
+  onDecision,
   seed,
 }: {
   title: string
@@ -35,6 +37,8 @@ export function InteractiveScene({
   onContinue?: () => void
   /** Narrate widget-driven text through the lesson's voice (case-file cards). */
   onSpeak?: (text: string) => void
+  /** Per-decision calibration report (case-file committed decisions). */
+  onDecision?: (correct: boolean, confidence: Confidence) => void
   /** Per-visit variant seed (case-file rotation across retakes). */
   seed?: string
 }) {
@@ -68,6 +72,7 @@ export function InteractiveScene({
           onComplete={onComplete}
           onContinue={onContinue}
           onSpeak={onSpeak}
+          onDecision={onDecision}
         />
       )}
     </div>

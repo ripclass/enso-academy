@@ -4,12 +4,15 @@ import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import type { QuizSceneData, QuizQuestion } from '@/lib/lesson/scenes'
 import { useShuffled } from './use-shuffled'
+import { ConfidenceChips, type Confidence } from './confidence-chips'
 
 /**
  * `quiz` scene — an inline, formative knowledge check. NOT the faithful mock
- * exam (that is the mock engine). On answer it reveals correctness + the
- * explanation, and reports the result so the player can feed the knowledge
- * model (recordEvidence).
+ * exam (that is the mock engine). Answering is a TWO-STEP commit: pick an
+ * option, state how sure you are, and only then does the reveal come — the
+ * confidence read is worthless once the answer is visible. On reveal it
+ * reports the result (with confidence) so the player can feed the knowledge
+ * model and the calibration tally.
  *
  * Each question's options are shuffled per mount (useShuffled), so the correct
  * answer does not sit in its authored slot and is not memorisable by position
@@ -25,16 +28,26 @@ export function QuizScene({
   onContinue,
 }: {
   data: QuizSceneData
-  onAnswer?: (question: QuizQuestion, selectedOptionId: string, correct: boolean) => void
+  onAnswer?: (
+    question: QuizQuestion,
+    selectedOptionId: string,
+    correct: boolean,
+    confidence?: Confidence,
+  ) => void
   /** Advance the lesson — rendered as a Continue button after all questions are answered. */
   onContinue?: () => void
 }) {
   const [answeredCount, setAnsweredCount] = useState(0)
   const allAnswered = answeredCount >= data.questions.length
 
-  function handleAnswer(question: QuizQuestion, selectedOptionId: string, correct: boolean) {
+  function handleAnswer(
+    question: QuizQuestion,
+    selectedOptionId: string,
+    correct: boolean,
+    confidence?: Confidence,
+  ) {
     setAnsweredCount((n) => n + 1)
-    onAnswer?.(question, selectedOptionId, correct)
+    onAnswer?.(question, selectedOptionId, correct, confidence)
   }
 
   return (
@@ -73,16 +86,28 @@ function QuizQuestionCard({
 }: {
   index: number
   question: QuizQuestion
-  onAnswer?: (question: QuizQuestion, selectedOptionId: string, correct: boolean) => void
+  onAnswer?: (
+    question: QuizQuestion,
+    selectedOptionId: string,
+    correct: boolean,
+    confidence?: Confidence,
+  ) => void
 }) {
-  // Selected option id, once answered (locked after the first pick).
+  // Two-step commit: `pending` holds the pick while confidence is collected;
+  // `answered` locks in after confidence and triggers the reveal.
+  const [pending, setPending] = useState<string | null>(null)
   const [answered, setAnswered] = useState<string | null>(null)
   const options = useShuffled(question.options)
 
   function choose(optionId: string) {
-    if (answered) return // already answered — locked
-    setAnswered(optionId)
-    onAnswer?.(question, optionId, optionId === question.correctOptionId)
+    if (answered || pending) return
+    setPending(optionId)
+  }
+
+  function commit(confidence: Confidence) {
+    if (!pending || answered) return
+    setAnswered(pending)
+    onAnswer?.(question, pending, pending === question.correctOptionId, confidence)
   }
 
   return (
@@ -93,11 +118,14 @@ function QuizQuestionCard({
       </div>
       <div className="space-y-2">
         {options.map((opt) => {
-          const isSelected = answered === opt.id
+          const isSelected = (answered ?? pending) === opt.id
           const isCorrect = opt.id === question.correctOptionId
           let cls = 'w-full text-left rounded-md border px-3 py-2 text-sm transition-colors'
-          if (!answered) {
+          if (!answered && !pending) {
             cls += ' border-border hover:border-primary/50 hover:bg-muted cursor-pointer'
+          } else if (!answered) {
+            // Picked, confidence pending — show the selection, reveal nothing.
+            cls += isSelected ? ' border-primary bg-muted text-foreground' : ' border-border opacity-60'
           } else if (isCorrect) {
             cls += ' border-primary/50 bg-primary-light text-primary'
           } else if (isSelected) {
@@ -109,7 +137,7 @@ function QuizQuestionCard({
             <button
               key={opt.id}
               type="button"
-              disabled={!!answered}
+              disabled={!!answered || !!pending}
               onClick={() => choose(opt.id)}
               className={cls}
             >
@@ -118,6 +146,7 @@ function QuizQuestionCard({
           )
         })}
       </div>
+      {pending && !answered && <ConfidenceChips onPick={commit} />}
       {answered && (
         <div
           className={`rounded-md px-3 py-2 text-sm ${

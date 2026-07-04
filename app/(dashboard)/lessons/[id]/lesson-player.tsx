@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { Hand, CornerDownLeft, ArrowLeft, ArrowRight, MessageSquare, X, Play } from 'lucide-react'
-import { askLecturer, completeLesson, recordQuizEvidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission, fetchLecturerOpening, recordSceneProgress } from '@/lib/lesson/actions'
+import { askLecturer, completeLesson, recordQuizEvidence, recordDecisionConfidence, updateListenModePreference, getSceneAudio, synthesizeText, gradeProjectSubmission, fetchLecturerOpening, recordSceneProgress } from '@/lib/lesson/actions'
+import type { Confidence } from '@/components/lesson/scenes/confidence-chips'
 import { checkClassmateGap } from '@/lib/classmate/actions'
 import { SceneRenderer } from '@/components/lesson/scenes/scene-renderer'
 import { LessonChallenge } from '@/components/lesson/challenge/lesson-challenge'
@@ -313,6 +314,9 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // lecturer has already stepped in (capped so it never nags).
   const wrongStreakRef = useRef(0)
   const missedConceptsRef = useRef<Set<string>>(new Set())
+  // Session calibration tally: overconfident = certain but wrong (the exam's
+  // most dangerous failure mode); underconfident = unsure but right.
+  const calibrationRef = useRef({ total: 0, over: 0, under: 0 })
   const remediationCountRef = useRef(0)
   const userTurnTimerRef = useRef<number | null>(null)
 
@@ -835,12 +839,18 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
   // also feed the session's live miss-tracking: a two-in-a-row wrong streak
   // triggers the lecturer's remediation interjection, and every missed concept
   // is carried into the office-hours question at the end.
-  function handleQuizAnswer(question: QuizQuestion, _selectedOptionId: string, correct: boolean) {
+  function handleQuizAnswer(
+    question: QuizQuestion,
+    _selectedOptionId: string,
+    correct: boolean,
+    confidence?: Confidence,
+  ) {
     void recordQuizEvidence({
       courseId,
       conceptTags: question.conceptTags ?? [],
       correct,
     }).catch(() => {})
+    if (confidence) trackConfidence(question.conceptTags ?? [], correct, confidence)
     if (correct) {
       wrongStreakRef.current = 0
       return
@@ -857,6 +867,24 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
         'I have gotten two of these wrong in a row. Can you slow down and explain the key idea here differently, with one concrete example?',
       )
     }
+  }
+
+  // Tally a stated confidence against the outcome and persist it. The tally
+  // feeds the office-hours calibration readout; the event feeds the (future)
+  // readiness integration.
+  function trackConfidence(conceptTags: string[], correct: boolean, confidence: Confidence) {
+    const c = calibrationRef.current
+    c.total += 1
+    if (confidence === 'high' && !correct) c.over += 1
+    if (confidence === 'low' && correct) c.under += 1
+    void recordDecisionConfidence({ sessionId, conceptTags, correct, confidence }).catch(() => {})
+  }
+
+  // A case-file committed decision reports its confidence here (the widget's
+  // aggregate result still flows through handleInteractiveComplete).
+  function handleCaseDecision(correct: boolean, confidence: Confidence) {
+    const tags = currentScene?.conceptTags ?? []
+    trackConfidence(tags, correct, confidence)
   }
 
   // An interactive scene's result also feeds the student knowledge model, and
@@ -1091,10 +1119,16 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                       caseHref={caseHref}
                       // Personal chips from THIS session's misses (max two) —
                       // the student's own gaps lead the generic closers.
-                      missedPrompts={[...missedConceptsRef.current].slice(0, 2).map(
-                        (tag) =>
-                          `Can you go over ${tag.replace(/_/g, ' ')} once more? I kept getting it wrong today.`,
-                      )}
+                      missedPrompts={[
+                        ...[...missedConceptsRef.current].slice(0, 2).map(
+                          (tag) =>
+                            `Can you go over ${tag.replace(/_/g, ' ')} once more? I kept getting it wrong today.`,
+                        ),
+                        ...(calibrationRef.current.over >= 2
+                          ? ['Why do I keep missing calls I felt certain about?']
+                          : []),
+                      ]}
+                      calibration={calibrationRef.current}
                     />
                   ) : currentScene ? (
                     currentScene.sceneType === 'challenge' ? (
@@ -1129,6 +1163,7 @@ export function LessonPlayer({ sessionId, lesson, scenes, courseId, courseSlug, 
                           onInteractiveComplete={handleInteractiveComplete}
                           onGradeProject={handleGradeProject}
                           onSpeak={speakWidgetText}
+                          onDecision={handleCaseDecision}
                           caseSeed={sessionId}
                           revealed={currentScene.sceneType === 'slide' ? revealedCount : undefined}
                         />

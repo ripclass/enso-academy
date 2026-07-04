@@ -522,6 +522,38 @@ export async function recordQuizEvidence(opts: {
 }
 
 /**
+ * Record the confidence stated before a committed decision's reveal, for the
+ * calibration layer: overconfident misses and underconfident hits are distinct
+ * repair targets the raw score hides. Append-only into session_events; a
+ * failed write never blocks the lesson UI.
+ */
+export async function recordDecisionConfidence(opts: {
+  sessionId: string
+  conceptTags: string[]
+  correct: boolean
+  confidence: 'low' | 'med' | 'high'
+}): Promise<void> {
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+    const admin = createAdminClient()
+    await admin.from('session_events').insert({
+      session_id: opts.sessionId,
+      student_id: user.id,
+      event_type: 'decision_confidence',
+      payload: {
+        concept_tags: opts.conceptTags,
+        correct: opts.correct,
+        confidence: opts.confidence,
+      },
+    })
+  } catch (err) {
+    console.error('recordDecisionConfidence failed:', err)
+  }
+}
+
+/**
  * Mark a lesson as complete for the student. Updates session and logs event.
  */
 export async function completeLesson(sessionId: string, lessonId: string) {

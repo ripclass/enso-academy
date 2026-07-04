@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Check, X, ArrowRight, FolderOpen, Scale, RotateCcw } from 'lucide-react'
 import { caseVariantIndex, type CaseFileStep, type CaseFileCase } from '@/lib/lesson/scenes'
 import { useShuffled } from '../use-shuffled'
+import { ConfidenceChips, type Confidence } from '../confidence-chips'
 
 /**
  * Case-file investigation. The student works a real matter one evidence item
@@ -22,6 +23,7 @@ export function CaseFile({
   onComplete,
   onContinue,
   onSpeak,
+  onDecision,
 }: {
   caseTitle: string
   intro?: string
@@ -36,6 +38,8 @@ export function CaseFile({
   onContinue?: () => void
   /** Narrate widget text through the lesson's voice (no-op outside listen mode). */
   onSpeak?: (text: string) => void
+  /** Per-decision calibration report (fires on each committed decision). */
+  onDecision?: (correct: boolean, confidence: Confidence) => void
 }) {
   // Select this visit's case. Seeded by the session id (a new session per
   // lesson visit), so a retake rotates to a different verified matter while
@@ -80,10 +84,12 @@ export function CaseFile({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idx, picked, finished])
 
-  function pick(id: string) {
+  function pick(id: string, confidence: Confidence) {
     if (picked || !step) return
     setPicked(id)
-    if (id === step.decision.correctOptionId) setScore((s) => s + 1)
+    const correct = id === step.decision.correctOptionId
+    if (correct) setScore((s) => s + 1)
+    onDecision?.(correct, confidence)
   }
 
   function next() {
@@ -225,7 +231,8 @@ function EvidenceRow({ label, value }: { label: string; value: string }) {
 
 /**
  * The decision options, shuffled per mount (keyed by step so each item
- * reshuffles) — the correct answer is never memorisable by position.
+ * reshuffles) — the correct answer is never memorisable by position. Committing
+ * is two-step: pick, state confidence, then the reveal unlocks.
  */
 function DecisionBlock({
   step,
@@ -234,30 +241,34 @@ function DecisionBlock({
 }: {
   step: CaseFileStep
   picked: string | null
-  onPick: (id: string) => void
+  onPick: (id: string, confidence: Confidence) => void
 }) {
   const options = useShuffled(step.decision.options)
+  const [pending, setPending] = useState<string | null>(null)
+  const locked = picked != null || pending != null
   return (
     <div className="space-y-2">
       <p className="text-sm font-semibold text-neutral-800">{step.decision.prompt}</p>
       <div className="space-y-2">
         {options.map((o) => {
-          const isPicked = picked === o.id
+          const isPicked = (picked ?? pending) === o.id
           const isCorrect = picked != null && o.id === step.decision.correctOptionId
           return (
             <button
               key={o.id}
               type="button"
-              disabled={picked != null}
-              onClick={() => onPick(o.id)}
+              disabled={locked}
+              onClick={() => setPending(o.id)}
               className={`w-full rounded-md border px-3 py-2.5 text-left text-sm leading-relaxed transition-colors ${
                 isCorrect
                   ? 'border-primary bg-primary-light text-foreground'
-                  : isPicked
+                  : isPicked && picked != null
                     ? 'border-accent bg-accent-light text-foreground'
-                    : picked != null
-                      ? 'border-neutral-200 text-neutral-400'
-                      : 'border-neutral-300 text-neutral-700 hover:border-primary hover:text-primary'
+                    : isPicked
+                      ? 'border-primary bg-neutral-50 text-foreground'
+                      : locked
+                        ? 'border-neutral-200 text-neutral-400'
+                        : 'border-neutral-300 text-neutral-700 hover:border-primary hover:text-primary'
               }`}
             >
               {o.text}
@@ -265,6 +276,15 @@ function DecisionBlock({
           )
         })}
       </div>
+      {pending && picked == null && (
+        <ConfidenceChips
+          onPick={(c) => {
+            const id = pending
+            setPending(null)
+            if (id) onPick(id, c)
+          }}
+        />
+      )}
     </div>
   )
 }

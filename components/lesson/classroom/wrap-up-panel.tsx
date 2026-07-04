@@ -28,6 +28,7 @@ export function WrapUpPanel({
   completing,
   caseHref,
   missedPrompts = [],
+  calibration,
 }: {
   lecturerVariant: LecturerVariant
   prompt: string
@@ -43,6 +44,8 @@ export function WrapUpPanel({
   /** Personal chips built from the concepts THIS session got wrong — shown
    *  ahead of the generic closers so the student's own gaps lead. */
   missedPrompts?: string[]
+  /** Session calibration tally (decisions with a stated confidence). */
+  calibration?: { total: number; over: number; under: number }
 }) {
   const isUserTurn = stage === 'user-turn'
   const completeLabel = completing
@@ -104,6 +107,23 @@ export function WrapUpPanel({
       {isUserTurn && (
         <p className="mt-3 font-mono text-2xs text-accent">
           Your turn. Type or use the mic, and I’ll move on if you’re all set.
+        </p>
+      )}
+
+      {/* Session calibration: the score hides this; the debrief shouldn't. */}
+      {calibration && calibration.total >= 3 && (
+        <p className="mt-5 max-w-md font-mono text-2xs leading-relaxed text-neutral-500">
+          Calibration today: {calibration.total} committed decisions
+          {calibration.over > 0 && (
+            <>
+              {' · '}
+              <span className="font-semibold text-accent">
+                {calibration.over} certain-but-wrong
+              </span>
+            </>
+          )}
+          {calibration.under > 0 && <>{' · '}{calibration.under} unsure-but-right</>}
+          {calibration.over === 0 && calibration.under === 0 && ' · well calibrated'}
         </p>
       )}
 
