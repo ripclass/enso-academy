@@ -29,16 +29,49 @@ Decision gate: 2 weeks of cohort data or 15+ students through both formats, whic
 
 Also in Wave 2 (cheap insurance, one session): a Codex fidelity pass over the NEW decision content in the four converted lessons (stems/options/explanations; the facts are reused and already cleared).
 
-## Wave 3 — the roll (after the gate passes)
+## Wave 3 — REVISED (2026-07-04): the merged sweep
 
-**Convert module by module**, not lesson by lesson, so each module ships coherent. Suggested order (best case-file material first):
+The operator is already running a catalog-wide quality sweep (target >=8 per
+lesson) in parallel sessions. Do NOT run quality and conversion as separate
+passes; that touches every lesson twice and reviews it twice. One touch per
+lesson, both goals:
 
-1. CAMS Module 9 "Learning from Enforcement" (every lesson IS a case; the Apply-it challenge already exists there).
-2. CCAS "Learning from Enforcement and Synthesis" (same logic: Binance 2023, BitMEX, Tornado Cash, Lazarus).
-3. CAMS Foundations remainder + FATF module (the other early-funnel lessons students hit first).
-4. Everything else at 2-4 lessons/week alongside marketing work, using the SPEC's conversion procedure. It is choreography + decision-writing; no engineering remains.
+**The merged pass, per lesson** (SPEC section 6 procedure + quality):
+1. Quality-fix the retained readings/slides (the sweep's goal) while
+   restructuring into the simulator arc (SPEC section 2).
+2. Apply the v1.1 checklist as you author decisions (difficulty arc,
+   named-misconception distractors, the decision-standard scene, competent
+   classmates). The checklist IS quality work; a 6.5 lesson converted with it
+   applied generally lands at 8+.
+3. Decision budget with Apply-it now on every lesson: the challenge counts
+   toward the 6-9 committed decisions and serves as the exam-like closer of
+   the difficulty arc. Trim the final check accordingly; do not stack a heavy
+   final check AND Apply-it AND a long case file.
+4. Case file from the lesson's deep case where one exists; alternates are
+   optional and never block conversion (grow the bank opportunistically).
+5. Add the slug to WARMUP_LESSON_SLUGS with each converted module.
+6. Gates per lesson, always. Codex: batch the fidelity lane PER MODULE (one
+   dispatch carrying the module's new decision content) rather than per
+   lesson; the mens-rea/scope class of error is what it catches.
+7. Deploy per module with _deploy-lesson-replace (safe until real students
+   have progress worth preserving; revisit the deploy tool at first cohort).
 
-**Cost per lesson:** roughly one focused session-hour with the recipe; the three Wave-1 builders are the templates.
+**Order:** remaining CAMS lessons in the sweep's existing order (merged from
+now on) -> all of CCAS (merged from lesson one) -> the CAMS lessons already
+swept in the old format get a LIGHT conversion-only pass at the end (their
+content is already at bar; conversion is choreography, ~30-45 min each).
+
+**Validation stance (explicit decision):** the original Wave 2 cohort gate
+assumed live students; pre-launch there is no cohort to measure. Proceeding
+on the external review (SOUND-WITH-FIXES) plus founder judgment, with the
+four preview lessons as the standing canary. First-cohort metrics still get
+collected (completion, cold-open wrongness, time-to-return) and can halt the
+remaining roll at any point; every conversion keeps its .pre-pilot.bak revert.
+
+**Coordination for parallel sessions:** the mock/simulation workstream must
+rebase on current main before editing lib/mock/actions.ts — the flow now
+stamps attempts with metadata.kind, gates simulations behind the autopsy,
+and feeds readiness from simulations only plus the calibration cap.
 
 ## The factory change (do this before generating CGSS)
 
