@@ -532,12 +532,17 @@ async function updateReadiness(
   admin: ReturnType<typeof createAdminClient>,
   triggeredByAttemptId: string,
 ) {
+  // Readiness trusts full SIMULATIONS only. Practice mocks and the pressure
+  // ladder (Sprint / Pace check) are training wheels: a perfect 5-question
+  // sprint must never inflate the signoff. Legacy attempts (no kind marker)
+  // predate the ladder and were simulations in practice, so they stay in.
   const { data: recent } = await admin
     .from('mock_exam_attempts')
     .select('id, score_percent, by_domain_scores')
     .eq('student_id', studentId)
     .eq('course_id', courseId)
     .eq('status', 'submitted')
+    .or('metadata->>kind.is.null,metadata->>kind.eq.simulation')
     .order('submitted_at', { ascending: false })
     .limit(5)
 
@@ -550,6 +555,7 @@ async function updateReadiness(
     .eq('student_id', studentId)
     .eq('course_id', courseId)
     .eq('status', 'submitted')
+    .or('metadata->>kind.is.null,metadata->>kind.eq.simulation')
 
   const mockCount = totalSubmitted ?? attempts.length
 
