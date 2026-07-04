@@ -4,6 +4,9 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { recordEvidence } from '@/lib/student-model/knowledge'
 import { consumeMockAttempt } from '@/lib/stripe/entitlements'
+import { callHaiku } from '@/lib/ai/routing'
+import { logAiCall } from '@/lib/ai/cost-tracking'
+import { stripEmDashes } from '@/lib/ai/prose'
 import { MOCK_PAYWALL, type MockOption, type MockQuestion } from './types'
 
 type StartMockResult = {
@@ -406,12 +409,20 @@ export async function submitMockExam(opts: SubmitMockOptions): Promise<SubmitMoc
 
   const { data: attempt } = await admin
     .from('mock_exam_attempts')
-    .select('id, student_id, course_id, template_id, status, questions_snapshot')
+    .select('id, student_id, course_id, template_id, status, questions_snapshot, started_at')
     .eq('id', opts.attemptId)
     .single()
 
   if (!attempt || attempt.student_id !== user.id) throw new Error('Attempt not found')
   if (attempt.status !== 'in_progress') throw new Error('This mock has already been submitted')
+
+  // Compute the sitting's duration server-side from started_at. The client clock
+  // resets when an in-progress attempt is resumed, so a client-reported value
+  // undercounts a resumed sitting. opts.durationSeconds is no longer trusted.
+  const durationSeconds = Math.max(
+    0,
+    Math.round((Date.now() - new Date(attempt.started_at).getTime()) / 1000),
+  )
 
   const snapshot = (attempt.questions_snapshot as MockQuestion[]) ?? []
   const questionIds = snapshot.map((q) => q.id)
@@ -483,7 +494,7 @@ export async function submitMockExam(opts: SubmitMockOptions): Promise<SubmitMoc
     .update({
       status: 'submitted',
       submitted_at: new Date().toISOString(),
-      duration_seconds: opts.durationSeconds,
+      duration_seconds: durationSeconds,
       total_questions: total,
       correct_count: correctCount,
       incorrect_count: incorrectCount,
@@ -864,4 +875,128 @@ export async function getAttemptResults(attemptId: string): Promise<AttemptResul
   }
 
   return { attempt, questions: snapshot, qbankMap, passScorePercent }
+}
+
+/**
+ * Post-exam debrief: answer a student's question about a single reviewed mock
+ * question, grounded in that question's stem, keyed answer, the student's own
+ * choice, the explanation, and the per-option rationales. Only available AFTER
+ * the attempt is submitted (hard server-side guard), and only for the owner.
+ * Nothing is written to the lesson Q&A cache: that cache is lesson-scoped and
+ * shared across students, so mock-review answers must not pollute it.
+ */
+export async function askAboutMockQuestion(
+  attemptId: string,
+  questionId: string,
+  studentQuestion: string,
+): Promise<{ answer: string }> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+
+  // Cap at 500 chars (slice, do not throw) and reject an empty question.
+  const question = studentQuestion.trim().slice(0, 500)
+  if (!question) throw new Error('Question is empty')
+
+  const admin = createAdminClient()
+
+  const { data: attempt } = await admin
+    .from('mock_exam_attempts')
+    .select('id, student_id, course_id, status, questions_snapshot, answers')
+    .eq('id', attemptId)
+    .single()
+
+  if (!attempt || attempt.student_id !== user.id) throw new Error('Attempt not found')
+  // Hard guard: the debrief only exists once the exam is over. Answering mid-exam
+  // would leak the keyed answer while the clock is still running.
+  if (attempt.status !== 'submitted') throw new Error('This mock has not been submitted')
+
+  const snapshot = (attempt.questions_snapshot as MockQuestion[]) ?? []
+  if (!snapshot.some((q) => q.id === questionId)) throw new Error('Question not in this attempt')
+
+  const { data: qbank } = await admin
+    .from('question_bank')
+    .select('question_text, options, correct_answer, explanation, wrong_answer_rationales, domain')
+    .eq('id', questionId)
+    .single()
+  if (!qbank) throw new Error('Question not found')
+
+  const options = normalizeOptions(qbank.options)
+  const correctSet = new Set(
+    (Array.isArray(qbank.correct_answer) ? qbank.correct_answer : [qbank.correct_answer]).map(String),
+  )
+  const answers = (attempt.answers as unknown as Record<string, string | string[]>) ?? {}
+  const studentAnswer = answers[questionId]
+  const studentSet = new Set(
+    (Array.isArray(studentAnswer) ? studentAnswer : studentAnswer ? [studentAnswer] : []).map(String),
+  )
+  const rationales = (qbank.wrong_answer_rationales as unknown as Record<string, string> | null) ?? {}
+
+  const optionLines = options
+    .map((o) => {
+      const verdict = correctSet.has(o.id) ? 'CORRECT' : 'INCORRECT'
+      const chosen = studentSet.has(o.id) ? ' (the student chose this)' : ''
+      const rationale = !correctSet.has(o.id) && rationales[o.id] ? ` Why it is wrong: ${rationales[o.id]}` : ''
+      return `- [${verdict}] (id ${o.id}) ${o.text}${chosen}${rationale}`
+    })
+    .join('\n')
+
+  const system = `You are the AI lecturer for Enso Academy running a post-exam debrief with a professional certification candidate. The exam is over and they are reviewing one question they just answered. Reply in English. Answer ONLY about this specific question and the concepts it tests. Be concise, under about 180 words, professional, direct, and written for an adult. Do not use em-dashes; use commas, colons, or periods. Never reveal, hint at, or reference any other exam question. If the student asks about anything unrelated to this question or its concepts, briefly say that is outside this debrief and steer back to the question.
+
+QUESTION (domain: ${qbank.domain}):
+${qbank.question_text}
+
+OPTIONS:
+${optionLines}
+
+OFFICIAL EXPLANATION:
+${qbank.explanation ?? '(none provided)'}`
+
+  const startMs = Date.now()
+  const result = await callHaiku({
+    system,
+    messages: [{ role: 'user', content: question }],
+    maxTokens: 400,
+    temperature: 0.5,
+  })
+  const latencyMs = Date.now() - startMs
+  const answer = stripEmDashes(result.text.trim())
+
+  await logAiCall({
+    context: {
+      studentId: user.id,
+      courseId: attempt.course_id,
+      purpose: 'lecturer',
+    },
+    model: 'haiku',
+    inputTokens: result.inputTokens,
+    outputTokens: result.outputTokens,
+    costCents: result.costCents,
+    latencyMs,
+    metadata: { surface: 'mock_debrief', attempt_id: attemptId, question_id: questionId },
+  })
+
+  // Best-effort analytics. session_events requires a session_id (FK to sessions),
+  // and mock attempts do not create a session, so this records only when a session
+  // tied to the attempt exists. A logging failure must never fail the debrief.
+  try {
+    const { data: sess } = await admin
+      .from('sessions')
+      .select('id')
+      .eq('mock_attempt_id', attemptId)
+      .eq('student_id', user.id)
+      .maybeSingle()
+    if (sess) {
+      await admin.from('session_events').insert({
+        session_id: sess.id,
+        student_id: user.id,
+        event_type: 'mock_question_qa',
+        payload: { attempt_id: attemptId, question_id: questionId, course_id: attempt.course_id },
+      })
+    }
+  } catch {
+    // Swallow: analytics logging must never fail the debrief answer.
+  }
+
+  return { answer }
 }

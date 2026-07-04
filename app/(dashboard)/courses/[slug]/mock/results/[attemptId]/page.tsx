@@ -6,6 +6,7 @@ import { AppHeader } from '@/components/in-app/app-header'
 import { SectionHeader } from '@/components/in-app/ui-kit'
 import { getAttemptResults } from '@/lib/mock/actions'
 import { AutopsyPanel, type AutopsyMiss } from '@/components/mock/autopsy-panel'
+import { QuestionQa } from '@/components/mock/question-qa'
 import { readinessBand } from '@/lib/mock/readiness-band'
 
 type Props = {
@@ -187,21 +188,37 @@ export default async function MockResultsPage({ params, searchParams }: Props) {
                       const isCorrectOpt = correctSet.has(opt.id)
                       const isStudentPick = studentSet.has(opt.id)
                       const isStudentWrong = isStudentPick && !isCorrectOpt
+                      // The rationale for a wrong option the student actually picked:
+                      // shown beneath that option so the miss is explained in place.
+                      const wrongRationale = isStudentWrong
+                        ? qb?.wrong_answer_rationales?.[opt.id]
+                        : undefined
                       return (
-                        <div
-                          key={opt.id}
-                          className={`text-sm rounded border px-3 py-2 flex items-start gap-2 ${
-                            isCorrectOpt
-                              ? 'border-primary/30 bg-primary-light/40 text-neutral-900'
-                              : isStudentWrong
-                                ? 'border-accent/30 bg-accent-light/40 text-neutral-900'
-                                : 'border-neutral-200 text-neutral-600'
-                          }`}
-                        >
-                          <span className="shrink-0 w-4 text-center font-mono text-xs" aria-hidden>
-                            {isCorrectOpt ? '✓' : isStudentWrong ? '✗' : ''}
-                          </span>
-                          <span>{opt.text}</span>
+                        <div key={opt.id}>
+                          <div
+                            className={`text-sm rounded border px-3 py-2 flex items-start gap-2 ${
+                              isCorrectOpt
+                                ? 'border-primary/30 bg-primary-light/40 text-neutral-900'
+                                : isStudentWrong
+                                  ? 'border-accent/30 bg-accent-light/40 text-neutral-900'
+                                  : 'border-neutral-200 text-neutral-600'
+                            }`}
+                          >
+                            <span className="shrink-0 w-4 text-center font-mono text-xs" aria-hidden>
+                              {isCorrectOpt ? '✓' : isStudentWrong ? '✗' : ''}
+                            </span>
+                            <span>{opt.text}</span>
+                          </div>
+                          {wrongRationale && (
+                            <div className="mt-1.5 pl-9">
+                              <div className="text-2xs font-mono uppercase tracking-widest text-accent/70">
+                                Why this is wrong
+                              </div>
+                              <p className="mt-0.5 text-sm text-neutral-600 leading-relaxed">
+                                {wrongRationale}
+                              </p>
+                            </div>
+                          )}
                         </div>
                       )
                     })}
@@ -211,6 +228,7 @@ export default async function MockResultsPage({ params, searchParams }: Props) {
                       {qb.explanation}
                     </p>
                   )}
+                  <QuestionQa attemptId={attemptId} questionId={q.id} />
                 </div>
               )
             })}
