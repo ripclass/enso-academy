@@ -54,3 +54,19 @@ Do not convert forever; change what the generator emits. This requires a **metho
 - Do NOT generate case facts on the fly for variety; variety comes from the verified case bank (`docs/PLAYBOOK-next-courses.md`).
 - Do NOT split multi-question applied scenarios that share an intro when trimming final checks.
 - Do NOT deploy a converted artifact before its gates pass and its slug is in warmup-config.
+
+## Wave 4 candidates: the external design review (gpt-5.5, 2026-07-04)
+
+**The structural blind spot it named (accepted):** brittle transfer. The simulator trains reasoning INSIDE a well-framed lesson arc; the exam delivers concepts mixed, time-boxed, and stripped of narrative scaffolding. The risk is overtraining "follow the lesson arc" instead of "recognize the decision standard anywhere". The mocks are currently the only counterweight. The fix direction: more cross-session disorder, delayed retrieval, and calibrated uncertainty.
+
+Ranked additions (full text in the 2026-07-04 review; each extends an existing system):
+
+1. Adaptive Study Flight Plan: calendar-aware scheduler backward from the exam date, prescribing each session (extends the student model). M
+2. Mixed-Desk Interleaving Sets ("Desk Mix"): short mixed-domain decision blocks between lessons and mocks, concept tag revealed only after commit (feeds from question bank + case bank). M
+3. Confidence Calibration Layer: low/med/high confidence before reveals; calibration report; feeds readiness signoff so overconfident-in-weak-domains does not look ready. M (cheapest high-leverage)
+4. Error Ledger with misconception tags: persistent per-student mistake file, resurfaced as "same trap, new facts" reps (extends session misses + named-misconception distractors). M
+5. Timed Pressure Ladder: 5q/7min -> 10q/15 -> 25q/35 -> full timing, with pacing analytics (extends mock infra). M
+6. Mock Autopsy Protocol: forced structured miss-classification before the next mock unlocks; output = "next 3 repairs" (extends mock results). M
+7. Exam Week Protocol: final-7-days stabilization mode with a stop rule against panic-mocking. S
+
+Sequencing recommendation: after Wave 2 cohort data, build 3 (confidence) + 6 (autopsy) first (smallest, both sharpen the readiness signoff, the product's core promise), then 2 (Desk Mix) as the direct answer to brittle transfer, then 1 (flight plan) as the headline retention feature. 4 folds into 2's generation logic; 5 and 7 ride on mock infra whenever mocks are next touched.
