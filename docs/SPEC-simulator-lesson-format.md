@@ -70,8 +70,20 @@ Design patterns proven in Wave 1:
 6. Verify live: scene list shows the arc; the case file renders; answer one decision to see feedback + reveal.
 7. **Revert path:** restore the `.json` from `.json.pre-pilot.bak`, redeploy with the same script.
 
-## 7. Known gaps / deferred
+## 7. External review (gpt-5.5, 2026-07-04) — the v1.1 checklist
+
+Two Codex lanes ran on the format. Pedagogy lane: **SOUND-WITH-FIXES** ("well aligned to adult compliance exam prep"; cold open "especially well suited"; case-file rhythm "forces hypothesis discipline"). Fidelity lane: 3 blockers in new decision text, **all fixed same-day** (Wachovia precedent age in the 2010-set HSBC decision; "cartel-controlled casas de cambio" softened to what the record supports; BTC-e mens-rea overstatement narrowed so weak controls alone do not equal wilful blindness).
+
+Apply these on every NEW conversion (and fold into methodology v1.2):
+
+1. **Difficulty arc, not constant intensity:** hard cold open -> EASIER first mid-decision (a light discrimination rep) -> progressively harder case file -> exam-like final check. Do not make every decision a high-complexity legal-mapping task.
+2. **A reusable decision standard after the cold open:** one compact frame (e.g. "predicate, proceeds, act, mental state") stated once, then explicitly reapplied by later decisions. Lowers load without reverting to lecture.
+3. **Distractors are named misconceptions:** each wrong option = one clean, recognizable error (volume heuristic, conviction-threshold error, stage-model overreach, charge-vs-risk confusion). NEVER a distractor that is wrong mainly because it cites an obscure or untaught provision; those are eliminable by smell, not reasoning.
+4. **Classmates are competent but mistaken, never foolish.** Adults correct a plausible peer; they resent roleplay theater.
+5. **Label the warm-up's provenance** in its intro ("your record says these slipped") so adaptive retrieval reads as personal, not arbitrary.
+6. **Mens-rea and scope claims in explanations are the top fidelity risk** in new decision text: never let a control failure alone imply knowledge/wilful blindness, and never widen an enforcement finding beyond what the record states.
+
+## 8. Known gaps / deferred
 
 - Bubble word-level sync (bubble pins the first sentence of a beat by design; word timestamps from TTS is the real fix, a session of its own).
-- New decision content has NOT had a Codex fidelity pass (facts are reused, but stems/options/explanations are new). Run one before declaring the format final.
-- Case variety on retake = shuffled options only. The fix is the case BANK (see `docs/PLAYBOOK-next-courses.md`), never on-the-fly generation.
+- Case variety on retake = one alternate per preview lesson (visit-seeded draw). Growing the bank per `docs/PLAYBOOK-next-courses.md`; never on-the-fly generation.
