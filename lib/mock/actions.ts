@@ -937,11 +937,11 @@ export async function askAboutMockQuestion(
       const verdict = correctSet.has(o.id) ? 'CORRECT' : 'INCORRECT'
       const chosen = studentSet.has(o.id) ? ' (the student chose this)' : ''
       const rationale = !correctSet.has(o.id) && rationales[o.id] ? ` Why it is wrong: ${rationales[o.id]}` : ''
-      return `- [${verdict}] (id ${o.id}) ${o.text}${chosen}${rationale}`
+      return `- [${verdict}] ${o.text}${chosen}${rationale}`
     })
     .join('\n')
 
-  const system = `You are the AI lecturer for Enso Academy running a post-exam debrief with a professional certification candidate. The exam is over and they are reviewing one question they just answered. Reply in English. Answer ONLY about this specific question and the concepts it tests. Be concise, under about 180 words, professional, direct, and written for an adult. Do not use em-dashes; use commas, colons, or periods. Never reveal, hint at, or reference any other exam question. If the student asks about anything unrelated to this question or its concepts, briefly say that is outside this debrief and steer back to the question.
+  const system = `You are the AI lecturer for Enso Academy running a post-exam debrief with a professional certification candidate. The exam is over and they are reviewing one question they just answered. Reply in English. Answer ONLY about this specific question and the concepts it tests. Be concise, under about 180 words, professional, direct, and written for an adult. Do not use em-dashes; use commas, colons, or periods. Refer to answer options only by describing their content, never by a letter, id, or position: the student's screen shows no letters and displays the options in a different order. Never reveal, hint at, or reference any other exam question. If the student asks about anything unrelated to this question or its concepts, briefly say that is outside this debrief and steer back to the question.
 
 QUESTION (domain: ${qbank.domain}):
 ${qbank.question_text}
