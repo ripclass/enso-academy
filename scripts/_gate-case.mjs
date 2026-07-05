@@ -51,6 +51,8 @@ LANE 1, FACTUAL FIDELITY (decisive): every specific claim in the case's STUDENT-
 
 LANE 2, DECISION QUALITY: each of the 3 decisions must have exactly one clearly-best option; no distractor may be a defensible second correct answer; distractors must be plausible competing practitioner actions, not strawmen; explanations must not reference options by letter; register must be adult-professional; no em-dashes.
 
+CALIBRATION (apply to both lanes): decision prompts may place the student in a CONSTRUCTED hypothetical seat ("You own the respondent files...", "An onboarding file shows...") and distractor options assert wrong ideas BY DESIGN; do not flag scenario framing or distractor content as unsupported facts. Flag them only when they misstate the actual RECORD (a real amount, date, disposition, or entity fact) or make a distractor defensibly correct. Evidence cards ("observed"/"source") and reveals, by contrast, claim the record and are held to strict support.
+
 OUTPUT CONTRACT (exactly this shape, nothing else after it):
 VERDICT: AGREE | SPLIT | DISAGREE
 ISSUES:

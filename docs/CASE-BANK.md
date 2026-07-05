@@ -57,8 +57,16 @@ One fully-authored, fully-verified `CaseFileCase` (the exact shape in `lib/lesso
 - Program target: 100+ gated cases before the CGSS build starts (CGSS lessons are born in format v1.2 and consume the bank), 200+ across the six-course catalog.
 - Every batch ends with the audit summary + gate verdicts recorded in this doc's ledger below.
 
+## Factory learnings (bake into every batch)
+
+- **Feed the gate the WHOLE scene payload.** The first gate round produced ~40 false "unsupported" flags because the lesson excerpt omitted citation labels (which carry dates and dockets), slide items, and interactive scene content. Fixed in `_gate-case.mjs`; do not regress.
+- **Scenario framing is not a fact claim.** Decision prompts construct hypothetical seats and distractors are wrong by design; the gate brief now says to hold evidence cards and reveals to strict record support, but not to flag scenario/distractor framing. Two pilot cases (tether, wachovia) were accepted cleared-with-flag on exactly this residue after 4 rounds (the asymptote rule).
+- **Authors must copy citation metadata, never construct it.** The genuine round-1/2 catches were largely invented citation specifics (SDNY attributions, exact dates, case captions) and vivid-writing inflation ("nine-figure" for a ~USD 20m flow, allegation stated as fact, "most liquid" nobody sourced). The soldiers' briefs already say facts-verbatim; emphasize that CITATION TITLES AND DATES are facts too.
+- **Backfilled/legacy entries need machine-readable factBasis paths** (generated/...json) or the gate reads no source and rejects everything.
+
 ## Ledger
 
 | Date | Batch | Cases | Gated | Notes |
 |---|---|---|---|---|
 | 2026-07-03 | Pilot (pre-bank) | 8 | 8 | Authored during the lesson-format pilot; backfilled into the bank 2026-07-04 (HSBC, Wachovia, Danske, BTC-e, Bitfinex, Colonial, Terra, Tether) |
+| 2026-07-05 | Batch 1 (Lane A) | 12 new + 3 pilot repairs | 20/20 total | New: SCB 2012-2019, Westpac, 1MDB, BNPP 2014, Tornado Cash, Binance 2023, Welcome to Video, Silk Road/Zhong, Liberty Reserve, QuadrigaCX, FTX, NatWest/Fowler Oldfield. 4 gate rounds; 18 clean AGREE, 2 cleared-with-flag (tether, wachovia; scenario-framing residue). Pilot length tells fixed (terra/tether/wachovia). Bank pools per future course: CGSS 5, CFE 3, CFCS 8. |
