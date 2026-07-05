@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/server'
 import { Logo } from '@/components/brand/logo'
 import { getStudyDeck } from '@/lib/flashcards/actions'
 import { StudyDeck } from '@/components/flashcards/study-deck'
+import { WorkspaceChrome } from '@/components/courses/workspace-chrome'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -43,6 +44,58 @@ export default async function FlashcardsPage({ params }: Props) {
 
   const deck = enrolled ? await getStudyDeck(slug) : null
 
+  const intro = (
+    <>
+      <h1 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">
+        Study the vocabulary
+      </h1>
+      <p className="mt-3 max-w-2xl text-base leading-relaxed text-neutral-600">
+        Every term in the course, as a flashcard. Spaced repetition brings the ones you find hard
+        back sooner and lets the ones you know drift further out, so your time goes where it counts.
+      </p>
+    </>
+  )
+
+  const body = (
+    <div className="mt-10">
+      {enrolled && deck ? (
+        <StudyDeck courseSlug={slug} initialDeck={deck} />
+      ) : (
+        <div className="rounded-lg border-2 border-neutral-900 bg-white p-6">
+          <h2 className="text-lg font-bold text-neutral-900">
+            {user ? 'Enrol to study the deck' : 'Sign in to study the deck'}
+          </h2>
+          <p className="mt-1.5 text-sm text-neutral-600">
+            Flashcards are part of the course. {user ? 'Enrol' : 'Sign in and enrol'} to build your
+            deck and track what you have learned.
+          </p>
+          <Link
+            href={`/courses/${slug}`}
+            className="mt-4 inline-flex h-10 items-center justify-center gap-1.5 rounded-md bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
+          >
+            {user ? 'See the course' : 'Sign in'}
+          </Link>
+        </div>
+      )}
+    </div>
+  )
+
+  // Enrolled owner → the full in-course workspace, with the shared sidebar.
+  if (enrolled) {
+    return (
+      <WorkspaceChrome
+        slug={slug}
+        shortName={course.short_name}
+        courseName={course.name}
+        activeKey="flashcards"
+      >
+        {intro}
+        {body}
+      </WorkspaceChrome>
+    )
+  }
+
+  // Public / not-yet-enrolled → the standalone page.
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b border-foreground bg-background/90 backdrop-blur">
@@ -67,36 +120,11 @@ export default async function FlashcardsPage({ params }: Props) {
           <ArrowLeft className="h-3 w-3" /> Back to course
         </Link>
 
-        <span className="mt-6 block text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
+        <span className="mt-6 mb-2 block text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
           {course.short_name} Flashcards
         </span>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Study the vocabulary</h1>
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-neutral-600">
-          Every term in the course, as a flashcard. Spaced repetition brings the ones you find hard
-          back sooner and lets the ones you know drift further out, so your time goes where it counts.
-        </p>
-
-        <div className="mt-10">
-          {enrolled && deck ? (
-            <StudyDeck courseSlug={slug} initialDeck={deck} />
-          ) : (
-            <div className="rounded-lg border-2 border-neutral-900 bg-white p-6">
-              <h2 className="text-lg font-bold text-neutral-900">
-                {user ? 'Enrol to study the deck' : 'Sign in to study the deck'}
-              </h2>
-              <p className="mt-1.5 text-sm text-neutral-600">
-                Flashcards are part of the course. {user ? 'Enrol' : 'Sign in and enrol'} to build your
-                deck and track what you have learned.
-              </p>
-              <Link
-                href={`/courses/${slug}`}
-                className="mt-4 inline-flex h-10 items-center justify-center gap-1.5 rounded-md bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
-              >
-                {user ? 'See the course' : 'Sign in'}
-              </Link>
-            </div>
-          )}
-        </div>
+        {intro}
+        {body}
       </main>
     </div>
   )

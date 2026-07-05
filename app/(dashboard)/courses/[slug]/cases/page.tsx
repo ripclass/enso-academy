@@ -5,6 +5,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient } from '@/lib/supabase/server'
 import { Logo } from '@/components/brand/logo'
 import { CaseDesk } from '@/components/cases/case-desk'
+import { WorkspaceChrome } from '@/components/courses/workspace-chrome'
 import { REAL_CASE_META } from '@/lib/cases/generate'
 
 type Props = {
@@ -45,6 +46,38 @@ export default async function CasesPage({ params, searchParams }: Props) {
     unlocked = enr?.status === 'active'
   }
 
+  const intro = (
+    <>
+      <h1 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">Work the case</h1>
+      <p className="mt-3 max-w-2xl text-base leading-relaxed text-neutral-600">
+        A fresh financial-crime case every time. Read the brief, spot the red flags, adjudicate the
+        screening alert, then make the call. You get scored on your judgment, not your memory.{' '}
+        {unlocked
+          ? 'Your course unlocks the real-case packs: 1MDB, Danske Estonia, Westpac, worked the way a practitioner would.'
+          : 'These are the warm-up cases. The real-case packs are part of the course.'}
+      </p>
+      <div className="mt-10">
+        <CaseDesk courseSlug={slug} unlocked={unlocked} realCases={REAL_CASE_META} initialCaseId={caseId} />
+      </div>
+    </>
+  )
+
+  // Enrolled owner → the full in-course workspace, with the shared sidebar.
+  if (unlocked) {
+    return (
+      <WorkspaceChrome
+        slug={slug}
+        shortName={course.short_name}
+        courseName={course.name}
+        activeKey="cases"
+      >
+        {intro}
+      </WorkspaceChrome>
+    )
+  }
+
+  // Public / not-yet-enrolled → the standalone taster (the "try it free" entry
+  // linked from the sales page). No course sidebar full of locked links.
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b border-foreground bg-background/90 backdrop-blur">
@@ -56,7 +89,7 @@ export default async function CasesPage({ params, searchParams }: Props) {
             href={`/courses/${slug}`}
             className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md bg-primary px-4 text-xs font-semibold text-white transition-colors hover:bg-primary-hover"
           >
-            {unlocked ? 'Back to course' : 'The full course'}
+            The full course
           </Link>
         </div>
       </header>
@@ -69,26 +102,10 @@ export default async function CasesPage({ params, searchParams }: Props) {
           <ArrowLeft className="h-3 w-3" /> Back to course
         </Link>
 
-        <span className="mt-6 block text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
+        <span className="mt-6 mb-2 block text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
           {course.short_name} Case Mode
         </span>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Work the case</h1>
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-neutral-600">
-          A fresh financial-crime case every time. Read the brief, spot the red flags, adjudicate the
-          screening alert, then make the call. You get scored on your judgment, not your memory.{' '}
-          {unlocked
-            ? 'Your course unlocks the real-case packs: 1MDB, Danske Estonia, Westpac, worked the way a practitioner would.'
-            : 'These are the warm-up cases. The real-case packs are part of the course.'}
-        </p>
-
-        <div className="mt-10">
-          <CaseDesk
-            courseSlug={slug}
-            unlocked={unlocked}
-            realCases={REAL_CASE_META}
-            initialCaseId={caseId}
-          />
-        </div>
+        {intro}
       </main>
     </div>
   )

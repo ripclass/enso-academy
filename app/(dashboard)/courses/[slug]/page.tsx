@@ -5,15 +5,19 @@ import type { Metadata } from 'next'
 import { PRODUCTS } from '@/lib/stripe/client'
 import { resolveCoursePrice } from '@/lib/stripe/pricing'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, FileText } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
-import { SectionHeader, StatusBadge, ConceptMasteryRow } from '@/components/in-app/ui-kit'
+import { ConceptMasteryRow } from '@/components/in-app/ui-kit'
 import { CourseSalesPage, type SalesPreviewLesson } from '@/components/courses/course-sales-page'
 import { BlueprintCoverage } from '@/components/courses/blueprint-coverage'
+import { CourseWorkspace } from '@/components/courses/course-workspace'
 import { previewLessonSlugs } from '@/lib/courses/preview'
 import { FlightPlanCard } from '@/components/practice/flight-plan-card'
 
-type Props = { params: Promise<{ slug: string }> }
+type Props = {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ view?: string }>
+}
 
 // The sales page is the highest-intent public page on the site: give it real
 // metadata (title, description, canonical, OG) derived from the course row.
@@ -93,8 +97,9 @@ const SALES_CONTENT: Record<
   },
 }
 
-export default async function CourseDetailPage({ params }: Props) {
+export default async function CourseDetailPage({ params, searchParams }: Props) {
   const { slug } = await params
+  const { view } = await searchParams
   const supabase = await createClient()
   const {
     data: { user },
@@ -204,270 +209,165 @@ export default async function CourseDetailPage({ params }: Props) {
         Math.round(totalLessons * (1 - Number(enrollment.progress_percent ?? 0) / 100)),
       )
 
-      const readinessBadge =
-        readiness?.status === 'ready'
-          ? ('ready' as const)
-          : readiness?.status === 'approaching'
-            ? ('approaching' as const)
-            : null
+      // The "Modules" workspace view: the module/lesson list.
+      const modulesNode = (
+        <div className="space-y-6">
+          {modules?.map((mod, modIndex) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const lessons = ((mod.lessons as any[]) ?? []).sort((a, b) => a.sort_order - b.sort_order)
+            return (
+              <div key={mod.id} className="rounded-lg border border-neutral-200 bg-white overflow-hidden">
+                <div className="bg-muted border-b border-neutral-200 px-6 py-4">
+                  <span className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono">
+                    Module {modIndex + 1}
+                  </span>
+                  <h3 className="mt-0.5 text-base font-bold text-neutral-900">{mod.name}</h3>
+                  {mod.description && (
+                    <p className="mt-1 text-sm text-neutral-500">{mod.description}</p>
+                  )}
+                </div>
+                <div className="divide-y divide-neutral-100">
+                  {lessons.map((lesson, idx) => (
+                    <Link
+                      key={lesson.id}
+                      href={`/lessons/${lesson.id}`}
+                      className="flex items-center justify-between gap-4 px-6 py-4 hover:bg-neutral-50/60 transition-colors"
+                    >
+                      <div className="flex items-start gap-3 min-w-0">
+                        <span className="text-2xs font-mono text-neutral-400 mt-1 tabular-nums">
+                          {(idx + 1).toString().padStart(2, '0')}
+                        </span>
+                        <div className="min-w-0">
+                          <div className="text-sm font-semibold text-neutral-800">{lesson.name}</div>
+                          {lesson.description && (
+                            <div className="mt-0.5 text-xs text-neutral-500">{lesson.description}</div>
+                          )}
+                        </div>
+                      </div>
+                      <span className="text-2xs font-mono text-neutral-400 whitespace-nowrap shrink-0">
+                        {lesson.estimated_minutes} min
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )
 
-      return (
-        <div className="min-h-screen flex flex-col bg-background">
-          <AppHeader context={course.short_name} />
+      // The flight plan leads the Overview: the actionable "what to do, working
+      // back from the exam date" anchor.
+      const flightPlanNode = (
+        <FlightPlanCard
+          courseSlug={course.slug}
+          examDate={examDate}
+          lessonsRemaining={lessonsRemaining}
+          readinessStatus={readiness?.status ?? null}
+        />
+      )
 
-          <main className="flex-1 mx-auto max-w-5xl px-6 py-12 w-full">
-            <Link
-              href="/courses"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-primary transition-colors"
-            >
-              <ArrowLeft className="h-3 w-3" /> Your courses
-            </Link>
+      // The "Progress" workspace view: the knowledge model and the error ledger.
+      const progressNode = (
+        <div className="space-y-6">
+          {showKnowledge ? (
+            <div className="rounded-lg border border-neutral-200 bg-white p-6">
+              <h2 className="text-base font-bold text-neutral-900">Your knowledge state</h2>
+              <p className="mt-1 text-xs text-neutral-400">
+                What you&rsquo;ve mastered and what still needs work, concept by concept.
+              </p>
 
-            <div className="mt-6 mb-10">
-              <span className="text-2xs font-semibold uppercase tracking-widest text-accent font-mono">
-                {course.short_name}
-              </span>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900">{course.name}</h1>
-              <p className="mt-3 text-neutral-600 leading-relaxed max-w-2xl">{course.description}</p>
-              <p className="mt-3 text-2xs font-mono text-neutral-400 uppercase tracking-wider">
-                Certifying body: {course.certifying_body}
+              <div className="mt-6 space-y-6">
+                {reviewConcepts.length > 0 && (
+                  <div>
+                    <span className="block mb-2 text-2xs font-semibold uppercase tracking-wider text-accent font-mono">
+                      Focus needed ({reviewConcepts.length})
+                    </span>
+                    <div>
+                      {reviewConcepts.map((c) => (
+                        <ConceptMasteryRow key={c.name} concept={c.name} score={c.score} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {strongConcepts.length > 0 && (
+                  <div>
+                    <span className="block mb-2 text-2xs font-semibold uppercase tracking-wider text-primary font-mono">
+                      Mastered ({strongConcepts.length})
+                    </span>
+                    <div>
+                      {strongConcepts.map((c) => (
+                        <ConceptMasteryRow key={c.name} concept={c.name} score={c.score} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <p className="mt-6 text-2xs text-neutral-400 leading-relaxed">
+                Updated as you take mocks and complete lessons. Your lecturer uses this to focus its answers.
               </p>
             </div>
-
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-              {/* Left: modules */}
-              <div className="lg:col-span-8 space-y-6">
-                {/* The flight plan: everything works backward from the exam date */}
-                <FlightPlanCard
-                  courseSlug={course.slug}
-                  examDate={examDate}
-                  lessonsRemaining={lessonsRemaining}
-                  readinessStatus={readiness?.status ?? null}
-                />
-
-                {/* Mock exams card */}
-                <div className="rounded-lg border-2 border-neutral-900 bg-white p-6">
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2.5">
-                        <h2 className="text-lg font-bold text-neutral-900">Mock exams</h2>
-                        {readinessBadge && <StatusBadge status={readinessBadge} />}
-                      </div>
-                      <p className="mt-1.5 text-sm text-neutral-600">
-                        {readiness
-                          ? `${readiness.mock_count} mock${readiness.mock_count === 1 ? '' : 's'} completed. Average score ${Number(readiness.average_score ?? 0)}%.`
-                          : 'Take a mock exam to see where you stand.'}
-                      </p>
-                    </div>
-                    <Link
-                      href={`/courses/${course.slug}/mock`}
-                      className="inline-flex h-10 items-center justify-center gap-1.5 rounded-md bg-primary px-5 text-sm font-semibold text-white hover:bg-primary-hover transition-colors shrink-0"
-                    >
-                      <FileText className="h-4 w-4" /> Take a mock
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Desk Mix — mixed-domain decisions, the lesson-to-mock bridge */}
-                <Link
-                  href={`/courses/${course.slug}/desk-mix`}
-                  className="group block rounded-lg border border-neutral-200 bg-white p-6 transition-colors hover:border-primary"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="min-w-0">
-                      <h2 className="text-base font-bold text-neutral-900 group-hover:text-primary transition-colors">
-                        Desk Mix
-                      </h2>
-                      <p className="mt-1 text-sm text-neutral-600 leading-relaxed">
-                        Eight decisions from across the course, mixed and unlabelled, the way
-                        the exam asks. You learn what ground you were on after you commit.
-                      </p>
-                    </div>
-                    <span className="shrink-0 font-mono text-2xs font-bold uppercase tracking-widest text-accent">
-                      ~10 min
-                    </span>
-                  </div>
-                </Link>
-
-                {/* Case Mode */}
-                <Link
-                  href={`/courses/${course.slug}/cases`}
-                  className="group block rounded-lg border border-neutral-200 bg-white p-6 transition-colors hover:border-primary"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <h2 className="text-lg font-bold text-neutral-900">Case Mode</h2>
-                        <span className="rounded-full bg-accent-light px-2 py-0.5 font-mono text-2xs font-bold uppercase tracking-wider text-accent">
-                          New
-                        </span>
-                      </div>
-                      <p className="mt-1.5 text-sm text-neutral-600">
-                        Work a fresh financial-crime case: spot the red flags, adjudicate the alert,
-                        make the call. Scored on judgment, randomized, endless.
-                      </p>
-                    </div>
-                    <span className="mt-1 inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary">
-                      Work a case
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </span>
-                  </div>
-                </Link>
-
-                {/* Flashcards */}
-                <Link
-                  href={`/courses/${course.slug}/flashcards`}
-                  className="group block rounded-lg border border-neutral-200 bg-white p-6 transition-colors hover:border-primary"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <h2 className="text-lg font-bold text-neutral-900">Flashcards</h2>
-                        <span className="rounded-full bg-accent-light px-2 py-0.5 font-mono text-2xs font-bold uppercase tracking-wider text-accent">
-                          New
-                        </span>
-                      </div>
-                      <p className="mt-1.5 text-sm text-neutral-600">
-                        Drill the course vocabulary. Spaced repetition brings the terms you find hard
-                        back sooner, and lets the ones you know drift away.
-                      </p>
-                    </div>
-                    <span className="mt-1 inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary">
-                      Study
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </span>
-                  </div>
-                </Link>
-
-                <SectionHeader title="Course modules" />
-
-                {modules?.map((mod, modIndex) => {
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  const lessons = ((mod.lessons as any[]) ?? []).sort((a, b) => a.sort_order - b.sort_order)
-                  return (
-                    <div key={mod.id} className="rounded-lg border border-neutral-200 bg-white overflow-hidden">
-                      <div className="bg-muted border-b border-neutral-200 px-6 py-4">
-                        <span className="text-2xs font-bold uppercase tracking-wider text-neutral-400 font-mono">
-                          Module {modIndex + 1}
-                        </span>
-                        <h3 className="mt-0.5 text-base font-bold text-neutral-900">{mod.name}</h3>
-                        {mod.description && (
-                          <p className="mt-1 text-sm text-neutral-500">{mod.description}</p>
-                        )}
-                      </div>
-                      <div className="divide-y divide-neutral-100">
-                        {lessons.map((lesson, idx) => (
-                          <Link
-                            key={lesson.id}
-                            href={`/lessons/${lesson.id}`}
-                            className="flex items-center justify-between gap-4 px-6 py-4 hover:bg-neutral-50/60 transition-colors"
-                          >
-                            <div className="flex items-start gap-3 min-w-0">
-                              <span className="text-2xs font-mono text-neutral-400 mt-1 tabular-nums">
-                                {(idx + 1).toString().padStart(2, '0')}
-                              </span>
-                              <div className="min-w-0">
-                                <div className="text-sm font-semibold text-neutral-800">{lesson.name}</div>
-                                {lesson.description && (
-                                  <div className="mt-0.5 text-xs text-neutral-500">{lesson.description}</div>
-                                )}
-                              </div>
-                            </div>
-                            <span className="text-2xs font-mono text-neutral-400 whitespace-nowrap shrink-0">
-                              {lesson.estimated_minutes} min
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-
-              {/* Right: knowledge model */}
-              <div className="lg:col-span-4">
-                {showKnowledge ? (
-                  <div className="rounded-lg border border-neutral-200 bg-white p-6 lg:sticky lg:top-6">
-                    <h2 className="text-base font-bold text-neutral-900">Your knowledge state</h2>
-                    <p className="mt-1 text-xs text-neutral-400">
-                      What you&rsquo;ve mastered and what still needs work, concept by concept.
-                    </p>
-
-                    <div className="mt-6 space-y-6">
-                      {reviewConcepts.length > 0 && (
-                        <div>
-                          <span className="block mb-2 text-2xs font-semibold uppercase tracking-wider text-accent font-mono">
-                            Focus needed ({reviewConcepts.length})
-                          </span>
-                          <div>
-                            {reviewConcepts.map((c) => (
-                              <ConceptMasteryRow key={c.name} concept={c.name} score={c.score} />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {strongConcepts.length > 0 && (
-                        <div>
-                          <span className="block mb-2 text-2xs font-semibold uppercase tracking-wider text-primary font-mono">
-                            Mastered ({strongConcepts.length})
-                          </span>
-                          <div>
-                            {strongConcepts.map((c) => (
-                              <ConceptMasteryRow key={c.name} concept={c.name} score={c.score} />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <p className="mt-6 text-2xs text-neutral-400 leading-relaxed">
-                      Updated as you take mocks and complete lessons. Your lecturer uses this to focus its answers.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="rounded-lg border border-dashed border-neutral-200 bg-white p-6 lg:sticky lg:top-6">
-                    <h2 className="text-base font-bold text-neutral-900">Your knowledge state</h2>
-                    <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
-                      As you complete lessons and take mocks, this fills in: what you&rsquo;ve mastered, and what to review.
-                    </p>
-                  </div>
-                )}
-
-                {/* The error ledger: your repeat offenders, straight to a rep */}
-                {repeatOffenders.length > 0 && (
-                  <div className="mt-6 rounded-lg border border-accent/30 bg-accent-light/30 p-6">
-                    <h2 className="text-base font-bold text-neutral-900">Your error ledger</h2>
-                    <p className="mt-1 text-xs text-neutral-500 leading-relaxed">
-                      The concepts you keep missing, across lessons, mixes, and mocks. The Desk
-                      Mix draws on these first.
-                    </p>
-                    <ul className="mt-4 space-y-2">
-                      {repeatOffenders.map((r) => (
-                        <li key={r.name} className="flex items-center justify-between gap-3 text-sm">
-                          <span className="min-w-0 truncate text-neutral-800">{r.name}</span>
-                          <span className="shrink-0 font-mono text-2xs font-bold uppercase tracking-wider text-accent">
-                            {r.misses} misses
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      href={`/courses/${course.slug}/desk-mix`}
-                      className="mt-4 inline-flex h-9 items-center rounded-md border border-accent px-4 text-xs font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
-                    >
-                      Work them: run a Desk Mix
-                    </Link>
-                  </div>
-                )}
-              </div>
+          ) : (
+            <div className="rounded-lg border border-dashed border-neutral-200 bg-white p-6">
+              <h2 className="text-base font-bold text-neutral-900">Your knowledge state</h2>
+              <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
+                As you complete lessons and take mocks, this fills in: what you&rsquo;ve mastered, and what to review.
+              </p>
             </div>
+          )}
 
-            {/* Exam blueprint coverage — the "we cover the whole exam" map */}
-            <div className="mt-12 border-t border-neutral-200 pt-10">
-              <BlueprintCoverage slug={course.slug} eyebrow="Exam coverage" title="What this course covers, mapped to the exam" guideHref={`/courses/${course.slug}/guide`} />
+          {repeatOffenders.length > 0 && (
+            <div className="rounded-lg border border-accent/30 bg-accent-light/30 p-6">
+              <h2 className="text-base font-bold text-neutral-900">Your error ledger</h2>
+              <p className="mt-1 text-xs text-neutral-500 leading-relaxed">
+                The concepts you keep missing, across lessons, mixes, and mocks. The Desk
+                Mix draws on these first.
+              </p>
+              <ul className="mt-4 space-y-2">
+                {repeatOffenders.map((r) => (
+                  <li key={r.name} className="flex items-center justify-between gap-3 text-sm">
+                    <span className="min-w-0 truncate text-neutral-800">{r.name}</span>
+                    <span className="shrink-0 font-mono text-2xs font-bold uppercase tracking-wider text-accent">
+                      {r.misses} misses
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={`/courses/${course.slug}/desk-mix`}
+                className="mt-4 inline-flex h-9 items-center rounded-md border border-accent px-4 text-xs font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
+              >
+                Work them: run a Desk Mix
+              </Link>
             </div>
-          </main>
+          )}
         </div>
+      )
+
+      // The exam-coverage map, promoted from page-bottom to the Overview hero.
+      const examCoverageNode = (
+        <BlueprintCoverage
+          slug={course.slug}
+          eyebrow="Exam coverage"
+          title="What this course covers, mapped to the exam"
+          guideHref={`/courses/${course.slug}/guide`}
+        />
+      )
+
+      return (
+        <CourseWorkspace
+          slug={course.slug}
+          shortName={course.short_name}
+          courseName={course.name}
+          description={course.description}
+          certifyingBody={course.certifying_body}
+          initialView={view === 'modules' || view === 'progress' ? view : 'overview'}
+          flightPlan={flightPlanNode}
+          overviewExtra={examCoverageNode}
+          modules={modulesNode}
+          progress={progressNode}
+        />
       )
     }
   }

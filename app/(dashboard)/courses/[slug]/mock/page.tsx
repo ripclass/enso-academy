@@ -2,8 +2,8 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle2 } from 'lucide-react'
-import { AppHeader } from '@/components/in-app/app-header'
+import { CheckCircle2 } from 'lucide-react'
+import { WorkspaceChrome } from '@/components/courses/workspace-chrome'
 import { ensureBaselineEntitlement, getMockEntitlement } from '@/lib/stripe/entitlements'
 import { resolveCoursePrice } from '@/lib/stripe/pricing'
 import { BuyButtons } from './buy-buttons'
@@ -68,25 +68,17 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
   const coursePrice = await resolveCoursePrice(course.slug)
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <AppHeader context={course.short_name} />
-
-      <main className="flex-1 mx-auto max-w-4xl px-6 py-12 w-full">
-        <Link
-          href={`/courses/${course.slug}`}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-primary transition-colors"
-        >
-          <ArrowLeft className="h-3 w-3" /> {course.name}
-        </Link>
-
-        <div className="mt-6 mb-8">
-          <span className="text-2xs font-semibold uppercase tracking-wider text-accent font-mono">
-            {course.short_name}
-          </span>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900">
+    <WorkspaceChrome
+      slug={course.slug}
+      shortName={course.short_name}
+      courseName={course.name}
+      activeKey="mock"
+    >
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold tracking-tight text-neutral-900">
             Exam simulation &amp; practice
           </h1>
-          <p className="mt-3 max-w-2xl text-neutral-600 leading-relaxed">
+          <p className="mt-2 max-w-2xl text-neutral-600 leading-relaxed">
             The <strong className="text-neutral-900">full exam simulation</strong> recreates the real{' '}
             {course.short_name} exam exactly
             {sim ? `: ${sim.question_count} questions, ${simHours} hours,` : ','} the same domain
@@ -239,7 +231,6 @@ export default async function MockLaunchPage({ params, searchParams }: Props) {
             )}
           </section>
         )}
-      </main>
-    </div>
+    </WorkspaceChrome>
   )
 }

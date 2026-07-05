@@ -68,7 +68,7 @@ export function DeskMixSession({
 
   if (finished) {
     return (
-      <div className="mx-auto max-w-xl space-y-5">
+      <div className="max-w-xl space-y-5">
         <div className="rounded-lg border border-neutral-200 bg-neutral-50/60 p-6">
           <p className="text-lg font-semibold text-neutral-800">
             Mix complete: {score} of {questions.length}.
@@ -110,7 +110,7 @@ export function DeskMixSession({
   if (!q) return null
 
   return (
-    <div className="mx-auto max-w-2xl space-y-4">
+    <div className="max-w-2xl space-y-4">
       <div className="flex items-center justify-between">
         <span className="inline-flex items-center gap-1.5 font-mono text-2xs uppercase tracking-widest text-neutral-500">
           <Shuffle className="h-3.5 w-3.5 text-accent" /> Desk Mix
