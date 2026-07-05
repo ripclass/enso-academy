@@ -40,8 +40,14 @@ function SlideBody({ data, revealed }: { data: SlideSceneData; revealed: number 
               key={i}
               className={`rounded-lg border border-border bg-card p-4 ${revealCls(i, revealed)}`}
             >
-              <div className="flex gap-2.5">
-                {item.icon && <span className="text-lg leading-none">{item.icon}</span>}
+              <div className="flex gap-3">
+                {item.icon ? (
+                  <span className="text-lg leading-none">{item.icon}</span>
+                ) : (
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-mono text-xs font-bold text-primary">
+                    {i + 1}
+                  </span>
+                )}
                 <div className="space-y-0.5">
                   {item.label && <div className="font-semibold text-foreground">{item.label}</div>}
                   <div className="text-sm text-muted-foreground leading-relaxed">{item.text}</div>
@@ -83,12 +89,23 @@ function SlideBody({ data, revealed }: { data: SlideSceneData; revealed: number 
         }
         col.items.push({ item, index })
       })
+      // Fit the grid to the number of columns so three jurisdictions do not sit
+      // in a 2x2 with an empty fourth cell.
+      const gridByCols: Record<number, string> = {
+        1: 'grid-cols-1',
+        2: 'sm:grid-cols-2',
+        3: 'sm:grid-cols-2 lg:grid-cols-3',
+        4: 'sm:grid-cols-2 lg:grid-cols-4',
+      }
+      const gridCls = gridByCols[Math.min(4, columns.length)] ?? 'sm:grid-cols-2'
       return (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className={`grid grid-cols-1 gap-4 ${gridCls}`}>
           {columns.map((col, i) => (
-            <div key={i} className="rounded-lg border border-border p-4">
-              <div className="mb-2 font-semibold text-primary">{col.label}</div>
-              <ul className="space-y-1.5 text-sm text-muted-foreground">
+            <div key={i} className="overflow-hidden rounded-lg border border-border">
+              <div className="border-b border-border bg-muted/50 px-4 py-2 font-semibold text-primary">
+                {col.label}
+              </div>
+              <ul className="space-y-2 px-4 py-3 text-sm text-muted-foreground">
                 {col.items.map(({ item, index }, j) => (
                   <li key={j} className={`leading-relaxed ${revealCls(index, revealed)}`}>
                     {item.text}

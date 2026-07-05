@@ -52,11 +52,11 @@ export function QuizScene({
 
   return (
     <div className="space-y-5">
-      <div className="space-y-1">
+      <div className="space-y-2">
         <div className="text-xs uppercase tracking-wide text-muted-foreground">
           Knowledge check
         </div>
-        {data.intro && <p className="text-sm text-muted-foreground">{data.intro}</p>}
+        {data.intro && <QuizIntro text={data.intro} />}
       </div>
 
       {data.questions.map((question, qi) => (
@@ -161,6 +161,34 @@ function QuizQuestionCard({
           {question.explanation}
         </div>
       )}
+    </div>
+  )
+}
+
+/**
+ * The scene intro. A short intro stays a light lead line; a long one (a case
+ * brief, e.g. a "correct your classmate" scenario) gets a readable "the file"
+ * panel so it does not land as a dense block of small muted text.
+ */
+function QuizIntro({ text }: { text: string }) {
+  const paras = text
+    .split(/\n{2,}/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+  const long = text.length > 220 || paras.length > 1
+  if (!long) {
+    return <p className="text-sm leading-relaxed text-foreground/80">{text}</p>
+  }
+  return (
+    <div className="rounded-lg border border-border bg-muted/40 p-4">
+      <div className="mb-2 font-mono text-2xs uppercase tracking-widest text-muted-foreground">
+        The file
+      </div>
+      <div className="space-y-3 text-[0.95rem] leading-relaxed text-foreground">
+        {(paras.length ? paras : [text]).map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
+      </div>
     </div>
   )
 }

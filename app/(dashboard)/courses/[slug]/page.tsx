@@ -244,9 +244,11 @@ export default async function CourseDetailPage({ params, searchParams }: Props) 
                           )}
                         </div>
                       </div>
-                      <span className="text-2xs font-mono text-neutral-400 whitespace-nowrap shrink-0">
-                        {lesson.estimated_minutes} min
-                      </span>
+                      {lesson.estimated_minutes ? (
+                        <span className="text-2xs font-mono text-neutral-400 whitespace-nowrap shrink-0">
+                          {lesson.estimated_minutes} min
+                        </span>
+                      ) : null}
                     </Link>
                   ))}
                 </div>
