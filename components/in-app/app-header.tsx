@@ -28,16 +28,16 @@ export function AppHeader({
         </div>
         <div className="flex items-center gap-5 shrink-0">
           <Link
-            href="/courses"
+            href="/dashboard"
             className="text-sm font-medium text-neutral-600 hover:text-primary transition-colors"
           >
-            Courses
+            Home
           </Link>
           <Link
-            href="/dashboard"
+            href="/settings"
             className="hidden sm:inline text-sm font-medium text-neutral-600 hover:text-primary transition-colors"
           >
-            Dashboard
+            Settings
           </Link>
           {email && (
             <span className="hidden lg:inline text-2xs font-mono text-neutral-400 truncate max-w-[180px]">

@@ -4,8 +4,6 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowRight, BookOpen, FileText, Compass } from 'lucide-react'
 import { AppHeader } from '@/components/in-app/app-header'
-import { AvatarPicker } from '@/components/settings/avatar-picker'
-import { getAvatarChoice } from '@/lib/settings'
 import { StatusBadge } from '@/components/in-app/ui-kit'
 
 export const metadata = {
@@ -114,7 +112,21 @@ export default async function DashboardPage() {
     return { course: e.course, total, done, next, readiness: r, badge }
   })
 
-  const avatarChoice = await getAvatarChoice()
+  // The catalog: published courses the user does not own yet, to grow into.
+  const { data: publishedCourses } = await admin
+    .from('courses')
+    .select('id, slug, name, short_name, description')
+    .eq('status', 'published')
+    .order('created_at', { ascending: true })
+  const availableCourses = (
+    (publishedCourses ?? []) as {
+      id: string
+      slug: string
+      name: string
+      short_name: string
+      description: string | null
+    }[]
+  ).filter((c) => !courseIds.includes(c.id))
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -138,7 +150,7 @@ export default async function DashboardPage() {
               Browse the catalogue to enrol, or sit a single exam simulation first. Your first one is
               free.
             </p>
-            <Link href="/courses" className={`mt-6 ${btnPrimary}`}>
+            <Link href="#catalog" className={`mt-6 ${btnPrimary}`}>
               <Compass className="h-4 w-4" /> Browse courses <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -220,14 +232,38 @@ export default async function DashboardPage() {
           </div>
         )}
 
-        {/* Avatar */}
-        <div className="rounded-lg border border-neutral-200 bg-white p-6">
-          <h2 className="text-sm font-bold text-neutral-900">Your avatar</h2>
-          <p className="mt-1 mb-4 text-sm text-neutral-500">
-            How you appear in the classroom when you ask a question.
-          </p>
-          <AvatarPicker initial={avatarChoice} />
-        </div>
+        {/* The catalog: more certifications to grow into */}
+        {availableCourses.length > 0 && (
+          <div id="catalog">
+            <h2 className="text-2xs font-semibold uppercase tracking-wider text-neutral-500">
+              Expand your credentials
+            </h2>
+            <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
+              {availableCourses.map((c) => (
+                <div
+                  key={c.id}
+                  className="flex flex-col justify-between rounded-lg border border-neutral-200 bg-white p-6 transition-all hover:shadow-md"
+                >
+                  <div>
+                    <span className="text-2xs font-semibold uppercase tracking-widest text-neutral-400 font-mono">
+                      {c.short_name}
+                    </span>
+                    <h3 className="mt-2 text-lg font-bold text-neutral-900">{c.name}</h3>
+                    {c.description && (
+                      <p className="mt-2 text-sm text-neutral-600 leading-relaxed">{c.description}</p>
+                    )}
+                  </div>
+                  <Link
+                    href={`/courses/${c.slug}`}
+                    className="mt-6 inline-flex h-9 w-fit items-center justify-center gap-1.5 rounded-md border border-primary px-4 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-colors"
+                  >
+                    View course <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </main>
     </div>
   )
