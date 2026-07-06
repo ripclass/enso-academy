@@ -1,3 +1,11 @@
+## 2026-07-06 - Case bank `lafarge-2022` gate review returns `DISAGREE`
+
+- Exact user-brief two-lane review only; no case artifact edits, validation rerun, DB write, or external primary-source pass.
+- Re-read the AGENTS-required memory stack and evaluated the pasted Lafarge interactive case against the supplied source lesson `generated/cams/lessons/what-terrorist-financing-actually-is.json`.
+- Core factual spine is supported: August 2013 to October 2014 conduct, approximately USD 5.92m payments, ISIS / ANF recipients, Syrian intermediaries, donations/security-services entries, FTO / SDGT / UN-list framing, 18 October 2022 guilty pleas, Judge William F. Kuntz II, one conspiracy count each under 18 U.S.C. 2339B, USD 777.78m fines and forfeiture, and first corporate guilty plea under the statute.
+- Current verdict best reads `DISAGREE` because student-facing explanation/debrief text adds unsupported specifics: no OFAC licence exists for the arrangement, DOJ intends to cite the precedent across sectors and sizes, and executives accepted the legal-defence / conflict-zone-anomaly rationalisations.
+- Decision quality otherwise surfaced no independent defect: the three decisions have one clearly best option, plausible distractors, professional register, no option-letter explanations, and no em-dashes.
+
 ## 2026-07-06 - Case bank `rimasauskas-2019` gate review returns `AGREE`
 
 - Exact user-brief two-lane review only; no case artifact edits, validation rerun, DB write, or external primary-source pass.
@@ -5566,3 +5574,7 @@ Built the commerce layer so the faithful mock can be a standalone freemium produ
 ## 2026-07-06 - Case bank Batch 3 (Lane A): 12 cases, 44 gated total
 
 Authored and gated 12 new Lane A case-bank conversions (4 Opus soldiers x 3): Bitzlato 2023, SUEX 2021, Coincheck 2018, Mt. Gox 2014, Ooki DAO 2022-23, ING 2018, Caesars 2015, UBS 2009, Siemens 2008, Rimasauskas 2019 (BEC vs Google/Facebook), Commerzbank 2020, Sonali (UK) 2016. Deterministic audit 12/12 PASS first pass; Codex gpt-5.5 gate 10/12 clean AGREE first pass, Commerzbank fixed once (own-framework overgeneralization), Rimasauskas fixed 3 rounds each a distinct objective overclaim the gate surfaced one layer per round. All 12 finished clean AGREE, zero cleared-with-flag. Bank now 44 gated (42 clean AGREE, 2 pilot-era cleared-with-flag). Per-course pools: CAMS 28, CCAS 29, CGSS 9, CFCS 20, CFE 3. New factory learning in docs/CASE-BANK.md: on a DISAGREE, sweep the whole file for the overclaim class before re-gating. Content JSONs gitignored under generated/case-bank/cases/; ledger in docs/CASE-BANK.md.
+
+## 2026-07-06 - Case bank Batch 4 (Lane A, final cream): 6 cases, 50 gated total
+
+Authored and gated the last 6 Lane A conversions (2 Opus soldiers x 3): Lafarge S.A. 2022, Lebanese Canadian Bank 2011-2013, Obiang 2014, Ripple Labs 2015, Coinbase John Doe summons 2016-2017, De Nederlandsche Bank / Coinbase Europe 2023. Deterministic audit 6/6 PASS first pass; Codex gpt-5.5 gate 5/6 clean AGREE first pass, Lafarge fixed once in a single class-swept round (unsupported OFAC-licence specific; "DOJ intends to cite" over-attribution; debrief mis-attributing rationalisations to the executives). All 6 finished clean AGREE, zero cleared-with-flag. This closes the Lane A cream (mined all 68 titled deep-case scenes across both lesson trees against the bank; the rest are one-matter-one-case duplicates already banked, or constructed teaching examples, not bankable). Bank now 50 gated (48 clean AGREE, 2 pilot-era cleared-with-flag). Per-course pools: CAMS 31, CCAS 32, CGSS 10, CFCS 24, CFE 4. NEXT for the bank: (1) wire gated cases into lesson rotations through the builders when the lesson tree is uncontended; (2) Lane B fresh OFAC/DOJ research batches for CGSS and CFE depth before those course builds.

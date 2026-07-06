@@ -1,3 +1,11 @@
+## 2026-07-06 - Lafarge case-file exact gate review
+
+- Exact output-contract two-lane audit only; no case artifact edits were made.
+- Re-read the required memory stack, then checked the pasted `lafarge-2022` case file against the supplied source lesson text for factual fidelity and decision quality.
+- Prepared user-facing verdict: `DISAGREE`. The factual record is mostly clean, but the case adds unsupported student-facing specifics in the first explanation, third explanation, and debrief.
+- Issues to return: unsupported `An OFAC licence does not exist for buying operating access from ISIS and the al-Nusrah Front`; unsupported `DOJ intends to cite across sectors and sizes`; unsupported attribution that executives accepted `the belief that a knowledge defence or a "lawful access" argument could survive Holder` and the conflict-zone-anomaly rationalisation.
+- No separate decision-quality defect surfaced: each decision has one clearly best option, plausible distractors, adult-professional explanations, no option-letter references, and no em-dashes.
+
 ## 2026-07-06 - Rimasauskas case-file exact gate review
 
 - Exact output-contract two-lane audit only; no case artifact edits were made.
@@ -5942,3 +5950,11 @@ Ran the proven batch loop (spec -> 4 Opus soldiers x 3 -> deterministic audit ->
 - Soldiers correctly deferred to the lesson over my per-case cautions where they conflicted (Commerzbank: lesson states only "June 2020", not the "17 June 2020" I fed them; they used "June 2020"). Facts-from-the-named-lesson beats orchestrator memory.
 - Register discipline held across the batch: Bitzlato scope kept to "covered financial institutions" (special measure); SUEX kept to Treasury's published "over 40%" finding with no method-overclaim; Rimasauskas victims anonymized in evidence cards and reveals, Google/Facebook only in the debrief attributed to public reporting; Siemens parent pleaded to books-and-records while SEC alleged anti-bribery; Sonali MLRO left unnamed per the lesson.
 - Shared-tree contention: CLAUDE.md / PROGRESS.md / SESSION-NOTES.md were being actively rewritten by a parallel session mid-batch. Used a tight single-process node read-modify-write for the CLAUDE.md case-bank block (the Edit tool hit its stale-state guard). git add by name only, never -A (the tree also has dozens of untracked _audit-*.txt files).
+
+## 2026-07-06 - Case bank Batch 4 orchestration notes
+
+Ran a second batch this window (6 cases, 2 Opus soldiers) after Batch 3 closed. Notes:
+- Lane A is now genuinely mined out. Grepped all 68 "Deep case:" / "Worked example:" / "Worked text:" titled scenes across generated/cams/lessons and generated/ccas/lessons and deduped against the 50 banked matters. What remains is either one-matter-one-case duplicates (Danske, Westpac, Standard Chartered, 1MDB, Commerzbank each recur across many lessons from different teaching angles, but a matter maps to one bank case) or constructed teaching examples ("onboarding a garment exporter", "scoring a customer file", etc.) that are not real matters and not bankable. Note: CCAS crypto lessons store some matters in interactive "Work the file" scenes whose title is generic, so the 68 titled scenes undercount the true pool slightly, but the substantive cream is banked.
+- The new class-sweep rule paid off: Lafarge had 3 objective overclaims (OFAC-licence specific the source never states; "DOJ intends to cite" attributing intent to DOJ when the lesson frames it as practitioner expectation; a debrief attributing the Holder/knowledge-defence and conflict-zone rationalisations to the executives when the record supports only the security-cost framing). Fixed all three plus a full class sweep in one Sonnet round; re-gated clean AGREE. One round instead of three.
+- Soldiers correctly kept the two risky matters honest: Coinbase John Doe summons stayed strictly civil (evidence/reveal say Coinbase was not penalised; the "found to have broken the law" phrase is a wrong-idea distractor, which the gate correctly exempted); DNB was drawn only from its clean deep-case scene with zero MiCA/AMLR contamination even though the host lesson is fidelity-DISAGREE on those unrelated scenes.
+- Program status: 50 gated of the 100-before-CGSS target. Lane A is exhausted; further growth needs Lane B research (fact sheets with URLs before authoring) and/or wiring the existing 50 into lesson rotations.
