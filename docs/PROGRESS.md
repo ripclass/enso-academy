@@ -1,3 +1,10 @@
+## 2026-07-06 - Case bank `rimasauskas-2019` gate review returns `AGREE`
+
+- Exact user-brief two-lane review only; no case artifact edits, validation rerun, DB write, or external primary-source pass.
+- Re-read the AGENTS-required memory stack and evaluated the pasted Rimasauskas interactive case against the supplied source lesson `generated/cams/lessons/fraud-and-the-fraud-aml-nexus-framl.json`.
+- Current verdict best reads `AGREE`: all student-facing specifics checked in the case body and sources list are supported by the source lesson, including 2013-2015 scheme timing, Quanta/Latvia framing, victim anonymisation plus Google/Facebook reporting basis, more than USD 100m / approximately USD 99m / approximately USD 23m amounts, March 2019 plea, December 2019 sentence, 60 months, two years supervised release, approximately USD 49.7m forfeiture, more than USD 26m restitution, and recovery-of-much-of-the-funds wording.
+- Decision quality is clean: the three decisions each have one clearly best option, plausible practitioner distractors, adult-professional explanations without option-letter references, and no em-dashes.
+
 ## 2026-07-02 - CCAS module `learning-from-enforcement-and-synthesis` assessment methodology rerun returns `AGREE`
 
 - Exact user-brief methodology audit only; no assessment artifact edits, validation rerun, DB write, or generated artifact edit.
@@ -5555,3 +5562,7 @@ Built the commerce layer so the faithful mock can be a standalone freemium produ
 - The calibrated gate paid off: 7/12 clean on first pass (batch 1: 2/12), and every flag raised was a genuine register slip (dropped "apparent violations" hedge, missing "conspiring to" verb, quantifying what the source left qualitative, constructed-desk elements in evidence cards). One fix round closed everything; no cleared-with-flag needed.
 - BANK: 32 cases, 32 gated (30 clean AGREE + 2 batch-1 cleared-with-flag). Per-course pools: CAMS 20, CCAS 24, CGSS 8, CFCS 10, CFE 2. New factory rule recorded: hypothetical desk elements live in decision prompts; evidence cards claim only the record.
 - NEXT: wire bank cases into lesson rotations via the builders; Lane B (fresh OFAC/DOJ research) for CGSS/CFE depth.
+
+## 2026-07-06 - Case bank Batch 3 (Lane A): 12 cases, 44 gated total
+
+Authored and gated 12 new Lane A case-bank conversions (4 Opus soldiers x 3): Bitzlato 2023, SUEX 2021, Coincheck 2018, Mt. Gox 2014, Ooki DAO 2022-23, ING 2018, Caesars 2015, UBS 2009, Siemens 2008, Rimasauskas 2019 (BEC vs Google/Facebook), Commerzbank 2020, Sonali (UK) 2016. Deterministic audit 12/12 PASS first pass; Codex gpt-5.5 gate 10/12 clean AGREE first pass, Commerzbank fixed once (own-framework overgeneralization), Rimasauskas fixed 3 rounds each a distinct objective overclaim the gate surfaced one layer per round. All 12 finished clean AGREE, zero cleared-with-flag. Bank now 44 gated (42 clean AGREE, 2 pilot-era cleared-with-flag). Per-course pools: CAMS 28, CCAS 29, CGSS 9, CFCS 20, CFE 3. New factory learning in docs/CASE-BANK.md: on a DISAGREE, sweep the whole file for the overclaim class before re-gating. Content JSONs gitignored under generated/case-bank/cases/; ledger in docs/CASE-BANK.md.
